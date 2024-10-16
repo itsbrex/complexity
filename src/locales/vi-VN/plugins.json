@@ -1,0 +1,8 @@
+{
+  "languageModelSelector": {
+    "tooltip": "Chọn mô hình AI"
+  },
+  "imageGenModelSelector": {
+    "tooltip": "Chọn mô hình tạo hình ảnh"
+  }
+} 

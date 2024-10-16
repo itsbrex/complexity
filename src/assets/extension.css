@@ -1,0 +1,33 @@
+@import "./vars.css";
+@import "./scrollbar.css";
+
+@config "./tailwind.extension.config.js";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  [data-color-scheme="dark"] {
+    --primary: 214 97% 72%;
+    --ring   : 214 97% 72%;
+  }
+
+  * {
+    @apply tw-border-border tw-text-base;
+  }
+
+  body {
+    @apply tw-bg-background tw-font-sans tw-text-foreground;
+    font-feature-settings: "rlig"1, "calt"1;
+  }
+}
+
+body {
+  .classRandom {
+    @apply tw-bg-red-500;
+  }
+  .anotherRandomClass {
+    display: none;
+  }
+}

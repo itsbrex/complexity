@@ -1,0 +1,76 @@
+/// <reference types="vitest" />
+
+import * as path from "path";
+import { defineConfig } from "vite";
+import { crx } from "@crxjs/vite-plugin";
+import react from "@vitejs/plugin-react";
+import Unimport from "unimport/unplugin";
+
+import manifest from "./src/manifest";
+import { APP_CONFIG } from "./src/app.config";
+import unimportConfig from "./src/types/unimport.config";
+
+import vitePluginForceRestartOnChanges from "./vite-plugins/vite-plugin-force-restart-on-changes";
+import vitePluginReloadOnDynamicallyInjectedStyleChanges from "./vite-plugins/vite-plugin-reload-on-dynamically-injected-style-changes";
+import viteTouchGlobalCss from "./vite-plugins/vite-plugin-touch-global-css";
+
+export default defineConfig(() => ({
+  base: "./",
+  build: {
+    target: ["chrome89", "edge89", "firefox109"],
+    emptyOutDir: true,
+    reportCompressedSize: false,
+    rollupOptions: {
+      output: {
+        chunkFileNames: "assets/cplx-[hash].js",
+        assetFileNames: "assets/cplx-[hash][extname]",
+        entryFileNames: "assets/cplx-[hash].js",
+      },
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern-compiler",
+      },
+    },
+  },
+  plugins: [
+    crx({ manifest, browser: APP_CONFIG.BROWSER }),
+    react(),
+    Unimport.vite(unimportConfig),
+    vitePluginReloadOnDynamicallyInjectedStyleChanges(),
+    vitePluginForceRestartOnChanges({
+      folders: ["public"],
+    }),
+    viteTouchGlobalCss({
+      cssFilePath: path.resolve(__dirname, "src/assets/cs.css"),
+      watchFiles: [
+        path.resolve(__dirname, "src/"),
+        path.resolve(__dirname, "public/"),
+      ],
+    }),
+  ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+      "~": path.resolve(__dirname, "./"),
+    },
+  },
+  server: {
+    port: 5173,
+    hmr: {
+      host: "localhost",
+      protocol: "ws",
+    },
+  },
+  test: {
+    exclude: ["node_modules", "e2e/**"],
+    setupFiles: ["./tests/vitest.setup.ts"],
+    server: {
+      deps: {
+        inline: ["@webext-core/messaging"],
+      },
+    },
+  },
+}));

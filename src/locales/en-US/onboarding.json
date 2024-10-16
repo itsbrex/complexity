@@ -1,0 +1,29 @@
+{
+  "basePermissions": {
+    "title": "Complexity needs your permissions to work",
+    "storage": {
+      "title": "Extension Storage Access",
+      "description": {
+        "main": "Store your preferences and settings locally in the extension's storage.",
+        "security": "The extension has NO access to browser history, bookmarks, or any other data.",
+        "autoGrant": "This permission is automatically granted when you install the extension."
+      }
+    },
+    "cookies": {
+      "title": "Perplexity AI Cookies",
+      "description": {
+        "intro": "Sensitive cookies will never be stored or used outside Perplexity AI. The permission allows the extension to:",
+        "features": {
+          "sync": "Synchronize your Perplexity AI preferences (like color scheme and language settings) with the extension",
+          "verify": "Verify your Supporter status"
+        },
+        "warning": "Without this permission, the extension will default to Dark mode and English language. Additionally, Supporter features will be unavailable. You can still enable this permission later."
+      }
+    },
+    "additionalPermissionsHeadsUp": "You may be prompted to grant additional permissions to certain features. Rest assured, you will always be asked for your consent before any action is taken.",
+    "buttons": {
+      "grant": "Grant Permission",
+      "granted": "Granted"
+    }
+  }
+}

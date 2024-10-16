@@ -1,0 +1,28 @@
+{
+  "basePermissions": {
+    "title": "Complexity potrebuje vaše povolenia na fungovanie",
+    "storage": {
+      "title": "Prístup k úložisku rozšírenia",
+      "description": {
+        "main": "Ukladá vaše preferencie a nastavenia lokálne v úložisku rozšírenia.",
+        "security": "Rozšírenie NEMÁ prístup k histórii prehliadača, záložkám ani iným údajom.",
+        "autoGrant": "Toto povolenie sa automaticky udeľuje pri inštalácii rozšírenia."
+      }
+    },
+    "cookies": {
+      "title": "Cookies Perplexity AI",
+      "description": {
+        "intro": "Citlivé cookies sa nikdy nebudú ukladať ani používať mimo Perplexity AI. Povolenie umožňuje rozšíreniu:",
+        "features": {
+          "sync": "Synchronizovať vaše preferencie Perplexity AI (ako farebná schéma a jazykové nastavenia) s rozšírením",
+          "verify": "Overiť váš status Podporovateľa"
+        },
+        "warning": "Bez tohto povolenia bude rozšírenie predvolene používať tmavý režim a anglický jazyk. Navyše, funkcie Podporovateľa nebudú dostupné. Toto povolenie môžete povoliť neskôr."
+      }
+    },
+    "buttons": {
+      "grant": "Udeliť povolenie",
+      "granted": "Udelené"
+    }
+  }
+} 

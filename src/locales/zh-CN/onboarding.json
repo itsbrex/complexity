@@ -1,0 +1,28 @@
+{
+  "basePermissions": {
+    "title": "Complexity 需要您的权限才能工作",
+    "storage": {
+      "title": "扩展存储访问",
+      "description": {
+        "main": "在扩展存储中本地保存您的偏好设置。",
+        "security": "扩展程序无法访问浏览器历史记录、书签或任何其他数据。",
+        "autoGrant": "安装扩展程序时会自动授予此权限。"
+      }
+    },
+    "cookies": {
+      "title": "Perplexity AI Cookie",
+      "description": {
+        "intro": "敏感 cookie 永远不会在 Perplexity AI 之外存储或使用。此权限允许扩展程序：",
+        "features": {
+          "sync": "将您的 Perplexity AI 偏好设置（如配色方案和语言设置）与扩展程序同步",
+          "verify": "验证您的支持者状态"
+        },
+        "warning": "没有此权限，扩展程序将默认使用深色模式和英语。此外，支持者功能将不可用。您可以稍后启用此权限。"
+      }
+    },
+    "buttons": {
+      "grant": "授予权限",
+      "granted": "已授予"
+    }
+  }
+}

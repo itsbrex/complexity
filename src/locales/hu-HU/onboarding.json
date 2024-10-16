@@ -1,0 +1,28 @@
+{
+  "basePermissions": {
+    "title": "A Complexity működéséhez engedélyekre van szükség",
+    "storage": {
+      "title": "Bővítmény tárhely hozzáférés",
+      "description": {
+        "main": "Helyben tárolja a beállításait és preferenciáit a bővítmény tárhelyén.",
+        "security": "A bővítménynek NINCS hozzáférése a böngészési előzményekhez, könyvjelzőkhöz vagy egyéb adatokhoz.",
+        "autoGrant": "Ez az engedély automatikusan megadásra kerül a bővítmény telepítésekor."
+      }
+    },
+    "cookies": {
+      "title": "Perplexity AI sütik",
+      "description": {
+        "intro": "Az érzékeny sütik soha nem kerülnek tárolásra vagy felhasználásra a Perplexity AI-n kívül. Az engedély lehetővé teszi a bővítmény számára:",
+        "features": {
+          "sync": "A Perplexity AI beállításainak (mint színséma és nyelvi beállítások) szinkronizálását a bővítménnyel",
+          "verify": "Támogatói státuszának ellenőrzését"
+        },
+        "warning": "Ezen engedély nélkül a bővítmény alapértelmezetten sötét módot és angol nyelvet fog használni. Továbbá a Támogatói funkciók nem lesznek elérhetők. Ezt az engedélyt később is engedélyezheti."
+      }
+    },
+    "buttons": {
+      "grant": "Engedély megadása",
+      "granted": "Megadva"
+    }
+  }
+} 

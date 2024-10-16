@@ -1,0 +1,75 @@
+{
+  "catppuccin-icons.associations.files": {
+    "tailwind.cs.config.js": "tailwind",
+    "tailwind.extension.config.js": "tailwind"
+  },
+  "catppuccin-icons.associations.folders": {
+    "content-scripts": "folder_scripts",
+    "cs-ui": "folder_templates",
+    "entrypoints": "folder_client",
+    "options-page": "folder_views"
+  },
+  "editor.quickSuggestions": {
+    "comments": false,
+    "other": true,
+    "strings": false
+  },
+  "editor.quickSuggestionsDelay": 1,
+  "editor.suggest.showWords": false,
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.svn": true,
+    "**/CVS": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.hg/store/**": true,
+    "**/build/**/*": true,
+    "**/dist/**/*": true,
+    "**/node_modules/*/**": true,
+    "**/package/**/*": true
+  },
+  "i18n-ally.defaultNamespace": "common",
+  "i18n-ally.enabledFrameworks": ["i18next", "react-i18next"],
+  "i18n-ally.extract.autoDetect": false,
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": ["src/locales"],
+  "i18n-ally.namespace": true,
+  "i18n-ally.pathMatcher": "{locale}/{namespaces}.json",
+  "i18n-ally.sourceLanguage": "en",
+  "npm.exclude": ["**/build", "**/dist", "**/package"],
+  "npm.scriptExplorerExclude": ["preinstall"],
+  "search.exclude": {
+    "**/*.code-search": true,
+    "**/bower_components": true,
+    "**/build/**/*": true,
+    "**/dist/**/*": true,
+    "**/node_modules": true,
+    "**/package/**/*": true,
+    "**/public/locales/**/*": true
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["addClass\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["toggleClass\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+  "typescript.format.enable": false,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  // "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "typescript.tsserver.maxTsServerMemory": 8192,
+  "typescript.tsserver.watchOptions": {
+    "fallbackPolling": "dynamicPriorityPolling",
+    "watchDirectory": "useFsEvents",
+    "watchFile": "useFsEventsOnParentDirectory"
+  },
+  "workbench.editor.customLabels.patterns": {
+    "**/src/**": "${dirname}: ${filename}.${extname}"
+  },
+  "workbench.editor.labelFormat": "medium",
+  "workbench.editor.untitled.labelFormat": "content"
+}

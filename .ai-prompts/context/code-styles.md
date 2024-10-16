@@ -1,0 +1,15 @@
+- NEVER delete user's comments.
+- Follow these TypeScript coding/refactoring conventions:
+  - Use modern methods (e.g., `slice()` instead of `substr()`).
+  - Write in very strict TypeScript:
+    - Prefer `type` over `interface` for type declarations.
+    - Use built-in types whenever possible.
+    - Avoid types banned by `eslint@typescript-eslint/ban-types` (e.g., `Function`).
+    - Do not use `any` type, implicit or explicit.
+  - React conventions:
+    - Directly import modules: `useState` instead of `React.useState`.
+    - Use functional components: `function Component()` instead of `const Component: React.FC`.
+  - Use the custom `cn` function for combining Tailwind classes.
+  - Use `tw-` prefix for Tailwind classes.
+  - Do not use barrel files.
+  - Follow the established project structure for organizing code.

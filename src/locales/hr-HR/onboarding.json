@@ -1,0 +1,28 @@
+{
+  "basePermissions": {
+    "title": "Complexity treba vaše dopuštenje za rad",
+    "storage": {
+      "title": "Pristup pohrani proširenja",
+      "description": {
+        "main": "Lokalno pohranjuje vaše postavke i preference u pohrani proširenja.",
+        "security": "Proširenje NEMA pristup povijesti preglednika, oznakama ili bilo kojim drugim podacima.",
+        "autoGrant": "Ovo dopuštenje se automatski dodjeljuje prilikom instalacije proširenja."
+      }
+    },
+    "cookies": {
+      "title": "Perplexity AI kolačići",
+      "description": {
+        "intro": "Osjetljivi kolačići nikada neće biti pohranjeni ili korišteni izvan Perplexity AI-a. Dopuštenje omogućuje proširenju da:",
+        "features": {
+          "sync": "Sinkronizira vaše Perplexity AI postavke (poput sheme boja i jezičnih postavki) s proširenjem",
+          "verify": "Provjeri vaš status Podržavatelja"
+        },
+        "warning": "Bez ovog dopuštenja, proširenje će zadano koristiti tamni način rada i engleski jezik. Također, značajke Podržavatelja neće biti dostupne. Ovo dopuštenje možete omogućiti kasnije."
+      }
+    },
+    "buttons": {
+      "grant": "Dodijeli dopuštenje",
+      "granted": "Dodijeljeno"
+    }
+  }
+} 

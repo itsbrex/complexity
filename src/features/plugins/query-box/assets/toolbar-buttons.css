@@ -1,0 +1,12 @@
+[cplx-main-query-box],
+[cplx-follow-up-query-box] {
+  button:not([aria-label="Submit"]):not([data-testid="copilot-toggle"]).rounded-full {
+    border-radius: 0.375rem !important;
+    height       : 2rem !important;
+
+    svg {
+      width : 0.9rem !important;
+      height: 0.9rem !important;
+    }
+  }
+}

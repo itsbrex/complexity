@@ -1,0 +1,7 @@
+[cplx-main-query-box] div:has(> textarea) + div {
+  grid-column-start: 1 !important;
+  grid-column-end: 3 !important;
+  display: flex;
+  flex-wrap: wrap;
+  @apply tw-gap-y-1;
+}

@@ -1,7 +1,7 @@
 {
   "name": "complexity",
   "displayName": "Complexity - Perplexity AI Supercharged",
-  "version": "0.0.5.10",
+  "version": "0.0.5.11",
   "author": "pnd280",
   "description": "⚡ Supercharge your Perplexity AI",
   "type": "module",
@@ -94,7 +94,7 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.6.3",
     "unimport": "^3.13.1",
-    "vite": "^5.4.10",
+    "vite": "^5.4.11",
     "vitest": "^2.1.4"
   }
 }

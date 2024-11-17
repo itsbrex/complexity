@@ -100,9 +100,7 @@ export default class UiUtils {
         `${DomSelectors.QUERY_BOX.TEXTAREA.SPACE}:last`,
       );
 
-      return (
-        $main.length ? $main : $space
-      ) as JQuery<HTMLTextAreaElement>;
+      return ($main.length ? $main : $space) as JQuery<HTMLTextAreaElement>;
     }
 
     if (type === "follow-up") {

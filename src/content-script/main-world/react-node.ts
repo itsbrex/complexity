@@ -33,6 +33,10 @@ const actions = {
         : result;
     },
   ),
+  getMessageInflightStatus: mainWorldOnly((messageBlock: Element): string => {
+    return (messageBlock as any)[getReactFiberKey(messageBlock)]?.memoizedProps
+      .children.props.result.status;
+  }),
   getMessageDisplayModel: mainWorldOnly(
     (messageBlock: Element): LanguageModel["code"] => {
       return (messageBlock as any)[getReactFiberKey(messageBlock)]

@@ -120,9 +120,20 @@ export default function useThreadMessageStickyToolbarObserver({
 
             if (!$answerHeading.length) return;
 
-            $(messageBlock).attr(`data-${id}-observed`, "true");
-
             const index = parseInt($(messageBlock).attr("data-index") ?? "0");
+
+            const inflightStatus = (await webpageMessenger.sendMessage({
+              event: "getReactNodeData",
+              payload: {
+                action: "getMessageInflightStatus",
+                querySelector: `${DomHelperSelectors.THREAD.MESSAGE.BLOCK}[data-index="${index}"]`,
+              },
+              timeout: 5000,
+            })) as ReactNodeActionReturnType["getMessageInflightStatus"];
+
+            if (inflightStatus?.toLowerCase() !== "completed") return;
+
+            $(messageBlock).attr(`data-${id}-observed`, "true");
 
             const displayModelCode = (await webpageMessenger.sendMessage({
               event: "getReactNodeData",

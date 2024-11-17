@@ -14,12 +14,12 @@ export const languageModels = [
     code: "claude35haiku",
     provider: "Anthropic",
   },
-  {
-    label: "Claude 3 Opus",
-    shortLabel: "Opus",
-    code: "claude3opus",
-    provider: "Anthropic",
-  },
+  // {
+  //   label: "Claude 3 Opus",
+  //   shortLabel: "Opus",
+  //   code: "claude3opus",
+  //   provider: "Anthropic",
+  // },
   {
     label: "O1 Mini",
     shortLabel: "O1 Mini",
@@ -62,18 +62,18 @@ export const languageModels = [
     code: "turbo",
     provider: "Perplexity",
   },
-  {
-    label: "Mistral Large",
-    shortLabel: "Mistral",
-    code: "mistral",
-    provider: "Mistral",
-  },
-  {
-    label: "Gemini Pro",
-    shortLabel: "Gemini",
-    code: "gemini",
-    provider: "Google",
-  },
+  // {
+  //   label: "Mistral Large",
+  //   shortLabel: "Mistral",
+  //   code: "mistral",
+  //   provider: "Mistral",
+  // },
+  // {
+  //   label: "Gemini Pro",
+  //   shortLabel: "Gemini",
+  //   code: "gemini",
+  //   provider: "Google",
+  // },
 ] as const;
 
 export const imageModels = [

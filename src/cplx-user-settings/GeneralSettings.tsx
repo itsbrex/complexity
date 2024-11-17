@@ -27,8 +27,7 @@ export default class GeneralSettings {
     {
       id: "language-model-selector",
       label: "Language Model",
-      description:
-        "Switch Language Models quickly, including within threads. Options include legacy models: GPT-4 Turbo, Mistral Large, and Gemini Pro 1.0.",
+      description: "Switch Language Models quickly on homepage and follow-ups.",
       settingKey: "languageModel",
     },
     {

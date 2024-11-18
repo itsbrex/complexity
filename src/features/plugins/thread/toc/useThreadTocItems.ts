@@ -62,16 +62,14 @@ export function useThreadTocItems() {
   const initializeTocItems = useCallback(() => {
     if (!messageBlocks) return;
 
-    console.log(messageBlocks);
-
     const hasBlocksChanged =
       messageBlocks.length !== messageBlocksCache.current.length ||
       messageBlocks.some(
         (block, idx) =>
           getTocItemTitle(block.$query) !==
             getTocItemTitle(messageBlocksCache.current[idx]?.$query) ||
-          block.$messageBlock.attr("id") !==
-            messageBlocksCache.current[idx]?.$messageBlock.attr("id"),
+          block.$wrapper.attr("id") !==
+            messageBlocksCache.current[idx]?.$wrapper.attr("id"),
       );
 
     if (isInitialized.current && !hasBlocksChanged) return;
@@ -86,14 +84,14 @@ export function useThreadTocItems() {
       rootMargin: "-40% 0px -40% 0px",
     });
 
-    const newItems = messageBlocks.map(({ $query, $messageBlock }, idx) => {
+    const newItems = messageBlocks.map(({ $query, $wrapper }, idx) => {
       const id = `toc-item-${idx}`;
-      $messageBlock.attr("id", id);
-      observer.observe($messageBlock[0]);
+      $wrapper.attr("id", id);
+      observer.observe($wrapper[0]);
       return {
         id,
         title: getTocItemTitle($query),
-        element: $messageBlock,
+        element: $wrapper,
         isActive: false,
       };
     });

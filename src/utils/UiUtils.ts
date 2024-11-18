@@ -35,30 +35,30 @@ export default class UiUtils {
 
     // Use native array instead of pushing to improve performance
     const children = $messagesContainer.children().toArray();
-    const messageBlocks = new Array(children.length);
+    const messageBlocks = new Array(children.length) as MessageBlock[];
 
     // Use regular for loop instead of .each() for better performance
     for (let i = 0; i < children.length; i++) {
-      const $messageBlock = $(children[i]);
+      const $wrapper = $(children[i]);
 
-      $messageBlock.addClass(internalBlockClass).attr({ "data-index": i });
+      $wrapper.addClass(internalBlockClass).attr({ "data-index": i });
 
       const { $query, $answer, $answerHeading } =
-        UiUtils.parseMessageBlock($messageBlock);
+        UiUtils.parseMessageBlock($wrapper);
 
       if (throwOnError && (!$query.length || !$answer.length)) {
         throw new Error("Invalid message block");
       }
 
       // Cache jQuery lookups
-      const $textCol = $messageBlock.find(textColSelector);
-      const $visualCol = $messageBlock.find(visualColSelector);
+      const $textCol = $wrapper.find(textColSelector);
+      const $visualCol = $wrapper.find(visualColSelector);
 
       $textCol.addClass(internalTextColClass);
       $visualCol.addClass(internalVisualColClass);
 
       messageBlocks[i] = {
-        $messageBlock,
+        $wrapper,
         $answerHeading,
         $query,
         $answer,

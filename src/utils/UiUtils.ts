@@ -1,5 +1,5 @@
 import { DOM_INTERNAL_SELECTORS, DOM_SELECTORS } from "@/utils/dom-selectors";
-import { QueryBoxType } from "@/utils/UiUtils.types";
+import { MessageBlock, QueryBoxType } from "@/utils/UiUtils.types";
 
 export default class UiUtils {
   static isDarkTheme() {
@@ -20,12 +20,7 @@ export default class UiUtils {
     return $messagesContainer;
   }
 
-  static getMessageBlocks(throwOnError = false): {
-    $messageBlock: JQuery<Element>;
-    $answerHeading: JQuery<Element>;
-    $query: JQuery<Element>;
-    $answer: JQuery<Element>;
-  }[] {
+  static getMessageBlocks(throwOnError = false): MessageBlock[] {
     const $messagesContainer = UiUtils.getMessagesContainer();
 
     // Cache selectors to avoid string concatenation in loop

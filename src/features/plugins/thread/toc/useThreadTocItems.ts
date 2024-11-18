@@ -1,9 +1,9 @@
 import debounce from "lodash/debounce";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import DomObserver from "@/features/plugins/_core/dom-observer/DomObserver";
 import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import UiUtils from "@/utils/UiUtils";
+import { MessageBlock } from "@/utils/UiUtils.types";
 
 type TocItem = {
   id: string;
@@ -12,7 +12,6 @@ type TocItem = {
   isActive?: boolean;
 };
 
-const DOM_OBSERVER_ID = "thread-toc-items";
 const DEBOUNCE_DELAY = 100;
 
 export function useThreadTocItems() {
@@ -56,15 +55,21 @@ export function useThreadTocItems() {
     [],
   );
 
+  const messageBlocks = useGlobalDomObserverStore(
+    (state) => state.threadComponents.messageBlocks,
+  );
+
   const initializeTocItems = useCallback(() => {
-    const messageBlocks = UiUtils.getMessageBlocks();
+    if (!messageBlocks) return;
+
+    console.log(messageBlocks);
 
     const hasBlocksChanged =
       messageBlocks.length !== messageBlocksCache.current.length ||
       messageBlocks.some(
         (block, idx) =>
-          block.$query.text() !==
-            messageBlocksCache.current[idx]?.$query.text() ||
+          getTocItemTitle(block.$query) !==
+            getTocItemTitle(messageBlocksCache.current[idx]?.$query) ||
           block.$messageBlock.attr("id") !==
             messageBlocksCache.current[idx]?.$messageBlock.attr("id"),
       );
@@ -87,7 +92,7 @@ export function useThreadTocItems() {
       observer.observe($messageBlock[0]);
       return {
         id,
-        title: $query.text(),
+        title: getTocItemTitle($query),
         element: $messageBlock,
         isActive: false,
       };
@@ -96,11 +101,7 @@ export function useThreadTocItems() {
     observerRef.current = observer;
     isInitialized.current = true;
     setTocItems(newItems);
-  }, [updateActiveItem]);
-
-  const threadWrapper = useGlobalDomObserverStore(
-    (state) => state.threadComponents.wrapper,
-  );
+  }, [updateActiveItem, messageBlocks]);
 
   const debouncedInit = useMemo(
     () => debounce(initializeTocItems, DEBOUNCE_DELAY),
@@ -110,23 +111,16 @@ export function useThreadTocItems() {
   useEffect(() => {
     debouncedInit();
 
-    DomObserver.create(DOM_OBSERVER_ID, {
-      target: threadWrapper ?? document.body,
-      config: {
-        childList: true,
-        subtree: true,
-      },
-      onMutation: debouncedInit,
-    });
-
     return () => {
       debouncedInit.cancel();
       observerRef.current?.disconnect();
-      DomObserver.destroy(DOM_OBSERVER_ID);
       isInitialized.current = false;
-      messageBlocksCache.current = [];
     };
-  }, [debouncedInit, initializeTocItems, threadWrapper]);
+  }, [debouncedInit, initializeTocItems]);
 
   return tocItems;
+}
+
+function getTocItemTitle($query: MessageBlock["$query"]) {
+  return $query.find("textarea").text() || $query.text();
 }

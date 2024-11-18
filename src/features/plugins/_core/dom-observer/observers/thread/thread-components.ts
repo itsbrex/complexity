@@ -3,12 +3,17 @@ import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/gl
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/thread/observer-ids";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
-import { waitForElement, whereAmI } from "@/utils/utils";
+import UiUtils from "@/utils/UiUtils";
+import { queueMicrotasks, waitForElement, whereAmI } from "@/utils/utils";
 
-const DOM_OBSERVER_ID = "thread";
+const DOM_OBSERVER_ID = {
+  COMMON: "thread-common",
+  MESSAGE_BLOCKS: "thread-message-blocks",
+};
 
 const cleanup = () => {
-  DomObserver.destroy(DOM_OBSERVER_ID);
+  DomObserver.destroy(DOM_OBSERVER_ID.MESSAGE_BLOCKS);
+  DomObserver.destroy(DOM_OBSERVER_ID.COMMON);
 };
 
 export async function setupThreadComponentsObserver(
@@ -37,10 +42,24 @@ export async function setupThreadComponentsObserver(
     });
   }
 
-  DomObserver.create(DOM_OBSERVER_ID, {
+  DomObserver.create(DOM_OBSERVER_ID.COMMON, {
     target: document.body,
     config: { childList: true, subtree: true },
-    onMutation: () => queueMicrotask(observePopper),
+    onMutation: () => queueMicrotasks(observePopper),
+  });
+
+  DomObserver.create(DOM_OBSERVER_ID.MESSAGE_BLOCKS, {
+    target: threadWrapper ?? document.body,
+    config: { childList: true, subtree: true },
+    onMutation: () => queueMicrotasks(observeMessageBlocks),
+  });
+}
+
+async function observeMessageBlocks() {
+  const messageBlocks = UiUtils.getMessageBlocks();
+
+  globalDomObserverStore.getState().setThreadComponents({
+    messageBlocks,
   });
 }
 

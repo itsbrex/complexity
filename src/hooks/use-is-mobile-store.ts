@@ -6,7 +6,6 @@ const MOBILE_BREAKPOINT = 768;
 
 type IsMobileStore = {
   isMobile: boolean;
-  setIsMobile: (isMobile: boolean) => void;
 };
 
 const useIsMobileStore = createWithEqualityFn<IsMobileStore>()(
@@ -14,7 +13,6 @@ const useIsMobileStore = createWithEqualityFn<IsMobileStore>()(
     immer(
       (set): IsMobileStore => ({
         isMobile: window.innerWidth < MOBILE_BREAKPOINT,
-        setIsMobile: (isMobile) => set({ isMobile }),
       }),
     ),
   ),

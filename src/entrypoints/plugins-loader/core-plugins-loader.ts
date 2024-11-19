@@ -8,6 +8,7 @@ import { PluginId } from "@/services/extension-local-storage/extension-local-sto
 import { injectMainWorldScript } from "@/utils/utils";
 
 import networkInterceptPlugin from "@/features/plugins/_core/network-intercept/index.main?script&module";
+import reactVdomPlugin from "@/features/plugins/_core/react-vdom/index.main?script&module";
 import spaRouterPlugin from "@/features/plugins/_core/spa-router/index.main?script&module";
 import webextBridgeSetNamespace from "@/utils/webext-bridge?script&module";
 
@@ -26,6 +27,12 @@ export async function initCorePlugins() {
     url: chrome.runtime.getURL(spaRouterPlugin),
     head: true,
     inject: shouldInjectCorePlugin("spaRouter"),
+  });
+
+  injectMainWorldScript({
+    url: chrome.runtime.getURL(reactVdomPlugin),
+    head: true,
+    inject: shouldInjectCorePlugin("reactVdom"),
   });
 
   if (shouldInjectCorePlugin("webSocket")) {

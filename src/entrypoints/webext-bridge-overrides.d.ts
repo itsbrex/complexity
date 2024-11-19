@@ -1,16 +1,13 @@
 import type { BridgeMessage } from "webext-bridge";
 
-import type { InterceptorsEvents as NetworkInterceptInterceptorsEventHandlers } from "@/features/plugins/_core/network-intercept/listeners";
-import type { DispatchEvents as SpaRouterDispatchEventHandlers } from "@/features/plugins/_core/spa-router/listeners";
-import type { CsUtilEvents as SpaRouterCsUtilEventHandlers } from "@/features/plugins/_core/spa-router/listeners.main";
+import type { AllEventHandlers } from "@/entrypoints/webext-bridge-imports";
 import type { MaybePromise } from "@/types/utils.types";
 
-import type { BackgroundEvents as BackgroundEventHandlers } from "@/features/background/listeners";
-
-type AllEventHandlers = BackgroundEventHandlers &
+export type AllEventHandlers = BackgroundEventHandlers &
   NetworkInterceptInterceptorsEventHandlers &
   SpaRouterCsUtilEventHandlers &
-  SpaRouterDispatchEventHandlers;
+  SpaRouterDispatchEventHandlers &
+  ReactVdomEventHandlers;
 
 type MessageFunctions = {
   onMessage<K extends keyof AllEventHandlers>(

@@ -1,3 +1,4 @@
+import BetterThreadMessageToolbars from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/BetterThreadMessageToolbars";
 import CollapseEmptyThreadVisualColsDialogContent from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/CollapseEmptyThreadVisualColsDialogContent";
 import ImageGenModelSelectorDialogContent from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/ImageGenModelSelector";
 import LanguageModelSelectorDialogContent from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/LanguageModelSelector";
@@ -13,4 +14,5 @@ export const PLUGIN_DIALOG_CONTENT: PluginDialogContent = {
   imageGenModelSelector: <ImageGenModelSelectorDialogContent />,
   onCloudflareTimeoutAutoReload: <OnCloudflareTimeoutAutoReloadDialogContent />,
   collapseEmptyThreadVisualCols: <CollapseEmptyThreadVisualColsDialogContent />,
+  "thread:betterMessageToolbars": <BetterThreadMessageToolbars />,
 };

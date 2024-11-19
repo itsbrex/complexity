@@ -1,8 +1,8 @@
 export const DOM_SELECTORS = {
   /** The wrapper that wraps the whole page */
   WRAPPER: ".max-w-screen",
+  NAVBAR: ".sticky.left-0.right-0.top-0.z-10.border-b",
   SIDEBAR: ".group\\/bar",
-  /** Selectors for Thread page */
   THREAD: {
     /** The outermost container that wraps the thread container and the query box */
     WRAPPER: ".max-w-threadWidth",
@@ -16,6 +16,7 @@ export const DOM_SELECTORS = {
         ".h-full.w-full.max-w-threadWidth.px-md.md\\:px-lg div.relative > div:nth-child(2):not([class])",
     },
     MESSAGE: {
+      WRAPPER: ".grid-cols-12",
       TEXT_COL: ".col-span-8",
       /** Columns that contain images, videos, image gen popover */
       VISUAL_COL: ".col-span-4",
@@ -90,11 +91,13 @@ export const DOM_SELECTORS = {
 export const DOM_INTERNAL_SELECTORS = {
   THREAD: {
     MESSAGE: {
-      BLOCK: ".message-block",
-      TEXT_COL: ".text-col",
-      VISUAL_COL: ".visual-col",
+      BLOCK: ".cplx-message-block",
+      TEXT_COL: ".cplx-message-block-text-col",
+      VISUAL_COL: ".cplx-message-block-visual-col",
       TEXT_COL_CHILD: {
-        MARKDOWN_QUERY: ".markdown-query-wrapper",
+        QUERY: ".cplx-message-block-query",
+        ANSWER: ".cplx-message-block-answer",
+        ANSWER_HEADING: ".cplx-message-block-answer-heading",
       },
     },
   },

@@ -5,6 +5,7 @@ const CORE_PLUGINS = [
   "spaRouter",
   "webSocket",
   "domObserver",
+  "reactVdom",
 ] as const;
 
 export type CorePluginId = (typeof CORE_PLUGINS)[number];
@@ -68,6 +69,14 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
       "Add a table of contents to the thread page with >= 2 messages.",
     tags: ["ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
+  },
+  "thread:betterMessageToolbars": {
+    id: "thread:betterMessageToolbars",
+    routeSegment: "thread-better-message-toolbars",
+    title: "Better Thread Message Toolbars",
+    description: "Improve the message toolbars in the thread page.",
+    tags: ["ui", "ux"],
+    dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
   },
   imageGenModelSelector: {
     id: "imageGenModelSelector",

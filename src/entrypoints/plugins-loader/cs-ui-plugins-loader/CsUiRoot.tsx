@@ -8,6 +8,7 @@ import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import ImageGenModelSelectorWrapper from "@/features/plugins/image-gen-popover/Wrapper";
 import OnCloudflareTimeout from "@/features/plugins/on-cf-timeout-auto-reload/OnCloudflareTimeout";
 import QueryBoxWrapper from "@/features/plugins/query-box/Wrapper";
+import { BetterMessageToolbarsWrapper } from "@/features/plugins/thread/better-message-toolbars/Wrapper";
 import ThreadNavigationTocWrapper from "@/features/plugins/thread/toc/Wrapper";
 
 export default function CsUiRoot() {
@@ -21,10 +22,7 @@ export default function CsUiRoot() {
       >
         <QueryBoxWrapper />
       </CsUiPluginsGuard>
-      <CsUiPluginsGuard
-        location={["thread"]}
-        dependentPluginIds={["imageGenModelSelector"]}
-      >
+      <CsUiPluginsGuard location={["thread"]}>
         <ThreadComponent />
       </CsUiPluginsGuard>
       <CsUiPluginsGuard dependentPluginIds={["onCloudflareTimeoutAutoReload"]}>
@@ -46,6 +44,9 @@ function ThreadComponent() {
       </CsUiPluginsGuard>
       <CsUiPluginsGuard dependentPluginIds={["thread:toc"]}>
         <ThreadNavigationTocWrapper />
+      </CsUiPluginsGuard>
+      <CsUiPluginsGuard dependentPluginIds={["thread:betterMessageToolbars"]}>
+        <BetterMessageToolbarsWrapper />
       </CsUiPluginsGuard>
     </Fragment>
   );

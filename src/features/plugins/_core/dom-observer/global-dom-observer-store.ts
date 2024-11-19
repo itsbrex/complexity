@@ -4,6 +4,11 @@ import { createWithEqualityFn } from "zustand/traditional";
 
 import { MessageBlock } from "@/utils/UiUtils.types";
 
+export type ExtendedMessageBlock = MessageBlock & {
+  title: string;
+  isInFlight: boolean | null;
+};
+
 export type GlobalDomObserverStore = {
   queryBoxes: {
     mainQueryBox: HTMLElement | null;
@@ -17,7 +22,9 @@ export type GlobalDomObserverStore = {
   threadComponents: {
     popper: HTMLElement | null;
     wrapper: HTMLElement | null;
-    messageBlocks: MessageBlock[] | null;
+    messageBlocks: ExtendedMessageBlock[] | null;
+    navbar: HTMLElement | null;
+    navbarHeight: number | null;
   };
   setThreadComponents: (
     newThreadComponents: Partial<GlobalDomObserverStore["threadComponents"]>,
@@ -54,6 +61,8 @@ export const globalDomObserverStore =
             wrapper: null,
             popper: null,
             messageBlocks: null,
+            navbar: null,
+            navbarHeight: null,
           },
           setThreadComponents: (newThreadComponents) => {
             Object.entries(newThreadComponents).forEach(([key, value]) => {

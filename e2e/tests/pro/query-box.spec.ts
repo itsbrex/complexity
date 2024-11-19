@@ -46,7 +46,7 @@ test.describe("Query box", () => {
       await languageModelSelector.click();
 
       const claudeOption = page
-        .locator(`text=${languageModels[1].label}`)
+        .locator(`text=${languageModels?.[1]?.label}`)
         .first();
       await claudeOption.click();
 
@@ -55,14 +55,14 @@ test.describe("Query box", () => {
       await languageModelSelector.click();
 
       const gpt4oOption = page
-        .locator(`text=${languageModels[0].label}`)
+        .locator(`text=${languageModels?.[0]?.label}`)
         .first();
       await gpt4oOption.click();
 
       await sleep(2000);
 
       const userSettings = await fetchPplxUserSettings(page);
-      expect(userSettings.default_model).toBe(languageModels[0].code);
+      expect(userSettings.default_model).toBe(languageModels?.[0]?.code);
     });
   });
 });

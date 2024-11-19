@@ -15,14 +15,8 @@ function useFindPortalContainers(): {
   spaceQueryBoxPortalContainer: HTMLElement | null;
   followUpQueryBoxPortalContainer: HTMLElement | null;
 } {
-  const {
-    queryBoxes: {
-      mainQueryBox,
-      mainModalQueryBox,
-      spaceQueryBox,
-      followUpQueryBox,
-    },
-  } = useGlobalDomObserverStore();
+  const { mainQueryBox, mainModalQueryBox, spaceQueryBox, followUpQueryBox } =
+    useGlobalDomObserverStore((state) => state.queryBoxes);
 
   return useMemo(
     () => ({

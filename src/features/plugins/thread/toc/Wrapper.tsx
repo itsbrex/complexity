@@ -23,8 +23,7 @@ export default function ThreadNavigationTocWrapper() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const tocItems = useThreadTocItems();
-  const panelPosition = usePanelPosition();
-  const { position, isFloating } = panelPosition ?? {};
+  const { position, isFloating } = usePanelPosition() ?? {};
   const { top, left } = position ?? {};
 
   const handleToggleOpen = useCallback(() => setIsOpen(true), []);
@@ -78,7 +77,7 @@ export default function ThreadNavigationTocWrapper() {
           "tw-transition-all tw-animate-in tw-fade-in",
           {
             "tw-left-[--panel-left]": !isFloating,
-            "tw-right-3 tw-rounded-md tw-border tw-border-border tw-bg-secondary tw-p-4 tw-shadow-lg md:tw-right-10":
+            "tw-right-3 tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4 tw-shadow-lg md:tw-right-8":
               isFloating,
             "tw-hidden": isFloating && !isOpen,
           },

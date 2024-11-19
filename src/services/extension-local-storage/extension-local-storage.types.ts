@@ -15,6 +15,12 @@ export const PluginsSchema = z.object({
   }),
   "queryBox:noFileCreationOnPaste": PluginSettingsSchema,
   "thread:toc": PluginSettingsSchema,
+  "thread:betterMessageToolbars": PluginSettingsSchema.extend({
+    sticky: z.boolean(),
+    simplifyRewriteDropdown: z.boolean(),
+    explicitModelName: z.boolean(),
+    hideUnnecessaryButtons: z.boolean(),
+  }),
   imageGenModelSelector: PluginSettingsSchema,
   onCloudflareTimeoutAutoReload: PluginSettingsSchema.extend({
     behavior: z.enum(["reload", "warn-only"]),
@@ -24,7 +30,8 @@ export const PluginsSchema = z.object({
   collapseEmptyThreadVisualCols: PluginSettingsSchema,
 });
 
-export type PluginId = keyof z.infer<typeof PluginsSchema>;
+export type Plugins = z.infer<typeof PluginsSchema>;
+export type PluginId = keyof Plugins;
 
 export const ExtensionLocalStorageSchema = z.object({
   schemaVersion: z.literal(packageJson.version),

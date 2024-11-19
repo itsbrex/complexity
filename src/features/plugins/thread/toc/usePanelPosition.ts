@@ -19,9 +19,9 @@ export function usePanelPosition(): UsePanelPosition | null {
     null,
   );
 
-  const {
-    threadComponents: { wrapper: threadWrapper },
-  } = useGlobalDomObserverStore();
+  const threadWrapper = useGlobalDomObserverStore(
+    (state) => state.threadComponents.wrapper,
+  );
 
   const calculatePosition = useCallback(() => {
     if (threadWrapper == null) return null;
@@ -49,12 +49,14 @@ export function usePanelPosition(): UsePanelPosition | null {
 
   useEffect(() => {
     const debouncedUpdate = debounce(() => {
-      setPanelPosition(calculatePosition());
+      setTimeout(() => setPanelPosition(calculatePosition()), 300);
     }, 100);
 
     debouncedUpdate();
 
-    DomObserver.create("thread-navigation-toc-panel-position", {
+    const DOM_OBSERVER_ID = "thread-navigation-toc-panel-position";
+
+    DomObserver.create(DOM_OBSERVER_ID, {
       target: $(DOM_SELECTORS.SIDEBAR)[0],
       config: {
         attributes: true,
@@ -64,7 +66,7 @@ export function usePanelPosition(): UsePanelPosition | null {
     });
 
     return () => {
-      DomObserver.destroy("thread-navigation-toc-panel-position");
+      DomObserver.destroy(DOM_OBSERVER_ID);
       debouncedUpdate.cancel();
     };
   }, [calculatePosition, windowSize]);

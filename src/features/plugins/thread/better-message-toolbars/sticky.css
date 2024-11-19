@@ -1,0 +1,18 @@
+.cplx-message-block[data-index] {
+  .cplx-message-block-query + div > div:last-child {
+    display: flex;
+    flex-direction: column;
+
+    .mt-sm.flex {
+      position: sticky;
+      @apply tw-top-[calc(var(--navbar-height)_-_1px)] md:tw-top-[var(--navbar-height)];
+      order: -1;
+      z-index: 1;
+      @apply tw-mb-8 tw-mt-0 tw-p-2 tw-px-4 tw-bg-background tw-border-b tw-border-border/50 tw-border-dashed;
+
+      button {
+        @apply tw-rounded-md;
+      }
+    }
+  }
+}

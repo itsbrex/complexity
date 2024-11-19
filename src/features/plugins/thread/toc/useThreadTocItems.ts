@@ -1,9 +1,10 @@
 import debounce from "lodash/debounce";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
-import UiUtils from "@/utils/UiUtils";
-import { MessageBlock } from "@/utils/UiUtils.types";
+import {
+  ExtendedMessageBlock,
+  useGlobalDomObserverStore,
+} from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 
 type TocItem = {
   id: string;
@@ -20,9 +21,7 @@ export function useThreadTocItems() {
   const intersectingIds = useRef(new Set<string>());
   const previousActiveId = useRef<string | null>(null);
   const isInitialized = useRef(false);
-  const messageBlocksCache = useRef<
-    ReturnType<typeof UiUtils.getMessageBlocks>
-  >([]);
+  const messageBlocksCache = useRef<ExtendedMessageBlock[]>([]);
 
   const updateActiveItem = useCallback(
     (entries: IntersectionObserverEntry[]) => {
@@ -66,8 +65,7 @@ export function useThreadTocItems() {
       messageBlocks.length !== messageBlocksCache.current.length ||
       messageBlocks.some(
         (block, idx) =>
-          getTocItemTitle(block.$query) !==
-            getTocItemTitle(messageBlocksCache.current[idx]?.$query) ||
+          block.title !== messageBlocksCache.current[idx].title ||
           block.$wrapper.attr("id") !==
             messageBlocksCache.current[idx]?.$wrapper.attr("id"),
       );
@@ -84,13 +82,13 @@ export function useThreadTocItems() {
       rootMargin: "-40% 0px -40% 0px",
     });
 
-    const newItems = messageBlocks.map(({ $query, $wrapper }, idx) => {
+    const newItems = messageBlocks.map(({ $wrapper }, idx) => {
       const id = `toc-item-${idx}`;
       $wrapper.attr("id", id);
       observer.observe($wrapper[0]);
       return {
         id,
-        title: getTocItemTitle($query),
+        title: messageBlocks[idx].title,
         element: $wrapper,
         isActive: false,
       };
@@ -117,8 +115,4 @@ export function useThreadTocItems() {
   }, [debouncedInit, initializeTocItems]);
 
   return tocItems;
-}
-
-function getTocItemTitle($query: MessageBlock["$query"]) {
-  return $query.find("textarea").text() || $query.text();
 }

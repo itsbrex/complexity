@@ -15,6 +15,13 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "thread:toc": {
       enabled: false,
     },
+    "thread:betterMessageToolbars": {
+      enabled: false,
+      sticky: true,
+      simplifyRewriteDropdown: true,
+      explicitModelName: true,
+      hideUnnecessaryButtons: true,
+    },
     imageGenModelSelector: {
       enabled: false,
     },

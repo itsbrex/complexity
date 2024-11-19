@@ -1,3 +1,5 @@
+const { includes } = require("lodash");
+
 module.exports = {
   // Root and environment configuration
   root: true,

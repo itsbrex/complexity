@@ -34,7 +34,14 @@ export default class UiUtils {
       DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK.slice(1);
 
     // Use native array instead of pushing to improve performance
-    const children = $messagesContainer.children().toArray();
+    const children = $messagesContainer
+      .children()
+      .toArray()
+      .filter(
+        (child) =>
+          $(child).find(DOM_SELECTORS.THREAD.MESSAGE.WRAPPER)?.length > 0,
+      );
+
     const messageBlocks = new Array(children.length) as MessageBlock[];
 
     // Use regular for loop instead of .each() for better performance
@@ -45,6 +52,18 @@ export default class UiUtils {
 
       const { $query, $answer, $answerHeading } =
         UiUtils.parseMessageBlock($wrapper);
+
+      $query.addClass(
+        DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY.slice(1),
+      );
+      $answer.addClass(
+        DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER.slice(1),
+      );
+      $answerHeading.addClass(
+        DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING.slice(
+          1,
+        ),
+      );
 
       if (throwOnError && (!$query.length || !$answer.length)) {
         throw new Error("Invalid message block");

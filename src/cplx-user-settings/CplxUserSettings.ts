@@ -72,6 +72,10 @@ export default class CplxUserSettings {
   static async fetch() {
     CplxUserSettings.userSettings = await ChromeStorage.getStore();
 
+    // TODO: remove this;
+    CplxUserSettings.userSettings.generalSettings.qolTweaks.threadMessageStickyToolbar =
+      false;
+
     return CplxUserSettings.userSettings;
   }
 

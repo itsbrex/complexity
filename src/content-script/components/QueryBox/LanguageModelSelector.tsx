@@ -25,14 +25,11 @@ import UiUtils from "@/utils/UiUtils";
 
 export default function LanguageModelSelector() {
   const limit = useQueryBoxStore((state) => state.queryLimit);
-  const opusLimit = useQueryBoxStore((state) => state.opusLimit);
   const o1Limit = useQueryBoxStore((state) => state.o1Limit);
 
   const getModelLimit = useCallback(
     (model: LanguageModel) => {
       switch (model.code) {
-        case "claude3opus":
-          return opusLimit;
         case "o1":
           return o1Limit;
         case "turbo":
@@ -41,7 +38,7 @@ export default function LanguageModelSelector() {
           return limit;
       }
     },
-    [limit, opusLimit, o1Limit],
+    [limit, o1Limit],
   );
 
   const [modelsLimits, setModelsLimits] = useImmer<
@@ -61,7 +58,7 @@ export default function LanguageModelSelector() {
         draft[model.code] = getModelLimit(model);
       });
     });
-  }, [limit, opusLimit, o1Limit, getModelLimit, setModelsLimits]);
+  }, [limit, o1Limit, getModelLimit, setModelsLimits]);
 
   return (
     <Select

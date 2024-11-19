@@ -7,12 +7,7 @@ import {
   LuPencil,
 } from "react-icons/lu";
 import { PiGlobe } from "react-icons/pi";
-import {
-  SiAnthropic,
-  SiGooglegemini,
-  SiPerplexity,
-  SiYoutube,
-} from "react-icons/si";
+import { SiAnthropic, SiPerplexity, SiYoutube } from "react-icons/si";
 
 import {
   imageModels,
@@ -20,7 +15,6 @@ import {
   focusModes,
 } from "@/content-script/components/QueryBox/consts";
 import BlackForestLabs from "@/shared/components/icons/BlackForestLabsIcon";
-import MistralAiIcon from "@/shared/components/icons/MistralAiIcon";
 import PlaygroundAiIcon from "@/shared/components/icons/PlaygroundAiIcon";
 import StabilityAiIcon from "@/shared/components/icons/StabilityAiIcon";
 import XAiIcon from "@/shared/components/icons/xAi";
@@ -36,7 +30,6 @@ type GroupedLanguageModelsByProvider = [
 export const languageModelIcons: Record<LanguageModel["code"], ReactNode> = {
   claude2: <SiAnthropic />,
   claude35haiku: <SiAnthropic />,
-  claude3opus: <SiAnthropic />,
   o1: <AiOutlineOpenAI />,
   gpt4o: <AiOutlineOpenAI />,
   gpt4: <AiOutlineOpenAI />,
@@ -44,8 +37,6 @@ export const languageModelIcons: Record<LanguageModel["code"], ReactNode> = {
   llama_x_large: <SiPerplexity />,
   experimental: <SiPerplexity />,
   turbo: <SiPerplexity />,
-  mistral: <MistralAiIcon />,
-  gemini: <SiGooglegemini />,
 };
 
 export const groupedLanguageModelsByProvider: GroupedLanguageModelsByProvider =

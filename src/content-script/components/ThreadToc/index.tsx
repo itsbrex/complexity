@@ -1,6 +1,5 @@
 import { useToggle } from "@uidotdev/usehooks";
 
-
 import FloatingTrigger from "@/content-script/components/ThreadToc/FloatingToggle";
 import Panel from "@/content-script/components/ThreadToc/Panel";
 import useThreadTocObserver from "@/content-script/hooks/useThreadTocObserver";

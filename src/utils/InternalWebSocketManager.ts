@@ -32,8 +32,6 @@ class InternalWebSocketManager {
       const messageHandler = (message: unknown) => {
         if (typeof message !== "string") return;
 
-        console.log("message", message);
-
         const decodedData = decodePacket(message);
         const sid = decodedData.data.match(/^\{"sid":"(.+)"\}$/)?.[1];
 

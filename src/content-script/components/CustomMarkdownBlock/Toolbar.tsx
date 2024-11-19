@@ -1,4 +1,3 @@
-
 import { LuLoader2 as LoaderCircle } from "react-icons/lu";
 
 import CanvasRenderButton from "@/content-script/components/CustomMarkdownBlock/CanvasRenderButton";
@@ -23,9 +22,7 @@ export default function Toolbar({ lang, preBlockId }: ToolbarProps) {
         {lang || "text"}
       </div>
       <div className="tw-ml-auto tw-flex tw-gap-3">
-        <div
-          className={`tw-text-muted-foreground group-data-[inflight=false]:tw-hidden`}
-        >
+        <div className="tw-text-muted-foreground group-data-[inflight=false]:tw-hidden">
           <LoaderCircle className="tw-size-4 tw-animate-spin" />
         </div>
 

@@ -1,7 +1,8 @@
 import { LanguageModel } from "@/content-script/components/QueryBox";
 import { webpageMessenger } from "@/content-script/main-world/webpage-messenger";
+import { DomSelectors } from "@/utils/DomSelectors";
 import { mainWorldExec, mainWorldOnly } from "@/utils/hof";
-import { getReactFiberKey, getReactPropsKey, jsonUtils } from "@/utils/utils";
+import { getReactFiberKey } from "@/utils/utils";
 
 export type ReactNodeAction = keyof typeof actions;
 export type ReactNodeActionReturnType = {
@@ -21,31 +22,39 @@ const actions = {
     return (pre as any)[getReactFiberKey(pre)]?.memoizedProps?.children[0]
       ?.props?.children[0];
   }),
-  getMessageData: mainWorldOnly(
+  getStreamingMessageData: mainWorldOnly(
     (messageBlock: Element): PplxThreadMessageReactFiberResult => {
-      const result = jsonUtils.safeParse(
-        (messageBlock as any)[getReactFiberKey(messageBlock)]?.memoizedProps
-          ?.children?.props?.result?.text,
-      );
+      const $streamingNode = $(messageBlock).prev();
+      const fiberNode = ($streamingNode[0] as any)[
+        getReactFiberKey($streamingNode[0])
+      ];
 
-      return Array.isArray(result)
-        ? jsonUtils.safeParse(result[result.length - 1]?.content?.answer)
-        : result;
+      return {
+        answer: fiberNode?.return?.memoizedProps?.result?.blocks.reduce(
+          (acc: string, block: any) => {
+            if (block.markdown_block == null) return acc;
+
+            return acc + block.markdown_block.chunks.join("");
+          },
+          "",
+        ),
+        web_results: fiberNode?.return?.memoizedProps?.result?.web_results,
+      };
     },
   ),
   getMessageInflightStatus: mainWorldOnly((messageBlock: Element): string => {
-    return (messageBlock as any)[getReactFiberKey(messageBlock)]?.memoizedProps
-      .children.props.result.status;
+    const result = getButtonBarFiberNode(messageBlock);
+    return result?.status ?? "";
   }),
   getMessageDisplayModel: mainWorldOnly(
-    (messageBlock: Element): LanguageModel["code"] => {
-      return (messageBlock as any)[getReactFiberKey(messageBlock)]
-        ?.memoizedProps.children.props.result.display_model;
+    (messageBlock: Element): LanguageModel["code"] | null => {
+      const result = getButtonBarFiberNode(messageBlock);
+      return result?.display_model ?? null;
     },
   ),
   getMessageBackendUuid: mainWorldOnly((messageBlock: Element): string => {
-    return (messageBlock as any)[getReactPropsKey(messageBlock)]?.children
-      ?.props?.result?.backend_uuid;
+    const result = getButtonBarFiberNode(messageBlock);
+    return result?.backend_uuid ?? "";
   }),
 } as const;
 
@@ -61,3 +70,14 @@ mainWorldExec(() => {
     },
   );
 })();
+
+function getButtonBarFiberNode(messageBlock: Element) {
+  const $buttonBar = $(messageBlock).find(
+    DomSelectors.THREAD.MESSAGE.BOTTOM_BAR,
+  );
+
+  if (!$buttonBar.length) return null;
+
+  return ($buttonBar[0] as any)[getReactFiberKey($buttonBar[0])]?.return
+    ?.memoizedProps?.result;
+}

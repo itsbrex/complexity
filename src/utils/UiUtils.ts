@@ -30,35 +30,38 @@ export default class UiUtils {
       $answer: JQuery<Element>;
     }[] = [];
 
-    $messagesContainer.children().each((index, messageBlock) => {
-      const $messageBlock = $(messageBlock);
+    $messagesContainer
+      .children()
+      .filter((_, child) => $(child).find(".grid-cols-12").length > 0)
+      .each((index, messageBlock) => {
+        const $messageBlock = $(messageBlock);
 
-      $messageBlock
-        .addClass(DomHelperSelectors.THREAD.MESSAGE.BLOCK.slice(1))
-        .attr({ "data-index": index + 1 });
+        $messageBlock
+          .addClass(DomHelperSelectors.THREAD.MESSAGE.BLOCK.slice(1))
+          .attr({ "data-index": index + 1 });
 
-      const { $query, $answer, $answerHeading } =
-        UiUtils.parseMessageBlock($messageBlock);
+        const { $query, $answer, $answerHeading } =
+          UiUtils.parseMessageBlock($messageBlock);
 
-      if (throwOnError && (!$query.length || !$answer.length))
-        throw new Error("Invalid message block");
+        if (throwOnError && (!$query.length || !$answer.length))
+          throw new Error("Invalid message block");
 
-      $messageBlock
-        .find(`${DomSelectors.THREAD.MESSAGE.TEXT_COL}:last`)
-        .addClass(DomHelperSelectors.THREAD.MESSAGE.TEXT_COL.slice(1));
-      $messageBlock
-        .find(`${DomSelectors.THREAD.MESSAGE.VISUAL_COL}:last`)
-        .addClass(DomHelperSelectors.THREAD.MESSAGE.VISUAL_COL.slice(1));
+        $messageBlock
+          .find(`${DomSelectors.THREAD.MESSAGE.TEXT_COL}:last`)
+          .addClass(DomHelperSelectors.THREAD.MESSAGE.TEXT_COL.slice(1));
+        $messageBlock
+          .find(`${DomSelectors.THREAD.MESSAGE.VISUAL_COL}:last`)
+          .addClass(DomHelperSelectors.THREAD.MESSAGE.VISUAL_COL.slice(1));
 
-      const messageBlockData = {
-        $messageBlock,
-        $answerHeading,
-        $query,
-        $answer,
-      };
+        const messageBlockData = {
+          $messageBlock,
+          $answerHeading,
+          $query,
+          $answer,
+        };
 
-      messageBlocks.push(messageBlockData);
-    });
+        messageBlocks.push(messageBlockData);
+      });
 
     return messageBlocks;
   }

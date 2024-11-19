@@ -39,7 +39,7 @@ export default function useThreadTocObserver() {
 
     setVisibleMessageIndex(
       UiUtils.getMostVisibleElementIndex(
-        UiUtils.getMessagesContainer().children().toArray(),
+        UiUtils.getMessageBlocks().map(({ $messageBlock }) => $messageBlock[0]),
       ),
     );
 

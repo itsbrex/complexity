@@ -20,7 +20,7 @@ const DomSelectors = {
         /** The query box */
         QUERY: ".my-md.md\\:my-lg",
         /** The answer box */
-        ANSWER: ".relative.default.font-sans.text-base",
+        ANSWER: ".mb-md",
         /** The answer heading */
         ANSWER_HEADING:
           '.mb-sm.flex.w-full.items-center.justify-between:not(:has(svg[data-icon="sources"]))',

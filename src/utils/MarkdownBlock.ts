@@ -1,5 +1,3 @@
-
-
 import { ReactNodeActionReturnType } from "@/content-script/main-world/react-node";
 import { webpageMessenger } from "@/content-script/main-world/webpage-messenger";
 import CplxUserSettings from "@/cplx-user-settings/CplxUserSettings";
@@ -216,10 +214,10 @@ export default class MarkdownBlockUtils {
         event: "getReactNodeData",
         payload: {
           querySelector: `${DomHelperSelectors.THREAD.MESSAGE.BLOCK}:has(#${pre.id})`,
-          action: "getMessageData",
+          action: "getStreamingMessageData",
         },
         timeout: 5000,
-      })) as ReactNodeActionReturnType["getMessageData"];
+      })) as ReactNodeActionReturnType["getStreamingMessageData"];
 
       if (!messageContent) return false;
 
@@ -255,10 +253,7 @@ export default class MarkdownBlockUtils {
 
     if (!messageBlock) return false;
 
-    const isInFlight = CplxUserSettings.get().generalSettings.qolTweaks.canvas
-      .enabled
-      ? await MarkdownBlockUtils.isInFlight(pre)
-      : false;
+    const isInFlight = await MarkdownBlockUtils.isInFlight(pre);
 
     $(messageBlock)
       .find(`.${pre.id}-inflight-indicator`)

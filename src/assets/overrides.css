@@ -65,7 +65,7 @@ th {
 
 /* Messages borders */
 .message-block:not(:last-of-type) {
-  border-bottom: 1px solid var(--ring-darker) !important;
+  border-bottom-color: var(--ring-darker) !important;
 }
 
 /* Background colors */
@@ -280,7 +280,7 @@ html {
     z-index    : 20 !important;
   }
 
-  .pointer-events-none.fixed.bottom-mobileNavHeight {
+  /* .pointer-events-none.fixed.bottom-mobileNavHeight {
     margin-top: 5rem;
 
     transition         : all;
@@ -288,7 +288,7 @@ html {
 
     position: sticky !important;
     bottom  : 4rem !important;
-  }
+  } */
 
   /* Normal thread */
   .mx-auto.h-full.w-full.max-w-threadWidth {

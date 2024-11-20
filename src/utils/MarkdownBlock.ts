@@ -1,6 +1,5 @@
 import { ReactNodeActionReturnType } from "@/content-script/main-world/react-node";
 import { webpageMessenger } from "@/content-script/main-world/webpage-messenger";
-import CplxUserSettings from "@/cplx-user-settings/CplxUserSettings";
 import { cn } from "@/utils/cn";
 import { DomHelperSelectors, DomSelectors } from "@/utils/DomSelectors";
 import { getReactPropsKey, isMainWorldContext, stripHtml } from "@/utils/utils";
@@ -74,15 +73,7 @@ export default class MarkdownBlockUtils {
 
   private static createContainer(isNative: boolean): JQuery<HTMLElement> {
     const baseClasses = cn(
-      "tw-sticky tw-z-[2] tw-w-full tw-overflow-hidden tw-rounded-t-md tw-transition-all",
-      {
-        "tw-top-[3.35rem]":
-          !CplxUserSettings.get().generalSettings.qolTweaks
-            .threadMessageStickyToolbar,
-        "tw-top-[6.45rem]":
-          CplxUserSettings.get().generalSettings.qolTweaks
-            .threadMessageStickyToolbar,
-      },
+      "tw-sticky tw-top-[3.35rem] tw-z-[2] tw-w-full tw-overflow-hidden tw-rounded-t-md tw-transition-all",
     );
     const nativeClasses = "!tw-h-[2.3125rem] tw-bg-secondary";
     return $("<div>").addClass(

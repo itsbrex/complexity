@@ -97,17 +97,6 @@ body pre:not([data-lang="text"], [data-lang="markdown"]).line-numbers code .line
   border        : none;
 }
 
-.thread-message-sticky-toolbar .md\:grid.grid-cols-12.gap-xl:not(:has(.thread-message-toolbar-container)) {
-  padding-top: auto !important;
-}
-
-.thread-message-sticky-toolbar *:has(.markdown-query-wrapper:not(.\!tw-hidden))>.whitespace-pre-line.break-words:not(.markdown-query-wrapper) {
-  display: none;
-}
-
-.thread-message-sticky-toolbar .md\:grid.grid-cols-12.gap-xl .mt-sm.flex.items-center.justify-between {
-  display: none;
-}
 
 /* Adjust selectors border radius */
 .grow.block:has(textarea[placeholder]) button:not([aria-label="Submit"]):not([data-testid="copilot-toggle"]).rounded-full {

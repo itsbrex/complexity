@@ -30,7 +30,6 @@ export const cplxUserSettingsSchema = z.object({
     }),
     qolTweaks: z.object({
       threadToc: z.boolean(),
-      threadMessageStickyToolbar: z.boolean(),
       customMarkdownBlock: z.boolean(),
       canvas: z.object({
         enabled: z.boolean(),

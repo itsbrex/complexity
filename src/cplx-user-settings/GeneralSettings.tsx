@@ -63,22 +63,6 @@ export default class GeneralSettings {
       settingKey: "customMarkdownBlock",
     },
     {
-      id: "thread-message-sticky-toolbar",
-      label: "Better thread message toolbar",
-      settingKey: "threadMessageStickyToolbar",
-      description: (
-        <span>
-          An alternative (better) toolbar for quick actions on thread messages,{" "}
-          <span className="tw-font-bold tw-text-accent-foreground">
-            now including Text-to-speech
-          </span>
-          .
-        </span>
-      ),
-      versionRelease: "0.0.6.0",
-      experimental: true,
-    },
-    {
       id: "auto-refresh-session-timeout",
       label: "Auto-refresh Cloudflare session timeout",
       settingKey: "autoRefreshSessionTimeout",

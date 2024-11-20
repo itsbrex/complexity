@@ -24,7 +24,6 @@ export default class CplxUserSettings {
       },
       qolTweaks: {
         threadToc: false,
-        threadMessageStickyToolbar: false,
         customMarkdownBlock: false,
         canvas: {
           enabled: false,
@@ -51,7 +50,7 @@ export default class CplxUserSettings {
     const result = cplxUserSettingsSchema.safeParse(fetchedSettings);
 
     if (result.success) {
-      return (CplxUserSettings.userSettings = result.data);
+      CplxUserSettings.userSettings = result.data;
     }
 
     const mergedSettings = merge(
@@ -71,10 +70,6 @@ export default class CplxUserSettings {
 
   static async fetch() {
     CplxUserSettings.userSettings = await ChromeStorage.getStore();
-
-    // TODO: remove this;
-    CplxUserSettings.userSettings.generalSettings.qolTweaks.threadMessageStickyToolbar =
-      false;
 
     return CplxUserSettings.userSettings;
   }

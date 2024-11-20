@@ -8,7 +8,6 @@ import throttle from "lodash/throttle";
 import { AnchorProps } from "@/content-script/components/ThreadToc";
 import useRouter from "@/content-script/hooks/useRouter";
 import { useCanvasStore } from "@/content-script/session-store/canvas";
-import CplxUserSettings from "@/cplx-user-settings/CplxUserSettings";
 import { DomHelperSelectors } from "@/utils/DomSelectors";
 import UiUtils from "@/utils/UiUtils";
 import { scrollToElement } from "@/utils/utils";
@@ -78,17 +77,7 @@ export default function useThreadTocObserver() {
             scrollToElement($messageBlock, -10);
           },
           onContextMenu: () => {
-            const threadMessageStickyToolbar =
-              CplxUserSettings.get().generalSettings.qolTweaks
-                .threadMessageStickyToolbar;
-
-            const isScrollingUp =
-              ($answer.offset()?.top ?? 0) <= $(window).scrollTop()!;
-
-            const offset =
-              isScrollingUp && threadMessageStickyToolbar ? -110 : -60;
-
-            scrollToElement($answer, offset);
+            scrollToElement($answer, -60);
           },
         } as AnchorProps;
 

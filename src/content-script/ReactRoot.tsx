@@ -18,9 +18,6 @@ const Commander = lazy(() => import("@/content-script/components/Commander"));
 const CanvasPanel = lazy(
   () => import("@/content-script/components/Canvas/CanvasPanel"),
 );
-const ThreadMessageStickyToolbar = lazy(
-  () => import("@/content-script/components/ThreadMessageStickyToolbar"),
-);
 const CustomMarkdownBlock = lazy(
   () => import("@/content-script/components/CustomMarkdownBlock"),
 );
@@ -83,7 +80,6 @@ function ThreadComponents() {
     <>
       <ThreadExportButton />
       {settings.threadToc && <ThreadToc />}
-      {settings.threadMessageStickyToolbar && <ThreadMessageStickyToolbar />}
       {settings.customMarkdownBlock && <CustomMarkdownBlock />}
       {settings.canvas.enabled && <CanvasPanel />}
     </>

@@ -118,10 +118,6 @@ export default class UiTweaks {
         settings.qolTweaks.customMarkdownBlock && location === "thread",
       )
       .toggleClass(
-        "thread-message-sticky-toolbar",
-        settings.qolTweaks.threadMessageStickyToolbar && location === "thread",
-      )
-      .toggleClass(
         "cplx-canvas",
         settings.qolTweaks.customMarkdownBlock &&
           settings.qolTweaks.canvas.enabled,

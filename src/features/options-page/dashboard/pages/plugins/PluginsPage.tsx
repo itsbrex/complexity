@@ -19,10 +19,11 @@ function PluginsPageContent() {
   const { isFetching: isFetchingFeatureFlags } = useCplxFeatureFlags();
   const [filters, setFilters] = usePluginContext();
 
-  const filteredPluginIds = useFilteredPlugins(
-    filters.searchTerm,
-    filters.tags,
-  );
+  const filteredPluginIds = useFilteredPlugins({
+    searchTerm: filters.searchTerm,
+    selectedTags: filters.tags,
+    excludeTags: filters.excludeTags,
+  });
 
   const { favoritePluginIds, otherPluginIds } = usePluginCategories({
     filteredPluginIds,

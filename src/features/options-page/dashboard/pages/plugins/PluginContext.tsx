@@ -4,11 +4,13 @@ import { type PluginTagValues } from "@/data/consts/plugins/plugins-data";
 
 export type PluginFilters = {
   tags: PluginTagValues[];
+  excludeTags: PluginTagValues[];
   searchTerm: string;
 };
 
 const defaultFilters: PluginFilters = {
   tags: [],
+  excludeTags: [],
   searchTerm: "",
 };
 

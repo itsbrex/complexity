@@ -27,7 +27,7 @@ export const DOM_SELECTORS = {
         ANSWER: ".relative.default.font-sans.text-base",
         /** The answer heading */
         ANSWER_HEADING:
-          '.mb-sm.flex.w-full.items-center.justify-between:has(svg.transform-gpu)',
+          ".mb-sm.flex.w-full.items-center.justify-between:has(svg.transform-gpu)",
         SOURCE_HEADING:
           '.mb-sm.flex.w-full.items-center.justify-between:has(svg[data-icon="sources"])',
       },

@@ -68,7 +68,7 @@
     "watchFile": "useFsEventsOnParentDirectory"
   },
   "workbench.editor.customLabels.patterns": {
-    "**/src/**": "${dirname}: ${filename}.${extname}"
+    "**/src/**": "${filename}.${extname} - ${dirname}"
   },
   "workbench.editor.labelFormat": "medium",
   "workbench.editor.untitled.labelFormat": "content"

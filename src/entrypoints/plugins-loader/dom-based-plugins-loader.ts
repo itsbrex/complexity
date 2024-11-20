@@ -2,7 +2,7 @@ import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/gl
 import { noFileCreationOnPaste } from "@/features/plugins/query-box/no-file-creation-on-paste";
 import { explicitModelName } from "@/features/plugins/thread/better-message-toolbars/explicit-model-name";
 
-export function setupDomBasedPlugins() {
+export async function setupDomBasedPlugins() {
   globalDomObserverStore.subscribe(
     (state) => state.queryBoxes,
     (queryBoxes) => {

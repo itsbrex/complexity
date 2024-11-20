@@ -33,7 +33,6 @@ export default class UiUtils {
     const internalBlockClass =
       DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK.slice(1);
 
-    // Use native array instead of pushing to improve performance
     const children = $messagesContainer
       .children()
       .toArray()
@@ -42,9 +41,8 @@ export default class UiUtils {
           $(child).find(DOM_SELECTORS.THREAD.MESSAGE.WRAPPER)?.length > 0,
       );
 
-    const messageBlocks = new Array(children.length) as MessageBlock[];
+    const messageBlocks = [] as MessageBlock[];
 
-    // Use regular for loop instead of .each() for better performance
     for (let i = 0; i < children.length; i++) {
       const $wrapper = $(children[i]);
 
@@ -65,8 +63,11 @@ export default class UiUtils {
         ),
       );
 
-      if (throwOnError && (!$query.length || !$answer.length)) {
-        throw new Error("Invalid message block");
+      if (!$query.length || !$answer.length || !$answerHeading.length) {
+        if (throwOnError) {
+          throw new Error("Invalid message block");
+        }
+        continue;
       }
 
       // Cache jQuery lookups
@@ -76,12 +77,12 @@ export default class UiUtils {
       $textCol.addClass(internalTextColClass);
       $visualCol.addClass(internalVisualColClass);
 
-      messageBlocks[i] = {
+      messageBlocks.push({
         $wrapper,
         $answerHeading,
         $query,
         $answer,
-      };
+      });
     }
 
     return messageBlocks;

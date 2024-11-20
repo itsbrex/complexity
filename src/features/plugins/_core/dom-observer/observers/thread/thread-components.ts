@@ -58,7 +58,12 @@ export async function setupThreadComponentsObserver(
   DomObserver.create(DOM_OBSERVER_ID.COMMON, {
     target: document.body,
     config: { childList: true, subtree: true },
-    onMutation: () => queueMicrotasks(observePopper, observeNavbar),
+    onMutation: () =>
+      queueMicrotasks(
+        monitorThreadWrapperExistence.bind(null, threadWrapper),
+        observePopper,
+        observeNavbar,
+      ),
   });
 
   DomObserver.create(DOM_OBSERVER_ID.MESSAGE_BLOCKS, {
@@ -66,6 +71,14 @@ export async function setupThreadComponentsObserver(
     config: { childList: true, subtree: true },
     onMutation: () => queueMicrotasks(observeMessageBlocks),
   });
+}
+
+function monitorThreadWrapperExistence(threadWrapper: Element) {
+  if (!document.body.contains(threadWrapper)) {
+    console.warn("threadWrapper has been removed, re-observing...");
+    alert("threadWrapper has been removed, re-observing...");
+    return setupThreadComponentsObserver("thread");
+  }
 }
 
 async function observeMessageBlocks() {

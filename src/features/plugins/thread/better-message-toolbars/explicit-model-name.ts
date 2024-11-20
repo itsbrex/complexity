@@ -37,14 +37,14 @@ export function explicitModelName(messageBlocks: ExtendedMessageBlock[]) {
 
     const modelName = model.label;
 
+    const $target = $answerHeading.find('[color="super"]');
+
+    if (!$target.length) return $buttonBar.removeAttr(OBSERVER_ID);
+
     $buttonBar
       .find('div:has(>svg[data-icon="microchip"])')
       .parent()
       .addClass("tw-hidden");
-
-    const $target = $answerHeading.find('[color="super"]');
-
-    if (!$target.length) return;
 
     $target.find(":nth-child(2)").addClass("tw-hidden");
 

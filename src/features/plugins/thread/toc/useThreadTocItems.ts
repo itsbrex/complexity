@@ -41,7 +41,11 @@ export function useThreadTocItems() {
       if (!hasChanges) return;
 
       const activeId = Array.from(intersectingIds.current)[0];
-      if (!activeId || activeId === previousActiveId.current) return;
+      if (
+        activeId === previousActiveId.current ||
+        (!activeId && intersectingIds.current.size === 0)
+      )
+        return;
 
       previousActiveId.current = activeId;
       setTocItems((prev) =>
@@ -73,6 +77,9 @@ export function useThreadTocItems() {
     if (isInitialized.current && !hasBlocksChanged) return;
 
     messageBlocksCache.current = messageBlocks;
+
+    const currentActiveId = previousActiveId.current;
+
     intersectingIds.current.clear();
     previousActiveId.current = null;
     observerRef.current?.disconnect();
@@ -90,7 +97,7 @@ export function useThreadTocItems() {
         id,
         title: messageBlocks[idx].title,
         element: $wrapper,
-        isActive: false,
+        isActive: id === currentActiveId,
       };
     });
 

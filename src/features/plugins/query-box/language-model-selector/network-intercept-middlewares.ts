@@ -30,10 +30,15 @@ export function setupLanguageModelSelectorNetworkInterceptMiddleware() {
           return skip();
         }
 
-        const isPerplexityAskMessage =
-          payload.length >= 3 && payload[0] === "perplexity_ask";
+        if (payload.length < 3) {
+          return skip();
+        }
 
-        if (isPerplexityAskMessage) {
+        const isPerplexityAskMessage = payload[0] === "perplexity_ask";
+
+        const isRewriteMessage = payload[2].query_source == "retry";
+
+        if (isPerplexityAskMessage && !isRewriteMessage) {
           const newPayload = [
             ...payload.slice(0, 2),
             {

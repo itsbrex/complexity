@@ -8,6 +8,9 @@ export type ReactVdomEvents = {
   "reactVdom:isMessageBlockInFlight": (params: {
     index: number;
   }) => boolean | null;
+  "reactVdom:getMessageDisplayModelCode": (params: {
+    index: number;
+  }) => string | null;
 };
 
 export function setupReactVdomListeners() {
@@ -23,17 +26,43 @@ export function setupReactVdomListeners() {
         fiberNode: ($el[0] as any)[getReactFiberKey($el[0])],
         condition: (node) =>
           !!(
-            node?.memoizedProps?.children?.[2]?.props != null &&
-            "isEntryInFlight" in node.memoizedProps.children[2].props
+            node.memoizedProps.children[2].props != null &&
+            node.memoizedProps.children[2].props.isEntryInFlight != null
           ),
         select: (node) =>
           node.memoizedProps.children[2].props.isEntryInFlight as boolean,
       });
     })();
 
+    if (error) console.warn("[VDOM Plugin] isMessageBlockInFlight", error);
+
     if (error || isInFlight == null) return null;
 
     return isInFlight;
+  });
+
+  onMessage("reactVdom:getMessageDisplayModelCode", ({ data: { index } }) => {
+    const selector = `${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK}[data-index="${index}"]`;
+
+    const $el = $(selector).prev();
+
+    if (!$el.length) return null;
+
+    const [modelCode, error] = errorWrapper(() => {
+      return findReactFiberNodeValue({
+        fiberNode: ($el[0] as any)[getReactFiberKey($el[0])],
+        condition: (node) =>
+          node.return.memoizedProps.result.display_model != null,
+        select: (node) =>
+          node.return.memoizedProps.result.display_model as string,
+      });
+    })();
+
+    if (error) console.warn("[VDOM Plugin] getMessageDisplayModelCode", error);
+
+    if (error || modelCode == null) return null;
+
+    return modelCode;
   });
 }
 

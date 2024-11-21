@@ -71,5 +71,6 @@
     "**/src/**": "${filename}.${extname} - ${dirname}"
   },
   "workbench.editor.labelFormat": "medium",
-  "workbench.editor.untitled.labelFormat": "content"
+  "workbench.editor.untitled.labelFormat": "content",
+  "workbench.tree.indent": 8
 }

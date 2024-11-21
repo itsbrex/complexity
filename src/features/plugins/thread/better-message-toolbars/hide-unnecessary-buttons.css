@@ -2,7 +2,7 @@
   .cplx-message-block-query + div > div:last-child {
     .mt-sm.flex {
       justify-content: flex-end;
-      
+
       /* hide buttons labels */
       .-ml-sm.flex button div svg + div {
         display: none;

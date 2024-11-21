@@ -10,7 +10,7 @@
 @layer base {
   [data-color-scheme="dark"] {
     --primary: 214 97% 72%;
-    --ring   : 214 97% 72%;
+    --ring: 214 97% 72%;
   }
 
   * {
@@ -19,7 +19,9 @@
 
   body {
     @apply tw-bg-background tw-font-sans tw-text-foreground;
-    font-feature-settings: "rlig"1, "calt"1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 }
 

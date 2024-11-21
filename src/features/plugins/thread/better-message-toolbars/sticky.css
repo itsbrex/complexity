@@ -8,7 +8,7 @@
       @apply tw-top-[calc(var(--navbar-height)_-_1px)] md:tw-top-[var(--navbar-height)];
       order: -1;
       z-index: 1;
-      @apply tw-mb-8 tw-mt-0 tw-p-2 tw-px-4 tw-bg-background tw-border-b tw-border-border/50 tw-border-dashed;
+      @apply tw-mb-8 tw-mt-0 tw-border-b tw-border-dashed tw-border-border/50 tw-bg-background tw-p-2 tw-px-4;
 
       button {
         @apply tw-rounded-md;

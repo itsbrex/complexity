@@ -31,16 +31,20 @@ export function useFilteredPlugins({
           .toLowerCase()
           .includes(searchTerm.toLowerCase());
         const hasTags = plugin.tags !== undefined && plugin.tags.length > 0;
-        
+
         const matchesTags =
           selectedTags.length === 0 ||
           (hasTags && selectedTags.every((tag) => plugin.tags!.includes(tag)));
-        
-        const hasExcludedTags =
-          hasTags &&
-          excludeTags.some((tag) => plugin.tags!.includes(tag));
 
-        return matchesSearch && matchesTags && !hasExcludedTags && !isHiddenFromDashboard;
+        const hasExcludedTags =
+          hasTags && excludeTags.some((tag) => plugin.tags!.includes(tag));
+
+        return (
+          matchesSearch &&
+          matchesTags &&
+          !hasExcludedTags &&
+          !isHiddenFromDashboard
+        );
       })
       .map((plugin) => plugin.id);
   }, [searchTerm, selectedTags, excludeTags, featureFlags, userGroup]);

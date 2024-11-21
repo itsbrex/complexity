@@ -3,16 +3,15 @@ import { sendMessage } from "webext-bridge/content-script";
 import { languageModels } from "@/data/consts/plugins/query-box/language-model-selector/language-models";
 import { isLanguageModelCode } from "@/data/consts/plugins/query-box/language-model-selector/language-models.types";
 import { ExtendedMessageBlock } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 
 const OBSERVER_ID = "cplx-better-message-toolbars-display-explicit-model-name";
 
 export function explicitModelName(messageBlocks: ExtendedMessageBlock[]) {
-  const settings = ExtensionLocalStorageService.getCachedSync();
+  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-  if (!settings.plugins["thread:betterMessageToolbars"].explicitModelName)
-    return;
+  if (!pluginsEnableStates?.["thread:betterMessageToolbars"]) return;
 
   messageBlocks.forEach(async ({ $wrapper, $answerHeading }, index) => {
     const $buttonBar = $wrapper.find(DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR);

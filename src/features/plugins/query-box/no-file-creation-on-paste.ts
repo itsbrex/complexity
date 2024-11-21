@@ -1,16 +1,13 @@
 import { GlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/query-boxes/observer-ids";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 
 export function noFileCreationOnPaste(
   queryBoxes: GlobalDomObserverStore["queryBoxes"],
 ) {
-  if (
-    !ExtensionLocalStorageService.getCachedSync().plugins[
-      "queryBox:noFileCreationOnPaste"
-    ].enabled
-  )
-    return;
+  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+
+  if (!pluginsEnableStates?.["queryBox:noFileCreationOnPaste"]) return;
 
   Object.values(queryBoxes).forEach((queryBox) => {
     if (!queryBox) return;

@@ -1,6 +1,7 @@
 import hideUnnecessaryButtonsCss from "@/features/plugins/thread/better-message-toolbars/hide-unnecessary-buttons.css?inline";
 import simplifyRewriteDropdownCss from "@/features/plugins/thread/better-message-toolbars/simplify-rewrite-dropdown.css?inline";
 import stickyCss from "@/features/plugins/thread/better-message-toolbars/sticky.css?inline";
+import { useObserveStuckToolbar } from "@/features/plugins/thread/better-message-toolbars/useObserveStuckToolbar";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { useInsertCss } from "@/hooks/useInsertCss";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
@@ -9,6 +10,8 @@ export function BetterMessageToolbarsWrapper() {
   const settings = ExtensionLocalStorageService.getCachedSync();
 
   const { isMobile } = useIsMobileStore();
+
+  useObserveStuckToolbar();
 
   useInsertCss({
     id: "cplx-better-message-toolbars-sticky",

@@ -60,7 +60,13 @@ export function TagsFilter() {
 
   return (
     <div className="tw-flex tw-flex-col tw-gap-2">
-      <Popover open={open} onOpenChange={handleOpenChange}>
+      <Popover
+        open={open}
+        positioning={{
+          placement: "bottom-end",
+        }}
+        onOpenChange={handleOpenChange}
+      >
         <PopoverTrigger asChild>
           <Button variant="ghost" className="tw-py-2">
             <div className="tw-flex tw-items-center tw-gap-2">

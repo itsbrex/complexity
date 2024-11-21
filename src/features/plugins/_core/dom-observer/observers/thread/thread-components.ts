@@ -76,7 +76,6 @@ export async function setupThreadComponentsObserver(
 function monitorThreadWrapperExistence(threadWrapper: Element) {
   if (!document.body.contains(threadWrapper)) {
     console.warn("threadWrapper has been removed, re-observing...");
-    alert("threadWrapper has been removed, re-observing...");
     return setupThreadComponentsObserver("thread");
   }
 }

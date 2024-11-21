@@ -13,7 +13,7 @@ import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatur
 import {
   isPluginId,
   PluginId,
-} from "@/services/extension-local-storage/extension-local-storage.types";
+} from "@/services/extension-local-storage/plugins.types";
 
 export default function PluginDetailsWrapper() {
   useClearLocationState();

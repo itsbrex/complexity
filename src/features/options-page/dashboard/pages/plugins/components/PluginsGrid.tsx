@@ -1,7 +1,7 @@
 import { PluginCard } from "@/features/options-page/dashboard/pages/plugins/components/PluginCard";
 import { PluginLockdownOverlay } from "@/features/options-page/dashboard/pages/plugins/components/PluginLockdownOverlay";
 import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatureFlags";
-import { PluginId } from "@/services/extension-local-storage/extension-local-storage.types";
+import { PluginId } from "@/services/extension-local-storage/plugins.types";
 
 type PluginGridProps = {
   pluginIds: PluginId[];

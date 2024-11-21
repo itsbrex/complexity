@@ -1,5 +1,5 @@
 import { DOM_INTERNAL_SELECTORS, DOM_SELECTORS } from "@/utils/dom-selectors";
-import { MessageBlock, QueryBoxType } from "@/utils/UiUtils.types";
+import { CodeBlock, MessageBlock, QueryBoxType } from "@/utils/UiUtils.types";
 
 export default class UiUtils {
   static isDarkTheme() {
@@ -105,6 +105,51 @@ export default class UiUtils {
       $answer,
       $answerHeading,
     };
+  }
+
+  static getCodeBlocks(): CodeBlock[] {
+    const internalCodeBlockClass =
+      DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK.slice(1);
+
+    const codeBlocks = $(
+      DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.WRAPPER,
+    ).toArray();
+
+    const returnValue = [] as CodeBlock[];
+
+    for (let i = 0; i < codeBlocks.length; i++) {
+      const $codeBlock = $(codeBlocks[i]);
+
+      $codeBlock.addClass(internalCodeBlockClass);
+
+      const $pre = $codeBlock.find("pre");
+      const $code = $pre.find("code");
+      const $nativeHeader = $codeBlock.find(
+        DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.NATIVE_HEADER,
+      );
+      const $nativeCopyButton = $codeBlock.find(
+        DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.NATIVE_COPY_BUTTON,
+      );
+
+      if (
+        !$pre.length ||
+        !$code.length ||
+        !$nativeHeader.length ||
+        !$nativeCopyButton.length
+      ) {
+        continue;
+      }
+
+      returnValue.push({
+        $wrapper: $codeBlock,
+        $pre,
+        $code,
+        $nativeHeader,
+        $nativeCopyButton,
+      });
+    }
+
+    return returnValue;
   }
 
   static getActiveQueryBoxTextarea({

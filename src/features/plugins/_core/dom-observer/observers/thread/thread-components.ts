@@ -69,7 +69,7 @@ export async function setupThreadComponentsObserver(
   DomObserver.create(DOM_OBSERVER_ID.MESSAGE_BLOCKS, {
     target: threadWrapper ?? document.body,
     config: { childList: true, subtree: true },
-    onMutation: () => queueMicrotasks(observeMessageBlocks),
+    onMutation: () => queueMicrotasks(observeMessageBlocks, observeCodeBlocks),
   });
 }
 
@@ -111,6 +111,23 @@ async function observeMessageBlocks() {
         }),
       ),
     ),
+  });
+}
+
+async function observeCodeBlocks() {
+  const pluginsStates = PluginsStatesService.getCachedSync();
+
+  const shouldObserve =
+    pluginsStates.pluginsEnableStates?.["thread:codeBlockCustomTheme"];
+
+  if (!shouldObserve) return;
+
+  const codeBlocks = UiUtils.getCodeBlocks();
+
+  if (!codeBlocks.length) return;
+
+  globalDomObserverStore.getState().setThreadComponents({
+    codeBlocks,
   });
 }
 

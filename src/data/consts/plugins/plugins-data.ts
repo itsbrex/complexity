@@ -1,4 +1,4 @@
-import { PluginId } from "@/services/extension-local-storage/extension-local-storage.types";
+import { PluginId } from "@/services/extension-local-storage/plugins.types";
 
 const CORE_PLUGINS = [
   "networkIntercept",
@@ -6,6 +6,7 @@ const CORE_PLUGINS = [
   "webSocket",
   "domObserver",
   "reactVdom",
+  "codeHighlighter",
 ] as const;
 
 export type CorePluginId = (typeof CORE_PLUGINS)[number];
@@ -77,6 +78,19 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description: "Improve the message toolbars in the thread page.",
     tags: ["ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
+  },
+  "thread:codeBlockCustomTheme": {
+    id: "thread:codeBlockCustomTheme",
+    routeSegment: "thread-code-block-custom-theme",
+    title: "Custom Code Block Theme",
+    description: "Customize the code block theme.",
+    tags: ["ui"],
+    dependentCorePlugins: [
+      "spaRouter",
+      "domObserver",
+      "reactVdom",
+      "codeHighlighter",
+    ],
   },
   imageGenModelSelector: {
     id: "imageGenModelSelector",

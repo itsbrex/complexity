@@ -40,6 +40,8 @@ export const DOM_SELECTORS = {
       CODE_BLOCK: {
         /** The outermost container that wraps the pre & code block */
         WRAPPER: "div.w-full.max-w-\\[90vw\\]",
+        NATIVE_HEADER: ".codeWrapper>div:first-child",
+        NATIVE_COPY_BUTTON: 'button[aria-label="Copy Code"]',
       },
       /** The bottom toolbar of the message (share, rewrite, model name, etc.) */
       BOTTOM_BAR: ".mt-sm.flex.items-center.justify-between",
@@ -98,6 +100,7 @@ export const DOM_INTERNAL_SELECTORS = {
         QUERY: ".cplx-message-block-query",
         ANSWER: ".cplx-message-block-answer",
         ANSWER_HEADING: ".cplx-message-block-answer-heading",
+        CODE_BLOCK: ".cplx-message-block-code-block",
       },
     },
   },

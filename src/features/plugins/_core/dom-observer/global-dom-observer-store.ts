@@ -2,7 +2,7 @@ import { subscribeWithSelector } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
 
-import { MessageBlock } from "@/utils/UiUtils.types";
+import { CodeBlock, MessageBlock } from "@/utils/UiUtils.types";
 
 export type ExtendedMessageBlock = MessageBlock & {
   title: string;
@@ -25,6 +25,7 @@ export type GlobalDomObserverStore = {
     messageBlocks: ExtendedMessageBlock[] | null;
     navbar: HTMLElement | null;
     navbarHeight: number | null;
+    codeBlocks: CodeBlock[] | null;
   };
   setThreadComponents: (
     newThreadComponents: Partial<GlobalDomObserverStore["threadComponents"]>,
@@ -63,6 +64,7 @@ export const globalDomObserverStore =
             messageBlocks: null,
             navbar: null,
             navbarHeight: null,
+            codeBlocks: null,
           },
           setThreadComponents: (newThreadComponents) => {
             Object.entries(newThreadComponents).forEach(([key, value]) => {

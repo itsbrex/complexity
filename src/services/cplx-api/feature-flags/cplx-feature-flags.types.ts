@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { PluginId } from "@/services/extension-local-storage/extension-local-storage.types";
+import { PluginId } from "@/services/extension-local-storage/plugins.types";
 
 export const userGroups = ["anon", "logged-in", "supporter"] as const;
 

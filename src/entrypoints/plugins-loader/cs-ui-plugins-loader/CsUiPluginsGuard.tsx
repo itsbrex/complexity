@@ -12,7 +12,7 @@ import { Ul } from "@/components/ui/typography";
 import { PLUGINS_METADATA } from "@/data/consts/plugins/plugins-data";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
-import { PluginId } from "@/services/extension-local-storage/extension-local-storage.types";
+import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { whereAmI } from "@/utils/utils";
 import packageJson from "~/package.json";

@@ -1,5 +1,5 @@
 import { Switch } from "@/components/ui/switch";
-import { Plugins } from "@/services/extension-local-storage/extension-local-storage.types";
+import { Plugins } from "@/services/extension-local-storage/plugins.types";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
 type PluginKey = keyof Plugins["thread:betterMessageToolbars"];

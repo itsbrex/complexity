@@ -11,7 +11,7 @@ import {
   type PluginFilters,
 } from "@/features/options-page/dashboard/pages/plugins/PluginContext";
 import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatureFlags";
-import { PluginId } from "@/services/extension-local-storage/extension-local-storage.types";
+import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
 function PluginsPageContent() {

@@ -4,7 +4,7 @@ import {
 } from "@/services/cplx-api/feature-flags/cplx-feature-flags.types";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
-import { PluginId } from "@/services/extension-local-storage/extension-local-storage.types";
+import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { pluginsStatesQueries } from "@/services/plugins-states/query-keys";
 import { errorWrapper } from "@/utils/error-wrapper";
 import { queryClient } from "@/utils/ts-query-client";

@@ -4,7 +4,7 @@ import {
 } from "@/data/consts/plugins/plugins-data";
 import InternalWebSocketManager from "@/features/plugins/_core/web-socket/InternalWebSocketManager";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
-import { PluginId } from "@/services/extension-local-storage/extension-local-storage.types";
+import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { injectMainWorldScript } from "@/utils/utils";
 
 import networkInterceptPlugin from "@/features/plugins/_core/network-intercept/index.main?script&module";

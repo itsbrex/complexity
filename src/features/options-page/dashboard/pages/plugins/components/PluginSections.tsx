@@ -3,7 +3,7 @@ import { H2 } from "@/components/ui/typography";
 import NoPluginsFound from "@/features/options-page/dashboard/pages/plugins/components/NoPluginsFound";
 import { PluginsGrid } from "@/features/options-page/dashboard/pages/plugins/components/PluginsGrid";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
-import { PluginId } from "@/services/extension-local-storage/extension-local-storage.types";
+import { PluginId } from "@/services/extension-local-storage/plugins.types";
 
 type PluginSectionsProps = {
   favoritePluginIds: PluginId[];

@@ -4,7 +4,7 @@ import ImageGenModelSelectorDialogContent from "@/features/options-page/dashboar
 import LanguageModelSelectorDialogContent from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/LanguageModelSelector";
 import NoFileCreationOnPasteDialogContent from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/NoFileCreationOnPaste";
 import OnCloudflareTimeoutAutoReloadDialogContent from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/OnCloudflareTimeoutAutoReload";
-import { PluginId } from "@/services/extension-local-storage/extension-local-storage.types";
+import { PluginId } from "@/services/extension-local-storage/plugins.types";
 
 export type PluginDialogContent = Partial<Record<PluginId, React.ReactNode>>;
 

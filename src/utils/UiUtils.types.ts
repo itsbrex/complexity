@@ -6,3 +6,11 @@ export type MessageBlock = {
   $query: JQuery<Element>;
   $answer: JQuery<Element>;
 };
+
+export type CodeBlock = {
+  $wrapper: JQuery<Element>;
+  $pre: JQuery<Element>;
+  $code: JQuery<Element>;
+  $nativeHeader: JQuery<Element>;
+  $nativeCopyButton: JQuery<Element>;
+};

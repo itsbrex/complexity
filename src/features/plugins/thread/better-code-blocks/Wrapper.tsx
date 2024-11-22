@@ -63,7 +63,15 @@ export function BetterCodeBlocksWrapper() {
     (messageBlock, messageBlockIndex) =>
       messageBlock.map(
         ({ portalContainer, codeString, lang, isInFlight }, codeBlockIndex) => {
-          if (!codeString || !lang) return null;
+          if (!codeString || !lang) {
+            console.log("no codeString or lang", {
+              messageBlockIndex,
+              codeBlockIndex,
+              codeString,
+              lang,
+            });
+            return null;
+          }
 
           return (
             <MemoizedWrapper

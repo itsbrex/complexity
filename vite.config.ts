@@ -39,7 +39,9 @@ export default defineConfig(() => ({
     crx({ manifest, browser: APP_CONFIG.BROWSER }),
     react(),
     Unimport.vite(unimportConfig),
-    vitePluginReloadOnDynamicallyInjectedStyleChanges(),
+    vitePluginReloadOnDynamicallyInjectedStyleChanges({
+      excludeString: ["@/assets/cs.css"]
+    }),
     vitePluginForceRestartOnChanges({
       folders: ["public"],
     }),

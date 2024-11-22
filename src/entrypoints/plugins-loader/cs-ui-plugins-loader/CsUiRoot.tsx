@@ -1,7 +1,10 @@
+/* eslint-disable import/no-duplicates */
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Fragment } from "react/jsx-runtime";
 
+import { APP_CONFIG } from "@/app.config";
 import "@/assets/cs.css";
+import csUiRootCss from "@/assets/cs.css?inline";
 import { Toaster } from "@/components/Toaster";
 import CsUiPluginsGuard from "@/entrypoints/plugins-loader/cs-ui-plugins-loader/CsUiPluginsGuard";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
@@ -11,8 +14,16 @@ import QueryBoxWrapper from "@/features/plugins/query-box/Wrapper";
 import { BetterCodeBlocksWrapper } from "@/features/plugins/thread/better-code-blocks/Wrapper";
 import { BetterMessageToolbarsWrapper } from "@/features/plugins/thread/better-message-toolbars/Wrapper";
 import ThreadNavigationTocWrapper from "@/features/plugins/thread/toc/Wrapper";
+import { useInsertCss } from "@/hooks/useInsertCss";
 
 export default function CsUiRoot() {
+  // normalize css precedence on build vs dev environment
+  useInsertCss({
+    id: "cplx-cs-ui-root",
+    css: csUiRootCss,
+    inject: !APP_CONFIG.IS_DEV,
+  });
+
   return (
     <>
       <CsUiPluginsGuard

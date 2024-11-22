@@ -98,4 +98,36 @@ function rootifyOptionsPageHTMLEntries(done) {
   done();
 }
 
-export { createPackage, rootifyOptionsPageHTMLEntries };
+function removeStaticCssFilesFromManifest(done) {
+  const manifestPath = "./dist/manifest.json";
+
+  if (!fs.existsSync(manifestPath)) {
+    console.warn(
+      "Manifest file not found. Skipping removeStaticCssFilesFromManifest.",
+    );
+    return done();
+  }
+
+  //remove content_scripts[n].css
+
+  try {
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+
+    // Remove CSS entries from content scripts
+    if (manifest.content_scripts) {
+      manifest.content_scripts = manifest.content_scripts.map((script) => {
+        const { css, ...rest } = script;
+        return rest;
+      });
+    }
+
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+    console.log("Removed static CSS files from manifest.json content scripts");
+  } catch (error) {
+    console.error("Error removing CSS files from manifest.json:", error);
+  }
+
+  done();
+}
+
+export { createPackage, rootifyOptionsPageHTMLEntries, removeStaticCssFilesFromManifest };

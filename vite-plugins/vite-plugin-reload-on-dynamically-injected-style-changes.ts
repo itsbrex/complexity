@@ -19,9 +19,12 @@ export function hasFileBeenReloaded(file: string) {
   return reloadedFiles.has(file);
 }
 
-export default function vitePluginReloadOnDynamicallyInjectedStyleChanges(): Plugin {
+export default function vitePluginReloadOnDynamicallyInjectedStyleChanges(options?: {
+  excludeString?: string[]
+}): Plugin {
   const dynamicStyleImports = new Set<string>();
   let root: string;
+  const excludePatterns = options?.excludeString || [];
 
   return {
     name: "reload-on-style-changes",
@@ -48,6 +51,10 @@ export default function vitePluginReloadOnDynamicallyInjectedStyleChanges(): Plu
 
           // Handle @ alias
           if (importPath.startsWith("@/")) {
+            // Check if the import should be excluded
+            if (excludePatterns.some(pattern => importPath === pattern)) {
+              return;
+            }
             absolutePath = path.resolve(root, "src", importPath.slice(2));
           } else {
             absolutePath = path.resolve(path.dirname(id), importPath);

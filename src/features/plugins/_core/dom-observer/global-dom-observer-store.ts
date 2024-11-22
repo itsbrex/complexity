@@ -9,6 +9,10 @@ export type ExtendedMessageBlock = MessageBlock & {
   isInFlight: boolean | null;
 };
 
+export type ExtendedCodeBlock = CodeBlock & {
+  isInFlight: boolean | null;
+};
+
 export type GlobalDomObserverStore = {
   queryBoxes: {
     mainQueryBox: HTMLElement | null;
@@ -25,7 +29,8 @@ export type GlobalDomObserverStore = {
     messageBlocks: ExtendedMessageBlock[] | null;
     navbar: HTMLElement | null;
     navbarHeight: number | null;
-    codeBlocks: CodeBlock[] | null;
+    bottomButtonBarHeight: number;
+    codeBlocks: ExtendedCodeBlock[][] | null;
   };
   setThreadComponents: (
     newThreadComponents: Partial<GlobalDomObserverStore["threadComponents"]>,
@@ -64,6 +69,7 @@ export const globalDomObserverStore =
             messageBlocks: null,
             navbar: null,
             navbarHeight: null,
+            bottomButtonBarHeight: 0,
             codeBlocks: null,
           },
           setThreadComponents: (newThreadComponents) => {

@@ -5,7 +5,6 @@ import {
   MutationCallback,
 } from "@/features/plugins/_core/dom-observer/dom-observer.types";
 import DomObserver from "@/features/plugins/_core/dom-observer/DomObserver";
-import DynamicDebouncer from "@/features/plugins/_core/dom-observer/DynamicDebouncer";
 import { batchMutations } from "@/features/plugins/_core/dom-observer/mutation-batcher";
 
 const handleError = (error: unknown, context: string): void => {
@@ -29,7 +28,6 @@ const safeExecute = async <T extends unknown[]>(
 };
 
 export const createCallback = (config: DomObserverConfig): MutationCallback => {
-  const dynamicDebouncer = DynamicDebouncer.getInstance();
   let debouncedCallback: MutationCallback | null = null;
   let currentDebounceTime: number | null = null;
 
@@ -37,9 +35,6 @@ export const createCallback = (config: DomObserverConfig): MutationCallback => {
     mutations: MutationRecord[],
     observer: MutationObserver,
   ) => {
-    // Record mutations for dynamic debouncing
-    dynamicDebouncer.recordMutations(mutations.length);
-
     const batchedMutations = batchMutations(mutations);
 
     if (config.onMutation) {
@@ -55,9 +50,7 @@ export const createCallback = (config: DomObserverConfig): MutationCallback => {
     mutations: MutationRecord[],
     observer: MutationObserver,
   ) => {
-    // Get current debounce time
-    const debounceTime =
-      config.debounceTime ?? dynamicDebouncer.getDebounceTime();
+    const debounceTime = 0;
 
     // Create or update debounced callback if debounce time changed
     if (!debouncedCallback || currentDebounceTime !== debounceTime) {
@@ -72,7 +65,6 @@ export const createCallback = (config: DomObserverConfig): MutationCallback => {
         {
           leading: false,
           trailing: true,
-          maxWait: 1000,
         },
       );
     }

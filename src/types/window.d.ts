@@ -1,3 +1,5 @@
+import type * as shiki from "shiki";
+
 declare global {
   interface Window {
     next?: {
@@ -12,6 +14,8 @@ declare global {
         prefetch: (url: string) => void;
       };
     };
+
+    shiki?: typeof shiki;
   }
 }
 

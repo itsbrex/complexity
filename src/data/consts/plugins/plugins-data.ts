@@ -79,12 +79,12 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     tags: ["ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
   },
-  "thread:codeBlockCustomTheme": {
-    id: "thread:codeBlockCustomTheme",
-    routeSegment: "thread-code-block-custom-theme",
-    title: "Custom Code Block Theme",
-    description: "Customize the code block theme.",
-    tags: ["ui"],
+  "thread:betterCodeBlocks": {
+    id: "thread:betterCodeBlocks",
+    routeSegment: "thread-better-code-blocks",
+    title: "Better Code Blocks",
+    description: "Improve the code blocks in the thread page.",
+    tags: ["ui", "ux"],
     dependentCorePlugins: [
       "spaRouter",
       "domObserver",

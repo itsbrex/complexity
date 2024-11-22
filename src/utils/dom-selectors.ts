@@ -101,6 +101,7 @@ export const DOM_INTERNAL_SELECTORS = {
         ANSWER: ".cplx-message-block-answer",
         ANSWER_HEADING: ".cplx-message-block-answer-heading",
         CODE_BLOCK: ".cplx-message-block-code-block",
+        MIRRORED_CODE_BLOCK: ".cplx-mirrored-code-block",
       },
     },
   },

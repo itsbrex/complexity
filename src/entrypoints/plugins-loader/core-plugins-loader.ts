@@ -7,6 +7,7 @@ import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { injectMainWorldScript } from "@/utils/utils";
 
+import codeHighlighterPlugin from "@/features/plugins/_core/code-highlighter/index.main?script&module";
 import networkInterceptPlugin from "@/features/plugins/_core/network-intercept/index.main?script&module";
 import reactVdomPlugin from "@/features/plugins/_core/react-vdom/index.main?script&module";
 import spaRouterPlugin from "@/features/plugins/_core/spa-router/index.main?script&module";
@@ -20,27 +21,33 @@ export async function initCorePlugins() {
   injectMainWorldScript({
     url: chrome.runtime.getURL(networkInterceptPlugin),
     head: true,
-    inject: shouldInjectCorePlugin("networkIntercept"),
+    inject: shouldEnableCorePlugin("networkIntercept"),
   });
 
   injectMainWorldScript({
     url: chrome.runtime.getURL(spaRouterPlugin),
     head: true,
-    inject: shouldInjectCorePlugin("spaRouter"),
+    inject: shouldEnableCorePlugin("spaRouter"),
   });
 
   injectMainWorldScript({
     url: chrome.runtime.getURL(reactVdomPlugin),
     head: true,
-    inject: shouldInjectCorePlugin("reactVdom"),
+    inject: shouldEnableCorePlugin("reactVdom"),
   });
 
-  if (shouldInjectCorePlugin("webSocket")) {
+  injectMainWorldScript({
+    url: chrome.runtime.getURL(codeHighlighterPlugin),
+    head: true,
+    inject: shouldEnableCorePlugin("codeHighlighter"),
+  });
+
+  if (shouldEnableCorePlugin("webSocket")) {
     InternalWebSocketManager.getInstance().handShake();
   }
 }
 
-function shouldInjectCorePlugin(corePluginId: CorePluginId) {
+function shouldEnableCorePlugin(corePluginId: CorePluginId) {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
   if (!pluginsEnableStates) return false;

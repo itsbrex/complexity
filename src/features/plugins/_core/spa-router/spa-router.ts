@@ -110,11 +110,7 @@ export async function waitForRouteChangeComplete(
   async function checkThreadLoaded() {
     await waitForSpaIdle();
 
-    try {
-      return UiUtils.getMessageBlocks(true).length >= 1;
-    } catch {
-      return false;
-    }
+    return UiUtils.getMessageBlocks().length >= 1;
   }
 
   function checkHomeLoaded() {

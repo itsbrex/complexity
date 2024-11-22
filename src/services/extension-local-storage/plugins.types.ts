@@ -20,11 +20,22 @@ export const PluginsSchema = z.object({
     explicitModelName: z.boolean(),
     hideUnnecessaryButtons: z.boolean(),
   }),
-  "thread:codeBlockCustomTheme": PluginSettingsSchema.extend({
-    theme: z
-      .string()
-      .transform((val): BundledTheme => val as BundledTheme)
-      .optional(),
+  "thread:betterCodeBlocks": PluginSettingsSchema.extend({
+    stickyHeader: z.boolean(),
+    theme: z.object({
+      enabled: z.boolean(),
+      light: z.string().transform((val): BundledTheme => val as BundledTheme),
+      dark: z.string().transform((val): BundledTheme => val as BundledTheme),
+    }),
+    unwrap: z.object({
+      enabled: z.boolean(),
+      showToggleButton: z.boolean(),
+    }),
+    maxHeight: z.object({
+      enabled: z.boolean(),
+      value: z.number(),
+      showToggleButton: z.boolean(),
+    }),
   }),
   imageGenModelSelector: PluginSettingsSchema,
   onCloudflareTimeoutAutoReload: PluginSettingsSchema.extend({

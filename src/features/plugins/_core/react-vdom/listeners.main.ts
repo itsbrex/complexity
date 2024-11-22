@@ -11,6 +11,13 @@ export type ReactVdomEvents = {
   "reactVdom:getMessageDisplayModelCode": (params: {
     index: number;
   }) => string | null;
+  "reactVdom:getCodeFromCodeBlock": (params: {
+    messageBlockIndex: number;
+    codeBlockIndex: number;
+  }) => {
+    code: string;
+    language: string;
+  } | null;
 };
 
 export function setupReactVdomListeners() {
@@ -21,8 +28,8 @@ export function setupReactVdomListeners() {
 
     if (!$el.length) return null;
 
-    const [isInFlight, error] = errorWrapper(() => {
-      return findReactFiberNodeValue({
+    const [isInFlight, error] = errorWrapper(() =>
+      findReactFiberNodeValue({
         fiberNode: ($el[0] as any)[getReactFiberKey($el[0])],
         condition: (node) =>
           !!(
@@ -31,8 +38,8 @@ export function setupReactVdomListeners() {
           ),
         select: (node) =>
           node.memoizedProps.children[2].props.isEntryInFlight as boolean,
-      });
-    })();
+      }),
+    )();
 
     if (error) console.warn("[VDOM Plugin] isMessageBlockInFlight", error);
 
@@ -48,15 +55,15 @@ export function setupReactVdomListeners() {
 
     if (!$el.length) return null;
 
-    const [modelCode, error] = errorWrapper(() => {
-      return findReactFiberNodeValue({
+    const [modelCode, error] = errorWrapper(() =>
+      findReactFiberNodeValue({
         fiberNode: ($el[0] as any)[getReactFiberKey($el[0])],
         condition: (node) =>
           node.return.memoizedProps.result.display_model != null,
         select: (node) =>
           node.return.memoizedProps.result.display_model as string,
-      });
-    })();
+      }),
+    )();
 
     if (error) console.warn("[VDOM Plugin] getMessageDisplayModelCode", error);
 
@@ -64,6 +71,53 @@ export function setupReactVdomListeners() {
 
     return modelCode;
   });
+
+  onMessage(
+    "reactVdom:getCodeFromCodeBlock",
+    ({ data: { messageBlockIndex, codeBlockIndex } }) => {
+      const selector = `${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK}[data-index="${messageBlockIndex}"] ${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}[data-index="${codeBlockIndex}"] pre`;
+
+      const $el = $(selector);
+
+      if (!$el.length) return null;
+
+      const fiberNode = ($el[0] as any)[getReactFiberKey($el[0])];
+
+      const [code, error] = errorWrapper(() =>
+        findReactFiberNodeValue({
+          fiberNode,
+          condition: (node) =>
+            node.memoizedProps.children[0].props.children[0] != null,
+          select: (node) =>
+            node.memoizedProps.children[0].props.children[0] as string,
+        }),
+      )();
+
+      const [language, error2] = errorWrapper(() =>
+        findReactFiberNodeValue({
+          fiberNode,
+          condition: (node) =>
+            node.memoizedProps.children[0].props.className != null,
+          select: (node) => {
+            const language =
+              node.memoizedProps.children[0].props.className.replace(
+                /^language-/,
+                "",
+              );
+
+            return language;
+          },
+        }),
+      )();
+
+      if (error || error2 || code == null || language == null) return null;
+
+      return {
+        code,
+        language,
+      };
+    },
+  );
 }
 
 function findReactFiberNodeValue<T>({

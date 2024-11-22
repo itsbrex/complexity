@@ -1,3 +1,4 @@
+import { ExtendedMessageBlock } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { DOM_INTERNAL_SELECTORS, DOM_SELECTORS } from "@/utils/dom-selectors";
 import { CodeBlock, MessageBlock, QueryBoxType } from "@/utils/UiUtils.types";
 
@@ -20,7 +21,7 @@ export default class UiUtils {
     return $messagesContainer;
   }
 
-  static getMessageBlocks(throwOnError = false): MessageBlock[] {
+  static getMessageBlocks(): MessageBlock[] {
     const $messagesContainer = UiUtils.getMessagesContainer();
 
     // Cache selectors to avoid string concatenation in loop
@@ -63,13 +64,6 @@ export default class UiUtils {
         ),
       );
 
-      if (!$query.length || !$answer.length || !$answerHeading.length) {
-        if (throwOnError) {
-          throw new Error("Invalid message block");
-        }
-        continue;
-      }
-
       // Cache jQuery lookups
       const $textCol = $wrapper.find(textColSelector);
       const $visualCol = $wrapper.find(visualColSelector);
@@ -107,49 +101,73 @@ export default class UiUtils {
     };
   }
 
-  static getCodeBlocks(): CodeBlock[] {
+  static getCodeBlocks(messageBlocks: MessageBlock[]): CodeBlock[][] {
     const internalCodeBlockClass =
       DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK.slice(1);
 
-    const codeBlocks = $(
-      DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.WRAPPER,
-    ).toArray();
+    const returnValue = [] as CodeBlock[][];
 
-    const returnValue = [] as CodeBlock[];
+    for (let i = 0; i < messageBlocks.length; i++) {
+      const codeBlocks = $(messageBlocks[i].$answer)
+        .find(DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.WRAPPER)
+        .toArray();
 
-    for (let i = 0; i < codeBlocks.length; i++) {
-      const $codeBlock = $(codeBlocks[i]);
+      const codeBlocksInMessageBlock = [] as CodeBlock[];
 
-      $codeBlock.addClass(internalCodeBlockClass);
+      for (let j = 0; j < codeBlocks.length; j++) {
+        const $codeBlock = $(codeBlocks[j]);
 
-      const $pre = $codeBlock.find("pre");
-      const $code = $pre.find("code");
-      const $nativeHeader = $codeBlock.find(
-        DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.NATIVE_HEADER,
-      );
-      const $nativeCopyButton = $codeBlock.find(
-        DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.NATIVE_COPY_BUTTON,
-      );
+        $codeBlock.addClass(internalCodeBlockClass).attr({ "data-index": j });
 
-      if (
-        !$pre.length ||
-        !$code.length ||
-        !$nativeHeader.length ||
-        !$nativeCopyButton.length
-      ) {
-        continue;
+        const $pre = $codeBlock.find("pre");
+        const $code = $pre.find("code");
+        const $nativeHeader = $codeBlock.find(
+          DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.NATIVE_HEADER,
+        );
+        const $nativeCopyButton = $codeBlock.find(
+          DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.NATIVE_COPY_BUTTON,
+        );
+
+        if (
+          !$pre.length ||
+          !$code.length ||
+          !$nativeHeader.length ||
+          !$nativeCopyButton.length
+        ) {
+          continue;
+        }
+
+        codeBlocksInMessageBlock.push({
+          $wrapper: $codeBlock,
+          $pre,
+          $code,
+          $nativeHeader,
+          $nativeCopyButton,
+        });
       }
 
-      returnValue.push({
-        $wrapper: $codeBlock,
-        $pre,
-        $code,
-        $nativeHeader,
-        $nativeCopyButton,
-      });
+      returnValue.push(codeBlocksInMessageBlock);
     }
 
     return returnValue;
+  }
+
+  static isMessageBlockInFlight({
+    messageBlocks,
+    messageBlockIndex,
+    codeBlockIndex,
+  }: {
+    messageBlocks: ExtendedMessageBlock[];
+    messageBlockIndex: number;
+    codeBlockIndex: number;
+  }) {
+    const selector = `${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK}[data-index="${messageBlockIndex}"] ${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}[data-index="${codeBlockIndex}"]`;
+
+    const isInFlight =
+      !!messageBlocks[messageBlockIndex].isInFlight &&
+      $(selector).next().length === 0;
+
+    return isInFlight;
   }
 
   static getActiveQueryBoxTextarea({

@@ -2,6 +2,7 @@ import { sendMessage } from "webext-bridge/content-script";
 
 import DomObserver from "@/features/plugins/_core/dom-observer/DomObserver";
 import {
+  ExtendedCodeBlock,
   ExtendedMessageBlock,
   globalDomObserverStore,
 } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
@@ -69,7 +70,7 @@ export async function setupThreadComponentsObserver(
   DomObserver.create(DOM_OBSERVER_ID.MESSAGE_BLOCKS, {
     target: threadWrapper ?? document.body,
     config: { childList: true, subtree: true },
-    onMutation: () => queueMicrotasks(observeMessageBlocks, observeCodeBlocks),
+    onMutation: () => queueMicrotasks(observeMessageBlocks),
   });
 }
 
@@ -95,39 +96,77 @@ async function observeMessageBlocks() {
     return queueMicrotasks(observeMessageBlocks);
   }
 
-  globalDomObserverStore.getState().setThreadComponents({
-    messageBlocks: await Promise.all(
-      messageBlocks.map(
-        async (block, index): Promise<ExtendedMessageBlock> => ({
-          ...block,
-          title: block.$query.find("textarea").text() || block.$query.text(),
-          isInFlight: await sendMessage(
-            "reactVdom:isMessageBlockInFlight",
-            {
-              index,
-            },
-            "window",
-          ),
-        }),
-      ),
+  if (
+    !globalDomObserverStore.getState().threadComponents.bottomButtonBarHeight
+  ) {
+    const $bottomButtonBar = messageBlocks[0].$wrapper.find(
+      DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR,
+    );
+
+    if ($bottomButtonBar.length) {
+      $(document.body).css({
+        "--message-block-bottom-button-bar-height": `${$bottomButtonBar[0].offsetHeight - 1}px`,
+      });
+
+      globalDomObserverStore.getState().setThreadComponents({
+        bottomButtonBarHeight: $bottomButtonBar[0].offsetHeight - 1,
+      });
+    }
+  }
+
+  const extendedMessageBlocks: ExtendedMessageBlock[] = await Promise.all(
+    messageBlocks.map(
+      async (block, index): Promise<ExtendedMessageBlock> => ({
+        ...block,
+        title: block.$query.find("textarea").text() || block.$query.text(),
+        isInFlight: await sendMessage(
+          "reactVdom:isMessageBlockInFlight",
+          {
+            index,
+          },
+          "window",
+        ),
+      }),
     ),
+  );
+
+  observeCodeBlocks(extendedMessageBlocks);
+
+  globalDomObserverStore.getState().setThreadComponents({
+    messageBlocks: extendedMessageBlocks,
   });
 }
 
-async function observeCodeBlocks() {
+async function observeCodeBlocks(messageBlocks: ExtendedMessageBlock[]) {
   const pluginsStates = PluginsStatesService.getCachedSync();
 
   const shouldObserve =
-    pluginsStates.pluginsEnableStates?.["thread:codeBlockCustomTheme"];
+    pluginsStates.pluginsEnableStates?.["thread:betterCodeBlocks"];
 
   if (!shouldObserve) return;
 
-  const codeBlocks = UiUtils.getCodeBlocks();
+  const codeBlocks = UiUtils.getCodeBlocks(messageBlocks);
 
   if (!codeBlocks.length) return;
 
+  const extendedCodeBlocks: ExtendedCodeBlock[][] = await Promise.all(
+    codeBlocks.map(
+      async (messageBlock, messageBlockIndex) =>
+        await Promise.all(
+          messageBlock.map(async (codeBlock, codeBlockIndex) => ({
+            ...codeBlock,
+            isInFlight: UiUtils.isMessageBlockInFlight({
+              messageBlocks,
+              messageBlockIndex,
+              codeBlockIndex,
+            }),
+          })),
+        ),
+    ),
+  );
+
   globalDomObserverStore.getState().setThreadComponents({
-    codeBlocks,
+    codeBlocks: extendedCodeBlocks,
   });
 }
 
@@ -141,8 +180,8 @@ function observeNavbar() {
   $(document.body).css({
     "--navbar-height":
       navbarHeight != null && navbarHeight > 0
-        ? `${navbarHeight}px`
-        : "3.375rem",
+        ? `${navbarHeight - 1}px`
+        : "53px",
   });
 
   globalDomObserverStore.getState().setThreadComponents({

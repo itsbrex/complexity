@@ -83,15 +83,15 @@ async function parseStoreData(
       return DEFAULT_STORAGE;
     }
 
-    console.warn("[Cplx] Settings schema mismatch, updated to latest version");
+    console.log("[Cplx] Settings schema mismatch, updated to latest version");
 
-    const cleanSettings = rawSettings;
+    let cleanSettings = rawSettings;
 
     error.issues.forEach((issue) => {
-      setPathToUndefined({
+      cleanSettings = setPathToUndefined({
         paths: issue.path as string[],
         obj: cleanSettings,
-      });
+      }) as ExtensionLocalStorage;
     });
 
     const updatedSettings = mergeUndefined({

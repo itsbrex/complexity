@@ -82,7 +82,7 @@ export default function ImageGenModelSelector() {
                 }}
               >
                 <div className="tw-flex tw-max-w-full tw-items-center tw-justify-around tw-gap-2">
-                  {isReactNode(Icon) ? (
+                  {isReactNode(<Icon />) ? (
                     <div className="tw-text-[1.1rem]">
                       <Icon className="tw-size-4" />
                     </div>

@@ -23,6 +23,7 @@ import { LanguageModel } from "@/data/consts/plugins/query-box/language-model-se
 import { useSharedQueryBoxStore } from "@/features/plugins/query-box/shared-store";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import usePplxUserSettings from "@/hooks/usePplxUserSettings";
+import { isReactNode } from "@/types/utils.types";
 import { TEST_ID_SELECTORS } from "@/utils/dom-selectors";
 import UiUtils from "@/utils/UiUtils";
 
@@ -169,7 +170,7 @@ function MobileSelectContent({ ...props }: DialogProps) {
                 >
                   <div className="tw-flex tw-w-full tw-max-w-full tw-items-center tw-justify-between tw-gap-4">
                     <div className="tw-flex tw-items-center tw-gap-3">
-                      {Icon != null ? (
+                      {isReactNode(<Icon />) ? (
                         <Icon className="tw-size-5" />
                       ) : (
                         <Cpu className="tw-size-5" />

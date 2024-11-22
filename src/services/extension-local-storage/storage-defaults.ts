@@ -22,9 +22,23 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       explicitModelName: true,
       hideUnnecessaryButtons: true,
     },
-    "thread:codeBlockCustomTheme": {
+    "thread:betterCodeBlocks": {
       enabled: false,
-      theme: "dark-plus",
+      stickyHeader: true,
+      theme: {
+        enabled: true,
+        light: "light-plus",
+        dark: "dark-plus",
+      },
+      unwrap: {
+        enabled: true,
+        showToggleButton: true,
+      },
+      maxHeight: {
+        enabled: true,
+        value: 500,
+        showToggleButton: true,
+      },
     },
     imageGenModelSelector: {
       enabled: false,

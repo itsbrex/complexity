@@ -1,19 +1,19 @@
 import { sendMessage } from "webext-bridge/content-script";
 
+import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import UiUtils from "@/utils/UiUtils";
 
 type HighlightedCodeProps = {
-  codeString: string;
-  lang: string;
   isWrapped: boolean;
 };
 
-export function HighlightedCode({
-  codeString,
-  lang,
-  isWrapped,
-}: HighlightedCodeProps) {
+export function HighlightedCode({ isWrapped }: HighlightedCodeProps) {
+  const { codeString, lang } = useMirroredCodeBlockContext()((state) => ({
+    codeString: state.codeString,
+    lang: state.lang,
+  }));
+
   const settings = ExtensionLocalStorageService.getCachedSync();
   const [highlightedCode, setHighlightedCode] = useState<string | null>(null);
 

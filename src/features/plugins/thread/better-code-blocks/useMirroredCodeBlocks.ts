@@ -87,13 +87,13 @@ export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
       debounce(async (blocks: ExtendedCodeBlock[][]) => {
         try {
           const processedBlocks = await Promise.all(
-            blocks.map((messageBlock, messageBlockIndex) =>
+            blocks.map((messageBlock, sourceMessageBlockIndex) =>
               Promise.all(
-                messageBlock.map((codeBlock, codeBlockIndex) =>
+                messageBlock.map((codeBlock, sourceCodeBlockIndex) =>
                   processCodeBlock(
                     codeBlock,
-                    messageBlockIndex,
-                    codeBlockIndex,
+                    sourceMessageBlockIndex,
+                    sourceCodeBlockIndex,
                   ),
                 ),
               ),

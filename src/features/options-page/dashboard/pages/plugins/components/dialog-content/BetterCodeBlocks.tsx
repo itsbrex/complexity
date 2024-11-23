@@ -118,7 +118,8 @@ function Options() {
                 }
                 className="tw-w-[100px]"
                 disabled={
-                  !settings?.plugins["thread:betterCodeBlocks"].maxHeight?.enabled
+                  !settings?.plugins["thread:betterCodeBlocks"].maxHeight
+                    ?.enabled
                 }
                 onChange={(e) => {
                   if (Number(e.target.value) < 300) {

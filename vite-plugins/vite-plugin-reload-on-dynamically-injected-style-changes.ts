@@ -20,7 +20,7 @@ export function hasFileBeenReloaded(file: string) {
 }
 
 export default function vitePluginReloadOnDynamicallyInjectedStyleChanges(options?: {
-  excludeString?: string[]
+  excludeString?: string[];
 }): Plugin {
   const dynamicStyleImports = new Set<string>();
   let root: string;
@@ -52,7 +52,7 @@ export default function vitePluginReloadOnDynamicallyInjectedStyleChanges(option
           // Handle @ alias
           if (importPath.startsWith("@/")) {
             // Check if the import should be excluded
-            if (excludePatterns.some(pattern => importPath === pattern)) {
+            if (excludePatterns.some((pattern) => importPath === pattern)) {
               return;
             }
             absolutePath = path.resolve(root, "src", importPath.slice(2));

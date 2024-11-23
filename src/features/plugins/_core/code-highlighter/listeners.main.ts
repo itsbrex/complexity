@@ -22,9 +22,7 @@ export function setupCodeHighlighterListeners() {
     async ({ data: params }) => {
       await CodeHighlighter.waitForInitialization();
 
-      return await CodeHighlighter.getInstance().handleHighlightRequest(
-        params,
-      );
+      return await CodeHighlighter.getInstance().handleHighlightRequest(params);
     },
   );
 }

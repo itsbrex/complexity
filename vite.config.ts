@@ -5,14 +5,21 @@ import { defineConfig } from "vite";
 import { crx } from "@crxjs/vite-plugin";
 import react from "@vitejs/plugin-react";
 import Unimport from "unimport/unplugin";
+import chalk from "chalk";
 
-import manifest from "./src/manifest";
+import chromeManifest from "./src/manifest.chrome";
+import firefoxManifest from "./src/manifest.firefox";
 import { APP_CONFIG } from "./src/app.config";
 import unimportConfig from "./src/types/unimport.config";
 
 import vitePluginForceRestartOnChanges from "./vite-plugins/vite-plugin-force-restart-on-changes";
 import vitePluginReloadOnDynamicallyInjectedStyleChanges from "./vite-plugins/vite-plugin-reload-on-dynamically-injected-style-changes";
 import viteTouchGlobalCss from "./vite-plugins/vite-plugin-touch-global-css";
+
+console.log(
+  "\n",
+  chalk.bold.underline.yellow("TARGET BROWSER:", APP_CONFIG.BROWSER),
+);
 
 export default defineConfig(() => ({
   base: "./",
@@ -36,11 +43,15 @@ export default defineConfig(() => ({
     },
   },
   plugins: [
-    crx({ manifest, browser: APP_CONFIG.BROWSER }),
+    crx({
+      manifest:
+        APP_CONFIG.BROWSER === "chrome" ? chromeManifest : firefoxManifest,
+      browser: APP_CONFIG.BROWSER,
+    }),
     react(),
     Unimport.vite(unimportConfig),
     vitePluginReloadOnDynamicallyInjectedStyleChanges({
-      excludeString: ["@/assets/cs.css"]
+      excludeString: ["@/assets/cs.css"],
     }),
     vitePluginForceRestartOnChanges({
       folders: ["public"],

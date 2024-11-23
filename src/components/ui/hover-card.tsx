@@ -2,6 +2,8 @@ import { HoverCard as ArkHoverCard, Portal } from "@ark-ui/react";
 import { Slot } from "@radix-ui/react-slot";
 import { createContext, forwardRef, type ElementRef, useContext } from "react";
 
+const HoverCardRootProvider = ArkHoverCard.RootProvider;
+
 type HoverCardLocalContext = {
   portal: boolean;
 };
@@ -10,7 +12,7 @@ const HoverCardLocalContext = createContext<HoverCardLocalContext>({
   portal: true,
 });
 
-const SelectLocalContextProvider = HoverCardLocalContext.Provider;
+const HoverCardLocalContextProvider = HoverCardLocalContext.Provider;
 
 function HoverCard({
   portal,
@@ -19,13 +21,13 @@ function HoverCard({
   portal?: boolean;
 }) {
   return (
-    <SelectLocalContextProvider
+    <HoverCardLocalContextProvider
       value={{
         portal: portal ?? true,
       }}
     >
       <ArkHoverCard.Root unmountOnExit={true} lazyMount={true} {...props} />
-    </SelectLocalContextProvider>
+    </HoverCardLocalContextProvider>
   );
 }
 
@@ -77,4 +79,10 @@ HoverCardContent.displayName = "HoverCardContent";
 
 const HoverCardContext = ArkHoverCard.Context;
 
-export { HoverCard, HoverCardTrigger, HoverCardContent, HoverCardContext };
+export {
+  HoverCard,
+  HoverCardRootProvider,
+  HoverCardTrigger,
+  HoverCardContent,
+  HoverCardContext,
+};

@@ -2,6 +2,8 @@ import { Menu, Portal } from "@ark-ui/react";
 import { forwardRef, type ElementRef, type HTMLAttributes } from "react";
 import { LuChevronRight as ChevronRight } from "react-icons/lu";
 
+const DropdownMenuRootProvider = Menu.RootProvider;
+
 function DropdownMenu({ ...props }: Menu.RootProps) {
   return <Menu.Root unmountOnExit={false} lazyMount={true} {...props} />;
 }
@@ -154,6 +156,7 @@ const DropdownMenuShortcut = forwardRef<
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
 
 export {
+  DropdownMenuRootProvider,
   DropdownMenu,
   DropdownMenuContext,
   DropdownMenuTrigger,

@@ -12,7 +12,9 @@ const PopoverLocalContext = createContext<PopoverLocalContext>({
   portal: true,
 });
 
-const SelectLocalContextProvider = PopoverLocalContext.Provider;
+const PopoverLocalContextProvider = PopoverLocalContext.Provider;
+
+const PopoverRootProvider = ArkPopover.RootProvider;
 
 function Popover({
   portal,
@@ -21,13 +23,13 @@ function Popover({
   portal?: boolean;
 }) {
   return (
-    <SelectLocalContextProvider
+    <PopoverLocalContextProvider
       value={{
         portal: portal ?? true,
       }}
     >
       <ArkPopover.Root unmountOnExit={true} lazyMount={true} {...props} />
-    </SelectLocalContextProvider>
+    </PopoverLocalContextProvider>
   );
 }
 
@@ -80,4 +82,10 @@ PopoverContent.displayName = "PopoverContent";
 
 const PopoverContext = ArkPopover.Context;
 
-export { Popover, PopoverTrigger, PopoverContent, PopoverContext };
+export {
+  PopoverRootProvider,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverContext,
+};

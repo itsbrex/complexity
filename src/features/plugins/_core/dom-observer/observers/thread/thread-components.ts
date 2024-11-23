@@ -61,7 +61,10 @@ export async function setupThreadComponentsObserver(
     config: { childList: true, subtree: true },
     onMutation: () =>
       queueMicrotasks(
-        monitorThreadWrapperExistence.bind(null, threadWrapper),
+        monitorThreadWrapperExistence.bind(null, {
+          threadWrapper,
+          location,
+        }),
         observePopper,
         observeNavbar,
       ),
@@ -74,10 +77,17 @@ export async function setupThreadComponentsObserver(
   });
 }
 
-function monitorThreadWrapperExistence(threadWrapper: Element) {
+function monitorThreadWrapperExistence({
+  threadWrapper,
+  location,
+}: {
+  threadWrapper: Element;
+  location: ReturnType<typeof whereAmI>;
+}) {
+  if (location !== "thread") return;
+
   if (!document.body.contains(threadWrapper)) {
-    console.warn("threadWrapper has been removed, re-observing...");
-    return setupThreadComponentsObserver("thread");
+    setupThreadComponentsObserver(location);
   }
 }
 

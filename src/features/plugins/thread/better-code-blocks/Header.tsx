@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, memo, SetStateAction } from "react";
 import {
   LuAlignJustify,
   LuLoader2,
@@ -10,32 +10,56 @@ import {
 import CopyButton from "@/components/CopyButton";
 import Tooltip from "@/components/Tooltip";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { DOM_INTERNAL_SELECTORS } from "@/utils/dom-selectors";
 
 type BetterCodeBlockHeaderProps = {
   lang: string;
   codeString: string;
   isInFlight: boolean;
   isMessageBlockInFlight: boolean;
+  messageBlockIndex: number;
+  codeBlockIndex: number;
   isWrapped: boolean;
   setIsWrapped: Dispatch<SetStateAction<boolean>>;
   maxHeight: number;
   setMaxHeight: Dispatch<SetStateAction<number>>;
 };
 
-export function BetterCodeBlockHeader({
+const BetterCodeBlockHeader = memo(function BetterCodeBlockHeader({
   lang,
   codeString,
   isInFlight,
   isMessageBlockInFlight,
+  messageBlockIndex,
+  codeBlockIndex,
   isWrapped,
   setIsWrapped,
   maxHeight,
   setMaxHeight,
 }: BetterCodeBlockHeaderProps) {
   const settings = ExtensionLocalStorageService.getCachedSync();
+
   const isSticky = settings.plugins["thread:betterCodeBlocks"].stickyHeader;
   const isBottomButtonBarSticky =
     settings.plugins["thread:betterMessageToolbars"].sticky;
+
+  const shouldShowWrapToggleButton = useRef(
+    settings.plugins["thread:betterCodeBlocks"].unwrap.showToggleButton &&
+      isContainerHorizontalOverflowing({
+        messageBlockIndex,
+        codeBlockIndex,
+      }),
+  ).current;
+
+  const shouldShowExpandCollapseButton = useRef(
+    settings.plugins["thread:betterCodeBlocks"].maxHeight.showToggleButton &&
+      isContainerVerticalOverflowing({
+        initialMaxHeight:
+          settings.plugins["thread:betterCodeBlocks"].maxHeight.value,
+        messageBlockIndex,
+        codeBlockIndex,
+      }),
+  ).current;
 
   return (
     <div
@@ -55,15 +79,13 @@ export function BetterCodeBlockHeader({
         {isInFlight && <LuLoader2 className="tw-animate-spin" />}
         {!isInFlight && (
           <>
-            {settings.plugins["thread:betterCodeBlocks"].unwrap
-              .showToggleButton && (
+            {shouldShowWrapToggleButton && (
               <WrapToggleButton
                 isWrapped={isWrapped}
                 setIsWrapped={setIsWrapped}
               />
             )}
-            {settings.plugins["thread:betterCodeBlocks"].maxHeight
-              .showToggleButton && (
+            {shouldShowExpandCollapseButton && (
               <ExpandCollapseButton
                 maxHeight={maxHeight}
                 setMaxHeight={setMaxHeight}
@@ -75,7 +97,9 @@ export function BetterCodeBlockHeader({
       </div>
     </div>
   );
-}
+});
+
+export default BetterCodeBlockHeader;
 
 function WrapToggleButton({
   isWrapped,
@@ -125,4 +149,48 @@ function ExpandCollapseButton({
       </div>
     </Tooltip>
   );
+}
+
+function isContainerHorizontalOverflowing({
+  messageBlockIndex,
+  codeBlockIndex,
+}: {
+  messageBlockIndex: number;
+  codeBlockIndex: number;
+}) {
+  const targetSelector = `${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK}[data-index="${messageBlockIndex}"] ${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}[data-index="${codeBlockIndex}"] code`;
+
+  const targetElement = document.querySelector(targetSelector);
+  if (!targetElement) {
+    return false;
+  }
+  const targetWidth = targetElement.getBoundingClientRect().width;
+
+  const parentElement = targetElement.parentElement;
+  if (!parentElement) {
+    return false;
+  }
+  const parentWidth = parentElement.getBoundingClientRect().width;
+
+  return targetWidth > parentWidth;
+}
+
+function isContainerVerticalOverflowing({
+  initialMaxHeight,
+  messageBlockIndex,
+  codeBlockIndex,
+}: {
+  initialMaxHeight: number;
+  messageBlockIndex: number;
+  codeBlockIndex: number;
+}) {
+  const targetSelector = `${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK}[data-index="${messageBlockIndex}"] ${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}[data-index="${codeBlockIndex}"] code`;
+
+  const targetElement = document.querySelector(targetSelector);
+  if (!targetElement) {
+    return false;
+  }
+  const targetHeight = targetElement.getBoundingClientRect().height;
+
+  return targetHeight > initialMaxHeight;
 }

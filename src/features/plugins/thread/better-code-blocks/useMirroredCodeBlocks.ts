@@ -65,9 +65,10 @@ export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
         };
       }
 
-      const $portalContainer = $("<div>")
-        .addClass(OBSERVER_ID)
-        .attr("data-lang", codeData.language);
+      const $portalContainer = $("<div>").addClass(OBSERVER_ID).attr({
+        "data-lang": codeData.language,
+        "data-index": codeBlockIndex,
+      });
 
       codeBlock.$wrapper.before($portalContainer);
 

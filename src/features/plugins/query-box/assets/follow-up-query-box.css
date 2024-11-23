@@ -9,6 +9,9 @@
 
     > div {
       @apply tw-rounded-md;
+      transition: none !important;
+      animation: none !important;
+      transform: none !important;
 
       > div {
         display: grid !important;
@@ -31,11 +34,15 @@
         > div:nth-child(3) {
           grid-column: span 1 / span 1;
         }
-
-        transition: none !important;
-        animation: none !important;
-        transform: none !important;
       }
+    }
+  }
+
+  button:has(svg[data-icon="circle-plus"]) {
+    @apply tw-size-8 tw-rounded-md;
+
+    svg {
+      @apply tw-size-4;
     }
   }
 }

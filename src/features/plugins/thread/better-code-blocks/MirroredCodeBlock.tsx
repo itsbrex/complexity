@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-import { BetterCodeBlockHeader } from "@/features/plugins/thread/better-code-blocks/Header";
+import BetterCodeBlockHeader from "@/features/plugins/thread/better-code-blocks/Header";
 import { HighlightedCode } from "@/features/plugins/thread/better-code-blocks/HighlightedCode";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { DOM_INTERNAL_SELECTORS } from "@/utils/dom-selectors";
@@ -38,8 +38,6 @@ export const MirroredCodeBlock = memo(function MirroredCodeBlock({
 
   const [fallbackCodeHtml, setFallbackCodeHtml] = useState<string>(codeString);
 
-  const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (!isThemeEnabled) {
       const fallback = getNativeCodeBlockHtml({
@@ -51,13 +49,12 @@ export const MirroredCodeBlock = memo(function MirroredCodeBlock({
   }, [messageBlockIndex, codeBlockIndex, isThemeEnabled, codeString]);
 
   return (
-    <div
-      ref={ref}
-      className="tw-relative tw-my-4 tw-flex tw-flex-col tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-font-mono"
-    >
+    <div className="tw-relative tw-my-4 tw-flex tw-flex-col tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-font-mono">
       <BetterCodeBlockHeader
         lang={lang}
         codeString={codeString}
+        messageBlockIndex={messageBlockIndex}
+        codeBlockIndex={codeBlockIndex}
         isInFlight={isInFlight}
         isMessageBlockInFlight={isMessageBlockInFlight}
         isWrapped={isWrapped}

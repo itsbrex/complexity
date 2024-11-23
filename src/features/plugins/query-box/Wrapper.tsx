@@ -2,7 +2,6 @@ import { Portal } from "@/components/ui/portal";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import followUpQueryBoxCss from "@/features/plugins/query-box/assets/follow-up-query-box.css?inline";
 import mainQueryBoxCss from "@/features/plugins/query-box/assets/main-query-box.css?inline";
-import toolbarButtonsCss from "@/features/plugins/query-box/assets/toolbar-buttons.css?inline";
 import {
   FollowUpQueryBoxContextProvider,
   MainQueryBoxContextProvider,
@@ -73,11 +72,6 @@ function useInsertToolbarCss() {
     id: "cplx-follow-up-query-box",
     css: followUpQueryBoxCss,
     inject: shouldInjectFollowUp,
-  });
-  useInsertCss({
-    id: "cplx-toolbar-buttons",
-    css: toolbarButtonsCss,
-    inject: shouldInjectMain || shouldInjectFollowUp,
   });
 }
 

@@ -75,7 +75,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     id: "thread:betterMessageToolbars",
     routeSegment: "thread-better-message-toolbars",
     title: "Better Thread Message Toolbars",
-    description: "Improve the message toolbars in the thread page.",
+    description: "Enhance message toolbars (in threads).",
     tags: ["ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
   },
@@ -83,7 +83,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     id: "thread:betterCodeBlocks",
     routeSegment: "thread-better-code-blocks",
     title: "Better Code Blocks",
-    description: "Improve the code blocks in the thread page.",
+    description: "Enhance code blocks (in threads).",
     tags: ["ui", "ux"],
     dependentCorePlugins: [
       "spaRouter",

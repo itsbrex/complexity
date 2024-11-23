@@ -7,7 +7,10 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "queryBox:languageModelSelector": {
       enabled: false,
       main: true,
-      followUp: true,
+      followUp: {
+        enabled: true,
+        span: true,
+      },
     },
     "queryBox:noFileCreationOnPaste": {
       enabled: false,

@@ -60,7 +60,7 @@ function useInsertToolbarCss() {
 
   const shouldInjectFollowUp =
     pluginsEnableStates?.["queryBox:languageModelSelector"] &&
-    settings?.plugins["queryBox:languageModelSelector"].followUp &&
+    settings?.plugins["queryBox:languageModelSelector"].followUp.enabled &&
     location === "thread";
 
   useInsertCss({
@@ -99,7 +99,7 @@ function Toolbar() {
 
   if (
     ctx.type === "follow-up" &&
-    !settings?.plugins["queryBox:languageModelSelector"].followUp
+    !settings?.plugins["queryBox:languageModelSelector"].followUp.enabled
   ) {
     return null;
   }

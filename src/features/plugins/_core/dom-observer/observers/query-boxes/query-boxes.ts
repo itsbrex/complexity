@@ -1,6 +1,7 @@
 import DomObserver from "@/features/plugins/_core/dom-observer/DomObserver";
 import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/query-boxes/observer-ids";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import UiUtils from "@/utils/UiUtils";
 import { queueMicrotasks, whereAmI } from "@/utils/utils";
@@ -124,6 +125,14 @@ async function observeFollowUpQueryBox(location: ReturnType<typeof whereAmI>) {
   }
 
   $followUpQueryBox.attr(OBSERVER_ID.FOLLOW_UP_QUERY_BOX, "true");
+
+  if (
+    ExtensionLocalStorageService.getCachedSync()?.plugins[
+      "queryBox:languageModelSelector"
+    ].followUp.span
+  ) {
+    $followUpQueryBox.attr("cplx-data-span", "true");
+  }
 
   globalDomObserverStore.getState().setQueryBoxes({
     followUpQueryBox: $followUpQueryBox[0],

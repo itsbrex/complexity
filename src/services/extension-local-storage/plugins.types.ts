@@ -10,7 +10,10 @@ export type PluginSettings = z.infer<typeof PluginSettingsSchema>;
 export const PluginsSchema = z.object({
   "queryBox:languageModelSelector": PluginSettingsSchema.extend({
     main: z.boolean(),
-    followUp: z.boolean(),
+    followUp: z.object({
+      enabled: z.boolean(),
+      span: z.boolean(),
+    }),
   }),
   "queryBox:noFileCreationOnPaste": PluginSettingsSchema,
   "thread:toc": PluginSettingsSchema,

@@ -9,25 +9,28 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useCopyMessage } from "@/features/plugins/thread/useCopyMessage";
+import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import useToggleButtonText from "@/hooks/useToggleButtonText";
 
 const ExportButton = memo(function ExportButton() {
+  const { isMobile } = useIsMobileStore();
+
   const { copyThread, isFetching } = useCopyMessage();
 
   const defaultIdleText = useMemo(
     () =>
       isFetching ? (
-        <>
-          <LuLoader2 className="tw-mr-2 tw-size-4 tw-animate-spin" />
-          <span>Export</span>
-        </>
+        <div className="tw-flex tw-items-center tw-gap-2">
+          <LuLoader2 className="tw-size-4 tw-animate-spin" />
+          {!isMobile && <span>Export</span>}
+        </div>
       ) : (
-        <>
-          <LuDownload className="tw-mr-2 tw-size-4" />
-          <span>Export</span>
-        </>
+        <div className="tw-flex tw-items-center tw-gap-2">
+          <LuDownload className="tw-size-4" />
+          {!isMobile && <span>Export</span>}
+        </div>
       ),
-    [isFetching],
+    [isFetching, isMobile],
   );
 
   const [copyConfirmText, setCopyConfirmText] = useToggleButtonText({
@@ -42,10 +45,10 @@ const ExportButton = memo(function ExportButton() {
           withCitations: value !== "without-citations",
           onComplete: () =>
             setCopyConfirmText(
-              <>
-                <LuCheck className="tw-mr-2 tw-size-4" />
-                <span>Copied</span>
-              </>,
+              <div className="tw-flex tw-items-center tw-gap-2">
+                <LuCheck className="tw-size-4" />
+                {!isMobile && <span>Copied</span>}
+              </div>,
             ),
         });
       }}

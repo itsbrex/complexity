@@ -16,7 +16,7 @@ type TocItem = {
   isActive?: boolean;
 };
 
-export default function ThreadNavigationTocWrapper() {
+export default function ThreadTocWrapper() {
   const { isMobile } = useIsMobileStore();
 
   const [isOpen, setIsOpen] = useState(false);

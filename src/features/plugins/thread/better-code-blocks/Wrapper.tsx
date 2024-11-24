@@ -43,7 +43,7 @@ const MemoizedWrapper = memo(function MemoizedWrapper({
   );
 });
 
-export function BetterCodeBlocksWrapper() {
+export default function BetterCodeBlocksWrapper() {
   const messageBlocks = useGlobalDomObserverStore(
     (state) => state.threadComponents.messageBlocks,
   );

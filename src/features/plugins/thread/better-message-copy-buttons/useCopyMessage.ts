@@ -29,15 +29,18 @@ export function useCopyMessage() {
     } catch (error) {
       toast({
         title: "❌ Failed to copy message",
-        description: error instanceof Error ? error.message : "Unknown error occurred",
+        description:
+          error instanceof Error ? error.message : "Unknown error occurred",
       });
     }
   };
 }
 
 async function copyWithCitations(messageBlockIndex: number) {
-  const messageBlockBottomBar = globalDomObserverStore.getState().threadComponents
-    .messageBlockBottomBars?.[messageBlockIndex];
+  const messageBlockBottomBar =
+    globalDomObserverStore.getState().threadComponents.messageBlockBottomBars?.[
+      messageBlockIndex
+    ];
 
   if (!messageBlockBottomBar) {
     throw new Error("Message block bottom bar not found");
@@ -79,6 +82,8 @@ async function copyWithoutCitations(
 
   if (error) {
     console.error(error);
-    throw new Error("Please click/focus on the page while copying the message!");
+    throw new Error(
+      "Please click/focus on the page while copying the message!",
+    );
   }
-} 
+}

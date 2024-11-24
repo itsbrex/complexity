@@ -30,6 +30,10 @@ export const PLUGIN_TAGS = {
     label: "Privacy",
     description: "Privacy related plugins",
   },
+  pplxPro: {
+    label: "Perplexity Pro",
+    description: "Requires an active Perplexity Pro subscription",
+  },
 } as const;
 
 export type CplxPluginMetadata = Record<
@@ -50,7 +54,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     routeSegment: "query-box-language-model-selector",
     title: "Language Model Selector",
     description: "Enable selection of different language models",
-    tags: ["ui", "ux"],
+    tags: ["ui", "ux", "pplxPro"],
     dependentCorePlugins: ["networkIntercept", "spaRouter", "domObserver"],
   },
   "queryBox:noFileCreationOnPaste": {
@@ -92,21 +96,30 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
       "codeHighlighter",
     ],
   },
+  "thread:exportThread": {
+    id: "thread:exportThread",
+    routeSegment: "thread-export-thread",
+    title: "Export Thread",
+    description:
+      "Export the current thread in markdown format (with optional citations). More formatting options coming soon.",
+    tags: ["ui", "ux"],
+    dependentCorePlugins: ["spaRouter"],
+  },
   "thread:betterMessageCopyButtons": {
     id: "thread:betterMessageCopyButtons",
     routeSegment: "thread-better-message-copy-buttons",
     title: "Better Thread Message Copy Buttons",
     description:
-      "Enable you to copy message content without citations. Possibly more customization options in the future.",
+      "Copy message content without citations. More formatting options coming soon.",
     tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
+    dependentCorePlugins: ["spaRouter", "domObserver"],
   },
   imageGenModelSelector: {
     id: "imageGenModelSelector",
     routeSegment: "image-gen-model-selector",
     title: "Image Generation Model Selector",
     description: "Enable selection of different image generation models",
-    tags: ["ui", "ux", "desktopOnly"],
+    tags: ["ui", "ux", "desktopOnly", "pplxPro"],
     dependentCorePlugins: ["networkIntercept", "spaRouter", "domObserver"],
   },
   onCloudflareTimeoutAutoReload: {

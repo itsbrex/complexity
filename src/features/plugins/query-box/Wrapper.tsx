@@ -1,3 +1,4 @@
+import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 import { Portal } from "@/components/ui/portal";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import followUpQueryBoxCss from "@/features/plugins/query-box/assets/follow-up-query-box.css?inline";
@@ -10,7 +11,6 @@ import {
 import LanguageModelSelector from "@/features/plugins/query-box/language-model-selector/LanguageModelSelector";
 import useObserver from "@/features/plugins/query-box/useObserver";
 import { useInsertCss } from "@/hooks/useInsertCss";
-import usePplxUserSettings from "@/hooks/usePplxUserSettings";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { whereAmI } from "@/utils/utils";
@@ -84,12 +84,6 @@ function Toolbar() {
 
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-  const { data: pplxUserSettings } = usePplxUserSettings();
-
-  const hasActivePplxSub =
-    pplxUserSettings?.subscription_status != null &&
-    pplxUserSettings?.subscription_status !== "none";
-
   if (
     ctx.type === "main" &&
     !settings?.plugins["queryBox:languageModelSelector"].main
@@ -106,8 +100,14 @@ function Toolbar() {
 
   return (
     <div className="tw-flex tw-flex-wrap tw-items-center tw-animate-in tw-fade-in">
-      {pluginsEnableStates?.["queryBox:languageModelSelector"] === true &&
-        hasActivePplxSub && <LanguageModelSelector />}
+      <CsUiPluginsGuard
+        requiresPplxPro
+        dependentPluginIds={["queryBox:languageModelSelector"]}
+      >
+        {pluginsEnableStates?.["queryBox:languageModelSelector"] === true && (
+          <LanguageModelSelector />
+        )}
+      </CsUiPluginsGuard>
     </div>
   );
 }

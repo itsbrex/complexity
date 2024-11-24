@@ -2,21 +2,39 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Fragment } from "react/jsx-runtime";
 
-// TODO: lazy load all of these components
 import { APP_CONFIG } from "@/app.config";
 import "@/assets/cs.css";
 import csUiRootCss from "@/assets/cs.css?inline";
+import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 import { Toaster } from "@/components/Toaster";
-import CsUiPluginsGuard from "@/entrypoints/plugins-loader/cs-ui-plugins-loader/CsUiPluginsGuard";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
-import ImageGenModelSelectorWrapper from "@/features/plugins/image-gen-popover/Wrapper";
-import OnCloudflareTimeout from "@/features/plugins/on-cf-timeout-auto-reload/OnCloudflareTimeout";
-import QueryBoxWrapper from "@/features/plugins/query-box/Wrapper";
-import { BetterCodeBlocksWrapper } from "@/features/plugins/thread/better-code-blocks/Wrapper";
-import { BetterMessageCopyButtons } from "@/features/plugins/thread/better-message-copy-buttons/Wrapper";
-import { BetterMessageToolbarsWrapper } from "@/features/plugins/thread/better-message-toolbars/Wrapper";
-import ThreadNavigationTocWrapper from "@/features/plugins/thread/toc/Wrapper";
 import { useInsertCss } from "@/hooks/useInsertCss";
+
+const ImageGenModelSelectorWrapper = lazy(
+  () => import("@/features/plugins/image-gen-popover/Wrapper"),
+);
+const OnCloudflareTimeout = lazy(
+  () =>
+    import("@/features/plugins/on-cf-timeout-auto-reload/OnCloudflareTimeout"),
+);
+const QueryBoxWrapper = lazy(
+  () => import("@/features/plugins/query-box/Wrapper"),
+);
+const BetterCodeBlocksWrapper = lazy(
+  () => import("@/features/plugins/thread/better-code-blocks/Wrapper"),
+);
+const BetterMessageCopyButtons = lazy(
+  () => import("@/features/plugins/thread/better-message-copy-buttons/Wrapper"),
+);
+const BetterMessageToolbarsWrapper = lazy(
+  () => import("@/features/plugins/thread/better-message-toolbars/Wrapper"),
+);
+const ExportThreadWrapper = lazy(
+  () => import("@/features/plugins/thread/export-thread/Wrapper"),
+);
+const ThreadTocWrapper = lazy(
+  () => import("@/features/plugins/thread/toc/Wrapper"),
+);
 
 export default function CsUiRoot() {
   // normalize css precedence on build vs dev environment
@@ -53,11 +71,14 @@ function ThreadComponent() {
 
   return (
     <Fragment key={url}>
-      <CsUiPluginsGuard dependentPluginIds={["imageGenModelSelector"]}>
+      <CsUiPluginsGuard
+        requiresPplxPro
+        dependentPluginIds={["imageGenModelSelector"]}
+      >
         <ImageGenModelSelectorWrapper />
       </CsUiPluginsGuard>
       <CsUiPluginsGuard dependentPluginIds={["thread:toc"]}>
-        <ThreadNavigationTocWrapper />
+        <ThreadTocWrapper />
       </CsUiPluginsGuard>
       <CsUiPluginsGuard dependentPluginIds={["thread:betterMessageToolbars"]}>
         <BetterMessageToolbarsWrapper />
@@ -69,6 +90,9 @@ function ThreadComponent() {
         dependentPluginIds={["thread:betterMessageCopyButtons"]}
       >
         <BetterMessageCopyButtons />
+      </CsUiPluginsGuard>
+      <CsUiPluginsGuard dependentPluginIds={["thread:exportThread"]}>
+        <ExportThreadWrapper />
       </CsUiPluginsGuard>
     </Fragment>
   );

@@ -6,7 +6,7 @@ import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { useInsertCss } from "@/hooks/useInsertCss";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
-export function BetterMessageToolbarsWrapper() {
+export default function BetterMessageToolbarsWrapper() {
   const settings = ExtensionLocalStorageService.getCachedSync();
 
   const { isMobile } = useIsMobileStore();

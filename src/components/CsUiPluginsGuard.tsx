@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import { APP_CONFIG } from "@/app.config";
 import CopyButton from "@/components/CopyButton";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -11,6 +13,7 @@ import {
 import { Ul } from "@/components/ui/typography";
 import { PLUGINS_METADATA } from "@/data/consts/plugins/plugins-data";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
+import usePplxUserSettings from "@/hooks/usePplxUserSettings";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
@@ -21,16 +24,28 @@ type CsUiPluginsGuardProps = {
   dependentPluginIds?: PluginId[];
   location?: ReturnType<typeof whereAmI>[];
   children: React.ReactNode;
+  requiresPplxPro?: boolean;
 };
 
 export default function CsUiPluginsGuard({
   dependentPluginIds,
   location,
   children,
+  requiresPplxPro = false,
 }: CsUiPluginsGuardProps) {
   const { url } = useSpaRouter();
 
   const currentLocation = whereAmI(url);
+
+  const { data: pplxUserSettings } = usePplxUserSettings();
+
+  const hasActivePplxSub =
+    pplxUserSettings?.subscription_status != null &&
+    pplxUserSettings?.subscription_status !== "none";
+
+  if (requiresPplxPro && !hasActivePplxSub) {
+    return null;
+  }
 
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
@@ -54,7 +69,7 @@ export default function CsUiPluginsGuard({
         />
       )}
     >
-      {children}
+      <Suspense fallback={null}>{children}</Suspense>
     </ErrorBoundary>
   );
 }

@@ -5,7 +5,7 @@ import hideNativeButtonsCss from "@/features/plugins/thread/better-message-copy-
 import { useObserver } from "@/features/plugins/thread/better-message-copy-buttons/useObserver";
 import { useInsertCss } from "@/hooks/useInsertCss";
 
-export function BetterMessageCopyButtons() {
+export default function BetterMessageCopyButtons() {
   const portalContainers = useObserver();
 
   useInsertCss({

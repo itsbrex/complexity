@@ -18,27 +18,9 @@ export const localLanguageModels = [
     provider: "Anthropic",
   },
   {
-    label: "Claude 3 Opus",
-    shortLabel: "Opus",
-    code: "claude3opus",
-    provider: "Anthropic",
-  },
-  {
-    label: "O1 Mini",
-    shortLabel: "O1 Mini",
-    code: "o1",
-    provider: "OpenAI",
-  },
-  {
     label: "GPT-4 Omni",
     shortLabel: "GPT-4o",
     code: "gpt4o",
-    provider: "OpenAI",
-  },
-  {
-    label: "GPT-4 Turbo",
-    shortLabel: "GPT-4",
-    code: "gpt4",
     provider: "OpenAI",
   },
   {
@@ -64,18 +46,6 @@ export const localLanguageModels = [
     shortLabel: "Default",
     code: "turbo",
     provider: "Perplexity",
-  },
-  {
-    label: "Mistral Large",
-    shortLabel: "Mistral",
-    code: "mistral",
-    provider: "Mistral",
-  },
-  {
-    label: "Gemini Pro",
-    shortLabel: "Gemini",
-    code: "gemini",
-    provider: "Google",
   },
 ] as const;
 

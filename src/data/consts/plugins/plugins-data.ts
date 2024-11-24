@@ -92,6 +92,15 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
       "codeHighlighter",
     ],
   },
+  "thread:betterMessageCopyButtons": {
+    id: "thread:betterMessageCopyButtons",
+    routeSegment: "thread-better-message-copy-buttons",
+    title: "Better Thread Message Copy Buttons",
+    description:
+      "Enable you to copy message content without citations. Possibly more customization options in the future.",
+    tags: ["ui", "ux"],
+    dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
+  },
   imageGenModelSelector: {
     id: "imageGenModelSelector",
     routeSegment: "image-gen-model-selector",

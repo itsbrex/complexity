@@ -1,5 +1,10 @@
 import { Menu, Portal } from "@ark-ui/react";
-import { forwardRef, type ElementRef, type HTMLAttributes } from "react";
+import {
+  forwardRef,
+  Fragment,
+  type ElementRef,
+  type HTMLAttributes,
+} from "react";
 import { LuChevronRight as ChevronRight } from "react-icons/lu";
 
 const DropdownMenuRootProvider = Menu.RootProvider;
@@ -14,41 +19,38 @@ const DropdownMenuTrigger = forwardRef<
   ElementRef<typeof Menu.Trigger>,
   Menu.TriggerProps
 >(({ className, ...props }, ref) => (
-  <Menu.Trigger
-    ref={ref}
-    className={cn(
-      "tw-inline-flex tw-items-center tw-justify-center",
-      className,
-    )}
-    {...props}
-  />
+  <Menu.Trigger ref={ref} className={cn(className)} {...props} />
 ));
 
 DropdownMenuTrigger.displayName = "DropdownMenuTrigger";
 
 const DropdownMenuContent = forwardRef<
   ElementRef<typeof Menu.Content>,
-  Menu.ContentProps
->(({ className, ...props }, ref) => (
-  <Portal>
-    <Menu.Positioner>
-      <Menu.Content
-        ref={ref}
-        className={cn(
-          "tw-z-50 tw-min-w-[8rem] tw-overflow-hidden tw-rounded-md tw-border tw-bg-popover tw-p-1 tw-text-popover-foreground tw-shadow-md focus-visible:tw-outline-none",
-          "data-[state=open]:tw-animate-in data-[state=open]:tw-fade-in data-[state=open]:tw-zoom-in-95",
-          "data-[state=closed]:tw-animate-out data-[state=closed]:tw-fade-out data-[state=closed]:tw-zoom-out-95",
-          "data-[placement^=top]:tw-slide-in-from-bottom-2",
-          "data-[placement^=bottom]:tw-slide-in-from-top-2",
-          "data-[placement^=left]:tw-slide-in-from-right-2",
-          "data-[placement^=right]:tw-slide-in-from-left-2",
-          className,
-        )}
-        {...props}
-      />
-    </Menu.Positioner>
-  </Portal>
-));
+  Menu.ContentProps & { portal?: boolean }
+>(({ portal = true, className, ...props }, ref) => {
+  const Comp = portal ? Portal : Fragment;
+
+  return (
+    <Comp>
+      <Menu.Positioner>
+        <Menu.Content
+          ref={ref}
+          className={cn(
+            "tw-z-50 tw-min-w-[8rem] tw-overflow-hidden tw-rounded-md tw-border tw-border-border/50 tw-bg-popover tw-p-1 tw-text-popover-foreground tw-shadow-md focus-visible:tw-outline-none",
+            "data-[state=open]:tw-animate-in data-[state=open]:tw-fade-in data-[state=open]:tw-zoom-in-95",
+            "data-[state=closed]:tw-animate-out data-[state=closed]:tw-fade-out data-[state=closed]:tw-zoom-out-95",
+            "data-[placement^=top]:tw-slide-in-from-bottom-2",
+            "data-[placement^=bottom]:tw-slide-in-from-top-2",
+            "data-[placement^=left]:tw-slide-in-from-right-2",
+            "data-[placement^=right]:tw-slide-in-from-left-2",
+            className,
+          )}
+          {...props}
+        />
+      </Menu.Positioner>
+    </Comp>
+  );
+});
 
 DropdownMenuContent.displayName = "DropdownMenuContent";
 

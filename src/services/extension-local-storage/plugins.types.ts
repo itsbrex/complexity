@@ -40,6 +40,7 @@ export const PluginsSchema = z.object({
       showToggleButton: z.boolean(),
     }),
   }),
+  "thread:betterMessageCopyButtons": PluginSettingsSchema,
   imageGenModelSelector: PluginSettingsSchema,
   onCloudflareTimeoutAutoReload: PluginSettingsSchema.extend({
     behavior: z.enum(["reload", "warn-only"]),

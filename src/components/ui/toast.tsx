@@ -16,7 +16,7 @@ const ToastViewport = forwardRef<
   <ToastPrimitives.Viewport
     ref={ref}
     className={cn(
-      "tw-fixed tw-right-4 tw-top-0 tw-z-[100] tw-flex tw-max-h-screen tw-flex-col-reverse tw-p-4 sm:tw-top-0 sm:tw-flex-col md:tw-max-w-[420px]",
+      "tw-top-[var(--navbar-height,54px)] tw-fixed tw-left-1/2 tw-z-[100] tw-flex tw-max-h-screen tw-w-screen -tw-translate-x-1/2 tw-flex-col-reverse tw-items-center tw-justify-end tw-p-4 md:tw-left-[unset] md:tw-right-8 md:tw-w-auto md:tw-max-w-[420px] md:tw-translate-x-[unset]",
       className,
     )}
     {...props}
@@ -25,12 +25,12 @@ const ToastViewport = forwardRef<
 ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
 
 const toastVariants = cva(
-  "tw-group tw-pointer-events-auto tw-relative tw-flex tw-w-full tw-items-center tw-justify-between tw-space-x-4 tw-overflow-hidden tw-rounded-md tw-border tw-p-6 tw-pr-8 tw-shadow-lg tw-transition-all data-[swipe=cancel]:tw-translate-x-0 data-[swipe=end]:tw-translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:tw-translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:tw-transition-none data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out data-[swipe=end]:tw-animate-out data-[state=closed]:tw-fade-out-80 data-[state=closed]:tw-slide-out-to-right-full data-[state=open]:tw-slide-in-from-top-full data-[state=open]:sm:tw-slide-in-from-top-full",
+  "tw-group tw-pointer-events-auto tw-relative tw-flex !tw-w-full tw-items-center tw-justify-between tw-space-x-4 tw-overflow-hidden tw-rounded-md tw-border tw-p-6 tw-pr-8 tw-shadow-lg tw-transition-all data-[swipe=cancel]:tw-translate-x-0 data-[swipe=end]:tw-translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:tw-translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:tw-transition-none data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out data-[swipe=end]:tw-animate-out data-[state=closed]:tw-fade-out-80 data-[state=closed]:tw-slide-out-to-right-full data-[state=open]:tw-slide-in-from-top-full data-[state=open]:sm:tw-slide-in-from-top-full",
   {
     variants: {
       variant: {
         default:
-          "tw-border-border tw-bg-secondary tw-text-secondary-foreground",
+          "tw-border-border/50 tw-bg-secondary tw-text-secondary-foreground",
         destructive:
           "tw-destructive tw-group tw-border-destructive tw-bg-destructive tw-text-destructive-foreground",
       },
@@ -63,7 +63,7 @@ const ToastAction = forwardRef<
   <ToastPrimitives.Action
     ref={ref}
     className={cn(
-      "tw-inline-flex tw-h-8 tw-shrink-0 tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-border tw-bg-transparent tw-px-3 tw-text-sm tw-font-medium tw-ring-offset-background tw-transition-colors hover:tw-bg-secondary focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-ring focus:tw-ring-offset-2 disabled:tw-pointer-events-none disabled:tw-opacity-50 group-[.destructive]:tw-border-muted/40 group-[.destructive]:hover:tw-border-destructive/30 group-[.destructive]:hover:tw-bg-destructive group-[.destructive]:hover:tw-text-destructive-foreground group-[.destructive]:focus:tw-ring-destructive",
+      "tw-inline-flex tw-h-8 tw-shrink-0 tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-border/50 tw-bg-transparent tw-px-3 tw-text-sm tw-font-medium tw-ring-offset-background tw-transition-colors hover:tw-bg-secondary focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-ring focus:tw-ring-offset-2 disabled:tw-pointer-events-none disabled:tw-opacity-50 group-[.destructive]:tw-border-muted/40 group-[.destructive]:hover:tw-border-destructive/30 group-[.destructive]:hover:tw-bg-destructive group-[.destructive]:hover:tw-text-destructive-foreground group-[.destructive]:focus:tw-ring-destructive",
       className,
     )}
     {...props}

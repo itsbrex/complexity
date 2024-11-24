@@ -8,8 +8,9 @@ import {
 } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/thread/observer-ids";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
-import { DOM_SELECTORS } from "@/utils/dom-selectors";
+import { DOM_INTERNAL_SELECTORS, DOM_SELECTORS } from "@/utils/dom-selectors";
 import UiUtils from "@/utils/UiUtils";
+import { MessageBlock } from "@/utils/UiUtils.types";
 import { queueMicrotasks, waitForElement, whereAmI } from "@/utils/utils";
 
 const DOM_OBSERVER_ID = {
@@ -106,23 +107,7 @@ async function observeMessageBlocks() {
     return queueMicrotasks(observeMessageBlocks);
   }
 
-  if (
-    !globalDomObserverStore.getState().threadComponents.bottomButtonBarHeight
-  ) {
-    const $bottomButtonBar = messageBlocks[0].$wrapper.find(
-      DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR,
-    );
-
-    if ($bottomButtonBar.length) {
-      $(document.body).css({
-        "--message-block-bottom-button-bar-height": `${$bottomButtonBar[0].offsetHeight - 1}px`,
-      });
-
-      globalDomObserverStore.getState().setThreadComponents({
-        bottomButtonBarHeight: $bottomButtonBar[0].offsetHeight - 1,
-      });
-    }
-  }
+  observerMessageBlockBottomBar({ messageBlocks });
 
   const extendedMessageBlocks: ExtendedMessageBlock[] = await Promise.all(
     messageBlocks.map(
@@ -144,6 +129,48 @@ async function observeMessageBlocks() {
 
   globalDomObserverStore.getState().setThreadComponents({
     messageBlocks: extendedMessageBlocks,
+  });
+}
+
+function observerMessageBlockBottomBar({
+  messageBlocks,
+}: {
+  messageBlocks: MessageBlock[];
+}) {
+  if (
+    !globalDomObserverStore.getState().threadComponents
+      .messageBlockBottomBarHeight
+  ) {
+    const $messageBlockBottomBars = messageBlocks[0].$wrapper.find(
+      DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR,
+    );
+
+    if ($messageBlockBottomBars.length) {
+      $(document.body).css({
+        "--message-block-bottom-bar-height": `${$messageBlockBottomBars[0].offsetHeight - 1}px`,
+      });
+
+      globalDomObserverStore.getState().setThreadComponents({
+        messageBlockBottomBarHeight:
+          $messageBlockBottomBars[0].offsetHeight - 1,
+      });
+    }
+  }
+
+  globalDomObserverStore.getState().setThreadComponents({
+    messageBlockBottomBars: messageBlocks.map(({ $wrapper }) => {
+      const $bottomBar = $wrapper.find(DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR);
+
+      if (!$bottomBar.length) return null;
+
+      $bottomBar.addClass(
+        DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR.slice(
+          1,
+        ),
+      );
+
+      return $bottomBar[0];
+    }),
   });
 }
 

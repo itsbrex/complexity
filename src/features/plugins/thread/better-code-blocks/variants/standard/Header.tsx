@@ -32,7 +32,7 @@ const StandardCodeBlockHeader = memo(function StandardCodeBlockHeader({
   const settings = ExtensionLocalStorageService.getCachedSync();
 
   const isSticky = settings.plugins["thread:betterCodeBlocks"].stickyHeader;
-  const isBottomButtonBarSticky =
+  const isBottomBarSticky =
     settings.plugins["thread:betterMessageToolbars"].sticky;
   const shouldShowWrapToggleButton = useRef(
     settings.plugins["thread:betterCodeBlocks"].unwrap.showToggleButton &&
@@ -54,9 +54,9 @@ const StandardCodeBlockHeader = memo(function StandardCodeBlockHeader({
         {
           "tw-sticky": isSticky,
           "tw-top-[calc(var(--navbar-height))]":
-            isSticky && (isMessageBlockInFlight || !isBottomButtonBarSticky),
-          "tw-top-[calc(var(--navbar-height)+var(--message-block-bottom-button-bar-height))]":
-            isSticky && !isMessageBlockInFlight && isBottomButtonBarSticky,
+            isSticky && (isMessageBlockInFlight || !isBottomBarSticky),
+          "tw-top-[calc(var(--navbar-height)+var(--message-block-bottom-bar-height))]":
+            isSticky && !isMessageBlockInFlight && isBottomBarSticky,
         },
       )}
     >

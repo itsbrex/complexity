@@ -27,7 +27,7 @@ export function useFilteredPlugins({
         const isHiddenFromDashboard = featureFlags?.[userGroup]?.hide.includes(
           plugin.id,
         );
-        const matchesSearch = plugin.title
+        const matchesSearch = (plugin.title + plugin.description)
           .toLowerCase()
           .includes(searchTerm.toLowerCase());
         const hasTags = plugin.tags !== undefined && plugin.tags.length > 0;

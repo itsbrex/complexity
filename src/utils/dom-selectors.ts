@@ -23,13 +23,14 @@ export const DOM_SELECTORS = {
       TEXT_COL_CHILD: {
         /** The query box */
         QUERY: ".my-md.md\\:my-lg",
-        /** The answer box */
-        ANSWER: ".relative.default.font-sans.text-base",
         /** The answer heading */
         ANSWER_HEADING:
           ".mb-sm.flex.w-full.items-center.justify-between:has(svg.transform-gpu)",
-        SOURCE_HEADING:
+        /** The sources heading */
+        SOURCES_HEADING:
           '.mb-sm.flex.w-full.items-center.justify-between:has(svg[data-icon="sources"])',
+        /** The answer wrapper */
+        ANSWER: ".relative.default.font-sans.text-base",
       },
       VISUAL_COL_CHILD: {
         IMAGE_GEN: {
@@ -46,6 +47,7 @@ export const DOM_SELECTORS = {
       /** The bottom toolbar of the message (share, rewrite, model name, etc.) */
       BOTTOM_BAR: ".mt-sm.flex.items-center.justify-between",
       BOTTOM_BAR_CHILD: {
+        COPY_BUTTON: 'button[aria-label="Copy"]',
         MISC_BUTTON: 'button:has([data-icon="ellipsis"])',
         REWRITE_BUTTON: 'button:contains("Rewrite")',
       },
@@ -102,6 +104,7 @@ export const DOM_INTERNAL_SELECTORS = {
         ANSWER_HEADING: ".cplx-message-block-answer-heading",
         CODE_BLOCK: ".cplx-message-block-code-block",
         MIRRORED_CODE_BLOCK: ".cplx-mirrored-code-block",
+        BOTTOM_BAR: ".cplx-message-block-bottom-bar",
       },
     },
   },

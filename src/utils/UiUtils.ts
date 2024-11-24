@@ -49,7 +49,7 @@ export default class UiUtils {
 
       $wrapper.addClass(internalBlockClass).attr({ "data-index": i });
 
-      const { $query, $answer, $answerHeading } =
+      const { $query, $sourcesHeading, $answerHeading, $answer } =
         UiUtils.parseMessageBlock($wrapper);
 
       $query.addClass(
@@ -73,8 +73,9 @@ export default class UiUtils {
 
       messageBlocks.push({
         $wrapper,
-        $answerHeading,
         $query,
+        $sourcesHeading,
+        $answerHeading,
         $answer,
       });
     }
@@ -86,18 +87,22 @@ export default class UiUtils {
     const $query = $messageBlock.find(
       DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY,
     );
-    const $answer = $messageBlock.find(
-      DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER,
+    const $sourcesHeading = $messageBlock.find(
+      DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.SOURCES_HEADING,
     );
     const $answerHeading = $messageBlock.find(
       DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING,
+    );
+    const $answer = $messageBlock.find(
+      DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER,
     );
 
     return {
       $messageBlock,
       $query,
-      $answer,
+      $sourcesHeading,
       $answerHeading,
+      $answer,
     };
   }
 

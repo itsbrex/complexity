@@ -2,6 +2,10 @@
   display: none;
 }
 
+.cplx-message-block-code-block:empty {
+  display: none;
+}
+
 .cplx-message-block-code-block code {
   white-space: unset !important;
   width: max-content !important;

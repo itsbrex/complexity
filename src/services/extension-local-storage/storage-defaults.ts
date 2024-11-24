@@ -43,6 +43,9 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
         showToggleButton: true,
       },
     },
+    "thread:betterMessageCopyButtons": {
+      enabled: false,
+    },
     imageGenModelSelector: {
       enabled: false,
     },

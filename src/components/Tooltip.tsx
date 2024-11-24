@@ -37,7 +37,7 @@ export default function Tooltip({
       disabled={disabled}
       defaultOpen={defaultOpen}
     >
-      <TooltipTrigger asChild onFocus={(e) => e.preventDefault()}>
+      <TooltipTrigger asChild>
         <span>{children}</span>
       </TooltipTrigger>
       {!(typeof content === "string" && content.length === 0) && (

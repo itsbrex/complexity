@@ -1,11 +1,15 @@
 import type { LanguageModel } from "@/data/consts/plugins/query-box/language-model-selector/language-models.types";
-import InternalWebSocketManager from "@/features/plugins/_core/web-socket/InternalWebSocketManager";
 import { ENDPOINTS } from "@/services/pplx-api/endpoints";
 import {
   OrgSettingsApiResponseSchema,
+  ThreadMessageApiResponse,
   UserSettingsApiResponse,
   UserSettingsApiResponseSchema,
 } from "@/services/pplx-api/pplx-api.types";
+import {
+  saveSettingViaFetch,
+  saveSettingViaWebSocket,
+} from "@/services/pplx-api/utils";
 import { ImageGenModel } from "@/types/plugins/image-gen-model-seletor.types";
 import { fetchResource, jsonUtils } from "@/utils/utils";
 
@@ -71,30 +75,21 @@ export class PplxApiService {
       method,
     );
   }
-}
 
-async function saveSettingViaFetch(settings: Record<string, unknown>) {
-  const resp = await fetch(ENDPOINTS.SAVE_SETTINGS, {
-    method: "PUT",
-    body: JSON.stringify({
-      updated_settings: settings,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  static async fetchThreadInfo(threadSlug: string) {
+    if (!threadSlug) throw new Error("Thread slug is required");
 
-  return resp.ok;
-}
+    const url = `https://www.perplexity.ai/p/api/v1/thread/${threadSlug}?with_parent_info=true&source=web`;
 
-async function saveSettingViaWebSocket(settings: Record<string, unknown>) {
-  try {
-    await InternalWebSocketManager.getInstance().sendMessage({
-      data: `23${JSON.stringify(["save_user_settings", settings])}`,
-    });
-    return true;
-  } catch (e) {
-    alert("Failed to save setting");
-    return false;
+    const resp = await fetchResource(url);
+
+    const data = jsonUtils.safeParse(resp);
+
+    if (data == null) throw new Error("Failed to fetch thread info");
+
+    if (data.entries == null || data.entries?.length <= 0)
+      throw new Error("Thread not found");
+
+    return data.entries as ThreadMessageApiResponse[];
   }
 }

@@ -1,0 +1,9 @@
+.cplx-message-block-bottom-bar {
+  .cplx-better-message-copy-buttons:not(:empty) + button[aria-label="Copy"] {
+    display: none;
+  }
+
+  .cplx-better-message-copy-buttons:empty {
+    display: none;
+  }
+}

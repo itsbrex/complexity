@@ -1,5 +1,3 @@
-import { memo } from "react";
-
 import { Portal } from "@/components/ui/portal";
 import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import hideNativeCodeBlocksCss from "@/features/plugins/thread/better-code-blocks/hide-native-code-blocks.css?inline";

@@ -29,7 +29,8 @@ export type GlobalDomObserverStore = {
     messageBlocks: ExtendedMessageBlock[] | null;
     navbar: HTMLElement | null;
     navbarHeight: number | null;
-    bottomButtonBarHeight: number;
+    messageBlockBottomBarHeight: number;
+    messageBlockBottomBars: (HTMLElement | null)[] | null;
     codeBlocks: ExtendedCodeBlock[][] | null;
   };
   setThreadComponents: (
@@ -69,7 +70,8 @@ export const globalDomObserverStore =
             messageBlocks: null,
             navbar: null,
             navbarHeight: null,
-            bottomButtonBarHeight: 0,
+            messageBlockBottomBarHeight: 0,
+            messageBlockBottomBars: null,
             codeBlocks: null,
           },
           setThreadComponents: (newThreadComponents) => {

@@ -67,7 +67,7 @@
     "@types/chrome": "^0.0.268",
     "@types/jquery": "^3.5.32",
     "@types/lodash": "^4.17.13",
-    "@types/node": "^20.17.6",
+    "@types/node": "^20.17.7",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/react-helmet": "^6.1.11",
@@ -102,7 +102,7 @@
     "tailwindcss": "^3.4.15",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.5.4",
-    "unimport": "^3.13.2",
+    "unimport": "^3.13.3",
     "vite": "^5.4.11",
     "vitest": "^2.1.5",
     "webextension-polyfill": "^0.12.0"

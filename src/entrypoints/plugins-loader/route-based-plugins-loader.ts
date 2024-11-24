@@ -6,21 +6,21 @@ import { setupDragNDropFileToUploadInThread } from "@/features/plugins/drag-n-dr
 import { whereAmI } from "@/utils/utils";
 
 export function setupRouteBasedPlugins() {
-  const initCorePlugins = (location: ReturnType<typeof whereAmI>) => {
-    setupQueryBoxesObserver(location);
-    setupThreadComponentsObserver(location);
-  };
-
-  const initPlugins = (location: ReturnType<typeof whereAmI>) => {
-    setupDragNDropFileToUploadInThread(location);
-    setupCollapseEmptyThreadVisualCols(location);
-  };
-
-  initCorePlugins(whereAmI());
+  initCoreObservers(whereAmI());
   initPlugins(whereAmI());
 
   spaRouterStoreSubscribe(({ url }) => {
-    initCorePlugins(whereAmI(url));
+    initCoreObservers(whereAmI(url));
     initPlugins(whereAmI(url));
   });
+}
+
+function initCoreObservers(location: ReturnType<typeof whereAmI>) {
+  setupQueryBoxesObserver(location);
+  setupThreadComponentsObserver(location);
+}
+
+function initPlugins(location: ReturnType<typeof whereAmI>) {
+  setupDragNDropFileToUploadInThread(location);
+  setupCollapseEmptyThreadVisualCols(location);
 }

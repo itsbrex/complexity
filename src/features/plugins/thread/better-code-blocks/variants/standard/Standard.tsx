@@ -1,5 +1,3 @@
-import { memo } from "react";
-
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
 import { HighlightedCode } from "@/features/plugins/thread/better-code-blocks/variants/HighlightedCode";
 import BetterCodeBlockHeader from "@/features/plugins/thread/better-code-blocks/variants/standard/Header";

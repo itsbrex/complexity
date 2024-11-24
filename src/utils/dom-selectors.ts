@@ -1,11 +1,11 @@
 export const DOM_SELECTORS = {
   /** The wrapper that wraps the whole page */
   WRAPPER: ".max-w-screen",
-  NAVBAR: ".sticky.left-0.right-0.top-0.z-10.border-b",
   SIDEBAR: ".group\\/bar",
   THREAD: {
     /** The outermost container that wraps the thread container and the query box */
     WRAPPER: ".max-w-threadWidth",
+    NAVBAR: ".sticky.left-0.right-0.top-0.z-10.border-b",
     /** The container that wraps all messages */
     CONTAINER: {
       /** Normal thread*/

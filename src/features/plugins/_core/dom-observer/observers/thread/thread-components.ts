@@ -67,7 +67,7 @@ export async function setupThreadComponentsObserver(
           location,
         }),
         observePopper,
-        observeNavbar,
+        observeThreadNavbar.bind(null, location),
       ),
   });
 
@@ -207,8 +207,10 @@ async function observeCodeBlocks(messageBlocks: ExtendedMessageBlock[]) {
   });
 }
 
-function observeNavbar() {
-  const $navbar = $(DOM_SELECTORS.NAVBAR);
+function observeThreadNavbar(location: ReturnType<typeof whereAmI>) {
+  if (location !== "thread") return;
+
+  const $navbar = $(DOM_SELECTORS.THREAD.NAVBAR);
 
   if (!$navbar.length) return;
 

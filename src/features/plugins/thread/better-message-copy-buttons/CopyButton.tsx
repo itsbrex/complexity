@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import { BiLogoMarkdown } from "react-icons/bi";
 import { LuCheck, LuCopy, LuLink2Off, LuLoader2 } from "react-icons/lu";
 
@@ -9,15 +8,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useCopyMessage } from "@/features/plugins/thread/better-message-copy-buttons/useCopyMessage";
+import { useCopyMessage } from "@/features/plugins/thread/useCopyMessage";
 import useToggleButtonText from "@/hooks/useToggleButtonText";
-import { pplxApiQueries } from "@/services/pplx-api/query-keys";
-import { parseUrl } from "@/utils/utils";
 
 type BetterCopyButtonProps = {
   messageBlockIndex: number;
   hasSources: boolean;
 };
+
+type CopyOptions = "default" | "without-citations";
 
 const BetterCopyButton = memo(function BetterCopyButton({
   messageBlockIndex,
@@ -27,13 +26,7 @@ const BetterCopyButton = memo(function BetterCopyButton({
     defaultText: <LuCopy className="tw-size-4" />,
   });
 
-  const copyMessage = useCopyMessage();
-
-  const threadSlug = parseUrl().pathname.split("/").pop() || "";
-  const { isFetching, refetch } = useQuery({
-    ...pplxApiQueries.threadInfo(threadSlug),
-    enabled: false,
-  });
+  const { copyMessage, isFetching } = useCopyMessage();
 
   const handleCopy = useCallback(
     async (withCitations: boolean) => {
@@ -43,10 +36,9 @@ const BetterCopyButton = memo(function BetterCopyButton({
         messageBlockIndex,
         withCitations,
         onComplete: () => setTriggerIcon(<LuCheck className="tw-size-4" />),
-        fetchFn: async () => (await refetch()).data,
       });
     },
-    [copyMessage, isFetching, messageBlockIndex, refetch, setTriggerIcon],
+    [copyMessage, isFetching, messageBlockIndex, setTriggerIcon],
   );
 
   return (
@@ -55,7 +47,7 @@ const BetterCopyButton = memo(function BetterCopyButton({
       unmountOnExit
       positioning={{ placement: "bottom-end" }}
       onSelect={({ value }) => {
-        handleCopy(value === "copy");
+        handleCopy((value as CopyOptions) === "default");
       }}
     >
       <Tooltip content="Copy">
@@ -70,14 +62,14 @@ const BetterCopyButton = memo(function BetterCopyButton({
       {hasSources && (
         <DropdownMenuContent>
           <DropdownMenuItem
-            value="copy"
+            value={"default" satisfies CopyOptions}
             className="tw-flex tw-items-center tw-gap-2"
           >
             <BiLogoMarkdown className="tw-size-4" />
             <span>Default</span>
           </DropdownMenuItem>
           <DropdownMenuItem
-            value="copy-without-citations"
+            value={"without-citations" satisfies CopyOptions}
             className="tw-flex tw-items-center tw-gap-2"
           >
             <LuLink2Off className="tw-size-4" />

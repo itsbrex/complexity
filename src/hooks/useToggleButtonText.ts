@@ -24,6 +24,10 @@ export default function useToggleButtonText({
     }
   };
 
+  const setNewDefaultText = (newDefaultText: ReactNode) => {
+    setText(newDefaultText);
+  };
+
   useEffect(() => {
     return () => {
       if (timeoutRef.current != null) {
@@ -32,5 +36,5 @@ export default function useToggleButtonText({
     };
   }, []);
 
-  return [text, setNewText] as const;
+  return [text, setNewText, setNewDefaultText] as const;
 }

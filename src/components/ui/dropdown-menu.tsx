@@ -123,18 +123,17 @@ const DropdownMenuSubTrigger = forwardRef<
   Menu.TriggerItemProps & {
     inset?: boolean;
   }
->(({ className, inset, children, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <Menu.TriggerItem
     ref={ref}
     className={cn(
-      "tw-flex tw-cursor-default tw-select-none tw-items-center tw-rounded-sm tw-px-2 tw-py-1.5 tw-text-sm tw-outline-none focus:tw-bg-primary-foreground data-[highlighted]:tw-bg-primary-foreground data-[state=open]:tw-bg-primary-foreground",
-      inset && "tw-pl-8",
+      "tw-relative tw-flex tw-cursor-default tw-select-none tw-items-center tw-justify-between tw-rounded-sm tw-text-sm tw-outline-none tw-transition-colors focus:tw-bg-primary-foreground focus:tw-text-primary data-[disabled]:tw-pointer-events-none data-[highlighted]:tw-bg-primary-foreground data-[highlighted]:tw-text-primary data-[disabled]:tw-opacity-50",
       className,
     )}
     {...props}
   >
     {children}
-    <ChevronRight className="tw-ml-auto tw-h-4 tw-w-4" />
+    <ChevronRight className="tw-mr-2 tw-size-4" />
   </Menu.TriggerItem>
 ));
 DropdownMenuSubTrigger.displayName = "DropdownMenuSubTrigger";

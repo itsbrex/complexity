@@ -226,6 +226,7 @@ function observeThreadNavbar(location: ReturnType<typeof whereAmI>) {
   globalDomObserverStore.getState().setThreadComponents({
     navbar: $navbar[0],
     navbarHeight,
+    navbarChildren: $navbar.find(">div").children().toArray(),
   });
 }
 

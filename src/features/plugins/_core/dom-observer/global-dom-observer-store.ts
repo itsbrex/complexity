@@ -28,6 +28,7 @@ export type GlobalDomObserverStore = {
     wrapper: HTMLElement | null;
     messageBlocks: ExtendedMessageBlock[] | null;
     navbar: HTMLElement | null;
+    navbarChildren: HTMLElement[] | null;
     navbarHeight: number | null;
     messageBlockBottomBarHeight: number;
     messageBlockBottomBars: (HTMLElement | null)[] | null;
@@ -69,6 +70,7 @@ export const globalDomObserverStore =
             popper: null,
             messageBlocks: null,
             navbar: null,
+            navbarChildren: null,
             navbarHeight: null,
             messageBlockBottomBarHeight: 0,
             messageBlockBottomBars: null,

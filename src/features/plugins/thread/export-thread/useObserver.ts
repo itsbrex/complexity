@@ -1,28 +1,30 @@
+import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
-import { DOM_SELECTORS } from "@/utils/dom-selectors";
 
 const OBSERVER_ID = "cplx-thread-export-button";
 
 export default function useObserver() {
   useSpaRouter();
 
-  return (() => {
-    const $navbar = $(DOM_SELECTORS.THREAD.NAVBAR);
+  const navbarChildren = useGlobalDomObserverStore(
+    (state) => state.threadComponents.navbarChildren,
+  );
 
-    if (!$navbar.length) return;
+  return getPortalContainer(navbarChildren);
+}
 
-    const $anchor = $navbar.find(".flex.items-center.gap-sm").last();
+function getPortalContainer(navbarChildren: HTMLElement[] | null) {
+  if (navbarChildren == null) return null;
 
-    if (!$anchor.length) return;
+  const $anchor = $(navbarChildren).last().children().first();
 
-    const $existingPortalContainer = $anchor.find(`.${OBSERVER_ID}`);
+  if (!$anchor.length) return null;
 
-    if ($existingPortalContainer.length) return $existingPortalContainer[0];
+  const $existingPortalContainer = $anchor.find(`.${OBSERVER_ID}`);
 
-    const $portalContainer = $("<div>")
-      .addClass(OBSERVER_ID)
-      .appendTo($anchor[0]);
+  if ($existingPortalContainer.length) return $existingPortalContainer[0];
 
-    return $portalContainer[0];
-  })();
+  const $portalContainer = $("<div>").addClass(OBSERVER_ID).appendTo($anchor);
+
+  return $portalContainer[0];
 }

@@ -54,7 +54,11 @@ const ExportButton = memo(function ExportButton() {
       }}
     >
       <DropdownMenuTrigger asChild disabled={isFetching}>
-        <Button variant="outline" size="sm" className="tw-h-8 tw-px-2">
+        <Button
+          variant={isMobile ? "default" : "outline"}
+          size="sm"
+          className="tw-h-8 tw-px-2"
+        >
           {isFetching ? defaultIdleText : (copyConfirmText ?? defaultIdleText)}
         </Button>
       </DropdownMenuTrigger>

@@ -15,8 +15,9 @@ export async function setupDragNDropFileToUploadInThread(
   location: ReturnType<typeof whereAmI>,
 ) {
   if (
-    !PluginsStatesService.getCachedSync()?.pluginsEnableStates
-      ?.dragAndDropFileToUploadInThread
+    !PluginsStatesService.getCachedSync()?.pluginsEnableStates?.[
+      "thread:dragAndDropFileToUploadInThread"
+    ]
   )
     return;
 

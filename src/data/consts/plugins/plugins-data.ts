@@ -114,6 +114,23 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     tags: ["ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
   },
+  "thread:dragAndDropFileToUploadInThread": {
+    id: "thread:dragAndDropFileToUploadInThread",
+    routeSegment: "thread-drag-and-drop-file-to-upload-in-thread",
+    title: "Drag and Drop File(s) to Upload in a thread",
+    description:
+      "Treat the whole thread page as a drop zone and allow you to directly drag & drop file(s) to upload them as attachment(s).",
+    tags: ["ux", "desktopOnly"],
+    dependentCorePlugins: ["spaRouter"],
+  },
+  "thread:collapseEmptyThreadVisualCols": {
+    id: "thread:collapseEmptyThreadVisualCols",
+    routeSegment: "thread-collapse-empty-thread-visual-cols",
+    title: "Collapse Empty Thread Visual Columns",
+    description: "Collapse empty visual columns in the thread page.",
+    tags: ["ui", "desktopOnly"],
+    dependentCorePlugins: ["spaRouter"],
+  },
   imageGenModelSelector: {
     id: "imageGenModelSelector",
     routeSegment: "image-gen-model-selector",
@@ -137,22 +154,5 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
       "Prevent Perplexity from sending useless analytic/tracking events. Might save you some bandwidth 😉.",
     tags: ["privacy"],
     dependentCorePlugins: ["networkIntercept"],
-  },
-  dragAndDropFileToUploadInThread: {
-    id: "dragAndDropFileToUploadInThread",
-    routeSegment: "drag-and-drop-file-to-upload-in-thread",
-    title: "Drag and Drop File(s) to Upload in a thread",
-    description:
-      "Treat the whole thread page as a drop zone and allow you to directly drag & drop file(s) to upload them as attachment(s).",
-    tags: ["ux", "desktopOnly"],
-    dependentCorePlugins: ["spaRouter"],
-  },
-  collapseEmptyThreadVisualCols: {
-    id: "collapseEmptyThreadVisualCols",
-    routeSegment: "collapse-empty-thread-visual-cols",
-    title: "Collapse Empty Thread Visual Columns",
-    description: "Collapse empty visual columns in the thread page.",
-    tags: ["ui", "desktopOnly"],
-    dependentCorePlugins: ["spaRouter"],
   },
 };

@@ -12,9 +12,11 @@ export type PluginDialogContent = Partial<Record<PluginId, React.ReactNode>>;
 export const PLUGIN_DIALOG_CONTENT: PluginDialogContent = {
   "queryBox:languageModelSelector": <LanguageModelSelectorDialogContent />,
   "queryBox:noFileCreationOnPaste": <NoFileCreationOnPasteDialogContent />,
-  imageGenModelSelector: <ImageGenModelSelectorDialogContent />,
-  onCloudflareTimeoutAutoReload: <OnCloudflareTimeoutAutoReloadDialogContent />,
-  collapseEmptyThreadVisualCols: <CollapseEmptyThreadVisualColsDialogContent />,
   "thread:betterMessageToolbars": <BetterThreadMessageToolbarsDialogContent />,
   "thread:betterCodeBlocks": <BetterCodeBlocksDialogContent />,
+  "thread:collapseEmptyThreadVisualCols": (
+    <CollapseEmptyThreadVisualColsDialogContent />
+  ),
+  imageGenModelSelector: <ImageGenModelSelectorDialogContent />,
+  onCloudflareTimeoutAutoReload: <OnCloudflareTimeoutAutoReloadDialogContent />,
 };

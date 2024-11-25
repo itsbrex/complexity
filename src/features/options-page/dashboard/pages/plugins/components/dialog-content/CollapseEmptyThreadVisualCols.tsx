@@ -16,11 +16,14 @@ export default function CollapseEmptyThreadVisualColsDialogContent() {
       </P>
       <Switch
         textLabel="Enable"
-        checked={settings?.plugins.collapseEmptyThreadVisualCols.enabled}
+        checked={
+          settings?.plugins["thread:collapseEmptyThreadVisualCols"].enabled
+        }
         onCheckedChange={({ checked }) =>
           mutation.mutate(
             (draft) =>
-              (draft.plugins.collapseEmptyThreadVisualCols.enabled = checked),
+              (draft.plugins["thread:collapseEmptyThreadVisualCols"].enabled =
+                checked),
           )
         }
       />

@@ -69,6 +69,12 @@ module.exports = {
         pattern: ["src/features/plugins/_core/*/**/*"],
       },
       {
+        type: "thread-plugin",
+        mode: "full",
+        capture: ["threadPluginName"],
+        pattern: ["src/features/plugins/thread/*/**/*"],
+      },
+      {
         type: "plugin",
         mode: "full",
         capture: ["pluginName"],
@@ -200,8 +206,27 @@ module.exports = {
             ],
           },
           {
+            from: ["thread-plugin"],
+            allow: [
+              "shared",
+              "core-plugin",
+              ["plugin", { pluginName: "thread" }],
+              [
+                "thread-plugin",
+                { threadPluginName: "${from.threadPluginName}" },
+              ],
+            ],
+          },
+          {
             from: ["entrypoint"],
-            allow: ["entrypoint", "shared", "feature", "core-plugin", "plugin"],
+            allow: [
+              "entrypoint",
+              "shared",
+              "feature",
+              "core-plugin",
+              "plugin",
+              "thread-plugin",
+            ],
           },
         ],
       },

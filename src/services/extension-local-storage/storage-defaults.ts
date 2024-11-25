@@ -49,6 +49,12 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "thread:betterMessageCopyButtons": {
       enabled: false,
     },
+    "thread:dragAndDropFileToUploadInThread": {
+      enabled: false,
+    },
+    "thread:collapseEmptyThreadVisualCols": {
+      enabled: false,
+    },
     imageGenModelSelector: {
       enabled: false,
     },
@@ -57,12 +63,6 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       behavior: "reload",
     },
     blockAnalyticEvents: {
-      enabled: false,
-    },
-    dragAndDropFileToUploadInThread: {
-      enabled: false,
-    },
-    collapseEmptyThreadVisualCols: {
       enabled: false,
     },
   },

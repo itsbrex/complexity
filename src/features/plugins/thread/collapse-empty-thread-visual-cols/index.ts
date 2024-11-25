@@ -1,4 +1,4 @@
-import styles from "@/features/plugins/collapse-empty-thread-visual-cols/collapse-empty-thread-visual-cols.css?inline";
+import styles from "@/features/plugins/thread/collapse-empty-thread-visual-cols/collapse-empty-thread-visual-cols.css?inline";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { insertCss, whereAmI } from "@/utils/utils";
 
@@ -9,7 +9,7 @@ export default function setupCollapseEmptyThreadVisualCols(
 ) {
   if (
     !PluginsStatesService.getCachedSync()?.pluginsEnableStates
-      ?.collapseEmptyThreadVisualCols
+      ?.["thread:collapseEmptyThreadVisualCols"]
   )
     return;
 

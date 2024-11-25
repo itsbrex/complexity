@@ -42,13 +42,13 @@ export const PluginsSchema = z.object({
   }),
   "thread:exportThread": PluginSettingsSchema,
   "thread:betterMessageCopyButtons": PluginSettingsSchema,
+  "thread:dragAndDropFileToUploadInThread": PluginSettingsSchema,
+  "thread:collapseEmptyThreadVisualCols": PluginSettingsSchema,
   imageGenModelSelector: PluginSettingsSchema,
   onCloudflareTimeoutAutoReload: PluginSettingsSchema.extend({
     behavior: z.enum(["reload", "warn-only"]),
   }),
   blockAnalyticEvents: PluginSettingsSchema,
-  dragAndDropFileToUploadInThread: PluginSettingsSchema,
-  collapseEmptyThreadVisualCols: PluginSettingsSchema,
 });
 
 export type Plugins = z.infer<typeof PluginsSchema>;

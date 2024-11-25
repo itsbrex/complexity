@@ -2,6 +2,7 @@ import { PopoverOpenChangeDetails } from "@ark-ui/react";
 import { useState } from "react";
 import { LuMinus, LuPlus } from "react-icons/lu";
 
+import Tooltip from "@/components/Tooltip";
 import { Button } from "@/components/ui/button";
 import { Command, CommandList, CommandItem } from "@/components/ui/command";
 import {
@@ -82,38 +83,41 @@ export function TagsFilter() {
         <PopoverContent className="tw-w-[230px] tw-p-0">
           <Command>
             <CommandList className="tw-p-3 tw-shadow-lg [&_[cmdk-list-sizer]]:tw-flex [&_[cmdk-list-sizer]]:tw-flex-row [&_[cmdk-list-sizer]]:tw-flex-wrap">
-              {Object.entries(PLUGIN_TAGS).map(([key, { label }]) => {
-                const tagState = getTagState(key as PluginTagValues);
-                return (
-                  <CommandItem
-                    key={key}
-                    className={cn({
-                      "tw-m-1 tw-w-max tw-cursor-pointer tw-rounded-md tw-px-2 tw-py-0.5 tw-text-sm tw-transition-colors hover:tw-bg-primary/10 aria-selected:tw-bg-secondary aria-selected:tw-text-muted-foreground":
-                        true,
-                      "tw-bg-primary tw-text-primary-foreground aria-selected:tw-bg-primary aria-selected:tw-text-primary-foreground":
-                        tagState === "include",
-                      "tw-bg-destructive tw-text-destructive-foreground aria-selected:tw-bg-destructive aria-selected:tw-text-destructive-foreground":
-                        tagState === "exclude",
-                      "tw-bg-secondary": tagState === "none",
-                    })}
-                    onSelect={() => handleSelect(key as PluginTagValues)}
-                  >
-                    {tagState === "include" ? (
-                      <span className="tw-flex tw-items-center tw-gap-1">
-                        <LuPlus className="tw-h-3 tw-w-3" />
-                        {label}
-                      </span>
-                    ) : tagState === "exclude" ? (
-                      <span className="tw-flex tw-items-center tw-gap-1">
-                        <LuMinus className="tw-h-3 tw-w-3" />
-                        {label}
-                      </span>
-                    ) : (
-                      label
-                    )}
-                  </CommandItem>
-                );
-              })}
+              {Object.entries(PLUGIN_TAGS).map(
+                ([key, { label, description }]) => {
+                  const tagState = getTagState(key as PluginTagValues);
+                  return (
+                    <Tooltip key={key} content={description}>
+                      <CommandItem
+                        className={cn({
+                          "tw-m-1 tw-w-max tw-cursor-pointer tw-rounded-md tw-px-2 tw-py-0.5 tw-text-sm tw-transition-colors hover:tw-bg-primary/10 aria-selected:tw-bg-secondary aria-selected:tw-text-muted-foreground":
+                            true,
+                          "tw-bg-primary tw-text-primary-foreground aria-selected:tw-bg-primary aria-selected:tw-text-primary-foreground":
+                            tagState === "include",
+                          "tw-bg-destructive tw-text-destructive-foreground aria-selected:tw-bg-destructive aria-selected:tw-text-destructive-foreground":
+                            tagState === "exclude",
+                          "tw-bg-secondary": tagState === "none",
+                        })}
+                        onSelect={() => handleSelect(key as PluginTagValues)}
+                      >
+                        {tagState === "include" ? (
+                          <span className="tw-flex tw-items-center tw-gap-1">
+                            <LuPlus className="tw-h-3 tw-w-3" />
+                            {label}
+                          </span>
+                        ) : tagState === "exclude" ? (
+                          <span className="tw-flex tw-items-center tw-gap-1">
+                            <LuMinus className="tw-h-3 tw-w-3" />
+                            {label}
+                          </span>
+                        ) : (
+                          label
+                        )}
+                      </CommandItem>
+                    </Tooltip>
+                  );
+                },
+              )}
             </CommandList>
           </Command>
         </PopoverContent>

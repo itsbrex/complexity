@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&display=swap");
+
+body#__next {
+  --font-fk-grotesk: "Geist";
+  --font-fk-grotesk-neue: "Geist";
+  --font-berkeley-mono: "JetBrains Mono";
+
+  font-variant-ligatures: none;
+
+  code {
+    span {
+      font-style: normal !important;
+    }
+  }
+
+  &[location="thread"] {
+    /* Typography */
+    strong,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply tw-text-primary;
+    }
+
+    /* Message Block Dividers */
+    .cplx-message-block:not(:last-of-type) {
+      @apply tw-border-b-ring/50;
+    }
+  }
+
+  /* Inline Code */
+  code:not(pre code) {
+    &::before,
+    &::after {
+      content: "";
+    }
+
+    @apply tw-rounded-md tw-bg-secondary tw-px-1 tw-py-0.5 tw-text-primary;
+  }
+}

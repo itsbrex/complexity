@@ -1,9 +1,9 @@
 import { BiExtension } from "react-icons/bi";
 import {
   LuBell,
-  LuBook,
   LuFileText,
   LuMessageCircle,
+  LuPalette,
   LuSettings,
 } from "react-icons/lu";
 
@@ -25,14 +25,14 @@ export const navItems: NavItem[] = [
     path: "/plugins",
   },
   {
+    icon: LuPalette,
+    label: "Themes",
+    path: "/themes",
+  },
+  {
     icon: LuFileText,
     label: "Release Notes",
     path: "/release-notes",
-  },
-  {
-    icon: LuBook,
-    label: "Documentation",
-    path: "/documentation",
   },
   {
     icon: LuSettings,

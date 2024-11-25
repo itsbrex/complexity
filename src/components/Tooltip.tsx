@@ -21,6 +21,7 @@ export default function Tooltip({
   children,
   disabled,
   content,
+  className,
   positioning,
   defaultOpen,
   portal = true,
@@ -38,7 +39,7 @@ export default function Tooltip({
       defaultOpen={defaultOpen}
     >
       <TooltipTrigger asChild>
-        <span>{children}</span>
+        <span className={className}>{children}</span>
       </TooltipTrigger>
       {!(typeof content === "string" && content.length === 0) && (
         <TooltipContent asChild portal={portal}>

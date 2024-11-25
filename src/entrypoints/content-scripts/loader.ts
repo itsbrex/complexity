@@ -9,6 +9,7 @@ import { setupNetworkInterceptPlugins } from "@/entrypoints/plugins-loader/netwo
 import { setupRouteBasedPlugins } from "@/entrypoints/plugins-loader/route-based-plugins-loader";
 import { setupNetworkInterceptListeners } from "@/features/plugins/_core/network-intercept/listeners";
 import { setupSpaRouterDispatchListeners } from "@/features/plugins/_core/spa-router/listeners";
+import { setupThemeLoader } from "@/features/plugins/themes/theme-loader";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { pluginsStatesQueries } from "@/services/plugins-states/query-keys";
 import {
@@ -43,6 +44,7 @@ async function loadPlugins() {
   ]);
 
   setupCoreObservers();
+  setupThemeLoader();
   setupCsUiPlugins();
   setupNetworkInterceptPlugins();
   setupRouteBasedPlugins();

@@ -67,8 +67,9 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     },
     "home:customSlogan": {
       enabled: false,
-      slogan: "asf",
+      slogan: "",
     },
   },
   favoritePluginIds: [],
+  theme: "complexity",
 } as const;

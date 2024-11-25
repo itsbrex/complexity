@@ -14,7 +14,7 @@ import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatur
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
-function PluginsPageContent() {
+function PluginsListing() {
   const { settings } = useExtensionLocalStorage();
   const { isFetching: isFetchingFeatureFlags } = useCplxFeatureFlags();
   const [filters, setFilters] = usePluginContext();
@@ -100,7 +100,7 @@ function usePluginSearch(setFilters: SetFiltersFunction) {
 }
 
 export default function PluginsPage() {
-  const routes = useRoutes([
+  return useRoutes([
     {
       path: ":pluginId/*",
       element: <PluginDetailsWrapper />,
@@ -109,11 +109,9 @@ export default function PluginsPage() {
       path: "*",
       element: (
         <PluginProvider>
-          <PluginsPageContent />
+          <PluginsListing />
         </PluginProvider>
       ),
     },
   ]);
-
-  return routes;
 }

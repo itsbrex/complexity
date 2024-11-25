@@ -15,21 +15,22 @@ const Playground = lazy(
 const Dashboard = lazy(
   () => import("@/features/options-page/dashboard/Dashboard"),
 );
-const DocumentationPage = lazy(
-  () =>
-    import(
-      "@/features/options-page/dashboard/pages/documentation/DocumentationPage"
-    ),
-);
-const HelpPage = lazy(
-  () => import("@/features/options-page/dashboard/pages/help/HelpPage"),
-);
+
 const NotificationsPage = lazy(
   () =>
     import(
       "@/features/options-page/dashboard/pages/notifications/NotificationsPage"
     ),
 );
+
+const PluginsPage = lazy(
+  () => import("@/features/options-page/dashboard/pages/plugins/PluginsPage"),
+);
+
+const ThemesPage = lazy(
+  () => import("@/features/options-page/dashboard/pages/themes/ThemesPage"),
+);
+
 const ReleaseNotesPage = lazy(
   () =>
     import(
@@ -40,8 +41,8 @@ const SettingsPage = lazy(
   () => import("@/features/options-page/dashboard/pages/settings/SettingsPage"),
 );
 
-const PluginsPage = lazy(
-  () => import("@/features/options-page/dashboard/pages/plugins/PluginsPage"),
+const HelpPage = lazy(
+  () => import("@/features/options-page/dashboard/pages/help/HelpPage"),
 );
 
 const Onboarding = lazy(() => import("@/features/options-page/onboarding"));
@@ -58,28 +59,28 @@ export const router: ReturnType<typeof createHashRouter> = createHashRouter([
         ),
         children: [
           {
-            path: "plugins/*",
-            element: <Page title="Plugins" page={PluginsPage} />,
-          },
-          {
-            path: "release-notes",
-            element: <Page title="Release Notes" page={ReleaseNotesPage} />,
-          },
-          {
-            path: "documentation",
-            element: <Page title="Documentation" page={DocumentationPage} />,
-          },
-          {
-            path: "help",
-            element: <Page title="Help" page={HelpPage} />,
-          },
-          {
             path: "notifications",
             element: <Page title="Notifications" page={NotificationsPage} />,
           },
           {
-            path: "settings",
+            path: "plugins/*",
+            element: <Page title="Plugins" page={PluginsPage} />,
+          },
+          {
+            path: "themes/*",
+            element: <Page title="Themes" page={ThemesPage} />,
+          },
+          {
+            path: "release-notes/*",
+            element: <Page title="Release Notes" page={ReleaseNotesPage} />,
+          },
+          {
+            path: "settings/*",
             element: <Page title="Settings" page={SettingsPage} />,
+          },
+          {
+            path: "help/*",
+            element: <Page title="Help" page={HelpPage} />,
           },
           {
             path: "",

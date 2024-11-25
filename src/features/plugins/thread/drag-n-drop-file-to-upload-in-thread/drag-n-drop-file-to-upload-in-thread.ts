@@ -1,3 +1,4 @@
+import styles from "@/features/plugins/thread/drag-n-drop-file-to-upload-in-thread/drag-n-drop-file-to-upload-in-thread.css?inline";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import UiUtils from "@/utils/UiUtils";
 import { insertCss, whereAmI } from "@/utils/utils";
@@ -45,7 +46,7 @@ export async function setupDragNDropFileToUploadInThread(
   $threadWrapper.attr(OBSERVER_ID, "true");
 
   removeCss = insertCss({
-    css: (await import("./styles.css?inline")).default,
+    css: styles,
     id: "cplx-drag-n-drop-file-to-upload-in-thread",
   });
 

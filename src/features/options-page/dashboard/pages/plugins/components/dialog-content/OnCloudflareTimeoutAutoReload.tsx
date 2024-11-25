@@ -1,5 +1,6 @@
 import { createListCollection } from "@ark-ui/react";
 
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -55,9 +56,7 @@ export default function OnCloudflareTimeoutAutoReloadDialogContent() {
       />
 
       <div>
-        <div className="tw-mb-1 tw-text-sm tw-text-muted-foreground">
-          Behavior
-        </div>
+        <Label className="tw-text-muted-foreground">Behavior</Label>
         <Select
           portal={false}
           collection={createListCollection<BehaviorType>({

@@ -49,6 +49,9 @@ export const PluginsSchema = z.object({
     behavior: z.enum(["reload", "warn-only"]),
   }),
   blockAnalyticEvents: PluginSettingsSchema,
+  "home:customSlogan": PluginSettingsSchema.extend({
+    slogan: z.string(),
+  }),
 });
 
 export type Plugins = z.infer<typeof PluginsSchema>;

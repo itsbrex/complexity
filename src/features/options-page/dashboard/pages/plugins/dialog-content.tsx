@@ -1,6 +1,7 @@
 import BetterCodeBlocksDialogContent from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/BetterCodeBlocks";
 import BetterThreadMessageToolbarsDialogContent from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/BetterThreadMessageToolbars";
 import CollapseEmptyThreadVisualColsDialogContent from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/CollapseEmptyThreadVisualCols";
+import CustomHomeSloganDialogContent from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/CustomHomeSlogan";
 import ImageGenModelSelectorDialogContent from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/ImageGenModelSelector";
 import LanguageModelSelectorDialogContent from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/LanguageModelSelector";
 import NoFileCreationOnPasteDialogContent from "@/features/options-page/dashboard/pages/plugins/components/dialog-content/NoFileCreationOnPaste";
@@ -19,4 +20,5 @@ export const PLUGIN_DIALOG_CONTENT: PluginDialogContent = {
   ),
   imageGenModelSelector: <ImageGenModelSelectorDialogContent />,
   onCloudflareTimeoutAutoReload: <OnCloudflareTimeoutAutoReloadDialogContent />,
+  "home:customSlogan": <CustomHomeSloganDialogContent />,
 };

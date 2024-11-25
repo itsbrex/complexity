@@ -65,6 +65,10 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     blockAnalyticEvents: {
       enabled: false,
     },
+    "home:customSlogan": {
+      enabled: false,
+      slogan: "asf",
+    },
   },
   favoritePluginIds: [],
 } as const;

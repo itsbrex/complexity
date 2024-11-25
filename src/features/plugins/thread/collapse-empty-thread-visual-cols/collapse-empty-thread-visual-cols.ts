@@ -4,12 +4,13 @@ import { insertCss, whereAmI } from "@/utils/utils";
 
 let removeCss: (() => void) | null = null;
 
-export default function setupCollapseEmptyThreadVisualCols(
+export function setupCollapseEmptyThreadVisualCols(
   location: ReturnType<typeof whereAmI>,
 ) {
   if (
-    !PluginsStatesService.getCachedSync()?.pluginsEnableStates
-      ?.["thread:collapseEmptyThreadVisualCols"]
+    !PluginsStatesService.getCachedSync()?.pluginsEnableStates?.[
+      "thread:collapseEmptyThreadVisualCols"
+    ]
   )
     return;
 

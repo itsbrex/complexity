@@ -1,6 +1,7 @@
 import { allowWindowMessaging } from "webext-bridge/content-script";
 
 import { initializeLanguageModels } from "@/data/consts/plugins/query-box/language-model-selector/language-models";
+import { setupCoreObservers } from "@/entrypoints/plugins-loader/core-observers-loader";
 import { initCorePlugins } from "@/entrypoints/plugins-loader/core-plugins-loader";
 import { setupCsUiPlugins } from "@/entrypoints/plugins-loader/cs-ui-plugins-loader/setup-root";
 import { setupDomBasedPlugins } from "@/entrypoints/plugins-loader/dom-based-plugins-loader";
@@ -41,6 +42,7 @@ async function loadPlugins() {
     initializeLanguageModels(),
   ]);
 
+  setupCoreObservers();
   setupCsUiPlugins();
   setupNetworkInterceptPlugins();
   setupRouteBasedPlugins();

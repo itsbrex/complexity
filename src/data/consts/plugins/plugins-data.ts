@@ -34,6 +34,10 @@ export const PLUGIN_TAGS = {
     label: "Perplexity Pro",
     description: "Requires an active Perplexity Pro subscription",
   },
+  forFun: {
+    label: "For Fun",
+    description: "Just for fun!",
+  },
 } as const;
 
 export type CplxPluginMetadata = Record<
@@ -154,5 +158,12 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
       "Prevent Perplexity from sending useless analytic/tracking events. Might save you some bandwidth 😉.",
     tags: ["privacy"],
     dependentCorePlugins: ["networkIntercept"],
+  },
+  "home:customSlogan": {
+    id: "home:customSlogan",
+    routeSegment: "home-custom-slogan",
+    title: "Custom Home Slogan",
+    description: "Customize the slogan on the home page.",
+    tags: ["ui", "forFun"],
   },
 };

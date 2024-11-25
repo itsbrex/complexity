@@ -9,6 +9,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Popover,
   PopoverContent,
@@ -47,11 +48,11 @@ function Options() {
         {settings?.plugins["thread:betterCodeBlocks"].theme.enabled && (
           <div className="tw-flex tw-w-full tw-gap-4">
             <div className="tw-flex tw-flex-col tw-gap-2">
-              <div className="tw-text-sm tw-text-muted-foreground">Dark</div>
+              <Label className="tw-text-muted-foreground">Dark</Label>
               <CodeThemeSelector colorScheme="dark" />
             </div>
             <div className="tw-flex tw-flex-col tw-gap-2">
-              <div className="tw-text-sm tw-text-muted-foreground">Light</div>
+              <Label className="tw-text-muted-foreground">Light</Label>
               <CodeThemeSelector colorScheme="light" />
             </div>
           </div>

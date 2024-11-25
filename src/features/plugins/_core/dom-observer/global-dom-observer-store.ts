@@ -23,6 +23,12 @@ export type GlobalDomObserverStore = {
   setQueryBoxes: (
     newQueryBoxes: Partial<GlobalDomObserverStore["queryBoxes"]>,
   ) => void;
+  homeComponents: {
+    slogan: HTMLElement | null;
+  };
+  setHomeComponents: (
+    newHomeComponents: Partial<GlobalDomObserverStore["homeComponents"]>,
+  ) => void;
   threadComponents: {
     popper: HTMLElement | null;
     wrapper: HTMLElement | null;
@@ -59,6 +65,24 @@ export const globalDomObserverStore =
                 set({
                   queryBoxes: {
                     ...get().queryBoxes,
+                    [currentKey]: value,
+                  },
+                });
+              }
+            });
+          },
+          homeComponents: {
+            slogan: null,
+          },
+          setHomeComponents: (newHomeComponents) => {
+            Object.entries(newHomeComponents).forEach(([key, value]) => {
+              const currentKey =
+                key as keyof GlobalDomObserverStore["homeComponents"];
+
+              if (value != null && value !== get().homeComponents[currentKey]) {
+                set({
+                  homeComponents: {
+                    ...get().homeComponents,
                     [currentKey]: value,
                   },
                 });

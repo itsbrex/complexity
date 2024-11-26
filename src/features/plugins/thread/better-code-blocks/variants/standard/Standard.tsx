@@ -43,9 +43,12 @@ export const StandardCodeBlock = memo(function StandardCodeBlock() {
           <HighlightedCode isWrapped={isWrapped} />
         ) : (
           <div
-            className={cn("tw-m-0 tw-p-2 tw-px-2 [&>*]:!tw-select-auto", {
-              "tw-whitespace-pre-wrap": isWrapped,
-            })}
+            className={cn(
+              "tw-m-0 tw-whitespace-pre tw-p-2 tw-px-2 [&>*]:!tw-select-auto",
+              {
+                "tw-whitespace-pre-wrap": isWrapped,
+              },
+            )}
             dangerouslySetInnerHTML={{ __html: fallbackCodeHtml }}
           />
         )}

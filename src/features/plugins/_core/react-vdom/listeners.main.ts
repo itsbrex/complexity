@@ -28,24 +28,21 @@ export function setupReactVdomListeners() {
 
     if (!$el.length) return null;
 
-    const [isInFlight, error] = errorWrapper(() =>
+    const [status, error] = errorWrapper(() =>
       findReactFiberNodeValue({
         fiberNode: ($el[0] as any)[getReactFiberKey($el[0])],
         condition: (node) =>
-          !!(
-            node.memoizedProps.children[2].props != null &&
-            node.memoizedProps.children[2].props.isEntryInFlight != null
-          ),
+          !!(node.memoizedProps.children[2].props.result.status != null),
         select: (node) =>
-          node.memoizedProps.children[2].props.isEntryInFlight as boolean,
+          node.memoizedProps.children[2].props.result.status as string,
       }),
     )();
 
     if (error) console.warn("[VDOM Plugin] isMessageBlockInFlight", error);
 
-    if (error || isInFlight == null) return null;
+    if (error || status == null) return null;
 
-    return isInFlight;
+    return status.toLowerCase() !== "completed";
   });
 
   onMessage("reactVdom:getMessageDisplayModelCode", ({ data: { index } }) => {

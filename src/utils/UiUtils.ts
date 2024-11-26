@@ -157,7 +157,7 @@ export default class UiUtils {
     return returnValue;
   }
 
-  static isMessageBlockInFlight({
+  static isCodeBlockInFlight({
     messageBlocks,
     messageBlockIndex,
     codeBlockIndex,
@@ -166,6 +166,10 @@ export default class UiUtils {
     messageBlockIndex: number;
     codeBlockIndex: number;
   }) {
+    const isMessageBlockInFlight = messageBlocks[messageBlockIndex].isInFlight;
+
+    if (!isMessageBlockInFlight) return false;
+
     const selector = `${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK}[data-index="${messageBlockIndex}"] ${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}[data-index="${codeBlockIndex}"]`;
 
     const isInFlight =

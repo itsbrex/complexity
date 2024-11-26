@@ -192,7 +192,7 @@ async function observeCodeBlocks(messageBlocks: ExtendedMessageBlock[]) {
         await Promise.all(
           messageBlock.map(async (codeBlock, codeBlockIndex) => ({
             ...codeBlock,
-            isInFlight: UiUtils.isMessageBlockInFlight({
+            isInFlight: UiUtils.isCodeBlockInFlight({
               messageBlocks,
               messageBlockIndex,
               codeBlockIndex,

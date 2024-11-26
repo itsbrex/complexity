@@ -297,40 +297,57 @@ export default class UiUtils {
     input.dispatchEvent(new Event("input", { bubbles: true }));
   }
 
-  static getMostVisibleElementIndex(elements: Element[]) {
-    let maxVisiblePercentage = 0;
-    let indexWithMaxVisible = -1;
+  static waitForSpaIdle(): Promise<boolean> {
+    // watch the document.body via mutation observer, if it has stopped emitting events for a while, we can assume the SPA update is finished
+    return new Promise<boolean>((resolve) => {
+      // const startTime = Date.now();
+      // console.log("waitForSpaIdle: Start waiting for SPA to become idle.");
 
-    elements.forEach((element, index) => {
-      const visiblePercentage = getVisiblePercentage(element);
-      if (visiblePercentage > maxVisiblePercentage) {
-        maxVisiblePercentage = visiblePercentage;
-        indexWithMaxVisible = index;
+      const $wrapper = $(document.body);
+      if (!$wrapper.length) {
+        // console.log("waitForSpaIdle: No wrapper found, resolving immediately.");
+        return resolve(true);
       }
+
+      const IDLE_TIME = 10;
+      const IDLE_TIMEOUT = 3000;
+
+      let timeout: NodeJS.Timeout;
+      let isIdle = false;
+
+      function mutationDisconnect() {
+        if (isIdle) return;
+        isIdle = true;
+
+        observer.disconnect();
+        // const endTime = Date.now();
+        // console.log(
+        //   `waitForSpaIdle: SPA became idle after ${endTime - startTime} ms.`,
+        // );
+
+        resolve(true);
+      }
+
+      function mutationFn() {
+        clearTimeout(timeout);
+        timeout = setTimeout(mutationDisconnect, IDLE_TIME);
+      }
+
+      const observer = new MutationObserver(mutationFn);
+
+      observer.observe($wrapper[0], {
+        childList: true,
+        subtree: false,
+      });
+
+      setTimeout(() => {
+        if (isIdle) return;
+        console.log(
+          "[WaitForSpaIdle] Timeout reached, disconnecting observer.",
+        );
+        observer.disconnect();
+        resolve(true);
+      }, IDLE_TIMEOUT);
     });
-
-    return indexWithMaxVisible;
-
-    function getVisiblePercentage(element: Element) {
-      const rect = element.getBoundingClientRect();
-      const windowHeight =
-        window.innerHeight || document.documentElement.clientHeight;
-      const windowWidth =
-        window.innerWidth || document.documentElement.clientWidth;
-
-      // Calculate the visible part of the element
-      const visibleWidth = Math.max(
-        0,
-        Math.min(rect.right, windowWidth) - Math.max(rect.left, 0),
-      );
-      const visibleHeight = Math.max(
-        0,
-        Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0),
-      );
-      const visibleArea = visibleWidth * visibleHeight;
-      const totalArea = rect.width * rect.height;
-
-      return (visibleArea / totalArea) * 100;
-    }
   }
 }

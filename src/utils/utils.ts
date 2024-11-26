@@ -453,3 +453,9 @@ export function getOptionsPageUrl() {
 
   return chrome.runtime.getURL(`${prefix}options.html`);
 }
+
+export function getTaskScheduler() {
+  return document.visibilityState === "visible"
+    ? requestAnimationFrame
+    : queueMicrotask;
+}

@@ -1,6 +1,6 @@
 import { sendMessage } from "webext-bridge/content-script";
 
-import DomObserver from "@/features/plugins/_core/dom-observer/DomObserver";
+import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import {
   ExtendedCodeBlock,
   ExtendedMessageBlock,
@@ -54,9 +54,6 @@ export async function setupThreadComponentsObserver(
     return setupThreadComponentsObserver(location);
   }
 
-  queueMicrotasks(observePopper);
-  queueMicrotasks(observeMessageBlocks);
-
   DomObserver.create(DOM_OBSERVER_ID.COMMON, {
     target: document.body,
     config: { childList: true, subtree: true },
@@ -102,12 +99,7 @@ async function observeMessageBlocks() {
 
   const messageBlocks = UiUtils.getMessageBlocks();
 
-  if (!messageBlocks.length) {
-    await sleep(200);
-    return queueMicrotasks(observeMessageBlocks);
-  }
-
-  observerMessageBlockBottomBar({ messageBlocks });
+  queueMicrotasks(() => observerMessageBlockBottomBar({ messageBlocks }));
 
   const extendedMessageBlocks: ExtendedMessageBlock[] = await Promise.all(
     messageBlocks.map(
@@ -125,7 +117,7 @@ async function observeMessageBlocks() {
     ),
   );
 
-  observeCodeBlocks(extendedMessageBlocks);
+  queueMicrotasks(() => observeCodeBlocks(extendedMessageBlocks));
 
   globalDomObserverStore.getState().setThreadComponents({
     messageBlocks: extendedMessageBlocks,
@@ -137,24 +129,18 @@ function observerMessageBlockBottomBar({
 }: {
   messageBlocks: MessageBlock[];
 }) {
-  if (
-    !globalDomObserverStore.getState().threadComponents
-      .messageBlockBottomBarHeight
-  ) {
-    const $messageBlockBottomBars = messageBlocks[0].$wrapper.find(
-      DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR,
-    );
+  const $messageBlockBottomBars = messageBlocks[0].$wrapper.find(
+    DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR,
+  );
 
-    if ($messageBlockBottomBars.length) {
-      $(document.body).css({
-        "--message-block-bottom-bar-height": `${$messageBlockBottomBars[0].offsetHeight - 1}px`,
-      });
+  if ($messageBlockBottomBars.length) {
+    $(document.body).css({
+      "--message-block-bottom-bar-height": `${$messageBlockBottomBars[0].offsetHeight - 1}px`,
+    });
 
-      globalDomObserverStore.getState().setThreadComponents({
-        messageBlockBottomBarHeight:
-          $messageBlockBottomBars[0].offsetHeight - 1,
-      });
-    }
+    globalDomObserverStore.getState().setThreadComponents({
+      messageBlockBottomBarHeight: $messageBlockBottomBars[0].offsetHeight - 1,
+    });
   }
 
   globalDomObserverStore.getState().setThreadComponents({

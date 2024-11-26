@@ -103,12 +103,12 @@ export async function waitForRouteChangeComplete(
     home: checkHomeLoaded,
   };
 
-  const check = locationChecks[location] ?? waitForSpaIdle;
+  const check = locationChecks[location] ?? UiUtils.waitForSpaIdle;
 
   await waitForConditionOrTimeout(check);
 
   async function checkThreadLoaded() {
-    await waitForSpaIdle();
+    await UiUtils.waitForSpaIdle();
 
     return UiUtils.getMessageBlocks().length >= 1;
   }
@@ -139,55 +139,4 @@ export async function waitForRouteChangeComplete(
 
     await Promise.race([checkCondition(), timeoutPromise]);
   }
-}
-
-function waitForSpaIdle(): Promise<boolean> {
-  // watch the wrapper ".max-w-screen" via mutation observer, if it has stopped emitting events for a while, we can assume the SPA update is finished
-  return new Promise<boolean>((resolve) => {
-    // const startTime = Date.now();
-    // console.log("waitForSpaIdle: Start waiting for SPA to become idle.");
-
-    const wrapper = $(DOM_SELECTORS.WRAPPER);
-    if (!wrapper.length) {
-      // console.log("waitForSpaIdle: No wrapper found, resolving immediately.");
-      return resolve(true);
-    }
-
-    const IDLE_TIME = 10;
-    const IDLE_TIMEOUT = 3000;
-
-    let timeout: NodeJS.Timeout;
-    let isIdle = false;
-
-    function mutationDisconnect() {
-      if (isIdle) return;
-      isIdle = true;
-
-      observer.disconnect();
-      // const endTime = Date.now();
-      // console.log(
-      //   `waitForSpaIdle: SPA became idle after ${endTime - startTime} ms.`,
-      // );
-
-      resolve(true);
-    }
-
-    function mutationFn() {
-      clearTimeout(timeout);
-      timeout = setTimeout(mutationDisconnect, IDLE_TIME);
-    }
-
-    const observer = new MutationObserver(mutationFn);
-
-    observer.observe(wrapper[0], {
-      childList: true,
-      subtree: false,
-    });
-
-    setTimeout(() => {
-      if (isIdle) return;
-      // console.log("waitForSpaIdle: Timeout reached, disconnecting observer.");
-      observer.disconnect();
-    }, IDLE_TIMEOUT);
-  });
 }

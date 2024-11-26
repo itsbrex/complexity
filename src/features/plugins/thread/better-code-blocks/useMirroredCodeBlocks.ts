@@ -7,6 +7,7 @@ import {
   useGlobalDomObserverStore,
 } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { DOM_INTERNAL_SELECTORS } from "@/utils/dom-selectors";
+import { getTaskScheduler } from "@/utils/utils";
 
 export type MirroredCodeBlock = ExtendedCodeBlock & {
   portalContainer: HTMLElement | null;
@@ -111,7 +112,7 @@ export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
   useEffect(() => {
     if (!codeBlocks) return;
 
-    requestAnimationFrame(() => {
+    getTaskScheduler()(() => {
       debouncedProcessBlocks(codeBlocks);
     });
 

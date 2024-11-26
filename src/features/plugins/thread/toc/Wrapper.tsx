@@ -38,7 +38,7 @@ export default function ThreadTocWrapper() {
     [top, left, isFloating],
   ) as React.CSSProperties;
 
-  useScrollToActiveItem(containerRef, tocItems);
+  // useScrollToActiveItem(containerRef, tocItems);
 
   const shouldShowToc = tocItems.length > 1 && !!position;
 

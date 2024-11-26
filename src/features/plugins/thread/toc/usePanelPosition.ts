@@ -2,7 +2,7 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import debounce from "lodash/debounce";
 import { useCallback, useEffect, useState } from "react";
 
-import DomObserver from "@/features/plugins/_core/dom-observer/DomObserver";
+import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { PANEL_WIDTH } from "@/features/plugins/thread/toc/Wrapper";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
@@ -51,8 +51,6 @@ export function usePanelPosition(): UsePanelPosition | null {
     const debouncedUpdate = debounce(() => {
       setTimeout(() => setPanelPosition(calculatePosition()), 300);
     }, 100);
-
-    debouncedUpdate();
 
     const DOM_OBSERVER_ID = "thread-navigation-toc-panel-position";
 

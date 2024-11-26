@@ -1,6 +1,4 @@
 export const DOM_SELECTORS = {
-  /** The wrapper that wraps the whole page */
-  WRAPPER: ".max-w-screen",
   SIDEBAR: ".group\\/bar",
   THREAD: {
     /** The outermost container that wraps the thread container and the query box */

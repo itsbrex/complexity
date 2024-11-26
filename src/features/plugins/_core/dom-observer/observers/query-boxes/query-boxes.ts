@@ -1,4 +1,4 @@
-import DomObserver from "@/features/plugins/_core/dom-observer/DomObserver";
+import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/query-boxes/observer-ids";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
@@ -24,8 +24,6 @@ export async function setupQueryBoxesObserver(
   if (!shouldObserve) return;
 
   cleanup();
-
-  observerFn(location);
 
   DomObserver.create(DOM_OBSERVER_ID, {
     target: document.body,

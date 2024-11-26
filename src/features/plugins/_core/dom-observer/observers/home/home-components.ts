@@ -1,4 +1,4 @@
-import DomObserver from "@/features/plugins/_core/dom-observer/DomObserver";
+import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/home/observer-ids";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";

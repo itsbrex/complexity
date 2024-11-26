@@ -21,6 +21,7 @@ import { queryClient } from "@/utils/ts-query-client";
 (async function () {
   ignoreInvalidPages();
   checkForExistingExtensionInstance();
+
   await initCoreModules();
   loadPlugins();
 })();
@@ -45,8 +46,9 @@ async function loadPlugins() {
 
   setupCoreObservers();
   setupThemeLoader();
-  setupCsUiPlugins();
   setupNetworkInterceptPlugins();
   setupRouteBasedPlugins();
   setupDomBasedPlugins();
+
+  setupCsUiPlugins();
 }

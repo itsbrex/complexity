@@ -11,6 +11,7 @@ export const ExtensionLocalStorageSchema = z.object({
   plugins: PluginsSchema,
   favoritePluginIds: z.array(z.string() as z.ZodType<PluginId>),
   theme: z.string(),
+  energySavingMode: z.boolean(),
 });
 
 export type ExtensionLocalStorage = z.infer<typeof ExtensionLocalStorageSchema>;

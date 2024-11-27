@@ -8,7 +8,7 @@ import throttle from "lodash/throttle";
 import { AnchorProps } from "@/content-script/components/ThreadToc";
 import useRouter from "@/content-script/hooks/useRouter";
 import { useCanvasStore } from "@/content-script/session-store/canvas";
-import { DomHelperSelectors } from "@/utils/DomSelectors";
+import { DomSelectors } from "@/utils/DomSelectors";
 import UiUtils from "@/utils/UiUtils";
 import { scrollToElement } from "@/utils/utils";
 
@@ -60,14 +60,9 @@ export default function useThreadTocObserver() {
 
     $messageBlocks.forEach(({ $query, $answer, $messageBlock }) => {
       queueMicrotask(() => {
-        const title =
-          $query.find("textarea").val() ||
-          $query
-            .find(
-              `>*:not(${DomHelperSelectors.THREAD.MESSAGE.TEXT_COL_CHILD.MARKDOWN_QUERY}):not(.tw-sticky)`,
-            )
-            .first()
-            .text();
+        const title = $query
+          .find(DomSelectors.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
+          .text();
 
         if (!title.length) return;
 

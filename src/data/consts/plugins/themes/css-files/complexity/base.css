@@ -1,18 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&display=swap");
-
 body#__next {
-  --font-fk-grotesk: "Geist";
-  --font-fk-grotesk-neue: "Geist";
-  --font-berkeley-mono: "JetBrains Mono";
-
-  font-variant-ligatures: none;
-
-  code {
-    span {
-      font-style: normal !important;
-    }
-  }
-
   &[location="thread"] {
     /* Typography */
     strong,

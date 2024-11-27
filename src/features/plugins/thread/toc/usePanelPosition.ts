@@ -2,6 +2,7 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import debounce from "lodash/debounce";
 import { useCallback, useEffect, useState } from "react";
 
+import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-queue";
 import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { PANEL_WIDTH } from "@/features/plugins/thread/toc/Wrapper";
@@ -60,7 +61,7 @@ export function usePanelPosition(): UsePanelPosition | null {
         attributes: true,
         attributeFilter: ["class"],
       },
-      onMutation: debouncedUpdate,
+      onMutation: () => CallbackQueue.getInstance().enqueue(debouncedUpdate),
     });
 
     return () => {

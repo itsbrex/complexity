@@ -1,10 +1,11 @@
+import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-queue";
 import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/query-boxes/observer-ids";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import UiUtils from "@/utils/UiUtils";
-import { queueMicrotasks, whereAmI } from "@/utils/utils";
+import { whereAmI } from "@/utils/utils";
 
 const DOM_OBSERVER_ID = "query-boxes";
 
@@ -33,12 +34,12 @@ export async function setupQueryBoxesObserver(
 }
 
 function observerFn(location: ReturnType<typeof whereAmI>) {
-  queueMicrotasks(
+  CallbackQueue.getInstance().enqueueArray([
     observeMainQueryBox.bind(null, location),
     observeMainModalQueryBox,
     observeSpaceQueryBox.bind(null, location),
     observeFollowUpQueryBox.bind(null, location),
-  );
+  ]);
 }
 
 function observeMainQueryBox(location: ReturnType<typeof whereAmI>) {
@@ -118,7 +119,9 @@ async function observeFollowUpQueryBox(location: ReturnType<typeof whereAmI>) {
   // Assume that the follow up query box is always visible in a thread, loop until it's visible
   if (!$followUpQueryBox.length) {
     await sleep(200);
-    queueMicrotasks(observeFollowUpQueryBox.bind(null, location));
+    CallbackQueue.getInstance().enqueue(
+      observeFollowUpQueryBox.bind(null, location),
+    );
     return;
   }
 

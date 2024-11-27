@@ -1,4 +1,5 @@
 import debounce from "lodash/debounce";
+import throttle from "lodash/throttle";
 
 import {
   DomObserverConfig,
@@ -9,7 +10,6 @@ import {
   Result,
 } from "@/features/plugins/_core/dom-observer/dom-observer.types";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
-import { getTaskScheduler } from "@/utils/utils";
 
 export class DomObserver {
   private static instances = new Map<ObserverId, DomObserverInstance>();
@@ -186,22 +186,22 @@ export class DomObserver {
     id: ObserverId,
     config: DomObserverConfig,
   ): MutationCallback {
-    const DEFAULT_DEBOUNCE_TIME = ExtensionLocalStorageService.getCachedSync()
-      .energySavingMode
-      ? 500
-      : 0;
+    const isEnergySavingMode =
+      ExtensionLocalStorageService.getCachedSync().energySavingMode;
 
-    const debouncedCallback = debounce(
-      () => {
-        getTaskScheduler()(config.onMutation);
-      },
+    const DEFAULT_DEBOUNCE_TIME = isEnergySavingMode ? 500 : 20;
+
+    const throttleFn = isEnergySavingMode ? throttle : debounce;
+
+    const throttledCallback = throttleFn(
+      config.onMutation,
       config.debounceTime ?? DEFAULT_DEBOUNCE_TIME,
-      { leading: false, trailing: true },
+      isEnergySavingMode ? {} : { leading: false, trailing: true },
     );
 
-    debouncedCallback?.();
+    throttledCallback?.();
 
-    return debouncedCallback;
+    return throttledCallback;
   }
 
   private static log(message: string): void {

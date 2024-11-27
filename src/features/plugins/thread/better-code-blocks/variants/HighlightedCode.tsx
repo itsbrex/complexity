@@ -1,9 +1,9 @@
 import { sendMessage } from "webext-bridge/content-script";
 
+import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-queue";
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import UiUtils from "@/utils/UiUtils";
-import { getTaskScheduler } from "@/utils/utils";
 
 type HighlightedCodeProps = {
   isWrapped: boolean;
@@ -37,9 +37,7 @@ export function HighlightedCode({ isWrapped }: HighlightedCodeProps) {
       setHighlightedCode(highlighted);
     };
 
-    getTaskScheduler()(() => {
-      highlightCode();
-    });
+    CallbackQueue.getInstance().enqueue(highlightCode);
   }, [codeString, lang, themeSettings]);
 
   if (!highlightedCode) {

@@ -1,5 +1,6 @@
 import { sendMessage } from "webext-bridge/content-script";
 
+import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-queue";
 import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import {
   ExtendedCodeBlock,
@@ -11,7 +12,7 @@ import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { DOM_INTERNAL_SELECTORS, DOM_SELECTORS } from "@/utils/dom-selectors";
 import UiUtils from "@/utils/UiUtils";
 import { MessageBlock } from "@/utils/UiUtils.types";
-import { queueMicrotasks, waitForElement, whereAmI } from "@/utils/utils";
+import { waitForElement, whereAmI } from "@/utils/utils";
 
 const DOM_OBSERVER_ID = {
   COMMON: "thread-common",
@@ -58,20 +59,21 @@ export async function setupThreadComponentsObserver(
     target: document.body,
     config: { childList: true, subtree: true },
     onMutation: () =>
-      queueMicrotasks(
+      CallbackQueue.getInstance().enqueueArray([
         monitorThreadWrapperExistence.bind(null, {
           threadWrapper,
           location,
         }),
         observePopper,
         observeThreadNavbar,
-      ),
+      ]),
   });
 
   DomObserver.create(DOM_OBSERVER_ID.MESSAGE_BLOCKS, {
     target: threadWrapper ?? document.body,
     config: { childList: true, subtree: true },
-    onMutation: () => queueMicrotasks(observeMessageBlocks),
+    onMutation: () =>
+      CallbackQueue.getInstance().enqueueArray([observeMessageBlocks]),
   });
 }
 
@@ -99,13 +101,17 @@ async function observeMessageBlocks() {
 
   const messageBlocks = UiUtils.getMessageBlocks();
 
-  queueMicrotasks(() => observerMessageBlockBottomBar({ messageBlocks }));
+  CallbackQueue.getInstance().enqueue(
+    observerMessageBlockBottomBar.bind(null, { messageBlocks }),
+  );
 
   const extendedMessageBlocks: ExtendedMessageBlock[] = await Promise.all(
     messageBlocks.map(
       async (block, index): Promise<ExtendedMessageBlock> => ({
         ...block,
-        title: block.$query.find("textarea").text() || block.$query.text(),
+        title: block.$query
+          .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
+          .text(),
         isInFlight: await sendMessage(
           "reactVdom:isMessageBlockInFlight",
           {
@@ -117,7 +123,9 @@ async function observeMessageBlocks() {
     ),
   );
 
-  queueMicrotasks(() => observeCodeBlocks(extendedMessageBlocks));
+  CallbackQueue.getInstance().enqueue(
+    observeCodeBlocks.bind(null, extendedMessageBlocks),
+  );
 
   globalDomObserverStore.getState().setThreadComponents({
     messageBlocks: extendedMessageBlocks,

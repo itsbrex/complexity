@@ -1,9 +1,10 @@
+import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-queue";
 import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/home/observer-ids";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
-import { queueMicrotasks, whereAmI } from "@/utils/utils";
+import { whereAmI } from "@/utils/utils";
 
 const DOM_OBSERVER_ID = "home-components";
 
@@ -27,7 +28,7 @@ export function setupHomeComponentsObserver(
   DomObserver.create(DOM_OBSERVER_ID, {
     target: document.body,
     config: { childList: true, subtree: true },
-    onMutation: () => queueMicrotasks(observeSlogan),
+    onMutation: () => CallbackQueue.getInstance().enqueueArray([observeSlogan]),
   });
 }
 

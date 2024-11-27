@@ -21,6 +21,7 @@ export const DOM_SELECTORS = {
       TEXT_COL_CHILD: {
         /** The query box */
         QUERY: ".my-md.md\\:my-lg",
+        QUERY_TITLE: ".group\\/title>:last-child",
         /** The answer heading */
         ANSWER_HEADING:
           ".mb-sm.flex.w-full.items-center.justify-between:has(svg.transform-gpu)",

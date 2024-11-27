@@ -7,7 +7,9 @@ export function ignoreInvalidPages() {
 
 export function checkForExistingExtensionInstance() {
   if ($(document.body).attr("data-cplx-injected")) {
-    alert("Complexity: Please only have one instance of the extension enabled");
+    console.warn(
+      "Complexity: Please only have one instance of the extension enabled",
+    );
     throw new Error("Already injected");
   }
 

@@ -2,12 +2,12 @@ import debounce from "lodash/debounce";
 import { useMemo, useCallback } from "react";
 import { sendMessage } from "webext-bridge/content-script";
 
+import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-queue";
 import {
   ExtendedCodeBlock,
   useGlobalDomObserverStore,
 } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { DOM_INTERNAL_SELECTORS } from "@/utils/dom-selectors";
-import { getTaskScheduler } from "@/utils/utils";
 
 export type MirroredCodeBlock = ExtendedCodeBlock & {
   portalContainer: HTMLElement | null;
@@ -112,7 +112,7 @@ export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
   useEffect(() => {
     if (!codeBlocks) return;
 
-    getTaskScheduler()(() => {
+    CallbackQueue.getInstance().enqueue(() => {
       debouncedProcessBlocks(codeBlocks);
     });
 

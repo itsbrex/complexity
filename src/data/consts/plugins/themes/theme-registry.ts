@@ -3,14 +3,19 @@ import {
   ThemeSchema,
 } from "@/data/consts/plugins/themes/theme-registry.types";
 
-export const THEME_REGISTRY: Record<string, Theme> = {
-  complexity: {
+export type BuiltInThemeId =
+  | "complexity"
+  | "complexity-perplexity"
+  | "complexity-shy-moment"
+  | "complexity-sour-lemon";
+
+export const THEME_REGISTRY: (Theme & { id: BuiltInThemeId })[] = [
+  {
     id: "complexity",
     label: "Complexity Blue",
     description: "Official theme with signature blue accent color",
-    featuredImage: "https://i.imgur.com/VRrJkQ2.png",
     author: "pnd280",
-    isOfficial: true,
+    isBuiltIn: true,
     compatibleWith: ["desktop", "mobile"],
     colorScheme: ["dark"],
     css: async () =>
@@ -22,17 +27,16 @@ export const THEME_REGISTRY: Record<string, Theme> = {
       "\n" +
       (
         await import(
-          "@/data/consts/plugins/themes/css-files/complexity/signature-blue.css?inline"
+          "@/data/consts/plugins/themes/css-files/complexity/complexity-blue.css?inline"
         )
       ).default,
   },
-  complexityPerplexity: {
+  {
     id: "complexity-perplexity",
-    label: "Perplexity Green",
-    description: "Official theme with Perplexity's default accent color",
-    featuredImage: "https://i.imgur.com/2l05vPh.png",
+    label: "Perplexity Default",
+    description: "Enhance the default theme",
     author: "pnd280",
-    isOfficial: true,
+    isBuiltIn: true,
     compatibleWith: ["desktop", "mobile"],
     colorScheme: ["light", "dark"],
     css: async () =>
@@ -42,13 +46,12 @@ export const THEME_REGISTRY: Record<string, Theme> = {
         )
       ).default,
   },
-  complexityShyMoment: {
+  {
     id: "complexity-shy-moment",
     label: "Shy Moment",
     description: "Official theme with purple-ish accent color",
-    featuredImage: "https://i.imgur.com/grA24HD.png",
     author: "pnd280",
-    isOfficial: true,
+    isBuiltIn: true,
     compatibleWith: ["desktop", "mobile"],
     colorScheme: ["dark"],
     css: async () =>
@@ -64,8 +67,29 @@ export const THEME_REGISTRY: Record<string, Theme> = {
         )
       ).default,
   },
-};
+  {
+    id: "complexity-sour-lemon",
+    label: "Sour Lemon",
+    description: "Official theme with yellow-ish accent color",
+    author: "pnd280",
+    isBuiltIn: true,
+    compatibleWith: ["desktop", "mobile"],
+    colorScheme: ["dark"],
+    css: async () =>
+      (
+        await import(
+          "@/data/consts/plugins/themes/css-files/complexity/base.css?inline"
+        )
+      ).default +
+      "\n" +
+      (
+        await import(
+          "@/data/consts/plugins/themes/css-files/complexity/sour-lemon.css?inline"
+        )
+      ).default,
+  },
+];
 
-Object.values(THEME_REGISTRY).forEach((theme) => {
+THEME_REGISTRY.forEach((theme) => {
   ThemeSchema.parse(theme);
 });

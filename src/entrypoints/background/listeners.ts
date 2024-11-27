@@ -1,6 +1,5 @@
 import { onMessage } from "webext-bridge/background";
 
-import { APP_CONFIG } from "@/app.config";
 import { getOptionsPageUrl } from "@/utils/utils";
 
 export type BackgroundEvents = {
@@ -12,9 +11,7 @@ export function setupBackgroundListeners() {
     return sender.tabId;
   });
 
-  if (APP_CONFIG.BROWSER === "firefox") {
-    createDashboardShortcut();
-  }
+  createDashboardShortcut();
 }
 
 function createDashboardShortcut() {

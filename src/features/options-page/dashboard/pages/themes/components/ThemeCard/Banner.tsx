@@ -1,6 +1,10 @@
-import { SVG_FEATURED_BANNERS } from "@/data/consts/plugins/themes/svg-featured-banners";
+import {
+  SVG_FEATURED_BANNERS,
+  ThemeBanner,
+} from "@/data/consts/plugins/themes/svg-featured-banners";
 import { BuiltInThemeId } from "@/data/consts/plugins/themes/theme-registry";
 import { Theme } from "@/data/consts/plugins/themes/theme-registry.types";
+import { hexToOklchString } from "@/features/options-page/dashboard/pages/themes/pages/utils";
 
 type ThemeCardBannerProps = {
   theme: Theme;
@@ -19,16 +23,25 @@ function BannerContent({ theme }: { theme: Theme }) {
     return (
       <img
         src={theme.featuredImage}
-        alt={theme.label}
+        alt={theme.title}
         className="tw-size-full tw-object-cover"
       />
     );
   }
 
   const svgBanner = SVG_FEATURED_BANNERS[theme.id as BuiltInThemeId];
+
   if (svgBanner != null) {
     return <div className="tw-h-full tw-w-full">{svgBanner}</div>;
   }
 
-  return null;
+  return (
+    <ThemeBanner
+      color={
+        theme.config?.accentColor
+          ? `oklch(${hexToOklchString(theme.config.accentColor)})`
+          : undefined
+      }
+    />
+  );
 }

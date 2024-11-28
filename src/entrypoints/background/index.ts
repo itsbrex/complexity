@@ -1,10 +1,7 @@
+import "webext-bridge/background"; // DO NOT REMOVE
+
 import { setupBackgroundListeners } from "@/entrypoints/background/listeners";
-import { getOptionsPageUrl } from "@/utils/utils";
+import { registerProxyServices } from "@/entrypoints/background/proxy-services";
 
-chrome.runtime.onInstalled.addListener(({ reason }) => {
-  if (reason === "install") {
-    chrome.tabs.create({ url: `${getOptionsPageUrl()}#/onboarding` });
-  }
-});
-
+registerProxyServices();
 setupBackgroundListeners();

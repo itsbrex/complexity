@@ -7,6 +7,12 @@ export type BackgroundEvents = {
 };
 
 export function setupBackgroundListeners() {
+  chrome.runtime.onInstalled.addListener(({ reason }) => {
+    if (reason === "install") {
+      chrome.tabs.create({ url: `${getOptionsPageUrl()}#/onboarding` });
+    }
+  });
+
   onMessage("bg:get-tab-id", ({ sender }) => {
     return sender.tabId;
   });

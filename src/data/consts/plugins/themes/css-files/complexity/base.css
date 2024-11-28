@@ -25,4 +25,6 @@ body#__next {
 
     @apply tw-rounded-md tw-bg-secondary tw-px-1 tw-py-0.5 tw-text-primary;
   }
+
+  font-variant-ligatures: none;
 }

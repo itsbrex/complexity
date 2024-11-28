@@ -8,15 +8,21 @@ const THEME_COLORS: Record<BuiltInThemeId, string> = {
   "complexity-sour-lemon": "oklch(93.86% 0.0876 92.74)",
 };
 
-function ThemeBanner({ color }: { color: string }) {
+export function ThemeBanner({ color }: { color?: string }) {
+  const shouldGlow = color != null;
+
+  if (!color) color = THEME_COLORS["complexity-perplexity"];
+
   return (
-    <div className="tw-bg-[oklch(180_2%_10%)] tw-relative tw-flex tw-size-full tw-items-center tw-justify-center">
-      <div
-        className="tw-absolute tw-size-[40vw] tw-rounded-full tw-blur-2xl md:tw-size-[10vw] xl:tw-size-[7.3vw]"
-        style={{
-          backgroundColor: `color-mix(in srgb, ${color} 20%, transparent)`,
-        }}
-      />
+    <div className="tw-relative tw-flex tw-size-full tw-items-center tw-justify-center tw-bg-[oklch(180_2%_10%)]">
+      {shouldGlow && (
+        <div
+          className="tw-absolute tw-size-[40vw] tw-rounded-full tw-blur-2xl md:tw-size-[10vw] xl:tw-size-[7.3vw]"
+          style={{
+            backgroundColor: `color-mix(in srgb, ${color} 20%, transparent)`,
+          }}
+        />
+      )}
       <Cplx
         className="tw-relative tw-size-[40vw] md:tw-size-[10vw] xl:tw-size-[7.3vw]"
         primary={color}

@@ -1,54 +1,56 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { parse, oklch } from "culori";
-import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
-import {
-  ThemeFormValues,
-  defaultValues,
-  themeFormSchema,
-} from "@/features/options-page/dashboard/pages/themes/pages/create-theme/theme-form.types";
+import { toast } from "@/components/ui/use-toast";
+import { ThemeFormValues } from "@/data/schemas/theme-form.schema";
+import { useBaseThemeForm } from "@/features/options-page/dashboard/pages/themes/hooks/useBaseThemeForm";
+import { getLocalThemesService } from "@/services/indexedDb/themes/themes";
+
+const initialValues: ThemeFormValues = {
+  title: "",
+  fonts: { ui: "", mono: "" },
+  accentColor: "",
+  enhanceThreadTypography: false,
+  customCss: "",
+};
 
 export function useThemeForm() {
-  const form = useForm<ThemeFormValues>({
-    resolver: zodResolver(themeFormSchema),
-    defaultValues,
-    mode: "onChange",
+  const { form, generateThemeData } = useBaseThemeForm(initialValues);
+
+  const navigate = useNavigate();
+
+  const { mutateAsync, isPending } = useMutation({
+    mutationKey: ["customTheme", "create"],
+    mutationFn: async (data: ThemeFormValues) => {
+      const themeData = await generateThemeData(data);
+      const savedThemeId = await getLocalThemesService().add({
+        id: `${Date.now()}-${data.title.toLowerCase().replace(/ /g, "-")}`,
+        author: "local",
+        config: data,
+        ...themeData,
+      });
+      return savedThemeId;
+    },
+    onSuccess: () => {
+      navigate("..");
+      toast({
+        title: "✅ Theme created",
+        description: "Your theme has been saved successfully",
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "❌ Failed to create theme",
+        description: error.message,
+      });
+    },
   });
 
-  const processColors = (data: ThemeFormValues) => {
-    const { shade1, shade2, shade3 } = data.accentShades;
-
-    if (shade1 && shade2 && shade3) {
-      const rgbColors = {
-        shade1: parse(shade1),
-        shade2: parse(shade2),
-        shade3: parse(shade3),
-      };
-
-      const oklchColors = {
-        shade1: oklch(rgbColors.shade1),
-        shade2: oklch(rgbColors.shade2),
-        shade3: oklch(rgbColors.shade3),
-      };
-
-      return { rgbColors, oklchColors };
-    }
-    return null;
-  };
-
-  const onSubmit = (data: ThemeFormValues) => {
-    const colors = processColors(data);
-    if (colors) {
-      console.log("RGB colors:", colors.rgbColors);
-      console.log("OKLCH colors:", colors.oklchColors);
-    } else {
-      console.log("No accent colors specified");
-    }
-  };
+  const onSubmit = form.handleSubmit((data) => mutateAsync(data));
 
   return {
     form,
-    onSubmit: form.handleSubmit(onSubmit),
-    processColors,
+    isPending,
+    onSubmit,
   };
 }

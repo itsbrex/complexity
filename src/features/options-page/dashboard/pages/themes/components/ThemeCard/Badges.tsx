@@ -1,10 +1,4 @@
-import {
-  LuSun,
-  LuMoon,
-  LuMonitor,
-  LuSmartphone,
-  LuBadgeCheck,
-} from "react-icons/lu";
+import { LuSun, LuMoon, LuMonitor, LuSmartphone } from "react-icons/lu";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -29,15 +23,3 @@ export const CompatibilityBadge = memo(
     );
   },
 );
-
-export const OfficialBadge = memo(() => {
-  return (
-    <Badge
-      variant="secondary"
-      className="tw-flex tw-items-center tw-gap-2 tw-bg-primary/10"
-    >
-      <LuBadgeCheck className="tw-size-3 tw-text-primary" />
-      Official
-    </Badge>
-  );
-});

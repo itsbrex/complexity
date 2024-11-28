@@ -8,9 +8,9 @@ export class ExtensionLocalStorageApi {
     await chrome.storage.local.set(store);
   }
 
-  static async listen(callback: (store: ExtensionLocalStorage) => void) {
-    chrome.storage.local.onChanged.addListener((changes) => {
-      callback(changes as ExtensionLocalStorage);
+  static async listen(callback: () => void) {
+    chrome.storage.local.onChanged.addListener(() => {
+      callback();
     });
   }
 }

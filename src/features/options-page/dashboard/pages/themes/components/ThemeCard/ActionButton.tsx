@@ -1,4 +1,4 @@
-import { LuDownload, LuTrash2 } from "react-icons/lu";
+import { LuCheckCircle2, LuXCircle } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
 import { Button } from "@/components/ui/button";
@@ -23,17 +23,17 @@ export default function ThemeCardActionButton({
   }, [mutation, isChosenTheme, theme]);
 
   return (
-    <Tooltip content={isChosenTheme ? "Uninstall" : "Install"}>
+    <Tooltip content={isChosenTheme ? "Disable" : "Enable"}>
       <Button
         variant="outline"
         size="icon"
         className={cn({
-          "tw-bg-destructive/10 tw-text-muted-foreground hover:tw-bg-destructive hover:tw-text-destructive-foreground":
+          "tw-bg-destructive/50 tw-text-muted-foreground hover:tw-bg-destructive hover:tw-text-destructive-foreground":
             isChosenTheme,
         })}
         onClick={handleThemeAction}
       >
-        {isChosenTheme ? <LuTrash2 /> : <LuDownload />}
+        {isChosenTheme ? <LuXCircle /> : <LuCheckCircle2 />}
       </Button>
     </Tooltip>
   );

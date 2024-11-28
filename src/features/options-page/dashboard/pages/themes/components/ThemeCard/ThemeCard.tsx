@@ -1,18 +1,27 @@
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardFooter,
+} from "@/components/ui/card";
 import { Theme } from "@/data/consts/plugins/themes/theme-registry.types";
 import ThemeActionButton from "@/features/options-page/dashboard/pages/themes/components/ThemeCard/ActionButton";
 import {
   ColorSchemeBadge,
   CompatibilityBadge,
-  OfficialBadge,
 } from "@/features/options-page/dashboard/pages/themes/components/ThemeCard/Badges";
 import ThemeCardBanner from "@/features/options-page/dashboard/pages/themes/components/ThemeCard/Banner";
+import ThemeCardEditButton from "@/features/options-page/dashboard/pages/themes/components/ThemeCard/EditButton";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
 type ThemeCardProps = {
   theme?: Theme;
+  type: "local" | "built-in";
 };
 
-export default function ThemeCard({ theme }: ThemeCardProps) {
+export default function ThemeCard({ theme, type }: ThemeCardProps) {
   const { settings } = useExtensionLocalStorage();
 
   const isChosenTheme = settings?.theme === theme?.id;
@@ -20,9 +29,9 @@ export default function ThemeCard({ theme }: ThemeCardProps) {
   if (!theme) return null;
 
   return (
-    <div
+    <Card
       className={cn(
-        "tw-group tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-rounded-xl tw-border tw-border-border/50 tw-transition-all",
+        "tw-group tw-relative tw-flex tw-flex-col tw-overflow-hidden tw-border-border/50 tw-bg-secondary tw-transition-all",
         { "tw-border-primary tw-bg-primary/10": isChosenTheme },
       )}
     >
@@ -30,34 +39,32 @@ export default function ThemeCard({ theme }: ThemeCardProps) {
         <ThemeCardBanner theme={theme} />
       </div>
 
-      <div className="tw-flex tw-grow tw-flex-col tw-items-start tw-justify-between tw-gap-4 tw-p-4">
-        <div>
-          <div className="tw-mb-1 tw-text-lg tw-font-semibold">
-            {theme.label}
-          </div>
-          <div className="tw-mb-3 tw-text-sm tw-text-muted-foreground">
-            {theme.description}
-          </div>
-          <div className="tw-flex tw-flex-wrap tw-gap-2">
-            {theme.isBuiltIn && <OfficialBadge />}
-            {theme.colorScheme.includes("light") && (
-              <ColorSchemeBadge type="light" />
-            )}
-            {theme.colorScheme.includes("dark") && (
-              <ColorSchemeBadge type="dark" />
-            )}
-            {theme.compatibleWith.includes("desktop") && (
-              <CompatibilityBadge type="desktop" />
-            )}
-            {theme.compatibleWith.includes("mobile") && (
-              <CompatibilityBadge type="mobile" />
-            )}
-          </div>
+      <CardHeader className="tw-space-y-0">
+        <CardTitle className="tw-text-lg">{theme.title}</CardTitle>
+        <CardDescription>{theme.description}</CardDescription>
+      </CardHeader>
+
+      <CardContent className="tw-grow">
+        <div className="tw-flex tw-flex-wrap tw-gap-2">
+          {theme.colorScheme?.includes("light") && (
+            <ColorSchemeBadge type="light" />
+          )}
+          {theme.colorScheme?.includes("dark") && (
+            <ColorSchemeBadge type="dark" />
+          )}
+          {theme.compatibleWith?.includes("desktop") && (
+            <CompatibilityBadge type="desktop" />
+          )}
+          {theme.compatibleWith?.includes("mobile") && (
+            <CompatibilityBadge type="mobile" />
+          )}
         </div>
-        <div className="tw-ml-auto">
-          <ThemeActionButton theme={theme} />
-        </div>
-      </div>
-    </div>
+      </CardContent>
+
+      <CardFooter className="tw-flex tw-flex-row tw-justify-end tw-gap-2">
+        {type === "local" && <ThemeCardEditButton theme={theme} />}
+        <ThemeActionButton theme={theme} />
+      </CardFooter>
+    </Card>
   );
 }

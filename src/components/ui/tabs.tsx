@@ -34,7 +34,7 @@ const TabsList = forwardRef<ElementRef<typeof ArkTabs.List>, ArkTabs.ListProps>(
       ref={ref}
       className={cn(
         "tw-inline-flex tw-items-center tw-justify-center tw-rounded-md tw-p-1 tw-text-muted-foreground",
-        "data-[orientation=horizontal]:tw-h-10",
+        "data-[orientation=horizontal]:tw-flex-wrap data-[orientation=horizontal]:tw-gap-2",
         "data-[orientation=vertical]:tw-h-max data-[orientation=vertical]:tw-flex-col data-[orientation=vertical]:tw-gap-1",
         className,
       )}

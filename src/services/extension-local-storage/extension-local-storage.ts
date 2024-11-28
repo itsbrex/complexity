@@ -27,7 +27,7 @@ export class ExtensionLocalStorageService {
       );
     }
 
-    ExtensionLocalStorageApi.listen(async () => {
+    ExtensionLocalStorageApi.listen(() => {
       invalidateExtensionLocalStorageDataQuery();
     });
 

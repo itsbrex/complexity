@@ -7,6 +7,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import Page from "@/features/options-page/components/Page";
 import ErrorPage from "@/features/options-page/dashboard/pages/ErrorPage";
 import NotFoundPage from "@/features/options-page/dashboard/pages/NotFoundPage";
+import { ThemesPageRoutes } from "@/features/options-page/dashboard/pages/themes/routes";
 
 const Playground = lazy(
   () => import("@/features/options-page/playground/Playground"),
@@ -25,10 +26,6 @@ const NotificationsPage = lazy(
 
 const PluginsPage = lazy(
   () => import("@/features/options-page/dashboard/pages/plugins/PluginsPage"),
-);
-
-const ThemesPage = lazy(
-  () => import("@/features/options-page/dashboard/pages/themes/ThemesPage"),
 );
 
 const ReleaseNotesPage = lazy(
@@ -68,7 +65,7 @@ export const router: ReturnType<typeof createHashRouter> = createHashRouter([
           },
           {
             path: "themes/*",
-            element: <Page title="Themes" page={ThemesPage} />,
+            children: ThemesPageRoutes,
           },
           {
             path: "release-notes/*",

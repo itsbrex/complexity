@@ -5,6 +5,7 @@ import ReactDOM from "react-dom/client";
 import { I18nextProvider } from "react-i18next";
 import { RouterProvider } from "react-router-dom";
 
+import { Toaster } from "@/components/Toaster";
 import { setupOptionPageListeners } from "@/features/options-page/listeners";
 import { router } from "@/features/options-page/router";
 import { extensionLocalStorageQueries } from "@/services/extension-local-storage/query-keys";
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("app") as HTMLElement).render(
   <QueryClientProvider client={queryClient}>
     <I18nextProvider i18n={i18n}>
       <RouterProvider router={router} />
+      <Toaster />
     </I18nextProvider>
     <ReactQueryDevtools />
   </QueryClientProvider>,

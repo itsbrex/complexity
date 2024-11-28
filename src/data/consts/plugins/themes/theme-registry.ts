@@ -1,3 +1,7 @@
+import complexityBase from "@/data/consts/plugins/themes/css-files/complexity/base.css?inline";
+import complexityBlue from "@/data/consts/plugins/themes/css-files/complexity/complexity-blue.css?inline";
+import shyMoment from "@/data/consts/plugins/themes/css-files/complexity/shy-moment.css?inline";
+import sourLemon from "@/data/consts/plugins/themes/css-files/complexity/sour-lemon.css?inline";
 import {
   Theme,
   ThemeSchema,
@@ -9,87 +13,45 @@ export type BuiltInThemeId =
   | "complexity-shy-moment"
   | "complexity-sour-lemon";
 
-export const THEME_REGISTRY: (Theme & { id: BuiltInThemeId })[] = [
+export const BUILTIN_THEME_REGISTRY: (Theme & { id: BuiltInThemeId })[] = [
   {
     id: "complexity",
-    label: "Complexity Blue",
+    title: "Complexity Blue",
     description: "Official theme with signature blue accent color",
     author: "pnd280",
-    isBuiltIn: true,
     compatibleWith: ["desktop", "mobile"],
     colorScheme: ["dark"],
-    css: async () =>
-      (
-        await import(
-          "@/data/consts/plugins/themes/css-files/complexity/base.css?inline"
-        )
-      ).default +
-      "\n" +
-      (
-        await import(
-          "@/data/consts/plugins/themes/css-files/complexity/complexity-blue.css?inline"
-        )
-      ).default,
+    css: complexityBase + "\n" + complexityBlue,
   },
   {
     id: "complexity-perplexity",
-    label: "Perplexity Default",
+    title: "Perplexity Default",
     description: "Enhance the default theme",
     author: "pnd280",
-    isBuiltIn: true,
     compatibleWith: ["desktop", "mobile"],
     colorScheme: ["light", "dark"],
-    css: async () =>
-      (
-        await import(
-          "@/data/consts/plugins/themes/css-files/complexity/base.css?inline"
-        )
-      ).default,
+    css: complexityBase,
   },
   {
     id: "complexity-shy-moment",
-    label: "Shy Moment",
+    title: "Shy Moment",
     description: "Official theme with purple-ish accent color",
     author: "pnd280",
-    isBuiltIn: true,
     compatibleWith: ["desktop", "mobile"],
     colorScheme: ["dark"],
-    css: async () =>
-      (
-        await import(
-          "@/data/consts/plugins/themes/css-files/complexity/base.css?inline"
-        )
-      ).default +
-      "\n" +
-      (
-        await import(
-          "@/data/consts/plugins/themes/css-files/complexity/shy-moment.css?inline"
-        )
-      ).default,
+    css: complexityBase + "\n" + shyMoment,
   },
   {
     id: "complexity-sour-lemon",
-    label: "Sour Lemon",
+    title: "Sour Lemon",
     description: "Official theme with yellow-ish accent color",
     author: "pnd280",
-    isBuiltIn: true,
     compatibleWith: ["desktop", "mobile"],
     colorScheme: ["dark"],
-    css: async () =>
-      (
-        await import(
-          "@/data/consts/plugins/themes/css-files/complexity/base.css?inline"
-        )
-      ).default +
-      "\n" +
-      (
-        await import(
-          "@/data/consts/plugins/themes/css-files/complexity/sour-lemon.css?inline"
-        )
-      ).default,
+    css: complexityBase + "\n" + sourLemon,
   },
 ];
 
-THEME_REGISTRY.forEach((theme) => {
+BUILTIN_THEME_REGISTRY.forEach((theme) => {
   ThemeSchema.parse(theme);
 });

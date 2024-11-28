@@ -38,6 +38,9 @@ importers:
       '@uidotdev/usehooks':
         specifier: ^2.4.1
         version: 2.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@webext-core/proxy-service':
+        specifier: ^1.2.1
+        version: 1.2.1(@webext-core/messaging@2.1.0)(webextension-polyfill@0.12.0)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -50,6 +53,9 @@ importers:
       culori:
         specifier: ^4.0.1
         version: 4.0.1
+      dexie:
+        specifier: ^4.0.10
+        version: 4.0.10
       engine.io-parser:
         specifier: ^5.2.3
         version: 5.2.3
@@ -574,6 +580,10 @@ packages:
     resolution: {integrity: sha512-3aWSwwih7CRfZu6XnoduuHn3PeeuhkYag+cDSNJG37xH2/zOp84DOhyJaBXNxU/NyNbB3XjF4o7P37EN1yep/g==}
     peerDependencies:
       eslint: ^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8
+
+  '@lukeed/csprng@1.1.0':
+    resolution: {integrity: sha512-Z7C/xXCiGWsg0KuKsHTKJxbWhpI3Vs5GwLfOean7MGyVFGqdRgBbAjOCh6u4bbjPc/8MJ2pZmK/0DLdCbivLDA==}
+    engines: {node: '>=8'}
 
   '@lukemorales/query-key-factory@1.3.4':
     resolution: {integrity: sha512-A3frRDdkmaNNQi6mxIshsDk4chRXWoXa05US8fBo4kci/H+lVmujS6QrwQLLGIkNIRFGjMqp2uKjC4XsLdydRw==}
@@ -1269,6 +1279,15 @@ packages:
 
   '@webext-core/fake-browser@1.3.1':
     resolution: {integrity: sha512-NpBl0rXL6rT3msdl9Fb1GPLd/MKJEZ3pHpxuMdlu+qKW78T6SWJqDvyAVs8VjAmYs9RHoQJc+yObxQoGWdskXQ==}
+
+  '@webext-core/messaging@2.1.0':
+    resolution: {integrity: sha512-1Bwr97HDMRQJ+XFwvhAvE4fdHK7Ge1o3NHxr/Cyv5yYCDAfz6cSzQaopeGZkkW/kN5eBRb1g3yonVwXC5ZXt8w==}
+
+  '@webext-core/proxy-service@1.2.1':
+    resolution: {integrity: sha512-MTs/7o8dZ8q7ySO0Kkkz9DYKPdTvMZqCYi7VVj1onzIHVy7m9b/OesQ8c3rrPzu8ZaljuZQJKfO3GITI6tSj6A==}
+    peerDependencies:
+      '@webext-core/messaging': '>=1.3.1'
+      webextension-polyfill: ^0.12.0
 
   '@zag-js/accordion@0.77.1':
     resolution: {integrity: sha512-KEXFPZB+Z2NfdQLNDOZ5fbRzv++mIDmZdpOPjP0kur7asVhLEyhLtpBEfXKMdF1fZoYOeXT4R6loZ5fRXPfK+Q==}
@@ -2041,6 +2060,9 @@ packages:
   devlop@1.1.0:
     resolution: {integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==}
 
+  dexie@4.0.10:
+    resolution: {integrity: sha512-eM2RzuR3i+M046r2Q0Optl3pS31qTWf8aFuA7H9wnsHTwl8EPvroVLwvQene/6paAs39Tbk6fWZcn2aZaHkc/w==}
+
   didyoumean@1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
 
@@ -2564,6 +2586,10 @@ packages:
   get-value@2.0.6:
     resolution: {integrity: sha512-Ln0UQDlxH1BapMu3GPtf7CuYNwRZf2gwCuPqbyG6pB8WfmFpzqcy4xtAaAMUhnNqjMKTiCPZG2oMT3YSx8U2NA==}
     engines: {node: '>=0.10.0'}
+
+  get-value@3.0.1:
+    resolution: {integrity: sha512-mKZj9JLQrwMBtj5wxi6MH8Z5eSKaERpAwjg43dPtlGI1ZVEgH/qC7T8/6R2OBSUA+zzHBZgICsVJaEIV2tKTDA==}
+    engines: {node: '>=6.0'}
 
   glob-parent@3.1.0:
     resolution: {integrity: sha512-E8Ak/2+dZY6fnzlR7+ueWvhsH1SjHr4jjss4YS/h4py44jY9MhK/VFdaZJAWDz6BbL21KeteKxFSFpq8OS5gVA==}
@@ -4074,6 +4100,10 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  serialize-error@11.0.3:
+    resolution: {integrity: sha512-2G2y++21dhj2R7iHAdd0FIzjGwuKZld+7Pl/bTU6YIkrC2ZMbVUjm+luj6A6V34Rv9XfKJDKpTWu9W4Gse1D9g==}
+    engines: {node: '>=14.16'}
+
   serialize-error@9.1.1:
     resolution: {integrity: sha512-6uZQLGyUkNA4N+Zii9fYukmNu9PEA1F5rqcwXzN/3LtBjwl2dFBbVZ1Zyn08/CGkB4H440PIemdOQBt1Wvjbrg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -4475,6 +4505,10 @@ packages:
 
   ufo@1.5.4:
     resolution: {integrity: sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ==}
+
+  uid@2.0.2:
+    resolution: {integrity: sha512-u3xV3X7uzvi5b1MncmZo3i2Aw222Zk1keqLA1YkHldREkAhAqi65wuPfe7lHx8H/Wzy+8CE7S7uS3jekIM5s8g==}
+    engines: {node: '>=8'}
 
   unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
@@ -5209,6 +5243,8 @@ snapshots:
       slash: 3.0.0
       tsconfig-paths: 4.2.0
 
+  '@lukeed/csprng@1.1.0': {}
+
   '@lukemorales/query-key-factory@1.3.4(@tanstack/query-core@5.60.6)(@tanstack/react-query@5.61.3(react@18.3.1))':
     dependencies:
       '@tanstack/query-core': 5.60.6
@@ -5868,6 +5904,18 @@ snapshots:
   '@webext-core/fake-browser@1.3.1':
     dependencies:
       lodash.merge: 4.6.2
+
+  '@webext-core/messaging@2.1.0':
+    dependencies:
+      serialize-error: 11.0.3
+      uid: 2.0.2
+      webextension-polyfill: 0.12.0
+
+  '@webext-core/proxy-service@1.2.1(@webext-core/messaging@2.1.0)(webextension-polyfill@0.12.0)':
+    dependencies:
+      '@webext-core/messaging': 2.1.0
+      get-value: 3.0.1
+      webextension-polyfill: 0.12.0
 
   '@zag-js/accordion@0.77.1':
     dependencies:
@@ -6983,6 +7031,8 @@ snapshots:
     dependencies:
       dequal: 2.0.3
 
+  dexie@4.0.10: {}
+
   didyoumean@1.2.2: {}
 
   dir-glob@3.0.1:
@@ -7724,6 +7774,10 @@ snapshots:
       resolve-pkg-maps: 1.0.0
 
   get-value@2.0.6: {}
+
+  get-value@3.0.1:
+    dependencies:
+      isobject: 3.0.1
 
   glob-parent@3.1.0:
     dependencies:
@@ -9236,6 +9290,10 @@ snapshots:
 
   semver@7.6.3: {}
 
+  serialize-error@11.0.3:
+    dependencies:
+      type-fest: 2.19.0
+
   serialize-error@9.1.1:
     dependencies:
       type-fest: 2.19.0
@@ -9712,6 +9770,10 @@ snapshots:
   uberproto@1.2.0: {}
 
   ufo@1.5.4: {}
+
+  uid@2.0.2:
+    dependencies:
+      '@lukeed/csprng': 1.1.0
 
   unbox-primitive@1.0.2:
     dependencies:

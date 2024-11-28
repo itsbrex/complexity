@@ -43,10 +43,10 @@ export class CallbackQueue {
 
   public enqueue(callback: Callback): void {
     const newNode = new Node(callback);
-    if (!this.head) {
+    if (!this.head || !this.tail) {
       this.head = this.tail = newNode;
-    } else {
-      this.tail!.next = newNode;
+    } else if (this.tail != null) {
+      this.tail.next = newNode;
       this.tail = newNode;
     }
     this.startProcessing();

@@ -16,7 +16,7 @@ export function useObserver(): UseObserverReturn {
     if (bottomBar == null) return null;
 
     const $anchor = $(bottomBar).find(
-      DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR_CHILD.THUMBS_DOWN_BUTTON,
+      DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR_CHILD.COPY_BUTTON,
     );
 
     const $existingPortalContainer = $(bottomBar).find(`div.${OBSERVER_ID}`);
@@ -25,7 +25,7 @@ export function useObserver(): UseObserverReturn {
 
     const $portalContainer = $(`<div>`).addClass(OBSERVER_ID);
 
-    $anchor.after($portalContainer);
+    $anchor.before($portalContainer);
 
     return $portalContainer[0];
   });

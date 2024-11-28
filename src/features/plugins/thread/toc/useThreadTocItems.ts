@@ -41,19 +41,19 @@ export function useThreadTocItems() {
 
     observerRef.current = observer;
 
-    const newItems = messageBlocks.map(({ $wrapper, title }, idx) => {
-      const id = `toc-item-${idx}`;
-      $wrapper.attr("id", id);
-      observer.observe($wrapper[0]);
-      return {
-        id,
-        title,
-        element: $wrapper,
-        isActive: id === activeItemIdRef.current,
-      };
-    });
-
-    setTocItems(newItems);
+    setTocItems((prevTocItems) =>
+      messageBlocks.map(({ $wrapper, title }, idx) => {
+        const id = `toc-item-${idx}`;
+        $wrapper.attr("id", id);
+        observer.observe($wrapper[0]);
+        return {
+          id,
+          title: title.length > 0 ? title : prevTocItems[idx].title,
+          element: $wrapper,
+          isActive: id === activeItemIdRef.current,
+        };
+      }),
+    );
 
     return () => {
       observer.disconnect();

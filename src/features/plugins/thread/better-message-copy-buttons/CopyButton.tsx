@@ -50,7 +50,7 @@ const BetterCopyButton = memo(function BetterCopyButton({
         handleCopy((value as CopyOptions) === "default");
       }}
     >
-      <Tooltip content="Copy">
+      <Tooltip content="Copy Message">
         <DropdownMenuTrigger asChild>
           <CopyButtonTrigger
             isFetching={isFetching}

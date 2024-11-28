@@ -12,11 +12,11 @@ export function useObserver(): UseObserverReturn {
 
   if (messageBlockBottomBars == null) return [];
 
-  return messageBlockBottomBars.map((bottomBar, index) => {
+  return messageBlockBottomBars.map((bottomBar) => {
     if (bottomBar == null) return null;
 
-    const $copyButton = $(bottomBar).find(
-      DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR_CHILD.COPY_BUTTON,
+    const $anchor = $(bottomBar).find(
+      DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR_CHILD.THUMBS_DOWN_BUTTON,
     );
 
     const $existingPortalContainer = $(bottomBar).find(`div.${OBSERVER_ID}`);
@@ -25,7 +25,7 @@ export function useObserver(): UseObserverReturn {
 
     const $portalContainer = $(`<div>`).addClass(OBSERVER_ID);
 
-    $copyButton.before($portalContainer);
+    $anchor.after($portalContainer);
 
     return $portalContainer[0];
   });

@@ -11,6 +11,7 @@ export type ReactVdomEvents = {
   "reactVdom:getMessageDisplayModelCode": (params: {
     index: number;
   }) => string | null;
+  "reactVdom:getMessageContent": (params: { index: number }) => string | null;
   "reactVdom:getCodeFromCodeBlock": (params: {
     messageBlockIndex: number;
     codeBlockIndex: number;
@@ -67,6 +68,30 @@ export function setupReactVdomListeners() {
     if (error || modelCode == null) return null;
 
     return modelCode;
+  });
+
+  onMessage("reactVdom:getMessageContent", ({ data: { index } }) => {
+    const selector = `${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK}[data-index="${index}"] ${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER} div[dir="auto"]`;
+
+    const $el = $(selector);
+
+    if (!$el.length) return null;
+
+    const [answer, error] = errorWrapper(() =>
+      findReactFiberNodeValue({
+        fiberNode: ($el[0] as any)[getReactFiberKey($el[0])],
+        condition: (node) =>
+          node.memoizedProps.children[2].props.response.answer != null,
+        select: (node) =>
+          node.memoizedProps.children[2].props.response.answer as string,
+      }),
+    )();
+
+    if (error) console.warn("[VDOM Plugin] getMessageContent", error);
+
+    if (error || answer == null) return null;
+
+    return answer;
   });
 
   onMessage(

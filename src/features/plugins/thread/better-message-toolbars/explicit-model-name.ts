@@ -20,6 +20,8 @@ export function explicitModelName(messageBlocks: ExtendedMessageBlock[]) {
 
     $buttonBar.attr(OBSERVER_ID, "true");
 
+    await sleep(200);
+
     const modelCode = await sendMessage(
       "reactVdom:getMessageDisplayModelCode",
       {

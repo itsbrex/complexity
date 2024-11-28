@@ -19,7 +19,7 @@ const DomSelectors = {
       TEXT_COL_CHILD: {
         /** The query box */
         QUERY: ".my-md.md\\:my-lg",
-        QUERY_TITLE: ".group\\/title>:last-child",
+        QUERY_TITLE: ".group\\/title>:nth-last-child(2)",
         /** The answer box */
         ANSWER: ".mb-md",
         /** The answer heading */

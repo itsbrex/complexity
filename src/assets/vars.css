@@ -1,67 +1,67 @@
 @layer base {
   :root {
-    --background: 60 33% 98%;
-    --foreground: 189 51% 15%;
+    --background: 98.89% 0.0044 106.48;
+    --foreground: 30.29% 0.0397 210.77;
 
-    --card: 60 33% 98%;
-    --card-foreground: 189 51% 15%;
+    --card: 98.89% 0.0044 106.48;
+    --card-foreground: 30.29% 0.0397 210.77;
 
-    --popover: 60 33% 98%;
-    --popover-foreground: 189 51% 15%;
+    --popover: 98.89% 0.0044 106.48;
+    --popover-foreground: 30.29% 0.0397 210.77;
 
-    --primary: 187.19 62% 34%;
-    --primary-foreground: 60 4% 91%;
+    --primary: 55.14% 0.0857 208.54;
+    --primary-foreground: 93.34% 0.0025 106.45;
 
-    --secondary: 60 17% 94%;
-    --secondary-foreground: 189 51% 15%;
+    --secondary: 96.06% 0.0069 106.53;
+    --secondary-foreground: 30.29% 0.0397 210.77;
 
-    --muted: 60 17% 94%;
-    --muted-foreground: 60 3% 38%;
+    --muted: 96.06% 0.0069 106.53;
+    --muted-foreground: 50.07% 0.009 106.72;
 
-    --success: 142 71% 45%;
-    --success-foreground: 60 4% 91%;
+    --success: 72.05% 0.192 149.49;
+    --success-foreground: 93.34% 0.0025 106.45;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 60 4% 91%;
+    --destructive: 63.56% 0.2082 25.38;
+    --destructive-foreground: 93.34% 0.0025 106.45;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 187.19 62% 34%;
+    --border: 92.34% 0 0;
+    --input: 92.34% 0 0;
+    --ring: 55.14% 0.0857 208.54;
 
     --radius: 0.5rem;
 
-    --button-background: 59.99 10% 90%;
+    --button-background: 92.97% 0.0068 106.52;
   }
 
   [data-color-scheme="dark"] {
-    --background: 180 2% 10%;
-    --foreground: 60 4% 91%;
+    --background: 21.67% 0.0016 197.04;
+    --foreground: 93.34% 0.0025 106.45;
 
-    --card: 180 2% 10%;
-    --card-foreground: 60 4% 91%;
+    --card: 21.67% 0.0016 197.04;
+    --card-foreground: 93.34% 0.0025 106.45;
 
-    --popover: 180 2% 10%;
-    --popover-foreground: 60 4% 91%;
+    --popover: 21.67% 0.0016 197.04;
+    --popover-foreground: 93.34% 0.0025 106.45;
 
-    --primary: 187 73% 46%;
-    --primary-foreground: 180 2% 18%;
+    --primary: 71.56% 0.1183 209.17;
+    --primary-foreground: 30.26% 0.0026 197.02;
 
-    --secondary: 180 3% 13%;
-    --secondary-foreground: 60 4% 91%;
+    --secondary: 25.05% 0.0029 196.97;
+    --secondary-foreground: 93.34% 0.0025 106.45;
 
-    --muted: 200 2% 25%;
-    --muted-foreground: 180 2% 56%;
+    --muted: 37.08% 0.0027 228.85;
+    --muted-foreground: 65.31% 0.0053 197.03;
 
-    --success: 142 77% 73%;
-    --success-foreground: 60 4% 91%;
+    --success: 87.12% 0.137 154.59;
+    --success-foreground: 93.34% 0.0025 106.45;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 60 4% 91%;
+    --destructive: 39.96% 0.1348 25.77;
+    --destructive-foreground: 93.34% 0.0025 106.45;
 
-    --border: 200 2% 25%;
-    --input: 200 2% 25%;
-    --ring: 187 73% 46%;
+    --border: 37.08% 0.0027 228.85;
+    --input: 37.08% 0.0027 228.85;
+    --ring: 71.56% 0.1183 209.17;
 
-    --button-background: 180.01 2% 18%;
+    --button-background: 30.26% 0.0026 197.03;
   }
 }

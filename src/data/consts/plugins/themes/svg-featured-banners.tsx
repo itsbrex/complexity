@@ -2,15 +2,15 @@ import Cplx from "@/components/icons/Cplx";
 import { BuiltInThemeId } from "@/data/consts/plugins/themes/theme-registry";
 
 const THEME_COLORS: Record<BuiltInThemeId, string> = {
-  complexity: "hsl(214 97% 72%)",
-  "complexity-perplexity": "hsl(187 73% 46%)",
-  "complexity-shy-moment": "hsl(244 98% 80%)",
-  "complexity-sour-lemon": "hsl(46 100% 83%)",
+  complexity: "oklch(74.37% 0.1304 255.6)",
+  "complexity-perplexity": "oklch(71.56% 0.1183 209.17)",
+  "complexity-shy-moment": "oklch(73.59% 0.1411 285.6)",
+  "complexity-sour-lemon": "oklch(93.86% 0.0876 92.74)",
 };
 
 function ThemeBanner({ color }: { color: string }) {
   return (
-    <div className="tw-bg-[hsl(180_2%_10%)] tw-relative tw-flex tw-size-full tw-items-center tw-justify-center">
+    <div className="tw-bg-[oklch(180_2%_10%)] tw-relative tw-flex tw-size-full tw-items-center tw-justify-center">
       <div
         className="tw-absolute tw-size-[40vw] tw-rounded-full tw-blur-2xl md:tw-size-[10vw] xl:tw-size-[7.3vw]"
         style={{
@@ -20,7 +20,7 @@ function ThemeBanner({ color }: { color: string }) {
       <Cplx
         className="tw-relative tw-size-[40vw] md:tw-size-[10vw] xl:tw-size-[7.3vw]"
         primary={color}
-        secondary="hsl(60 4% 91%)"
+        secondary="oklch(93.34% 0.0025 106.45)"
       />
     </div>
   );

@@ -1,8 +1,8 @@
 import { SVGProps } from "react";
 
 export default function Cplx({
-  primary = "hsl(var(--primary))",
-  secondary = "hsl(var(--foreground))",
+  primary = "oklch(var(--primary))",
+  secondary = "oklch(var(--foreground))",
   ...props
 }: SVGProps<SVGSVGElement> & { primary?: string; secondary?: string }) {
   return (

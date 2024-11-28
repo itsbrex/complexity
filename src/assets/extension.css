@@ -9,6 +9,8 @@
 
 @layer base {
   [data-color-scheme="dark"] {
+    color-scheme: dark;
+
     --primary: 214 97% 72%;
     --ring: 214 97% 72%;
   }

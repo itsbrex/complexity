@@ -1,13 +1,17 @@
 import { LuPlus } from "react-icons/lu";
-import { useRoutes } from "react-router-dom";
+import { useNavigate, useRoutes } from "react-router-dom";
 
 import { THEME_REGISTRY } from "@/data/consts/plugins/themes/theme-registry";
+import Page from "@/features/options-page/components/Page";
 import { ThemeSections } from "@/features/options-page/dashboard/pages/themes/components/ThemeSections";
+import CreateThemePage from "@/features/options-page/dashboard/pages/themes/pages/create-theme/CreateThemePage";
 
 function ThemesListing() {
   const themes = Object.values(THEME_REGISTRY);
   const builtInThemes = themes.filter((theme) => theme.isBuiltIn);
   const communityThemes = themes.filter((theme) => !theme.isBuiltIn);
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -19,7 +23,10 @@ function ThemesListing() {
       </div>
 
       <div className="tw-mb-8 tw-flex tw-justify-center md:tw-justify-start">
-        <div className="tw-group tw-relative tw-flex tw-w-[300px] tw-cursor-pointer tw-flex-col tw-items-center tw-justify-center tw-gap-6 tw-overflow-hidden tw-rounded-xl tw-border tw-border-border/50 tw-py-8 tw-transition-all hover:tw-border-primary/50">
+        <div
+          className="tw-group tw-relative tw-flex tw-w-[300px] tw-cursor-pointer tw-flex-col tw-items-center tw-justify-center tw-gap-6 tw-overflow-hidden tw-rounded-xl tw-border tw-border-border/50 tw-py-8 tw-transition-all hover:tw-border-primary/50"
+          onClick={() => navigate("new")}
+        >
           <div className="tw-rounded-full tw-border tw-border-border/50 tw-p-4 tw-transition-colors group-hover:tw-border-primary/50">
             <LuPlus className="tw-h-6 tw-w-6 tw-text-muted-foreground tw-transition-colors group-hover:tw-text-primary" />
           </div>
@@ -42,6 +49,14 @@ function ThemesListing() {
 
 export default function ThemesPage() {
   return useRoutes([
+    {
+      path: "new",
+      element: (
+        <Page title="Create Custom Theme">
+          <CreateThemePage />
+        </Page>
+      ),
+    },
     {
       path: "*",
       element: <ThemesListing />,

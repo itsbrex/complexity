@@ -1,4 +1,5 @@
-<typescript>
+<important>
+- This project uses `pnpm` as the package manager.
 - Always prefer using `type` over `interface` for type definitions.
 - Do NOT explicitly import `cn` and other common React hooks because they are automatically imported.
-</typescript>
+</important>

@@ -18,7 +18,6 @@ import {
 } from "react-hook-form";
 
 import { Label } from "@/components/ui/label";
-import { isReactNode } from "@/types/utils.types";
 
 const Form = FormProvider;
 
@@ -150,11 +149,10 @@ const FormMessage = forwardRef<
   HTMLAttributes<HTMLParagraphElement>
 >(({ className, children, ...props }, ref) => {
   const { error, formMessageId } = useFormField();
-  const body = error ? String(error?.message) : children;
 
-  if (!isReactNode(body)) {
-    return null;
-  }
+  const errorMessage = children ?? error?.message;
+
+  if (errorMessage == null) return null;
 
   return (
     <p
@@ -163,7 +161,7 @@ const FormMessage = forwardRef<
       className={cn("tw-text-sm tw-font-medium tw-text-destructive", className)}
       {...props}
     >
-      {body}
+      {errorMessage}
     </p>
   );
 });

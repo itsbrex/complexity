@@ -27,7 +27,7 @@ export class CodeHighlighter {
 
     if (!this.importPromise) {
       const scriptContent = `
-        import * as shiki from 'https://esm.sh/shiki@1.23.1';
+        import * as shiki from 'https://esm.sh/shiki@1.24.0';
         window.shiki = shiki;
       `;
 

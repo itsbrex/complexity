@@ -9,8 +9,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { imageGenModels } from "@/data/consts/plugins/image-gen-model-selector/image-gen-models";
-import { imageGenModelIcons } from "@/data/consts/plugins/image-gen-model-selector/image-gen-models-icons";
+import { imageGenModels } from "@/data/plugins/image-gen-model-selector/image-gen-models";
+import { imageGenModelIcons } from "@/data/plugins/image-gen-model-selector/image-gen-models-icons";
 import { useImageGenModelSelectorStore } from "@/features/plugins/image-gen-popover/store";
 import usePplxUserSettings from "@/hooks/usePplxUserSettings";
 import { ImageGenModel } from "@/types/plugins/image-gen-model-seletor.types";

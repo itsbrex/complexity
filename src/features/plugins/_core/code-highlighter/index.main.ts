@@ -1,6 +1,6 @@
 import type { BundledTheme } from "shiki";
 
-import { LANGUAGE_CODES } from "@/data/consts/plugins/code-highlighter/code-themes";
+import { LANGUAGE_CODES } from "@/data/plugins/code-highlighter/code-themes";
 import { setupCodeHighlighterListeners } from "@/features/plugins/_core/code-highlighter/listeners.main";
 import { injectMainWorldScriptBlock, sleep } from "@/utils/utils";
 

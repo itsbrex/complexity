@@ -1,6 +1,6 @@
 import { Dexie } from "dexie";
 
-import { Theme } from "@/data/consts/plugins/themes/theme-registry.types";
+import { Theme } from "@/data/plugins/themes/theme-registry.types";
 
 export class IndexedDbService extends Dexie {
   themes!: Dexie.Table<Theme, string>;

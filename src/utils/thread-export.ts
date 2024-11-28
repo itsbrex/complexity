@@ -1,4 +1,4 @@
-import { languageModels } from "@/data/consts/plugins/query-box/language-model-selector/language-models";
+import { languageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
 import { ThreadMessageApiResponse } from "@/services/pplx-api/pplx-api.types";
 import { jsonUtils } from "@/utils/utils";
 

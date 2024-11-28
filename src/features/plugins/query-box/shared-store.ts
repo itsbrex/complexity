@@ -6,7 +6,7 @@ import { createWithEqualityFn } from "zustand/traditional";
 import {
   isLanguageModelCode,
   LanguageModel,
-} from "@/data/consts/plugins/query-box/language-model-selector/language-models.types";
+} from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { PplxApiService } from "@/services/pplx-api/pplx-api";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import { extensionExec } from "@/types/hof";

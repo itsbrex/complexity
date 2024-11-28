@@ -1,9 +1,6 @@
 import { useMemo } from "react";
 
-import {
-  PLUGINS_METADATA,
-  PluginTagValues,
-} from "@/data/consts/plugins/plugins-data";
+import { PLUGINS_METADATA, PluginTagValues } from "@/data/plugins/plugins-data";
 import { UserGroup } from "@/services/cplx-api/feature-flags/cplx-feature-flags.types";
 import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatureFlags";
 

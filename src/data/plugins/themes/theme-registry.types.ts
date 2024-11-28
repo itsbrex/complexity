@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { ThemeFormSchema } from "@/data/schemas/theme-form.schema";
+import { ThemeFormSchema } from "@/data/themes/theme-form.types";
 
 export const ThemeSchema = z.object({
   id: z.string().refine((id) => /^[a-zA-Z0-9-]+$/.test(id), {

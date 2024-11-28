@@ -10,10 +10,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  PLUGIN_TAGS,
-  type PluginTagValues,
-} from "@/data/consts/plugins/plugins-data";
+import { PLUGIN_TAGS, type PluginTagValues } from "@/data/plugins/plugins-data";
 import { usePluginContext } from "@/features/options-page/dashboard/pages/plugins/PluginContext";
 
 export function TagsFilter() {

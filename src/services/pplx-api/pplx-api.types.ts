@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { LanguageModel } from "@/data/consts/plugins/query-box/language-model-selector/language-models.types";
+import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 
 export const UserSettingsApiResponseSchema = z.object({
   has_ai_profile: z.boolean(),

@@ -1,7 +1,7 @@
 import { sendMessage } from "webext-bridge/content-script";
 
-import { languageModels } from "@/data/consts/plugins/query-box/language-model-selector/language-models";
-import { isLanguageModelCode } from "@/data/consts/plugins/query-box/language-model-selector/language-models.types";
+import { languageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
+import { isLanguageModelCode } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { ExtendedMessageBlock } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";

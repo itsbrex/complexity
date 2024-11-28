@@ -1,7 +1,7 @@
 import {
   LanguageModel,
   LanguageModelsSchema,
-} from "@/data/consts/plugins/query-box/language-model-selector/language-models.types";
+} from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import {
   CplxFeatureFlags,
   CplxFeatureFlagsSchema,

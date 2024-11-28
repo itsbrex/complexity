@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Theme } from "@/data/consts/plugins/themes/theme-registry.types";
+import { Theme } from "@/data/plugins/themes/theme-registry.types";
 import ThemeCard from "@/features/options-page/dashboard/pages/themes/components/ThemeCard/ThemeCard";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 

@@ -1,11 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import { Theme } from "@/data/consts/plugins/themes/theme-registry.types";
+import { Theme } from "@/data/plugins/themes/theme-registry.types";
 import {
   ThemeFormSchema,
   ThemeFormValues,
-} from "@/data/schemas/theme-form.schema";
+} from "@/data/themes/theme-form.types";
 import {
   generateDarkModeColorOverrides,
   generatePalette,
@@ -39,7 +39,7 @@ export function useBaseThemeForm(defaultValues: ThemeFormValues) {
     if (data.enhanceThreadTypography) {
       css += (
         await import(
-          "@/data/consts/plugins/themes/css-files/complexity/base.css?inline"
+          "@/data/plugins/themes/css-files/complexity/base.css?inline"
         )
       ).default;
     }

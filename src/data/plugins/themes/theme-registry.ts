@@ -1,11 +1,8 @@
-import complexityBase from "@/data/consts/plugins/themes/css-files/complexity/base.css?inline";
-import complexityBlue from "@/data/consts/plugins/themes/css-files/complexity/complexity-blue.css?inline";
-import shyMoment from "@/data/consts/plugins/themes/css-files/complexity/shy-moment.css?inline";
-import sourLemon from "@/data/consts/plugins/themes/css-files/complexity/sour-lemon.css?inline";
-import {
-  Theme,
-  ThemeSchema,
-} from "@/data/consts/plugins/themes/theme-registry.types";
+import complexityBase from "@/data/plugins/themes/css-files/complexity/base.css?inline";
+import complexityBlue from "@/data/plugins/themes/css-files/complexity/complexity-blue.css?inline";
+import shyMoment from "@/data/plugins/themes/css-files/complexity/shy-moment.css?inline";
+import sourLemon from "@/data/plugins/themes/css-files/complexity/sour-lemon.css?inline";
+import { Theme, ThemeSchema } from "@/data/plugins/themes/theme-registry.types";
 
 export type BuiltInThemeId =
   | "complexity"

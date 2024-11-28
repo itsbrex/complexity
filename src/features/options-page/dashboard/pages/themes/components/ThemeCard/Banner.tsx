@@ -1,9 +1,9 @@
 import {
   SVG_FEATURED_BANNERS,
   ThemeBanner,
-} from "@/data/consts/plugins/themes/svg-featured-banners";
-import { BuiltInThemeId } from "@/data/consts/plugins/themes/theme-registry";
-import { Theme } from "@/data/consts/plugins/themes/theme-registry.types";
+} from "@/data/plugins/themes/svg-featured-banners";
+import { BuiltInThemeId } from "@/data/plugins/themes/theme-registry";
+import { Theme } from "@/data/plugins/themes/theme-registry.types";
 import { hexToOklchString } from "@/features/options-page/dashboard/pages/themes/pages/utils";
 
 type ThemeCardBannerProps = {

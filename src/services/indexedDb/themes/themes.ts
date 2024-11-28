@@ -1,6 +1,6 @@
 import { defineProxyService } from "@webext-core/proxy-service";
 
-import { Theme } from "@/data/consts/plugins/themes/theme-registry.types";
+import { Theme } from "@/data/plugins/themes/theme-registry.types";
 import { db } from "@/services/indexedDb/indexed-db";
 
 class LocalThemesService {

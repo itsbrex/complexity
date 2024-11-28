@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
-import { type PluginTagValues } from "@/data/consts/plugins/plugins-data";
+import { type PluginTagValues } from "@/data/plugins/plugins-data";
 
 export type PluginFilters = {
   tags: PluginTagValues[];

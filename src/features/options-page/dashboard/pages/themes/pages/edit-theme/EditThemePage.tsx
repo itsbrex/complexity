@@ -1,7 +1,7 @@
 import { LuChevronLeft } from "react-icons/lu";
 import { Link, useLoaderData } from "react-router-dom";
 
-import { Theme } from "@/data/consts/plugins/themes/theme-registry.types";
+import { Theme } from "@/data/plugins/themes/theme-registry.types";
 import { ThemeForm } from "@/features/options-page/dashboard/pages/themes/components/ThemeForm";
 import { DeleteButton } from "@/features/options-page/dashboard/pages/themes/pages/edit-theme/components/DeleteButton";
 import { useThemeForm } from "@/features/options-page/dashboard/pages/themes/pages/edit-theme/hooks/useThemeForm";

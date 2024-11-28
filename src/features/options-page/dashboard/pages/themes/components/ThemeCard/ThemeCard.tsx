@@ -6,7 +6,7 @@ import {
   CardDescription,
   CardFooter,
 } from "@/components/ui/card";
-import { Theme } from "@/data/consts/plugins/themes/theme-registry.types";
+import { Theme } from "@/data/plugins/themes/theme-registry.types";
 import ThemeActionButton from "@/features/options-page/dashboard/pages/themes/components/ThemeCard/ActionButton";
 import {
   ColorSchemeBadge,

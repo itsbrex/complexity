@@ -3,7 +3,7 @@ import { z } from "zod";
 import {
   languageModels,
   localLanguageModels,
-} from "@/data/consts/plugins/query-box/language-model-selector/language-models";
+} from "@/data/plugins/query-box/language-model-selector/language-models";
 
 export const LanguageModelsSchema = z.array(
   z.object({

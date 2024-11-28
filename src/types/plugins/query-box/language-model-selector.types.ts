@@ -1,4 +1,4 @@
-import { LanguageModel } from "@/data/consts/plugins/query-box/language-model-selector/language-models.types";
+import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 
 export type LanguageModelProvider = LanguageModel["provider"];
 export type GroupedLanguageModelsByProvider = {

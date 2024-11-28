@@ -16,7 +16,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Switch } from "@/components/ui/switch";
-import { CODE_THEMES } from "@/data/consts/plugins/code-highlighter/code-themes";
+import { CODE_THEMES } from "@/data/plugins/code-highlighter/code-themes";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
 export default function BetterCodeBlocksDialogContent() {

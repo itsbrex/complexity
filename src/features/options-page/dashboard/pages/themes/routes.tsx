@@ -1,6 +1,6 @@
 import { LoaderFunctionArgs, RouteObject, redirect } from "react-router-dom";
 
-import { BUILTIN_THEME_REGISTRY } from "@/data/consts/plugins/themes/theme-registry";
+import { BUILTIN_THEME_REGISTRY } from "@/data/plugins/themes/theme-registry";
 import Page from "@/features/options-page/components/Page";
 import { getLocalThemesService } from "@/services/indexedDb/themes/themes";
 

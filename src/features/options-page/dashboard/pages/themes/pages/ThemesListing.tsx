@@ -2,7 +2,7 @@ import { LuPlus } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
-import { BUILTIN_THEME_REGISTRY } from "@/data/consts/plugins/themes/theme-registry";
+import { BUILTIN_THEME_REGISTRY } from "@/data/plugins/themes/theme-registry";
 import { ThemeSections } from "@/features/options-page/dashboard/pages/themes/components/ThemeSections";
 import { useLocalThemes } from "@/services/indexedDb/themes/useLocalThemes";
 

@@ -11,7 +11,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Ul } from "@/components/ui/typography";
-import { PLUGINS_METADATA } from "@/data/consts/plugins/plugins-data";
+import { PLUGINS_METADATA } from "@/data/plugins/plugins-data";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import usePplxUserSettings from "@/hooks/usePplxUserSettings";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";

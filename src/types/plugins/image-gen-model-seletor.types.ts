@@ -1,4 +1,4 @@
-import { imageGenModels } from "@/data/consts/plugins/image-gen-model-selector/image-gen-models";
+import { imageGenModels } from "@/data/plugins/image-gen-model-selector/image-gen-models";
 
 export type ImageGenModel = (typeof imageGenModels)[number];
 

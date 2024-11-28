@@ -1,5 +1,5 @@
-import { BUILTIN_THEME_REGISTRY } from "@/data/consts/plugins/themes/theme-registry";
-import { Theme } from "@/data/consts/plugins/themes/theme-registry.types";
+import { BUILTIN_THEME_REGISTRY } from "@/data/plugins/themes/theme-registry";
+import { Theme } from "@/data/plugins/themes/theme-registry.types";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { getLocalThemesService } from "@/services/indexedDb/themes/themes";
 import { insertCss } from "@/utils/utils";

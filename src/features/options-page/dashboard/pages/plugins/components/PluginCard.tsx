@@ -19,10 +19,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Switch } from "@/components/ui/switch";
-import {
-  PLUGIN_TAGS,
-  PLUGINS_METADATA,
-} from "@/data/consts/plugins/plugins-data";
+import { PLUGIN_TAGS, PLUGINS_METADATA } from "@/data/plugins/plugins-data";
 import { PLUGIN_DIALOG_CONTENT } from "@/features/options-page/dashboard/pages/plugins/dialog-content";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";

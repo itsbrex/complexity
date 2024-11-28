@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
 
-import { languageModels } from "@/data/consts/plugins/query-box/language-model-selector/language-models";
+import { languageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
 import { TEST_ID_SELECTORS } from "@/utils/dom-selectors";
 import { sleep } from "@/utils/utils";
 import { HomePage } from "~/e2e/pages/home.page";

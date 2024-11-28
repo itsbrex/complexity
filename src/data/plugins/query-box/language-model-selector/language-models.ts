@@ -1,4 +1,4 @@
-import { LanguageModel } from "@/data/consts/plugins/query-box/language-model-selector/language-models.types";
+import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
 import { GroupedLanguageModelsByProvider } from "@/types/plugins/query-box/language-model-selector.types";
 import { errorWrapper } from "@/utils/error-wrapper";

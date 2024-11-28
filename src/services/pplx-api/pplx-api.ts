@@ -1,4 +1,4 @@
-import type { LanguageModel } from "@/data/consts/plugins/query-box/language-model-selector/language-models.types";
+import type { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { ENDPOINTS } from "@/services/pplx-api/endpoints";
 import {
   OrgSettingsApiResponseSchema,

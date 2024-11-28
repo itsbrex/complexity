@@ -3,7 +3,7 @@ import { SiAnthropic, SiGooglegemini, SiPerplexity } from "react-icons/si";
 
 import MistralAiIcon from "@/components/icons/MistralAiIcon";
 import XAiIcon from "@/components/icons/XAiIcon";
-import { LanguageModelProvider } from "@/data/consts/plugins/query-box/language-model-selector/language-models.types";
+import { LanguageModelProvider } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 
 export const languageModelProviderIcons: Record<
   LanguageModelProvider,

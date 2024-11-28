@@ -17,9 +17,9 @@ import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
   getGroupedLanguageModelsByProvider,
   languageModels,
-} from "@/data/consts/plugins/query-box/language-model-selector/language-models";
-import { languageModelProviderIcons } from "@/data/consts/plugins/query-box/language-model-selector/language-models-icons";
-import { LanguageModel } from "@/data/consts/plugins/query-box/language-model-selector/language-models.types";
+} from "@/data/plugins/query-box/language-model-selector/language-models";
+import { languageModelProviderIcons } from "@/data/plugins/query-box/language-model-selector/language-models-icons";
+import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { useSharedQueryBoxStore } from "@/features/plugins/query-box/shared-store";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import usePplxUserSettings from "@/hooks/usePplxUserSettings";

@@ -1,7 +1,4 @@
-import {
-  CorePluginId,
-  PLUGINS_METADATA,
-} from "@/data/consts/plugins/plugins-data";
+import { CorePluginId, PLUGINS_METADATA } from "@/data/plugins/plugins-data";
 import InternalWebSocketManager from "@/features/plugins/_core/web-socket/InternalWebSocketManager";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";

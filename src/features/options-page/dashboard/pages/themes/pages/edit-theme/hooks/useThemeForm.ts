@@ -29,10 +29,13 @@ export function useThemeForm(theme: Theme) {
         ...themeData,
         config: data,
       });
-      return theme.id;
+      return theme;
     },
-    onSuccess: () => {
-      navigate("..");
+    onSuccess: (_, variables) => {
+      form.reset({
+        ...initialValues,
+        ...variables,
+      });
       toast({
         title: "✅ Theme saved",
         description: "Your theme has been saved successfully",

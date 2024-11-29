@@ -162,7 +162,7 @@ export function ThemeForm({
 
         <div className="tw-flex tw-justify-end tw-gap-2">
           {footer}
-          <Button type="submit" disabled={isPending}>
+          <Button type="submit" disabled={isPending || !form.formState.isDirty}>
             {isPending ? (
               <LuLoader2 className="tw-size-4 tw-animate-spin" />
             ) : (

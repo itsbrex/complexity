@@ -7,7 +7,7 @@ import { useBaseThemeForm } from "@/features/options-page/dashboard/pages/themes
 import { getLocalThemesService } from "@/services/indexedDb/themes/themes";
 
 const initialValues: ThemeFormValues = {
-  title: "",
+  title: "Untitled Theme",
   fonts: { ui: "", mono: "" },
   accentColor: "",
   enhanceThreadTypography: false,

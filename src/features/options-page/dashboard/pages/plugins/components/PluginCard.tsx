@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Switch } from "@/components/ui/switch";
 import { PLUGIN_TAGS, PLUGINS_METADATA } from "@/data/plugins/plugins-data";
-import { PLUGIN_DIALOG_CONTENT } from "@/features/options-page/dashboard/pages/plugins/dialog-content";
+import { PLUGIN_DETAILS } from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/plugins-details";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
@@ -35,7 +35,7 @@ export function PluginCard({ pluginId }: PluginCardProps) {
 
   const { title, description, tags, routeSegment } = PLUGINS_METADATA[pluginId];
 
-  const dialogContent = PLUGIN_DIALOG_CONTENT[pluginId];
+  const dialogContent = PLUGIN_DETAILS[pluginId];
 
   if (!settings) return null;
 

@@ -23,7 +23,7 @@ const BEHAVIOR_LABELS: Record<BehaviorType, string> = {
 
 const BEHAVIOR_OPTIONS: BehaviorType[] = ["reload", "warn-only"];
 
-export default function OnCloudflareTimeoutAutoReloadDialogContent() {
+export default function OnCloudflareTimeoutAutoReloadPluginDetails() {
   const { settings, mutation } = useExtensionLocalStorage();
   const pluginSettings = settings?.plugins["onCloudflareTimeoutAutoReload"];
 

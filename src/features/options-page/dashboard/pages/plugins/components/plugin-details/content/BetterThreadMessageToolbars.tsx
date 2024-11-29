@@ -4,7 +4,7 @@ import useExtensionLocalStorage from "@/services/extension-local-storage/useExte
 
 type PluginKey = keyof Plugins["thread:betterMessageToolbars"];
 
-export default function BetterThreadMessageToolbarsDialogContent() {
+export default function BetterThreadMessageToolbarsPluginDetails() {
   const { settings, mutation } = useExtensionLocalStorage();
 
   const handleCheckedChange = useCallback(

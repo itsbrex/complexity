@@ -38,7 +38,10 @@ export const StandardCodeBlock = memo(function StandardCodeBlock() {
         maxHeight={maxHeight}
         setMaxHeight={setMaxHeight}
       />
-      <div style={{ maxHeight: maxHeight }} className="tw-overflow-auto">
+      <div
+        style={{ maxHeight: maxHeight }}
+        className="tw-overflow-auto tw-transition-all"
+      >
         {isThemeEnabled ? (
           <HighlightedCode isWrapped={isWrapped} />
         ) : (

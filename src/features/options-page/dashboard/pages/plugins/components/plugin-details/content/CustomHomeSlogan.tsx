@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
-export default function CustomHomeSloganDialogContent() {
+export default function CustomHomeSloganPluginDetails() {
   const { settings, mutation } = useExtensionLocalStorage();
 
   if (!settings) return null;

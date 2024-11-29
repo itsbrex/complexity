@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { PLUGINS_METADATA } from "@/data/plugins/plugins-data";
-import { PLUGIN_DIALOG_CONTENT } from "@/features/options-page/dashboard/pages/plugins/dialog-content";
+import { PLUGIN_DETAILS } from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/plugins-details";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 
@@ -45,7 +45,7 @@ export default function PluginDetailsModal({
             {PLUGINS_METADATA[pluginId].description}
           </DialogDescription>
         </DialogHeader>
-        {PLUGIN_DIALOG_CONTENT[pluginId]}
+        {PLUGIN_DETAILS[pluginId]}
       </DialogContentComp>
     </DialogComp>
   );

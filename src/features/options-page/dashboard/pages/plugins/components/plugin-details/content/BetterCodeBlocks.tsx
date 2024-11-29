@@ -1,5 +1,7 @@
+import { LuPlus } from "react-icons/lu";
 import type { BundledTheme } from "shiki";
 
+import Tooltip from "@/components/Tooltip";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -16,16 +18,35 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Switch } from "@/components/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CODE_THEMES } from "@/data/plugins/code-highlighter/code-themes";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
-export default function BetterCodeBlocksDialogContent() {
+export default function BetterCodeBlocksPluginDetails() {
   const { settings } = useExtensionLocalStorage();
 
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
       <Header />
-      {settings?.plugins["thread:betterCodeBlocks"].enabled && <Options />}
+
+      {settings?.plugins["thread:betterCodeBlocks"].enabled && (
+        <Tabs defaultValue="global">
+          <TabsList className="tw-mb-2">
+            <TabsTrigger value="global">Global</TabsTrigger>
+            <Tooltip content="Add new rule">
+              <Button variant="ghost" size="sm">
+                <LuPlus />
+              </Button>
+            </Tooltip>
+          </TabsList>
+          <TabsContent
+            value="global"
+            className="tw-rounded-md tw-bg-secondary tw-p-4"
+          >
+            <Options />
+          </TabsContent>
+        </Tabs>
+      )}
     </div>
   );
 }

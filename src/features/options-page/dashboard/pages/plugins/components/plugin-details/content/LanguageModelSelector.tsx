@@ -2,7 +2,7 @@ import { Switch } from "@/components/ui/switch";
 import { P } from "@/components/ui/typography";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
-export default function LanguageModelSelectorDialogContent() {
+export default function LanguageModelSelectorPluginDetails() {
   const { settings, mutation } = useExtensionLocalStorage();
 
   if (!settings) return null;

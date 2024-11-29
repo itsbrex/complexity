@@ -2,7 +2,7 @@ import { LuChevronLeft } from "react-icons/lu";
 import { Link } from "react-router-dom";
 
 import { PLUGINS_METADATA } from "@/data/plugins/plugins-data";
-import { PLUGIN_DIALOG_CONTENT } from "@/features/options-page/dashboard/pages/plugins/dialog-content";
+import { PLUGIN_DETAILS } from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/plugins-details";
 
 type PluginDetailsPageProps = {
   pluginRouteSegment: string;
@@ -15,7 +15,7 @@ export default function PluginDetailsPage({
     (plugin) => plugin.routeSegment === pluginRouteSegment,
   );
 
-  const dialogContent = plugin ? PLUGIN_DIALOG_CONTENT[plugin.id] : null;
+  const dialogContent = plugin ? PLUGIN_DETAILS[plugin.id] : null;
 
   if (!plugin) return null;
 

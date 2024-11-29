@@ -78,7 +78,7 @@ const StandardCodeBlockHeader = memo(function StandardCodeBlockHeader({
         <div className="tw-font-mono tw-text-sm">
           {placeholderText?.title ?? language}
         </div>
-        {placeholderText?.idle && (
+        {!isInFlight && placeholderText?.idle && (
           <div className="tw-flex tw-items-center tw-gap-2">
             <Separator orientation="vertical" className="tw-h-4 tw-w-[2px]" />
             <div className="tw-font-sans tw-text-sm">
@@ -92,7 +92,7 @@ const StandardCodeBlockHeader = memo(function StandardCodeBlockHeader({
         {isInFlight && (
           <span className="tw-flex tw-items-center tw-gap-2">
             {placeholderText?.loading && (
-              <span className="tw-animate-pulse">
+              <span className="tw-animate-pulse tw-font-sans">
                 {placeholderText.loading}
               </span>
             )}

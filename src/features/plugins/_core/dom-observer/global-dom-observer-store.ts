@@ -6,11 +6,11 @@ import { CodeBlock, MessageBlock } from "@/utils/UiUtils.types";
 
 export type ExtendedMessageBlock = MessageBlock & {
   title: string;
-  isInFlight: boolean | null;
+  isInFlight: boolean;
 };
 
 export type ExtendedCodeBlock = CodeBlock & {
-  isInFlight: boolean | null;
+  isInFlight: boolean;
 };
 
 export type GlobalDomObserverStore = {

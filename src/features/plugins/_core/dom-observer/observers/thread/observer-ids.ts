@@ -1,4 +1,4 @@
 export const OBSERVER_ID = {
-  POPPER: "cplx-popper",
-  THREAD_WRAPPER: "cplx-thread-wrapper",
+  POPPER: "popper",
+  THREAD_WRAPPER: "thread-wrapper",
 };

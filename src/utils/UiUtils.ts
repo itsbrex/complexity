@@ -1,5 +1,8 @@
 import { ExtendedMessageBlock } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
-import { DOM_INTERNAL_SELECTORS, DOM_SELECTORS } from "@/utils/dom-selectors";
+import {
+  DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
+  DOM_SELECTORS,
+} from "@/utils/dom-selectors";
 import { CodeBlock, MessageBlock, QueryBoxType } from "@/utils/UiUtils.types";
 
 export default class UiUtils {
@@ -26,12 +29,12 @@ export default class UiUtils {
 
     const textColSelector = `${DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL}:last`;
     const visualColSelector = `${DOM_SELECTORS.THREAD.MESSAGE.VISUAL_COL}:last`;
-    const internalTextColClass =
-      DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL.slice(1);
-    const internalVisualColClass =
-      DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.VISUAL_COL.slice(1);
-    const internalBlockClass =
-      DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK.slice(1);
+    const internalTextColAttr =
+      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL;
+    const internalVisualColAttr =
+      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.VISUAL_COL;
+    const internalBlockAttr =
+      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK;
 
     const children = $messagesContainer
       .children()
@@ -46,28 +49,29 @@ export default class UiUtils {
     for (let i = 0; i < children.length; i++) {
       const $wrapper = $(children[i]);
 
-      $wrapper.addClass(internalBlockClass).attr({ "data-index": i });
+      $wrapper.internalComponentAttr(internalBlockAttr).attr("data-index", i);
 
       const { $query, $sourcesHeading, $answerHeading, $answer } =
         UiUtils.parseMessageBlock($wrapper);
 
-      $query.addClass(
-        DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY.slice(1),
+      $query.internalComponentAttr(
+        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
+          .QUERY,
       );
-      $answer.addClass(
-        DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER.slice(1),
+      $answer.internalComponentAttr(
+        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
+          .ANSWER,
       );
-      $answerHeading.addClass(
-        DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING.slice(
-          1,
-        ),
+      $answerHeading.internalComponentAttr(
+        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
+          .ANSWER_HEADING,
       );
 
       const $textCol = $wrapper.find(textColSelector);
       const $visualCol = $wrapper.find(visualColSelector);
 
-      $textCol.addClass(internalTextColClass);
-      $visualCol.addClass(internalVisualColClass);
+      $textCol.internalComponentAttr(internalTextColAttr);
+      $visualCol.internalComponentAttr(internalVisualColAttr);
 
       messageBlocks.push({
         $wrapper,
@@ -105,9 +109,6 @@ export default class UiUtils {
   }
 
   static getCodeBlocks(messageBlocks: MessageBlock[]): CodeBlock[][] {
-    const internalCodeBlockClass =
-      DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK.slice(1);
-
     const returnValue = [] as CodeBlock[][];
 
     for (let i = 0; i < messageBlocks.length; i++) {
@@ -120,7 +121,12 @@ export default class UiUtils {
       for (let j = 0; j < codeBlocks.length; j++) {
         const $codeBlock = $(codeBlocks[j]);
 
-        $codeBlock.addClass(internalCodeBlockClass).attr({ "data-index": j });
+        $codeBlock
+          .internalComponentAttr(
+            DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
+              .CODE_BLOCK,
+          )
+          .attr("data-index", j);
 
         const $pre = $codeBlock.find("pre");
         const $code = $pre.find("code");
@@ -168,7 +174,7 @@ export default class UiUtils {
 
     if (!isMessageBlockInFlight) return false;
 
-    const selector = `${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK}[data-index="${messageBlockIndex}"] ${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}[data-index="${codeBlockIndex}"]`;
+    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}"][data-index="${codeBlockIndex}"]`;
 
     const isInFlight =
       !!messageBlocks[messageBlockIndex].isInFlight &&
@@ -296,7 +302,6 @@ export default class UiUtils {
   }
 
   static waitForSpaIdle(): Promise<boolean> {
-    // watch the document.body via mutation observer, if it has stopped emitting events for a while, we can assume the SPA update is finished
     return new Promise<boolean>((resolve) => {
       // const startTime = Date.now();
       // console.log("waitForSpaIdle: Start waiting for SPA to become idle.");
@@ -307,7 +312,7 @@ export default class UiUtils {
         return resolve(true);
       }
 
-      const IDLE_TIME = 10;
+      const IDLE_TIME = 50;
       const IDLE_TIMEOUT = 3000;
 
       let timeout: NodeJS.Timeout;
@@ -337,6 +342,8 @@ export default class UiUtils {
         childList: true,
         subtree: false,
       });
+
+      mutationFn();
 
       setTimeout(() => {
         if (isIdle) return;

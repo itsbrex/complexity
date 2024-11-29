@@ -1,3 +1,5 @@
+import "@/utils/jquery.extensions";
+
 import { allowWindowMessaging } from "webext-bridge/content-script";
 
 import { initCache } from "@/entrypoints/loaders/cache-loader";

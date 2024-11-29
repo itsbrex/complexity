@@ -7,8 +7,8 @@ import { useMirroredCodeBlocks } from "@/features/plugins/thread/better-code-blo
 import { useInsertCss } from "@/hooks/useInsertCss";
 
 type MemoizedWrapperProps = {
-  lang: string;
-  codeString: string;
+  lang: string | null;
+  codeString: string | null;
   isInFlight: boolean;
   isMessageBlockInFlight: boolean;
   sourceMessageBlockIndex: number;
@@ -25,9 +25,10 @@ const MemoizedWrapper = memo(function MemoizedWrapper({
   sourceCodeBlockIndex,
   codeElement,
 }: MemoizedWrapperProps) {
+  if (!lang || !codeString) return null;
+
   return (
     <MirroredCodeBlockContextProvider
-      key={`${sourceMessageBlockIndex}-${sourceCodeBlockIndex}`}
       storeValue={{
         lang,
         codeString,
@@ -60,8 +61,6 @@ export default function BetterCodeBlocksWrapper() {
         const { lang, codeString, isInFlight, portalContainer } =
           mirroredCodeBlock;
 
-        if (!codeString || !lang) return null;
-
         return (
           <Portal
             key={`${sourceMessageBlockIndex}-${sourceCodeBlockIndex}`}
@@ -70,9 +69,9 @@ export default function BetterCodeBlocksWrapper() {
             <MemoizedWrapper
               lang={lang}
               codeString={codeString}
-              isInFlight={isInFlight ?? false}
+              isInFlight={isInFlight}
               isMessageBlockInFlight={
-                messageBlocks?.[sourceMessageBlockIndex]?.isInFlight ?? false
+                !!messageBlocks?.[sourceMessageBlockIndex]?.isInFlight
               }
               sourceMessageBlockIndex={sourceMessageBlockIndex}
               sourceCodeBlockIndex={sourceCodeBlockIndex}

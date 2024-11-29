@@ -1,5 +1,5 @@
-.cplx-message-block[data-index] {
-  .cplx-message-block-query + div > div:last-child {
+[data-cplx-component="message-block"][data-index] {
+  [data-cplx-component="message-block-query"] + div > div:last-child {
     .mt-sm.flex {
       justify-content: flex-end;
 

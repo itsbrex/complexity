@@ -9,7 +9,10 @@ import {
 } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/thread/observer-ids";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
-import { DOM_INTERNAL_SELECTORS, DOM_SELECTORS } from "@/utils/dom-selectors";
+import {
+  DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
+  DOM_SELECTORS,
+} from "@/utils/dom-selectors";
 import UiUtils from "@/utils/UiUtils";
 import { MessageBlock } from "@/utils/UiUtils.types";
 import { waitForElement, whereAmI } from "@/utils/utils";
@@ -45,9 +48,9 @@ export async function setupThreadComponentsObserver(
 
   if (
     threadWrapper != null &&
-    !$(threadWrapper).attr(OBSERVER_ID.THREAD_WRAPPER)
+    $(threadWrapper).internalComponentAttr() !== OBSERVER_ID.THREAD_WRAPPER
   ) {
-    $(threadWrapper).attr(OBSERVER_ID.THREAD_WRAPPER, "true");
+    $(threadWrapper).internalComponentAttr(OBSERVER_ID.THREAD_WRAPPER);
     globalDomObserverStore.getState().setThreadComponents({
       wrapper: (threadWrapper as HTMLElement | null) ?? null,
     });
@@ -127,13 +130,14 @@ async function observeMessageBlocks() {
         title: block.$query
           .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
           .text(),
-        isInFlight: await sendMessage(
-          "reactVdom:isMessageBlockInFlight",
-          {
-            index,
-          },
-          "window",
-        ),
+        isInFlight:
+          (await sendMessage(
+            "reactVdom:isMessageBlockInFlight",
+            {
+              index,
+            },
+            "window",
+          )) ?? false,
       }),
     ),
   );
@@ -175,10 +179,9 @@ function observerMessageBlockBottomBar({
 
       if (!$bottomBar.length) return null;
 
-      $bottomBar.addClass(
-        DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR.slice(
-          1,
-        ),
+      $bottomBar.internalComponentAttr(
+        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
+          .BOTTOM_BAR,
       );
 
       return $bottomBar[0];
@@ -245,9 +248,9 @@ function observePopper() {
 
   if (!$wrapper.length) return;
 
-  if ($wrapper.attr(OBSERVER_ID.POPPER)) return;
+  if ($wrapper.internalComponentAttr() === OBSERVER_ID.POPPER) return;
 
-  $wrapper.attr(OBSERVER_ID.POPPER, "true");
+  $wrapper.internalComponentAttr(OBSERVER_ID.POPPER);
 
   globalDomObserverStore.getState().setThreadComponents({
     popper: $wrapper[0],

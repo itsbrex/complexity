@@ -1,6 +1,6 @@
 import { onMessage } from "webext-bridge/window";
 
-import { DOM_INTERNAL_SELECTORS } from "@/utils/dom-selectors";
+import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
 import { errorWrapper } from "@/utils/error-wrapper";
 import { getReactFiberKey } from "@/utils/utils";
 
@@ -23,7 +23,7 @@ export type ReactVdomEvents = {
 
 export function setupReactVdomListeners() {
   onMessage("reactVdom:isMessageBlockInFlight", ({ data: { index } }) => {
-    const selector = `${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK}[data-index="${index}"] ${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL}`;
+    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${index}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL}"]`;
 
     const $el = $(selector);
 
@@ -47,7 +47,7 @@ export function setupReactVdomListeners() {
   });
 
   onMessage("reactVdom:getMessageDisplayModelCode", ({ data: { index } }) => {
-    const selector = `${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK}[data-index="${index}"]`;
+    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${index}"]`;
 
     const $el = $(selector).prev();
 
@@ -71,7 +71,7 @@ export function setupReactVdomListeners() {
   });
 
   onMessage("reactVdom:getMessageContent", ({ data: { index } }) => {
-    const selector = `${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK}[data-index="${index}"] ${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER} div[dir="auto"]`;
+    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${index}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER}"] div[dir="auto"]`;
 
     const $el = $(selector);
 
@@ -97,7 +97,7 @@ export function setupReactVdomListeners() {
   onMessage(
     "reactVdom:getCodeFromCodeBlock",
     ({ data: { messageBlockIndex, codeBlockIndex } }) => {
-      const selector = `${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.BLOCK}[data-index="${messageBlockIndex}"] ${DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}[data-index="${codeBlockIndex}"] pre`;
+      const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}"][data-index="${codeBlockIndex}"] pre`;
 
       const $el = $(selector);
 
@@ -132,11 +132,11 @@ export function setupReactVdomListeners() {
         }),
       )();
 
-      if (error || error2 || code == null || language == null) return null;
+      if (error || code == null) return null;
 
       return {
         code,
-        language,
+        language: error2 || language == null ? "text" : language,
       };
     },
   );

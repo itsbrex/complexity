@@ -11,7 +11,7 @@ body#__next {
     }
 
     /* Message Block Dividers */
-    .cplx-message-block:not(:last-of-type) {
+    [data-cplx-component="message-block"]:not(:last-of-type) {
       @apply tw-border-b-ring/50;
     }
   }

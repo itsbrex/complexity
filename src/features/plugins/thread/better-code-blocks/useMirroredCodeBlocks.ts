@@ -7,7 +7,7 @@ import {
   ExtendedCodeBlock,
   useGlobalDomObserverStore,
 } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
-import { DOM_INTERNAL_SELECTORS } from "@/utils/dom-selectors";
+import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
 
 export type MirroredCodeBlock = ExtendedCodeBlock & {
   portalContainer: HTMLElement | null;
@@ -16,9 +16,8 @@ export type MirroredCodeBlock = ExtendedCodeBlock & {
 };
 
 const OBSERVER_ID =
-  DOM_INTERNAL_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.MIRRORED_CODE_BLOCK.slice(
-    1,
-  );
+  DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
+    .MIRRORED_CODE_BLOCK;
 
 export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
   const [mirroredCodeBlocks, setMirroredCodeBlocks] = useState<
@@ -56,7 +55,7 @@ export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
 
       if (
         $existingPortalContainer.length &&
-        $existingPortalContainer.hasClass(OBSERVER_ID)
+        $existingPortalContainer.internalComponentAttr() === OBSERVER_ID
       ) {
         return {
           ...codeBlock,
@@ -66,10 +65,12 @@ export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
         };
       }
 
-      const $portalContainer = $("<div>").addClass(OBSERVER_ID).attr({
-        "data-lang": codeData.language,
-        "data-index": codeBlockIndex,
-      });
+      const $portalContainer = $("<div>")
+        .internalComponentAttr(OBSERVER_ID)
+        .attr({
+          "data-lang": codeData.language,
+          "data-index": codeBlockIndex,
+        });
 
       codeBlock.$wrapper.before($portalContainer);
 

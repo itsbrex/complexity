@@ -19,11 +19,13 @@ export function useObserver(): UseObserverReturn {
       DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR_CHILD.COPY_BUTTON,
     );
 
-    const $existingPortalContainer = $(bottomBar).find(`div.${OBSERVER_ID}`);
+    const $existingPortalContainer = $(bottomBar).find(
+      `div[data-cplx-component="${OBSERVER_ID}"]`,
+    );
 
     if ($existingPortalContainer.length) return $existingPortalContainer[0];
 
-    const $portalContainer = $(`<div>`).addClass(OBSERVER_ID);
+    const $portalContainer = $("<div>").internalComponentAttr(OBSERVER_ID);
 
     $anchor.before($portalContainer);
 

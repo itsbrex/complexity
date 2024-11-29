@@ -1,4 +1,6 @@
-[cplx-popper]:has(.group\/item.md\:h-full):has(svg[data-icon="copilot"]) {
+[data-cplx-component="popper"]:has(.group\/item.md\:h-full):has(
+    svg[data-icon="copilot"]
+  ) {
   .mb-xs.-mx-xs.px-xs.border-b {
     display: none;
   }

@@ -8,11 +8,18 @@ import codeHighlighterPlugin from "@/features/plugins/_core/code-highlighter/ind
 import networkInterceptPlugin from "@/features/plugins/_core/network-intercept/index.main?script&module";
 import reactVdomPlugin from "@/features/plugins/_core/react-vdom/index.main?script&module";
 import spaRouterPlugin from "@/features/plugins/_core/spa-router/index.main?script&module";
+import jqueryExtensions from "@/utils/jquery.extensions?script&module";
 import webextBridgeSetNamespace from "@/utils/webext-bridge?script&module";
 
 export async function initCorePlugins() {
   await injectMainWorldScript({
     url: chrome.runtime.getURL(webextBridgeSetNamespace),
+  });
+
+  injectMainWorldScript({
+    url: chrome.runtime.getURL(jqueryExtensions),
+    head: true,
+    inject: true,
   });
 
   injectMainWorldScript({

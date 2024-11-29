@@ -10,10 +10,13 @@ type HighlightedCodeProps = {
 };
 
 export function HighlightedCode({ isWrapped }: HighlightedCodeProps) {
-  const { codeString, lang } = useMirroredCodeBlockContext()((state) => ({
-    codeString: state.codeString,
-    lang: state.lang,
-  }));
+  const { codeString, lang, sourceMessageBlockIndex, sourceCodeBlockIndex } =
+    useMirroredCodeBlockContext()((state) => ({
+      codeString: state.codeString,
+      lang: state.lang,
+      sourceMessageBlockIndex: state.sourceMessageBlockIndex,
+      sourceCodeBlockIndex: state.sourceCodeBlockIndex,
+    }));
 
   const settings = ExtensionLocalStorageService.getCachedSync();
   const [highlightedCode, setHighlightedCode] = useState<string | null>(null);
@@ -21,7 +24,7 @@ export function HighlightedCode({ isWrapped }: HighlightedCodeProps) {
   const themeSettings = settings.plugins["thread:betterCodeBlocks"].theme;
 
   useEffect(() => {
-    const highlightCode = async () => {
+    CallbackQueue.getInstance().enqueue(async () => {
       const theme = themeSettings[UiUtils.isDarkTheme() ? "dark" : "light"];
 
       const highlighted = await sendMessage(
@@ -35,10 +38,14 @@ export function HighlightedCode({ isWrapped }: HighlightedCodeProps) {
       );
 
       setHighlightedCode(highlighted);
-    };
-
-    CallbackQueue.getInstance().enqueue(highlightCode);
-  }, [codeString, lang, themeSettings]);
+    }, `highlight-code-block-${sourceMessageBlockIndex}-${sourceCodeBlockIndex}`);
+  }, [
+    codeString,
+    lang,
+    themeSettings,
+    sourceMessageBlockIndex,
+    sourceCodeBlockIndex,
+  ]);
 
   if (!highlightedCode) {
     return (

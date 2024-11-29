@@ -35,10 +35,22 @@ export async function setupQueryBoxesObserver(
 
 function observerFn(location: ReturnType<typeof whereAmI>) {
   CallbackQueue.getInstance().enqueueArray([
-    observeMainQueryBox.bind(null, location),
-    observeMainModalQueryBox,
-    observeSpaceQueryBox.bind(null, location),
-    observeFollowUpQueryBox.bind(null, location),
+    {
+      callback: observeMainQueryBox.bind(null, location),
+      id: `${DOM_OBSERVER_ID}-main-query-box`,
+    },
+    {
+      callback: observeMainModalQueryBox,
+      id: `${DOM_OBSERVER_ID}-main-modal-query-box`,
+    },
+    {
+      callback: observeSpaceQueryBox.bind(null, location),
+      id: `${DOM_OBSERVER_ID}-space-query-box`,
+    },
+    {
+      callback: observeFollowUpQueryBox.bind(null, location),
+      id: `${DOM_OBSERVER_ID}-follow-up-query-box`,
+    },
   ]);
 }
 
@@ -121,6 +133,7 @@ async function observeFollowUpQueryBox(location: ReturnType<typeof whereAmI>) {
     await sleep(200);
     CallbackQueue.getInstance().enqueue(
       observeFollowUpQueryBox.bind(null, location),
+      `${DOM_OBSERVER_ID}-follow-up-query-box`,
     );
     return;
   }

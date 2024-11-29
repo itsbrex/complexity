@@ -21,6 +21,8 @@ export function setupBackgroundListeners() {
 }
 
 function createDashboardShortcut() {
+  chrome.contextMenus.removeAll();
+
   chrome.contextMenus.create({
     id: "openOptionsPage",
     title: "Dashboard",

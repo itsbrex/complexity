@@ -8,6 +8,8 @@ import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer
 import { PANEL_WIDTH } from "@/features/plugins/thread/toc/Wrapper";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 
+const DOM_OBSERVER_ID = "thread-navigation-toc-panel-position";
+
 type UsePanelPosition = {
   position: { top: number; left: number };
   isFloating: boolean;
@@ -53,15 +55,14 @@ export function usePanelPosition(): UsePanelPosition | null {
       setTimeout(() => setPanelPosition(calculatePosition()), 300);
     }, 100);
 
-    const DOM_OBSERVER_ID = "thread-navigation-toc-panel-position";
-
     DomObserver.create(DOM_OBSERVER_ID, {
       target: $(DOM_SELECTORS.SIDEBAR)[0],
       config: {
         attributes: true,
         attributeFilter: ["class"],
       },
-      onMutation: () => CallbackQueue.getInstance().enqueue(debouncedUpdate),
+      onMutation: () =>
+        CallbackQueue.getInstance().enqueue(debouncedUpdate, DOM_OBSERVER_ID),
     });
 
     return () => {

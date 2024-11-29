@@ -28,7 +28,10 @@ export function setupHomeComponentsObserver(
   DomObserver.create(DOM_OBSERVER_ID, {
     target: document.body,
     config: { childList: true, subtree: true },
-    onMutation: () => CallbackQueue.getInstance().enqueueArray([observeSlogan]),
+    onMutation: () =>
+      CallbackQueue.getInstance().enqueueArray([
+        { callback: observeSlogan, id: DOM_OBSERVER_ID },
+      ]),
   });
 }
 

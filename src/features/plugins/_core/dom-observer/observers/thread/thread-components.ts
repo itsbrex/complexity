@@ -60,12 +60,21 @@ export async function setupThreadComponentsObserver(
     config: { childList: true, subtree: true },
     onMutation: () =>
       CallbackQueue.getInstance().enqueueArray([
-        monitorThreadWrapperExistence.bind(null, {
-          threadWrapper,
-          location,
-        }),
-        observePopper,
-        observeThreadNavbar,
+        {
+          callback: monitorThreadWrapperExistence.bind(null, {
+            threadWrapper,
+            location,
+          }),
+          id: `${DOM_OBSERVER_ID.COMMON}-monitor-thread-wrapper-existence`,
+        },
+        {
+          callback: observePopper,
+          id: `${DOM_OBSERVER_ID.COMMON}-observe-popper`,
+        },
+        {
+          callback: observeThreadNavbar,
+          id: `${DOM_OBSERVER_ID.COMMON}-observe-thread-navbar`,
+        },
       ]),
   });
 
@@ -73,7 +82,12 @@ export async function setupThreadComponentsObserver(
     target: threadWrapper ?? document.body,
     config: { childList: true, subtree: true },
     onMutation: () =>
-      CallbackQueue.getInstance().enqueueArray([observeMessageBlocks]),
+      CallbackQueue.getInstance().enqueueArray([
+        {
+          callback: observeMessageBlocks,
+          id: `${DOM_OBSERVER_ID.MESSAGE_BLOCKS}-observe-message-blocks`,
+        },
+      ]),
   });
 }
 
@@ -103,6 +117,7 @@ async function observeMessageBlocks() {
 
   CallbackQueue.getInstance().enqueue(
     observerMessageBlockBottomBar.bind(null, { messageBlocks }),
+    `${DOM_OBSERVER_ID.MESSAGE_BLOCKS}-observe-message-block-bottom-bar`,
   );
 
   const extendedMessageBlocks: ExtendedMessageBlock[] = await Promise.all(
@@ -125,6 +140,7 @@ async function observeMessageBlocks() {
 
   CallbackQueue.getInstance().enqueue(
     observeCodeBlocks.bind(null, extendedMessageBlocks),
+    `${DOM_OBSERVER_ID.MESSAGE_BLOCKS}-observe-code-blocks`,
   );
 
   globalDomObserverStore.getState().setThreadComponents({
@@ -137,6 +153,8 @@ function observerMessageBlockBottomBar({
 }: {
   messageBlocks: MessageBlock[];
 }) {
+  if (!messageBlocks.length) return;
+
   const $messageBlockBottomBars = messageBlocks[0].$wrapper.find(
     DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR,
   );

@@ -85,26 +85,28 @@ export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
 
   const debouncedProcessBlocks = useMemo(
     () =>
-      debounce(async (blocks: ExtendedCodeBlock[][]) => {
-        try {
-          const processedBlocks = await Promise.all(
-            blocks.map((messageBlock, sourceMessageBlockIndex) =>
-              Promise.all(
-                messageBlock.map((codeBlock, sourceCodeBlockIndex) =>
-                  processCodeBlock(
-                    codeBlock,
-                    sourceMessageBlockIndex,
-                    sourceCodeBlockIndex,
+      debounce((blocks: ExtendedCodeBlock[][]) => {
+        CallbackQueue.getInstance().enqueue(async () => {
+          try {
+            const processedBlocks = await Promise.all(
+              blocks.map((messageBlock, sourceMessageBlockIndex) =>
+                Promise.all(
+                  messageBlock.map((codeBlock, sourceCodeBlockIndex) =>
+                    processCodeBlock(
+                      codeBlock,
+                      sourceMessageBlockIndex,
+                      sourceCodeBlockIndex,
+                    ),
                   ),
                 ),
               ),
-            ),
-          );
-          setMirroredCodeBlocks(processedBlocks);
-        } catch (error) {
-          console.error("Error processing mirrored code blocks:", error);
-          setMirroredCodeBlocks([]);
-        }
+            );
+            setMirroredCodeBlocks(processedBlocks);
+          } catch (error) {
+            console.error("Error processing mirrored code blocks:", error);
+            setMirroredCodeBlocks([]);
+          }
+        }, "process-code-blocks");
       }, 0),
     [processCodeBlock],
   );
@@ -112,9 +114,7 @@ export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
   useEffect(() => {
     if (!codeBlocks) return;
 
-    CallbackQueue.getInstance().enqueue(() => {
-      debouncedProcessBlocks(codeBlocks);
-    });
+    debouncedProcessBlocks(codeBlocks);
 
     return () => {
       debouncedProcessBlocks.cancel();

@@ -1,26 +1,25 @@
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
 import { HighlightedCode } from "@/features/plugins/thread/better-code-blocks/variants/HighlightedCode";
 import BetterCodeBlockHeader from "@/features/plugins/thread/better-code-blocks/variants/standard/Header";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/standard/header-buttons/useBetterCodeBlockOptions";
 
 export const StandardCodeBlock = memo(function StandardCodeBlock() {
-  const { codeString, codeElement } = useMirroredCodeBlockContext()(
+  const { codeString, codeElement, language } = useMirroredCodeBlockContext()(
     (state) => ({
       codeString: state.codeString,
       codeElement: state.codeElement,
+      language: state.lang,
     }),
   );
-  const settings = ExtensionLocalStorageService.getCachedSync();
-  const [isWrapped, setIsWrapped] = useState(
-    !settings.plugins["thread:betterCodeBlocks"].unwrap.enabled,
-  );
+
+  const settings = useBetterCodeBlockOptions({ language });
+
+  const [isWrapped, setIsWrapped] = useState(!settings.unwrap.enabled);
   const [maxHeight, setMaxHeight] = useState(
-    settings.plugins["thread:betterCodeBlocks"].maxHeight.enabled
-      ? settings.plugins["thread:betterCodeBlocks"].maxHeight.value
-      : 9999,
+    settings.maxHeight.enabled ? settings.maxHeight.value : 9999,
   );
-  const isThemeEnabled =
-    settings.plugins["thread:betterCodeBlocks"].theme.enabled;
+
+  const isThemeEnabled = settings?.theme.enabled;
   const [fallbackCodeHtml, setFallbackCodeHtml] = useState<string>(codeString);
 
   useEffect(() => {
@@ -31,7 +30,14 @@ export const StandardCodeBlock = memo(function StandardCodeBlock() {
   }, [codeElement, isThemeEnabled, codeString]);
 
   return (
-    <div className="tw-relative tw-my-4 tw-flex tw-flex-col tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-font-mono">
+    <div
+      className={cn(
+        "tw-relative tw-my-4 tw-flex tw-flex-col tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-font-mono",
+        {
+          "tw-overflow-hidden": maxHeight === 0,
+        },
+      )}
+    >
       <BetterCodeBlockHeader
         isWrapped={isWrapped}
         setIsWrapped={setIsWrapped}
@@ -39,8 +45,10 @@ export const StandardCodeBlock = memo(function StandardCodeBlock() {
         setMaxHeight={setMaxHeight}
       />
       <div
-        style={{ maxHeight: maxHeight }}
-        className="tw-overflow-auto tw-transition-all"
+        style={{
+          maxHeight,
+        }}
+        className="tw-overflow-auto tw-rounded-b-md"
       >
         {isThemeEnabled ? (
           <HighlightedCode isWrapped={isWrapped} />

@@ -1,5 +1,6 @@
 import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
+import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { GroupedLanguageModelsByProvider } from "@/types/plugins/query-box/language-model-selector.types";
 import { errorWrapper } from "@/utils/error-wrapper";
 import { queryClient } from "@/utils/ts-query-client";
@@ -54,6 +55,10 @@ export let groupedLanguageModelsByProvider: GroupedLanguageModelsByProvider =
   getGroupedLanguageModelsByProvider();
 
 export async function initializeLanguageModels() {
+  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+
+  if (!pluginsEnableStates?.["queryBox:languageModelSelector"]) return;
+
   const [data, error] = await errorWrapper(() =>
     queryClient.fetchQuery(cplxApiQueries.remoteLanguageModels),
   )();

@@ -5,7 +5,7 @@ import ImageGenModelSelectorPluginDetails from "@/features/options-page/dashboar
 import LanguageModelSelectorPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content//LanguageModelSelector";
 import NoFileCreationOnPastePluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content//NoFileCreationOnPaste";
 import OnCloudflareTimeoutAutoReloadPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content//OnCloudflareTimeoutAutoReload";
-import BetterCodeBlocksPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/BetterCodeBlocks";
+import BetterCodeBlocksPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/better-code-blocks/BetterCodeBlocks";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 
 export type PluginPluginDetails = Partial<Record<PluginId, React.ReactNode>>;

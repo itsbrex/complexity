@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "@/components/ui/use-toast";
 import { ThemeFormValues } from "@/data/themes/theme-form.types";
 import { useBaseThemeForm } from "@/features/options-page/dashboard/pages/themes/hooks/useBaseThemeForm";
-import { getLocalThemesService } from "@/services/indexedDb/themes/themes";
+import { getLocalThemesService } from "@/services/indexed-db/themes/themes";
 
 const initialValues: ThemeFormValues = {
   title: "Untitled Theme",

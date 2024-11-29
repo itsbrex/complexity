@@ -1,58 +1,22 @@
-import { LuPlus } from "react-icons/lu";
-import type { BundledTheme } from "shiki";
+import debounce from "lodash/debounce";
 
-import Tooltip from "@/components/Tooltip";
-import { Button } from "@/components/ui/button";
-import {
-  Command,
-  CommandEmpty,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CODE_THEMES } from "@/data/plugins/code-highlighter/code-themes";
-import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
+import CodeThemeSelector from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/better-code-blocks/CodeThemeSelector";
+import useOptions from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/better-code-blocks/useOptions";
 
-export default function BetterCodeBlocksPluginDetails() {
-  const { settings } = useExtensionLocalStorage();
+export default function BetterCodeBlockGlobalOptions() {
+  const { globalMutation: mutation, globalSettings: settings } = useOptions();
 
-  return (
-    <div className="tw-flex tw-flex-col tw-gap-4">
-      <Header />
-
-      {settings?.plugins["thread:betterCodeBlocks"].enabled && (
-        <Tabs defaultValue="global">
-          <TabsList className="tw-mb-2">
-            <TabsTrigger value="global">Global</TabsTrigger>
-            <Tooltip content="Add new rule">
-              <Button variant="ghost" size="sm">
-                <LuPlus />
-              </Button>
-            </Tooltip>
-          </TabsList>
-          <TabsContent
-            value="global"
-            className="tw-rounded-md tw-bg-secondary tw-p-4"
-          >
-            <Options />
-          </TabsContent>
-        </Tabs>
-      )}
-    </div>
+  const debouncedMutate = useMemo(
+    () =>
+      debounce(
+        (mutator: (draft: any) => void) => mutation.mutate(mutator),
+        300,
+      ),
+    [mutation],
   );
-}
-
-function Options() {
-  const { settings, mutation } = useExtensionLocalStorage();
 
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
@@ -70,11 +34,26 @@ function Options() {
           <div className="tw-flex tw-w-full tw-gap-4">
             <div className="tw-flex tw-flex-col tw-gap-2">
               <Label className="tw-text-muted-foreground">Dark</Label>
-              <CodeThemeSelector colorScheme="dark" />
+              <CodeThemeSelector
+                value={settings?.plugins["thread:betterCodeBlocks"].theme.dark}
+                onValueChange={(value) => {
+                  mutation.mutate((draft) => {
+                    draft.plugins["thread:betterCodeBlocks"].theme.dark = value;
+                  });
+                }}
+              />
             </div>
             <div className="tw-flex tw-flex-col tw-gap-2">
               <Label className="tw-text-muted-foreground">Light</Label>
-              <CodeThemeSelector colorScheme="light" />
+              <CodeThemeSelector
+                value={settings?.plugins["thread:betterCodeBlocks"].theme.light}
+                onValueChange={(value) => {
+                  mutation.mutate((draft) => {
+                    draft.plugins["thread:betterCodeBlocks"].theme.light =
+                      value;
+                  });
+                }}
+              />
             </div>
           </div>
         )}
@@ -135,6 +114,7 @@ function Options() {
             <div className="tw-flex tw-items-center tw-gap-2">
               <Input
                 type="number"
+                min={300}
                 defaultValue={
                   settings?.plugins["thread:betterCodeBlocks"].maxHeight?.value
                 }
@@ -147,7 +127,7 @@ function Options() {
                   if (Number(e.target.value) < 300) {
                     return;
                   }
-                  mutation.mutate((draft) => {
+                  debouncedMutate((draft) => {
                     draft.plugins["thread:betterCodeBlocks"].maxHeight.value =
                       Number(e.target.value);
                   });
@@ -174,71 +154,5 @@ function Options() {
         </div>
       </div>
     </div>
-  );
-}
-
-function Header() {
-  const { settings, mutation } = useExtensionLocalStorage();
-
-  return (
-    <>
-      <div className="tw-flex tw-flex-col tw-gap-2">
-        Customize the appearance and usability of code blocks.
-      </div>
-      <Switch
-        textLabel="Enable"
-        checked={settings?.plugins["thread:betterCodeBlocks"].enabled}
-        onCheckedChange={({ checked }) => {
-          mutation.mutate((draft) => {
-            draft.plugins["thread:betterCodeBlocks"].enabled = checked;
-          });
-        }}
-      />
-    </>
-  );
-}
-
-function CodeThemeSelector({ colorScheme }: { colorScheme: "dark" | "light" }) {
-  const [open, setOpen] = useState(false);
-
-  const { settings, mutation } = useExtensionLocalStorage();
-
-  return (
-    <Popover
-      portal={false}
-      positioning={{ placement: "bottom-start" }}
-      open={open}
-      onOpenChange={({ open }) => setOpen(open)}
-    >
-      <PopoverTrigger asChild>
-        <Button variant="outline">
-          {settings?.plugins["thread:betterCodeBlocks"].theme[colorScheme]}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="tw-p-0">
-        <Command>
-          <CommandInput placeholder="Search theme..." />
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandList>
-            {CODE_THEMES.map((theme) => (
-              <CommandItem
-                key={theme}
-                onSelect={(value) => {
-                  mutation.mutate((draft) => {
-                    draft.plugins["thread:betterCodeBlocks"].theme[
-                      colorScheme
-                    ] = value as BundledTheme;
-                  });
-
-                  setOpen(false);
-                }}
-              >
-                {theme}
-              </CommandItem>
-            ))}
-          </CommandList>
-        </Command>
-      </PopoverContent>
-    </Popover>
   );
 }

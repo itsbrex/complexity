@@ -2,8 +2,11 @@ import { Dispatch, memo, SetStateAction, useRef } from "react";
 import { LuLoader2 } from "react-icons/lu";
 
 import CopyButton from "@/components/CopyButton";
+import { Separator } from "@/components/ui/separator";
+import { BetterCodeBlockFineGrainedOptions } from "@/data/better-code-blocks/better-code-blocks-options";
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
 import { ExpandCollapseButton } from "@/features/plugins/thread/better-code-blocks/variants/standard/header-buttons/ExpandCollapseButton";
+import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/standard/header-buttons/useBetterCodeBlockOptions";
 import { WrapToggleButton } from "@/features/plugins/thread/better-code-blocks/variants/standard/header-buttons/WrapToggleButton";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
@@ -20,29 +23,40 @@ const StandardCodeBlockHeader = memo(function StandardCodeBlockHeader({
   maxHeight,
   setMaxHeight,
 }: StandardHeaderProps) {
-  const { lang, codeString, isInFlight, isMessageBlockInFlight, codeElement } =
-    useMirroredCodeBlockContext()((state) => ({
-      lang: state.lang,
-      codeString: state.codeString,
-      codeElement: state.codeElement,
-      isInFlight: state.isInFlight,
-      isMessageBlockInFlight: state.isMessageBlockInFlight,
-    }));
+  const {
+    language,
+    codeString,
+    isInFlight,
+    isMessageBlockInFlight,
+    codeElement,
+  } = useMirroredCodeBlockContext()((state) => ({
+    language: state.lang,
+    codeString: state.codeString,
+    codeElement: state.codeElement,
+    isInFlight: state.isInFlight,
+    isMessageBlockInFlight: state.isMessageBlockInFlight,
+  }));
 
-  const settings = ExtensionLocalStorageService.getCachedSync();
+  const settings = useBetterCodeBlockOptions({ language });
 
-  const isSticky = settings.plugins["thread:betterCodeBlocks"].stickyHeader;
+  const placeholderText:
+    | BetterCodeBlockFineGrainedOptions["placeholderText"]
+    | undefined = (settings as BetterCodeBlockFineGrainedOptions)
+    ?.placeholderText;
+
+  const isSticky = settings.stickyHeader;
   const isBottomBarSticky =
-    settings.plugins["thread:betterMessageToolbars"].sticky;
+    ExtensionLocalStorageService.getCachedSync().plugins[
+      "thread:betterMessageToolbars"
+    ].sticky;
   const shouldShowWrapToggleButton = useRef(
-    settings.plugins["thread:betterCodeBlocks"].unwrap.showToggleButton &&
+    settings.unwrap.showToggleButton &&
       isContainerHorizontalOverflowing({ codeElement }),
   ).current;
   const shouldShowExpandCollapseButton = useRef(
-    settings.plugins["thread:betterCodeBlocks"].maxHeight.showToggleButton &&
+    settings.maxHeight.showToggleButton &&
       isContainerVerticalOverflowing({
-        initialMaxHeight:
-          settings.plugins["thread:betterCodeBlocks"].maxHeight.value,
+        initialMaxHeight: settings.maxHeight.value,
         codeElement,
       }),
   ).current;
@@ -60,24 +74,47 @@ const StandardCodeBlockHeader = memo(function StandardCodeBlockHeader({
         },
       )}
     >
-      <div className="tw-font-mono tw-text-sm">{lang}</div>
+      <div className="tw-flex tw-items-center tw-gap-2">
+        <div className="tw-font-mono tw-text-sm">
+          {placeholderText?.title ?? language}
+        </div>
+        {placeholderText?.idle && (
+          <div className="tw-flex tw-items-center tw-gap-2">
+            <Separator orientation="vertical" className="tw-h-4 tw-w-[2px]" />
+            <div className="tw-font-sans tw-text-sm">
+              {placeholderText.idle}
+            </div>
+          </div>
+        )}
+      </div>
+
       <div className="tw-flex tw-items-center tw-gap-4">
-        {isInFlight && <LuLoader2 className="tw-animate-spin" />}
+        {isInFlight && (
+          <span className="tw-flex tw-items-center tw-gap-2">
+            {placeholderText?.loading && (
+              <span className="tw-animate-pulse">
+                {placeholderText.loading}
+              </span>
+            )}
+            <LuLoader2 className="tw-animate-spin" />
+          </span>
+        )}
         {!isInFlight && (
           <>
-            {shouldShowWrapToggleButton && (
+            {maxHeight > 0 && shouldShowWrapToggleButton && (
               <WrapToggleButton
                 isWrapped={isWrapped}
                 setIsWrapped={setIsWrapped}
               />
             )}
+            <CopyButton content={codeString} />
             {shouldShowExpandCollapseButton && (
               <ExpandCollapseButton
+                defaultMaxHeight={settings.maxHeight.value}
                 maxHeight={maxHeight}
                 setMaxHeight={setMaxHeight}
               />
             )}
-            <CopyButton content={codeString} />
           </>
         )}
       </div>

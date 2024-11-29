@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BUILTIN_THEME_REGISTRY } from "@/data/plugins/themes/theme-registry";
 import { ThemeSections } from "@/features/options-page/dashboard/pages/themes/components/ThemeSections";
-import { useLocalThemes } from "@/services/indexedDb/themes/useLocalThemes";
+import { useLocalThemes } from "@/services/indexed-db/themes/useLocalThemes";
 
 export default function ThemesListing() {
   const navigate = useNavigate();

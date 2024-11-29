@@ -1,22 +1,19 @@
 import { Dispatch, SetStateAction } from "react";
-import { LuMaximize2, LuMinimize2 } from "react-icons/lu";
+import { LuChevronDown, LuChevronUp } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
 type ExpandCollapseButtonProps = {
+  defaultMaxHeight: number;
   maxHeight: number;
   setMaxHeight: Dispatch<SetStateAction<number>>;
 };
 
 export function ExpandCollapseButton({
+  defaultMaxHeight,
   maxHeight,
   setMaxHeight,
 }: ExpandCollapseButtonProps) {
-  const settings = ExtensionLocalStorageService.getCachedSync();
-  const defaultMaxHeight =
-    settings.plugins["thread:betterCodeBlocks"].maxHeight.value;
-
   return (
     <Tooltip content={maxHeight === defaultMaxHeight ? "Expand" : "Collapse"}>
       <div
@@ -27,7 +24,11 @@ export function ExpandCollapseButton({
           )
         }
       >
-        {maxHeight === defaultMaxHeight ? <LuMaximize2 /> : <LuMinimize2 />}
+        {maxHeight === defaultMaxHeight ? (
+          <LuChevronDown className="tw-size-4" />
+        ) : (
+          <LuChevronUp className="tw-size-4" />
+        )}
       </div>
     </Tooltip>
   );

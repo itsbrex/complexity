@@ -1,5 +1,6 @@
-import type { BundledTheme } from "shiki";
 import { z } from "zod";
+
+import { BetterCodeBlockGlobalOptionsSchema } from "@/data/better-code-blocks/better-code-blocks-options";
 
 export const PluginSettingsSchema = z.object({
   enabled: z.boolean(),
@@ -23,23 +24,9 @@ export const PluginsSchema = z.object({
     explicitModelName: z.boolean(),
     hideUnnecessaryButtons: z.boolean(),
   }),
-  "thread:betterCodeBlocks": PluginSettingsSchema.extend({
-    stickyHeader: z.boolean(),
-    theme: z.object({
-      enabled: z.boolean(),
-      light: z.string().transform((val): BundledTheme => val as BundledTheme),
-      dark: z.string().transform((val): BundledTheme => val as BundledTheme),
-    }),
-    unwrap: z.object({
-      enabled: z.boolean(),
-      showToggleButton: z.boolean(),
-    }),
-    maxHeight: z.object({
-      enabled: z.boolean(),
-      value: z.number(),
-      showToggleButton: z.boolean(),
-    }),
-  }),
+  "thread:betterCodeBlocks": PluginSettingsSchema.merge(
+    BetterCodeBlockGlobalOptionsSchema,
+  ),
   "thread:exportThread": PluginSettingsSchema,
   "thread:betterMessageCopyButtons": PluginSettingsSchema,
   "thread:dragAndDropFileToUploadInThread": PluginSettingsSchema,

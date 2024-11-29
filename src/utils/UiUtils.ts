@@ -24,7 +24,6 @@ export default class UiUtils {
   static getMessageBlocks(): MessageBlock[] {
     const $messagesContainer = UiUtils.getMessagesContainer();
 
-    // Cache selectors to avoid string concatenation in loop
     const textColSelector = `${DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL}:last`;
     const visualColSelector = `${DOM_SELECTORS.THREAD.MESSAGE.VISUAL_COL}:last`;
     const internalTextColClass =
@@ -64,7 +63,6 @@ export default class UiUtils {
         ),
       );
 
-      // Cache jQuery lookups
       const $textCol = $wrapper.find(textColSelector);
       const $visualCol = $wrapper.find(visualColSelector);
 

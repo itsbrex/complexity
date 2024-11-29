@@ -2,7 +2,7 @@ import { sendMessage } from "webext-bridge/content-script";
 
 import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-queue";
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/standard/header-buttons/useBetterCodeBlockOptions";
 import UiUtils from "@/utils/UiUtils";
 
 type HighlightedCodeProps = {
@@ -18,10 +18,10 @@ export function HighlightedCode({ isWrapped }: HighlightedCodeProps) {
       sourceCodeBlockIndex: state.sourceCodeBlockIndex,
     }));
 
-  const settings = ExtensionLocalStorageService.getCachedSync();
+  const settings = useBetterCodeBlockOptions({ language: lang });
   const [highlightedCode, setHighlightedCode] = useState<string | null>(null);
 
-  const themeSettings = settings.plugins["thread:betterCodeBlocks"].theme;
+  const themeSettings = settings.theme;
 
   useEffect(() => {
     CallbackQueue.getInstance().enqueue(async () => {
@@ -42,9 +42,9 @@ export function HighlightedCode({ isWrapped }: HighlightedCodeProps) {
   }, [
     codeString,
     lang,
-    themeSettings,
-    sourceMessageBlockIndex,
     sourceCodeBlockIndex,
+    sourceMessageBlockIndex,
+    themeSettings,
   ]);
 
   if (!highlightedCode) {

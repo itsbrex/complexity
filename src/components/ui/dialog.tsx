@@ -1,5 +1,6 @@
 import { Dialog as ArkDialog } from "@ark-ui/react";
 import { forwardRef, type ElementRef, type HTMLAttributes } from "react";
+import React from "react";
 import { LuX as X } from "react-icons/lu";
 
 import { Portal } from "@/components/ui/portal";
@@ -36,35 +37,42 @@ DialogOverlay.displayName = ArkDialog.Backdrop.displayName;
 
 const DialogContent = forwardRef<
   ElementRef<typeof ArkDialog.Content>,
-  ArkDialog.ContentProps & { closeButton?: boolean }
->(({ children, className, closeButton = true, ...props }, ref) => {
-  return (
-    <DialogPortal>
-      <DialogOverlay />
-      <ArkDialog.Positioner>
-        <ArkDialog.Content
-          ref={ref}
-          className={cn(
-            "tw-fixed tw-left-[50%] tw-top-[50%] tw-z-50 tw-flex tw-w-full tw-max-w-lg tw-flex-col tw-fill-mode-forwards",
-            "tw-translate-x-[-50%] tw-translate-y-[-50%] tw-gap-4 tw-border tw-border-border tw-bg-background tw-p-6 tw-shadow-lg tw-duration-200",
-            "tw-max-h-[95vh] data-[state=closed]:tw-hidden data-[state=closed]:tw-animate-out data-[state=open]:tw-fade-in-0",
-            "sm:tw-rounded-lg",
-            className,
-          )}
-          {...props}
-        >
-          {children}
-          {closeButton && (
-            <DialogClose className="tw-absolute tw-right-4 tw-top-4 tw-rounded-sm tw-opacity-70 tw-ring-offset-background tw-transition-opacity hover:tw-opacity-100 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-ring focus:tw-ring-offset-2 disabled:tw-pointer-events-none data-[state=open]:tw-bg-primary-foreground data-[state=open]:tw-text-muted-foreground">
-              <X className="tw-h-4 tw-w-4" />
-              <span className="tw-sr-only">Close</span>
-            </DialogClose>
-          )}
-        </ArkDialog.Content>
-      </ArkDialog.Positioner>
-    </DialogPortal>
-  );
-});
+  ArkDialog.ContentProps & { closeButton?: boolean; portal?: boolean }
+>(
+  (
+    { children, portal = true, className, closeButton = true, ...props },
+    ref,
+  ) => {
+    const Comp = portal ? DialogPortal : React.Fragment;
+
+    return (
+      <Comp>
+        <DialogOverlay />
+        <ArkDialog.Positioner>
+          <ArkDialog.Content
+            ref={ref}
+            className={cn(
+              "tw-fixed tw-left-[50%] tw-top-[50%] tw-z-50 tw-flex tw-w-full tw-max-w-lg tw-flex-col tw-fill-mode-forwards",
+              "tw-translate-x-[-50%] tw-translate-y-[-50%] tw-gap-4 tw-border tw-border-border tw-bg-background tw-p-6 tw-shadow-lg tw-duration-200",
+              "tw-max-h-[95vh] data-[state=closed]:tw-hidden data-[state=closed]:tw-animate-out data-[state=open]:tw-fade-in-0",
+              "sm:tw-rounded-lg",
+              className,
+            )}
+            {...props}
+          >
+            {children}
+            {closeButton && (
+              <DialogClose className="tw-absolute tw-right-4 tw-top-4 tw-rounded-sm tw-opacity-70 tw-ring-offset-background tw-transition-opacity hover:tw-opacity-100 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-ring focus:tw-ring-offset-2 disabled:tw-pointer-events-none data-[state=open]:tw-bg-primary-foreground data-[state=open]:tw-text-muted-foreground">
+                <X className="tw-h-4 tw-w-4" />
+                <span className="tw-sr-only">Close</span>
+              </DialogClose>
+            )}
+          </ArkDialog.Content>
+        </ArkDialog.Positioner>
+      </Comp>
+    );
+  },
+);
 
 DialogContent.displayName = ArkDialog.Content.displayName;
 

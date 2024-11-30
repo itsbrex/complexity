@@ -2,13 +2,13 @@ import "@/utils/jquery.extensions";
 
 import { allowWindowMessaging } from "webext-bridge/content-script";
 
-import { initCache } from "@/entrypoints/loaders/cache-loader";
-import { setupCoreObservers } from "@/entrypoints/loaders/core-observers-loader";
-import { initCorePlugins } from "@/entrypoints/loaders/core-plugins-loader";
-import { setupCsUiPlugins } from "@/entrypoints/loaders/cs-ui-plugins-loader/setup-root";
-import { setupDomBasedPlugins } from "@/entrypoints/loaders/dom-based-plugins-loader";
-import { setupNetworkInterceptPlugins } from "@/entrypoints/loaders/network-intercept-plugins-loader";
-import { setupRouteBasedPlugins } from "@/entrypoints/loaders/route-based-plugins-loader";
+import { initCache } from "@/entrypoints/content-scripts/loaders/cache-loader";
+import { setupCoreObservers } from "@/entrypoints/content-scripts/loaders/core-observers-loader";
+import { initCorePlugins } from "@/entrypoints/content-scripts/loaders/core-plugins-loader";
+import { setupCsUiPlugins } from "@/entrypoints/content-scripts/loaders/cs-ui-plugins-loader/setup-root";
+import { setupDomBasedPlugins } from "@/entrypoints/content-scripts/loaders/dom-based-plugins-loader";
+import { setupNetworkInterceptPlugins } from "@/entrypoints/content-scripts/loaders/network-intercept-plugins-loader";
+import { setupRouteBasedPlugins } from "@/entrypoints/content-scripts/loaders/route-based-plugins-loader";
 import { setupNetworkInterceptListeners } from "@/features/plugins/_core/network-intercept/listeners";
 import { setupSpaRouterDispatchListeners } from "@/features/plugins/_core/spa-router/listeners";
 import { setupThemeLoader } from "@/features/plugins/themes/theme-loader";

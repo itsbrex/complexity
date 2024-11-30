@@ -1,7 +1,7 @@
 import { QueryClientProvider } from "@tanstack/react-query";
 import { createRoot } from "react-dom/client";
 
-import CsUiRoot from "@/entrypoints/loaders/cs-ui-plugins-loader/CsUiRoot";
+import CsUiRoot from "@/entrypoints/content-scripts/loaders/cs-ui-plugins-loader/CsUiRoot";
 import { queryClient } from "@/utils/ts-query-client";
 import { waitForElement } from "@/utils/utils";
 

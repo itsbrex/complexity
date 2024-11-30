@@ -138,6 +138,9 @@ importers:
       '@types/node':
         specifier: ^20.17.9
         version: 20.17.9
+      '@types/pako':
+        specifier: ^2.0.3
+        version: 2.0.3
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
@@ -210,6 +213,9 @@ importers:
       gulp-zip:
         specifier: ^6.0.0
         version: 6.0.0(gulp@4.0.2)
+      js-base64:
+        specifier: ^3.7.7
+        version: 3.7.7
       mermaid:
         specifier: ^11.4.1
         version: 11.4.1
@@ -1277,6 +1283,9 @@ packages:
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
+
+  '@types/pako@2.0.3':
+    resolution: {integrity: sha512-bq0hMV9opAcrmE0Byyo0fY3Ew4tgOevJmQ9grUhpXQhYfyLJ1Kqg3P33JT5fdbT2AjeAjR51zqqVjAL/HMkx7Q==}
 
   '@types/prop-types@15.7.13':
     resolution: {integrity: sha512-hCZTSvwbzWGvhqxp/RqVqwU999pBf2vp7hzIjiYOsl8wqOmUxkQ6ddw1cV3l8811+kdUFus/q4d1Y3E3SyEifA==}
@@ -3392,6 +3401,9 @@ packages:
 
   jquery@3.7.1:
     resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==}
+
+  js-base64@3.7.7:
+    resolution: {integrity: sha512-7rCnleh0z2CkXhH67J8K1Ytz0b2Y+yxTPL+/KOJoa20hfnVQ/3/T6W/KflYI4bRHRagNeXeU2bkNGI3v1oS/lw==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -6307,6 +6319,8 @@ snapshots:
 
   '@types/normalize-package-data@2.4.4': {}
 
+  '@types/pako@2.0.3': {}
+
   '@types/prop-types@15.7.13': {}
 
   '@types/react-dom@18.3.1':
@@ -9097,6 +9111,8 @@ snapshots:
   jiti@1.21.6: {}
 
   jquery@3.7.1: {}
+
+  js-base64@3.7.7: {}
 
   js-tokens@4.0.0: {}
 

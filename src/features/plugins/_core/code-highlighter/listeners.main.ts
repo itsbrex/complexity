@@ -8,7 +8,10 @@ export type CodeHighlighterEvents = {
   "codeHighlighter:getHighlightedCodeAsHtml": (params: {
     codeString: string;
     language: string;
-    theme: BundledTheme;
+    themes: {
+      light: BundledTheme;
+      dark: BundledTheme;
+    };
   }) => string | null;
 };
 

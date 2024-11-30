@@ -3,8 +3,8 @@ import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer
 import hideNativeCodeBlocksCss from "@/features/plugins/thread/better-code-blocks/hide-native-code-blocks.css?inline";
 import MirroredCodeBlock from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlock";
 import { MirroredCodeBlockContextProvider } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
+import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/useBetterCodeBlockOptions";
 import { useMirroredCodeBlocks } from "@/features/plugins/thread/better-code-blocks/useMirroredCodeBlocks";
-import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/useBetterCodeBlockOptions";
 import { useInsertCss } from "@/hooks/useInsertCss";
 
 type MemoizedWrapperProps = {
@@ -40,9 +40,9 @@ const MemoizedWrapper = memo(function MemoizedWrapper({
         isInFlight,
         isMessageBlockInFlight,
         codeElement,
-        isWrapped: settings.unwrap.enabled,
+        isWrapped: !settings.unwrap.enabled,
         maxHeight: settings.maxHeight.enabled ? settings.maxHeight.value : 9999,
-        isRendered: false,
+        content: "code",
       }}
     >
       <MirroredCodeBlock variant="base" />

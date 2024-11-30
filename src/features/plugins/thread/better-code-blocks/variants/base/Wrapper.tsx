@@ -1,27 +1,20 @@
+import { TabContent } from "@ark-ui/react";
+
+import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
+import { Tabs } from "@/components/ui/tabs";
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
 import BetterCodeBlockHeader from "@/features/plugins/thread/better-code-blocks/variants/base/Header";
-import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/useBetterCodeBlockOptions";
-import HighlightedCode from "@/features/plugins/thread/better-code-blocks/variants/HighlightedCode";
+import MermaidPreviewContent from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/mermaid-preview/Content";
+import HighlightedCodeWrapper from "@/features/plugins/thread/better-code-blocks/variants/HighlightedCode";
 
 export const BaseCodeBlockWrapper = memo(function BaseCodeBlockWrapper() {
-  const { codeString, codeElement, language, maxHeight, isWrapped } =
-    useMirroredCodeBlockContext()((state) => ({
-      codeString: state.codeString,
-      codeElement: state.codeElement,
-      language: state.language,
+  const { maxHeight, content, language } = useMirroredCodeBlockContext()(
+    (state) => ({
       maxHeight: state.maxHeight,
-      isWrapped: state.isWrapped,
-    }));
-
-  const isThemeEnabled = useBetterCodeBlockOptions({ language })?.theme.enabled;
-  const [fallbackCodeHtml, setFallbackCodeHtml] = useState<string>(codeString);
-
-  useEffect(() => {
-    if (!isThemeEnabled) {
-      const fallback = getNativeCodeBlockHtml(codeElement);
-      setFallbackCodeHtml(fallback ?? codeString);
-    }
-  }, [codeElement, isThemeEnabled, codeString]);
+      content: state.content,
+      language: state.language,
+    }),
+  );
 
   return (
     <div
@@ -33,38 +26,20 @@ export const BaseCodeBlockWrapper = memo(function BaseCodeBlockWrapper() {
       )}
     >
       <BetterCodeBlockHeader />
-      <div
-        style={{
-          maxHeight,
-        }}
-        className="tw-overflow-auto tw-rounded-b-md"
-      >
-        {isThemeEnabled ? (
-          <HighlightedCode />
-        ) : (
-          <div
-            className={cn(
-              "tw-m-0 tw-whitespace-pre tw-p-2 tw-px-2 [&>*]:!tw-select-auto",
-              {
-                "tw-whitespace-pre-wrap": isWrapped,
-              },
-            )}
-            dangerouslySetInnerHTML={{ __html: fallbackCodeHtml }}
-          />
+      <Tabs value={content}>
+        <TabContent value="code">
+          <HighlightedCodeWrapper />
+        </TabContent>
+        {language === "mermaid" && (
+          <CsUiPluginsGuard
+            dependentPluginIds={["thread:betterCodeBlocks:previewMermaid"]}
+          >
+            <TabContent value="mermaid">
+              <MermaidPreviewContent />
+            </TabContent>
+          </CsUiPluginsGuard>
         )}
-      </div>
+      </Tabs>
     </div>
   );
 });
-
-function getNativeCodeBlockHtml(code: Element) {
-  const $target = $(code);
-
-  if (!$target.length) return null;
-
-  const html = $target.html();
-
-  if (html.length === 0) return null;
-
-  return html;
-}

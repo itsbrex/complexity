@@ -2,8 +2,9 @@ import type { BundledTheme } from "shiki";
 
 import { TRANSFORMER } from "@/data/plugins/code-highlighter/code-themes";
 import { LANGUAGE_CODES } from "@/data/plugins/code-highlighter/language-codes";
+import dualThemesCss from "@/features/plugins/_core/code-highlighter/dual-themes.css?inline";
 import { setupCodeHighlighterListeners } from "@/features/plugins/_core/code-highlighter/listeners.main";
-import { injectMainWorldScriptBlock } from "@/utils/utils";
+import { injectMainWorldScriptBlock, insertCss } from "@/utils/utils";
 
 export class CodeHighlighter {
   private static instance: CodeHighlighter | null = null;
@@ -20,7 +21,13 @@ export class CodeHighlighter {
 
   async initialize(): Promise<void> {
     setupCodeHighlighterListeners();
-    $(() => this.importShiki());
+    $(() => {
+      this.importShiki();
+      insertCss({
+        id: "cplx-code-highlighter-dual-themes",
+        css: dualThemesCss,
+      });
+    });
   }
 
   private async importShiki(): Promise<void> {
@@ -51,9 +58,12 @@ export class CodeHighlighter {
   async handleHighlightRequest(params: {
     codeString: string;
     language: string;
-    theme: BundledTheme;
+    themes: {
+      light: BundledTheme;
+      dark: BundledTheme;
+    };
   }): Promise<string | null> {
-    const { codeString, language, theme } = params;
+    const { codeString, language, themes } = params;
 
     if (!codeString) {
       throw new Error("Received empty code for highlighting");
@@ -73,7 +83,7 @@ export class CodeHighlighter {
 
       const html = await window.shiki!.codeToHtml(preprocessedCodeString, {
         lang: language in LANGUAGE_CODES ? LANGUAGE_CODES[language] : language,
-        theme,
+        themes,
       });
 
       const postprocessedHtml = TRANSFORMER[language]?.post?.(html) ?? html;

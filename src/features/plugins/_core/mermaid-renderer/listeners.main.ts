@@ -5,6 +5,7 @@ import { MermaidRenderer } from "@/features/plugins/_core/mermaid-renderer/index
 export type MermaidRendererEvents = {
   "mermaidRenderer:isInitialized": () => boolean;
   "mermaidRenderer:render": (params: { selector: string }) => boolean;
+  "mermaidRenderer:getPlaygroundUrl": (params: { code: string }) => string;
 };
 
 export function setupMermaidRendererListeners() {
@@ -14,5 +15,9 @@ export function setupMermaidRendererListeners() {
 
   onMessage("mermaidRenderer:render", ({ data: { selector } }) => {
     return MermaidRenderer.getInstance().handleRenderRequest(selector);
+  });
+
+  onMessage("mermaidRenderer:getPlaygroundUrl", ({ data: { code } }) => {
+    return MermaidRenderer.getInstance().handleGetPlaygroundUrlRequest(code);
   });
 }

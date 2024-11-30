@@ -2,11 +2,13 @@ import { memo, useRef } from "react";
 import { LuLoader2 } from "react-icons/lu";
 
 import CopyButton from "@/components/CopyButton";
+import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 import { Separator } from "@/components/ui/separator";
 import { BetterCodeBlockFineGrainedOptions } from "@/data/better-code-blocks/better-code-blocks-options";
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
+import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/useBetterCodeBlockOptions";
 import { ExpandCollapseButton } from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/ExpandCollapseButton";
-import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/useBetterCodeBlockOptions";
+import MermaidPreviewButtonsWrapper from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/mermaid-preview/Wrapper";
 import { WrapToggleButton } from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/WrapToggleButton";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
@@ -85,6 +87,14 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
       </div>
 
       <div className="tw-flex tw-items-center tw-gap-4">
+        {!isInFlight && language === "mermaid" && (
+          <CsUiPluginsGuard
+            dependentPluginIds={["thread:betterCodeBlocks:previewMermaid"]}
+          >
+            <MermaidPreviewButtonsWrapper />
+          </CsUiPluginsGuard>
+        )}
+
         {isInFlight && (
           <span className="tw-flex tw-items-center tw-gap-2">
             {placeholderText?.loading && (

@@ -24,13 +24,13 @@ type MirroredCodeBlockStore = Pick<
   setIsWrapped: (isWrapped: boolean) => void;
   maxHeight: number;
   setMaxHeight: (maxHeight: number) => void;
-  isRendered: boolean;
-  setIsRendered: (isRendered: boolean) => void;
+  content: "code" | "mermaid";
+  setContent: (content: "code" | "mermaid") => void;
 };
 
 type InitialState = Omit<
   MirroredCodeBlockStore,
-  "setIsWrapped" | "setMaxHeight" | "setIsRendered"
+  "setIsWrapped" | "setMaxHeight" | "setContent"
 >;
 
 export const createStore = (initialState: InitialState) =>
@@ -48,9 +48,9 @@ export const createStore = (initialState: InitialState) =>
             state.maxHeight = maxHeight;
           });
         },
-        setIsRendered: (isRendered) => {
+        setContent: (content) => {
           set((state) => {
-            state.isRendered = isRendered;
+            state.content = content;
           });
         },
       })),

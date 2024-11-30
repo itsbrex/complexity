@@ -28,32 +28,23 @@ export class MermaidRenderer {
     if (!this.importPromise) {
       const isDarkTheme = UiUtils.isDarkTheme();
 
-      const background = getComputedStyle(
-        document.documentElement,
-      ).getPropertyValue("--background");
-
-      const uiFont =
-        getComputedStyle(document.body).getPropertyValue("--font-fk-grotesk") ||
-        getComputedStyle(document.documentElement).getPropertyValue(
-          "--font-berkeley-mono",
-        );
-
       const config: MermaidConfig = {
         startOnLoad: false,
         theme: isDarkTheme ? "dark" : "base",
-        themeVariables: {
-          edgeLabelBackground: background,
-        },
         gitGraph: {
           useMaxWidth: true,
         },
-        fontFamily: uiFont,
+        fontFamily: "var(--font-fk-grotesk)",
       };
 
       const scriptContent = `
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
         import 'https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.2/dist/svg-pan-zoom.min.js';
+        import * as jsBase64 from 'https://cdn.jsdelivr.net/npm/js-base64@3.7.7/+esm';
+        import pako from 'https://cdn.jsdelivr.net/npm/pako@2.1.0/+esm';
 
+        window.pako = pako;
+        window.jsBase64 = jsBase64;
         window.mermaid = mermaid;
 
         window.mermaid.initialize(${JSON.stringify(config)});
@@ -83,6 +74,10 @@ export class MermaidRenderer {
       return false;
     }
 
+    const isRendered = $target.find("svg").length > 0;
+
+    if (isRendered) return true;
+
     try {
       await this.importMermaid();
 
@@ -92,8 +87,10 @@ export class MermaidRenderer {
 
       const $svg = $target.find("svg");
 
-      $svg.addClass("!tw-size-full").css({
-        "max-width": "100%",
+      $svg.css({
+        width: "100%",
+        maxWidth: "100%",
+        height: "100%",
       });
 
       const svgPanZoomInstance = window.svgPanZoom!($svg[0], {
@@ -115,6 +112,25 @@ export class MermaidRenderer {
     } catch (error) {
       console.error("[MermaidRenderer] Error rendering:", error);
       return false;
+    }
+  }
+
+  async handleGetPlaygroundUrlRequest(code: string) {
+    try {
+      await this.importMermaid();
+
+      const json = JSON.stringify({
+        code,
+      });
+
+      const data = new TextEncoder().encode(json);
+      const compressed = window.pako!.deflate(data, { level: 9 });
+      const encoded = window.jsBase64!.fromUint8Array(compressed, true);
+
+      return `https://mermaidchart.com/play#pako:${encoded}`;
+    } catch (e) {
+      console.error("[MermaidRenderer] Error getting playground URL:", e);
+      return "";
     }
   }
 

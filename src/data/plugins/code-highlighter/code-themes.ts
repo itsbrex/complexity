@@ -57,8 +57,19 @@ export const CODE_THEMES: BundledTheme[] = [
   "vitesse-light",
 ];
 
-export const LANGUAGE_CODES: Record<string, string> = {
-  xml: "html",
-  objectivec: "objective-c",
-  assembly: "asm",
+export const TRANSFORMER: Record<
+  string,
+  { pre: (codeString: string) => string; post: (html: string) => string }
+> = {
+  mermaid: {
+    pre: (codeString: string) => {
+      return `\`\`\`mermaid\n${codeString}\n\`\`\``;
+    },
+    post: (html: string) => {
+      const $html = $(html);
+      $html.find("span.line").first().remove();
+      $html.find("span.line").last().remove();
+      return $html.prop("outerHTML") ?? html;
+    },
+  },
 };

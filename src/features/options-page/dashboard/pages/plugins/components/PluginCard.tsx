@@ -1,4 +1,5 @@
 import { GoKebabHorizontal, GoStar, GoStarFill } from "react-icons/go";
+import { LuAlertTriangle } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 
 import Tooltip from "@/components/Tooltip";
@@ -19,8 +20,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Switch } from "@/components/ui/switch";
+import { Ul } from "@/components/ui/typography";
 import { PLUGIN_TAGS, PLUGINS_METADATA } from "@/data/plugins/plugins-data";
 import { PLUGIN_DETAILS } from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/plugins-details";
+import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatureFlags";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
@@ -36,6 +39,25 @@ export function PluginCard({ pluginId }: PluginCardProps) {
   const { title, description, tags, routeSegment } = PLUGINS_METADATA[pluginId];
 
   const dialogContent = PLUGIN_DETAILS[pluginId];
+
+  const { data: featureFlags } = useCplxFeatureFlags();
+
+  const areAllDependentPluginsEnabled = useMemo(
+    () =>
+      PLUGINS_METADATA?.[pluginId]?.dependentPlugins?.every(
+        (dependentPluginId) => settings?.plugins[dependentPluginId].enabled,
+      ) ?? true,
+    [pluginId, settings],
+  );
+
+  const areAnyDependentPluginsForceDisabled = useMemo(
+    () =>
+      PLUGINS_METADATA?.[pluginId]?.dependentPlugins?.some(
+        (dependentPluginId) =>
+          featureFlags?.anon?.forceDisable.includes(dependentPluginId),
+      ) ?? false,
+    [pluginId, featureFlags],
+  );
 
   if (!settings) return null;
 
@@ -120,6 +142,44 @@ export function PluginCard({ pluginId }: PluginCardProps) {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
+
+        {settings?.plugins[pluginId].enabled &&
+          !areAllDependentPluginsEnabled && (
+            <Tooltip
+              content={
+                <div>
+                  <div>
+                    One or more dependencies are disabled, please enable them to
+                    use this plugin:
+                  </div>
+                  <Ul>
+                    {PLUGINS_METADATA[pluginId]?.dependentPlugins?.map(
+                      (dependentPluginId) => (
+                        <li key={dependentPluginId}>
+                          {PLUGINS_METADATA[dependentPluginId]?.title}
+                        </li>
+                      ),
+                    )}
+                  </Ul>
+                </div>
+              }
+            >
+              <LuAlertTriangle className="tw-size-4 tw-text-yellow-300 dark:tw-text-yellow-500" />
+            </Tooltip>
+          )}
+
+        {areAnyDependentPluginsForceDisabled && (
+          <Tooltip
+            content={
+              <div>
+                This plugin is disabled because one or more of its dependencies
+                are not available.
+              </div>
+            }
+          >
+            <LuAlertTriangle className="tw-size-4 tw-text-destructive" />
+          </Tooltip>
+        )}
 
         <Switch
           checked={settings?.plugins[pluginId].enabled ?? false}

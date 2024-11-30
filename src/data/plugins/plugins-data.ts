@@ -7,6 +7,7 @@ const CORE_PLUGINS = [
   "domObserver",
   "reactVdom",
   "codeHighlighter",
+  "mermaidRenderer",
 ] as const;
 
 export type CorePluginId = (typeof CORE_PLUGINS)[number];
@@ -49,6 +50,7 @@ export type CplxPluginMetadata = Record<
     description: string;
     tags?: PluginTagValues[];
     dependentCorePlugins?: CorePluginId[];
+    dependentPlugins?: PluginId[];
   }
 >;
 
@@ -99,6 +101,16 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
       "reactVdom",
       "codeHighlighter",
     ],
+  },
+  "thread:betterCodeBlocks:previewMermaid": {
+    id: "thread:betterCodeBlocks:previewMermaid",
+    routeSegment: "thread-better-code-blocks-preview-mermaid",
+    title: "Mermaid Code Blocks Preview",
+    description:
+      "Preview mermaid diagrams, simple charts, etc. in code blocks.",
+    tags: ["ui"],
+    dependentCorePlugins: ["mermaidRenderer"],
+    dependentPlugins: ["thread:betterCodeBlocks"],
   },
   "thread:exportThread": {
     id: "thread:exportThread",

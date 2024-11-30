@@ -2,7 +2,7 @@ import { sendMessage } from "webext-bridge/content-script";
 
 import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-queue";
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
-import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/standard/header-buttons/useBetterCodeBlockOptions";
+import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/useBetterCodeBlockOptions";
 import UiUtils from "@/utils/UiUtils";
 
 type HighlightedCodeProps = {

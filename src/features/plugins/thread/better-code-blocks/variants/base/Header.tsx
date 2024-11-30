@@ -5,24 +5,24 @@ import CopyButton from "@/components/CopyButton";
 import { Separator } from "@/components/ui/separator";
 import { BetterCodeBlockFineGrainedOptions } from "@/data/better-code-blocks/better-code-blocks-options";
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
-import { ExpandCollapseButton } from "@/features/plugins/thread/better-code-blocks/variants/standard/header-buttons/ExpandCollapseButton";
-import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/standard/header-buttons/useBetterCodeBlockOptions";
-import { WrapToggleButton } from "@/features/plugins/thread/better-code-blocks/variants/standard/header-buttons/WrapToggleButton";
+import { ExpandCollapseButton } from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/ExpandCollapseButton";
+import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/useBetterCodeBlockOptions";
+import { WrapToggleButton } from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/WrapToggleButton";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
-type StandardHeaderProps = {
+type BaseHeaderProps = {
   isWrapped: boolean;
   setIsWrapped: Dispatch<SetStateAction<boolean>>;
   maxHeight: number;
   setMaxHeight: Dispatch<SetStateAction<number>>;
 };
 
-const StandardCodeBlockHeader = memo(function StandardCodeBlockHeader({
+const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader({
   isWrapped,
   setIsWrapped,
   maxHeight,
   setMaxHeight,
-}: StandardHeaderProps) {
+}: BaseHeaderProps) {
   const {
     language,
     codeString,
@@ -122,7 +122,7 @@ const StandardCodeBlockHeader = memo(function StandardCodeBlockHeader({
   );
 });
 
-export default StandardCodeBlockHeader;
+export default BaseCodeBlockWrapperHeader;
 
 function isContainerHorizontalOverflowing({
   codeElement,

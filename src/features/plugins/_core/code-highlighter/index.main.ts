@@ -1,8 +1,9 @@
 import type { BundledTheme } from "shiki";
 
-import { LANGUAGE_CODES } from "@/data/plugins/code-highlighter/code-themes";
+import { TRANSFORMER } from "@/data/plugins/code-highlighter/code-themes";
+import { LANGUAGE_CODES } from "@/data/plugins/code-highlighter/language-codes";
 import { setupCodeHighlighterListeners } from "@/features/plugins/_core/code-highlighter/listeners.main";
-import { injectMainWorldScriptBlock, sleep } from "@/utils/utils";
+import { injectMainWorldScriptBlock } from "@/utils/utils";
 
 export class CodeHighlighter {
   private static instance: CodeHighlighter | null = null;
@@ -67,10 +68,17 @@ export class CodeHighlighter {
       )
         return null;
 
-      return await window.shiki!.codeToHtml(codeString, {
+      const preprocessedCodeString =
+        TRANSFORMER[lang]?.pre?.(codeString) ?? codeString;
+
+      const html = await window.shiki!.codeToHtml(preprocessedCodeString, {
         lang: lang in LANGUAGE_CODES ? LANGUAGE_CODES[lang] : lang,
         theme,
       });
+
+      const postprocessedHtml = TRANSFORMER[lang]?.post?.(html) ?? html;
+
+      return postprocessedHtml;
     } catch (error) {
       console.error("Error highlighting code:", error);
       return null;

@@ -39,7 +39,7 @@ const MemoizedWrapper = memo(function MemoizedWrapper({
         codeElement,
       }}
     >
-      <MirroredCodeBlock variant="standard" />
+      <MirroredCodeBlock variant="base" />
     </MirroredCodeBlockContextProvider>
   );
 });

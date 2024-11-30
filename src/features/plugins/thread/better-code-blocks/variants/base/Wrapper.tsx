@@ -1,9 +1,9 @@
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
+import BetterCodeBlockHeader from "@/features/plugins/thread/better-code-blocks/variants/base/Header";
+import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/useBetterCodeBlockOptions";
 import { HighlightedCode } from "@/features/plugins/thread/better-code-blocks/variants/HighlightedCode";
-import BetterCodeBlockHeader from "@/features/plugins/thread/better-code-blocks/variants/standard/Header";
-import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/standard/header-buttons/useBetterCodeBlockOptions";
 
-export const StandardCodeBlock = memo(function StandardCodeBlock() {
+export const BaseCodeBlockWrapper = memo(function BaseCodeBlockWrapper() {
   const { codeString, codeElement, language } = useMirroredCodeBlockContext()(
     (state) => ({
       codeString: state.codeString,

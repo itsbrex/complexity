@@ -43,6 +43,9 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
         showToggleButton: true,
       },
     },
+    "thread:betterCodeBlocks:previewMermaid": {
+      enabled: false,
+    },
     "thread:exportThread": {
       enabled: false,
     },

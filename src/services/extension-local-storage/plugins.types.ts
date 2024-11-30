@@ -27,6 +27,7 @@ export const PluginsSchema = z.object({
   "thread:betterCodeBlocks": PluginSettingsSchema.merge(
     BetterCodeBlockGlobalOptionsSchema,
   ),
+  "thread:betterCodeBlocks:previewMermaid": PluginSettingsSchema,
   "thread:exportThread": PluginSettingsSchema,
   "thread:betterMessageCopyButtons": PluginSettingsSchema,
   "thread:dragAndDropFileToUploadInThread": PluginSettingsSchema,

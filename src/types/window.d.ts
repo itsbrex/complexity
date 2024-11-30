@@ -1,4 +1,6 @@
+import type { Mermaid } from "mermaid";
 import type * as shiki from "shiki";
+import type * as svgPanZoom from "svg-pan-zoom";
 
 declare global {
   interface Window {
@@ -16,6 +18,8 @@ declare global {
     };
 
     shiki?: typeof shiki;
+    mermaid?: Mermaid;
+    svgPanZoom?: typeof svgPanZoom;
   }
 }
 

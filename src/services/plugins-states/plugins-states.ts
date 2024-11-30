@@ -1,3 +1,4 @@
+import { PLUGINS_METADATA } from "@/data/plugins/plugins-data";
 import {
   CplxFeatureFlags,
   UserGroup,
@@ -19,11 +20,13 @@ export class PluginsStatesService {
     const localSettings = ExtensionLocalStorageService.getCachedSync();
 
     return {
-      pluginsEnableStates: Object.fromEntries(
-        Object.keys(localSettings.plugins).map((pluginId) => [
-          pluginId,
-          localSettings.plugins[pluginId as PluginId].enabled,
-        ]),
+      pluginsEnableStates: PluginsStatesService.checkDependencies(
+        Object.fromEntries(
+          Object.keys(localSettings.plugins).map((pluginId) => [
+            pluginId,
+            localSettings.plugins[pluginId as PluginId].enabled,
+          ]),
+        ),
       ),
       pluginsHideFromDashboardStates: null,
     };
@@ -87,7 +90,8 @@ export class PluginsStatesService {
     );
 
     return {
-      pluginsEnableStates,
+      pluginsEnableStates:
+        PluginsStatesService.checkDependencies(pluginsEnableStates),
       pluginsHideFromDashboardStates,
     };
   }
@@ -100,5 +104,41 @@ export class PluginsStatesService {
     );
 
     return pluginsStates ?? DEFAULT_RETURN;
+  }
+
+  private static areAllDependentPluginsEnabled({
+    pluginId,
+    pluginsEnableStates,
+  }: {
+    pluginId: PluginId;
+    pluginsEnableStates: NonNullable<PluginsStates["pluginsEnableStates"]>;
+  }) {
+    return PLUGINS_METADATA[pluginId]?.dependentPlugins?.every(
+      (dependentPluginId) => pluginsEnableStates[dependentPluginId],
+    );
+  }
+
+  private static checkDependencies(
+    pluginsEnableStates: NonNullable<PluginsStates["pluginsEnableStates"]>,
+  ) {
+    const mutablePluginsEnableStates = { ...pluginsEnableStates };
+
+    Object.keys(pluginsEnableStates).forEach((pluginId) => {
+      const dependentPlugins =
+        PLUGINS_METADATA[pluginId as PluginId]?.dependentPlugins;
+
+      if (!dependentPlugins) return;
+
+      if (
+        !PluginsStatesService.areAllDependentPluginsEnabled({
+          pluginId: pluginId as PluginId,
+          pluginsEnableStates,
+        })
+      ) {
+        mutablePluginsEnableStates[pluginId as PluginId] = false;
+      }
+    });
+
+    return mutablePluginsEnableStates;
   }
 }

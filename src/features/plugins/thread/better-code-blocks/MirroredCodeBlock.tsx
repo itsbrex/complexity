@@ -1,7 +1,7 @@
-import { StandardCodeBlock } from "@/features/plugins/thread/better-code-blocks/variants/standard/Standard";
+import { BaseCodeBlockWrapper } from "@/features/plugins/thread/better-code-blocks/variants/base/Wrapper";
 
 const VARIANTS = {
-  standard: StandardCodeBlock,
+  base: BaseCodeBlockWrapper,
 } as const;
 
 export default function MirroredCodeBlock({

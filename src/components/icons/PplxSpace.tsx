@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-export default function SpaceIcon({ ...props }: SVGProps<SVGSVGElement>) {
+export default function PplxSpace({ ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="0.8em"

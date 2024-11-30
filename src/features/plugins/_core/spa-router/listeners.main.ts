@@ -5,6 +5,8 @@ import { isNextWindowObjectExists } from "@/features/plugins/_core/spa-router/ut
 export type CsUtilEvents = {
   "spa-router:isNextWindowObjectExists": () => boolean;
   "spa-router:push": ({ url }: { url: string }) => void;
+  "spa-router:replace": ({ url }: { url: string }) => void;
+  "spa-router:refresh": () => void;
 };
 
 export function setupSpaRouterListeners() {
@@ -21,5 +23,19 @@ export function setupSpaRouterListeners() {
     } catch (error) {
       console.error("Error during route change:", error);
     }
+  });
+
+  onMessage("spa-router:replace", ({ data: { url } }) => {
+    if (!isNextWindowObjectExists())
+      throw new Error("Next.js window object not found");
+
+    window.next?.router.replace(url);
+  });
+
+  onMessage("spa-router:refresh", () => {
+    if (!isNextWindowObjectExists())
+      throw new Error("Next.js window object not found");
+
+    window.next?.router.refresh();
   });
 }

@@ -1,5 +1,5 @@
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/home/observer-ids";
-import styles from "@/features/plugins/home/custom-slogan.css?inline";
+import styles from "@/features/plugins/home/custom-slogan/custom-slogan.css?inline";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { insertCss, whereAmI } from "@/utils/utils";

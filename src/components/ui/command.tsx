@@ -21,36 +21,49 @@ const Command = React.forwardRef<
 ));
 Command.displayName = CommandPrimitive.displayName;
 
-interface CommandDialogProps extends DialogProps {}
+type CommandDialogProps = DialogProps & {
+  commandProps?: React.ComponentPropsWithoutRef<typeof CommandPrimitive>;
+};
 
-const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
+const CommandDialog = React.forwardRef<
+  React.ElementRef<typeof Dialog>,
+  CommandDialogProps
+>(({ children, commandProps, ...props }, ref) => {
   return (
     <Dialog {...props}>
       <DialogContent className="tw-overflow-hidden !tw-p-0 tw-shadow-lg">
         <Command
+          ref={ref}
           className="[&_[cmdk-group-heading]]:tw-px-2 [&_[cmdk-group-heading]]:tw-font-medium [&_[cmdk-group-heading]]:tw-text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:tw-pt-0 [&_[cmdk-group]]:tw-px-2 [&_[cmdk-input-wrapper]_svg]:tw-h-4 [&_[cmdk-input-wrapper]_svg]:tw-w-4 [&_[cmdk-input]]:tw-h-12 [&_[cmdk-item]]:tw-px-2 [&_[cmdk-item]]:tw-py-2 [&_[cmdk-item]_svg]:tw-h-4 [&_[cmdk-item]_svg]:tw-w-4"
           filter={(value, search, keywords) => {
             const extendValue = value + " " + (keywords?.join(" ") || "");
             if (extendValue.includes(search)) return 1;
             return 0;
           }}
+          {...commandProps}
         >
           {children}
         </Command>
       </DialogContent>
     </Dialog>
   );
-};
+});
+
+CommandDialog.displayName = "CommandDialog";
 
 const CommandInput = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input> & {
     searchIcon?: boolean;
     className?: string;
+    inputClassName?: string;
   }
->(({ className, searchIcon = true, ...props }, ref) => (
+>(({ className, inputClassName, searchIcon = true, ...props }, ref) => (
   <div
-    className="tw-flex tw-items-center tw-border-b tw-px-3"
+    className={cn(
+      "tw-flex tw-items-center tw-border-b tw-border-border/50 tw-px-3",
+      className,
+    )}
     // eslint-disable-next-line react/no-unknown-property
     cmdk-input-wrapper=""
   >
@@ -61,7 +74,7 @@ const CommandInput = React.forwardRef<
       ref={ref}
       className={cn(
         "tw-flex tw-h-11 tw-w-full tw-rounded-md tw-bg-transparent tw-py-3 tw-text-sm tw-outline-none placeholder:tw-text-muted-foreground disabled:tw-cursor-not-allowed disabled:tw-opacity-50",
-        className,
+        inputClassName,
       )}
       {...props}
     />

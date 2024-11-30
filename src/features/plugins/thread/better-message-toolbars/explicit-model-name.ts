@@ -52,7 +52,7 @@ export function explicitModelName(messageBlocks: ExtendedMessageBlock[]) {
     const modelNameElement = $(
       `<span>${modelName.toLocaleUpperCase()}</span>`,
     ).addClass(
-      "tw-font-mono tw-animate-in tw-fade-in tw-border tw-border-border tw-p-1 tw-px-2 tw-rounded-md tw-text-xs tw-bg-secondary",
+      "tw-font-mono tw-animate-in tw-fade-in tw-border tw-border-border/50 tw-p-1 tw-px-2 tw-rounded-md tw-text-xs tw-bg-secondary",
     );
 
     $target.append(modelNameElement);

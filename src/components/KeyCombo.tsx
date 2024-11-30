@@ -33,7 +33,7 @@ export default function KeyCombo({
       {processedKeys.map((key, idx) => (
         <span
           key={idx}
-          className="tw-rounded-sm tw-border tw-px-1 tw-font-mono"
+          className="tw-rounded-sm tw-border tw-border-border/50 tw-px-1 tw-font-mono"
         >
           {key}
         </span>

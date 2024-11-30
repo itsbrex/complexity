@@ -1,5 +1,5 @@
 import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
-import { setupCustomSlogan } from "@/features/plugins/home/custom-slogan";
+import { setupCustomSlogan } from "@/features/plugins/home/custom-slogan/custom-slogan";
 import { noFileCreationOnPaste } from "@/features/plugins/query-box/no-file-creation-on-paste";
 import { explicitModelName } from "@/features/plugins/thread/better-message-toolbars/explicit-model-name";
 import { whereAmI } from "@/utils/utils";

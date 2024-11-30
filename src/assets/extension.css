@@ -16,7 +16,7 @@
   }
 
   * {
-    @apply tw-border-border tw-text-base;
+    @apply tw-border-border/50 tw-text-base;
   }
 
   body {

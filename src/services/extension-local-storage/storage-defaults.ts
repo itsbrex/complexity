@@ -15,6 +15,9 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "queryBox:noFileCreationOnPaste": {
       enabled: false,
     },
+    commandMenu: {
+      enabled: false,
+    },
     "thread:toc": {
       enabled: false,
     },

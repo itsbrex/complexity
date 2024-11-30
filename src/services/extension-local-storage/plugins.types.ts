@@ -17,6 +17,7 @@ export const PluginsSchema = z.object({
     }),
   }),
   "queryBox:noFileCreationOnPaste": PluginSettingsSchema,
+  commandMenu: PluginSettingsSchema,
   "thread:toc": PluginSettingsSchema,
   "thread:betterMessageToolbars": PluginSettingsSchema.extend({
     sticky: z.boolean(),

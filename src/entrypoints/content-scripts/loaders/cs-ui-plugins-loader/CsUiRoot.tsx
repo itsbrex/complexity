@@ -10,15 +10,18 @@ import { Toaster } from "@/components/Toaster";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import { useInsertCss } from "@/hooks/useInsertCss";
 
+const QueryBoxWrapper = lazy(
+  () => import("@/features/plugins/query-box/Wrapper"),
+);
+const CommandMenuWrapper = lazy(
+  () => import("@/features/plugins/command-menu/Wrapper"),
+);
 const ImageGenModelSelectorWrapper = lazy(
   () => import("@/features/plugins/image-gen-popover/Wrapper"),
 );
 const OnCloudflareTimeout = lazy(
   () =>
     import("@/features/plugins/on-cf-timeout-auto-reload/OnCloudflareTimeout"),
-);
-const QueryBoxWrapper = lazy(
-  () => import("@/features/plugins/query-box/Wrapper"),
 );
 const BetterCodeBlocksWrapper = lazy(
   () => import("@/features/plugins/thread/better-code-blocks/Wrapper"),
@@ -53,6 +56,9 @@ export default function CsUiRoot() {
         ]}
       >
         <QueryBoxWrapper />
+      </CsUiPluginsGuard>
+      <CsUiPluginsGuard dependentPluginIds={["commandMenu"]}>
+        <CommandMenuWrapper />
       </CsUiPluginsGuard>
       <CsUiPluginsGuard location={["thread"]}>
         <ThreadComponent />

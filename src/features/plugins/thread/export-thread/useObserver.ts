@@ -6,9 +6,23 @@ const OBSERVER_ID = "cplx-thread-export-button";
 export default function useObserver() {
   useSpaRouter();
 
-  const navbarChildren = useGlobalDomObserverStore(
-    (state) => state.threadComponents.navbarChildren,
+  const { navbarChildren, messageBlocks } = useGlobalDomObserverStore(
+    (state) => ({
+      navbarChildren: state.threadComponents.navbarChildren,
+      messageBlocks: state.threadComponents.messageBlocks,
+    }),
   );
+
+  const isAnyMessageBlockInFlight = useMemo(() => {
+    return messageBlocks?.some((block) => block.isInFlight);
+  }, [messageBlocks]);
+
+  if (isAnyMessageBlockInFlight) {
+    setTimeout(() => {
+      $(`[data-cplx-component="${OBSERVER_ID}"]`).remove();
+    }, 0);
+    return null;
+  }
 
   return getPortalContainer(navbarChildren);
 }
@@ -20,11 +34,15 @@ function getPortalContainer(navbarChildren: HTMLElement[] | null) {
 
   if (!$anchor.length) return null;
 
-  const $existingPortalContainer = $anchor.find(`.${OBSERVER_ID}`);
+  const $existingPortalContainer = $anchor.find(
+    `[data-cplx-component="${OBSERVER_ID}"]`,
+  );
 
   if ($existingPortalContainer.length) return $existingPortalContainer[0];
 
-  const $portalContainer = $("<div>").addClass(OBSERVER_ID).appendTo($anchor);
+  const $portalContainer = $("<div>")
+    .internalComponentAttr(OBSERVER_ID)
+    .appendTo($anchor);
 
   return $portalContainer[0];
 }

@@ -72,6 +72,14 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     tags: ["ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
   },
+  commandMenu: {
+    id: "commandMenu",
+    routeSegment: "command-menu",
+    title: "Command Menu",
+    description: "Quickly navigate around and invoke actions.",
+    tags: ["ui", "ux", "desktopOnly"],
+    dependentCorePlugins: ["spaRouter"],
+  },
   "thread:toc": {
     id: "thread:toc",
     routeSegment: "thread-toc",

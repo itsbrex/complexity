@@ -9,24 +9,50 @@ type MirroredCodeBlockContext = ReturnType<typeof createStore>;
 
 type NonNullMirroredCodeBlock = RemoveNull<
   MirroredCodeBlock,
-  "lang" | "codeString"
+  "language" | "codeString"
 >;
 
 type MirroredCodeBlockStore = Pick<
   NonNullMirroredCodeBlock,
-  "lang" | "codeString" | "isInFlight"
+  "language" | "codeString" | "isInFlight"
 > & {
   sourceMessageBlockIndex: number;
   sourceCodeBlockIndex: number;
   isMessageBlockInFlight: boolean;
   codeElement: Element;
+  isWrapped: boolean;
+  setIsWrapped: (isWrapped: boolean) => void;
+  maxHeight: number;
+  setMaxHeight: (maxHeight: number) => void;
+  isRendered: boolean;
+  setIsRendered: (isRendered: boolean) => void;
 };
 
-export const createStore = (initialState: MirroredCodeBlockStore) =>
+type InitialState = Omit<
+  MirroredCodeBlockStore,
+  "setIsWrapped" | "setMaxHeight" | "setIsRendered"
+>;
+
+export const createStore = (initialState: InitialState) =>
   createWithEqualityFn<MirroredCodeBlockStore>()(
     subscribeWithSelector(
-      immer(() => ({
+      immer((set) => ({
         ...initialState,
+        setIsWrapped: (isWrapped) => {
+          set((state) => {
+            state.isWrapped = isWrapped;
+          });
+        },
+        setMaxHeight: (maxHeight) => {
+          set((state) => {
+            state.maxHeight = maxHeight;
+          });
+        },
+        setIsRendered: (isRendered) => {
+          set((state) => {
+            state.isRendered = isRendered;
+          });
+        },
       })),
     ),
   );
@@ -40,7 +66,7 @@ export const MirroredCodeBlockContextProvider = memo(
     storeValue,
     children,
   }: {
-    storeValue: MirroredCodeBlockStore;
+    storeValue: InitialState;
     children: React.ReactNode;
   }) {
     const store = useMemo(() => createStore(storeValue), [storeValue]);

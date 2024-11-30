@@ -1,4 +1,4 @@
-import { Dispatch, memo, SetStateAction, useRef } from "react";
+import { memo, useRef } from "react";
 import { LuLoader2 } from "react-icons/lu";
 
 import CopyButton from "@/components/CopyButton";
@@ -10,31 +10,27 @@ import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blo
 import { WrapToggleButton } from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/WrapToggleButton";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
-type BaseHeaderProps = {
-  isWrapped: boolean;
-  setIsWrapped: Dispatch<SetStateAction<boolean>>;
-  maxHeight: number;
-  setMaxHeight: Dispatch<SetStateAction<number>>;
-};
-
-const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader({
-  isWrapped,
-  setIsWrapped,
-  maxHeight,
-  setMaxHeight,
-}: BaseHeaderProps) {
+const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
   const {
     language,
     codeString,
     isInFlight,
     isMessageBlockInFlight,
     codeElement,
+    isWrapped,
+    maxHeight,
+    setIsWrapped,
+    setMaxHeight,
   } = useMirroredCodeBlockContext()((state) => ({
-    language: state.lang,
+    language: state.language,
     codeString: state.codeString,
     codeElement: state.codeElement,
     isInFlight: state.isInFlight,
     isMessageBlockInFlight: state.isMessageBlockInFlight,
+    isWrapped: state.isWrapped,
+    maxHeight: state.maxHeight,
+    setIsWrapped: state.setIsWrapped,
+    setMaxHeight: state.setMaxHeight,
   }));
 
   const settings = useBetterCodeBlockOptions({ language });

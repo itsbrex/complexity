@@ -4,7 +4,7 @@ import { betterCodeBlocksFineGrainedOptionsQueries } from "@/services/indexed-db
 import { queryClient } from "@/utils/ts-query-client";
 
 type UseBetterCodeBlockOptionsProps = {
-  language: string;
+  language: string | null;
 };
 
 export default function useBetterCodeBlockOptions({
@@ -15,11 +15,13 @@ export default function useBetterCodeBlockOptions({
       "thread:betterCodeBlocks"
     ];
 
-  const fineGrainedSettings = queryClient
-    .getQueryData<
-      BetterCodeBlockFineGrainedOptions[]
-    >(betterCodeBlocksFineGrainedOptionsQueries.list.queryKey)
-    ?.find((option) => option.language === language);
+  const fineGrainedSettings = language
+    ? queryClient
+        .getQueryData<
+          BetterCodeBlockFineGrainedOptions[]
+        >(betterCodeBlocksFineGrainedOptionsQueries.list.queryKey)
+        ?.find((option) => option.language === language)
+    : null;
 
   return fineGrainedSettings || globalSettings;
 }

@@ -12,7 +12,7 @@ import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
 export type MirroredCodeBlock = ExtendedCodeBlock & {
   portalContainer: HTMLElement | null;
   codeString: string | null;
-  lang: string | null;
+  language: string | null;
 };
 
 const OBSERVER_ID =
@@ -49,7 +49,7 @@ export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
           ...codeBlock,
           portalContainer: null,
           codeString: null,
-          lang: null,
+          language: null,
         };
       }
 
@@ -61,14 +61,14 @@ export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
           ...codeBlock,
           portalContainer: $existingPortalContainer[0],
           codeString: codeData.code,
-          lang: codeData.language,
+          language: codeData.language,
         };
       }
 
       const $portalContainer = $("<div>")
         .internalComponentAttr(OBSERVER_ID)
         .attr({
-          "data-lang": codeData.language,
+          "data-language": codeData.language,
           "data-index": codeBlockIndex,
         });
 
@@ -78,7 +78,7 @@ export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
         ...codeBlock,
         portalContainer: $portalContainer[0],
         codeString: codeData.code,
-        lang: codeData.language,
+        language: codeData.language,
       };
     },
     [],

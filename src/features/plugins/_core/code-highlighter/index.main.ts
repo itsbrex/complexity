@@ -50,10 +50,10 @@ export class CodeHighlighter {
 
   async handleHighlightRequest(params: {
     codeString: string;
-    lang: string;
+    language: string;
     theme: BundledTheme;
   }): Promise<string | null> {
-    const { codeString, lang, theme } = params;
+    const { codeString, language, theme } = params;
 
     if (!codeString) {
       throw new Error("Received empty code for highlighting");
@@ -63,20 +63,20 @@ export class CodeHighlighter {
       await this.importShiki();
 
       if (
-        !(lang in window.shiki!.bundledLanguages) &&
-        !(lang in LANGUAGE_CODES)
+        !(language in window.shiki!.bundledLanguages) &&
+        !(language in LANGUAGE_CODES)
       )
         return null;
 
       const preprocessedCodeString =
-        TRANSFORMER[lang]?.pre?.(codeString) ?? codeString;
+        TRANSFORMER[language]?.pre?.(codeString) ?? codeString;
 
       const html = await window.shiki!.codeToHtml(preprocessedCodeString, {
-        lang: lang in LANGUAGE_CODES ? LANGUAGE_CODES[lang] : lang,
+        lang: language in LANGUAGE_CODES ? LANGUAGE_CODES[language] : language,
         theme,
       });
 
-      const postprocessedHtml = TRANSFORMER[lang]?.post?.(html) ?? html;
+      const postprocessedHtml = TRANSFORMER[language]?.post?.(html) ?? html;
 
       return postprocessedHtml;
     } catch (error) {

@@ -4,10 +4,11 @@ import hideNativeCodeBlocksCss from "@/features/plugins/thread/better-code-block
 import MirroredCodeBlock from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlock";
 import { MirroredCodeBlockContextProvider } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
 import { useMirroredCodeBlocks } from "@/features/plugins/thread/better-code-blocks/useMirroredCodeBlocks";
+import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/useBetterCodeBlockOptions";
 import { useInsertCss } from "@/hooks/useInsertCss";
 
 type MemoizedWrapperProps = {
-  lang: string | null;
+  language: string | null;
   codeString: string | null;
   isInFlight: boolean;
   isMessageBlockInFlight: boolean;
@@ -17,7 +18,7 @@ type MemoizedWrapperProps = {
 };
 
 const MemoizedWrapper = memo(function MemoizedWrapper({
-  lang,
+  language,
   codeString,
   isInFlight,
   isMessageBlockInFlight,
@@ -25,18 +26,23 @@ const MemoizedWrapper = memo(function MemoizedWrapper({
   sourceCodeBlockIndex,
   codeElement,
 }: MemoizedWrapperProps) {
-  if (!lang || !codeString) return null;
+  const settings = useBetterCodeBlockOptions({ language });
+
+  if (!language || !codeString) return null;
 
   return (
     <MirroredCodeBlockContextProvider
       storeValue={{
-        lang,
+        language,
         codeString,
         sourceMessageBlockIndex,
         sourceCodeBlockIndex,
         isInFlight,
         isMessageBlockInFlight,
         codeElement,
+        isWrapped: settings.unwrap.enabled,
+        maxHeight: settings.maxHeight.enabled ? settings.maxHeight.value : 9999,
+        isRendered: false,
       }}
     >
       <MirroredCodeBlock variant="base" />
@@ -58,7 +64,7 @@ export default function BetterCodeBlocksWrapper() {
   return mirroredCodeBlocksPortalContainers.map(
     (messageBlock, sourceMessageBlockIndex) =>
       messageBlock.map((mirroredCodeBlock, sourceCodeBlockIndex) => {
-        const { lang, codeString, isInFlight, portalContainer } =
+        const { language, codeString, isInFlight, portalContainer } =
           mirroredCodeBlock;
 
         return (
@@ -67,7 +73,7 @@ export default function BetterCodeBlocksWrapper() {
             container={portalContainer}
           >
             <MemoizedWrapper
-              lang={lang}
+              language={language}
               codeString={codeString}
               isInFlight={isInFlight}
               isMessageBlockInFlight={

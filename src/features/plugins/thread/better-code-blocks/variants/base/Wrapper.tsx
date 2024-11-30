@@ -1,25 +1,19 @@
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
 import BetterCodeBlockHeader from "@/features/plugins/thread/better-code-blocks/variants/base/Header";
 import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/useBetterCodeBlockOptions";
-import { HighlightedCode } from "@/features/plugins/thread/better-code-blocks/variants/HighlightedCode";
+import HighlightedCode from "@/features/plugins/thread/better-code-blocks/variants/HighlightedCode";
 
 export const BaseCodeBlockWrapper = memo(function BaseCodeBlockWrapper() {
-  const { codeString, codeElement, language } = useMirroredCodeBlockContext()(
-    (state) => ({
+  const { codeString, codeElement, language, maxHeight, isWrapped } =
+    useMirroredCodeBlockContext()((state) => ({
       codeString: state.codeString,
       codeElement: state.codeElement,
-      language: state.lang,
-    }),
-  );
+      language: state.language,
+      maxHeight: state.maxHeight,
+      isWrapped: state.isWrapped,
+    }));
 
-  const settings = useBetterCodeBlockOptions({ language });
-
-  const [isWrapped, setIsWrapped] = useState(!settings.unwrap.enabled);
-  const [maxHeight, setMaxHeight] = useState(
-    settings.maxHeight.enabled ? settings.maxHeight.value : 9999,
-  );
-
-  const isThemeEnabled = settings?.theme.enabled;
+  const isThemeEnabled = useBetterCodeBlockOptions({ language })?.theme.enabled;
   const [fallbackCodeHtml, setFallbackCodeHtml] = useState<string>(codeString);
 
   useEffect(() => {
@@ -38,12 +32,7 @@ export const BaseCodeBlockWrapper = memo(function BaseCodeBlockWrapper() {
         },
       )}
     >
-      <BetterCodeBlockHeader
-        isWrapped={isWrapped}
-        setIsWrapped={setIsWrapped}
-        maxHeight={maxHeight}
-        setMaxHeight={setMaxHeight}
-      />
+      <BetterCodeBlockHeader />
       <div
         style={{
           maxHeight,
@@ -51,7 +40,7 @@ export const BaseCodeBlockWrapper = memo(function BaseCodeBlockWrapper() {
         className="tw-overflow-auto tw-rounded-b-md"
       >
         {isThemeEnabled ? (
-          <HighlightedCode isWrapped={isWrapped} />
+          <HighlightedCode />
         ) : (
           <div
             className={cn(

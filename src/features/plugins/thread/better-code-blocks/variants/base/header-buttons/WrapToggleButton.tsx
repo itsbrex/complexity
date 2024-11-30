@@ -1,11 +1,10 @@
-import { Dispatch, SetStateAction } from "react";
 import { LuAlignJustify, LuWrapText } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
 
 type WrapToggleButtonProps = {
   isWrapped: boolean;
-  setIsWrapped: Dispatch<SetStateAction<boolean>>;
+  setIsWrapped: (isWrapped: boolean) => void;
 };
 
 export function WrapToggleButton({
@@ -16,7 +15,7 @@ export function WrapToggleButton({
     <Tooltip content={isWrapped ? "Unwrap lines" : "Wrap lines"}>
       <div
         className="tw-cursor-pointer tw-text-muted-foreground tw-transition-colors hover:tw-text-foreground"
-        onClick={() => setIsWrapped((prev) => !prev)}
+        onClick={() => setIsWrapped(!isWrapped)}
       >
         {isWrapped ? (
           <LuAlignJustify className="tw-size-4" />

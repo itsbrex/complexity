@@ -7,7 +7,7 @@ export type CodeHighlighterEvents = {
   "codeHighlighter:isInitialized": () => boolean;
   "codeHighlighter:getHighlightedCodeAsHtml": (params: {
     codeString: string;
-    lang: string;
+    language: string;
     theme: BundledTheme;
   }) => string | null;
 };

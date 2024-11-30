@@ -5,23 +5,24 @@ import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-co
 import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/useBetterCodeBlockOptions";
 import UiUtils from "@/utils/UiUtils";
 
-type HighlightedCodeProps = {
-  isWrapped: boolean;
-};
+const HighlightedCode = memo(() => {
+  const {
+    codeString,
+    language,
+    sourceMessageBlockIndex,
+    sourceCodeBlockIndex,
+    isWrapped,
+  } = useMirroredCodeBlockContext()((state) => ({
+    codeString: state.codeString,
+    language: state.language,
+    sourceMessageBlockIndex: state.sourceMessageBlockIndex,
+    sourceCodeBlockIndex: state.sourceCodeBlockIndex,
+    isWrapped: state.isWrapped,
+  }));
 
-export function HighlightedCode({ isWrapped }: HighlightedCodeProps) {
-  const { codeString, lang, sourceMessageBlockIndex, sourceCodeBlockIndex } =
-    useMirroredCodeBlockContext()((state) => ({
-      codeString: state.codeString,
-      lang: state.lang,
-      sourceMessageBlockIndex: state.sourceMessageBlockIndex,
-      sourceCodeBlockIndex: state.sourceCodeBlockIndex,
-    }));
-
-  const settings = useBetterCodeBlockOptions({ language: lang });
   const [highlightedCode, setHighlightedCode] = useState<string | null>(null);
 
-  const themeSettings = settings.theme;
+  const themeSettings = useBetterCodeBlockOptions({ language }).theme;
 
   useEffect(() => {
     CallbackQueue.getInstance().enqueue(async () => {
@@ -31,7 +32,7 @@ export function HighlightedCode({ isWrapped }: HighlightedCodeProps) {
         "codeHighlighter:getHighlightedCodeAsHtml",
         {
           codeString,
-          lang,
+          language,
           theme,
         },
         "window",
@@ -41,7 +42,7 @@ export function HighlightedCode({ isWrapped }: HighlightedCodeProps) {
     }, `highlight-code-block-${sourceMessageBlockIndex}-${sourceCodeBlockIndex}`);
   }, [
     codeString,
-    lang,
+    language,
     sourceCodeBlockIndex,
     sourceMessageBlockIndex,
     themeSettings,
@@ -70,4 +71,6 @@ export function HighlightedCode({ isWrapped }: HighlightedCodeProps) {
       dangerouslySetInnerHTML={{ __html: highlightedCode }}
     />
   );
-}
+});
+
+export default HighlightedCode;

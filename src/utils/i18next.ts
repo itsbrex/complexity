@@ -22,7 +22,7 @@ const supportedLangs = [
   "vi-VN",
 ] as const;
 
-const lang = await getLanguage();
+const language = await getLanguage();
 
 type Resources = {
   [key: string]: {
@@ -33,15 +33,15 @@ type Resources = {
 };
 
 const resources: Resources = {
-  [lang]: {
-    common: await import(`~/src/locales/${lang}/common.json`),
-    onboarding: await import(`~/src/locales/${lang}/onboarding.json`),
-    plugins: await import(`~/src/locales/${lang}/plugins.json`),
+  [language]: {
+    common: await import(`~/src/locales/${language}/common.json`),
+    onboarding: await import(`~/src/locales/${language}/onboarding.json`),
+    plugins: await import(`~/src/locales/${language}/plugins.json`),
   },
 };
 
 await i18n.init({
-  lng: lang,
+  lng: language,
   fallbackLng: "en-US",
   defaultNS: "common",
   ns: ["common", "onboarding", "plugins"],

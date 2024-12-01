@@ -4,11 +4,13 @@ const VARIANTS = {
   base: BaseCodeBlockWrapper,
 } as const;
 
-export default function MirroredCodeBlock({
+const MirroredCodeBlock = memo(function MirroredCodeBlock({
   variant,
 }: {
   variant: keyof typeof VARIANTS;
 }) {
   const Variant = VARIANTS[variant];
   return <Variant />;
-}
+});
+
+export default MirroredCodeBlock;

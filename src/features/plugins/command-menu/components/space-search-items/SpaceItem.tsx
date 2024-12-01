@@ -4,6 +4,7 @@ import { isHotkeyPressed } from "react-hotkeys-hook";
 import { sendMessage } from "webext-bridge/content-script";
 
 import AtomicSimple from "@/components/icons/AtomicSimple";
+import KeyCombo from "@/components/KeyCombo";
 import { CommandItem } from "@/components/ui/command";
 import { languageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
 import { AdditionalInfos } from "@/features/plugins/command-menu/components/space-search-items/AdditionalInfos";
@@ -16,7 +17,13 @@ type SpaceItemProps = {
 };
 
 export function SpaceItem({ space }: SpaceItemProps) {
-  const { setOpen } = useCommandMenuStore();
+  const {
+    setOpen,
+    setFilter,
+    setSearchValue,
+    setSpacethreadFilterSlug,
+    setSpacethreadTitle,
+  } = useCommandMenuStore();
 
   const isHighlighted: boolean = useCommandState(
     (state) => state.value === space.uuid,
@@ -44,16 +51,22 @@ export function SpaceItem({ space }: SpaceItemProps) {
       onSelect={() => {
         if (isHotkeyPressed("ctrl"))
           return window.open(`/collections/${space.slug}`, "_blank");
+        else if (isHotkeyPressed("shift")) {
+          setFilter("spaces-threads");
+          setSearchValue("");
+          setSpacethreadFilterSlug(space.slug);
+          setSpacethreadTitle(space.title);
+        } else {
+          sendMessage(
+            "spa-router:push",
+            {
+              url: `/collections/${space.slug}`,
+            },
+            "window",
+          );
 
-        sendMessage(
-          "spa-router:push",
-          {
-            url: `/collections/${space.slug}`,
-          },
-          "window",
-        );
-
-        setOpen(false);
+          setOpen(false);
+        }
       }}
     >
       <div className="tw-flex tw-h-full tw-w-full tw-flex-col tw-gap-2">
@@ -85,7 +98,7 @@ export function SpaceItem({ space }: SpaceItemProps) {
           </div>
         </div>
         {isHighlighted && (space.description || space.instructions) && (
-          <div className="tw-flex tw-flex-col tw-gap-1 tw-rounded-md tw-border tw-border-border/50 tw-bg-background tw-p-2 tw-animate-in tw-fade-in">
+          <div className="tw-flex tw-flex-col tw-gap-1 tw-rounded-md tw-border tw-border-border/50 tw-bg-background tw-p-2">
             {space.description && (
               <div className="tw-flex tw-items-baseline tw-gap-1">
                 <div className="tw-text-xs tw-font-medium">Description:</div>
@@ -102,6 +115,12 @@ export function SpaceItem({ space }: SpaceItemProps) {
                 </div>
               </div>
             )}
+          </div>
+        )}
+        {isHighlighted && (
+          <div className="tw-flex tw-items-center tw-justify-end tw-gap-2 tw-text-xs tw-text-muted-foreground">
+            <KeyCombo keys={["shift", "enter"]} />
+            <span>to search for threads in this Space</span>
           </div>
         )}
       </div>

@@ -106,3 +106,9 @@ export const SpaceFilesApiResponseSchema = z.object({
 });
 
 export type SpaceFilesApiResponse = z.infer<typeof SpaceFilesApiResponseSchema>;
+
+export const SpaceThreadsApiResponseSchema = ThreadsSearchApiResponseSchema;
+
+export type SpaceThreadsApiResponse = z.infer<
+  typeof SpaceThreadsApiResponseSchema
+>;

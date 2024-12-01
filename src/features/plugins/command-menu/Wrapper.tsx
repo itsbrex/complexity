@@ -12,6 +12,7 @@ import NavigationItem from "@/features/plugins/command-menu/components/Navigatio
 import SearchFilterBadge from "@/features/plugins/command-menu/components/SearchFilterBadge";
 import SearchItem from "@/features/plugins/command-menu/components/SearchItem";
 import SpaceSearchItems from "@/features/plugins/command-menu/components/space-search-items/SpaceSearchItems";
+import SpaceThreadsSearchItems from "@/features/plugins/command-menu/components/space-search-items/SpaceThreadsSearchItems";
 import ThreadSearchItems from "@/features/plugins/command-menu/components/thread-search-items/ThreadSearchItems";
 import useBindCommandMenuHotkeys from "@/features/plugins/command-menu/hooks/useBindCommandMenuHotkeys";
 import {
@@ -27,6 +28,19 @@ export default function CommandMenuWrapper() {
     useCommandMenuStore();
 
   useBindCommandMenuHotkeys();
+
+  useEffect(() => {
+    if (searchValue.startsWith("thread")) {
+      setFilter("threads");
+      setSearchValue(searchValue.slice("thread".length));
+    }
+
+    if (searchValue.startsWith("space")) {
+      setFilter("spaces");
+      setSearchValue(searchValue.slice("space".length));
+      return;
+    }
+  }, [searchValue, setFilter, setSearchValue]);
 
   return (
     <CommandDialog
@@ -68,6 +82,7 @@ export default function CommandMenuWrapper() {
       <CommandList>
         <ThreadSearchItems />
         <SpaceSearchItems />
+        <SpaceThreadsSearchItems />
 
         {!filter && (
           <>

@@ -6,6 +6,8 @@ import {
   Space,
   SpaceFilesApiResponseSchema,
   SpacesApiResponseSchema,
+  SpaceThreadsApiResponse,
+  SpaceThreadsApiResponseSchema,
   ThreadMessageApiResponse,
   ThreadsSearchApiResponse,
   ThreadsSearchApiResponseSchema,
@@ -158,5 +160,13 @@ export class PplxApiService {
     const parsedData = SpaceFilesApiResponseSchema.parse(data);
 
     return parsedData;
+  }
+
+  static async fetchSpaceThreads(
+    spaceSlug: string,
+  ): Promise<SpaceThreadsApiResponse> {
+    return SpaceThreadsApiResponseSchema.parse(
+      JSON.parse(await fetchResource(ENDPOINTS.FETCH_SPACE_THREADS(spaceSlug))),
+    );
   }
 }

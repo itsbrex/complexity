@@ -37,6 +37,10 @@ export const pplxApiQueries = createQueryKeys("pplxApi", {
         queryKey: [{ spaceUuid }],
         queryFn: () => PplxApiService.fetchSpaceFiles(spaceUuid),
       }),
+      threads: (spaceSlug: Space["slug"]) => ({
+        queryKey: [{ spaceSlug }],
+        queryFn: () => PplxApiService.fetchSpaceThreads(spaceSlug),
+      }),
     },
   },
 });

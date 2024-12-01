@@ -12,7 +12,7 @@ import type {
   SearchItem,
 } from "@/features/plugins/command-menu/types";
 
-export type SearchFilter = "threads" | "spaces";
+export type SearchFilter = "threads" | "spaces" | "spaces-threads";
 
 export const SEARCH_FILTERS: Record<
   SearchFilter,
@@ -31,6 +31,11 @@ export const SEARCH_FILTERS: Record<
     code: "spaces",
     label: "Spaces",
     searchPlaceholder: "Search spaces...",
+  },
+  "spaces-threads": {
+    code: "spaces-threads",
+    label: "",
+    searchPlaceholder: "",
   },
 };
 

@@ -35,6 +35,15 @@ export const PLUGIN_TAGS = {
     label: "Perplexity Pro",
     description: "Requires an active Perplexity Pro subscription",
   },
+  experimental: {
+    label: "Experimental",
+    description:
+      "Experimental plugins. Subject to change or removal without prior notice.",
+  },
+  beta: {
+    label: "Beta",
+    description: "Beta plugins",
+  },
   forFun: {
     label: "For Fun",
     description: "Just for fun!",
@@ -77,7 +86,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     routeSegment: "command-menu",
     title: "Command Menu",
     description: "Quickly navigate around and invoke actions.",
-    tags: ["ui", "ux", "desktopOnly"],
+    tags: ["experimental", "ui", "ux", "desktopOnly"],
     dependentCorePlugins: ["spaRouter", "webSocket"],
   },
   "thread:toc": {

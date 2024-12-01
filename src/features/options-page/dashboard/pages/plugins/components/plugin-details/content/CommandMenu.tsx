@@ -16,6 +16,10 @@ export default function CommandMenuPluginDetails() {
       <div>
         Activation hotkey: <KeyCombo keys={["Ctrl", "K"]} />
       </div>
+      <div className="tw-text-sm tw-text-muted-foreground">
+        Side note: Thread search is subject to rate limiting by Perplexity at
+        any time.
+      </div>
       <Switch
         textLabel="Enable"
         checked={settings?.plugins["commandMenu"].enabled ?? false}

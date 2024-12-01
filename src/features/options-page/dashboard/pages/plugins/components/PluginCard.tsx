@@ -76,7 +76,13 @@ export function PluginCard({ pluginId }: PluginCardProps) {
           <div className="tw-flex tw-flex-wrap tw-gap-2">
             {tags.map((tag) => (
               <Tooltip key={tag} content={PLUGIN_TAGS[tag].description}>
-                <Badge variant="default">
+                <Badge
+                  variant="default"
+                  className={cn({
+                    "tw-bg-destructive tw-text-destructive-foreground hover:tw-bg-destructive/80":
+                      tag === "experimental",
+                  })}
+                >
                   {PLUGIN_TAGS[tag].label.toLocaleUpperCase()}
                 </Badge>
               </Tooltip>

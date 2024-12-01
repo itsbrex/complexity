@@ -19,8 +19,8 @@ export async function saveSettingViaWebSocket(
   settings: Record<string, unknown>,
 ) {
   try {
-    await InternalWebSocketManager.getInstance().sendMessage({
-      data: `23${JSON.stringify(["save_user_settings", settings])}`,
+    await InternalWebSocketManager.getInstance().sendMessageWithAck({
+      data: ["save_user_settings", settings],
     });
     return true;
   } catch (e) {

@@ -1,6 +1,7 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 
 import { PplxApiService } from "@/services/pplx-api/pplx-api";
+import { Space } from "@/services/pplx-api/pplx-api.types";
 
 export const pplxApiQueries = createQueryKeys("pplxApi", {
   userSettings: {
@@ -15,4 +16,27 @@ export const pplxApiQueries = createQueryKeys("pplxApi", {
     queryKey: [{ threadSlug }],
     queryFn: () => PplxApiService.fetchThreadInfo(threadSlug),
   }),
+  threadsSearch: (
+    params: {
+      searchValue?: string;
+      limit?: number;
+      offset?: number;
+    } = {},
+  ) => {
+    return {
+      queryKey: [{ ...params }],
+
+      queryFn: () => PplxApiService.fetchThreads(params),
+    };
+  },
+  spaces: {
+    queryKey: null,
+    queryFn: PplxApiService.fetchSpaces,
+    contextQueries: {
+      files: (spaceUuid: Space["uuid"]) => ({
+        queryKey: [{ spaceUuid }],
+        queryFn: () => PplxApiService.fetchSpaceFiles(spaceUuid),
+      }),
+    },
+  },
 });

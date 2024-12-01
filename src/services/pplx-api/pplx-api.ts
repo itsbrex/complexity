@@ -1,8 +1,14 @@
 import type { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
+import InternalWebSocketManager from "@/features/plugins/_core/web-socket/InternalWebSocketManager";
 import { ENDPOINTS } from "@/services/pplx-api/endpoints";
 import {
   OrgSettingsApiResponseSchema,
+  Space,
+  SpaceFilesApiResponseSchema,
+  SpacesApiResponseSchema,
   ThreadMessageApiResponse,
+  ThreadsSearchApiResponse,
+  ThreadsSearchApiResponseSchema,
   UserSettingsApiResponse,
   UserSettingsApiResponseSchema,
 } from "@/services/pplx-api/pplx-api.types";
@@ -91,5 +97,66 @@ export class PplxApiService {
       throw new Error("Thread not found");
 
     return data.entries as ThreadMessageApiResponse[];
+  }
+
+  static async fetchThreads({
+    searchValue,
+    limit = 20,
+    offset = 0,
+  }: {
+    searchValue?: string;
+    limit?: number;
+    offset?: number;
+  } = {}): Promise<ThreadsSearchApiResponse> {
+    return ThreadsSearchApiResponseSchema.parse(
+      await InternalWebSocketManager.getInstance().sendMessageWithAck<ThreadsSearchApiResponse>(
+        {
+          data: [
+            "list_ask_threads",
+            {
+              version: "2.13",
+              source: "default",
+              limit,
+              offset,
+              search_term: searchValue,
+            },
+          ],
+        },
+      ),
+    );
+  }
+
+  static async fetchSpaces(): Promise<Space[]> {
+    return SpacesApiResponseSchema.parse(
+      JSON.parse(await fetchResource(ENDPOINTS.FETCH_SPACES)),
+    );
+  }
+
+  static async fetchSpaceFiles(spaceUuid: Space["uuid"]) {
+    const resp = await fetch(
+      "https://www.perplexity.ai/rest/file-repository/list-files?version=2.13&source=default",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          file_repository_info: {
+            file_repository_type: "COLLECTION",
+            owner_id: spaceUuid,
+          },
+          limit: 12,
+          offset: 0,
+          search_term: "",
+          file_states_in_filter: ["COMPLETE"],
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    const data = await resp.json();
+
+    const parsedData = SpaceFilesApiResponseSchema.parse(data);
+
+    return parsedData;
   }
 }

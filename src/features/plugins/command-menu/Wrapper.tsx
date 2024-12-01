@@ -6,10 +6,13 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
+import { InlineCode } from "@/components/ui/typography";
 import ColorSchemeItem from "@/features/plugins/command-menu/components/ColorSchemeItem";
 import NavigationItem from "@/features/plugins/command-menu/components/NavigationItem";
 import SearchFilterBadge from "@/features/plugins/command-menu/components/SearchFilterBadge";
 import SearchItem from "@/features/plugins/command-menu/components/SearchItem";
+import SpaceSearchItems from "@/features/plugins/command-menu/components/space-search-items/SpaceSearchItems";
+import ThreadSearchItems from "@/features/plugins/command-menu/components/thread-search-items/ThreadSearchItems";
 import useBindCommandMenuHotkeys from "@/features/plugins/command-menu/hooks/useBindCommandMenuHotkeys";
 import {
   COLOR_SCHEME_ITEMS,
@@ -25,12 +28,24 @@ export default function CommandMenuWrapper() {
 
   useBindCommandMenuHotkeys();
 
-  useEffect(() => {
-    setOpen(true);
-  }, [setOpen]);
-
   return (
-    <CommandDialog open={open} onOpenChange={({ open }) => setOpen(open)}>
+    <CommandDialog
+      lazyMount
+      unmountOnExit
+      open={open}
+      commandProps={{
+        filter(value, search, keywords) {
+          const extendValue = value + (keywords?.join("") ?? "");
+
+          const normalizedSearch = search.replace(/\s+/g, "").toLowerCase();
+
+          if (extendValue.includes(normalizedSearch)) return 1;
+          return 0;
+        },
+        shouldFilter: filter !== "threads",
+      }}
+      onOpenChange={({ open }) => setOpen(open)}
+    >
       <div className="tw-flex tw-items-center tw-border-b tw-border-border/50">
         <SearchFilterBadge />
         <CommandInput
@@ -51,20 +66,14 @@ export default function CommandMenuWrapper() {
         />
       </div>
       <CommandList>
-        <CommandEmpty>
-          No{" "}
-          {filter
-            ? SEARCH_FILTERS[filter].label.toLocaleLowerCase()
-            : "results"}{" "}
-          found for{" "}
-          <span className="rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-px-1 tw-font-mono tw-text-[.7rem] tw-text-secondary-foreground">
-            {searchValue}
-          </span>
-          .
-        </CommandEmpty>
+        <ThreadSearchItems />
+        <SpaceSearchItems />
 
-        {(!filter || searchValue.length === 0) && (
+        {!filter && (
           <>
+            <CommandEmpty>
+              No results found for <InlineCode>{searchValue}</InlineCode>.
+            </CommandEmpty>
             <CommandGroup heading="Search">
               {SEARCH_ITEMS.map((item) => (
                 <SearchItem key={item.label} {...item} />

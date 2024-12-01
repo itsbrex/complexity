@@ -78,7 +78,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Command Menu",
     description: "Quickly navigate around and invoke actions.",
     tags: ["ui", "ux", "desktopOnly"],
-    dependentCorePlugins: ["spaRouter"],
+    dependentCorePlugins: ["spaRouter", "webSocket"],
   },
   "thread:toc": {
     id: "thread:toc",

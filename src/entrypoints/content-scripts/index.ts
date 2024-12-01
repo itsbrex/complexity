@@ -1,5 +1,4 @@
 import "@/utils/jquery.extensions";
-
 import { allowWindowMessaging } from "webext-bridge/content-script";
 
 import { initCache } from "@/entrypoints/content-scripts/loaders/cache-loader";
@@ -13,6 +12,8 @@ import { setupNetworkInterceptListeners } from "@/features/plugins/_core/network
 import { setupSpaRouterDispatchListeners } from "@/features/plugins/_core/spa-router/listeners";
 import { setupThemeLoader } from "@/features/plugins/themes/theme-loader";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { initializeDayjsLocale } from "@/utils/dayjs";
+import { initializeI18next } from "@/utils/i18next";
 import {
   checkForExistingExtensionInstance,
   ignoreInvalidPages,
@@ -27,7 +28,12 @@ import {
 })();
 
 async function initCoreModules() {
-  await ExtensionLocalStorageService.get();
+  await Promise.all([
+    ExtensionLocalStorageService.get(),
+    initializeI18next(),
+    initializeDayjsLocale(),
+  ]);
+
   setupMessaging();
   initCorePlugins();
 

@@ -2,7 +2,9 @@ import i18n from "i18next";
 
 import { whereAmI } from "@/utils/utils";
 
-const supportedLangs = [
+export type SupportedLangs = (typeof supportedLangs)[number];
+
+export const supportedLangs = [
   "en-US",
   "fr-FR",
   "de-DE",
@@ -19,10 +21,7 @@ const supportedLangs = [
   "pl-PL",
   "pt-PT",
   "sk-SK",
-  "vi-VN",
 ] as const;
-
-const language = await getLanguage();
 
 type Resources = {
   [key: string]: {
@@ -32,21 +31,25 @@ type Resources = {
   };
 };
 
-const resources: Resources = {
-  [language]: {
-    common: await import(`~/src/locales/${language}/common.json`),
-    onboarding: await import(`~/src/locales/${language}/onboarding.json`),
-    plugins: await import(`~/src/locales/${language}/plugins.json`),
-  },
-};
+export async function initializeI18next() {
+  const language = await getLanguage();
 
-await i18n.init({
-  lng: language,
-  fallbackLng: "en-US",
-  defaultNS: "common",
-  ns: ["common", "onboarding", "plugins"],
-  resources,
-});
+  const resources: Resources = {
+    [language]: {
+      common: await import(`~/src/locales/${language}/common.json`),
+      onboarding: await import(`~/src/locales/${language}/onboarding.json`),
+      plugins: await import(`~/src/locales/${language}/plugins.json`),
+    },
+  };
+
+  await i18n.init({
+    lng: language,
+    fallbackLng: "en-US",
+    defaultNS: "common",
+    ns: ["common", "onboarding", "plugins"],
+    resources,
+  });
+}
 
 export async function getLanguage() {
   let pplxLang = "en-US";

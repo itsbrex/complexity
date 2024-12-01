@@ -79,7 +79,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     icon: LuSettings,
     label: "User settings",
     path: "/settings/account",
-    keywords: ["user settings"],
+    keywords: ["user", "settings"],
     whereAmI: "settings",
   },
   {
@@ -116,5 +116,5 @@ export const COLOR_SCHEME_ITEMS: ColorSchemeItem[] = [
 ];
 
 COLOR_SCHEME_ITEMS.forEach((item) =>
-  item.keywords.push(...("change color scheme".split(" "))),
+  item.keywords.push(..."change color scheme".split(" ")),
 );

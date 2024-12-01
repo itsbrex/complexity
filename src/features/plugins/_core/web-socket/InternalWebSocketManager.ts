@@ -5,7 +5,7 @@ import io, { Socket } from "socket.io-client";
 export default class InternalWebSocketManager {
   private static instance: InternalWebSocketManager;
 
-  private sockets: Map<string, Socket["io"]["engine"]>;
+  private sockets: Map<string, Socket>;
 
   private constructor() {
     this.sockets = new Map();
@@ -21,7 +21,7 @@ export default class InternalWebSocketManager {
   public async handShake(
     namespace?: string,
     id: string = nanoid(),
-  ): Promise<Socket["io"]["engine"]> {
+  ): Promise<Socket> {
     return new Promise((resolve, reject) => {
       const socket = io(
         `www.perplexity.ai/${namespace ? `?src=${namespace}` : ""}`,
@@ -30,7 +30,7 @@ export default class InternalWebSocketManager {
           upgrade: true,
           reconnection: false,
         },
-      ).io.engine;
+      );
 
       this.sockets.set(id, socket);
 
@@ -49,7 +49,7 @@ export default class InternalWebSocketManager {
     });
   }
 
-  public getSocket(id?: string): Socket["io"]["engine"] | null {
+  public getSocket(id?: string): Socket | null {
     this.removeClosedSockets();
 
     if (id == null) {
@@ -67,23 +67,47 @@ export default class InternalWebSocketManager {
     return this.sockets.delete(id);
   }
 
-  public async sendMessage(params: { id?: string; data: string }) {
-    let socket = this.getSocket(params.id);
+  private async ensureConnectedSocket(id?: string): Promise<Socket> {
+    let socket = this.getSocket(id);
 
     if (socket == null) {
-      socket = await this.handShake(params.id);
+      socket = await this.handShake(id);
     }
 
-    if (socket.readyState === "opening") {
+    if (socket.io.engine.readyState === "opening") {
       await new Promise<void>((resolve) => socket.once("open", resolve));
     }
 
-    socket?.send(params.data);
+    return socket;
+  }
+
+  public async sendMessageWithAck<T = unknown>(params: {
+    id?: string;
+    data: [string, Record<string, unknown>];
+  }): Promise<T> {
+    const socket = await this.ensureConnectedSocket(params.id);
+    return socket.emitWithAck(...params.data);
+  }
+
+  public async sendMessage(params: {
+    id?: string;
+    data: [string, Record<string, unknown>];
+  }): Promise<void> {
+    const socket = await this.ensureConnectedSocket(params.id);
+    socket.emit(...params.data);
+  }
+
+  public async sendRawMessage(params: {
+    id?: string;
+    data: string;
+  }): Promise<void> {
+    const socket = await this.ensureConnectedSocket(params.id);
+    socket.io.engine.send(params.data);
   }
 
   private removeClosedSockets() {
     Array.from(this.sockets.entries()).forEach(([id, socket]) => {
-      if (socket.readyState === "closed") {
+      if (socket.io.engine.readyState === "closed") {
         this.sockets.delete(id);
       }
     });

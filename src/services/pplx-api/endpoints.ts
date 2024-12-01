@@ -6,4 +6,6 @@ export const ENDPOINTS = {
   ORG_SETTINGS:
     "https://www.perplexity.ai/rest/enterprise/user/organization?version=2.13&source=default",
   SAVE_SETTINGS: "https://www.perplexity.ai/rest/user/save-settings",
+  FETCH_SPACES:
+    "https://www.perplexity.ai/rest/collections/list_user_collections?limit=50&offset=0&version=2.13&source=default",
 };

@@ -40,3 +40,69 @@ export const ThreadMessageApiResponseSchema = z.object({
 export type ThreadMessageApiResponse = z.infer<
   typeof ThreadMessageApiResponseSchema
 >;
+
+export const ThreadSearchApiSchema = z.object({
+  thread_number: z.number(),
+  last_query_datetime: z.string(),
+  mode: z.string(),
+  context_uuid: z.string(),
+  uuid: z.string(),
+  slug: z.string(),
+  title: z.string(),
+  first_answer: z.string(),
+  thread_access: z.number(),
+  query_count: z.number(),
+  search_focus: z.string(),
+  read_write_token: z.string(),
+  collection: z
+    .object({
+      uuid: z.string(),
+      title: z.string(),
+      emoji: z.string(),
+      slug: z.string(),
+    })
+    .optional(),
+});
+
+export type ThreadSearchApi = z.infer<typeof ThreadSearchApiSchema>;
+
+export const ThreadsSearchApiResponseSchema = z.array(ThreadSearchApiSchema);
+
+export type ThreadsSearchApiResponse = z.infer<
+  typeof ThreadsSearchApiResponseSchema
+>;
+
+export const SpaceSchema = z.object({
+  title: z.string(),
+  uuid: z.string(),
+  instructions: z.string(),
+  slug: z.string(),
+  emoji: z.string().nullable().optional(),
+  description: z.string(),
+  access: z.number(),
+  model_selection: z
+    .string()
+    .transform((val) => val as LanguageModel["code"])
+    .nullable(),
+});
+
+export const SpacesApiResponseSchema = z.array(SpaceSchema);
+
+export type Space = z.infer<typeof SpaceSchema>;
+
+export const SpaceFilesApiResponseSchema = z.object({
+  files: z.array(
+    z.object({
+      filename: z.string(),
+      file_uuid: z.string(),
+      file_s3_url: z.string(),
+      uploaded_by: z.string(),
+      file_size: z.number(),
+      time_created: z.string(),
+      error: z.string().nullable(),
+    }),
+  ),
+  num_total_files: z.number(),
+});
+
+export type SpaceFilesApiResponse = z.infer<typeof SpaceFilesApiResponseSchema>;

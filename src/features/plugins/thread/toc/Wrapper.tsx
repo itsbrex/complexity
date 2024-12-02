@@ -1,11 +1,9 @@
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { LuX } from "react-icons/lu";
 
 import FloatingToggle from "@/features/plugins/thread/toc/FloatingToggle";
 import { usePanelPosition } from "@/features/plugins/thread/toc/usePanelPosition";
 import { useThreadTocItems } from "@/features/plugins/thread/toc/useThreadTocItems";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
-import { cn } from "@/utils/cn";
 import { scrollToElement } from "@/utils/utils";
 
 export const PANEL_WIDTH = 250;

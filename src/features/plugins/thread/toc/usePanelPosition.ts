@@ -1,11 +1,11 @@
 import { useWindowSize } from "@uidotdev/usehooks";
 import debounce from "lodash/debounce";
-import { useCallback, useEffect, useState } from "react";
 
 import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-queue";
 import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { PANEL_WIDTH } from "@/features/plugins/thread/toc/Wrapper";
+import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 
 const DOM_OBSERVER_ID = "thread-navigation-toc-panel-position";
@@ -16,6 +16,8 @@ type UsePanelPosition = {
 };
 
 export function usePanelPosition(): UsePanelPosition | null {
+  const { isMobile } = useIsMobileStore();
+
   const windowSize = useWindowSize();
 
   const [panelPosition, setPanelPosition] = useState<UsePanelPosition | null>(
@@ -55,6 +57,16 @@ export function usePanelPosition(): UsePanelPosition | null {
       setTimeout(() => setPanelPosition(calculatePosition()), 300);
     }, 100);
 
+    const cleanup = () => {
+      debouncedUpdate.cancel();
+      DomObserver.destroy(DOM_OBSERVER_ID);
+    };
+
+    if (isMobile) {
+      debouncedUpdate();
+      return cleanup;
+    }
+
     DomObserver.create(DOM_OBSERVER_ID, {
       target: $(DOM_SELECTORS.SIDEBAR)[0],
       config: {
@@ -65,11 +77,8 @@ export function usePanelPosition(): UsePanelPosition | null {
         CallbackQueue.getInstance().enqueue(debouncedUpdate, DOM_OBSERVER_ID),
     });
 
-    return () => {
-      DomObserver.destroy(DOM_OBSERVER_ID);
-      debouncedUpdate.cancel();
-    };
-  }, [calculatePosition, windowSize]);
+    return cleanup;
+  }, [calculatePosition, isMobile, windowSize]);
 
   return panelPosition;
 }

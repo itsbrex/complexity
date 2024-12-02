@@ -23,6 +23,7 @@
     "buttons": {
       "grant": "Przyznaj uprawnienie",
       "granted": "Przyznano"
-    }
+    },
+    "additionalPermissionsHeadsUp": "Możesz zostać poproszony o przyznanie dodatkowych uprawnień dla niektórych funkcji. Bądź spokojny, zawsze zostaniesz poproszony o zgodę przed podjęciem jakichkolwiek działań."
   }
 }

@@ -23,6 +23,7 @@
     "buttons": {
       "grant": "Accorder la permission",
       "granted": "Accordée"
-    }
+    },
+    "additionalPermissionsHeadsUp": "Vous pourriez être invité à accorder des permissions supplémentaires pour certaines fonctionnalités. Soyez assuré que votre consentement sera toujours demandé avant toute action."
   }
 }

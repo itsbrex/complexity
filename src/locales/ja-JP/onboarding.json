@@ -23,6 +23,7 @@
     "buttons": {
       "grant": "権限を付与",
       "granted": "付与済み"
-    }
+    },
+    "additionalPermissionsHeadsUp": "一部の機能では追加の権限が必要になる場合があります。ご安心ください。いかなる操作も、事前にあなたの同意を求めます。"
   }
 }

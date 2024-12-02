@@ -23,6 +23,7 @@
     "buttons": {
       "grant": "Berechtigung erteilen",
       "granted": "Erteilt"
-    }
+    },
+    "additionalPermissionsHeadsUp": "Für bestimmte Funktionen werden Sie möglicherweise um zusätzliche Berechtigungen gebeten. Seien Sie versichert, dass Sie vor jeder Aktion um Ihre Zustimmung gebeten werden."
   }
 }

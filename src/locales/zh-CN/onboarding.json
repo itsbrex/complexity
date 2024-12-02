@@ -23,6 +23,7 @@
     "buttons": {
       "grant": "授予权限",
       "granted": "已授予"
-    }
+    },
+    "additionalPermissionsHeadsUp": "某些功能可能需要您授予额外的权限。请放心，在采取任何行动之前，我们都会征求您的同意。"
   }
 }

@@ -23,6 +23,7 @@
     "buttons": {
       "grant": "Engedély megadása",
       "granted": "Megadva"
-    }
+    },
+    "additionalPermissionsHeadsUp": "Bizonyos funkciókhoz további engedélyeket kérhetünk. Nyugodt lehet, minden művelet előtt kérni fogjuk az Ön hozzájárulását."
   }
 } 

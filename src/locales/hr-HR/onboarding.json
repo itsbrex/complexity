@@ -23,6 +23,7 @@
     "buttons": {
       "grant": "Dodijeli dopuštenje",
       "granted": "Dodijeljeno"
-    }
+    },
+    "additionalPermissionsHeadsUp": "Možda ćete biti zatraženi da dodijelite dodatne dozvole za određene značajke. Budite sigurni da ćemo uvijek tražiti vaš pristanak prije bilo kakve radnje."
   }
 } 

@@ -23,6 +23,7 @@
     "buttons": {
       "grant": "Conceder Permissão",
       "granted": "Concedida"
-    }
+    },
+    "additionalPermissionsHeadsUp": "Poderá ser-lhe solicitado que conceda permissões adicionais para determinadas funcionalidades. Fique descansado, será sempre pedido o seu consentimento antes de qualquer ação ser tomada."
   }
 } 

@@ -23,6 +23,7 @@
     "buttons": {
       "grant": "Udělit oprávnění",
       "granted": "Uděleno"
-    }
+    },
+    "additionalPermissionsHeadsUp": "Pro některé funkce můžete být požádáni o udělení dalších oprávnění. Buďte ujištěni, že před jakoukoliv akcí budete vždy požádáni o váš souhlas."
   }
 }

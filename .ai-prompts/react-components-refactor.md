@@ -1,58 +1,35 @@
-I need an advanced, nuanced refactoring of this React component that goes beyond surface-level changes. Provide a detailed transformation that addresses:
+Refactor this React component focusing on:
 
-1. **Performance Optimization**
+1. **Performance**
 
-- Identify potential performance bottlenecks
-- Implement memoization strategies
-- Reduce unnecessary re-renders
+- Optimize re-renders
+- Apply memoization
+- Reduce bottlenecks
 
-2. **Architectural Improvements**
+2. **Architecture**
 
-- Apply appropriate design patterns
 - Improve component composition
-- Enhance separation of concerns
+- Enhance code organization
+- Apply modern patterns
 
-3. **Modern React Practices**
+3. **React Best Practices**
 
-- Convert to functional component with hooks
-- Implement advanced hook patterns
-- Leverage React best practices
+- Use functional components & hooks
+- Implement proper TypeScript types
 
-4. **Code Quality Enhancements**
+4. **State & Hooks**
 
-- Improve type safety (preferably with TypeScript)
-- Add comprehensive prop validation
-- Implement error boundaries and fallback mechanisms
+- Organize hooks by type:
+  - State hooks first
+  - Effects & context
+  - Memos & callbacks
+  - Custom hooks
+- Extract complex logic
+- Keep effects focused
+- Split if using >5 hooks
 
-5. **Advanced State Management**
+Explain key changes and their impact on:
 
-- Evaluate current state management approach
-- Suggest potential state management refactoring (context, custom hooks, etc.)
-- Implement more predictable state transitions
-
-6. **Hooks Usage**
-
-- Group related hooks at the top of the component
-- Extract complex hook logic into custom hooks
-- Follow consistent naming patterns for hooks
-- Keep hook dependencies minimal and explicit
-- Organize hooks in order of importance:
-  1. State hooks (useState)
-  2. Context/Store hooks (useContext, useStore)
-  3. Side effect hooks (useEffect)
-  4. Memoization hooks (useMemo, useCallback)
-  5. Custom hooks
-- Consider splitting components if using too many hooks (>5-7)
-- Use hook composition to build more complex behaviors
-- Keep effects focused on a single responsibility
-- Avoid nested hook declarations
-- Document complex hook interactions with comments
-
-Provide a detailed explanation of each transformation, including:
-
-- Rationale for changes
-- Potential trade-offs
-- Performance impact
-- Code complexity analysis
-
-Please present the refactored component with inline comments explaining critical design decisions.
+- Performance
+- Maintainability
+- Code quality

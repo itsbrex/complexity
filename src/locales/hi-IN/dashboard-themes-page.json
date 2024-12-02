@@ -1,0 +1,132 @@
+{
+  "themesPage": {
+    "header": {
+      "title": "कस्टम थीम",
+      "description": "चुनिंदा थीम के साथ अपने Perplexity इंटरफ़ेस को कस्टमाइज़ करें",
+      "createButton": "नई थीम बनाएं"
+    },
+    "toasts": {
+      "save": {
+        "success": {
+          "title": "✅ थीम सहेजी गई",
+          "description": "आपकी थीम सफलतापूर्वक सहेजी गई"
+        },
+        "error": {
+          "title": "❌ थीम सहेजने में विफल"
+        }
+      },
+      "delete": {
+        "success": {
+          "title": "✅ थीम हटाई गई",
+          "description": "आपकी थीम सफलतापूर्वक हटा दी गई"
+        },
+        "error": {
+          "title": "❌ थीम हटाने में विफल"
+        }
+      },
+      "create": {
+        "success": {
+          "title": "✅ थीम बनाई गई",
+          "description": "आपकी थीम सफलतापूर्वक सहेजी गई"
+        },
+        "error": {
+          "title": "❌ थीम बनाने में विफल"
+        }
+      }
+    },
+    "navigation": {
+      "backToThemes": "थीम पर वापस जाएं"
+    },
+    "editPage": {
+      "title": "थीम संपादित करें",
+      "saveButton": "परिवर्तन सहेजें"
+    },
+    "createPage": {
+      "title": "कस्टम थीम बनाएं",
+      "description": "CSS और पूर्वनिर्धारित विकल्पों के साथ कस्टम थीम बनाएं। डिफ़ॉल्ट मान का उपयोग करने के लिए खाली छोड़ें।",
+      "createButton": "थीम बनाएं"
+    },
+    "deleteDialog": {
+      "title": "थीम हटाएं",
+      "description": "क्या आप वाकई इस थीम को हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
+      "cancelButton": "रद्द करें",
+      "deleteButton": "हटाएं"
+    },
+    "sections": {
+      "noThemes": "कोई थीम नहीं मिली",
+      "local": {
+        "title": "स्थानीय थीम",
+        "tab": "स्थानीय थीम"
+      },
+      "builtIn": {
+        "title": "अंतर्निहित थीम",
+        "tab": "अंतर्निहित थीम"
+      },
+      "community": {
+        "title": "समुदाय थीम",
+        "tab": "समुदाय थीम",
+        "comingSoon": "जल्द आ रहा है"
+      }
+    },
+    "form": {
+      "title": {
+        "label": "शीर्षक",
+        "placeholder": "थीम का शीर्षक दर्ज करें"
+      },
+      "fonts": {
+        "label": "फ़ॉन्ट परिवार",
+        "ui": {
+          "placeholder": "UI के लिए (जैसे: Inter)"
+        },
+        "mono": {
+          "placeholder": "मोनोस्पेस (जैसे: JetBrains Mono, Fira Code)"
+        },
+        "description": "सुनिश्चित करें कि दर्ज किए गए फ़ॉन्ट आपके सिस्टम पर स्थापित हैं, या उन्हें नीचे CSS अनुभाग में आयात करें।"
+      },
+      "accentColor": {
+        "label": "प्राथमिक रंग (केवल डार्क मोड को प्रभावित करता है)",
+        "description": "Complexity प्रदान किए गए रंग के आधार पर पूरक शेड्स उत्पन्न करेगा"
+      },
+      "enhanceTypography": {
+        "label": "टाइपोग्राफी बढ़ाएं (थ्रेड्स में)",
+        "description": "शीर्षकों, बोल्ड टेक्स्ट को उभारता है, इनलाइन कोड को अधिक पठनीय बनाता है, और फ़ॉन्ट लिगेचर्स को हटाता है।"
+      },
+      "css": {
+        "label": "उन्नत: CSS",
+        "placeholder": "कस्टम CSS नियम दर्ज करें",
+        "description": "अपनी थीम को और अधिक कस्टमाइज़ करने के लिए कस्टम CSS नियम जोड़ें"
+      }
+    },
+    "themeCard": {
+      "actions": {
+        "enable": "सक्षम करें",
+        "disable": "अक्षम करें",
+        "edit": "संपादित करें"
+      },
+      "badges": {
+        "colorScheme": {
+          "light": "लाइट",
+          "dark": "डार्क"
+        },
+        "compatibility": {
+          "desktop": "डेस्कटॉप",
+          "mobile": "मोबाइल"
+        }
+      }
+    }
+  },
+  "themeRegistry": {
+    "complexityBlue": {
+      "description": "विशिष्ट नीले एक्सेंट रंग वाली आधिकारिक थीम"
+    },
+    "perplexityDefault": {
+      "description": "डिफ़ॉल्ट थीम को बेहतर बनाएं"
+    },
+    "shyMoment": {
+      "description": "बैंगनी एक्सेंट रंग वाली आधिकारिक थीम"
+    },
+    "sourLemon": {
+      "description": "पीलेपन वाले एक्सेंट रंग की आधिकारिक थीम"
+    }
+  }
+} 

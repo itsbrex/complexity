@@ -1,0 +1,132 @@
+{
+  "themesPage": {
+    "header": {
+      "title": "Vlastné témy",
+      "description": "Prispôsobte si svoje rozhranie Perplexity pomocou vybraných tém",
+      "createButton": "Vytvoriť novú tému"
+    },
+    "toasts": {
+      "save": {
+        "success": {
+          "title": "✅ Téma uložená",
+          "description": "Vaša téma bola úspešne uložená"
+        },
+        "error": {
+          "title": "❌ Nepodarilo sa uložiť tému"
+        }
+      },
+      "delete": {
+        "success": {
+          "title": "✅ Téma odstránená",
+          "description": "Vaša téma bola úspešne odstránená"
+        },
+        "error": {
+          "title": "❌ Nepodarilo sa odstrániť tému"
+        }
+      },
+      "create": {
+        "success": {
+          "title": "✅ Téma vytvorená",
+          "description": "Vaša téma bola úspešne uložená"
+        },
+        "error": {
+          "title": "❌ Nepodarilo sa vytvoriť tému"
+        }
+      }
+    },
+    "navigation": {
+      "backToThemes": "Späť na témy"
+    },
+    "editPage": {
+      "title": "Upraviť tému",
+      "saveButton": "Uložiť zmeny"
+    },
+    "createPage": {
+      "title": "Vytvoriť vlastnú tému",
+      "description": "Vytvorte vlastnú tému pomocou CSS a prednastavených možností. Pre predvolené hodnoty ponechajte prázdne.",
+      "createButton": "Vytvoriť tému"
+    },
+    "deleteDialog": {
+      "title": "Odstrániť tému",
+      "description": "Naozaj chcete odstrániť túto tému? Túto akciu nie je možné vrátiť späť.",
+      "cancelButton": "Zrušiť",
+      "deleteButton": "Odstrániť"
+    },
+    "sections": {
+      "noThemes": "Neboli nájdené žiadne témy",
+      "local": {
+        "title": "Miestne témy",
+        "tab": "Miestne témy"
+      },
+      "builtIn": {
+        "title": "Vstavané témy",
+        "tab": "Vstavané témy"
+      },
+      "community": {
+        "title": "Komunitné témy",
+        "tab": "Komunitné témy",
+        "comingSoon": "Už čoskoro"
+      }
+    },
+    "form": {
+      "title": {
+        "label": "Názov",
+        "placeholder": "Zadajte názov témy"
+      },
+      "fonts": {
+        "label": "Rodiny písiem",
+        "ui": {
+          "placeholder": "rozhranie (napr: Inter)"
+        },
+        "mono": {
+          "placeholder": "monospace (napr: JetBrains Mono, Fira Code)"
+        },
+        "description": "Uistite sa, že uvedené písma sú nainštalované vo vašom systéme alebo ich importujte v sekcii CSS nižšie."
+      },
+      "accentColor": {
+        "label": "Zvýraznená farba (ovplyvňuje iba tmavý režim)",
+        "description": "Complexity vygeneruje doplnkové odtiene na základe zadanej farby"
+      },
+      "enhanceTypography": {
+        "label": "Vylepšiť typografiu (v konverzáciách)",
+        "description": "Zvýrazňuje nadpisy, tučný text, zlepšuje čitateľnosť inline kódu a odstraňuje ligatúry písma."
+      },
+      "css": {
+        "label": "Pokročilé: CSS",
+        "placeholder": "Zadajte vlastné CSS pravidlá",
+        "description": "Pridajte vlastné CSS pravidlá pre ďalšie prispôsobenie vašej témy"
+      }
+    },
+    "themeCard": {
+      "actions": {
+        "enable": "Povoliť",
+        "disable": "Zakázať",
+        "edit": "Upraviť"
+      },
+      "badges": {
+        "colorScheme": {
+          "light": "Svetlá",
+          "dark": "Tmavá"
+        },
+        "compatibility": {
+          "desktop": "Počítač",
+          "mobile": "Mobil"
+        }
+      }
+    }
+  },
+  "themeRegistry": {
+    "complexityBlue": {
+      "description": "Oficiálna téma s charakteristickou modrou farbou"
+    },
+    "perplexityDefault": {
+      "description": "Vylepšiť predvolenú tému"
+    },
+    "shyMoment": {
+      "description": "Oficiálna téma s fialovým zvýraznením"
+    },
+    "sourLemon": {
+      "description": "Oficiálna téma so žltkastým zvýraznením"
+    }
+  }
+} 

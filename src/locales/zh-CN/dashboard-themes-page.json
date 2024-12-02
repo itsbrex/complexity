@@ -1,0 +1,132 @@
+{
+  "themesPage": {
+    "header": {
+      "title": "自定义主题",
+      "description": "使用精选主题自定义您的 Perplexity 界面",
+      "createButton": "创建新主题"
+    },
+    "toasts": {
+      "save": {
+        "success": {
+          "title": "✅ 主题已保存",
+          "description": "您的主题已成功保存"
+        },
+        "error": {
+          "title": "❌ 保存主题失败"
+        }
+      },
+      "delete": {
+        "success": {
+          "title": "✅ 主题已删除",
+          "description": "您的主题已成功删除"
+        },
+        "error": {
+          "title": "❌ 删除主题失败"
+        }
+      },
+      "create": {
+        "success": {
+          "title": "✅ 主题已创建",
+          "description": "您的主题已成功保存"
+        },
+        "error": {
+          "title": "❌ 创建主题失败"
+        }
+      }
+    },
+    "navigation": {
+      "backToThemes": "返回主题列表"
+    },
+    "editPage": {
+      "title": "编辑主题",
+      "saveButton": "保存更改"
+    },
+    "createPage": {
+      "title": "创建自定义主题",
+      "description": "使用 CSS 和预定义选项创建自定义主题。留空则使用默认值。",
+      "createButton": "创建主题"
+    },
+    "deleteDialog": {
+      "title": "删除主题",
+      "description": "确定要删除此主题吗？此操作无法撤消。",
+      "cancelButton": "取消",
+      "deleteButton": "删除"
+    },
+    "sections": {
+      "noThemes": "未找到主题",
+      "local": {
+        "title": "本地主题",
+        "tab": "本地主题"
+      },
+      "builtIn": {
+        "title": "内置主题",
+        "tab": "内置主题"
+      },
+      "community": {
+        "title": "社区主题",
+        "tab": "社区主题",
+        "comingSoon": "即将推出"
+      }
+    },
+    "form": {
+      "title": {
+        "label": "标题",
+        "placeholder": "输入主题标题"
+      },
+      "fonts": {
+        "label": "字体系列",
+        "ui": {
+          "placeholder": "界面字体（如：Inter）"
+        },
+        "mono": {
+          "placeholder": "等宽字体（如：JetBrains Mono, Fira Code）"
+        },
+        "description": "请确保输入的字体已安装在您的系统中，或在下方的 CSS 部分中导入。"
+      },
+      "accentColor": {
+        "label": "主色调（仅影响深色模式）",
+        "description": "Complexity 将根据提供的颜色生成互补色调"
+      },
+      "enhanceTypography": {
+        "label": "增强排版（在线程中）",
+        "description": "强调标题和粗体文本，提高内联代码的可读性，并移除字体连字。"
+      },
+      "css": {
+        "label": "高级：CSS",
+        "placeholder": "输入自定义 CSS 规则",
+        "description": "添加自定义 CSS 规则以进一步自定义您的主题"
+      }
+    },
+    "themeCard": {
+      "actions": {
+        "enable": "启用",
+        "disable": "禁用",
+        "edit": "编辑"
+      },
+      "badges": {
+        "colorScheme": {
+          "light": "浅色",
+          "dark": "深色"
+        },
+        "compatibility": {
+          "desktop": "桌面",
+          "mobile": "移动"
+        }
+      }
+    }
+  },
+  "themeRegistry": {
+    "complexityBlue": {
+      "description": "使用标志性蓝色强调色的官方主题"
+    },
+    "perplexityDefault": {
+      "description": "增强默认主题"
+    },
+    "shyMoment": {
+      "description": "使用紫色调强调色的官方主题"
+    },
+    "sourLemon": {
+      "description": "使用黄色调强调色的官方主题"
+    }
+  }
+} 

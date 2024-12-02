@@ -14,21 +14,22 @@ export default function CreateThemePage() {
         className="tw-mb-4 tw-flex tw-items-center tw-gap-2 tw-text-muted-foreground tw-transition hover:tw-text-foreground"
       >
         <LuChevronLeft />
-        Back to themes
+        {t("dashboard-themes-page:themesPage.navigation.backToThemes")}
       </Link>
       <div>
         <h1 className="tw-mb-2 tw-text-2xl tw-font-bold">
-          Create Custom Theme
+          {t("dashboard-themes-page:themesPage.createPage.title")}
         </h1>
         <p className="tw-text-muted-foreground">
-          Create a custom theme with CSS and predefined options. Leave blank to
-          use default values.
+          {t("dashboard-themes-page:themesPage.createPage.description")}
         </p>
       </div>
       <ThemeForm
         form={form}
         isPending={isPending}
-        submitText="Create Theme"
+        submitText={t(
+          "dashboard-themes-page:themesPage.createPage.createButton",
+        )}
         onSubmit={onSubmit}
       />
     </div>

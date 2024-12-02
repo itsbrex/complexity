@@ -14,7 +14,9 @@ export default function ThemeCardEditButton({
 }: ThemeCardEditButtonProps) {
   const navigate = useNavigate();
   return (
-    <Tooltip content="Edit">
+    <Tooltip
+      content={t("dashboard-themes-page:themesPage.themeCard.actions.edit")}
+    >
       <Button
         variant="outline"
         size="icon"

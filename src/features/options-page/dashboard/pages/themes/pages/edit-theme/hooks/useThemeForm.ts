@@ -37,13 +37,15 @@ export function useThemeForm(theme: Theme) {
         ...variables,
       });
       toast({
-        title: "✅ Theme saved",
-        description: "Your theme has been saved successfully",
+        title: t("dashboard-themes-page:themesPage.toasts.save.success.title"),
+        description: t(
+          "dashboard-themes-page:themesPage.toasts.save.success.description",
+        ),
       });
     },
     onError: (error: Error) => {
       toast({
-        title: "❌ Failed to save theme",
+        title: t("dashboard-themes-page:themesPage.toasts.save.error.title"),
         description: error.message,
       });
     },
@@ -57,13 +59,17 @@ export function useThemeForm(theme: Theme) {
     onSuccess: () => {
       navigate("..");
       toast({
-        title: "✅ Theme deleted",
-        description: "Your theme has been deleted successfully",
+        title: t(
+          "dashboard-themes-page:themesPage.toasts.delete.success.title",
+        ),
+        description: t(
+          "dashboard-themes-page:themesPage.toasts.delete.success.description",
+        ),
       });
     },
     onError: (error: Error) => {
       toast({
-        title: "❌ Failed to delete theme",
+        title: t("dashboard-themes-page:themesPage.toasts.delete.error.title"),
         description: error.message,
       });
     },

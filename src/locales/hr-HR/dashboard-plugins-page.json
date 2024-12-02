@@ -36,7 +36,8 @@
         "message": "Ovaj dodatak trenutno nije dostupan. Molimo pokušajte kasnije.",
         "backButton": "Povratak na nadzornu ploču"
       }
-    }
+    },
+    "tagsFilterLabel": "Oznake"
   },
   "pluginDetails": {
     "betterCodeBlocks": {

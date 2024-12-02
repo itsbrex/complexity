@@ -1,6 +1,30 @@
 {
-  "extensionDescription": "Complexity - Perplexity AI Poboljšan",
+  "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "Molimo razmislite o tome da postanete <emphasis>Podržavatelj</emphasis> kako bi projekt ostao živ!"
+    "supporterMessage": "Molimo razmislite o tome da postanete <emphasis>Podržavatelj</emphasis> kako biste održali projekt živim!",
+    "items": {
+      "notifications": "Obavijesti",
+      "plugins": "Dodaci",
+      "themes": "Teme",
+      "releaseNotes": "Bilješke o izdanju",
+      "settings": "Postavke",
+      "help": "Trebate pomoć?"
+    }
+  },
+  "action": {
+    "enable": "Omogući",
+    "disable": "Onemogući",
+    "cancel": "Odustani",
+    "confirm": "Potvrdi",
+    "delete": "Izbriši",
+    "create": "Stvori",
+    "back": "Natrag",
+    "search": "Pretraži",
+    "options": "Opcije",
+    "details": "Detalji"
+  },
+  "status": {
+    "loading": "Učitavanje",
+    "noResults": "Nema pronađenih rezultata"
   }
 }

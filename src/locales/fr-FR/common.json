@@ -1,6 +1,30 @@
 {
   "extensionDescription": "Complexity - Perplexity AI Suralimenté",
   "sidebar": {
-    "supporterMessage": "Envisagez de devenir un <emphasis>Supporter</emphasis> pour faire vivre le projet !"
+    "supporterMessage": "Envisagez de devenir un <emphasis>Supporter</emphasis> pour faire vivre le projet !",
+    "items": {
+      "notifications": "Notifications",
+      "plugins": "Plugins",
+      "themes": "Thèmes",
+      "releaseNotes": "Notes de version",
+      "settings": "Paramètres",
+      "help": "Besoin d'aide ?"
+    }
+  },
+  "action": {
+    "enable": "Activer",
+    "disable": "Désactiver",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "delete": "Supprimer",
+    "create": "Créer",
+    "back": "Retour",
+    "search": "Rechercher",
+    "options": "Options",
+    "details": "Détails"
+  },
+  "status": {
+    "loading": "Chargement",
+    "noResults": "Aucun résultat trouvé"
   }
 }

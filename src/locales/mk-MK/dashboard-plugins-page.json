@@ -36,7 +36,8 @@
         "message": "Овој додаток моментално не е достапен. Обидете се повторно подоцна.",
         "backButton": "Назад кон контролната табла"
       }
-    }
+    },
+    "tagsFilterLabel": "Ознаки"
   },
   "pluginDetails": {
     "betterCodeBlocks": {

@@ -1,6 +1,30 @@
 {
-  "extensionDescription": "Complexity - Perplexity AI Vylepšený",
+  "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "Prosím, zvážte možnosť stať sa <emphasis>Podporovateľom</emphasis>, aby projekt mohol pokračovať!"
+    "supporterMessage": "Prosím zvážte, či sa nechcete stať <emphasis>Podporovateľom</emphasis> a udržať projekt pri živote!",
+    "items": {
+      "notifications": "Oznámenia",
+      "plugins": "Doplnky",
+      "themes": "Témy",
+      "releaseNotes": "Poznámky k vydaniu",
+      "settings": "Nastavenia",
+      "help": "Potrebujete pomoc?"
+    }
+  },
+  "action": {
+    "enable": "Povoliť",
+    "disable": "Zakázať",
+    "cancel": "Zrušiť",
+    "confirm": "Potvrdiť",
+    "delete": "Vymazať",
+    "create": "Vytvoriť",
+    "back": "Späť",
+    "search": "Hľadať",
+    "options": "Možnosti",
+    "details": "Detaily"
+  },
+  "status": {
+    "loading": "Načítava sa",
+    "noResults": "Nenašli sa žiadne výsledky"
   }
 }

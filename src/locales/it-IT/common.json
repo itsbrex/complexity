@@ -1,6 +1,30 @@
 {
-  "extensionDescription": "Complexity - Perplexity AI Potenziato",
+  "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "Per favore, considera di diventare un <emphasis>Sostenitore</emphasis> per mantenere vivo il progetto!"
+    "supporterMessage": "Per favore, considera di diventare un <emphasis>Sostenitore</emphasis> per mantenere vivo il progetto!",
+    "items": {
+      "notifications": "Notifiche",
+      "plugins": "Plugin",
+      "themes": "Temi",
+      "releaseNotes": "Note di rilascio",
+      "settings": "Impostazioni",
+      "help": "Serve aiuto?"
+    }
+  },
+  "action": {
+    "enable": "Attiva",
+    "disable": "Disattiva",
+    "cancel": "Annulla",
+    "confirm": "Conferma",
+    "delete": "Elimina",
+    "create": "Crea",
+    "back": "Indietro",
+    "search": "Cerca",
+    "options": "Opzioni",
+    "details": "Dettagli"
+  },
+  "status": {
+    "loading": "Caricamento",
+    "noResults": "Nessun risultato trovato"
   }
 }

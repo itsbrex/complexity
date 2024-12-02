@@ -36,7 +36,8 @@
         "message": "このプラグインは現在利用できません。後でもう一度お試しください。",
         "backButton": "ダッシュボードに戻る"
       }
-    }
+    },
+    "tagsFilterLabel": "タグ"
   },
   "pluginDetails": {
     "betterCodeBlocks": {

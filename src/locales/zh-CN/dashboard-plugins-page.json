@@ -36,7 +36,8 @@
         "message": "此插件当前不可用。请稍后再试。",
         "backButton": "返回仪表板"
       }
-    }
+    },
+    "tagsFilterLabel": "标签"
   },
   "pluginDetails": {
     "betterCodeBlocks": {

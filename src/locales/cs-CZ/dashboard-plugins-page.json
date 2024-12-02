@@ -36,7 +36,8 @@
         "message": "Tento plugin není momentálně k dispozici. Zkuste to později.",
         "backButton": "Zpět na dashboard"
       }
-    }
+    },
+    "tagsFilterLabel": "Štítky"
   },
   "pluginDetails": {
     "betterCodeBlocks": {

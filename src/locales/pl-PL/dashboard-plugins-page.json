@@ -36,7 +36,8 @@
         "message": "Ta wtyczka jest obecnie niedostępna. Spróbuj ponownie później.",
         "backButton": "Wróć do pulpitu nawigacyjnego"
       }
-    }
+    },
+    "tagsFilterLabel": "Tagi"
   },
   "pluginDetails": {
     "betterCodeBlocks": {

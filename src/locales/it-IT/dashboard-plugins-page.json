@@ -36,7 +36,8 @@
         "message": "Questo plugin non è attualmente disponibile. Riprova più tardi.",
         "backButton": "Torna alla dashboard"
       }
-    }
+    },
+    "tagsFilterLabel": "Tag"
   },
   "pluginDetails": {
     "betterCodeBlocks": {

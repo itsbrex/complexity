@@ -1,7 +1,15 @@
 {
   "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "Please consider becoming a <emphasis>Supporter</emphasis> to keep the project alive!"
+    "supporterMessage": "Please consider becoming a <emphasis>Supporter</emphasis> to keep the project alive!",
+    "items": {
+      "notifications": "Notifications",
+      "plugins": "Plugins",
+      "themes": "Themes",
+      "releaseNotes": "Release Notes",
+      "settings": "Settings",
+      "help": "Need help?"
+    }
   },
   "action": {
     "enable": "Enable",

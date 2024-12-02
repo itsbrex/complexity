@@ -36,7 +36,8 @@
         "message": "Este plugin no está disponible en este momento. Inténtelo de nuevo más tarde.",
         "backButton": "Volver al panel"
       }
-    }
+    },
+    "tagsFilterLabel": "Etiquetas"
   },
   "pluginDetails": {
     "betterCodeBlocks": {

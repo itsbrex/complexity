@@ -36,7 +36,8 @@
         "message": "이 플러그인은 현재 사용할 수 없습니다. 나중에 다시 시도해 주세요.",
         "backButton": "대시보드로 돌아가기"
       }
-    }
+    },
+    "tagsFilterLabel": "태그"
   },
   "pluginDetails": {
     "betterCodeBlocks": {

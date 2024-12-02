@@ -1,6 +1,30 @@
 {
-  "extensionDescription": "Complexity - Perplexity AI सुपरचार्ज्ड",
+  "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "कृपया प्रोजेक्ट को जीवित रखने के लिए <emphasis>समर्थक</emphasis> बनने पर विचार करें!"
+    "supporterMessage": "कृपया प्रोजेक्ट को जीवित रखने के लिए <emphasis>समर्थक</emphasis> बनने पर विचार करें!",
+    "items": {
+      "notifications": "सूचनाएं",
+      "plugins": "प्लगइन्स",
+      "themes": "थीम्स",
+      "releaseNotes": "रिलीज नोट्स",
+      "settings": "सेटिंग्स",
+      "help": "मदद चाहिए?"
+    }
+  },
+  "action": {
+    "enable": "सक्षम करें",
+    "disable": "अक्षम करें",
+    "cancel": "रद्द करें",
+    "confirm": "पुष्टि करें",
+    "delete": "हटाएं",
+    "create": "बनाएं",
+    "back": "वापस",
+    "search": "खोजें",
+    "options": "विकल्प",
+    "details": "विवरण"
+  },
+  "status": {
+    "loading": "लोड हो रहा है",
+    "noResults": "कोई परिणाम नहीं मिला"
   }
 }

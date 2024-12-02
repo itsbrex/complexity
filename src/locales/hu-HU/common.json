@@ -1,6 +1,30 @@
 {
-  "extensionDescription": "Complexity - Perplexity AI Felturbózva",
+  "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "Kérjük, fontolja meg, hogy <emphasis>Támogató</emphasis> lesz, hogy életben tarthassuk a projektet!"
+    "supporterMessage": "Kérjük, fontolja meg, hogy <emphasis>Támogató</emphasis> lesz, hogy életben tartsa a projektet!",
+    "items": {
+      "notifications": "Értesítések",
+      "plugins": "Bővítmények",
+      "themes": "Témák",
+      "releaseNotes": "Kiadási jegyzetek",
+      "settings": "Beállítások",
+      "help": "Segítségre van szüksége?"
+    }
+  },
+  "action": {
+    "enable": "Engedélyezés",
+    "disable": "Letiltás",
+    "cancel": "Mégse",
+    "confirm": "Megerősítés",
+    "delete": "Törlés",
+    "create": "Létrehozás",
+    "back": "Vissza",
+    "search": "Keresés",
+    "options": "Beállítások",
+    "details": "Részletek"
+  },
+  "status": {
+    "loading": "Betöltés",
+    "noResults": "Nincs találat"
   }
 }

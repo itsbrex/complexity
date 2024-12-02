@@ -36,7 +36,8 @@
         "message": "Ez a bővítmény jelenleg nem érhető el. Kérjük, próbálja meg később.",
         "backButton": "Vissza az irányítópulthoz"
       }
-    }
+    },
+    "tagsFilterLabel": "Címkék"
   },
   "pluginDetails": {
     "betterCodeBlocks": {

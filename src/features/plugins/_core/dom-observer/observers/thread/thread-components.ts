@@ -33,7 +33,10 @@ export async function setupThreadComponentsObserver(
   const settings = PluginsStatesService.getCachedSync()?.pluginsEnableStates;
 
   const shouldObserve =
-    settings?.imageGenModelSelector || settings?.["thread:toc"];
+    settings?.imageGenModelSelector ||
+    settings?.["thread:toc"] ||
+    settings?.["thread:betterCodeBlocks"] ||
+    settings?.["thread:betterMessageToolbars"];
 
   if (!shouldObserve) return;
 

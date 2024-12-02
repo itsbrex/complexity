@@ -36,10 +36,8 @@ A powerful browser extension that enhances your PerplexityAI experience with adv
 
 ## Features
 
-- A comprehensive set of added features and UI/UX improvements with excellent modularity
-- Continously improving performance
+- A comprehensive set of added features and UI/UX improvements with excellent modularity and customization
 - Multi-language support
-- Light and dark mode support
 
 ## Quick Start
 
@@ -62,12 +60,14 @@ pnpm dev
 - No data collection
 - Local storage only _(Opt-in cloud sync coming soon)_
 
-## Built With
+[Privacy policy](./PRIVACY.md)
 
+## Made possible by
+
+- Vite (+CRXJS)
 - React 18
 - JQuery
-- Vite (+CRXJS)
-- No coffee
+- _No coffee_
 
 ## 💖 Keep the project alive
 

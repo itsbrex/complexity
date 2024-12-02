@@ -1,0 +1,98 @@
+{
+  "pluginTags": {
+    "ui": {
+      "label": "Vzhľad",
+      "description": "Doplnky súvisiace s používateľským rozhraním"
+    },
+    "ux": {
+      "label": "Jednoduchosť Použitia",
+      "description": "Doplnky súvisiace so skúsenosťou používateľa"
+    },
+    "desktopOnly": {
+      "label": "Len Desktop",
+      "description": "Použiteľné len na počítači/šírka obrazovky > 768px"
+    },
+    "privacy": {
+      "label": "Súkromie",
+      "description": "Doplnky súvisiace so súkromím"
+    },
+    "pplxPro": {
+      "label": "Perplexity Pro",
+      "description": "Vyžaduje aktívne predplatné Perplexity Pro"
+    },
+    "experimental": {
+      "label": "Experimentálne",
+      "description": "Experimentálne doplnky. Môžu byť zmenené alebo odstránené bez predchádzajúceho upozornenia."
+    },
+    "beta": {
+      "label": "Beta",
+      "description": "Doplnky vo verzii beta"
+    },
+    "forFun": {
+      "label": "Pre Zábavu",
+      "description": "Jednoducho pre zábavu!"
+    }
+  },
+  "pluginsMetadata": {
+    "queryboxLanguageModelSelector": {
+      "title": "Výber Jazykového Modelu",
+      "description": "Umožňuje výber rôznych jazykových modelov"
+    },
+    "queryboxNoFileCreationOnPaste": {
+      "title": "Zabrániť Vytvoreniu Súboru",
+      "description": "Zabraňuje automatickému vytvoreniu súboru pri vložení (veľmi) dlhého textu do vyhľadávacieho poľa"
+    },
+    "commandMenu": {
+      "title": "Menu Príkazov",
+      "description": "Rýchla navigácia a vyvolanie akcií"
+    },
+    "threadToc": {
+      "title": "Obsah Vlákna",
+      "description": "Pridá obsah na stránku vlákna s >= 2 správami"
+    },
+    "threadBetterMessageToolbars": {
+      "title": "Vylepšené Panely Nástrojov Správ",
+      "description": "Vylepšuje panely nástrojov správ (vo vláknach)"
+    },
+    "threadBetterCodeBlocks": {
+      "title": "Vylepšené Bloky Kódu",
+      "description": "Vylepšuje bloky kódu (vo vláknach)"
+    },
+    "threadBetterCodeBlocksPreviewMermaid": {
+      "title": "Náhľad Blokov Kódu Mermaid",
+      "description": "Náhľad diagramov Mermaid, jednoduchých grafov atď. v blokoch kódu"
+    },
+    "threadExportThread": {
+      "title": "Exportovať Vlákno",
+      "description": "Exportuje aktuálne vlákno vo formáte Markdown (s voliteľnými citáciami). Ďalšie možnosti formátovania čoskoro"
+    },
+    "threadBetterMessageCopyButtons": {
+      "title": "Vylepšené Tlačidlá Kopírovania Správ",
+      "description": "Kopírovať obsah správy bez citácií. Ďalšie možnosti formátovania čoskoro"
+    },
+    "threadDragAndDropFileToUploadInThread": {
+      "title": "Pretiahnuť a Pustiť Súbory na Nahratie vo Vlákne",
+      "description": "Zaobchádza s celou stránkou vlákna ako s oblasťou pre pustenie a umožňuje priamo pretiahnuť a pustiť súbory na nahratie ako prílohy"
+    },
+    "threadCollapseEmptyThreadVisualCols": {
+      "title": "Zbaliť Prázdne Vizuálne Stĺpce Vlákna",
+      "description": "Zbalí prázdne vizuálne stĺpce na stránke vlákna"
+    },
+    "imageGenModelSelector": {
+      "title": "Výber Modelu Generovania Obrázkov",
+      "description": "Umožňuje výber rôznych modelov generovania obrázkov"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "title": "Automatické Obnovenie pri Vypršaní Času Cloudflare",
+      "description": "Automaticky obnoví stránku pri vypršaní času Cloudflare"
+    },
+    "blockAnalyticEvents": {
+      "title": "Blokovať Analytické Udalosti",
+      "description": "Zabraňuje Perplexity odosielať analytické/sledovacie udalosti. Len na ladenie"
+    },
+    "homeCustomSlogan": {
+      "title": "Vlastný Slogan Domovskej Stránky",
+      "description": "Prispôsobiť slogan na domovskej stránke"
+    }
+  }
+} 

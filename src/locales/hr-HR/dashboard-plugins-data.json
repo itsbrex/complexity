@@ -1,0 +1,98 @@
+{
+  "pluginTags": {
+    "ui": {
+      "label": "Izgled",
+      "description": "Dodaci vezani uz korisničko sučelje"
+    },
+    "ux": {
+      "label": "Jednostavnost Korištenja",
+      "description": "Dodaci vezani uz korisničko iskustvo"
+    },
+    "desktopOnly": {
+      "label": "Samo Desktop",
+      "description": "Upotrebljivo samo na desktop računalu/širina zaslona > 768px"
+    },
+    "privacy": {
+      "label": "Privatnost",
+      "description": "Dodaci vezani uz privatnost"
+    },
+    "pplxPro": {
+      "label": "Perplexity Pro",
+      "description": "Zahtijeva aktivnu Perplexity Pro pretplatu"
+    },
+    "experimental": {
+      "label": "Eksperimentalno",
+      "description": "Eksperimentalni dodaci. Mogu se promijeniti ili ukloniti bez prethodne najave."
+    },
+    "beta": {
+      "label": "Beta",
+      "description": "Dodaci u beta verziji"
+    },
+    "forFun": {
+      "label": "Za Zabavu",
+      "description": "Samo za zabavu!"
+    }
+  },
+  "pluginsMetadata": {
+    "queryboxLanguageModelSelector": {
+      "title": "Odabir Jezičnog Modela",
+      "description": "Omogućava odabir različitih jezičnih modela"
+    },
+    "queryboxNoFileCreationOnPaste": {
+      "title": "Spriječi Stvaranje Datoteke",
+      "description": "Sprečava automatsko stvaranje datoteke prilikom lijepljenja (vrlo) dugog teksta u okvir upita"
+    },
+    "commandMenu": {
+      "title": "Izbornik Naredbi",
+      "description": "Brzo navigiranje i pozivanje radnji"
+    },
+    "threadToc": {
+      "title": "Sadržaj Threada",
+      "description": "Dodaje sadržaj na stranicu threada s >= 2 poruke"
+    },
+    "threadBetterMessageToolbars": {
+      "title": "Poboljšane Alatne Trake Poruka",
+      "description": "Poboljšava alatne trake poruka (u threadovima)"
+    },
+    "threadBetterCodeBlocks": {
+      "title": "Poboljšani Blokovi Koda",
+      "description": "Poboljšava blokove koda (u threadovima)"
+    },
+    "threadBetterCodeBlocksPreviewMermaid": {
+      "title": "Pregled Blokova Koda Mermaid",
+      "description": "Pregled Mermaid dijagrama, jednostavnih grafikona itd. u blokovima koda"
+    },
+    "threadExportThread": {
+      "title": "Izvezi Thread",
+      "description": "Izvozi trenutni thread u Markdown formatu (s opcionim citatima). Više opcija formatiranja uskoro"
+    },
+    "threadBetterMessageCopyButtons": {
+      "title": "Poboljšani Gumbi za Kopiranje Poruka",
+      "description": "Kopiraj sadržaj poruke bez citata. Više opcija formatiranja uskoro"
+    },
+    "threadDragAndDropFileToUploadInThread": {
+      "title": "Povuci i Ispusti Datoteke za Učitavanje u Threadu",
+      "description": "Tretira cijelu stranicu threada kao zonu ispuštanja i omogućava izravno povlačenje i ispuštanje datoteka za učitavanje kao privitke"
+    },
+    "threadCollapseEmptyThreadVisualCols": {
+      "title": "Sažmi Prazne Vizualne Stupce Threada",
+      "description": "Sažima prazne vizualne stupce na stranici threada"
+    },
+    "imageGenModelSelector": {
+      "title": "Odabir Modela za Generiranje Slika",
+      "description": "Omogućava odabir različitih modela za generiranje slika"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "title": "Automatsko Osvježavanje kod Cloudflare Isteka Vremena",
+      "description": "Automatski osvježava stranicu kod Cloudflare isteka vremena"
+    },
+    "blockAnalyticEvents": {
+      "title": "Blokiraj Analitičke Događaje",
+      "description": "Sprečava Perplexity da šalje analitičke/praćene događaje. Samo za ispravljanje pogrešaka"
+    },
+    "homeCustomSlogan": {
+      "title": "Prilagođeni Slogan Početne Stranice",
+      "description": "Prilagodi slogan na početnoj stranici"
+    }
+  }
+} 

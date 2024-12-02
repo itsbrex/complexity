@@ -1,0 +1,98 @@
+{
+  "pluginTags": {
+    "ui": {
+      "label": "외관",
+      "description": "UI 관련 플러그인"
+    },
+    "ux": {
+      "label": "사용 편의성",
+      "description": "UX 관련 플러그인"
+    },
+    "desktopOnly": {
+      "label": "데스크톱 전용",
+      "description": "데스크톱/화면 너비 > 768px에서만 사용 가능"
+    },
+    "privacy": {
+      "label": "개인정보 보호",
+      "description": "개인정보 보호 관련 플러그인"
+    },
+    "pplxPro": {
+      "label": "Perplexity Pro",
+      "description": "활성 Perplexity Pro 구독 필요"
+    },
+    "experimental": {
+      "label": "실험적",
+      "description": "실험적 플러그인. 사전 통보 없이 변경되거나 제거될 수 있습니다."
+    },
+    "beta": {
+      "label": "베타",
+      "description": "베타 플러그인"
+    },
+    "forFun": {
+      "label": "재미를 위해",
+      "description": "그저 재미로!"
+    }
+  },
+  "pluginsMetadata": {
+    "queryboxLanguageModelSelector": {
+      "title": "언어 모델 선택기",
+      "description": "다양한 언어 모델 선택 가능"
+    },
+    "queryboxNoFileCreationOnPaste": {
+      "title": "파일 생성 방지",
+      "description": "쿼리 박스에 (매우) 긴 텍스트를 붙여넣을 때 자동 파일 생성 방지"
+    },
+    "commandMenu": {
+      "title": "명령 메뉴",
+      "description": "빠르게 탐색하고 작업 호출"
+    },
+    "threadToc": {
+      "title": "스레드 목차",
+      "description": "2개 이상의 메시지가 있는 스레드 페이지에 목차 추가"
+    },
+    "threadBetterMessageToolbars": {
+      "title": "개선된 메시지 도구 모음",
+      "description": "스레드 내 메시지 도구 모음 개선"
+    },
+    "threadBetterCodeBlocks": {
+      "title": "개선된 코드 블록",
+      "description": "스레드 내 코드 블록 개선"
+    },
+    "threadBetterCodeBlocksPreviewMermaid": {
+      "title": "Mermaid 코드 블록 미리보기",
+      "description": "코드 블록 내 Mermaid 다이어그램, 간단한 차트 등 미리보기"
+    },
+    "threadExportThread": {
+      "title": "스레드 내보내기",
+      "description": "현재 스레드를 마크다운 형식으로 내보내기 (선택적 인용 포함). 추가 서식 옵션 곧 제공 예정"
+    },
+    "threadBetterMessageCopyButtons": {
+      "title": "개선된 메시지 복사 버튼",
+      "description": "인용 없이 메시지 내용 복사. 추가 서식 옵션 곧 제공 예정"
+    },
+    "threadDragAndDropFileToUploadInThread": {
+      "title": "스레드에 파일 드래그 앤 드롭으로 업로드",
+      "description": "전체 스레드 페이지를 드롭 영역으로 취급하여 파일을 직접 드래그 앤 드롭으로 첨부 파일로 업로드 가능"
+    },
+    "threadCollapseEmptyThreadVisualCols": {
+      "title": "빈 스레드 시각적 열 접기",
+      "description": "스레드 페이지의 빈 시각적 열 접기"
+    },
+    "imageGenModelSelector": {
+      "title": "이미지 생성 모델 선택기",
+      "description": "다양한 이미지 생성 모델 선택 가능"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "title": "Cloudflare 시간 초과 시 자동 다시 로드",
+      "description": "Cloudflare 시간 초과 시 페이지 자동 다시 로드"
+    },
+    "blockAnalyticEvents": {
+      "title": "분석 이벤트 차단",
+      "description": "Perplexity의 분석/추적 이벤트 전송 방지. 디버깅 목적으로만 사용"
+    },
+    "homeCustomSlogan": {
+      "title": "홈페이지 맞춤 슬로건",
+      "description": "홈페이지의 슬로건 사용자 지정"
+    }
+  }
+}

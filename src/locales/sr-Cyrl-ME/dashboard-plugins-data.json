@@ -1,0 +1,98 @@
+{
+  "pluginTags": {
+    "ui": {
+      "label": "Изглед",
+      "description": "Додаци везани за кориснички интерфејс"
+    },
+    "ux": {
+      "label": "Лакоћа коришћења",
+      "description": "Додаци везани за корисничко искуство"
+    },
+    "desktopOnly": {
+      "label": "Само за рачунар",
+      "description": "Може се користити само на рачунару/ширина екрана > 768px"
+    },
+    "privacy": {
+      "label": "Приватност",
+      "description": "Додаци везани за приватност"
+    },
+    "pplxPro": {
+      "label": "Perplexity Pro",
+      "description": "Захтијева активну Perplexity Pro претплату"
+    },
+    "experimental": {
+      "label": "Експериментално",
+      "description": "Експериментални додаци. Подложни промјенама или уклањању без претходне најаве."
+    },
+    "beta": {
+      "label": "Бета",
+      "description": "Бета додаци"
+    },
+    "forFun": {
+      "label": "За забаву",
+      "description": "Само за забаву!"
+    }
+  },
+  "pluginsMetadata": {
+    "queryboxLanguageModelSelector": {
+      "title": "Избор језичког модела",
+      "description": "Омогућава избор различитих језичких модела"
+    },
+    "queryboxNoFileCreationOnPaste": {
+      "title": "Спријечи креирање датотеке при лијепљењу",
+      "description": "Спријечи аутоматско креирање датотеке при лијепљењу (веома) дугог текста у поље за упит."
+    },
+    "commandMenu": {
+      "title": "Мени команди",
+      "description": "Брза навигација и извршавање акција."
+    },
+    "threadToc": {
+      "title": "Садржај разговора",
+      "description": "Додаје садржај на страницу разговора са >= 2 поруке."
+    },
+    "threadBetterMessageToolbars": {
+      "title": "Бољи алати за поруке",
+      "description": "Унапређење алата за поруке (у разговорима)."
+    },
+    "threadBetterCodeBlocks": {
+      "title": "Бољи блокови кода",
+      "description": "Унапређење блокова кода (у разговорима)."
+    },
+    "threadBetterCodeBlocksPreviewMermaid": {
+      "title": "Преглед Mermaid блокова кода",
+      "description": "Преглед mermaid дијаграма, једноставних графикона и сл. у блоковима кода."
+    },
+    "threadExportThread": {
+      "title": "Извоз разговора",
+      "description": "Извези тренутни разговор у markdown формату (са опционим цитатима). Ускоро више опција за форматирање."
+    },
+    "threadBetterMessageCopyButtons": {
+      "title": "Бољи тастери за копирање порука",
+      "description": "Копирај садржај поруке без цитата. Ускоро више опција за форматирање."
+    },
+    "threadDragAndDropFileToUploadInThread": {
+      "title": "Превуци и пусти датотеку(е) за отпремање у разговору",
+      "description": "Третирај цијелу страницу разговора као зону за пуштање и омогући директно превлачење и пуштање датотеке(а) за њихово отпремање."
+    },
+    "threadCollapseEmptyThreadVisualCols": {
+      "title": "Сажми празне визуелне колоне у разговору",
+      "description": "Сажми празне визуелне колоне на страници разговора."
+    },
+    "imageGenModelSelector": {
+      "title": "Избор модела за генерисање слика",
+      "description": "Омогућава избор различитих модела за генерисање слика"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "title": "Аутоматско учитавање при истеку Cloudflare",
+      "description": "Аутоматско учитавање странице при истеку Cloudflare"
+    },
+    "blockAnalyticEvents": {
+      "title": "Блокирај аналитичке догађаје",
+      "description": "Спријечи Perplexity да шаље аналитичке/пратеће догађаје. Само за потребе отклањања грешака."
+    },
+    "homeCustomSlogan": {
+      "title": "Прилагођени слоган на почетној",
+      "description": "Прилагоди слоган на почетној страници."
+    }
+  }
+} 

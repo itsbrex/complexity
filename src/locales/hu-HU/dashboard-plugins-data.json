@@ -1,0 +1,98 @@
+{
+  "pluginTags": {
+    "ui": {
+      "label": "Megjelenés",
+      "description": "Felhasználói felülettel kapcsolatos bővítmények"
+    },
+    "ux": {
+      "label": "Könnyű Használat",
+      "description": "Felhasználói élménnyel kapcsolatos bővítmények"
+    },
+    "desktopOnly": {
+      "label": "Csak Asztali",
+      "description": "Csak asztali számítógépen/képernyőszélesség > 768px használható"
+    },
+    "privacy": {
+      "label": "Adatvédelem",
+      "description": "Adatvédelemmel kapcsolatos bővítmények"
+    },
+    "pplxPro": {
+      "label": "Perplexity Pro",
+      "description": "Aktív Perplexity Pro előfizetés szükséges"
+    },
+    "experimental": {
+      "label": "Kísérleti",
+      "description": "Kísérleti bővítmények. Előzetes értesítés nélkül módosíthatók vagy eltávolíthatók."
+    },
+    "beta": {
+      "label": "Béta",
+      "description": "Béta verzójú bővítmények"
+    },
+    "forFun": {
+      "label": "Szórakozásból",
+      "description": "Egyszerűen csak szórakozásból!"
+    }
+  },
+  "pluginsMetadata": {
+    "queryboxLanguageModelSelector": {
+      "title": "Nyelvi Modell Választó",
+      "description": "Különböző nyelvi modellek kiválasztásának lehetősége"
+    },
+    "queryboxNoFileCreationOnPaste": {
+      "title": "Fájl Létrehozás Megakadályozása",
+      "description": "Megakadályozza a fájl automatikus létrehozását (nagyon) hosszú szöveg beillesztésekor a lekérdezőmezőbe"
+    },
+    "commandMenu": {
+      "title": "Parancs Menü",
+      "description": "Gyors navigáció és műveletek végrehajtása"
+    },
+    "threadToc": {
+      "title": "Szál Tartalomjegyzék",
+      "description": "Tartalomjegyzék hozzáadása a szál oldalhoz >= 2 üzenet esetén"
+    },
+    "threadBetterMessageToolbars": {
+      "title": "Továbbfejlesztett Üzenet Eszköztárak",
+      "description": "Továbbfejleszti az üzenet eszköztárakat (a szálakban)"
+    },
+    "threadBetterCodeBlocks": {
+      "title": "Továbbfejlesztett Kódblokkok",
+      "description": "Továbbfejleszti a kódblokkokat (a szálakban)"
+    },
+    "threadBetterCodeBlocksPreviewMermaid": {
+      "title": "Mermaid Kódblokkok Előnézete",
+      "description": "Mermaid diagramok, egyszerű grafikonok stb. előnézete a kódblokkokban"
+    },
+    "threadExportThread": {
+      "title": "Szál Exportálása",
+      "description": "Aktuális szál exportálása Markdown formátumban (opcionális idézetekkel). További formázási lehetőségek hamarosan"
+    },
+    "threadBetterMessageCopyButtons": {
+      "title": "Továbbfejlesztett Üzenet Másolás Gombok",
+      "description": "Üzenet tartalmának másolása idézetek nélkül. További formázási lehetőségek hamarosan"
+    },
+    "threadDragAndDropFileToUploadInThread": {
+      "title": "Fájlok Húzása és Ejtése Feltöltéshez a Szálban",
+      "description": "A teljes szál oldalt fogadóterületként kezeli, lehetővé téve a fájlok közvetlen húzását és ejtését mellékletként történő feltöltéshez"
+    },
+    "threadCollapseEmptyThreadVisualCols": {
+      "title": "Üres Szál Vizuális Oszlopok Összecsukása",
+      "description": "Üres vizuális oszlopok összecsukása a szál oldalon"
+    },
+    "imageGenModelSelector": {
+      "title": "Képgenerálási Modell Választó",
+      "description": "Különböző képgenerálási modellek kiválasztásának lehetősége"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "title": "Automatikus Újratöltés Cloudflare Időtúllépés Esetén",
+      "description": "Oldal automatikus újratöltése Cloudflare időtúllépés esetén"
+    },
+    "blockAnalyticEvents": {
+      "title": "Analitikai Események Blokkolása",
+      "description": "Megakadályozza, hogy a Perplexity analitikai/nyomkövető eseményeket küldjön. Csak hibakeresési célokra"
+    },
+    "homeCustomSlogan": {
+      "title": "Egyedi Kezdőoldali Szlogen",
+      "description": "Kezdőoldal szlogonjának testreszabása"
+    }
+  }
+} 

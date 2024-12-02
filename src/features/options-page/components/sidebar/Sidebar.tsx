@@ -32,7 +32,7 @@ export default function Sidebar() {
       <div className="tw-sticky tw-bottom-0 tw-z-10 tw-shrink-0 tw-bg-background tw-p-4">
         <div className="tw-group tw-relative tw-w-full tw-cursor-pointer tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4 tw-text-sm tw-font-medium tw-shadow-lg tw-transition-all hover:tw-scale-105 hover:tw-border-primary hover:tw-bg-primary/10">
           <Trans
-            i18nKey="sidebar.supporter-message"
+            i18nKey="sidebar.supporterMessage"
             components={{
               highlight: <span className="tw-font-medium tw-text-primary" />,
             }}

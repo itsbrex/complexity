@@ -6,7 +6,7 @@ export type SupportedLangs = (typeof supportedLangs)[number];
 
 export const supportedLangs = [
   "en-US",
-  "fr-FR",
+  "fr-FR", 
   "de-DE",
   "ja-JP",
   "ko-KR",
@@ -21,6 +21,8 @@ export const supportedLangs = [
   "pl-PL",
   "pt-PT",
   "sk-SK",
+  "mk-MK",
+  "sr-Cyrl-ME",
 ] as const;
 
 type Resources = {
@@ -28,65 +30,66 @@ type Resources = {
     common: any;
     onboarding: any;
     plugins: any;
+    "dashboard-plugins-data": any;
   };
 };
 
+async function loadLanguageResources(language: string) {
+  return {
+    common: await import(`~/src/locales/${language}/common.json`),
+    onboarding: await import(`~/src/locales/${language}/onboarding.json`),
+    plugins: await import(`~/src/locales/${language}/plugins.json`),
+    "dashboard-plugins-data": await import(
+      `~/src/locales/${language}/dashboard-plugins-data.json`
+    ),
+  };
+}
+
 export async function initializeI18next() {
   const language = await getLanguage();
-
+  
   const resources: Resources = {
-    [language]: {
-      common: await import(`~/src/locales/${language}/common.json`),
-      onboarding: await import(`~/src/locales/${language}/onboarding.json`),
-      plugins: await import(`~/src/locales/${language}/plugins.json`),
-    },
+    [language]: await loadLanguageResources(language)
   };
+
+  if (language !== 'en-US') {
+    resources['en-US'] = await loadLanguageResources('en-US');
+  }
 
   await i18n.init({
     lng: language,
-    fallbackLng: "en-US",
+    fallbackLng: "en-US", 
     defaultNS: "common",
-    ns: ["common", "onboarding", "plugins"],
+    ns: ["common", "onboarding", "plugins", "dashboard-plugins-data"],
     resources,
   });
 }
 
+async function getCookieLocale(isExtension: boolean): Promise<string | undefined> {
+  if (isExtension) {
+    if (await chrome.permissions.contains({ permissions: ["cookies"] })) {
+      const cookie = await chrome.cookies.get({
+        name: "pplx.chosen-locale",
+        url: "https://www.perplexity.ai",
+      });
+      return cookie?.value;
+    }
+  } else {
+    return document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("pplx.chosen-locale="))
+      ?.split("=")[1];
+  }
+}
+
 export async function getLanguage() {
-  let pplxLang = "en-US";
+  const isExtension = whereAmI() === "unknown";
+  const cookieLocale = await getCookieLocale(isExtension);
+  const pplxLang = cookieLocale || navigator.language || "en-US";
 
-  switch (whereAmI()) {
-    case "unknown":
-      if (
-        await chrome.permissions.contains({
-          permissions: ["cookies"],
-        })
-      ) {
-        pplxLang =
-          (
-            await chrome.cookies.get({
-              name: "pplx.chosen-locale",
-              url: "https://www.perplexity.ai",
-            })
-          )?.value ||
-          navigator.language ||
-          "en-US";
-      }
-      break;
-    default:
-      pplxLang =
-        document.cookie
-          .split("; ")
-          .find((row) => row.startsWith("pplx.chosen-locale="))
-          ?.split("=")[1] ||
-        navigator.language ||
-        "en-US";
-  }
-
-  if (supportedLangs.includes(pplxLang as (typeof supportedLangs)[number])) {
-    return pplxLang;
-  }
-
-  return "en-US";
+  return supportedLangs.includes(pplxLang as SupportedLangs) 
+    ? pplxLang 
+    : "en-US";
 }
 
 export const t = i18n.t;

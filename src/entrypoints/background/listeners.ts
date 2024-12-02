@@ -1,5 +1,6 @@
 import { onMessage } from "webext-bridge/background";
 
+import { APP_CONFIG } from "@/app.config";
 import { getOptionsPageUrl } from "@/utils/utils";
 
 export type BackgroundEvents = {
@@ -7,6 +8,14 @@ export type BackgroundEvents = {
 };
 
 export function setupBackgroundListeners() {
+  if (APP_CONFIG.IS_DEV) {
+    chrome.runtime.onInstalled.addListener(() => {
+      chrome.tabs.create({
+        url: getOptionsPageUrl(),
+      });
+    });
+  }
+
   chrome.runtime.onInstalled.addListener(({ reason }) => {
     if (reason === "install") {
       chrome.tabs.create({ url: `${getOptionsPageUrl()}#/onboarding` });

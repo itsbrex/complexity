@@ -1,0 +1,98 @@
+{
+  "pluginTags": {
+    "ui": {
+      "label": "Apariencia",
+      "description": "Plugins relacionados con la interfaz de usuario"
+    },
+    "ux": {
+      "label": "Facilidad de uso",
+      "description": "Plugins relacionados con la experiencia de usuario"
+    },
+    "desktopOnly": {
+      "label": "Solo escritorio",
+      "description": "Solo utilizable en escritorio/ancho de pantalla > 768px"
+    },
+    "privacy": {
+      "label": "Privacidad",
+      "description": "Plugins relacionados con la privacidad"
+    },
+    "pplxPro": {
+      "label": "Perplexity Pro",
+      "description": "Requiere una suscripción activa a Perplexity Pro"
+    },
+    "experimental": {
+      "label": "Experimental",
+      "description": "Plugins experimentales. Sujetos a cambios o eliminación sin previo aviso."
+    },
+    "beta": {
+      "label": "Beta",
+      "description": "Plugins en versión beta"
+    },
+    "forFun": {
+      "label": "Por diversión",
+      "description": "¡Simplemente por diversión!"
+    }
+  },
+  "pluginsMetadata": {
+    "queryboxLanguageModelSelector": {
+      "title": "Selector de modelo de lenguaje",
+      "description": "Permite seleccionar diferentes modelos de lenguaje"
+    },
+    "queryboxNoFileCreationOnPaste": {
+      "title": "Prevenir creación de archivos",
+      "description": "Evita la creación automática de archivos al pegar texto (muy) largo en el cuadro de consulta"
+    },
+    "commandMenu": {
+      "title": "Menú de comandos",
+      "description": "Navegar rápidamente e invocar acciones"
+    },
+    "threadToc": {
+      "title": "Tabla de contenidos del hilo",
+      "description": "Añade una tabla de contenidos a la página de hilo con >= 2 mensajes"
+    },
+    "threadBetterMessageToolbars": {
+      "title": "Barras de herramientas de mensajes mejoradas",
+      "description": "Mejora las barras de herramientas de mensajes (en hilos)"
+    },
+    "threadBetterCodeBlocks": {
+      "title": "Bloques de código mejorados",
+      "description": "Mejora los bloques de código (en hilos)"
+    },
+    "threadBetterCodeBlocksPreviewMermaid": {
+      "title": "Vista previa de bloques de código Mermaid",
+      "description": "Previsualiza diagramas Mermaid, gráficos simples, etc. en bloques de código"
+    },
+    "threadExportThread": {
+      "title": "Exportar hilo",
+      "description": "Exporta el hilo actual en formato Markdown (con citas opcionales). Más opciones de formato próximamente"
+    },
+    "threadBetterMessageCopyButtons": {
+      "title": "Botones de copia de mensajes mejorados",
+      "description": "Copiar contenido de mensajes sin citas. Más opciones de formato próximamente"
+    },
+    "threadDragAndDropFileToUploadInThread": {
+      "title": "Arrastrar y soltar archivos para subir en un hilo",
+      "description": "Trata toda la página de hilo como zona de arrastre y permite arrastrar y soltar archivos directamente para subirlos como archivos adjuntos"
+    },
+    "threadCollapseEmptyThreadVisualCols": {
+      "title": "Contraer columnas visuales vacías del hilo",
+      "description": "Contrae columnas visuales vacías en la página de hilo"
+    },
+    "imageGenModelSelector": {
+      "title": "Selector de modelo de generación de imágenes",
+      "description": "Permite seleccionar diferentes modelos de generación de imágenes"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "title": "Recarga automática en timeout de Cloudflare",
+      "description": "Recarga automáticamente la página en caso de timeout de Cloudflare"
+    },
+    "blockAnalyticEvents": {
+      "title": "Bloquear eventos analíticos",
+      "description": "Evita que Perplexity envíe eventos analíticos/de seguimiento. Solo para depuración"
+    },
+    "homeCustomSlogan": {
+      "title": "Eslogan personalizado de la página de inicio",
+      "description": "Personalizar el eslogan en la página de inicio"
+    }
+  }
+} 

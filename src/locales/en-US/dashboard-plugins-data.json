@@ -1,0 +1,98 @@
+{
+  "pluginTags": {
+    "ui": {
+      "label": "Appearance",
+      "description": "UI related plugins"
+    },
+    "ux": {
+      "label": "Ease of Use",
+      "description": "UX related plugins"
+    },
+    "desktopOnly": {
+      "label": "Desktop Only",
+      "description": "Can only be used on desktop/screen width > 768px"
+    },
+    "privacy": {
+      "label": "Privacy",
+      "description": "Privacy related plugins"
+    },
+    "pplxPro": {
+      "label": "Perplexity Pro",
+      "description": "Requires an active Perplexity Pro subscription"
+    },
+    "experimental": {
+      "label": "Experimental",
+      "description": "Experimental plugins. Subject to change or removal without prior notice."
+    },
+    "beta": {
+      "label": "Beta",
+      "description": "Beta plugins"
+    },
+    "forFun": {
+      "label": "For Fun",
+      "description": "Just for fun!"
+    }
+  },
+  "pluginsMetadata": {
+    "queryboxLanguageModelSelector": {
+      "title": "Language Model Selector",
+      "description": "Enable selection of different language models"
+    },
+    "queryboxNoFileCreationOnPaste": {
+      "title": "Prevent File Creation on Paste",
+      "description": "Prevent automatic file creation when pasting (very) long text into the query box."
+    },
+    "commandMenu": {
+      "title": "Command Menu",
+      "description": "Quickly navigate around and invoke actions."
+    },
+    "threadToc": {
+      "title": "Thread ToC",
+      "description": "Add a table of contents to the thread page with >= 2 messages."
+    },
+    "threadBetterMessageToolbars": {
+      "title": "Better Thread Message Toolbars",
+      "description": "Enhance message toolbars (in threads)."
+    },
+    "threadBetterCodeBlocks": {
+      "title": "Better Code Blocks",
+      "description": "Enhance code blocks (in threads)."
+    },
+    "threadBetterCodeBlocksPreviewMermaid": {
+      "title": "Mermaid Code Blocks Preview",
+      "description": "Preview mermaid diagrams, simple charts, etc. in code blocks."
+    },
+    "threadExportThread": {
+      "title": "Export Thread",
+      "description": "Export the current thread in markdown format (with optional citations). More formatting options coming soon."
+    },
+    "threadBetterMessageCopyButtons": {
+      "title": "Better Thread Message Copy Buttons",
+      "description": "Copy message content without citations. More formatting options coming soon."
+    },
+    "threadDragAndDropFileToUploadInThread": {
+      "title": "Drag and Drop File(s) to Upload in a thread",
+      "description": "Treat the whole thread page as a drop zone and allow you to directly drag & drop file(s) to upload them as attachment(s)."
+    },
+    "threadCollapseEmptyThreadVisualCols": {
+      "title": "Collapse Empty Thread Visual Columns",
+      "description": "Collapse empty visual columns in the thread page."
+    },
+    "imageGenModelSelector": {
+      "title": "Image Generation Model Selector",
+      "description": "Enable selection of different image generation models"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "title": "Auto Reload on Cloudflare Timeout",
+      "description": "Auto reload the page on Cloudflare timeout"
+    },
+    "blockAnalyticEvents": {
+      "title": "Block Analytic Events",
+      "description": "Prevent Perplexity from sending analytic/tracking events. For debugging purposes only."
+    },
+    "homeCustomSlogan": {
+      "title": "Custom Home Slogan",
+      "description": "Customize the slogan on the home page."
+    }
+  }
+}

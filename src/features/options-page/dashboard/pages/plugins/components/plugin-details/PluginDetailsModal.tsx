@@ -36,7 +36,7 @@ export default function PluginDetailsModal({
   return (
     <DialogComp open onOpenChange={handleClose}>
       <DialogContentComp
-        className="tw-max-w-max"
+        className="md:tw-max-w-max"
         side={isMobile ? "bottom" : undefined}
       >
         <DialogHeader>

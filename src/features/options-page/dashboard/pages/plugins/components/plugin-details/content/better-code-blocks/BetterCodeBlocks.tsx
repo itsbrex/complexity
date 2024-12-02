@@ -38,7 +38,7 @@ export default function BetterCodeBlocksPluginDetails() {
             );
           }}
         >
-          <TabsList className="tw-mb-2 tw-max-w-[500px] tw-justify-start">
+          <TabsList className="tw-mb-2 tw-justify-start">
             <TabsTrigger value="global">Global</TabsTrigger>
             {fineGrainedOptions?.map((option) => (
               <TabsTrigger key={option.language} value={option.language}>
@@ -49,7 +49,7 @@ export default function BetterCodeBlocksPluginDetails() {
           </TabsList>
           <TabsContent
             value="global"
-            className="tw-w-[700px] tw-rounded-md tw-bg-secondary tw-p-4"
+            className="tw-max-w-[500px] tw-rounded-md tw-bg-secondary tw-p-4"
           >
             <BetterCodeBlockGlobalOptions />
           </TabsContent>
@@ -57,7 +57,7 @@ export default function BetterCodeBlocksPluginDetails() {
             <TabsContent
               key={option.language}
               value={option.language}
-              className="tw-w-[700px] tw-rounded-md tw-bg-secondary tw-p-4"
+              className="tw-rounded-md tw-bg-secondary tw-p-4"
             >
               <BetterCodeBlockFineGrainedOptions language={option.language} />
             </TabsContent>

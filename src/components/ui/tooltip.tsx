@@ -9,7 +9,17 @@ const TooltipTrigger = forwardRef<
   ElementRef<typeof ArkTooltip.Trigger>,
   ArkTooltip.TriggerProps
 >(({ ...props }, ref) => {
-  return <ArkTooltip.Trigger ref={ref} {...props} />;
+  return (
+    <ArkTooltip.Context>
+      {({ setOpen }) => (
+        <ArkTooltip.Trigger
+          ref={ref}
+          onTouchStart={() => setOpen(true)}
+          {...props}
+        />
+      )}
+    </ArkTooltip.Context>
+  );
 });
 
 TooltipTrigger.displayName = "TooltipTrigger";

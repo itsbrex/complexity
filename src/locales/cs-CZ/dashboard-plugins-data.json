@@ -48,7 +48,7 @@
     },
     "threadToc": {
       "title": "Obsah vlákna",
-      "description": "Přidá obsah na stránku vlákna s >= 2 zprávami"
+      "description": "Rychlá navigace mezi zprávami ve vlákně. Zobrazí se pouze pokud jsou více než 2 zprávy."
     },
     "threadBetterMessageToolbars": {
       "title": "Vylepšené nástrojové lišty zpráv",

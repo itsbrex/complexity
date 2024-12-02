@@ -48,7 +48,7 @@
     },
     "threadToc": {
       "title": "Thread ToC",
-      "description": "Add a table of contents to the thread page with >= 2 messages."
+      "description": "Quickly navigate between messages in a thread. Only shows up when there are more than 2 messages."
     },
     "threadBetterMessageToolbars": {
       "title": "Better Thread Message Toolbars",

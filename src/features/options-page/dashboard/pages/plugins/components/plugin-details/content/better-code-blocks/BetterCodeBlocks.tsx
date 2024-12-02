@@ -39,7 +39,11 @@ export default function BetterCodeBlocksPluginDetails() {
           }}
         >
           <TabsList className="tw-mb-2 tw-justify-start">
-            <TabsTrigger value="global">Global</TabsTrigger>
+            <TabsTrigger value="global">
+              {t(
+                "dashboard-plugins-page:pluginDetails.betterCodeBlocks.tabs.global",
+              )}
+            </TabsTrigger>
             {fineGrainedOptions?.map((option) => (
               <TabsTrigger key={option.language} value={option.language}>
                 {option.language}
@@ -74,10 +78,10 @@ function Header() {
   return (
     <>
       <div className="tw-flex tw-flex-col tw-gap-2">
-        Customize the appearance and usability of code blocks.
+        {t("dashboard-plugins-page:pluginDetails.betterCodeBlocks.description")}
       </div>
       <Switch
-        textLabel="Enable"
+        textLabel={t("action.enable")}
         checked={settings?.plugins["thread:betterCodeBlocks"].enabled}
         onCheckedChange={({ checked }) => {
           mutation.mutate((draft) => {

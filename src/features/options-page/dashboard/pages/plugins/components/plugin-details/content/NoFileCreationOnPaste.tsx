@@ -11,10 +11,13 @@ export default function NoFileCreationOnPastePluginDetails() {
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
       <P>
-        Activation hotkey: <KeyCombo keys={["Ctrl", "Shift", "V"]} />.
+        {t(
+          "dashboard-plugins-page:pluginDetails.noFileCreationOnPaste.description",
+        )}{" "}
+        <KeyCombo keys={["Ctrl", "Shift", "V"]} />.
       </P>
       <Switch
-        textLabel="Enable"
+        textLabel={t("action.enable")}
         checked={
           settings?.plugins["queryBox:noFileCreationOnPaste"].enabled ?? false
         }

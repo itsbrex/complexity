@@ -48,7 +48,7 @@
     },
     "threadToc": {
       "title": "Índice do Thread",
-      "description": "Adiciona um índice à página do thread com >= 2 mensagens"
+      "description": "Navegue rapidamente entre mensagens em um thread. Só aparece quando há mais de 2 mensagens."
     },
     "threadBetterMessageToolbars": {
       "title": "Barras de Ferramentas de Mensagens Aprimoradas",
@@ -95,4 +95,4 @@
       "description": "Personalizar o slogan na página inicial"
     }
   }
-} 
+}

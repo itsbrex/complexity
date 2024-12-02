@@ -48,7 +48,7 @@
     },
     "threadToc": {
       "title": "스레드 목차",
-      "description": "2개 이상의 메시지가 있는 스레드 페이지에 목차 추가"
+      "description": "스레드 내 메시지 간 빠른 이동이 가능합니다. 2개 이상의 메시지가 있을 때만 표시됩니다."
     },
     "threadBetterMessageToolbars": {
       "title": "개선된 메시지 도구 모음",

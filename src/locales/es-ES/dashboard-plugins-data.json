@@ -47,8 +47,8 @@
       "description": "Navegar rápidamente e invocar acciones"
     },
     "threadToc": {
-      "title": "Tabla de contenidos del hilo",
-      "description": "Añade una tabla de contenidos a la página de hilo con >= 2 mensajes"
+      "title": "Índice del Hilo",
+      "description": "Navega rápidamente entre mensajes en un hilo. Solo aparece cuando hay más de 2 mensajes."
     },
     "threadBetterMessageToolbars": {
       "title": "Barras de herramientas de mensajes mejoradas",

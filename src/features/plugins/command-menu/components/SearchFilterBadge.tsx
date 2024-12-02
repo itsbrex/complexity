@@ -13,7 +13,7 @@ export default function SearchFilterBadge() {
         <Badge>{SEARCH_FILTERS[filter].label}</Badge>
       )}
       {filter === "spaces-threads" && (
-        <Badge className="tw-max-w-[150px] tw-line-clamp-1">
+        <Badge className="tw-line-clamp-1 tw-max-w-[150px]">
           {spacethreadTitle}
         </Badge>
       )}

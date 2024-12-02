@@ -1,0 +1,144 @@
+{
+  "pluginsPage": {
+    "listing": {
+      "title": "Wtyczki",
+      "searchPlaceholder": "Szukaj wtyczek...",
+      "reloadNote": "Aby zmienić ustawienia wtyczek, należy całkowicie przeładować stronę w Perplexity.ai.",
+      "fetchingPlugins": "Pobieranie wtyczek..."
+    },
+    "noPluginsFound": {
+      "title": "Nie znaleziono wtyczek",
+      "description": "Spróbuj dostosować wyszukiwanie/filtry lub <url>poproś o nową</url> 😉"
+    },
+    "pluginCard": {
+      "actions": {
+        "addToFavorites": "Dodaj do ulubionych",
+        "removeFromFavorites": "Usuń z ulubionych"
+      },
+      "dependencyWarnings": {
+        "disabledDependencies": {
+          "title": "Jedna lub więcej zależności jest wyłączonych, prosimy je włączyć, aby użyć tej wtyczki:",
+          "dependencyList": "Zależności"
+        },
+        "forcedDisabledDependencies": "Ta wtyczka jest wyłączona, ponieważ jedna lub więcej jej zależności jest niedostępnych."
+      }
+    },
+    "lockdownOverlay": {
+      "message": "Ta wtyczka jest obecnie niedostępna"
+    },
+    "sections": {
+      "favouritePlugins": "Ulubione wtyczki",
+      "allPlugins": "Wszystkie wtyczki"
+    },
+    "details": {
+      "backToPlugins": "Wróć do wtyczek",
+      "unavailable": {
+        "message": "Ta wtyczka jest obecnie niedostępna. Spróbuj ponownie później.",
+        "backButton": "Wróć do pulpitu nawigacyjnego"
+      }
+    }
+  },
+  "pluginDetails": {
+    "betterCodeBlocks": {
+      "description": "Dostosuj wygląd i użyteczność bloków kodu.",
+      "tabs": {
+        "global": "Globalnie"
+      },
+      "codeTheme": {
+        "searchPlaceholder": "Szukaj motywu...",
+        "noThemeFound": "Nie znaleziono motywu.",
+        "label": "Motyw kodu",
+        "dark": "Ciemny",
+        "light": "Jasny"
+      },
+      "languageOptions": {
+        "addNewRule": "Dodaj nową regułę",
+        "fineTuneBlock": "Precyzyjnie dostosuj konkretny blok",
+        "languageBlockName": "Nazwa języka/bloku",
+        "noLanguageProvided": "Nie podano nazwy języka/bloku",
+        "failedToCreate": "❌ Nie udało się utworzyć opcji języka",
+        "delete": {
+          "title": "Usuń opcję języka",
+          "description": "Czy na pewno chcesz usunąć tę opcję języka? Tej czynności nie można cofnąć."
+        },
+        "failedToUpdate": "❌ Nie udało się zaktualizować opcji",
+        "failedToDelete": "❌ Nie udało się usunąć opcji"
+      },
+      "options": {
+        "stickyHeader": "Przyklejony nagłówek",
+        "unwrapLines": {
+          "label": "Domyślnie rozwijaj wiersze",
+          "toggleButton": "Pokaż przycisk przełączania"
+        },
+        "maxHeight": {
+          "label": "Maksymalna wysokość",
+          "toggleButton": "Pokaż przycisk przełączania",
+          "unit": "px (0px = całkowicie zwinięty)",
+          "unitGlobal": "px (>= 300px)"
+        },
+        "placeholderText": {
+          "label": "Niestandardowy tekst zastępczy",
+          "title": "Tytuł",
+          "loading": "Tekst ładowania",
+          "idle": "Tekst bezczynności"
+        }
+      }
+    },
+    "betterThreadMessageToolbars": {
+      "description": "Przydatne ulepszenia, które sprawiają, że pasek narzędzi jest bardziej kompaktowy i łatwy w użyciu.",
+      "options": {
+        "sticky": {
+          "label": "Przypnij na górze",
+          "description": "Zawsze utrzymuj pasek narzędzi widoczny na górze strony podczas przewijania."
+        },
+        "simplifyRewriteDropdown": {
+          "label": "Uprość menu rozwijane ponownego zapisu",
+          "description": "Ukryj opis modelu (tylko na komputerach stacjonarnych)."
+        },
+        "hideUnnecessaryButtons": {
+          "label": "Ukryj niepotrzebne przyciski",
+          "description": "Ukryj przyciski Udostępnij, Kciuk w górę/w dół."
+        },
+        "explicitModelName": {
+          "label": "Jawna nazwa modelu",
+          "description": "Pokaż nazwę modelu bez najechania."
+        }
+      }
+    },
+    "collapseEmptyThreadVisualCols": {
+      "description": "Usuń pustą przestrzeń po prawej stronie każdej wiadomości w wątku. Tylko dla wiadomości, które nie mają wyraźnie opcji \"Szukaj obrazów, Szukaj filmów, Generuj obrazy\" po prawej stronie."
+    },
+    "commandMenu": {
+      "description": "Podobne do Spotlight na Macu / PowerToys Run w Windows, ale działające wewnątrz Perplexity.",
+      "activationHotkey": "Skrót aktywacyjny:",
+      "sideNote": "Uwaga: Wyszukiwanie wątku podlega ograniczeniom szybkości przez Perplexity w dowolnym momencie."
+    },
+    "languageModelSelector": {
+      "description": "Pozwala zmienić preferowany model języka <emphasis>w dowolnym miejscu</emphasis>. Selektor można znaleźć we wszystkich polach zapytań.",
+      "mainLocations": "Strona główna + Modal + Przestrzeń",
+      "followUp": {
+        "enable": "Kontynuacja (w wątku)",
+        "spanFullWidth": "Rozciągnij poziomo do pełnej szerokości"
+      }
+    },
+    "imageGenModelSelector": {
+      "description": "Pozwala zmienić preferowany model generowania obrazów. Selektor można znaleźć w oknie podręcznym generowania obrazów w dowolnym wątku."
+    },
+    "customHomeSlogan": {
+      "sloganLabel": "Slogan"
+    },
+    "noFileCreationOnPaste": {
+      "description": "Skrót aktywacyjny:"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "description": "Przydatne podczas korzystania z VPN lub gdy Perplexity/Cloudflare ma problemy z dostawcą internetu. Włącz tę opcję, jeśli chcesz automatycznie przeładować stronę, gdy to nastąpi.",
+      "behavior": {
+        "label": "Zachowanie",
+        "options": {
+          "reload": "Przeładuj",
+          "warnOnly": "Tylko ostrzegaj"
+        }
+      }
+    }
+  }
+} 

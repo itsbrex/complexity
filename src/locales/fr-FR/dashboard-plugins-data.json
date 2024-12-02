@@ -48,7 +48,7 @@
     },
     "threadToc": {
       "title": "Table des matières du fil",
-      "description": "Ajoute une table des matières à la page de fil avec >= 2 messages."
+      "description": "Navigation rapide entre les messages d'un fil. N'apparaît que lorsqu'il y a plus de 2 messages."
     },
     "threadBetterMessageToolbars": {
       "title": "Barres d'outils de messages améliorées",

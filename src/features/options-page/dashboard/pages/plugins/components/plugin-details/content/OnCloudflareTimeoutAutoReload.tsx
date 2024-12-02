@@ -17,8 +17,12 @@ type BehaviorType =
   ExtensionLocalStorage["plugins"]["onCloudflareTimeoutAutoReload"]["behavior"];
 
 const BEHAVIOR_LABELS: Record<BehaviorType, string> = {
-  reload: "Reload",
-  "warn-only": "Warn only",
+  reload: t(
+    "dashboard-plugins-page:pluginDetails.onCloudflareTimeoutAutoReload.behavior.options.reload",
+  ),
+  "warn-only": t(
+    "dashboard-plugins-page:pluginDetails.onCloudflareTimeoutAutoReload.behavior.options.warnOnly",
+  ),
 };
 
 const BEHAVIOR_OPTIONS: BehaviorType[] = ["reload", "warn-only"];
@@ -45,18 +49,22 @@ export default function OnCloudflareTimeoutAutoReloadPluginDetails() {
   return (
     <div className="tw-flex tw-max-w-lg tw-flex-col tw-gap-4">
       <P className="tw-text-balance">
-        Helpful when you are using VPNs, or when Perplexity/Cloudflare has
-        issues with your ISP. Turn this on if you want to automatically reload
-        the page when this occurs.
+        {t(
+          "dashboard-plugins-page:pluginDetails.onCloudflareTimeoutAutoReload.description",
+        )}
       </P>
       <Switch
-        textLabel="Enable"
+        textLabel={t("action.enable")}
         checked={pluginSettings?.enabled ?? false}
         onCheckedChange={({ checked }) => handleEnableChange(checked)}
       />
 
       <div>
-        <Label className="tw-text-muted-foreground">Behavior</Label>
+        <Label className="tw-text-muted-foreground">
+          {t(
+            "dashboard-plugins-page:pluginDetails.onCloudflareTimeoutAutoReload.behavior.label",
+          )}
+        </Label>
         <Select
           portal={false}
           collection={createListCollection<BehaviorType>({

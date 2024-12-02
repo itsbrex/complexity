@@ -1,0 +1,144 @@
+{
+  "pluginsPage": {
+    "listing": {
+      "title": "Plugin",
+      "searchPlaceholder": "Cerca plugin...",
+      "reloadNote": "È necessario ricaricare completamente la pagina su Perplexity.ai quando si modificano le impostazioni dei plugin.",
+      "fetchingPlugins": "Recupero plugin in corso..."
+    },
+    "noPluginsFound": {
+      "title": "Nessun plugin trovato",
+      "description": "Prova a modificare i termini di ricerca/filtri o <url>richiedi un nuovo plugin</url> 😉"
+    },
+    "pluginCard": {
+      "actions": {
+        "addToFavorites": "Aggiungi ai preferiti",
+        "removeFromFavorites": "Rimuovi dai preferiti"
+      },
+      "dependencyWarnings": {
+        "disabledDependencies": {
+          "title": "Una o più dipendenze sono disattivate, per favore attivarle per utilizzare questo plugin:",
+          "dependencyList": "Dipendenze"
+        },
+        "forcedDisabledDependencies": "Questo plugin è disattivato perché una o più delle sue dipendenze non sono disponibili."
+      }
+    },
+    "lockdownOverlay": {
+      "message": "Questo plugin non è attualmente disponibile"
+    },
+    "sections": {
+      "favouritePlugins": "Plugin preferiti",
+      "allPlugins": "Tutti i plugin"
+    },
+    "details": {
+      "backToPlugins": "Torna ai plugin",
+      "unavailable": {
+        "message": "Questo plugin non è attualmente disponibile. Riprova più tardi.",
+        "backButton": "Torna alla dashboard"
+      }
+    }
+  },
+  "pluginDetails": {
+    "betterCodeBlocks": {
+      "description": "Personalizza l'aspetto e l'usabilità dei blocchi di codice.",
+      "tabs": {
+        "global": "Globale"
+      },
+      "codeTheme": {
+        "searchPlaceholder": "Cerca tema...",
+        "noThemeFound": "Nessun tema trovato.",
+        "label": "Tema del codice",
+        "dark": "Scuro",
+        "light": "Chiaro"
+      },
+      "languageOptions": {
+        "addNewRule": "Aggiungi nuova regola",
+        "fineTuneBlock": "Ottimizza blocco specifico",
+        "languageBlockName": "Nome lingua/blocco",
+        "noLanguageProvided": "Nessun nome lingua/blocco fornito",
+        "failedToCreate": "❌ Creazione opzione lingua non riuscita",
+        "delete": {
+          "title": "Elimina opzione lingua",
+          "description": "Sei sicuro di voler eliminare questa opzione lingua? Questa azione non può essere annullata."
+        },
+        "failedToUpdate": "❌ Aggiornamento opzioni non riuscito",
+        "failedToDelete": "❌ Eliminazione opzioni non riuscita"
+      },
+      "options": {
+        "stickyHeader": "Intestazione fissa",
+        "unwrapLines": {
+          "label": "Espandi righe per impostazione predefinita",
+          "toggleButton": "Mostra pulsante di attivazione"
+        },
+        "maxHeight": {
+          "label": "Altezza massima",
+          "toggleButton": "Mostra pulsante di attivazione",
+          "unit": "px (0px = completamente compresso)",
+          "unitGlobal": "px (>= 300px)"
+        },
+        "placeholderText": {
+          "label": "Testo segnaposto personalizzato",
+          "title": "Titolo",
+          "loading": "Testo di caricamento",
+          "idle": "Testo di inattività"
+        }
+      }
+    },
+    "betterThreadMessageToolbars": {
+      "description": "Miglioramenti utili per rendere la barra degli strumenti più compatta e facile da usare.",
+      "options": {
+        "sticky": {
+          "label": "Fissa in alto",
+          "description": "Mantieni sempre la barra degli strumenti visibile in cima alla pagina durante lo scorrimento."
+        },
+        "simplifyRewriteDropdown": {
+          "label": "Semplifica menu a discesa riscrittura",
+          "description": "Nascondi descrizione del modello (solo per desktop)."
+        },
+        "hideUnnecessaryButtons": {
+          "label": "Nascondi pulsanti non necessari",
+          "description": "Nascondi pulsanti Condividi, Mi piace/Non mi piace."
+        },
+        "explicitModelName": {
+          "label": "Nome modello esplicito",
+          "description": "Mostra nome modello senza passare con il mouse."
+        }
+      }
+    },
+    "collapseEmptyThreadVisualCols": {
+      "description": "Rimuovi lo spazio vuoto sul lato destro di ogni messaggio in un thread. Solo per messaggi che non hanno esplicitamente le opzioni \"Cerca immagini, Cerca video, Genera immagini\" sul lato destro."
+    },
+    "commandMenu": {
+      "description": "Simile a Spotlight di Mac / PowerToys Run di Windows, ma funziona all'interno di Perplexity.",
+      "activationHotkey": "Tasto di scelta rapida di attivazione:",
+      "sideNote": "Nota: la ricerca thread è soggetta a limitazioni di velocità da parte di Perplexity in qualsiasi momento."
+    },
+    "languageModelSelector": {
+      "description": "Ti permette di cambiare il tuo modello di lingua preferito <emphasis>ovunque</emphasis>. Il selettore può essere trovato in tutte le caselle di query.",
+      "mainLocations": "Home page + Modale + Spazio",
+      "followUp": {
+        "enable": "Seguito (in un thread)",
+        "spanFullWidth": "Estendi orizzontalmente a larghezza intera"
+      }
+    },
+    "imageGenModelSelector": {
+      "description": "Ti permette di cambiare il tuo modello di generazione di immagini preferito. Il selettore può essere trovato nel popup di generazione immagini in qualsiasi thread."
+    },
+    "customHomeSlogan": {
+      "sloganLabel": "Slogan"
+    },
+    "noFileCreationOnPaste": {
+      "description": "Tasto di scelta rapida di attivazione:"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "description": "Utile quando si utilizzano VPN o quando Perplexity/Cloudflare ha problemi con il proprio provider di servizi Internet. Attiva questa opzione se desideri ricaricare automaticamente la pagina quando si verifica.",
+      "behavior": {
+        "label": "Comportamento",
+        "options": {
+          "reload": "Ricarica",
+          "warnOnly": "Solo avvisa"
+        }
+      }
+    }
+  }
+}

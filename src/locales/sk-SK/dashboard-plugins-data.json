@@ -48,7 +48,7 @@
     },
     "threadToc": {
       "title": "Obsah Vlákna",
-      "description": "Pridá obsah na stránku vlákna s >= 2 správami"
+      "description": "Rýchla navigácia medzi správami vo vlákne. Zobrazí sa len keď sú viac ako 2 správy."
     },
     "threadBetterMessageToolbars": {
       "title": "Vylepšené Panely Nástrojov Správ",

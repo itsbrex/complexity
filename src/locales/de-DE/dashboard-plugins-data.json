@@ -48,7 +48,7 @@
     },
     "threadToc": {
       "title": "Thread-Inhaltsverzeichnis",
-      "description": "Fügt der Thread-Seite ein Inhaltsverzeichnis hinzu, wenn >= 2 Nachrichten vorhanden sind."
+      "description": "Schnelle Navigation zwischen Nachrichten in einem Thread. Wird nur angezeigt, wenn mehr als 2 Nachrichten vorhanden sind."
     },
     "threadBetterMessageToolbars": {
       "title": "Verbesserte Nachrichten-Symbolleisten",
@@ -95,4 +95,4 @@
       "description": "Passen Sie den Slogan auf der Startseite an."
     }
   }
-} 
+}

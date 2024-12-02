@@ -48,7 +48,7 @@
     },
     "threadToc": {
       "title": "Sadržaj Threada",
-      "description": "Dodaje sadržaj na stranicu threada s >= 2 poruke"
+      "description": "Brza navigacija između poruka u threadu. Prikazuje se samo kada postoji više od 2 poruke."
     },
     "threadBetterMessageToolbars": {
       "title": "Poboljšane Alatne Trake Poruka",

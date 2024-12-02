@@ -47,8 +47,8 @@
       "description": "快速导航并调用操作"
     },
     "threadToc": {
-      "title": "线程目录",
-      "description": "为包含 >= 2 条消息的线程页面添加目录"
+      "title": "对话目录",
+      "description": "在对话中快速导航消息。仅在有超过2条消息时显示。"
     },
     "threadBetterMessageToolbars": {
       "title": "改进的消息工具栏",
@@ -95,4 +95,4 @@
       "description": "自定义主页上的标语"
     }
   }
-} 
+}

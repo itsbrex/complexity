@@ -47,8 +47,8 @@
       "description": "Naviga rapidamente e richiama azioni"
     },
     "threadToc": {
-      "title": "Indice del thread",
-      "description": "Aggiungi un indice alla pagina del thread con >= 2 messaggi"
+      "title": "Indice della Discussione",
+      "description": "Naviga rapidamente tra i messaggi in una discussione. Appare solo quando ci sono più di 2 messaggi."
     },
     "threadBetterMessageToolbars": {
       "title": "Barre degli strumenti dei messaggi migliorate",

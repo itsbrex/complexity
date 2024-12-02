@@ -48,7 +48,7 @@
     },
     "threadToc": {
       "title": "Spis Treści Wątku",
-      "description": "Dodaje spis treści do strony wątku z >= 2 wiadomościami"
+      "description": "Szybka nawigacja między wiadomościami w wątku. Pojawia się tylko gdy jest więcej niż 2 wiadomości."
     },
     "threadBetterMessageToolbars": {
       "title": "Ulepszone Paski Narzędzi Wiadomości",
@@ -95,4 +95,4 @@
       "description": "Dostosuj slogan na stronie głównej"
     }
   }
-} 
+}

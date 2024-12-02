@@ -48,7 +48,7 @@
     },
     "threadToc": {
       "title": "スレッド目次",
-      "description": "2つ以上のメッセージがあるスレッドページに目次を追加"
+      "description": "スレッド内のメッセージ間を素早く移動できます。2件以上のメッセージがある場合のみ表示されます。"
     },
     "threadBetterMessageToolbars": {
       "title": "改善されたメッセージツールバー",

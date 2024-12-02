@@ -48,7 +48,7 @@
     },
     "threadToc": {
       "title": "Szál Tartalomjegyzék",
-      "description": "Tartalomjegyzék hozzáadása a szál oldalhoz >= 2 üzenet esetén"
+      "description": "Gyors navigáció az üzenetek között a szálban. Csak akkor jelenik meg, ha több mint 2 üzenet van."
     },
     "threadBetterMessageToolbars": {
       "title": "Továbbfejlesztett Üzenet Eszköztárak",

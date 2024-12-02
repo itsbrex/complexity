@@ -6,7 +6,7 @@ export type SupportedLangs = (typeof supportedLangs)[number];
 
 export const supportedLangs = [
   "en-US",
-  "fr-FR", 
+  "fr-FR",
   "de-DE",
   "ja-JP",
   "ko-KR",
@@ -31,6 +31,7 @@ type Resources = {
     onboarding: any;
     plugins: any;
     "dashboard-plugins-data": any;
+    "dashboard-plugins-page": any;
   };
 };
 
@@ -42,30 +43,41 @@ async function loadLanguageResources(language: string) {
     "dashboard-plugins-data": await import(
       `~/src/locales/${language}/dashboard-plugins-data.json`
     ),
+    "dashboard-plugins-page": await import(
+      `~/src/locales/${language}/dashboard-plugins-page.json`
+    ),
   };
 }
 
 export async function initializeI18next() {
   const language = await getLanguage();
-  
+
   const resources: Resources = {
-    [language]: await loadLanguageResources(language)
+    [language]: await loadLanguageResources(language),
   };
 
-  if (language !== 'en-US') {
-    resources['en-US'] = await loadLanguageResources('en-US');
+  if (language !== "en-US") {
+    resources["en-US"] = await loadLanguageResources("en-US");
   }
 
   await i18n.init({
     lng: language,
-    fallbackLng: "en-US", 
+    fallbackLng: "en-US",
     defaultNS: "common",
-    ns: ["common", "onboarding", "plugins", "dashboard-plugins-data"],
+    ns: [
+      "common",
+      "onboarding",
+      "plugins",
+      "dashboard-plugins-data",
+      "dashboard-plugins-page",
+    ],
     resources,
   });
 }
 
-async function getCookieLocale(isExtension: boolean): Promise<string | undefined> {
+async function getCookieLocale(
+  isExtension: boolean,
+): Promise<string | undefined> {
   if (isExtension) {
     if (await chrome.permissions.contains({ permissions: ["cookies"] })) {
       const cookie = await chrome.cookies.get({
@@ -87,8 +99,8 @@ export async function getLanguage() {
   const cookieLocale = await getCookieLocale(isExtension);
   const pplxLang = cookieLocale || navigator.language || "en-US";
 
-  return supportedLangs.includes(pplxLang as SupportedLangs) 
-    ? pplxLang 
+  return supportedLangs.includes(pplxLang as SupportedLangs)
+    ? pplxLang
     : "en-US";
 }
 

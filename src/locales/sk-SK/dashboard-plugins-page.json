@@ -1,0 +1,144 @@
+{
+  "pluginsPage": {
+    "listing": {
+      "title": "Pluginy",
+      "searchPlaceholder": "Hľadať pluginy...",
+      "reloadNote": "Na zmenu nastavení pluginov je potrebné úplne znovu načítať stránku Perplexity.ai.",
+      "fetchingPlugins": "Načítavanie pluginov..."
+    },
+    "noPluginsFound": {
+      "title": "Nenašli sa žiadne pluginy",
+      "description": "Skúste upraviť vyhľadávací výraz/filtre alebo <url>požiadajte o nový</url> 😉"
+    },
+    "pluginCard": {
+      "actions": {
+        "addToFavorites": "Pridať do obľúbených",
+        "removeFromFavorites": "Odstrániť z obľúbených"
+      },
+      "dependencyWarnings": {
+        "disabledDependencies": {
+          "title": "Jedna alebo viac závislostí je zakázaných, prosím aktivujte ich pre použitie tohto pluginu:",
+          "dependencyList": "Závislosti"
+        },
+        "forcedDisabledDependencies": "Tento plugin je zakázaný, pretože jedna alebo viac jeho závislostí nie je dostupných."
+      }
+    },
+    "lockdownOverlay": {
+      "message": "Tento plugin nie je momentálne dostupný"
+    },
+    "sections": {
+      "favouritePlugins": "Obľúbené pluginy",
+      "allPlugins": "Všetky pluginy"
+    },
+    "details": {
+      "backToPlugins": "Späť na pluginy",
+      "unavailable": {
+        "message": "Tento plugin nie je momentálne dostupný. Skúste to neskôr.",
+        "backButton": "Späť na dashboard"
+      }
+    }
+  },
+  "pluginDetails": {
+    "betterCodeBlocks": {
+      "description": "Prispôsobte vzhľad a použiteľnosť blokov kódu.",
+      "tabs": {
+        "global": "Globálne"
+      },
+      "codeTheme": {
+        "searchPlaceholder": "Hľadať tému...",
+        "noThemeFound": "Nenašla sa žiadna téma.",
+        "label": "Téma kódu",
+        "dark": "Tmavá",
+        "light": "Svetlá"
+      },
+      "languageOptions": {
+        "addNewRule": "Pridať nové pravidlo",
+        "fineTuneBlock": "Jemne doladiť špecifický blok",
+        "languageBlockName": "Názov jazyka/bloku",
+        "noLanguageProvided": "Nebol poskytnutý žiadny názov jazyka/bloku",
+        "failedToCreate": "❌ Vytvorenie jazykovej voľby zlyhalo",
+        "delete": {
+          "title": "Odstrániť jazykovú voľbu",
+          "description": "Ste si istí, že chcete odstrániť túto jazykovú voľbu? Túto akciu nie je možné vrátiť späť."
+        },
+        "failedToUpdate": "❌ Aktualizácia volieb zlyhala",
+        "failedToDelete": "❌ Odstránenie volieb zlyhalo"
+      },
+      "options": {
+        "stickyHeader": "Fixovaná hlavička",
+        "unwrapLines": {
+          "label": "Rozbaliť riadky v predvolenom nastavení",
+          "toggleButton": "Zobraziť prepínač"
+        },
+        "maxHeight": {
+          "label": "Maximálna výška",
+          "toggleButton": "Zobraziť prepínač",
+          "unit": "px (0px = úplne zbalené)",
+          "unitGlobal": "px (>= 300px)"
+        },
+        "placeholderText": {
+          "label": "Vlastný zástupný text",
+          "title": "Nadpis",
+          "loading": "Text načítavania",
+          "idle": "Text nečinnosti"
+        }
+      }
+    },
+    "betterThreadMessageToolbars": {
+      "description": "Užitočné vylepšenia pre kompaktnejší a ľahšie použiteľný panel nástrojov.",
+      "options": {
+        "sticky": {
+          "label": "Pripnúť hore",
+          "description": "Udržiavať panel nástrojov vždy viditeľný v hornej časti stránky počas posúvania."
+        },
+        "simplifyRewriteDropdown": {
+          "label": "Zjednodušiť rozbaľovaciu ponuku prepísania",
+          "description": "Skryť popis modelu (len pre počítače)."
+        },
+        "hideUnnecessaryButtons": {
+          "label": "Skryť nepotrebné tlačidlá",
+          "description": "Skryť tlačidlá Zdieľať, Palec hore/dole."
+        },
+        "explicitModelName": {
+          "label": "Explicitný názov modelu",
+          "description": "Zobraziť názov modelu bez prejdenia myšou."
+        }
+      }
+    },
+    "collapseEmptyThreadVisualCols": {
+      "description": "Odstrániť prázdny priestor na pravej strane každej správy vo vlákne. Len pre správy, ktoré nemajú explicitne možnosti \"Hľadať obrázky, Hľadať videá, Generovať obrázky\" na pravej strane."
+    },
+    "commandMenu": {
+      "description": "Podobné Spotlight na Macu / PowerToys Run vo Windows, ale fungujúce vnútri Perplexity.",
+      "activationHotkey": "Aktivačná klávesová skratka:",
+      "sideNote": "Poznámka: Vyhľadávanie vlákna podlieha obmedzeniam rýchlosti zo strany Perplexity kedykoľvek."
+    },
+    "languageModelSelector": {
+      "description": "Umožňuje zmeniť váš preferovaný jazykový model <emphasis>kdekoľvek</emphasis>. Selektor možno nájsť vo všetkých poliach dotazu.",
+      "mainLocations": "Domovská stránka + Modálne okno + Priestor",
+      "followUp": {
+        "enable": "Následné (vo vlákne)",
+        "spanFullWidth": "Horizontálne roztiahnuté na plnú šírku"
+      }
+    },
+    "imageGenModelSelector": {
+      "description": "Umožňuje zmeniť váš preferovaný model generovania obrázkov. Selektor možno nájsť v kontextovom okne generovania obrázkov v ľubovoľnom vlákne."
+    },
+    "customHomeSlogan": {
+      "sloganLabel": "Slogan"
+    },
+    "noFileCreationOnPaste": {
+      "description": "Aktivačná klávesová skratka:"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "description": "Užitočné pri používaní VPN alebo keď má Perplexity/Cloudflare problémy s vaším poskytovateľom internetu. Zapnite túto možnosť, ak chcete automaticky znovu načítať stránku, keď sa to stane.",
+      "behavior": {
+        "label": "Správanie",
+        "options": {
+          "reload": "Znovu načítať",
+          "warnOnly": "Len upozorniť"
+        }
+      }
+    }
+  }
+} 

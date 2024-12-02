@@ -17,15 +17,21 @@ export default function BetterThreadMessageToolbarsPluginDetails() {
   );
 
   const renderSwitch = useCallback(
-    (label: string, description: string, key: PluginKey) => (
+    (key: PluginKey) => (
       <div>
         <Switch
           className="tw-items-start"
           textLabel={
             <div>
-              <div>{label}</div>
+              <div>
+                {t(
+                  `dashboard-plugins-page:pluginDetails.betterThreadMessageToolbars.options.${key}.label`,
+                )}
+              </div>
               <div className="tw-text-sm tw-text-muted-foreground">
-                {description}
+                {t(
+                  `dashboard-plugins-page:pluginDetails.betterThreadMessageToolbars.options.${key}.description`,
+                )}
               </div>
             </div>
           }
@@ -40,36 +46,24 @@ export default function BetterThreadMessageToolbarsPluginDetails() {
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
       <div className="tw-flex tw-flex-col tw-gap-2">
-        Useful tweaks to make the toolbar more compact and easier to use.
+        {t(
+          "dashboard-plugins-page:pluginDetails.betterThreadMessageToolbars.description",
+        )}
       </div>
       <Switch
-        textLabel="Enable"
+        textLabel={t("action.enable")}
         checked={settings?.plugins["thread:betterMessageToolbars"].enabled}
         onCheckedChange={handleCheckedChange("enabled")}
       />
       {settings?.plugins["thread:betterMessageToolbars"].enabled && (
         <div className="tw-flex tw-flex-col tw-gap-2">
-          <div className="tw-text-sm tw-text-muted-foreground">Options</div>
-          {renderSwitch(
-            "Stick to top",
-            "Always keep the toolbar visible at the top of the page when scrolling.",
-            "sticky",
-          )}
-          {renderSwitch(
-            "Simplify Rewrite Dropdown Menu",
-            "Hide model's description (only for desktop).",
-            "simplifyRewriteDropdown",
-          )}
-          {renderSwitch(
-            "Hide Unnecessary Buttons",
-            "Hide Share, Thumbs Up/Down buttons.",
-            "hideUnnecessaryButtons",
-          )}
-          {renderSwitch(
-            "Explicit Model Name",
-            "Show the model name without hovering.",
-            "explicitModelName",
-          )}
+          <div className="tw-text-sm tw-text-muted-foreground">
+            {t("action.options")}
+          </div>
+          {renderSwitch("sticky")}
+          {renderSwitch("simplifyRewriteDropdown")}
+          {renderSwitch("hideUnnecessaryButtons")}
+          {renderSwitch("explicitModelName")}
         </div>
       )}
     </div>

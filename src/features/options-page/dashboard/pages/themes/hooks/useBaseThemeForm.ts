@@ -1,11 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-import { Theme } from "@/data/plugins/themes/theme-registry.types";
 import {
   ThemeFormSchema,
   ThemeFormValues,
-} from "@/data/themes/theme-form.types";
+} from "@/data/dashboard/themes/theme-form.types";
+import { Theme } from "@/data/plugins/themes/theme-registry.types";
 import {
   generateDarkModeColorOverrides,
   generatePalette,

@@ -22,6 +22,10 @@ import { ImageGenModel } from "@/types/plugins/image-gen-model-seletor.types";
 import { fetchResource, jsonUtils } from "@/utils/utils";
 
 export class PplxApiService {
+  static async fetchMaintenanceStatus() {
+    return fetchResource(ENDPOINTS.MAINTENANCE_STATUS);
+  }
+
   static async fetchAuthSession() {
     const resp = await fetchResource(ENDPOINTS.AUTH_SESSION);
 

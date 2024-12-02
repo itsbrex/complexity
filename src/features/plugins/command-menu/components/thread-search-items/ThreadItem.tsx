@@ -2,6 +2,7 @@ import { isHotkeyPressed } from "react-hotkeys-hook";
 import { sendMessage } from "webext-bridge/content-script";
 
 import { CommandItem } from "@/components/ui/command";
+import { SpacePreview } from "@/features/plugins/command-menu/components/thread-search-items/SpacePreview";
 import { useCommandMenuStore } from "@/features/plugins/command-menu/store";
 import { ThreadSearchApi } from "@/services/pplx-api/pplx-api.types";
 import { formatHowLongAgo } from "@/utils/dayjs";
@@ -34,16 +35,12 @@ export function ThreadItem({ thread }: ThreadItemProps) {
       }}
     >
       <div className="tw-flex-1">
-        <div className="tw-line-clamp-1">{thread.title}</div>
+        <div className="tw-line-clamp-1" title={thread.title}>
+          {thread.title}
+        </div>
       </div>
       <div className="tw-flex tw-flex-shrink-0 tw-items-center tw-gap-2">
-        {thread.collection && (
-          <div className="tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-px-2 tw-py-1 tw-text-xs">
-            <div className="tw-max-w-[100px] tw-truncate">
-              {thread.collection.title}
-            </div>
-          </div>
-        )}
+        <SpacePreview thread={thread} />
         <div className="tw-flex-shrink-0 tw-text-xs tw-text-muted-foreground">
           {formatHowLongAgo(thread.last_query_datetime)}
         </div>

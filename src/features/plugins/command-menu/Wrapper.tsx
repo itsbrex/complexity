@@ -24,8 +24,15 @@ import {
 import { useCommandMenuStore } from "@/features/plugins/command-menu/store";
 
 export default function CommandMenuWrapper() {
-  const { open, setOpen, searchValue, setSearchValue, filter, setFilter } =
-    useCommandMenuStore();
+  const {
+    open,
+    setOpen,
+    searchValue,
+    setSearchValue,
+    filter,
+    setFilter,
+    setInputRef,
+  } = useCommandMenuStore();
 
   useBindCommandMenuHotkeys();
 
@@ -41,6 +48,14 @@ export default function CommandMenuWrapper() {
       return;
     }
   }, [searchValue, setFilter, setSearchValue]);
+
+  const ref = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (open) {
+      setInputRef(ref);
+    }
+  }, [open, setInputRef]);
 
   return (
     <CommandDialog
@@ -63,6 +78,7 @@ export default function CommandMenuWrapper() {
       <div className="tw-flex tw-items-center tw-border-b tw-border-border/50">
         <SearchFilterBadge />
         <CommandInput
+          ref={ref}
           className="tw-grow tw-border-none"
           placeholder={
             !filter

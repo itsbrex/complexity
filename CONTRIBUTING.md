@@ -1,1 +1,0 @@
-The project is undergoing significant refactoring, thus PRs are not welcome at the moment.

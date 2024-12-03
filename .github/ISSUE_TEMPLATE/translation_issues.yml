@@ -1,0 +1,64 @@
+name: Translation Issue
+description: Report a translation error or request a new translation
+title: "[Translation]: "
+labels: ["translation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the translations!
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      description: What type of translation issue are you reporting?
+      options:
+        - Incorrect Translation
+        - Missing Translation
+        - Inconsistent Translation
+        - Request New Language
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      description: Which language is this issue about?
+      placeholder: e.g. Spanish, French, Japanese
+    validations:
+      required: true
+  - type: textarea
+    id: current-translation
+    attributes:
+      label: Current Translation
+      description: If applicable, what is the current translation?
+      placeholder: Paste the current translation here...
+    validations:
+      required: false
+  - type: textarea
+    id: suggested-translation
+    attributes:
+      label: Suggested Translation
+      description: If you have a suggestion for the correct translation, please provide it here.
+      placeholder: Your suggested translation...
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Where did you find this translation? Please provide as much context as possible.
+      placeholder: |
+        - Location in the settings dashboard/perplexity.ai
+        - Screenshot (if possible)
+        - Any additional context that might help
+    validations:
+      required: true
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Notes
+      description: Any other information that might be helpful?
+    validations:
+      required: false

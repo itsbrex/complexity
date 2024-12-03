@@ -53,6 +53,7 @@ export default function useBindCommandMenuHotkeys() {
       });
     },
     {
+      enabled: open,
       preventDefault: true,
       enableOnContentEditable: true,
       enableOnFormTags: true,

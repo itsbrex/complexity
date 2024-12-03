@@ -9,6 +9,12 @@
       "releaseNotes": "Poznámky k vydání",
       "settings": "Nastavení",
       "help": "Potřebujete pomoc?"
+    },
+    "updateAnnouncer": {
+      "newVersion": "Je k dispozici nová verze rozšíření!",
+      "updatePrompt": "Aktualizujte prosím, abyste získali vylepšení a opravy chyb.",
+      "autoUpdateInfo": "Aktualizace by měla proběhnout automaticky po restartu prohlížeče, nebo ji můžete vynutit ručně na stránce správy rozšíření.",
+      "manualUpdateInfo": "Nebo klikněte <storeLink>ZDE</storeLink> pro návrat do obchodu a ruční přeinstalaci rozšíření, pokud nic z výše uvedeného nefunguje (nezapomeňte exportovat svá nastavení!)."
     }
   },
   "action": {

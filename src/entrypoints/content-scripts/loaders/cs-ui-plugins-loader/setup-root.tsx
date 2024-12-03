@@ -1,5 +1,6 @@
 import { QueryClientProvider } from "@tanstack/react-query";
 import { createRoot } from "react-dom/client";
+import { I18nextProvider } from "react-i18next";
 
 import CsUiRoot from "@/entrypoints/content-scripts/loaders/cs-ui-plugins-loader/CsUiRoot";
 import { queryClient } from "@/utils/ts-query-client";
@@ -18,7 +19,9 @@ export async function setupCsUiPlugins() {
 
   root.render(
     <QueryClientProvider client={queryClient}>
-      <CsUiRoot />
+      <I18nextProvider i18n={i18n}>
+        <CsUiRoot />
+      </I18nextProvider>
     </QueryClientProvider>,
   );
 }

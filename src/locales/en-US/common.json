@@ -9,6 +9,12 @@
       "releaseNotes": "Release Notes",
       "settings": "Settings",
       "help": "Need help?"
+    },
+    "updateAnnouncer": {
+      "newVersion": "A new version of the extension is available!",
+      "updatePrompt": "Please update to receive enhancements and bug fixes.",
+      "autoUpdateInfo": "The upgrade should be happening automatically when you restart the browser, or force it to manually update in the extension management page.",
+      "manualUpdateInfo": "Or click <storeLink>HERE</storeLink> to revisit the store and manually reinstall the extension if none of the above works (remember to export your settings!)."
     }
   },
   "action": {

@@ -9,6 +9,12 @@
       "releaseNotes": "发行说明",
       "settings": "设置",
       "help": "需要帮助？"
+    },
+    "updateAnnouncer": {
+      "newVersion": "扩展程序有新版本可用！",
+      "updatePrompt": "请更新以获取增强功能和错误修复。",
+      "autoUpdateInfo": "重启浏览器后应该会自动升级，或者在扩展管理页面中手动强制更新。",
+      "manualUpdateInfo": "如果以上方法都不起作用，请点击<storeLink>这里</storeLink>重新访问商店并手动重新安装扩展程序（记得导出您的设置！）。"
     }
   },
   "action": {

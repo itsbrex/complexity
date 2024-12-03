@@ -17,13 +17,6 @@ const Dashboard = lazy(
   () => import("@/features/options-page/dashboard/Dashboard"),
 );
 
-const NotificationsPage = lazy(
-  () =>
-    import(
-      "@/features/options-page/dashboard/pages/notifications/NotificationsPage"
-    ),
-);
-
 const PluginsPage = lazy(
   () => import("@/features/options-page/dashboard/pages/plugins/PluginsPage"),
 );
@@ -55,10 +48,6 @@ export const router: ReturnType<typeof createHashRouter> = createHashRouter([
           </Suspense>
         ),
         children: [
-          {
-            path: "notifications",
-            element: <Page title="Notifications" page={NotificationsPage} />,
-          },
           {
             path: "plugins/*",
             element: <Page title="Plugins" page={PluginsPage} />,

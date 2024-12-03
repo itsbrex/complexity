@@ -9,6 +9,12 @@
       "releaseNotes": "Note di rilascio",
       "settings": "Impostazioni",
       "help": "Serve aiuto?"
+    },
+    "updateAnnouncer": {
+      "newVersion": "È disponibile una nuova versione dell'estensione!",
+      "updatePrompt": "Aggiorna per ricevere miglioramenti e correzioni di bug.",
+      "autoUpdateInfo": "L'aggiornamento dovrebbe avvenire automaticamente al riavvio del browser, oppure puoi forzarlo manualmente nella pagina di gestione delle estensioni.",
+      "manualUpdateInfo": "Oppure clicca <storeLink>QUI</storeLink> per tornare allo store e reinstallare manualmente l'estensione se nessuna delle opzioni precedenti funziona (ricordati di esportare le tue impostazioni!)."
     }
   },
   "action": {

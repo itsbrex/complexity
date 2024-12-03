@@ -9,6 +9,12 @@
       "releaseNotes": "Informacje o wydaniu",
       "settings": "Ustawienia",
       "help": "Potrzebujesz pomocy?"
+    },
+    "updateAnnouncer": {
+      "newVersion": "Dostępna jest nowa wersja rozszerzenia!",
+      "updatePrompt": "Zaktualizuj, aby otrzymać ulepszenia i poprawki błędów.",
+      "autoUpdateInfo": "Aktualizacja powinna nastąpić automatycznie po ponownym uruchomieniu przeglądarki lub wymuś ją ręcznie na stronie zarządzania rozszerzeniami.",
+      "manualUpdateInfo": "Lub kliknij <storeLink>TUTAJ</storeLink>, aby ponownie odwiedzić sklep i ręcznie przeinstalować rozszerzenie, jeśli żadna z powyższych opcji nie działa (pamiętaj o wyeksportowaniu swoich ustawień!)."
     }
   },
   "action": {

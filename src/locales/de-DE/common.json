@@ -9,6 +9,12 @@
       "releaseNotes": "Versionshinweise",
       "settings": "Einstellungen",
       "help": "Hilfe benötigt?"
+    },
+    "updateAnnouncer": {
+      "newVersion": "Eine neue Version der Erweiterung ist verfügbar!",
+      "updatePrompt": "Bitte aktualisieren Sie, um Verbesserungen und Fehlerbehebungen zu erhalten.",
+      "autoUpdateInfo": "Das Update sollte automatisch erfolgen, wenn Sie den Browser neu starten, oder erzwingen Sie es manuell auf der Erweiterungsverwaltungsseite.",
+      "manualUpdateInfo": "Oder klicken Sie <storeLink>HIER</storeLink>, um den Store erneut zu besuchen und die Erweiterung manuell neu zu installieren, falls keine der obigen Optionen funktioniert (denken Sie daran, Ihre Einstellungen zu exportieren!)."
     }
   },
   "action": {

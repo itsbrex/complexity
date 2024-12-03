@@ -3,6 +3,7 @@ import { LuExternalLink } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 
 import { navItems } from "@/features/options-page/components/sidebar/nav-items";
+import SidebarUpdateAnnouncer from "@/features/options-page/components/SidebarUpdateAnnouncer";
 
 export default function Sidebar() {
   return (
@@ -29,7 +30,9 @@ export default function Sidebar() {
         ))}
       </div>
 
-      <div className="tw-sticky tw-bottom-0 tw-z-10 tw-shrink-0 tw-bg-background tw-p-4">
+      <div className="tw-sticky tw-bottom-0 tw-z-10 tw-flex tw-shrink-0 tw-flex-col tw-gap-4 tw-bg-background tw-p-4">
+        <SidebarUpdateAnnouncer />
+
         <div className="tw-group tw-relative tw-w-full tw-cursor-pointer tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4 tw-text-sm tw-font-medium tw-shadow-lg tw-transition-all hover:tw-scale-105 hover:tw-border-primary hover:tw-bg-primary/10">
           <Trans
             i18nKey="sidebar.supporterMessage"

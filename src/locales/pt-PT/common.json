@@ -9,6 +9,12 @@
       "releaseNotes": "Notas de lançamento",
       "settings": "Definições",
       "help": "Precisa de ajuda?"
+    },
+    "updateAnnouncer": {
+      "newVersion": "Está disponível uma nova versão da extensão!",
+      "updatePrompt": "Por favor, atualize para receber melhorias e correções de erros.",
+      "autoUpdateInfo": "A atualização deve ocorrer automaticamente quando reiniciar o navegador, ou force manualmente na página de gestão de extensões.",
+      "manualUpdateInfo": "Ou clique <storeLink>AQUI</storeLink> para revisitar a loja e reinstalar manualmente a extensão se nenhuma das opções acima funcionar (lembre-se de exportar as suas definições!)."
     }
   },
   "action": {

@@ -9,6 +9,12 @@
       "releaseNotes": "Notas de versión",
       "settings": "Ajustes",
       "help": "¿Necesitas ayuda?"
+    },
+    "updateAnnouncer": {
+      "newVersion": "¡Hay una nueva versión de la extensión disponible!",
+      "updatePrompt": "Por favor, actualiza para recibir mejoras y correcciones de errores.",
+      "autoUpdateInfo": "La actualización debería realizarse automáticamente al reiniciar el navegador, o puedes forzarla manualmente en la página de gestión de extensiones.",
+      "manualUpdateInfo": "O haz clic <storeLink>AQUÍ</storeLink> para volver a la tienda e instalar manualmente la extensión si ninguna de las opciones anteriores funciona (¡recuerda exportar tu configuración!)."
     }
   },
   "action": {

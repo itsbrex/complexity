@@ -8,7 +8,6 @@ import { TagsFilter } from "@/features/options-page/dashboard/pages/plugins/comp
 import { useFilteredPlugins } from "@/features/options-page/dashboard/pages/plugins/hooks/useFilteredPlugins";
 import {
   usePluginContext,
-  PluginProvider,
   type PluginFilters,
 } from "@/features/options-page/dashboard/pages/plugins/PluginContext";
 import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatureFlags";
@@ -114,11 +113,7 @@ export default function PluginsPage() {
     },
     {
       path: "*",
-      element: (
-        <PluginProvider>
-          <PluginsListing />
-        </PluginProvider>
-      ),
+      element: <PluginsListing />,
     },
   ]);
 }

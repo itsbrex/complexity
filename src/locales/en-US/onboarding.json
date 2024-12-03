@@ -1,4 +1,18 @@
 {
+  "intro": {
+    "title": "Make the most of your Perplexity AI",
+    "subtitle": "Let's get started with a quick setup",
+    "importSettings": "or import your existing settings"
+  },
+  "completion": {
+    "title": "Setup Complete! 🎉",
+    "description": "You're all set to start using the extension.",
+    "continue": "Continue to Dashboard"
+  },
+  "navigation": {
+    "previous": "Previous",
+    "next": "Next"
+  },
   "basePermissions": {
     "title": "Complexity needs your permissions to work",
     "storage": {
@@ -17,7 +31,7 @@
           "sync": "Synchronize your Perplexity AI preferences (like color scheme and language settings) with the extension",
           "verify": "Verify your Supporter status"
         },
-        "warning": "Without this permission, the extension will default to Dark mode and English language. Additionally, Supporter features will be unavailable. You can still enable this permission later."
+        "warning": "Without this permission, the extension will default to the device's preferred settings. Additionally, Supporter features will be unavailable. You can still enable this permission later."
       }
     },
     "buttons": {

@@ -1,10 +1,24 @@
 {
+  "intro": {
+    "title": "Iskoristite Perplexity AI maksimalno",
+    "subtitle": "Započnimo s brzim postavljanjem",
+    "importSettings": "ili uvezite postojeće postavke"
+  },
+  "completion": {
+    "title": "Postavljanje završeno! 🎉",
+    "description": "Spremni ste za korištenje proširenja.",
+    "continue": "Nastavi na Nadzornu ploču"
+  },
+  "navigation": {
+    "previous": "Prethodno",
+    "next": "Sljedeće"
+  },
   "basePermissions": {
     "title": "Complexity treba vaše dopuštenje za rad",
     "storage": {
       "title": "Pristup pohrani proširenja",
       "description": {
-        "main": "Lokalno pohranjuje vaše postavke i preference u pohrani proširenja.",
+        "main": "Spremite svoje postavke lokalno u pohranu proširenja.",
         "security": "Proširenje NEMA pristup povijesti preglednika, oznakama ili bilo kojim drugim podacima.",
         "autoGrant": "Ovo dopuštenje se automatski dodjeljuje prilikom instalacije proširenja."
       }
@@ -12,18 +26,18 @@
     "cookies": {
       "title": "Perplexity AI kolačići",
       "description": {
-        "intro": "Osjetljivi kolačići nikada neće biti pohranjeni ili korišteni izvan Perplexity AI-a. Dopuštenje omogućuje proširenju da:",
+        "intro": "Osjetljivi kolačići nikada neće biti pohranjeni ili korišteni izvan Perplexity AI. Dopuštenje omogućuje proširenju:",
         "features": {
-          "sync": "Sinkronizira vaše Perplexity AI postavke (poput sheme boja i jezičnih postavki) s proširenjem",
-          "verify": "Provjeri vaš status Podržavatelja"
+          "sync": "Sinkronizaciju vaših Perplexity AI postavki (poput teme boja i jezičnih postavki) s proširenjem",
+          "verify": "Provjeru vašeg Supporter statusa"
         },
-        "warning": "Bez ovog dopuštenja, proširenje će zadano koristiti tamni način rada i engleski jezik. Također, značajke Podržavatelja neće biti dostupne. Ovo dopuštenje možete omogućiti kasnije."
+        "warning": "Bez ovog dopuštenja, proširenje će koristiti zadane postavke uređaja. Također, Supporter značajke neće biti dostupne. Ovo dopuštenje možete omogućiti kasnije."
       }
     },
     "buttons": {
       "grant": "Dodijeli dopuštenje",
       "granted": "Dodijeljeno"
     },
-    "additionalPermissionsHeadsUp": "Možda ćete biti zatraženi da dodijelite dodatne dozvole za određene značajke. Budite sigurni da ćemo uvijek tražiti vaš pristanak prije bilo kakve radnje."
+    "additionalPermissionsHeadsUp": "Možda ćete biti zatraženi da dodijelite dodatna dopuštenja za određene značajke. Budite sigurni da će vaš pristanak uvijek biti zatražen prije bilo koje radnje."
   }
 } 

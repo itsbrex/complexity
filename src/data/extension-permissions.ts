@@ -12,7 +12,7 @@ export const TOGGLEABLE_PERMISSIONS_DETAILS: Partial<
   >
 > = {
   cookies: {
-    title: t("dashboard-settings-page:permissions.cookies.title"),
+    title: "Cookies",
     description: t("dashboard-settings-page:permissions.cookies.description"),
   },
 };

@@ -1,11 +1,25 @@
 {
+  "intro": {
+    "title": "Hozza ki a legtöbbet a Perplexity AI-ból",
+    "subtitle": "Kezdjük egy gyors beállítással",
+    "importSettings": "vagy importálja meglévő beállításait"
+  },
+  "completion": {
+    "title": "Beállítás kész! 🎉",
+    "description": "Készen áll a bővítmény használatára.",
+    "continue": "Tovább az Irányítópultra"
+  },
+  "navigation": {
+    "previous": "Előző",
+    "next": "Következő"
+  },
   "basePermissions": {
-    "title": "A Complexity működéséhez engedélyekre van szükség",
+    "title": "A Complexity-nek szüksége van az engedélyeire a működéshez",
     "storage": {
       "title": "Bővítmény tárhely hozzáférés",
       "description": {
-        "main": "Helyben tárolja a beállításait és preferenciáit a bővítmény tárhelyén.",
-        "security": "A bővítménynek NINCS hozzáférése a böngészési előzményekhez, könyvjelzőkhöz vagy egyéb adatokhoz.",
+        "main": "Mentse beállításait helyileg a bővítmény tárhelyére.",
+        "security": "A bővítmény NEM fér hozzá a böngészési előzményekhez, könyvjelzőkhöz vagy egyéb adatokhoz.",
         "autoGrant": "Ez az engedély automatikusan megadásra kerül a bővítmény telepítésekor."
       }
     },
@@ -14,16 +28,16 @@
       "description": {
         "intro": "Az érzékeny sütik soha nem kerülnek tárolásra vagy felhasználásra a Perplexity AI-n kívül. Az engedély lehetővé teszi a bővítmény számára:",
         "features": {
-          "sync": "A Perplexity AI beállításainak (mint színséma és nyelvi beállítások) szinkronizálását a bővítménnyel",
-          "verify": "Támogatói státuszának ellenőrzését"
+          "sync": "A Perplexity AI beállításainak (mint színtéma és nyelvi beállítások) szinkronizálását a bővítménnyel",
+          "verify": "Supporter státuszának ellenőrzését"
         },
-        "warning": "Ezen engedély nélkül a bővítmény alapértelmezetten sötét módot és angol nyelvet fog használni. Továbbá a Támogatói funkciók nem lesznek elérhetők. Ezt az engedélyt később is engedélyezheti."
+        "warning": "Ezen engedély nélkül a bővítmény az eszköz alapértelmezett beállításait fogja használni. Továbbá a Supporter funkciók nem lesznek elérhetők. Ezt az engedélyt később is engedélyezheti."
       }
     },
     "buttons": {
       "grant": "Engedély megadása",
       "granted": "Megadva"
     },
-    "additionalPermissionsHeadsUp": "Bizonyos funkciókhoz további engedélyeket kérhetünk. Nyugodt lehet, minden művelet előtt kérni fogjuk az Ön hozzájárulását."
+    "additionalPermissionsHeadsUp": "Bizonyos funkciókhoz további engedélyek megadására lehet szükség. Nyugodt lehet, minden művelet előtt mindig kérni fogjuk a hozzájárulását."
   }
 } 

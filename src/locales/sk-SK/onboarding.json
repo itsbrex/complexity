@@ -1,10 +1,24 @@
 {
+  "intro": {
+    "title": "Využite Perplexity AI naplno",
+    "subtitle": "Začnime rýchlym nastavením",
+    "importSettings": "alebo importujte existujúce nastavenia"
+  },
+  "completion": {
+    "title": "Nastavenie dokončené! 🎉",
+    "description": "Ste pripravení používať rozšírenie.",
+    "continue": "Pokračovať na Nástenku"
+  },
+  "navigation": {
+    "previous": "Predchádzajúce",
+    "next": "Ďalšie"
+  },
   "basePermissions": {
     "title": "Complexity potrebuje vaše povolenia na fungovanie",
     "storage": {
       "title": "Prístup k úložisku rozšírenia",
       "description": {
-        "main": "Ukladá vaše preferencie a nastavenia lokálne v úložisku rozšírenia.",
+        "main": "Uložte svoje nastavenia lokálne v úložisku rozšírenia.",
         "security": "Rozšírenie NEMÁ prístup k histórii prehliadača, záložkám ani iným údajom.",
         "autoGrant": "Toto povolenie sa automaticky udeľuje pri inštalácii rozšírenia."
       }
@@ -12,18 +26,18 @@
     "cookies": {
       "title": "Cookies Perplexity AI",
       "description": {
-        "intro": "Citlivé cookies sa nikdy nebudú ukladať ani používať mimo Perplexity AI. Povolenie umožňuje rozšíreniu:",
+        "intro": "Citlivé cookies nikdy nebudú uložené ani použité mimo Perplexity AI. Povolenie umožňuje rozšíreniu:",
         "features": {
-          "sync": "Synchronizovať vaše preferencie Perplexity AI (ako farebná schéma a jazykové nastavenia) s rozšírením",
-          "verify": "Overiť váš status Podporovateľa"
+          "sync": "Synchronizovať vaše nastavenia Perplexity AI (ako farebná téma a jazykové nastavenia) s rozšírením",
+          "verify": "Overiť váš status Supportera"
         },
-        "warning": "Bez tohto povolenia bude rozšírenie predvolene používať tmavý režim a anglický jazyk. Navyše, funkcie Podporovateľa nebudú dostupné. Toto povolenie môžete povoliť neskôr."
+        "warning": "Bez tohto povolenia bude rozšírenie používať predvolené nastavenia zariadenia. Okrem toho nebudú dostupné funkcie Supportera. Toto povolenie môžete povoliť neskôr."
       }
     },
     "buttons": {
       "grant": "Udeliť povolenie",
       "granted": "Udelené"
     },
-    "additionalPermissionsHeadsUp": "Pre niektoré funkcie môžete byť požiadaní o udelenie dodatočných povolení. Buďte si istí, že pred akoukoľvek akciou budete vždy požiadaní o váš súhlas."
+    "additionalPermissionsHeadsUp": "Môžete byť požiadaní o udelenie ďalších povolení pre určité funkcie. Buďte si istí, že pred akoukoľvek akciou budete vždy požiadaní o súhlas."
   }
 } 

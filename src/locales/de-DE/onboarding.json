@@ -1,11 +1,25 @@
 {
+  "intro": {
+    "title": "Holen Sie das Beste aus Perplexity AI heraus",
+    "subtitle": "Beginnen wir mit einer schnellen Einrichtung",
+    "importSettings": "oder importieren Sie Ihre bestehenden Einstellungen"
+  },
+  "completion": {
+    "title": "Einrichtung abgeschlossen! 🎉",
+    "description": "Sie können die Erweiterung jetzt verwenden.",
+    "continue": "Weiter zum Dashboard"
+  },
+  "navigation": {
+    "previous": "Zurück",
+    "next": "Weiter"
+  },
   "basePermissions": {
     "title": "Complexity benötigt Ihre Berechtigungen",
     "storage": {
       "title": "Zugriff auf Erweiterungsspeicher",
       "description": {
-        "main": "Speichert Ihre Einstellungen und Präferenzen lokal im Speicher der Erweiterung.",
-        "security": "Die Erweiterung hat KEINEN Zugriff auf Browser-Verlauf, Lesezeichen oder andere Daten.",
+        "main": "Speichern Sie Ihre Einstellungen lokal im Speicher der Erweiterung.",
+        "security": "Die Erweiterung hat KEINEN Zugriff auf Browsing-Verlauf, Lesezeichen oder andere Daten.",
         "autoGrant": "Diese Berechtigung wird bei der Installation der Erweiterung automatisch erteilt."
       }
     },
@@ -17,13 +31,13 @@
           "sync": "Ihre Perplexity AI-Einstellungen (wie Farbschema und Spracheinstellungen) mit der Erweiterung zu synchronisieren",
           "verify": "Ihren Supporter-Status zu überprüfen"
         },
-        "warning": "Ohne diese Berechtigung wird die Erweiterung standardmäßig den Dunkelmodus und Englisch als Sprache verwenden. Zusätzlich werden Supporter-Funktionen nicht verfügbar sein. Sie können diese Berechtigung später aktivieren."
+        "warning": "Ohne diese Berechtigung verwendet die Erweiterung die bevorzugten Einstellungen des Geräts. Zusätzlich werden Supporter-Funktionen nicht verfügbar sein. Sie können diese Berechtigung später noch aktivieren."
       }
     },
     "buttons": {
       "grant": "Berechtigung erteilen",
       "granted": "Erteilt"
     },
-    "additionalPermissionsHeadsUp": "Für bestimmte Funktionen werden Sie möglicherweise um zusätzliche Berechtigungen gebeten. Seien Sie versichert, dass Sie vor jeder Aktion um Ihre Zustimmung gebeten werden."
+    "additionalPermissionsHeadsUp": "Möglicherweise werden Sie aufgefordert, zusätzliche Berechtigungen für bestimmte Funktionen zu erteilen. Seien Sie versichert, dass Sie vor jeder Aktion um Ihre Zustimmung gebeten werden."
   }
 }

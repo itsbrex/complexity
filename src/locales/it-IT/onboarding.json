@@ -1,12 +1,26 @@
 {
+  "intro": {
+    "title": "Ottieni il massimo da Perplexity AI",
+    "subtitle": "Iniziamo con una configurazione rapida",
+    "importSettings": "o importa le tue impostazioni esistenti"
+  },
+  "completion": {
+    "title": "Configurazione completata! 🎉",
+    "description": "Sei pronto per utilizzare l'estensione.",
+    "continue": "Vai alla Dashboard"
+  },
+  "navigation": {
+    "previous": "Precedente",
+    "next": "Successivo"
+  },
   "basePermissions": {
     "title": "Complexity ha bisogno dei tuoi permessi per funzionare",
     "storage": {
-      "title": "Accesso allo storage dell'estensione",
+      "title": "Accesso all'archiviazione dell'estensione",
       "description": {
-        "main": "Memorizza le tue preferenze e impostazioni localmente nello storage dell'estensione.",
+        "main": "Salva le tue impostazioni localmente nell'archiviazione dell'estensione.",
         "security": "L'estensione NON ha accesso alla cronologia del browser, ai segnalibri o ad altri dati.",
-        "autoGrant": "Questo permesso viene concesso automaticamente quando installi l'estensione."
+        "autoGrant": "Questo permesso viene concesso automaticamente durante l'installazione dell'estensione."
       }
     },
     "cookies": {
@@ -14,16 +28,16 @@
       "description": {
         "intro": "I cookie sensibili non verranno mai memorizzati o utilizzati al di fuori di Perplexity AI. Il permesso consente all'estensione di:",
         "features": {
-          "sync": "Sincronizzare le tue preferenze di Perplexity AI (come schema colori e impostazioni della lingua) con l'estensione",
+          "sync": "Sincronizzare le tue impostazioni di Perplexity AI (come il tema colore e le impostazioni della lingua) con l'estensione",
           "verify": "Verificare il tuo stato di Supporter"
         },
-        "warning": "Senza questo permesso, l'estensione utilizzerà per impostazione predefinita la modalità scura e la lingua inglese. Inoltre, le funzionalità Supporter non saranno disponibili. Puoi abilitare questo permesso in seguito."
+        "warning": "Senza questo permesso, l'estensione utilizzerà le impostazioni predefinite del dispositivo. Inoltre, le funzionalità Supporter non saranno disponibili. Potrai abilitare questo permesso in seguito."
       }
     },
     "buttons": {
       "grant": "Concedi permesso",
       "granted": "Concesso"
     },
-    "additionalPermissionsHeadsUp": "Potresti essere invitato a concedere permessi aggiuntivi per alcune funzionalità. Stai tranquillo, ti verrà sempre chiesto il consenso prima di qualsiasi azione."
+    "additionalPermissionsHeadsUp": "Potrebbe esserti richiesto di concedere permessi aggiuntivi per alcune funzionalità. Stai tranquillo, ti verrà sempre chiesto il consenso prima di qualsiasi azione."
   }
 }

@@ -1,29 +1,43 @@
 {
+  "intro": {
+    "title": "Tirez le meilleur parti de Perplexity AI",
+    "subtitle": "Commençons par une configuration rapide",
+    "importSettings": "ou importez vos paramètres existants"
+  },
+  "completion": {
+    "title": "Configuration terminée ! 🎉",
+    "description": "Vous êtes prêt à utiliser l'extension.",
+    "continue": "Continuer vers le tableau de bord"
+  },
+  "navigation": {
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
   "basePermissions": {
-    "title": "Complexity a besoin de vos permissions pour fonctionner",
+    "title": "Complexity a besoin de vos autorisations pour fonctionner",
     "storage": {
       "title": "Accès au stockage de l'extension",
       "description": {
-        "main": "Stocke vos préférences et paramètres localement dans le stockage de l'extension.",
+        "main": "Stockez vos préférences et paramètres localement dans le stockage de l'extension.",
         "security": "L'extension n'a PAS accès à l'historique du navigateur, aux favoris ou à toute autre donnée.",
-        "autoGrant": "Cette permission est automatiquement accordée lors de l'installation de l'extension."
+        "autoGrant": "Cette autorisation est automatiquement accordée lors de l'installation de l'extension."
       }
     },
     "cookies": {
       "title": "Cookies Perplexity AI",
       "description": {
-        "intro": "Les cookies sensibles ne seront jamais stockés ou utilisés en dehors de Perplexity AI. La permission permet à l'extension de :",
+        "intro": "Les cookies sensibles ne seront jamais stockés ou utilisés en dehors de Perplexity AI. L'autorisation permet à l'extension de :",
         "features": {
           "sync": "Synchroniser vos préférences Perplexity AI (comme le thème de couleur et les paramètres de langue) avec l'extension",
           "verify": "Vérifier votre statut de Supporter"
         },
-        "warning": "Sans cette permission, l'extension utilisera par défaut le mode Sombre et la langue anglaise. De plus, les fonctionnalités Supporter seront indisponibles. Vous pourrez toujours activer cette permission plus tard."
+        "warning": "Sans cette autorisation, l'extension utilisera les paramètres par défaut de l'appareil. De plus, les fonctionnalités Supporter seront indisponibles. Vous pourrez toujours activer cette autorisation ultérieurement."
       }
     },
     "buttons": {
-      "grant": "Accorder la permission",
-      "granted": "Accordée"
+      "grant": "Accorder l'autorisation",
+      "granted": "Accordé"
     },
-    "additionalPermissionsHeadsUp": "Vous pourriez être invité à accorder des permissions supplémentaires pour certaines fonctionnalités. Soyez assuré que votre consentement sera toujours demandé avant toute action."
+    "additionalPermissionsHeadsUp": "Il est possible que vous soyez invité à accorder des autorisations supplémentaires pour certaines fonctionnalités. Soyez assuré que votre consentement sera toujours demandé avant toute action."
   }
 }

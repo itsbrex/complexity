@@ -70,10 +70,32 @@ export class ExtensionLocalStorageService {
 
     return newSettings;
   }
+
+  public static async exportAll(): Promise<ExtensionLocalStorage> {
+    const settings = await ExtensionLocalStorageService.get();
+    return settings;
+  }
+
+  public static async import(data: ExtensionLocalStorage): Promise<void> {
+    await ExtensionLocalStorageApi.set(
+      await mergeData(data, await ExtensionLocalStorageService.get()),
+    );
+  }
+
+  public static async clearAll(): Promise<void> {
+    await ExtensionLocalStorageApi.set(DEFAULT_STORAGE);
+  }
 }
 
 async function parseStoreData(
   rawSettings: ExtensionLocalStorage,
+): Promise<ExtensionLocalStorage> {
+  return mergeData(rawSettings, DEFAULT_STORAGE);
+}
+
+async function mergeData(
+  rawSettings: ExtensionLocalStorage,
+  defaultSettings: ExtensionLocalStorage,
 ): Promise<ExtensionLocalStorage> {
   const { data: validatedSettings, error } =
     ExtensionLocalStorageSchema.safeParse(rawSettings);
@@ -83,7 +105,7 @@ async function parseStoreData(
       return DEFAULT_STORAGE;
     }
 
-    console.log("[Cplx] Settings schema mismatch, updated to latest version");
+    console.log("[Cplx] Settings schema mismatch, merging...");
 
     let cleanSettings = rawSettings;
 
@@ -96,7 +118,7 @@ async function parseStoreData(
 
     const updatedSettings = mergeUndefined({
       target: cleanSettings,
-      source: DEFAULT_STORAGE,
+      source: defaultSettings,
     });
 
     updatedSettings.schemaVersion = packageJson.version;

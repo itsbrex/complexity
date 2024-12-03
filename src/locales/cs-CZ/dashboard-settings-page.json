@@ -1,0 +1,78 @@
+{
+  "settingsPage": {
+    "sections": {
+      "general": "Obecné",
+      "data": "Data",
+      "troubleshooting": "Řešení problémů"
+    },
+    "items": {
+      "permissions": {
+        "title": "Oprávnění rozšíření",
+        "action": "Spravovat oprávnění",
+        "dialog": {
+          "title": "Spravovat oprávnění",
+          "description": "Udělte nebo odeberte oprávnění rozšíření. Vezměte prosím na vědomí, že některé funkce mohou být bez potřebných oprávnění deaktivovány."
+        }
+      },
+      "energySaving": {
+        "title": "Režim úspory energie",
+        "description": "Snížit citlivost rozšíření na změny na stránce",
+        "note": "(Existující karty vyžadují obnovení pro aplikaci)"
+      },
+      "onboarding": {
+        "title": "Úvodní průvodce",
+        "description": "Projít znovu úvodním průvodcem",
+        "action": "🚀 Úvodní průvodce"
+      },
+      "import": {
+        "title": "Import",
+        "description": "Načíst uložená data rozšíření",
+        "dialog": {
+          "title": "Importovat data",
+          "description": "Aktuální nastavení budou přepsána nebo sloučena v závislosti na verzi, ze které byla data exportována",
+          "placeholder": "Vložte svá data zde...",
+          "submit": "Odeslat",
+          "pasteButton": "Vložit jako text",
+          "fileButton": "Vybrat soubor"
+        },
+        "toast": {
+          "success": "✅ Data importována",
+          "invalidData": "❌ Neplatná data",
+          "failedToRead": "❌ Nepodařilo se přečíst soubor"
+        }
+      },
+      "export": {
+        "title": "Export",
+        "description": "Stáhnout data rozšíření jako soubor",
+        "buttons": {
+          "copy": "Kopírovat",
+          "copied": "Zkopírováno",
+          "exporting": "Exportování",
+          "saveFile": "Uložit jako soubor"
+        }
+      },
+      "reset": {
+        "title": "Resetovat rozšíření",
+        "dialog": {
+          "title": "Vymazat všechna data",
+          "description": "Opravdu chcete vymazat všechna data rozšíření? Tuto akci nelze vrátit zpět a vymaže následující data:",
+          "items": {
+            "settings": "Nastavení rozšíření",
+            "customData": "Všechna vlastní témata, pravidla pro bloky kódu atd.",
+            "otherData": "A jakákoli další data uložená rozšířením"
+          },
+          "buttons": {
+            "confirm": "Ano, vymazat všechna data",
+            "clearButton": "Vymazat všechna data"
+          }
+        }
+      }
+    }
+  },
+  "permissions": {
+    "cookies": {
+      "title": "Cookies",
+      "description": "Povolit rozšíření synchronizovat nastavení s vašimi předvolbami Perplexity.ai. Také se používá k identifikaci vašeho stavu Podporovatele."
+    }
+  }
+} 

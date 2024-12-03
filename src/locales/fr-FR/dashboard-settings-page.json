@@ -1,0 +1,78 @@
+{
+  "settingsPage": {
+    "sections": {
+      "general": "Général",
+      "data": "Données",
+      "troubleshooting": "Dépannage"
+    },
+    "items": {
+      "permissions": {
+        "title": "Permissions de l'extension",
+        "action": "Gérer les permissions",
+        "dialog": {
+          "title": "Gérer les permissions",
+          "description": "Accordez ou révoquez les permissions de l'extension. Veuillez noter que certaines fonctionnalités peuvent être désactivées sans les permissions nécessaires."
+        }
+      },
+      "energySaving": {
+        "title": "Mode économie d'énergie",
+        "description": "Réduire la sensibilité de l'extension aux changements sur la page",
+        "note": "(Les onglets existants nécessitent un rafraîchissement pour appliquer)"
+      },
+      "onboarding": {
+        "title": "Intégration",
+        "description": "Recommencer l'expérience d'intégration",
+        "action": "🚀 Intégration"
+      },
+      "import": {
+        "title": "Importer",
+        "description": "Charger les données sauvegardées de l'extension",
+        "dialog": {
+          "title": "Importer les données",
+          "description": "Les paramètres actuels seront remplacés ou fusionnés selon la version d'où proviennent les données",
+          "placeholder": "Collez vos données ici...",
+          "submit": "Soumettre",
+          "pasteButton": "Coller comme texte",
+          "fileButton": "Choisir un fichier"
+        },
+        "toast": {
+          "success": "✅ Données importées",
+          "invalidData": "❌ Données invalides",
+          "failedToRead": "❌ Échec de lecture du fichier"
+        }
+      },
+      "export": {
+        "title": "Exporter",
+        "description": "Télécharger les données de l'extension sous forme de fichier",
+        "buttons": {
+          "copy": "Copier",
+          "copied": "Copié",
+          "exporting": "Exportation",
+          "saveFile": "Enregistrer comme fichier"
+        }
+      },
+      "reset": {
+        "title": "Réinitialiser l'extension",
+        "dialog": {
+          "title": "Effacer toutes les données",
+          "description": "Êtes-vous sûr de vouloir effacer toutes les données de l'extension ? Cette action ne peut pas être annulée et effacera les données suivantes :",
+          "items": {
+            "settings": "Paramètres de l'extension",
+            "customData": "Tous les thèmes personnalisés, règles de blocs de code, etc.",
+            "otherData": "Et toutes les autres données stockées par l'extension"
+          },
+          "buttons": {
+            "confirm": "Oui, effacer toutes les données",
+            "clearButton": "Effacer toutes les données"
+          }
+        }
+      }
+    }
+  },
+  "permissions": {
+    "cookies": {
+      "title": "Cookies",
+      "description": "Permettre à l'extension de synchroniser les paramètres avec vos préférences Perplexity.ai. Également utilisé pour identifier votre statut de supporter."
+    }
+  }
+} 

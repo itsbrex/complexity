@@ -5,4 +5,6 @@ export const CplxVersionsApiResponseSchema = z.object({
   featureFlagsEntries: z.array(z.string()),
 });
 
-export type CplxVersionsApiResponse = z.infer<typeof CplxVersionsApiResponseSchema>;
+export type CplxVersionsApiResponse = z.infer<
+  typeof CplxVersionsApiResponseSchema
+>;

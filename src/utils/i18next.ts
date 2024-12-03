@@ -33,6 +33,7 @@ type Resources = {
     "dashboard-plugins-data": any;
     "dashboard-plugins-page": any;
     "dashboard-themes-page": any;
+    "dashboard-settings-page": any;
   };
 };
 
@@ -49,6 +50,9 @@ async function loadLanguageResources(language: string) {
     ),
     "dashboard-themes-page": await import(
       `~/src/locales/${language}/dashboard-themes-page.json`
+    ),
+    "dashboard-settings-page": await import(
+      `~/src/locales/${language}/dashboard-settings-page.json`
     ),
   };
 }
@@ -75,6 +79,7 @@ export async function initializeI18next() {
       "dashboard-plugins-data",
       "dashboard-plugins-page",
       "dashboard-themes-page",
+      "dashboard-settings-page",
     ],
     resources,
   });

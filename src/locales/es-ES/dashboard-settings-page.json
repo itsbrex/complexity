@@ -1,0 +1,78 @@
+{
+  "settingsPage": {
+    "sections": {
+      "general": "General",
+      "data": "Datos",
+      "troubleshooting": "Solución de problemas"
+    },
+    "items": {
+      "permissions": {
+        "title": "Permisos de la extensión",
+        "action": "Gestionar permisos",
+        "dialog": {
+          "title": "Gestionar permisos",
+          "description": "Conceda o revoque permisos de la extensión. Tenga en cuenta que algunas funciones pueden estar deshabilitadas sin los permisos necesarios."
+        }
+      },
+      "energySaving": {
+        "title": "Modo de ahorro de energía",
+        "description": "Reducir la sensibilidad de la extensión a los cambios en la página",
+        "note": "(Las pestañas existentes requieren actualización para aplicar)"
+      },
+      "onboarding": {
+        "title": "Introducción",
+        "description": "Volver a realizar la experiencia de introducción",
+        "action": "🚀 Introducción"
+      },
+      "import": {
+        "title": "Importar",
+        "description": "Cargar datos guardados de la extensión",
+        "dialog": {
+          "title": "Importar datos",
+          "description": "La configuración actual será sobrescrita o fusionada según la versión de la que se exportaron los datos",
+          "placeholder": "Pegue sus datos aquí...",
+          "submit": "Enviar",
+          "pasteButton": "Pegar como texto",
+          "fileButton": "Elegir archivo"
+        },
+        "toast": {
+          "success": "✅ Datos importados",
+          "invalidData": "❌ Datos inválidos",
+          "failedToRead": "❌ Error al leer el archivo"
+        }
+      },
+      "export": {
+        "title": "Exportar",
+        "description": "Descargar datos de la extensión como archivo",
+        "buttons": {
+          "copy": "Copiar",
+          "copied": "Copiado",
+          "exporting": "Exportando",
+          "saveFile": "Guardar como archivo"
+        }
+      },
+      "reset": {
+        "title": "Restablecer la extensión",
+        "dialog": {
+          "title": "Borrar todos los datos",
+          "description": "¿Está seguro de que desea borrar todos los datos de la extensión? Esta acción no se puede deshacer y borrará los siguientes datos:",
+          "items": {
+            "settings": "Configuración de la extensión",
+            "customData": "Todos los temas personalizados, reglas de bloques de código, etc.",
+            "otherData": "Y cualquier otro dato almacenado por la extensión"
+          },
+          "buttons": {
+            "confirm": "Sí, borrar todos los datos",
+            "clearButton": "Borrar todos los datos"
+          }
+        }
+      }
+    }
+  },
+  "permissions": {
+    "cookies": {
+      "title": "Cookies",
+      "description": "Permitir que la extensión sincronice la configuración con sus preferencias de Perplexity.ai. También se usa para identificar su estado de Supporter."
+    }
+  }
+} 

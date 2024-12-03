@@ -34,7 +34,7 @@ const steps = [
               Let&apos;s get started with a quick setup
             </H2>
             <Link
-              to="/"
+              to="/settings"
               className="tw-cursor-pointer tw-text-center tw-text-base tw-leading-relaxed tw-text-muted-foreground tw-underline md:tw-text-lg"
             >
               or import your existing settings

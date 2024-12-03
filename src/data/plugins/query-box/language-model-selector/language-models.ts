@@ -50,9 +50,9 @@ export const localLanguageModels = [
     code: "turbo",
     provider: "Perplexity",
   },
-] as const;
+];
 
-export let languageModels: readonly LanguageModel[] = localLanguageModels;
+export let languageModels: LanguageModel[] = localLanguageModels;
 export let groupedLanguageModelsByProvider: GroupedLanguageModelsByProvider =
   getGroupedLanguageModelsByProvider();
 
@@ -62,7 +62,10 @@ export async function initializeLanguageModels() {
   if (!pluginsEnableStates?.["queryBox:languageModelSelector"]) return;
 
   const [data, error] = await errorWrapper(() =>
-    queryClient.fetchQuery(cplxApiQueries.remoteLanguageModels),
+    queryClient.fetchQuery({
+      ...cplxApiQueries.remoteLanguageModels,
+      // gcTime: Infinity,
+    }),
   )();
 
   if (error || !data) {

@@ -34,6 +34,12 @@ type Resources = {
     "dashboard-plugins-page": any;
     "dashboard-themes-page": any;
     "dashboard-settings-page": any;
+    "plugin-drag-n-drop-file-to-upload-in-thread": any;
+    "plugin-export-thread": any;
+    "plugin-better-copy-buttons": any;
+    "plugin-better-code-blocks": any;
+    "plugin-on-cloudflare-timeout-reload": any;
+    "plugin-command-menu": any;
   };
 };
 
@@ -53,6 +59,24 @@ async function loadLanguageResources(language: string) {
     ),
     "dashboard-settings-page": await import(
       `~/src/locales/${language}/dashboard-settings-page.json`
+    ),
+    "plugin-drag-n-drop-file-to-upload-in-thread": await import(
+      `~/src/locales/${language}/plugin-drag-n-drop-file-to-upload-in-thread.json`
+    ),
+    "plugin-export-thread": await import(
+      `~/src/locales/${language}/plugin-export-thread.json`
+    ),
+    "plugin-better-copy-buttons": await import(
+      `~/src/locales/${language}/plugin-better-copy-buttons.json`
+    ),
+    "plugin-better-code-blocks": await import(
+      `~/src/locales/${language}/plugin-better-code-blocks.json`
+    ),
+    "plugin-on-cloudflare-timeout-reload": await import(
+      `~/src/locales/${language}/plugin-on-cloudflare-timeout-reload.json`
+    ),
+    "plugin-command-menu": await import(
+      `~/src/locales/${language}/plugin-command-menu.json`
     ),
   };
 }
@@ -80,6 +104,12 @@ export async function initializeI18next() {
       "dashboard-plugins-page",
       "dashboard-themes-page",
       "dashboard-settings-page",
+      "plugin-drag-n-drop-file-to-upload-in-thread",
+      "plugin-export-thread",
+      "plugin-better-copy-buttons",
+      "plugin-better-code-blocks",
+      "plugin-on-cloudflare-timeout-reload",
+      "plugin-command-menu",
     ],
     resources,
   });

@@ -1,0 +1,10 @@
+{
+  "dialog": {
+    "header": "Sessão expirada",
+    "description": "A sua sessão expirou (provavelmente devido ao Cloudflare).",
+    "buttons": {
+      "reload": "Recarregar",
+      "dismiss": "Fechar"
+    }
+  }
+} 

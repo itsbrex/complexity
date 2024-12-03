@@ -1,0 +1,19 @@
+{
+  "headerButtons": {
+    "wrap": {
+      "wrap": "Zeilen umbrechen",
+      "unwrap": "Zeilen nicht umbrechen"
+    },
+    "expand": {
+      "expand": "Erweitern",
+      "collapse": "Einklappen"
+    },
+    "mermaid": {
+      "preview": "Vorschau",
+      "code": "Code",
+      "openEditor": "Im Mermaid Live Editor öffnen",
+      "download": "SVG herunterladen",
+      "downloadError": "❌ Kein SVG gefunden"
+    }
+  }
+} 

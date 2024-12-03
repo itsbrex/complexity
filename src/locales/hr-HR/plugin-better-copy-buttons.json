@@ -1,0 +1,9 @@
+{
+  "copyButton": {
+    "tooltip": "Kopiraj poruku",
+    "options": {
+      "default": "Zadano",
+      "withoutCitations": "Bez citata"
+    }
+  }
+} 

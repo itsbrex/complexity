@@ -24,13 +24,17 @@ export const SEARCH_FILTERS: Record<
 > = {
   threads: {
     code: "threads",
-    label: "Threads",
-    searchPlaceholder: "Search threads...",
+    label: t("plugin-command-menu:commandMenu.filters.threads.label"),
+    searchPlaceholder: t(
+      "plugin-command-menu:commandMenu.filters.threads.searchPlaceholder",
+    ),
   },
   spaces: {
     code: "spaces",
-    label: "Spaces",
-    searchPlaceholder: "Search spaces...",
+    label: t("plugin-command-menu:commandMenu.filters.spaces.label"),
+    searchPlaceholder: t(
+      "plugin-command-menu:commandMenu.filters.spaces.searchPlaceholder",
+    ),
   },
   "spaces-threads": {
     code: "spaces-threads",
@@ -43,14 +47,14 @@ export const SEARCH_ITEMS: SearchItem[] = [
   {
     icon: PplxThread,
     code: SEARCH_FILTERS.threads.code,
-    label: SEARCH_FILTERS.threads.label,
+    label: t("plugin-command-menu:commandMenu.filters.threads.label"),
     keywords: ["threads"],
     shortcut: ["Ctrl", "Alt", "T"],
   },
   {
     icon: PplxSpace,
     code: SEARCH_FILTERS.spaces.code,
-    label: SEARCH_FILTERS.spaces.label,
+    label: t("plugin-command-menu:commandMenu.filters.spaces.label"),
     keywords: ["spaces"],
     shortcut: ["Ctrl", "Alt", "S"],
   },
@@ -61,35 +65,35 @@ SEARCH_ITEMS.forEach((item) => item.keywords.push("search"));
 export const NAVIGATION_ITEMS: NavigationItem[] = [
   {
     icon: SiPerplexity,
-    label: "Home",
+    label: t("plugin-command-menu:commandMenu.navigation.home"),
     path: "/",
     keywords: ["home"],
     whereAmI: "home",
   },
   {
     icon: PplxDiscover,
-    label: "Discover",
+    label: t("plugin-command-menu:commandMenu.navigation.discover"),
     path: "/discover",
     keywords: ["discover"],
     whereAmI: "discover",
   },
   {
     icon: PplxLibrary,
-    label: "Library",
+    label: t("plugin-command-menu:commandMenu.navigation.library"),
     path: "/library",
     keywords: ["library"],
     whereAmI: "library",
   },
   {
     icon: LuSettings,
-    label: "User settings",
+    label: t("plugin-command-menu:commandMenu.navigation.userSettings"),
     path: "/settings/account",
     keywords: ["user", "settings"],
     whereAmI: "settings",
   },
   {
     icon: PplxLabs,
-    label: "Labs",
+    label: t("plugin-command-menu:commandMenu.navigation.labs"),
     path: "https://labs.perplexity.ai/",
     keywords: ["labs"],
     external: true,
@@ -103,19 +107,19 @@ export const COLOR_SCHEME_ITEMS: ColorSchemeItem[] = [
   {
     scheme: "dark",
     icon: LuMoon,
-    label: "Dark",
+    label: t("plugin-command-menu:commandMenu.colorSchemes.dark"),
     keywords: ["dark", "theme"],
   },
   {
     scheme: "light",
     icon: LuSun,
-    label: "Light",
+    label: t("plugin-command-menu:commandMenu.colorSchemes.light"),
     keywords: ["light", "theme"],
   },
   {
     scheme: "system",
     icon: LuComputer,
-    label: "System",
+    label: t("plugin-command-menu:commandMenu.colorSchemes.system"),
     keywords: ["system", "theme"],
   },
 ];

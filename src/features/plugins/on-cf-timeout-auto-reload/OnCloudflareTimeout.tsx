@@ -44,9 +44,11 @@ export default function OnCloudflareTimeout() {
       <DialogContext>
         {({ setOpen }) => (
           <DialogContent>
-            <DialogHeader>Session timeout</DialogHeader>
+            <DialogHeader>
+              {t("plugin-on-cloudflare-timeout-reload:dialog.header")}
+            </DialogHeader>
             <DialogDescription>
-              Your session has timed out (most likely due to Cloudflare).
+              {t("plugin-on-cloudflare-timeout-reload:dialog.description")}
             </DialogDescription>
             <DialogFooter>
               <Button
@@ -55,7 +57,7 @@ export default function OnCloudflareTimeout() {
                   setOpen(false);
                 }}
               >
-                Reload
+                {t("plugin-on-cloudflare-timeout-reload:dialog.buttons.reload")}
                 {isAutoReload && <span> ({countdown})</span>}
               </Button>
               <Button
@@ -65,7 +67,9 @@ export default function OnCloudflareTimeout() {
                   setOpen(false);
                 }}
               >
-                Dismiss
+                {t(
+                  "plugin-on-cloudflare-timeout-reload:dialog.buttons.dismiss",
+                )}
               </Button>
             </DialogFooter>
           </DialogContent>

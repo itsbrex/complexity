@@ -1,0 +1,68 @@
+{
+  "commandMenu": {
+    "input": {
+      "placeholder": "Digite um comando ou pesquise..."
+    },
+    "noResults": "Nenhum resultado encontrado para <emphasis>{{code}}</emphasis>.",
+    "groups": {
+      "search": "Pesquisar",
+      "quickNavigations": "Navegação rápida",
+      "colorScheme": "Alterar esquema de cores"
+    },
+    "filters": {
+      "threads": {
+        "label": "Tópicos",
+        "searchPlaceholder": "Pesquisar tópicos..."
+      },
+      "spaces": {
+        "label": "Espaços",
+        "searchPlaceholder": "Pesquisar espaços..."
+      }
+    },
+    "navigation": {
+      "home": "Início",
+      "discover": "Descobrir",
+      "library": "Biblioteca",
+      "userSettings": "Definições do utilizador",
+      "labs": "Laboratório"
+    },
+    "colorSchemes": {
+      "dark": "Escuro",
+      "light": "Claro",
+      "system": "Sistema"
+    },
+    "threadSearch": {
+      "error": "Falha ao carregar os tópicos. Por favor, tente novamente mais tarde.",
+      "loading": "A carregar tópicos",
+      "empty": {
+        "withSearch": "Nenhum tópico encontrado.",
+        "withoutSearch": "Comece a digitar para pesquisar"
+      },
+      "heading": {
+        "withSearch": "{{count}} último(s) tópico(s) com o termo pesquisado",
+        "withoutSearch": "Tópicos recentes"
+      },
+      "spacePreview": {
+        "tooltip": "Clique para pesquisar tópicos neste espaço"
+      }
+    },
+    "spaceSearch": {
+      "error": "Falha ao carregar os espaços. Por favor, tente novamente mais tarde.",
+      "loading": "A carregar espaços",
+      "empty": "Nenhum espaço encontrado.",
+      "spaceThreads": {
+        "loading": "A carregar tópicos para \"{{title}}\"",
+        "error": "Falha ao carregar os tópicos. Por favor, tente novamente mais tarde.",
+        "empty": "Nenhum tópico encontrado neste espaço.",
+        "heading": "O Complexity só pode pesquisar nos 50 tópicos mais recentes."
+      },
+      "spaceItem": {
+        "details": {
+          "description": "Descrição:",
+          "instructions": "Instruções:"
+        },
+        "searchHint": "para pesquisar tópicos neste Espaço"
+      }
+    }
+  }
+} 

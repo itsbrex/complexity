@@ -1,0 +1,10 @@
+{
+  "exportButton": {
+    "action": "내보내기",
+    "copied": "복사됨",
+    "options": {
+      "default": "기본값",
+      "withoutCitations": "인용 없음"
+    }
+  }
+} 

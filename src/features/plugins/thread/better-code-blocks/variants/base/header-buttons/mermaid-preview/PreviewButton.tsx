@@ -10,7 +10,13 @@ export default function MermaidPreviewButton() {
   }));
 
   return (
-    <Tooltip content={content === "mermaid" ? "Code" : "Preview"}>
+    <Tooltip
+      content={
+        content === "mermaid"
+          ? t("plugin-better-code-blocks:headerButtons.mermaid.code")
+          : t("plugin-better-code-blocks:headerButtons.mermaid.preview")
+      }
+    >
       <div
         className="tw-cursor-pointer tw-text-muted-foreground tw-transition-colors hover:tw-text-foreground"
         onClick={() => {

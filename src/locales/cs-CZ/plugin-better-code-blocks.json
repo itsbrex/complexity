@@ -1,0 +1,19 @@
+{
+  "headerButtons": {
+    "wrap": {
+      "wrap": "Zalamovat řádky",
+      "unwrap": "Nezalamovat řádky"
+    },
+    "expand": {
+      "expand": "Rozbalit",
+      "collapse": "Sbalit"
+    },
+    "mermaid": {
+      "preview": "Náhled",
+      "code": "Kód",
+      "openEditor": "Otevřít v Mermaid Live Editoru",
+      "download": "Stáhnout SVG",
+      "downloadError": "❌ SVG nenalezeno"
+    }
+  }
+} 

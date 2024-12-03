@@ -9,7 +9,9 @@ export default function OpenPlaygroundButton() {
   const codeString = useMirroredCodeBlockContext()((state) => state.codeString);
 
   return (
-    <Tooltip content="Open in Mermaid Live Editor">
+    <Tooltip
+      content={t("plugin-better-code-blocks:headerButtons.mermaid.openEditor")}
+    >
       <div
         className="tw-cursor-pointer tw-text-muted-foreground tw-transition-colors hover:tw-text-foreground"
         onClick={async () => {

@@ -1,0 +1,10 @@
+{
+  "exportButton": {
+    "action": "Izvoz",
+    "copied": "Kopirano",
+    "options": {
+      "default": "Zadano",
+      "withoutCitations": "Bez citata"
+    }
+  }
+} 

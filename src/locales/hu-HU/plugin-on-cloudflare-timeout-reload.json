@@ -1,0 +1,10 @@
+{
+  "dialog": {
+    "header": "Munkamenet lejárt",
+    "description": "A munkamenete lejárt (valószínűleg a Cloudflare miatt).",
+    "buttons": {
+      "reload": "Újratöltés",
+      "dismiss": "Bezárás"
+    }
+  }
+} 

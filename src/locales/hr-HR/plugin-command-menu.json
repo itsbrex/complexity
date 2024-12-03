@@ -1,0 +1,68 @@
+{
+  "commandMenu": {
+    "input": {
+      "placeholder": "Unesite naredbu ili pretražite..."
+    },
+    "noResults": "Nisu pronađeni rezultati za <emphasis>{{code}}</emphasis>.",
+    "groups": {
+      "search": "Pretraži",
+      "quickNavigations": "Brza navigacija",
+      "colorScheme": "Promijeni shemu boja"
+    },
+    "filters": {
+      "threads": {
+        "label": "Razgovori",
+        "searchPlaceholder": "Pretraži razgovore..."
+      },
+      "spaces": {
+        "label": "Prostori",
+        "searchPlaceholder": "Pretraži prostore..."
+      }
+    },
+    "navigation": {
+      "home": "Početna",
+      "discover": "Otkrij",
+      "library": "Biblioteka",
+      "userSettings": "Korisničke postavke",
+      "labs": "Laboratorij"
+    },
+    "colorSchemes": {
+      "dark": "Tamno",
+      "light": "Svijetlo",
+      "system": "Sustav"
+    },
+    "threadSearch": {
+      "error": "Neuspjelo učitavanje razgovora. Molimo pokušajte kasnije.",
+      "loading": "Učitavanje razgovora",
+      "empty": {
+        "withSearch": "Nisu pronađeni razgovori.",
+        "withoutSearch": "Počnite tipkati za pretraživanje"
+      },
+      "heading": {
+        "withSearch": "{{count}} najnovijih razgovora s traženim pojmom",
+        "withoutSearch": "Nedavni razgovori"
+      },
+      "spacePreview": {
+        "tooltip": "Kliknite za pretraživanje razgovora u ovom prostoru"
+      }
+    },
+    "spaceSearch": {
+      "error": "Neuspjelo učitavanje prostora. Molimo pokušajte kasnije.",
+      "loading": "Učitavanje prostora",
+      "empty": "Nisu pronađeni prostori.",
+      "spaceThreads": {
+        "loading": "Učitavanje razgovora za \"{{title}}\"",
+        "error": "Neuspjelo učitavanje razgovora. Molimo pokušajte kasnije.",
+        "empty": "Nisu pronađeni razgovori u ovom prostoru.",
+        "heading": "Complexity može pretraživati samo 50 najnovijih razgovora."
+      },
+      "spaceItem": {
+        "details": {
+          "description": "Opis:",
+          "instructions": "Upute:"
+        },
+        "searchHint": "za pretraživanje razgovora u ovom Prostoru"
+      }
+    }
+  }
+} 

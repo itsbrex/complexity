@@ -1,0 +1,68 @@
+{
+  "commandMenu": {
+    "input": {
+      "placeholder": "输入命令或搜索..."
+    },
+    "noResults": "未找到与 <emphasis>{{code}}</emphasis> 相关的结果。",
+    "groups": {
+      "search": "搜索",
+      "quickNavigations": "快速导航",
+      "colorScheme": "更改颜色主题"
+    },
+    "filters": {
+      "threads": {
+        "label": "主题",
+        "searchPlaceholder": "搜索主题..."
+      },
+      "spaces": {
+        "label": "空间",
+        "searchPlaceholder": "搜索空间..."
+      }
+    },
+    "navigation": {
+      "home": "首页",
+      "discover": "发现",
+      "library": "资料库",
+      "userSettings": "用户设置",
+      "labs": "实验室"
+    },
+    "colorSchemes": {
+      "dark": "深色",
+      "light": "浅色",
+      "system": "系统"
+    },
+    "threadSearch": {
+      "error": "获取主题失败。请稍后重试。",
+      "loading": "正在加载主题",
+      "empty": {
+        "withSearch": "未找到主题。",
+        "withoutSearch": "开始输入以搜索"
+      },
+      "heading": {
+        "withSearch": "包含搜索词的最新{{count}}个主题",
+        "withoutSearch": "最近的主题"
+      },
+      "spacePreview": {
+        "tooltip": "点击搜索此空间中的主题"
+      }
+    },
+    "spaceSearch": {
+      "error": "获取空间失败。请稍后重试。",
+      "loading": "正在加载空间",
+      "empty": "未找到空间。",
+      "spaceThreads": {
+        "loading": "正在加载\"{{title}}\"的主题",
+        "error": "获取主题失败。请稍后重试。",
+        "empty": "此空间中未找到主题。",
+        "heading": "Complexity 只能搜索最新的50个主题。"
+      },
+      "spaceItem": {
+        "details": {
+          "description": "描述：",
+          "instructions": "说明："
+        },
+        "searchHint": "搜索此空间中的主题"
+      }
+    }
+  }
+} 

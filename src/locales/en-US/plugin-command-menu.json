@@ -1,0 +1,68 @@
+{
+  "commandMenu": {
+    "input": {
+      "placeholder": "Type a command or search..."
+    },
+    "noResults": "No results found for <emphasis>{{code}}</emphasis>.",
+    "groups": {
+      "search": "Search",
+      "quickNavigations": "Quick navigations",
+      "colorScheme": "Change color scheme"
+    },
+    "filters": {
+      "threads": {
+        "label": "Threads",
+        "searchPlaceholder": "Search threads..."
+      },
+      "spaces": {
+        "label": "Spaces",
+        "searchPlaceholder": "Search spaces..."
+      }
+    },
+    "navigation": {
+      "home": "Home",
+      "discover": "Discover",
+      "library": "Library",
+      "userSettings": "User settings",
+      "labs": "Labs"
+    },
+    "colorSchemes": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System"
+    },
+    "threadSearch": {
+      "error": "Failed to fetch threads. Please try again later.",
+      "loading": "Loading threads",
+      "empty": {
+        "withSearch": "No threads found.",
+        "withoutSearch": "Start typing to search"
+      },
+      "heading": {
+        "withSearch": "{{count}} latest thread(s) with the search term",
+        "withoutSearch": "Recent threads"
+      },
+      "spacePreview": {
+        "tooltip": "Click to search threads in this space"
+      }
+    },
+    "spaceSearch": {
+      "error": "Failed to fetch spaces. Please try again later.",
+      "loading": "Loading spaces",
+      "empty": "No spaces found.",
+      "spaceThreads": {
+        "loading": "Loading threads for \"{{title}}\"",
+        "error": "Failed to fetch threads. Please try again later.",
+        "empty": "No threads found in this space.",
+        "heading": "Complexity can only search in the 50 most recent threads."
+      },
+      "spaceItem": {
+        "details": {
+          "description": "Description:",
+          "instructions": "Instructions:"
+        },
+        "searchHint": "to search for threads in this Space"
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "commandMenu": {
+    "input": {
+      "placeholder": "Wpisz polecenie lub szukaj..."
+    },
+    "noResults": "Nie znaleziono wyników dla <emphasis>{{code}}</emphasis>.",
+    "groups": {
+      "search": "Szukaj",
+      "quickNavigations": "Szybka nawigacja",
+      "colorScheme": "Zmień schemat kolorów"
+    },
+    "filters": {
+      "threads": {
+        "label": "Wątki",
+        "searchPlaceholder": "Szukaj wątków..."
+      },
+      "spaces": {
+        "label": "Przestrzenie",
+        "searchPlaceholder": "Szukaj przestrzeni..."
+      }
+    },
+    "navigation": {
+      "home": "Strona główna",
+      "discover": "Odkrywaj",
+      "library": "Biblioteka",
+      "userSettings": "Ustawienia użytkownika",
+      "labs": "Laboratorium"
+    },
+    "colorSchemes": {
+      "dark": "Ciemny",
+      "light": "Jasny",
+      "system": "Systemowy"
+    },
+    "threadSearch": {
+      "error": "Nie udało się załadować wątków. Spróbuj ponownie później.",
+      "loading": "Ładowanie wątków",
+      "empty": {
+        "withSearch": "Nie znaleziono wątków.",
+        "withoutSearch": "Zacznij pisać, aby wyszukać"
+      },
+      "heading": {
+        "withSearch": "{{count}} najnowszych wątków z szukaną frazą",
+        "withoutSearch": "Ostatnie wątki"
+      },
+      "spacePreview": {
+        "tooltip": "Kliknij, aby wyszukać wątki w tej przestrzeni"
+      }
+    },
+    "spaceSearch": {
+      "error": "Nie udało się załadować przestrzeni. Spróbuj ponownie później.",
+      "loading": "Ładowanie przestrzeni",
+      "empty": "Nie znaleziono przestrzeni.",
+      "spaceThreads": {
+        "loading": "Ładowanie wątków dla \"{{title}}\"",
+        "error": "Nie udało się załadować wątków. Spróbuj ponownie później.",
+        "empty": "Nie znaleziono wątków w tej przestrzeni.",
+        "heading": "Complexity może przeszukiwać tylko 50 najnowszych wątków."
+      },
+      "spaceItem": {
+        "details": {
+          "description": "Opis:",
+          "instructions": "Instrukcje:"
+        },
+        "searchHint": "aby wyszukać wątki w tej Przestrzeni"
+      }
+    }
+  }
+} 

@@ -1,0 +1,68 @@
+{
+  "commandMenu": {
+    "input": {
+      "placeholder": "Escribe un comando o busca..."
+    },
+    "noResults": "No se encontraron resultados para <emphasis>{{code}}</emphasis>.",
+    "groups": {
+      "search": "Buscar",
+      "quickNavigations": "Navegación rápida",
+      "colorScheme": "Cambiar esquema de colores"
+    },
+    "filters": {
+      "threads": {
+        "label": "Hilos",
+        "searchPlaceholder": "Buscar hilos..."
+      },
+      "spaces": {
+        "label": "Espacios",
+        "searchPlaceholder": "Buscar espacios..."
+      }
+    },
+    "navigation": {
+      "home": "Inicio",
+      "discover": "Descubrir",
+      "library": "Biblioteca",
+      "userSettings": "Ajustes de usuario",
+      "labs": "Laboratorios"
+    },
+    "colorSchemes": {
+      "dark": "Oscuro",
+      "light": "Claro",
+      "system": "Sistema"
+    },
+    "threadSearch": {
+      "error": "Error al cargar los hilos. Por favor, inténtalo de nuevo más tarde.",
+      "loading": "Cargando hilos",
+      "empty": {
+        "withSearch": "No se encontraron hilos.",
+        "withoutSearch": "Empieza a escribir para buscar"
+      },
+      "heading": {
+        "withSearch": "{{count}} último(s) hilo(s) con el término de búsqueda",
+        "withoutSearch": "Hilos recientes"
+      },
+      "spacePreview": {
+        "tooltip": "Haz clic para buscar hilos en este espacio"
+      }
+    },
+    "spaceSearch": {
+      "error": "Error al cargar los espacios. Por favor, inténtalo de nuevo más tarde.",
+      "loading": "Cargando espacios",
+      "empty": "No se encontraron espacios.",
+      "spaceThreads": {
+        "loading": "Cargando hilos para \"{{title}}\"",
+        "error": "Error al cargar los hilos. Por favor, inténtalo de nuevo más tarde.",
+        "empty": "No se encontraron hilos en este espacio.",
+        "heading": "Complexity solo puede buscar en los 50 hilos más recientes."
+      },
+      "spaceItem": {
+        "details": {
+          "description": "Descripción:",
+          "instructions": "Instrucciones:"
+        },
+        "searchHint": "para buscar hilos en este Espacio"
+      }
+    }
+  }
+} 

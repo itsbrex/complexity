@@ -112,13 +112,6 @@ function monitorThreadWrapperExistence({
 }
 
 async function observeMessageBlocks() {
-  const pluginsStates = PluginsStatesService.getCachedSync();
-
-  const shouldObserve =
-    pluginsStates.pluginsEnableStates?.["thread:betterMessageToolbars"];
-
-  if (!shouldObserve) return;
-
   const messageBlocks = UiUtils.getMessageBlocks();
 
   CallbackQueue.getInstance().enqueue(

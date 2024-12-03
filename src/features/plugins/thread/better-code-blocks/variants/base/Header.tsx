@@ -74,7 +74,7 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
     >
       <div className="tw-flex tw-items-center tw-gap-2">
         <div className="tw-font-mono tw-text-sm">
-          {placeholderText?.title ?? language}
+          {placeholderText?.title || language}
         </div>
         {!isInFlight && placeholderText?.idle && (
           <div className="tw-flex tw-items-center tw-gap-2">

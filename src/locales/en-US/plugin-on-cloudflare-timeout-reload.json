@@ -1,0 +1,10 @@
+{
+  "dialog": {
+    "header": "Session timeout",
+    "description": "Your session has timed out (most likely due to Cloudflare).",
+    "buttons": {
+      "reload": "Reload",
+      "dismiss": "Dismiss"
+    }
+  }
+}

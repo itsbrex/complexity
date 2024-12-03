@@ -1,0 +1,10 @@
+{
+  "exportButton": {
+    "action": "Извези",
+    "copied": "Копирано",
+    "options": {
+      "default": "Подразумијевано",
+      "withoutCitations": "Без цитата"
+    }
+  }
+} 

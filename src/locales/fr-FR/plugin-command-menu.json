@@ -1,0 +1,68 @@
+{
+  "commandMenu": {
+    "input": {
+      "placeholder": "Tapez une commande ou recherchez..."
+    },
+    "noResults": "Aucun résultat trouvé pour <emphasis>{{code}}</emphasis>.",
+    "groups": {
+      "search": "Rechercher",
+      "quickNavigations": "Navigations rapides",
+      "colorScheme": "Changer le thème de couleur"
+    },
+    "filters": {
+      "threads": {
+        "label": "Discussions",
+        "searchPlaceholder": "Rechercher des discussions..."
+      },
+      "spaces": {
+        "label": "Espaces",
+        "searchPlaceholder": "Rechercher des espaces..."
+      }
+    },
+    "navigation": {
+      "home": "Accueil",
+      "discover": "Découvrir",
+      "library": "Bibliothèque",
+      "userSettings": "Paramètres utilisateur",
+      "labs": "Laboratoires"
+    },
+    "colorSchemes": {
+      "dark": "Sombre",
+      "light": "Clair",
+      "system": "Système"
+    },
+    "threadSearch": {
+      "error": "Échec de la récupération des discussions. Veuillez réessayer plus tard.",
+      "loading": "Chargement des discussions",
+      "empty": {
+        "withSearch": "Aucune discussion trouvée.",
+        "withoutSearch": "Commencez à taper pour rechercher"
+      },
+      "heading": {
+        "withSearch": "{{count}} dernière(s) discussion(s) avec le terme recherché",
+        "withoutSearch": "Discussions récentes"
+      },
+      "spacePreview": {
+        "tooltip": "Cliquez pour rechercher des discussions dans cet espace"
+      }
+    },
+    "spaceSearch": {
+      "error": "Échec de la récupération des espaces. Veuillez réessayer plus tard.",
+      "loading": "Chargement des espaces",
+      "empty": "Aucun espace trouvé.",
+      "spaceThreads": {
+        "loading": "Chargement des discussions pour \"{{title}}\"",
+        "error": "Échec de la récupération des discussions. Veuillez réessayer plus tard.",
+        "empty": "Aucune discussion trouvée dans cet espace.",
+        "heading": "Complexity ne peut rechercher que dans les 50 discussions les plus récentes."
+      },
+      "spaceItem": {
+        "details": {
+          "description": "Description :",
+          "instructions": "Instructions :"
+        },
+        "searchHint": "pour rechercher des discussions dans cet Espace"
+      }
+    }
+  }
+} 

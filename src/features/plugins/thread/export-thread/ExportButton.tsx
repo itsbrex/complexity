@@ -22,12 +22,16 @@ const ExportButton = memo(function ExportButton() {
       isFetching ? (
         <div className="tw-flex tw-items-center tw-gap-2">
           <LuLoader2 className="tw-size-4 tw-animate-spin" />
-          {!isMobile && <span>Export</span>}
+          {!isMobile && (
+            <span>{t("plugin-export-thread:exportButton.action")}</span>
+          )}
         </div>
       ) : (
         <div className="tw-flex tw-items-center tw-gap-2">
           <LuDownload className="tw-size-4" />
-          {!isMobile && <span>Export</span>}
+          {!isMobile && (
+            <span>{t("plugin-export-thread:exportButton.action")}</span>
+          )}
         </div>
       ),
     [isFetching, isMobile],
@@ -47,7 +51,9 @@ const ExportButton = memo(function ExportButton() {
             setCopyConfirmText(
               <div className="tw-flex tw-items-center tw-gap-2">
                 <LuCheck className="tw-size-4" />
-                {!isMobile && <span>Copied</span>}
+                {!isMobile && (
+                  <span>{t("plugin-export-thread:exportButton.copied")}</span>
+                )}
               </div>,
             ),
         });
@@ -65,11 +71,13 @@ const ExportButton = memo(function ExportButton() {
       <DropdownMenuContent>
         <DropdownMenuItem value="default">
           <BiLogoMarkdown className="tw-mr-2 tw-size-4" />
-          <span>Default</span>
+          <span>{t("plugin-export-thread:exportButton.options.default")}</span>
         </DropdownMenuItem>
         <DropdownMenuItem value="without-citations">
           <LuLink2Off className="tw-mr-2 tw-size-4" />
-          <span>Without citations</span>
+          <span>
+            {t("plugin-export-thread:exportButton.options.withoutCitations")}
+          </span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

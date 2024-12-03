@@ -101,7 +101,11 @@ export function SpaceItem({ space }: SpaceItemProps) {
           <div className="tw-flex tw-flex-col tw-gap-1 tw-rounded-md tw-border tw-border-border/50 tw-bg-background tw-p-2">
             {space.description && (
               <div className="tw-flex tw-items-baseline tw-gap-1">
-                <div className="tw-text-xs tw-font-medium">Description:</div>
+                <div className="tw-text-xs tw-font-medium">
+                  {t(
+                    "plugin-command-menu:commandMenu.spaceSearch.spaceItem.details.description",
+                  )}
+                </div>
                 <div className="tw-line-clamp-2 tw-text-xs tw-text-foreground">
                   {space.description}
                 </div>
@@ -109,7 +113,11 @@ export function SpaceItem({ space }: SpaceItemProps) {
             )}
             {space.instructions && (
               <div className="tw-flex tw-items-baseline tw-gap-1">
-                <div className="tw-text-xs tw-font-medium">Instructions:</div>
+                <div className="tw-text-xs tw-font-medium">
+                  {t(
+                    "plugin-command-menu:commandMenu.spaceSearch.spaceItem.details.instructions",
+                  )}
+                </div>
                 <div className="tw-line-clamp-2 tw-text-xs tw-text-foreground">
                   {space.instructions}
                 </div>
@@ -120,7 +128,11 @@ export function SpaceItem({ space }: SpaceItemProps) {
         {isHighlighted && (
           <div className="tw-flex tw-items-center tw-justify-end tw-gap-2 tw-text-xs tw-text-muted-foreground">
             <KeyCombo keys={["shift", "enter"]} />
-            <span>to search for threads in this Space</span>
+            <span>
+              {t(
+                "plugin-command-menu:commandMenu.spaceSearch.spaceItem.searchHint",
+              )}
+            </span>
           </div>
         )}
       </div>

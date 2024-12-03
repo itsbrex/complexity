@@ -1,0 +1,68 @@
+{
+  "commandMenu": {
+    "input": {
+      "placeholder": "Írjon be egy parancsot vagy keressen..."
+    },
+    "noResults": "Nincs találat a következőre: <emphasis>{{code}}</emphasis>.",
+    "groups": {
+      "search": "Keresés",
+      "quickNavigations": "Gyors navigáció",
+      "colorScheme": "Színséma módosítása"
+    },
+    "filters": {
+      "threads": {
+        "label": "Beszélgetések",
+        "searchPlaceholder": "Beszélgetések keresése..."
+      },
+      "spaces": {
+        "label": "Terek",
+        "searchPlaceholder": "Terek keresése..."
+      }
+    },
+    "navigation": {
+      "home": "Kezdőlap",
+      "discover": "Felfedezés",
+      "library": "Könyvtár",
+      "userSettings": "Felhasználói beállítások",
+      "labs": "Laboratórium"
+    },
+    "colorSchemes": {
+      "dark": "Sötét",
+      "light": "Világos",
+      "system": "Rendszer"
+    },
+    "threadSearch": {
+      "error": "Nem sikerült betölteni a beszélgetéseket. Kérjük, próbálja újra később.",
+      "loading": "Beszélgetések betöltése",
+      "empty": {
+        "withSearch": "Nem található beszélgetés.",
+        "withoutSearch": "Kezdjen el gépelni a kereséshez"
+      },
+      "heading": {
+        "withSearch": "{{count}} legújabb beszélgetés a keresési kifejezéssel",
+        "withoutSearch": "Legutóbbi beszélgetések"
+      },
+      "spacePreview": {
+        "tooltip": "Kattintson a beszélgetések kereséséhez ebben a térben"
+      }
+    },
+    "spaceSearch": {
+      "error": "Nem sikerült betölteni a tereket. Kérjük, próbálja újra később.",
+      "loading": "Terek betöltése",
+      "empty": "Nem található tér.",
+      "spaceThreads": {
+        "loading": "Beszélgetések betöltése a következőhöz: \"{{title}}\"",
+        "error": "Nem sikerült betölteni a beszélgetéseket. Kérjük, próbálja újra később.",
+        "empty": "Nem található beszélgetés ebben a térben.",
+        "heading": "A Complexity csak az 50 legújabb beszélgetésben tud keresni."
+      },
+      "spaceItem": {
+        "details": {
+          "description": "Leírás:",
+          "instructions": "Utasítások:"
+        },
+        "searchHint": "beszélgetések keresése ebben a Térben"
+      }
+    }
+  }
+} 

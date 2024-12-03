@@ -1,0 +1,19 @@
+{
+  "headerButtons": {
+    "wrap": {
+      "wrap": "लाइनें लपेटें",
+      "unwrap": "लाइनें खोलें"
+    },
+    "expand": {
+      "expand": "विस्तार करें",
+      "collapse": "संकुचित करें"
+    },
+    "mermaid": {
+      "preview": "पूर्वावलोकन",
+      "code": "कोड",
+      "openEditor": "Mermaid Live Editor में खोलें",
+      "download": "SVG डाउनलोड करें",
+      "downloadError": "❌ कोई SVG नहीं मिला"
+    }
+  }
+} 

@@ -13,7 +13,9 @@ export default function DownloadButton() {
     }));
 
   return (
-    <Tooltip content="Download SVG">
+    <Tooltip
+      content={t("plugin-better-code-blocks:headerButtons.mermaid.download")}
+    >
       <div
         className="tw-cursor-pointer tw-text-muted-foreground tw-transition-colors hover:tw-text-foreground"
         onClick={() => {
@@ -23,7 +25,9 @@ export default function DownloadButton() {
 
           if (!$svg.length) {
             return toast({
-              title: "❌ No SVG found",
+              title: t(
+                "plugin-better-code-blocks:headerButtons.mermaid.downloadError",
+              ),
             });
           }
 

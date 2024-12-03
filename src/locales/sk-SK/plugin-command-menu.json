@@ -1,0 +1,68 @@
+{
+  "commandMenu": {
+    "input": {
+      "placeholder": "Zadajte príkaz alebo hľadajte..."
+    },
+    "noResults": "Pre <emphasis>{{code}}</emphasis> neboli nájdené žiadne výsledky.",
+    "groups": {
+      "search": "Hľadať",
+      "quickNavigations": "Rýchla navigácia",
+      "colorScheme": "Zmeniť farebnú schému"
+    },
+    "filters": {
+      "threads": {
+        "label": "Vlákna",
+        "searchPlaceholder": "Hľadať vlákna..."
+      },
+      "spaces": {
+        "label": "Priestory",
+        "searchPlaceholder": "Hľadať priestory..."
+      }
+    },
+    "navigation": {
+      "home": "Domov",
+      "discover": "Objaviť",
+      "library": "Knižnica",
+      "userSettings": "Nastavenia používateľa",
+      "labs": "Laboratórium"
+    },
+    "colorSchemes": {
+      "dark": "Tmavý",
+      "light": "Svetlý",
+      "system": "Systémový"
+    },
+    "threadSearch": {
+      "error": "Nepodarilo sa načítať vlákna. Skúste to prosím neskôr.",
+      "loading": "Načítavanie vlákien",
+      "empty": {
+        "withSearch": "Neboli nájdené žiadne vlákna.",
+        "withoutSearch": "Začnite písať pre vyhľadávanie"
+      },
+      "heading": {
+        "withSearch": "{{count}} najnovších vlákien s hľadaným výrazom",
+        "withoutSearch": "Nedávne vlákna"
+      },
+      "spacePreview": {
+        "tooltip": "Kliknite pre vyhľadávanie vlákien v tomto priestore"
+      }
+    },
+    "spaceSearch": {
+      "error": "Nepodarilo sa načítať priestory. Skúste to prosím neskôr.",
+      "loading": "Načítavanie priestorov",
+      "empty": "Neboli nájdené žiadne priestory.",
+      "spaceThreads": {
+        "loading": "Načítavanie vlákien pre \"{{title}}\"",
+        "error": "Nepodarilo sa načítať vlákna. Skúste to prosím neskôr.",
+        "empty": "V tomto priestore neboli nájdené žiadne vlákna.",
+        "heading": "Complexity môže vyhľadávať iba v 50 najnovších vláknach."
+      },
+      "spaceItem": {
+        "details": {
+          "description": "Popis:",
+          "instructions": "Pokyny:"
+        },
+        "searchHint": "pre vyhľadávanie vlákien v tomto Priestore"
+      }
+    }
+  }
+} 

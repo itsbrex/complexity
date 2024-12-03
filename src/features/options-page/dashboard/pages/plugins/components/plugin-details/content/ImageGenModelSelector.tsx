@@ -10,11 +10,12 @@ export default function ImageGenModelSelectorPluginDetails() {
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
       <P>
-        Allow you to change your preferred image generation model. The selector
-        can be found on the image generation popover in any thread.
+        {t(
+          "dashboard-plugins-page:pluginDetails.imageGenModelSelector.description",
+        )}
       </P>
       <Switch
-        textLabel="Enable"
+        textLabel={t("action.enable")}
         checked={settings?.plugins["imageGenModelSelector"].enabled ?? false}
         onCheckedChange={({ checked }) => {
           mutation.mutate((draft) => {

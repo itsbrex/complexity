@@ -1,0 +1,68 @@
+{
+  "commandMenu": {
+    "input": {
+      "placeholder": "कमांड टाइप करें या खोजें..."
+    },
+    "noResults": "<emphasis>{{code}}</emphasis> के लिए कोई परिणाम नहीं मिला।",
+    "groups": {
+      "search": "खोजें",
+      "quickNavigations": "त्वरित नेविगेशन",
+      "colorScheme": "रंग योजना बदलें"
+    },
+    "filters": {
+      "threads": {
+        "label": "थ्रेड्स",
+        "searchPlaceholder": "थ्रेड्स खोजें..."
+      },
+      "spaces": {
+        "label": "स्पेस",
+        "searchPlaceholder": "स्पेस खोजें..."
+      }
+    },
+    "navigation": {
+      "home": "होम",
+      "discover": "खोजें",
+      "library": "लाइब्रेरी",
+      "userSettings": "उपयोगकर्ता सेटिंग्स",
+      "labs": "प्रयोगशाला"
+    },
+    "colorSchemes": {
+      "dark": "डार्क",
+      "light": "लाइट",
+      "system": "सिस्टम"
+    },
+    "threadSearch": {
+      "error": "थ्रेड्स लोड करने में विफल। कृपया बाद में पुनः प्रयास करें।",
+      "loading": "थ्रेड्स लोड हो रहे हैं",
+      "empty": {
+        "withSearch": "कोई थ्रेड नहीं मिला।",
+        "withoutSearch": "खोजने के लिए टाइप करना शुरू करें"
+      },
+      "heading": {
+        "withSearch": "खोज शब्द के साथ {{count}} नवीनतम थ्रेड",
+        "withoutSearch": "हाल के थ्रेड्स"
+      },
+      "spacePreview": {
+        "tooltip": "इस स्पेस में थ्रेड्स खोजने के लिए क्लिक करें"
+      }
+    },
+    "spaceSearch": {
+      "error": "स्पेस लोड करने में विफल। कृपया बाद में पुनः प्रयास करें।",
+      "loading": "स्पेस लोड हो रहे हैं",
+      "empty": "कोई स्पेस नहीं मिला।",
+      "spaceThreads": {
+        "loading": "\"{{title}}\" के लिए थ्रेड्स लोड हो रहे हैं",
+        "error": "थ्रेड्स लोड करने में विफल। कृपया बाद में पुनः प्रयास करें।",
+        "empty": "इस स्पेस में कोई थ्रेड नहीं मिला।",
+        "heading": "Complexity केवल 50 नवीनतम थ्रेड्स में खोज सकता है।"
+      },
+      "spaceItem": {
+        "details": {
+          "description": "विवरण:",
+          "instructions": "निर्देश:"
+        },
+        "searchHint": "इस स्पेस में थ्रेड्स खोजने के लिए"
+      }
+    }
+  }
+} 

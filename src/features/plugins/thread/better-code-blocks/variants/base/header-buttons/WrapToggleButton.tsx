@@ -12,7 +12,13 @@ export function WrapToggleButton({
   setIsWrapped,
 }: WrapToggleButtonProps) {
   return (
-    <Tooltip content={isWrapped ? "Unwrap lines" : "Wrap lines"}>
+    <Tooltip
+      content={
+        isWrapped
+          ? t("plugin-better-code-blocks:headerButtons.wrap.unwrap")
+          : t("plugin-better-code-blocks:headerButtons.wrap.wrap")
+      }
+    >
       <div
         className="tw-cursor-pointer tw-text-muted-foreground tw-transition-colors hover:tw-text-foreground"
         onClick={() => setIsWrapped(!isWrapped)}

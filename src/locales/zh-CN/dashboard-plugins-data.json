@@ -1,0 +1,98 @@
+{
+  "pluginTags": {
+    "ui": {
+      "label": "外观",
+      "description": "与用户界面相关的插件"
+    },
+    "ux": {
+      "label": "易用性",
+      "description": "与用户体验相关的插件"
+    },
+    "desktopOnly": {
+      "label": "仅限桌面",
+      "description": "仅可在桌面/屏幕宽度 > 768px 上使用"
+    },
+    "privacy": {
+      "label": "隐私",
+      "description": "与隐私相关的插件"
+    },
+    "pplxPro": {
+      "label": "Perplexity Pro",
+      "description": "需要有效的Perplexity Pro订阅"
+    },
+    "experimental": {
+      "label": "实验性",
+      "description": "实验性插件。可能会在未经通知的情况下被更改或删除。"
+    },
+    "beta": {
+      "label": "测试版",
+      "description": "测试版插件"
+    },
+    "forFun": {
+      "label": "娱乐",
+      "description": "仅为了好玩！"
+    }
+  },
+  "pluginsMetadata": {
+    "queryboxLanguageModelSelector": {
+      "title": "语言模型选择器",
+      "description": "允许选择不同的语言模型"
+    },
+    "queryboxNoFileCreationOnPaste": {
+      "title": "防止文件创建",
+      "description": "防止在查询框中粘贴（非常）长的文本时自动创建文件"
+    },
+    "commandMenu": {
+      "title": "命令菜单",
+      "description": "快速导航并调用操作"
+    },
+    "threadToc": {
+      "title": "对话目录",
+      "description": "在对话中快速导航消息。仅在有超过2条消息时显示。"
+    },
+    "threadBetterMessageToolbars": {
+      "title": "改进的消息工具栏",
+      "description": "改进线程中的消息工具栏"
+    },
+    "threadBetterCodeBlocks": {
+      "title": "改进的代码块",
+      "description": "改进线程中的代码块"
+    },
+    "threadBetterCodeBlocksPreviewMermaid": {
+      "title": "Mermaid代码块预览",
+      "description": "预览代码块中的Mermaid图表、简单图表等"
+    },
+    "threadExportThread": {
+      "title": "导出线程",
+      "description": "以Markdown格式导出当前线程（可选引用）。更多格式选项即将推出"
+    },
+    "threadBetterMessageCopyButtons": {
+      "title": "改进的消息复制按钮",
+      "description": "复制不含引用的消息内容。更多格式选项即将推出"
+    },
+    "threadDragAndDropFileToUploadInThread": {
+      "title": "在线程中拖放文件上传",
+      "description": "将整个线程页面视为放置区，直接拖放文件以上传为附件"
+    },
+    "threadCollapseEmptyThreadVisualCols": {
+      "title": "折叠空的线程视觉列",
+      "description": "折叠线程页面中的空视觉列"
+    },
+    "imageGenModelSelector": {
+      "title": "图像生成模型选择器",
+      "description": "允许选择不同的图像生成模型"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "title": "Cloudflare超时时自动重新加载",
+      "description": "Cloudflare超时时自动重新加载页面"
+    },
+    "blockAnalyticEvents": {
+      "title": "阻止分析事件",
+      "description": "阻止Perplexity发送分析/跟踪事件。仅用于调试"
+    },
+    "homeCustomSlogan": {
+      "title": "自定义主页标语",
+      "description": "自定义主页上的标语"
+    }
+  }
+}

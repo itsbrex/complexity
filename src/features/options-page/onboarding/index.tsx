@@ -21,7 +21,7 @@ const steps = [
     component: (
       <div className="tw-my-8 tw-flex tw-flex-col tw-items-center tw-justify-center tw-space-y-8 md:tw-my-16 md:tw-space-y-12">
         <H1 className="tw-text-balance tw-text-center">
-          Make the most of your Perplexity AI
+          {t("onboarding:intro.title")}
         </H1>
         <div className="tw-space-y-8 tw-text-center md:tw-space-y-12">
           <div className="tw-relative">
@@ -31,13 +31,13 @@ const steps = [
           </div>
           <div className="tw-relative tw-z-10">
             <H2 className="tw-text-lg tw-text-muted-foreground md:tw-text-xl">
-              Let&apos;s get started with a quick setup
+              {t("onboarding:intro.subtitle")}
             </H2>
             <Link
-              to="/"
+              to="/settings"
               className="tw-cursor-pointer tw-text-center tw-text-base tw-leading-relaxed tw-text-muted-foreground tw-underline md:tw-text-lg"
             >
-              or import your existing settings
+              {t("onboarding:intro.importSettings")}
             </Link>
           </div>
         </div>
@@ -76,10 +76,10 @@ export default function Onboarding() {
                   </div>
                 </div>
                 <H3 className="tw-text-xl tw-font-semibold md:tw-text-2xl">
-                  Setup Complete! 🎉
+                  {t("onboarding:completion.title")}
                 </H3>
                 <P className="tw-text-center tw-leading-relaxed tw-text-muted-foreground">
-                  You&apos;re all set to start using the extension.
+                  {t("onboarding:completion.description")}
                 </P>
               </div>
             </StepsCompletedContent>
@@ -89,12 +89,18 @@ export default function Onboarding() {
                 {({ hasPrevStep, hasNextStep }) => (
                   <>
                     {hasPrevStep && (
-                      <StepsPrevTrigger>Previous</StepsPrevTrigger>
+                      <StepsPrevTrigger>
+                        {t("onboarding:navigation.previous")}
+                      </StepsPrevTrigger>
                     )}
-                    {hasNextStep && <StepsNextTrigger>Next</StepsNextTrigger>}
+                    {hasNextStep && (
+                      <StepsNextTrigger>
+                        {t("onboarding:navigation.next")}
+                      </StepsNextTrigger>
+                    )}
                     {!hasNextStep && (
                       <Button size="lg" onClick={() => navigate("/")}>
-                        Continue to Dashboard
+                        {t("onboarding:completion.continue")}
                       </Button>
                     )}
                   </>

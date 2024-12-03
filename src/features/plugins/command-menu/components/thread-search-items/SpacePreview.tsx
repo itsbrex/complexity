@@ -37,7 +37,11 @@ export function SpacePreview({ thread }: { thread: ThreadSearchApi }) {
   };
 
   return (
-    <Tooltip content="Click to search threads in this space">
+    <Tooltip
+      content={t(
+        "plugin-command-menu:commandMenu.threadSearch.spacePreview.tooltip",
+      )}
+    >
       <div
         className="tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-px-2 tw-py-1 tw-text-xs tw-outline-none focus:tw-outline-2 focus:tw-outline-primary focus-visible:tw-outline-2 focus-visible:tw-outline-primary"
         title={thread.collection.title}

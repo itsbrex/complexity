@@ -1,6 +1,36 @@
 {
-  "extension-description": "Complexity - Perplexity AI 수퍼차지드",
+  "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporter-message": "프로젝트를 유지하기 위해 <highlight>후원자</highlight>가 되어주세요!"
+    "supporterMessage": "프로젝트를 유지하기 위해 <emphasis>후원자</emphasis>가 되어주세요!",
+    "items": {
+      "notifications": "알림",
+      "plugins": "플러그인",
+      "themes": "테마",
+      "releaseNotes": "릴리스 노트",
+      "settings": "설정",
+      "help": "도움이 필요하신가요?"
+    },
+    "updateAnnouncer": {
+      "newVersion": "확장 프로그램의 새로운 버전이 있습니다!",
+      "updatePrompt": "개선 사항과 버그 수정을 받으려면 업데이트하세요.",
+      "autoUpdateInfo": "브라우저를 다시 시작하면 자동으로 업그레이드되거나, 확장 프로그램 관리 페이지에서 수동으로 강제 업데이트할 수 있습니다.",
+      "manualUpdateInfo": "또는 위의 방법이 모두 작동하지 않는 경우 <storeLink>여기</storeLink>를 클릭하여 스토어를 다시 방문하고 확장 프로그램을 수동으로 재설치하세요 (설정 내보내기를 잊지 마세요!)."
+    }
+  },
+  "action": {
+    "enable": "활성화",
+    "disable": "비활성화",
+    "cancel": "취소",
+    "confirm": "확인",
+    "delete": "삭제",
+    "create": "생성",
+    "back": "뒤로",
+    "search": "검색",
+    "options": "옵션",
+    "details": "상세"
+  },
+  "status": {
+    "loading": "로딩 중",
+    "noResults": "결과를 찾을 수 없습니다"
   }
 }

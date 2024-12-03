@@ -1,0 +1,9 @@
+{
+  "copyButton": {
+    "tooltip": "메시지 복사",
+    "options": {
+      "default": "기본값",
+      "withoutCitations": "인용 없음"
+    }
+  }
+} 

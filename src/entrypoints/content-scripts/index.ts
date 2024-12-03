@@ -12,17 +12,12 @@ import { setupNetworkInterceptListeners } from "@/features/plugins/_core/network
 import { setupSpaRouterDispatchListeners } from "@/features/plugins/_core/spa-router/listeners";
 import { setupThemeLoader } from "@/features/plugins/themes/theme-loader";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { contentScriptGuard } from "@/utils/content-scripts-guard";
 import { initializeDayjsLocale } from "@/utils/dayjs";
 import { initializeI18next } from "@/utils/i18next";
-import {
-  checkForExistingExtensionInstance,
-  ignoreInvalidPages,
-} from "@/utils/ignore-pages";
 
 (async function () {
-  ignoreInvalidPages();
-  checkForExistingExtensionInstance();
-
+  await contentScriptGuard();
   await initCoreModules();
   loadPlugins();
 })();

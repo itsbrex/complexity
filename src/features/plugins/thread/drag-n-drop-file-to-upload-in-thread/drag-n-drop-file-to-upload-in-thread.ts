@@ -53,7 +53,7 @@ export async function setupDragNDropFileToUploadInThread(
   $overlay = $(`
     <div id="${OBSERVER_ID}" class="cplx-file-upload-overlay">
       <div class="cplx-file-upload-overlay__content">
-        <div>Drop your files here</div>
+        <div>${t("plugin-drag-n-drop-file-to-upload-in-thread:dropZone.message")}</div>
       </div>
     </div>
   `).appendTo("body");

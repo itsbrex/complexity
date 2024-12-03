@@ -1,0 +1,19 @@
+{
+  "headerButtons": {
+    "wrap": {
+      "wrap": "折り返す",
+      "unwrap": "折り返しを解除"
+    },
+    "expand": {
+      "expand": "展開",
+      "collapse": "折りたたむ"
+    },
+    "mermaid": {
+      "preview": "プレビュー",
+      "code": "コード",
+      "openEditor": "Mermaid Live Editorで開く",
+      "download": "SVGをダウンロード",
+      "downloadError": "❌ SVGが見つかりません"
+    }
+  }
+} 

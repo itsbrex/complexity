@@ -8,9 +8,13 @@ export function EmptyState({ searchValue }: EmptyStateProps) {
   return (
     <CommandEmpty>
       {searchValue.length ? (
-        "No threads found."
+        t("plugin-command-menu:commandMenu.threadSearch.empty.withSearch")
       ) : (
-        <span className="tw-text-muted-foreground">Start typing to search</span>
+        <span className="tw-text-muted-foreground">
+          {t(
+            "plugin-command-menu:commandMenu.threadSearch.empty.withoutSearch",
+          )}
+        </span>
       )}
     </CommandEmpty>
   );

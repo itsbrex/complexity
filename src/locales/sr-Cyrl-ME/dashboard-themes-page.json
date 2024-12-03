@@ -1,0 +1,132 @@
+{
+  "themesPage": {
+    "header": {
+      "title": "Прилагођене теме",
+      "description": "Прилагодите свој Perplexity интерфејс са изабраним темама",
+      "createButton": "Креирај нову тему"
+    },
+    "toasts": {
+      "save": {
+        "success": {
+          "title": "✅ Тема сачувана",
+          "description": "Ваша тема је успјешно сачувана"
+        },
+        "error": {
+          "title": "❌ Неуспјешно чување теме"
+        }
+      },
+      "delete": {
+        "success": {
+          "title": "✅ Тема обрисана",
+          "description": "Ваша тема је успјешно обрисана"
+        },
+        "error": {
+          "title": "❌ Неуспјешно брисање теме"
+        }
+      },
+      "create": {
+        "success": {
+          "title": "✅ Тема креирана",
+          "description": "Ваша тема је успјешно сачувана"
+        },
+        "error": {
+          "title": "❌ Неуспјешно креирање теме"
+        }
+      }
+    },
+    "navigation": {
+      "backToThemes": "Назад на теме"
+    },
+    "editPage": {
+      "title": "Уреди тему",
+      "saveButton": "Сачувај промјене"
+    },
+    "createPage": {
+      "title": "Креирај прилагођену тему",
+      "description": "Креирајте прилагођену тему користећи CSS и унапријед подешене опције. Оставите празно за подразумијеване вриједности.",
+      "createButton": "Креирај тему"
+    },
+    "deleteDialog": {
+      "title": "Обриши тему",
+      "description": "Да ли сте сигурни да желите да обришете ову тему? Ова радња се не може поништити.",
+      "cancelButton": "Откажи",
+      "deleteButton": "Обриши"
+    },
+    "sections": {
+      "noThemes": "Нису пронађене теме",
+      "local": {
+        "title": "Локалне теме",
+        "tab": "Локалне теме"
+      },
+      "builtIn": {
+        "title": "Уграђене теме",
+        "tab": "Уграђене теме"
+      },
+      "community": {
+        "title": "Теме заједнице",
+        "tab": "Теме заједнице",
+        "comingSoon": "Ускоро"
+      }
+    },
+    "form": {
+      "title": {
+        "label": "Назив",
+        "placeholder": "Унесите назив теме"
+      },
+      "fonts": {
+        "label": "Фамилије фонтова",
+        "ui": {
+          "placeholder": "интерфејс (нпр: Inter)"
+        },
+        "mono": {
+          "placeholder": "monospace (нпр: JetBrains Mono, Fira Code)"
+        },
+        "description": "Провјерите да ли су наведени фонтови инсталирани на вашем систему или их увезите у CSS секцији испод."
+      },
+      "accentColor": {
+        "label": "Акцентна боја (утиче само на тамни режим)",
+        "description": "Complexity ће генерисати комплементарне нијансе на основу задате боје"
+      },
+      "enhanceTypography": {
+        "label": "Побољшај типографију (у разговорима)",
+        "description": "Истиче наслове, подебљани текст, побољшава читљивост inline кода и уклања лигатуре фонтова."
+      },
+      "css": {
+        "label": "Напредно: CSS",
+        "placeholder": "Унесите прилагођена CSS правила",
+        "description": "Додајте прилагођена CSS правила за додатно прилагођавање ваше теме"
+      }
+    },
+    "themeCard": {
+      "actions": {
+        "enable": "Омогући",
+        "disable": "Онемогући",
+        "edit": "Уреди"
+      },
+      "badges": {
+        "colorScheme": {
+          "light": "Свијетла",
+          "dark": "Тамна"
+        },
+        "compatibility": {
+          "desktop": "Рачунар",
+          "mobile": "Мобилни"
+        }
+      }
+    }
+  },
+  "themeRegistry": {
+    "complexityBlue": {
+      "description": "Званична тема са карактеристичном плавом бојом"
+    },
+    "perplexityDefault": {
+      "description": "Побољшај подразумијевану тему"
+    },
+    "shyMoment": {
+      "description": "Званична тема са љубичастим акцентом"
+    },
+    "sourLemon": {
+      "description": "Званична тема са жућкастим акцентом"
+    }
+  }
+} 

@@ -1,0 +1,68 @@
+{
+  "commandMenu": {
+    "input": {
+      "placeholder": "Geben Sie einen Befehl ein oder suchen Sie..."
+    },
+    "noResults": "Keine Ergebnisse gefunden für <emphasis>{{code}}</emphasis>.",
+    "groups": {
+      "search": "Suchen",
+      "quickNavigations": "Schnellnavigation",
+      "colorScheme": "Farbschema ändern"
+    },
+    "filters": {
+      "threads": {
+        "label": "Threads",
+        "searchPlaceholder": "Threads durchsuchen..."
+      },
+      "spaces": {
+        "label": "Spaces",
+        "searchPlaceholder": "Spaces durchsuchen..."
+      }
+    },
+    "navigation": {
+      "home": "Startseite",
+      "discover": "Entdecken",
+      "library": "Bibliothek",
+      "userSettings": "Benutzereinstellungen",
+      "labs": "Labor"
+    },
+    "colorSchemes": {
+      "dark": "Dunkel",
+      "light": "Hell",
+      "system": "System"
+    },
+    "threadSearch": {
+      "error": "Threads konnten nicht geladen werden. Bitte versuchen Sie es später erneut.",
+      "loading": "Threads werden geladen",
+      "empty": {
+        "withSearch": "Keine Threads gefunden.",
+        "withoutSearch": "Beginnen Sie mit der Eingabe, um zu suchen"
+      },
+      "heading": {
+        "withSearch": "{{count}} neueste(r) Thread(s) mit dem Suchbegriff",
+        "withoutSearch": "Aktuelle Threads"
+      },
+      "spacePreview": {
+        "tooltip": "Klicken Sie hier, um Threads in diesem Space zu suchen"
+      }
+    },
+    "spaceSearch": {
+      "error": "Spaces konnten nicht geladen werden. Bitte versuchen Sie es später erneut.",
+      "loading": "Spaces werden geladen",
+      "empty": "Keine Spaces gefunden.",
+      "spaceThreads": {
+        "loading": "Threads für \"{{title}}\" werden geladen",
+        "error": "Threads konnten nicht geladen werden. Bitte versuchen Sie es später erneut.",
+        "empty": "Keine Threads in diesem Space gefunden.",
+        "heading": "Complexity kann nur in den 50 neuesten Threads suchen."
+      },
+      "spaceItem": {
+        "details": {
+          "description": "Beschreibung:",
+          "instructions": "Anweisungen:"
+        },
+        "searchHint": "um Threads in diesem Space zu suchen"
+      }
+    }
+  }
+} 

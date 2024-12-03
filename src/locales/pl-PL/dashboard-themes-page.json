@@ -1,0 +1,132 @@
+{
+  "themesPage": {
+    "header": {
+      "title": "Własne motywy",
+      "description": "Dostosuj swój interfejs Perplexity za pomocą wybranych motywów",
+      "createButton": "Utwórz nowy motyw"
+    },
+    "toasts": {
+      "save": {
+        "success": {
+          "title": "✅ Motyw zapisany",
+          "description": "Twój motyw został pomyślnie zapisany"
+        },
+        "error": {
+          "title": "❌ Nie udało się zapisać motywu"
+        }
+      },
+      "delete": {
+        "success": {
+          "title": "✅ Motyw usunięty",
+          "description": "Twój motyw został pomyślnie usunięty"
+        },
+        "error": {
+          "title": "❌ Nie udało się usunąć motywu"
+        }
+      },
+      "create": {
+        "success": {
+          "title": "✅ Motyw utworzony",
+          "description": "Twój motyw został pomyślnie zapisany"
+        },
+        "error": {
+          "title": "❌ Nie udało się utworzyć motywu"
+        }
+      }
+    },
+    "navigation": {
+      "backToThemes": "Powrót do motywów"
+    },
+    "editPage": {
+      "title": "Edytuj motyw",
+      "saveButton": "Zapisz zmiany"
+    },
+    "createPage": {
+      "title": "Utwórz własny motyw",
+      "description": "Utwórz własny motyw używając CSS i predefiniowanych opcji. Pozostaw puste dla wartości domyślnych.",
+      "createButton": "Utwórz motyw"
+    },
+    "deleteDialog": {
+      "title": "Usuń motyw",
+      "description": "Czy na pewno chcesz usunąć ten motyw? Tej akcji nie można cofnąć.",
+      "cancelButton": "Anuluj",
+      "deleteButton": "Usuń"
+    },
+    "sections": {
+      "noThemes": "Nie znaleziono motywów",
+      "local": {
+        "title": "Motywy lokalne",
+        "tab": "Motywy lokalne"
+      },
+      "builtIn": {
+        "title": "Motywy wbudowane",
+        "tab": "Motywy wbudowane"
+      },
+      "community": {
+        "title": "Motywy społeczności",
+        "tab": "Motywy społeczności",
+        "comingSoon": "Wkrótce"
+      }
+    },
+    "form": {
+      "title": {
+        "label": "Nazwa",
+        "placeholder": "Wprowadź nazwę motywu"
+      },
+      "fonts": {
+        "label": "Rodziny czcionek",
+        "ui": {
+          "placeholder": "interfejs (np: Inter)"
+        },
+        "mono": {
+          "placeholder": "monospace (np: JetBrains Mono, Fira Code)"
+        },
+        "description": "Upewnij się, że wymienione czcionki są zainstalowane w twoim systemie lub zaimportuj je w sekcji CSS poniżej."
+      },
+      "accentColor": {
+        "label": "Kolor akcentu (wpływa tylko na tryb ciemny)",
+        "description": "Complexity wygeneruje odcienie uzupełniające na podstawie podanego koloru"
+      },
+      "enhanceTypography": {
+        "label": "Ulepsz typografię (w wątkach)",
+        "description": "Wyróżnia nagłówki, pogrubiony tekst, poprawia czytelność kodu inline i usuwa ligatury czcionek."
+      },
+      "css": {
+        "label": "Zaawansowane: CSS",
+        "placeholder": "Wprowadź własne reguły CSS",
+        "description": "Dodaj własne reguły CSS, aby dodatkowo dostosować swój motyw"
+      }
+    },
+    "themeCard": {
+      "actions": {
+        "enable": "Włącz",
+        "disable": "Wyłącz",
+        "edit": "Edytuj"
+      },
+      "badges": {
+        "colorScheme": {
+          "light": "Jasny",
+          "dark": "Ciemny"
+        },
+        "compatibility": {
+          "desktop": "Komputer",
+          "mobile": "Telefon"
+        }
+      }
+    }
+  },
+  "themeRegistry": {
+    "complexityBlue": {
+      "description": "Oficjalny motyw z charakterystycznym niebieskim kolorem"
+    },
+    "perplexityDefault": {
+      "description": "Ulepsz domyślny motyw"
+    },
+    "shyMoment": {
+      "description": "Oficjalny motyw z fioletowym akcentem"
+    },
+    "sourLemon": {
+      "description": "Oficjalny motyw z żółtawym akcentem"
+    }
+  }
+} 

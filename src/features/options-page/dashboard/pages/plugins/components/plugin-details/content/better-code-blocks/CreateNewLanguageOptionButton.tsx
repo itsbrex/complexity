@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
-import { BetterCodeBlockFineGrainedOptions } from "@/data/better-code-blocks/better-code-blocks-options";
+import { BetterCodeBlockFineGrainedOptions } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
 import { getBetterCodeBlocksOptionsService } from "@/services/indexed-db/better-code-blocks/better-code-blocks";
 import { betterCodeBlocksFineGrainedOptionsQueries } from "@/services/indexed-db/better-code-blocks/query-keys";
 import { queryClient } from "@/utils/ts-query-client";
@@ -29,7 +29,9 @@ export default function CreateNewLanguageOptionButton() {
     mutationFn: async ({ language }: { language: string }) => {
       if (!language)
         return toast({
-          title: "No language/block name provided",
+          title: t(
+            "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.noLanguageProvided",
+          ),
         });
 
       const options: BetterCodeBlockFineGrainedOptions = {
@@ -64,7 +66,9 @@ export default function CreateNewLanguageOptionButton() {
     },
     onError: (error) => {
       toast({
-        title: "❌ Failed to create new language option",
+        title: t(
+          "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.failedToCreate",
+        ),
         description: error.message,
       });
     },
@@ -88,7 +92,11 @@ export default function CreateNewLanguageOptionButton() {
       open={open}
       onOpenChange={({ open }) => setOpen(open)}
     >
-      <Tooltip content="Add new rule">
+      <Tooltip
+        content={t(
+          "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.addNewRule",
+        )}
+      >
         <DialogTrigger asChild>
           <Button variant="ghost" size="sm">
             <LuPlus />
@@ -96,11 +104,17 @@ export default function CreateNewLanguageOptionButton() {
         </DialogTrigger>
       </Tooltip>
       <DialogContent portal={false}>
-        <DialogHeader>Fine-tune specific block</DialogHeader>
+        <DialogHeader>
+          {t(
+            "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.fineTuneBlock",
+          )}
+        </DialogHeader>
         <Input
           value={language}
           className="tw-font-mono"
-          placeholder="Language/Block name"
+          placeholder={t(
+            "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.languageBlockName",
+          )}
           onChange={({ target }) => setLanguage(target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
@@ -111,10 +125,10 @@ export default function CreateNewLanguageOptionButton() {
         />
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline">{t("action.cancel")}</Button>
           </DialogClose>
           <Button disabled={!language} onClick={handleSubmit}>
-            Create
+            {t("action.create")}
           </Button>
         </DialogFooter>
       </DialogContent>

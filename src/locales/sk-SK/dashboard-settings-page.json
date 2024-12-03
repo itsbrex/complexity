@@ -1,0 +1,78 @@
+{
+  "settingsPage": {
+    "sections": {
+      "general": "Všeobecné",
+      "data": "Dáta",
+      "troubleshooting": "Riešenie problémov"
+    },
+    "items": {
+      "permissions": {
+        "title": "Oprávnenia rozšírenia",
+        "action": "Spravovať oprávnenia",
+        "dialog": {
+          "title": "Spravovať oprávnenia",
+          "description": "Udeľte alebo odoberte oprávnenia rozšírenia. Prosím, berte na vedomie, že niektoré funkcie môžu byť bez potrebných oprávnení deaktivované."
+        }
+      },
+      "energySaving": {
+        "title": "Režim úspory energie",
+        "description": "Znížiť citlivosť rozšírenia na zmeny na stránke",
+        "note": "(Existujúce karty vyžadujú obnovenie pre aplikáciu)"
+      },
+      "onboarding": {
+        "title": "Úvodné zoznámenie",
+        "description": "Prejsť znova úvodným zoznámením",
+        "action": "🚀 Úvodné zoznámenie"
+      },
+      "import": {
+        "title": "Import",
+        "description": "Načítať uložené dáta rozšírenia",
+        "dialog": {
+          "title": "Importovať dáta",
+          "description": "Aktuálne nastavenia budú prepísané alebo zlúčené v závislosti od verzie, z ktorej boli dáta exportované",
+          "placeholder": "Vložte svoje dáta sem...",
+          "submit": "Odoslať",
+          "pasteButton": "Vložiť ako text",
+          "fileButton": "Vybrať súbor"
+        },
+        "toast": {
+          "success": "✅ Dáta importované",
+          "invalidData": "❌ Neplatné dáta",
+          "failedToRead": "❌ Nepodarilo sa prečítať súbor"
+        }
+      },
+      "export": {
+        "title": "Export",
+        "description": "Stiahnuť dáta rozšírenia ako súbor",
+        "buttons": {
+          "copy": "Kopírovať",
+          "copied": "Skopírované",
+          "exporting": "Exportovanie",
+          "saveFile": "Uložiť ako súbor"
+        }
+      },
+      "reset": {
+        "title": "Resetovať rozšírenie",
+        "dialog": {
+          "title": "Vymazať všetky dáta",
+          "description": "Naozaj chcete vymazať všetky dáta rozšírenia? Túto akciu nie je možné vrátiť späť a vymaže nasledujúce dáta:",
+          "items": {
+            "settings": "Nastavenia rozšírenia",
+            "customData": "Všetky vlastné témy, pravidlá blokov kódu atď.",
+            "otherData": "A akékoľvek ďalšie dáta uložené rozšírením"
+          },
+          "buttons": {
+            "confirm": "Áno, vymazať všetky dáta",
+            "clearButton": "Vymazať všetky dáta"
+          }
+        }
+      }
+    }
+  },
+  "permissions": {
+    "cookies": {
+      "title": "Cookies",
+      "description": "Povoliť rozšíreniu synchronizáciu nastavení s vašimi preferenciami Perplexity.ai. Taktiež sa používa na identifikáciu vášho stavu Podporovateľa."
+    }
+  }
+} 

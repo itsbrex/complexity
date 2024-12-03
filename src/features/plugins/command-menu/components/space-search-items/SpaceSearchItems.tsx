@@ -28,11 +28,11 @@ export default function SpaceSearchItems() {
       })}
     >
       {!isLoadingSpaces && !isErrorSpaces && (
-        <CommandEmpty>No spaces found.</CommandEmpty>
+        <CommandEmpty>{t("plugin-command-menu:commandMenu.spaceSearch.empty")}</CommandEmpty>
       )}
       {isErrorSpaces ? (
         <CommandEmpty>
-          Failed to fetch spaces. Please try again later.
+          {t("plugin-command-menu:commandMenu.spaceSearch.error")}
         </CommandEmpty>
       ) : (
         <CommandGroup>

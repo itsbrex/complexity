@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
 import { toast } from "@/components/ui/use-toast";
-import { ThemeFormValues } from "@/data/themes/theme-form.types";
+import { ThemeFormValues } from "@/data/dashboard/themes/theme-form.types";
 import { useBaseThemeForm } from "@/features/options-page/dashboard/pages/themes/hooks/useBaseThemeForm";
 import { getLocalThemesService } from "@/services/indexed-db/themes/themes";
 
@@ -34,13 +34,17 @@ export function useThemeForm() {
     onSuccess: () => {
       navigate("..");
       toast({
-        title: "✅ Theme created",
-        description: "Your theme has been saved successfully",
+        title: t(
+          "dashboard-themes-page:themesPage.toasts.create.success.title",
+        ),
+        description: t(
+          "dashboard-themes-page:themesPage.toasts.create.success.description",
+        ),
       });
     },
     onError: (error: Error) => {
       toast({
-        title: "❌ Failed to create theme",
+        title: t("dashboard-themes-page:themesPage.toasts.create.error.title"),
         description: error.message,
       });
     },

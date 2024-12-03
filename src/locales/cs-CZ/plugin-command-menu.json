@@ -1,0 +1,68 @@
+{
+  "commandMenu": {
+    "input": {
+      "placeholder": "Zadejte příkaz nebo hledejte..."
+    },
+    "noResults": "Pro <emphasis>{{code}}</emphasis> nebyly nalezeny žádné výsledky.",
+    "groups": {
+      "search": "Hledat",
+      "quickNavigations": "Rychlá navigace",
+      "colorScheme": "Změnit barevné schéma"
+    },
+    "filters": {
+      "threads": {
+        "label": "Vlákna",
+        "searchPlaceholder": "Hledat vlákna..."
+      },
+      "spaces": {
+        "label": "Prostory",
+        "searchPlaceholder": "Hledat prostory..."
+      }
+    },
+    "navigation": {
+      "home": "Domů",
+      "discover": "Objevit",
+      "library": "Knihovna",
+      "userSettings": "Nastavení uživatele",
+      "labs": "Laboratoře"
+    },
+    "colorSchemes": {
+      "dark": "Tmavý",
+      "light": "Světlý",
+      "system": "Systémový"
+    },
+    "threadSearch": {
+      "error": "Nepodařilo se načíst vlákna. Zkuste to prosím později.",
+      "loading": "Načítání vláken",
+      "empty": {
+        "withSearch": "Nebyla nalezena žádná vlákna.",
+        "withoutSearch": "Začněte psát pro vyhledávání"
+      },
+      "heading": {
+        "withSearch": "{{count}} nejnovějších vláken s hledaným výrazem",
+        "withoutSearch": "Nedávná vlákna"
+      },
+      "spacePreview": {
+        "tooltip": "Kliknutím vyhledáte vlákna v tomto prostoru"
+      }
+    },
+    "spaceSearch": {
+      "error": "Nepodařilo se načíst prostory. Zkuste to prosím později.",
+      "loading": "Načítání prostorů",
+      "empty": "Nebyly nalezeny žádné prostory.",
+      "spaceThreads": {
+        "loading": "Načítání vláken pro \"{{title}}\"",
+        "error": "Nepodařilo se načíst vlákna. Zkuste to prosím později.",
+        "empty": "V tomto prostoru nebyla nalezena žádná vlákna.",
+        "heading": "Complexity může vyhledávat pouze v 50 nejnovějších vláknech."
+      },
+      "spaceItem": {
+        "details": {
+          "description": "Popis:",
+          "instructions": "Pokyny:"
+        },
+        "searchHint": "pro vyhledávání vláken v tomto Prostoru"
+      }
+    }
+  }
+} 

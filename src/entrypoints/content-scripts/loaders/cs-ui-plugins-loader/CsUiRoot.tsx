@@ -10,6 +10,9 @@ import { Toaster } from "@/components/Toaster";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import { useInsertCss } from "@/hooks/useInsertCss";
 
+const HomepageUpdateAnnouncer = lazy(
+  () => import("@/components/HomepageUpdateAnnouncer"),
+);
 const QueryBoxWrapper = lazy(
   () => import("@/features/plugins/query-box/Wrapper"),
 );
@@ -49,6 +52,9 @@ export default function CsUiRoot() {
 
   return (
     <>
+      <CsUiPluginsGuard location={["home"]}>
+        <HomepageUpdateAnnouncer />
+      </CsUiPluginsGuard>
       <CsUiPluginsGuard
         dependentPluginIds={[
           "queryBox:languageModelSelector",

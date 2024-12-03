@@ -1,0 +1,10 @@
+{
+  "dialog": {
+    "header": "Relácia vypršala",
+    "description": "Vaša relácia vypršala (pravdepodobne kvôli Cloudflare).",
+    "buttons": {
+      "reload": "Obnoviť",
+      "dismiss": "Zavrieť"
+    }
+  }
+} 

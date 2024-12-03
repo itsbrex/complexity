@@ -1,0 +1,78 @@
+{
+  "settingsPage": {
+    "sections": {
+      "general": "General",
+      "data": "Data",
+      "troubleshooting": "Troubleshooting"
+    },
+    "items": {
+      "permissions": {
+        "title": "Extension Permissions",
+        "action": "Manage Permissions",
+        "dialog": {
+          "title": "Manage Permissions",
+          "description": "Grant or revoke extension permissions. Please note that some features may be disabled without the necessary permissions."
+        }
+      },
+      "energySaving": {
+        "title": "Energy Saving Mode",
+        "description": "Reduce the extension sensitivity to changes on the page",
+        "note": "(Existing tabs require a refresh to apply)"
+      },
+      "onboarding": {
+        "title": "Onboarding",
+        "description": "Go through the onboarding experience again",
+        "action": "🚀 Onboarding"
+      },
+      "import": {
+        "title": "Import",
+        "description": "Load saved extension's data",
+        "dialog": {
+          "title": "Import Data",
+          "description": "Current settings will be overridden or merged depending on the version of which the data is exported from",
+          "placeholder": "Paste your data here...",
+          "submit": "Submit",
+          "pasteButton": "Paste as text",
+          "fileButton": "Choose file"
+        },
+        "toast": {
+          "success": "✅ Data imported",
+          "invalidData": "❌ Invalid data",
+          "failedToRead": "❌ Failed to read file"
+        }
+      },
+      "export": {
+        "title": "Export",
+        "description": "Download extension's data as a file",
+        "buttons": {
+          "copy": "Copy",
+          "copied": "Copied",
+          "exporting": "Exporting",
+          "saveFile": "Save as file"
+        }
+      },
+      "reset": {
+        "title": "Reset the extension",
+        "dialog": {
+          "title": "Clear All Data",
+          "description": "Are you sure you want to clear all extension data? This action cannot be undone and will wipe the following data:",
+          "items": {
+            "settings": "Extension settings",
+            "customData": "All custom themes, code blocks rules, etc.",
+            "otherData": "And any other data stored by the extension"
+          },
+          "buttons": {
+            "confirm": "Yes, Clear All Data",
+            "clearButton": "Clear All Data"
+          }
+        }
+      }
+    }
+  },
+  "permissions": {
+    "cookies": {
+      "title": "Cookies",
+      "description": "Allow the extension to sync settings with your Perplexity.ai preferences. Also used to identify your Supporter status."
+    }
+  }
+}

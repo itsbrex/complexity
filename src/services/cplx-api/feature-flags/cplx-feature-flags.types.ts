@@ -10,7 +10,9 @@ export function isUserGroup(value: string): value is UserGroup {
   return userGroups.includes(value as UserGroup);
 }
 
-const PluginIdArraySchema = z.array(z.string() as z.ZodType<PluginId>);
+const PluginIdArraySchema = z.array(
+  z.string() as z.ZodType<PluginId | (string & {})>,
+);
 
 export const CplxFeatureFlagsSchema = z.record(
   z.enum(userGroups),

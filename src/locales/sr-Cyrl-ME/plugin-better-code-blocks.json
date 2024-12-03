@@ -1,0 +1,19 @@
+{
+  "headerButtons": {
+    "wrap": {
+      "wrap": "Преломи редове",
+      "unwrap": "Уклони преломе"
+    },
+    "expand": {
+      "expand": "Прошири",
+      "collapse": "Скупи"
+    },
+    "mermaid": {
+      "preview": "Преглед",
+      "code": "Код",
+      "openEditor": "Отвори у Mermaid Live Editor-у",
+      "download": "Преузми SVG",
+      "downloadError": "❌ SVG није пронађен"
+    }
+  }
+} 

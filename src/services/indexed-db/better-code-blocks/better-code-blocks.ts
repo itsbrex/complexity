@@ -3,7 +3,7 @@ import { produce } from "immer";
 import merge from "lodash/merge";
 import { DeepPartial } from "react-hook-form";
 
-import { BetterCodeBlockFineGrainedOptions } from "@/data/better-code-blocks/better-code-blocks-options";
+import { BetterCodeBlockFineGrainedOptions } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
 import { betterCodeBlocksFineGrainedOptionsQueries } from "@/services/indexed-db/better-code-blocks/query-keys";
 import { db } from "@/services/indexed-db/indexed-db";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";

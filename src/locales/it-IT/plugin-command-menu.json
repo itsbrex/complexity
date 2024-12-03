@@ -1,0 +1,68 @@
+{
+  "commandMenu": {
+    "input": {
+      "placeholder": "Digita un comando o cerca..."
+    },
+    "noResults": "Nessun risultato trovato per <emphasis>{{code}}</emphasis>.",
+    "groups": {
+      "search": "Cerca",
+      "quickNavigations": "Navigazione rapida",
+      "colorScheme": "Cambia schema colori"
+    },
+    "filters": {
+      "threads": {
+        "label": "Discussioni",
+        "searchPlaceholder": "Cerca discussioni..."
+      },
+      "spaces": {
+        "label": "Spazi",
+        "searchPlaceholder": "Cerca spazi..."
+      }
+    },
+    "navigation": {
+      "home": "Home",
+      "discover": "Scopri",
+      "library": "Libreria",
+      "userSettings": "Impostazioni utente",
+      "labs": "Laboratori"
+    },
+    "colorSchemes": {
+      "dark": "Scuro",
+      "light": "Chiaro",
+      "system": "Sistema"
+    },
+    "threadSearch": {
+      "error": "Impossibile caricare le discussioni. Riprova più tardi.",
+      "loading": "Caricamento discussioni",
+      "empty": {
+        "withSearch": "Nessuna discussione trovata.",
+        "withoutSearch": "Inizia a digitare per cercare"
+      },
+      "heading": {
+        "withSearch": "{{count}} ultime discussioni con il termine di ricerca",
+        "withoutSearch": "Discussioni recenti"
+      },
+      "spacePreview": {
+        "tooltip": "Clicca per cercare discussioni in questo spazio"
+      }
+    },
+    "spaceSearch": {
+      "error": "Impossibile caricare gli spazi. Riprova più tardi.",
+      "loading": "Caricamento spazi",
+      "empty": "Nessuno spazio trovato.",
+      "spaceThreads": {
+        "loading": "Caricamento discussioni per \"{{title}}\"",
+        "error": "Impossibile caricare le discussioni. Riprova più tardi.",
+        "empty": "Nessuna discussione trovata in questo spazio.",
+        "heading": "Complexity può cercare solo nelle 50 discussioni più recenti."
+      },
+      "spaceItem": {
+        "details": {
+          "description": "Descrizione:",
+          "instructions": "Istruzioni:"
+        },
+        "searchHint": "per cercare discussioni in questo Spazio"
+      }
+    }
+  }
+} 

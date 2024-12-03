@@ -1,0 +1,132 @@
+{
+  "themesPage": {
+    "header": {
+      "title": "Vlastní motivy",
+      "description": "Přizpůsobte si své rozhraní Perplexity pomocí vybraných motivů",
+      "createButton": "Vytvořit nový motiv"
+    },
+    "toasts": {
+      "save": {
+        "success": {
+          "title": "✅ Motiv uložen",
+          "description": "Váš motiv byl úspěšně uložen"
+        },
+        "error": {
+          "title": "❌ Nepodařilo se uložit motiv"
+        }
+      },
+      "delete": {
+        "success": {
+          "title": "✅ Motiv smazán",
+          "description": "Váš motiv byl úspěšně smazán"
+        },
+        "error": {
+          "title": "❌ Nepodařilo se smazat motiv"
+        }
+      },
+      "create": {
+        "success": {
+          "title": "✅ Motiv vytvořen",
+          "description": "Váš motiv byl úspěšně uložen"
+        },
+        "error": {
+          "title": "❌ Nepodařilo se vytvořit motiv"
+        }
+      }
+    },
+    "navigation": {
+      "backToThemes": "Zpět na motivy"
+    },
+    "editPage": {
+      "title": "Úprava motivu",
+      "saveButton": "Uložit změny"
+    },
+    "createPage": {
+      "title": "Vytvořit vlastní motiv",
+      "description": "Vytvořte vlastní motiv pomocí CSS a přednastavených možností. Pro použití výchozích hodnot ponechte prázdné.",
+      "createButton": "Vytvořit motiv"
+    },
+    "deleteDialog": {
+      "title": "Smazat motiv",
+      "description": "Opravdu chcete tento motiv smazat? Tuto akci nelze vrátit zpět.",
+      "cancelButton": "Zrušit",
+      "deleteButton": "Smazat"
+    },
+    "sections": {
+      "noThemes": "Nebyly nalezeny žádné motivy",
+      "local": {
+        "title": "Místní motivy",
+        "tab": "Místní motivy"
+      },
+      "builtIn": {
+        "title": "Vestavěné motivy",
+        "tab": "Vestavěné motivy"
+      },
+      "community": {
+        "title": "Komunitní motivy",
+        "tab": "Komunitní motivy",
+        "comingSoon": "Již brzy"
+      }
+    },
+    "form": {
+      "title": {
+        "label": "Název",
+        "placeholder": "Zadejte název motivu"
+      },
+      "fonts": {
+        "label": "Rodiny písem",
+        "ui": {
+          "placeholder": "rozhraní (např: Inter)"
+        },
+        "mono": {
+          "placeholder": "neproporcionální (např: JetBrains Mono, Fira Code)"
+        },
+        "description": "Ujistěte se, že zadaná písma jsou nainstalována ve vašem systému, nebo je importujte v sekci CSS níže."
+      },
+      "accentColor": {
+        "label": "Hlavní barva (ovlivňuje pouze tmavý režim)",
+        "description": "Complexity vygeneruje doplňkové odstíny na základě zadané barvy"
+      },
+      "enhanceTypography": {
+        "label": "Vylepšit typografii (ve vláknech)",
+        "description": "Zvýrazňuje nadpisy, tučný text, zlepšuje čitelnost inline kódu a odstraňuje ligatury písma."
+      },
+      "css": {
+        "label": "Pokročilé: CSS",
+        "placeholder": "Zadejte vlastní CSS pravidla",
+        "description": "Přidejte vlastní CSS pravidla pro další přizpůsobení vašeho motivu"
+      }
+    },
+    "themeCard": {
+      "actions": {
+        "enable": "Povolit",
+        "disable": "Zakázat",
+        "edit": "Upravit"
+      },
+      "badges": {
+        "colorScheme": {
+          "light": "Světlý",
+          "dark": "Tmavý"
+        },
+        "compatibility": {
+          "desktop": "Počítač",
+          "mobile": "Mobil"
+        }
+      }
+    }
+  },
+  "themeRegistry": {
+    "complexityBlue": {
+      "description": "Oficiální motiv s charakteristickou modrou barvou"
+    },
+    "perplexityDefault": {
+      "description": "Vylepšit výchozí motiv"
+    },
+    "shyMoment": {
+      "description": "Oficiální motiv s fialovým akcentem"
+    },
+    "sourLemon": {
+      "description": "Oficiální motiv se žlutavým akcentem"
+    }
+  }
+} 

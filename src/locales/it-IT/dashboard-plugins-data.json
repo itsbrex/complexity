@@ -1,0 +1,98 @@
+{
+  "pluginTags": {
+    "ui": {
+      "label": "Aspetto",
+      "description": "Plugin relativi all'interfaccia utente"
+    },
+    "ux": {
+      "label": "Facilità d'uso",
+      "description": "Plugin relativi all'esperienza utente"
+    },
+    "desktopOnly": {
+      "label": "Solo Desktop",
+      "description": "Utilizzabile solo su desktop/larghezza schermo > 768px"
+    },
+    "privacy": {
+      "label": "Privacy",
+      "description": "Plugin relativi alla privacy"
+    },
+    "pplxPro": {
+      "label": "Perplexity Pro",
+      "description": "Richiede un abbonamento attivo a Perplexity Pro"
+    },
+    "experimental": {
+      "label": "Sperimentale",
+      "description": "Plugin sperimentali. Soggetti a modifiche o rimozione senza preavviso."
+    },
+    "beta": {
+      "label": "Beta",
+      "description": "Plugin in versione beta"
+    },
+    "forFun": {
+      "label": "Per divertimento",
+      "description": "Semplicemente per divertirsi!"
+    }
+  },
+  "pluginsMetadata": {
+    "queryboxLanguageModelSelector": {
+      "title": "Selettore modello linguistico",
+      "description": "Consente la selezione di diversi modelli linguistici"
+    },
+    "queryboxNoFileCreationOnPaste": {
+      "title": "Impedisci creazione file",
+      "description": "Impedisce la creazione automatica di file durante l'incollaggio di testo (molto) lungo nella casella di ricerca"
+    },
+    "commandMenu": {
+      "title": "Menu comandi",
+      "description": "Naviga rapidamente e richiama azioni"
+    },
+    "threadToc": {
+      "title": "Indice della Discussione",
+      "description": "Naviga rapidamente tra i messaggi in una discussione. Appare solo quando ci sono più di 2 messaggi."
+    },
+    "threadBetterMessageToolbars": {
+      "title": "Barre degli strumenti dei messaggi migliorate",
+      "description": "Migliora le barre degli strumenti dei messaggi (nei thread)"
+    },
+    "threadBetterCodeBlocks": {
+      "title": "Blocchi di codice migliorati",
+      "description": "Migliora i blocchi di codice (nei thread)"
+    },
+    "threadBetterCodeBlocksPreviewMermaid": {
+      "title": "Anteprima blocchi di codice Mermaid",
+      "description": "Anteprima di diagrammi Mermaid, grafici semplici, ecc. nei blocchi di codice"
+    },
+    "threadExportThread": {
+      "title": "Esporta thread",
+      "description": "Esporta il thread corrente in formato Markdown (con citazioni opzionali). Ulteriori opzioni di formattazione in arrivo"
+    },
+    "threadBetterMessageCopyButtons": {
+      "title": "Pulsanti di copia messaggi migliorati",
+      "description": "Copia il contenuto del messaggio senza citazioni. Ulteriori opzioni di formattazione in arrivo"
+    },
+    "threadDragAndDropFileToUploadInThread": {
+      "title": "Trascina e rilascia file per caricarli in un thread",
+      "description": "Tratta l'intera pagina del thread come zona di rilascio e consente di trascinare e rilasciare direttamente i file per caricarli come allegati"
+    },
+    "threadCollapseEmptyThreadVisualCols": {
+      "title": "Comprimi colonne visive vuote del thread",
+      "description": "Comprimi le colonne visive vuote nella pagina del thread"
+    },
+    "imageGenModelSelector": {
+      "title": "Selettore modello generazione immagini",
+      "description": "Consente la selezione di diversi modelli di generazione immagini"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "title": "Ricarica automatica in caso di timeout Cloudflare",
+      "description": "Ricarica automaticamente la pagina in caso di timeout Cloudflare"
+    },
+    "blockAnalyticEvents": {
+      "title": "Blocca eventi analitici",
+      "description": "Impedisce a Perplexity di inviare eventi analitici/di tracciamento. Solo per debug"
+    },
+    "homeCustomSlogan": {
+      "title": "Slogan personalizzato homepage",
+      "description": "Personalizza lo slogan nella homepage"
+    }
+  }
+} 

@@ -1,0 +1,98 @@
+{
+  "pluginTags": {
+    "ui": {
+      "label": "外観",
+      "description": "UIに関連するプラグイン"
+    },
+    "ux": {
+      "label": "使いやすさ",
+      "description": "UXに関連するプラグイン"
+    },
+    "desktopOnly": {
+      "label": "デスクトップのみ",
+      "description": "デスクトップ/画面幅 > 768pxでのみ使用可能"
+    },
+    "privacy": {
+      "label": "プライバシー",
+      "description": "プライバシーに関連するプラグイン"
+    },
+    "pplxPro": {
+      "label": "Perplexity Pro",
+      "description": "アクティブなPerplexity Proサブスクリプションが必要"
+    },
+    "experimental": {
+      "label": "実験的",
+      "description": "実験的プラグイン。予告なく変更または削除される可能性があります。"
+    },
+    "beta": {
+      "label": "ベータ版",
+      "description": "ベータ版プラグイン"
+    },
+    "forFun": {
+      "label": "楽しむため",
+      "description": "ただ楽しむため！"
+    }
+  },
+  "pluginsMetadata": {
+    "queryboxLanguageModelSelector": {
+      "title": "言語モデル選択",
+      "description": "異なる言語モデルの選択を可能にする"
+    },
+    "queryboxNoFileCreationOnPaste": {
+      "title": "ファイル作成の防止",
+      "description": "クエリボックスに（非常に）長いテキストを貼り付けた際の自動ファイル作成を防止する"
+    },
+    "commandMenu": {
+      "title": "コマンドメニュー",
+      "description": "素早くナビゲートしてアクションを呼び出す"
+    },
+    "threadToc": {
+      "title": "スレッド目次",
+      "description": "スレッド内のメッセージ間を素早く移動できます。2件以上のメッセージがある場合のみ表示されます。"
+    },
+    "threadBetterMessageToolbars": {
+      "title": "改善されたメッセージツールバー",
+      "description": "スレッド内のメッセージツールバーを改善"
+    },
+    "threadBetterCodeBlocks": {
+      "title": "改善されたコードブロック",
+      "description": "スレッド内のコードブロックを改善"
+    },
+    "threadBetterCodeBlocksPreviewMermaid": {
+      "title": "Mermaidコードブロックプレビュー",
+      "description": "コードブロック内のMermaidダイアグラム、簡単なチャートなどをプレビュー"
+    },
+    "threadExportThread": {
+      "title": "スレッドのエクスポート",
+      "description": "現在のスレッドをMarkdown形式でエクスポート（オプションの引用付き）。さらなる書式設定オプションが近日中に追加予定"
+    },
+    "threadBetterMessageCopyButtons": {
+      "title": "改善されたメッセージコピーボタン",
+      "description": "引用なしでメッセージ内容をコピー。さらなる書式設定オプションが近日中に追加予定"
+    },
+    "threadDragAndDropFileToUploadInThread": {
+      "title": "スレッドにファイルをドラッグ＆ドロップでアップロード",
+      "description": "スレッドページ全体をドロップゾーンとして扱い、ファイルを直接ドラッグ＆ドロップして添付ファイルとしてアップロード可能"
+    },
+    "threadCollapseEmptyThreadVisualCols": {
+      "title": "空のスレッド視覚列の折りたたみ",
+      "description": "スレッドページ内の空の視覚列を折りたたむ"
+    },
+    "imageGenModelSelector": {
+      "title": "画像生成モデル選択",
+      "description": "異なる画像生成モデルの選択を可能にする"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "title": "Cloudflareタイムアウト時の自動再読み込み",
+      "description": "Cloudflareタイムアウト時にページを自動的に再読み込み"
+    },
+    "blockAnalyticEvents": {
+      "title": "分析イベントのブロック",
+      "description": "Perplexityによる分析/トラッキングイベントの送信を防止。デバッグ目的のみ"
+    },
+    "homeCustomSlogan": {
+      "title": "ホームページカスタムスローガン",
+      "description": "ホームページのスローガンをカスタマイズ"
+    }
+  }
+} 

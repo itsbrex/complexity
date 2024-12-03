@@ -1,0 +1,145 @@
+{
+  "pluginsPage": {
+    "listing": {
+      "title": "插件",
+      "searchPlaceholder": "搜索插件...",
+      "reloadNote": "在Perplexity.ai上更改插件设置时需要完全重新加载页面。",
+      "fetchingPlugins": "正在获取插件..."
+    },
+    "noPluginsFound": {
+      "title": "未找到插件",
+      "description": "尝试调整搜索关键词/筛选器或<url>请求新的插件</url> 😉"
+    },
+    "pluginCard": {
+      "actions": {
+        "addToFavorites": "添加到收藏",
+        "removeFromFavorites": "从收藏中移除"
+      },
+      "dependencyWarnings": {
+        "disabledDependencies": {
+          "title": "一个或多个依赖项已禁用，请启用它们以使用此插件：",
+          "dependencyList": "依赖项"
+        },
+        "forcedDisabledDependencies": "由于一个或多个依赖项不可用，此插件已被禁用。"
+      }
+    },
+    "lockdownOverlay": {
+      "message": "此插件当前不可用"
+    },
+    "sections": {
+      "favouritePlugins": "收藏的插件",
+      "allPlugins": "所有插件"
+    },
+    "details": {
+      "backToPlugins": "返回到插件",
+      "unavailable": {
+        "message": "此插件当前不可用。请稍后再试。",
+        "backButton": "返回仪表板"
+      }
+    },
+    "tagsFilterLabel": "标签"
+  },
+  "pluginDetails": {
+    "betterCodeBlocks": {
+      "description": "自定义代码块的外观和可用性。",
+      "tabs": {
+        "global": "全局"
+      },
+      "codeTheme": {
+        "searchPlaceholder": "搜索主题...",
+        "noThemeFound": "未找到主题。",
+        "label": "代码主题",
+        "dark": "深色",
+        "light": "浅色"
+      },
+      "languageOptions": {
+        "addNewRule": "添加新规则",
+        "fineTuneBlock": "微调特定块",
+        "languageBlockName": "语言/块名称",
+        "noLanguageProvided": "未提供语言/块名称",
+        "failedToCreate": "❌ 创建语言选项失败",
+        "delete": {
+          "title": "删除语言选项",
+          "description": "您确定要删除此语言选项吗？此操作无法撤消。"
+        },
+        "failedToUpdate": "❌ 更新选项失败",
+        "failedToDelete": "❌ 删除选项失败"
+      },
+      "options": {
+        "stickyHeader": "固定标题",
+        "unwrapLines": {
+          "label": "默认展开行",
+          "toggleButton": "显示切换按钮"
+        },
+        "maxHeight": {
+          "label": "最大高度",
+          "toggleButton": "显示切换按钮",
+          "unit": "px (0px = 完全折叠)",
+          "unitGlobal": "px (>= 300px)"
+        },
+        "placeholderText": {
+          "label": "自定义占位符文本",
+          "title": "标题",
+          "loading": "加载文本",
+          "idle": "空闲文本"
+        }
+      }
+    },
+    "betterThreadMessageToolbars": {
+      "description": "有用的改进，使工具栏更加紧凑和易于使用。",
+      "options": {
+        "sticky": {
+          "label": "固定在顶部",
+          "description": "滚动时始终在页面顶部保持工具栏可见。"
+        },
+        "simplifyRewriteDropdown": {
+          "label": "简化重写下拉菜单",
+          "description": "隐藏模型描述（仅限桌面）。"
+        },
+        "hideUnnecessaryButtons": {
+          "label": "隐藏不必要的按钮",
+          "description": "隐藏分享、顶/踩按钮。"
+        },
+        "explicitModelName": {
+          "label": "明确的模型名称",
+          "description": "无需悬停即可显示模型名称。"
+        }
+      }
+    },
+    "collapseEmptyThreadVisualCols": {
+      "description": "移除线程中每条消息右侧的空白区域。仅适用于右侧明确没有\"搜索图片、搜索视频、生成图片\"选项的消息。"
+    },
+    "commandMenu": {
+      "description": "类似于Mac的Spotlight / Windows的PowerToys Run，但在Perplexity内部运行。",
+      "activationHotkey": "激活热键：",
+      "sideNote": "注意：线程搜索随时可能受到Perplexity的速率限制。"
+    },
+    "languageModelSelector": {
+      "description": "允许您在<emphasis>任何地方</emphasis>更改首选语言模型。选择器可以在所有查询框中找到。",
+      "mainLocations": "主页 + 模态 + 空间",
+      "followUp": {
+        "enable": "跟进（在线程中）",
+        "spanFullWidth": "水平扩展到全宽"
+      }
+    },
+    "imageGenModelSelector": {
+      "description": "允许您更改首选图像生成模型。选择器可以在任何线程的图像生成弹出窗口中找到。"
+    },
+    "customHomeSlogan": {
+      "sloganLabel": "标语"
+    },
+    "noFileCreationOnPaste": {
+      "description": "激活热键："
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "description": "在使用VPN时或Perplexity/Cloudflare与您的互联网服务提供商出现问题时很有用。如果希望在发生此情况时自动重新加载页面，请打开此选项。",
+      "behavior": {
+        "label": "行为",
+        "options": {
+          "reload": "重新加载",
+          "warnOnly": "仅警告"
+        }
+      }
+    }
+  }
+} 

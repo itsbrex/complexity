@@ -68,7 +68,9 @@ export function TagsFilter() {
         <PopoverTrigger asChild>
           <Button variant="ghost" className="tw-py-2">
             <div className="tw-flex tw-items-center tw-gap-2">
-              <span>Tags</span>
+              <span>
+                {t("dashboard-plugins-page:pluginsPage.tagsFilterLabel")}
+              </span>
               {getActiveFiltersCount() > 0 && (
                 <div className="tw-flex tw-h-4 tw-w-4 tw-items-center tw-justify-center tw-rounded-full tw-bg-primary/10 tw-text-[10px] tw-font-medium tw-text-primary">
                   {getActiveFiltersCount()}

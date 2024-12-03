@@ -40,15 +40,20 @@ export default function ThreadSearchItems() {
       )}
       {isErrorThreads ? (
         <CommandEmpty>
-          Failed to fetch threads. Please try again later.
+          {t("plugin-command-menu:commandMenu.threadSearch.error")}
         </CommandEmpty>
       ) : (
         <CommandGroup
           heading={
             threads && threads.length > 0
               ? searchValue
-                ? `${threads.length} latest thread(s) with the search term`
-                : "Recent threads"
+                ? t(
+                    "plugin-command-menu:commandMenu.threadSearch.heading.withSearch",
+                    { count: threads.length },
+                  )
+                : t(
+                    "plugin-command-menu:commandMenu.threadSearch.heading.withoutSearch",
+                  )
               : ""
           }
         >

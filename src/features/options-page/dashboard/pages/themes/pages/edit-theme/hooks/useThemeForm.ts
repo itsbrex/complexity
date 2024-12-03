@@ -2,8 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
 import { toast } from "@/components/ui/use-toast";
+import { ThemeFormValues } from "@/data/dashboard/themes/theme-form.types";
 import { Theme } from "@/data/plugins/themes/theme-registry.types";
-import { ThemeFormValues } from "@/data/themes/theme-form.types";
 import { useBaseThemeForm } from "@/features/options-page/dashboard/pages/themes/hooks/useBaseThemeForm";
 import { getLocalThemesService } from "@/services/indexed-db/themes/themes";
 
@@ -37,13 +37,15 @@ export function useThemeForm(theme: Theme) {
         ...variables,
       });
       toast({
-        title: "✅ Theme saved",
-        description: "Your theme has been saved successfully",
+        title: t("dashboard-themes-page:themesPage.toasts.save.success.title"),
+        description: t(
+          "dashboard-themes-page:themesPage.toasts.save.success.description",
+        ),
       });
     },
     onError: (error: Error) => {
       toast({
-        title: "❌ Failed to save theme",
+        title: t("dashboard-themes-page:themesPage.toasts.save.error.title"),
         description: error.message,
       });
     },
@@ -57,13 +59,17 @@ export function useThemeForm(theme: Theme) {
     onSuccess: () => {
       navigate("..");
       toast({
-        title: "✅ Theme deleted",
-        description: "Your theme has been deleted successfully",
+        title: t(
+          "dashboard-themes-page:themesPage.toasts.delete.success.title",
+        ),
+        description: t(
+          "dashboard-themes-page:themesPage.toasts.delete.success.description",
+        ),
       });
     },
     onError: (error: Error) => {
       toast({
-        title: "❌ Failed to delete theme",
+        title: t("dashboard-themes-page:themesPage.toasts.delete.error.title"),
         description: error.message,
       });
     },

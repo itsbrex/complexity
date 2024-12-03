@@ -1,0 +1,9 @@
+{
+  "copyButton": {
+    "tooltip": "Kopírovať správu",
+    "options": {
+      "default": "Predvolené",
+      "withoutCitations": "Bez citácií"
+    }
+  }
+} 

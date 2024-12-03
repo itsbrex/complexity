@@ -5,6 +5,8 @@ import { GroupedLanguageModelsByProvider } from "@/types/plugins/query-box/langu
 import { errorWrapper } from "@/utils/error-wrapper";
 import { queryClient } from "@/utils/ts-query-client";
 
+// TODO: split the initialize logic into separate file
+
 export const localLanguageModels = [
   {
     label: "Claude 3.5 Sonnet",
@@ -48,9 +50,9 @@ export const localLanguageModels = [
     code: "turbo",
     provider: "Perplexity",
   },
-] as const;
+];
 
-export let languageModels: readonly LanguageModel[] = localLanguageModels;
+export let languageModels: LanguageModel[] = localLanguageModels;
 export let groupedLanguageModelsByProvider: GroupedLanguageModelsByProvider =
   getGroupedLanguageModelsByProvider();
 
@@ -60,7 +62,10 @@ export async function initializeLanguageModels() {
   if (!pluginsEnableStates?.["queryBox:languageModelSelector"]) return;
 
   const [data, error] = await errorWrapper(() =>
-    queryClient.fetchQuery(cplxApiQueries.remoteLanguageModels),
+    queryClient.fetchQuery({
+      ...cplxApiQueries.remoteLanguageModels,
+      // gcTime: Infinity,
+    }),
   )();
 
   if (error || !data) {

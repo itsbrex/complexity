@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import { ThemeFormValues } from "@/data/themes/theme-form.types";
+import { ThemeFormValues } from "@/data/dashboard/themes/theme-form.types";
 import { ColorInput } from "@/features/options-page/dashboard/pages/themes/components/ColorInput";
 
 type ThemeFormProps = {
@@ -41,9 +41,16 @@ export function ThemeForm({
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title</FormLabel>
+              <FormLabel>
+                {t("dashboard-themes-page:themesPage.form.title.label")}
+              </FormLabel>
               <FormControl>
-                <Input placeholder="Enter theme title" {...field} />
+                <Input
+                  placeholder={t(
+                    "dashboard-themes-page:themesPage.form.title.placeholder",
+                  )}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -51,7 +58,9 @@ export function ThemeForm({
         />
 
         <FormItem>
-          <FormLabel>Font Families</FormLabel>
+          <FormLabel>
+            {t("dashboard-themes-page:themesPage.form.fonts.label")}
+          </FormLabel>
           <div className="tw-grid tw-grid-cols-2 tw-gap-4">
             <FormField
               control={form.control}
@@ -62,7 +71,9 @@ export function ThemeForm({
                   <FormControl>
                     <Input
                       className="tw-font-mono"
-                      placeholder="ui (e.g., Inter)"
+                      placeholder={t(
+                        "dashboard-themes-page:themesPage.form.fonts.ui.placeholder",
+                      )}
                       {...field}
                     />
                   </FormControl>
@@ -80,7 +91,9 @@ export function ThemeForm({
                   <FormControl>
                     <Input
                       className="tw-font-mono"
-                      placeholder="monospace (e.g., JetBrains Mono, Fira Code)"
+                      placeholder={t(
+                        "dashboard-themes-page:themesPage.form.fonts.mono.placeholder",
+                      )}
                       {...field}
                     />
                   </FormControl>
@@ -90,8 +103,7 @@ export function ThemeForm({
             />
           </div>
           <FormDescription>
-            Make sure entered fonts are installed on your system, or import them
-            in the CSS section below.
+            {t("dashboard-themes-page:themesPage.form.fonts.description")}
           </FormDescription>
         </FormItem>
 
@@ -105,8 +117,12 @@ export function ThemeForm({
                 <ColorInput
                   disabled={field.disabled}
                   value={field.value}
-                  label="Primary Color (only affects Dark Mode)"
-                  description="Complexity will generate complementary shades based on provided color"
+                  label={t(
+                    "dashboard-themes-page:themesPage.form.accentColor.label",
+                  )}
+                  description={t(
+                    "dashboard-themes-page:themesPage.form.accentColor.description",
+                  )}
                   onChange={field.onChange}
                 />
               </FormControl>
@@ -121,10 +137,15 @@ export function ThemeForm({
           render={({ field }) => (
             <FormItem className="tw-flex tw-flex-row tw-items-center tw-justify-between">
               <div className="tw-space-y-0.5">
-                <FormLabel>Enhance Typography (in Threads)</FormLabel>
+                <FormLabel>
+                  {t(
+                    "dashboard-themes-page:themesPage.form.enhanceTypography.label",
+                  )}
+                </FormLabel>
                 <FormDescription>
-                  Emphasizes headings, bold text, make inline code more
-                  readable, and remove font ligatures.
+                  {t(
+                    "dashboard-themes-page:themesPage.form.enhanceTypography.description",
+                  )}
                 </FormDescription>
               </div>
               <FormControl>
@@ -144,16 +165,20 @@ export function ThemeForm({
           name="customCss"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Advanced: CSS</FormLabel>
+              <FormLabel>
+                {t("dashboard-themes-page:themesPage.form.css.label")}
+              </FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Enter custom CSS rules"
+                  placeholder={t(
+                    "dashboard-themes-page:themesPage.form.css.placeholder",
+                  )}
                   className="tw-min-h-[300px] tw-font-mono"
                   {...field}
                 />
               </FormControl>
               <FormDescription>
-                Add custom CSS rules to further customize your theme
+                {t("dashboard-themes-page:themesPage.form.css.description")}
               </FormDescription>
               <FormMessage />
             </FormItem>

@@ -1,0 +1,78 @@
+{
+  "settingsPage": {
+    "sections": {
+      "general": "Általános",
+      "data": "Adatok",
+      "troubleshooting": "Hibaelhárítás"
+    },
+    "items": {
+      "permissions": {
+        "title": "Bővítmény jogosultságok",
+        "action": "Jogosultságok kezelése",
+        "dialog": {
+          "title": "Jogosultságok kezelése",
+          "description": "Adjon meg vagy vonjon vissza bővítmény jogosultságokat. Kérjük, vegye figyelembe, hogy egyes funkciók a szükséges jogosultságok nélkül letiltásra kerülhetnek."
+        }
+      },
+      "energySaving": {
+        "title": "Energiatakarékos mód",
+        "description": "Csökkentse a bővítmény érzékenységét az oldal változásaira",
+        "note": "(A meglévő lapok frissítést igényelnek az alkalmazáshoz)"
+      },
+      "onboarding": {
+        "title": "Bevezetés",
+        "description": "Ismételje meg a bevezető élményt",
+        "action": "🚀 Bevezetés"
+      },
+      "import": {
+        "title": "Importálás",
+        "description": "Mentett bővítmény adatok betöltése",
+        "dialog": {
+          "title": "Adatok importálása",
+          "description": "A jelenlegi beállítások felülírásra vagy egyesítésre kerülnek az exportált adatok verziójától függően",
+          "placeholder": "Illessze be az adatait ide...",
+          "submit": "Küldés",
+          "pasteButton": "Beillesztés szövegként",
+          "fileButton": "Fájl kiválasztása"
+        },
+        "toast": {
+          "success": "✅ Adatok importálva",
+          "invalidData": "❌ Érvénytelen adatok",
+          "failedToRead": "❌ Fájl olvasása sikertelen"
+        }
+      },
+      "export": {
+        "title": "Exportálás",
+        "description": "Bővítmény adatainak letöltése fájlként",
+        "buttons": {
+          "copy": "Másolás",
+          "copied": "Másolva",
+          "exporting": "Exportálás",
+          "saveFile": "Mentés fájlként"
+        }
+      },
+      "reset": {
+        "title": "Bővítmény visszaállítása",
+        "dialog": {
+          "title": "Minden adat törlése",
+          "description": "Biztosan törölni szeretné a bővítmény összes adatát? Ez a művelet nem vonható vissza és a következő adatokat törli:",
+          "items": {
+            "settings": "Bővítmény beállítások",
+            "customData": "Minden egyéni téma, kódblokk szabály stb.",
+            "otherData": "És minden egyéb, a bővítmény által tárolt adat"
+          },
+          "buttons": {
+            "confirm": "Igen, minden adat törlése",
+            "clearButton": "Minden adat törlése"
+          }
+        }
+      }
+    }
+  },
+  "permissions": {
+    "cookies": {
+      "title": "Sütik",
+      "description": "Engedélyezze a bővítménynek a beállítások szinkronizálását a Perplexity.ai preferenciáival. A Támogatói státusz azonosítására is használjuk."
+    }
+  }
+} 

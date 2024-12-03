@@ -7,7 +7,6 @@ import { RouterProvider } from "react-router-dom";
 
 import { Toaster } from "@/components/Toaster";
 import { setupOptionPageListeners } from "@/features/options-page/listeners";
-import { router } from "@/features/options-page/router";
 import { extensionLocalStorageQueries } from "@/services/extension-local-storage/query-keys";
 import { initializeDayjsLocale } from "@/utils/dayjs";
 import { initializeI18next } from "@/utils/i18next";
@@ -17,15 +16,21 @@ await Promise.all([
   initializeI18next(),
   initializeDayjsLocale(),
   queryClient.prefetchQuery(extensionLocalStorageQueries.data),
+  setupOptionPageListeners(),
 ]);
-setupOptionPageListeners();
 
-ReactDOM.createRoot(document.getElementById("app") as HTMLElement).render(
-  <QueryClientProvider client={queryClient}>
-    <I18nextProvider i18n={i18n}>
-      <RouterProvider router={router} />
-      <Toaster />
-    </I18nextProvider>
-    <ReactQueryDevtools />
-  </QueryClientProvider>,
-);
+(async () => {
+  const [{ router }] = await Promise.all([
+    import("@/features/options-page/router"),
+  ]);
+
+  ReactDOM.createRoot(document.getElementById("app") as HTMLElement).render(
+    <QueryClientProvider client={queryClient}>
+      <I18nextProvider i18n={i18n}>
+        <RouterProvider router={router} />
+        <Toaster />
+      </I18nextProvider>
+      <ReactQueryDevtools />
+    </QueryClientProvider>,
+  );
+})();

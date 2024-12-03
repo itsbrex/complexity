@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { H1, H3, P, Ul } from "@/components/ui/typography";
 import { useExtensionPermissions } from "@/services/extension-permissions/useExtensionPermissions";
-import { queryClient } from "@/utils/ts-query-client";
 
 const basePermissionsDetails: Record<
   string,
@@ -60,32 +59,15 @@ const basePermissionsDetails: Record<
 };
 
 export default function BasePermissions() {
-  const { data: permissions } = useExtensionPermissions();
+  const {
+    query: { data: permissions },
+    handleGrantPermission,
+  } = useExtensionPermissions();
 
   const grantedPermissions = new Set([
     ...(permissions?.permissions ?? []),
     ...(permissions?.origins ?? []),
   ]);
-
-  const handleGrantPermission = ({
-    permissions,
-    hostPermissions,
-  }: {
-    permissions: chrome.runtime.ManifestPermissions[];
-    hostPermissions?: string[];
-  }) => {
-    chrome.permissions
-      .request({
-        permissions,
-        origins: hostPermissions,
-      })
-      .then(() => {
-        queryClient.invalidateQueries({ queryKey: ["permissions"] });
-      })
-      .catch((error) => {
-        alert(`Error granting permissions: ${error}`);
-      });
-  };
 
   if (!permissions) return null;
 

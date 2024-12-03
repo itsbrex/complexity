@@ -10,18 +10,17 @@ export default function CommandMenuPluginDetails() {
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
       <div>
-        Similar to Mac&apos;s Spotlight / Windows&apos;s PowerToys Run, but
-        inside Perplexity.
+        {t("dashboard-plugins-page:pluginDetails.commandMenu.description")}
       </div>
       <div>
-        Activation hotkey: <KeyCombo keys={["Ctrl", "K"]} />
+        {t("dashboard-plugins-page:pluginDetails.commandMenu.activationHotkey")}{" "}
+        <KeyCombo keys={["Ctrl", "K"]} />
       </div>
       <div className="tw-text-sm tw-text-muted-foreground">
-        Side note: Thread search is subject to rate limiting by Perplexity at
-        any time.
+        {t("dashboard-plugins-page:pluginDetails.commandMenu.sideNote")}
       </div>
       <Switch
-        textLabel="Enable"
+        textLabel={t("action.enable")}
         checked={settings?.plugins["commandMenu"].enabled ?? false}
         onCheckedChange={({ checked }) => {
           mutation.mutate((draft) => {

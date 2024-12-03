@@ -22,7 +22,9 @@ export default function BetterCodeBlockGlobalOptions() {
     <div className="tw-flex tw-flex-col tw-gap-4">
       <div className="tw-flex tw-flex-col tw-gap-2">
         <Switch
-          textLabel="Code theme"
+          textLabel={t(
+            "dashboard-plugins-page:pluginDetails.betterCodeBlocks.codeTheme.label",
+          )}
           checked={settings?.plugins["thread:betterCodeBlocks"].theme.enabled}
           onCheckedChange={({ checked }) => {
             mutation.mutate((draft) => {
@@ -33,7 +35,11 @@ export default function BetterCodeBlockGlobalOptions() {
         {settings?.plugins["thread:betterCodeBlocks"].theme.enabled && (
           <div className="tw-flex tw-w-full tw-gap-4">
             <div className="tw-flex tw-flex-col tw-gap-2">
-              <Label className="tw-text-muted-foreground">Dark</Label>
+              <Label className="tw-text-muted-foreground">
+                {t(
+                  "dashboard-plugins-page:pluginDetails.betterCodeBlocks.codeTheme.dark",
+                )}
+              </Label>
               <CodeThemeSelector
                 value={settings?.plugins["thread:betterCodeBlocks"].theme.dark}
                 onValueChange={(value) => {
@@ -44,7 +50,11 @@ export default function BetterCodeBlockGlobalOptions() {
               />
             </div>
             <div className="tw-flex tw-flex-col tw-gap-2">
-              <Label className="tw-text-muted-foreground">Light</Label>
+              <Label className="tw-text-muted-foreground">
+                {t(
+                  "dashboard-plugins-page:pluginDetails.betterCodeBlocks.codeTheme.light",
+                )}
+              </Label>
               <CodeThemeSelector
                 value={settings?.plugins["thread:betterCodeBlocks"].theme.light}
                 onValueChange={(value) => {
@@ -60,7 +70,9 @@ export default function BetterCodeBlockGlobalOptions() {
       </div>
       <div className="tw-flex tw-flex-col tw-gap-4">
         <Switch
-          textLabel="Sticky header"
+          textLabel={t(
+            "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.stickyHeader",
+          )}
           checked={settings?.plugins["thread:betterCodeBlocks"].stickyHeader}
           onCheckedChange={({ checked }) => {
             mutation.mutate((draft) => {
@@ -70,7 +82,9 @@ export default function BetterCodeBlockGlobalOptions() {
         />
         <div className="tw-flex tw-flex-col tw-gap-2">
           <Switch
-            textLabel="Unwrap lines by default"
+            textLabel={t(
+              "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.unwrapLines.label",
+            )}
             checked={
               settings?.plugins["thread:betterCodeBlocks"].unwrap.enabled
             }
@@ -82,7 +96,9 @@ export default function BetterCodeBlockGlobalOptions() {
             }}
           />
           <Switch
-            textLabel="Show toggle button"
+            textLabel={t(
+              "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.unwrapLines.toggleButton",
+            )}
             className="tw-ml-8"
             checked={
               settings?.plugins["thread:betterCodeBlocks"].unwrap
@@ -100,7 +116,9 @@ export default function BetterCodeBlockGlobalOptions() {
         <div className="tw-flex tw-flex-col tw-gap-2">
           <div className="tw-flex tw-gap-2">
             <Switch
-              textLabel="Max height"
+              textLabel={t(
+                "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.maxHeight.label",
+              )}
               checked={
                 settings?.plugins["thread:betterCodeBlocks"].maxHeight?.enabled
               }
@@ -133,11 +151,17 @@ export default function BetterCodeBlockGlobalOptions() {
                   });
                 }}
               />
-              <div className="tw-text-muted-foreground">px (&gt;= 300px)</div>
+              <div className="tw-text-muted-foreground">
+                {t(
+                  "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.maxHeight.unitGlobal",
+                )}
+              </div>
             </div>
           </div>
           <Switch
-            textLabel="Show toggle button"
+            textLabel={t(
+              "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.maxHeight.toggleButton",
+            )}
             className="tw-ml-8"
             checked={
               settings?.plugins["thread:betterCodeBlocks"].maxHeight

@@ -23,7 +23,13 @@ export default function ThemeCardActionButton({
   }, [mutation, isChosenTheme, theme]);
 
   return (
-    <Tooltip content={isChosenTheme ? "Disable" : "Enable"}>
+    <Tooltip
+      content={
+        isChosenTheme
+          ? t("dashboard-themes-page:themesPage.themeCard.actions.disable")
+          : t("dashboard-themes-page:themesPage.themeCard.actions.enable")
+      }
+    >
       <Button
         variant="outline"
         size="icon"

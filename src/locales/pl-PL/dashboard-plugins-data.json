@@ -1,0 +1,98 @@
+{
+  "pluginTags": {
+    "ui": {
+      "label": "Wygląd",
+      "description": "Wtyczki związane z interfejsem użytkownika"
+    },
+    "ux": {
+      "label": "Łatwość Użycia",
+      "description": "Wtyczki związane z doświadczeniem użytkownika"
+    },
+    "desktopOnly": {
+      "label": "Tylko Desktop",
+      "description": "Używalne tylko na komputerze stacjonarnym/szerokość ekranu > 768px"
+    },
+    "privacy": {
+      "label": "Prywatność",
+      "description": "Wtyczki związane z prywatnością"
+    },
+    "pplxPro": {
+      "label": "Perplexity Pro",
+      "description": "Wymaga aktywnej subskrypcji Perplexity Pro"
+    },
+    "experimental": {
+      "label": "Eksperymentalne",
+      "description": "Wtyczki eksperymentalne. Mogą ulec zmianie lub zostać usunięte bez uprzedzenia."
+    },
+    "beta": {
+      "label": "Beta",
+      "description": "Wtyczki w wersji beta"
+    },
+    "forFun": {
+      "label": "Dla Zabawy",
+      "description": "Po prostu dla zabawy!"
+    }
+  },
+  "pluginsMetadata": {
+    "queryboxLanguageModelSelector": {
+      "title": "Wybór Modelu Językowego",
+      "description": "Umożliwia wybór różnych modeli językowych"
+    },
+    "queryboxNoFileCreationOnPaste": {
+      "title": "Zapobiegaj Tworzeniu Pliku",
+      "description": "Zapobiega automatycznemu tworzeniu pliku podczas wklejania (bardzo) długiego tekstu do pola zapytania"
+    },
+    "commandMenu": {
+      "title": "Menu Poleceń",
+      "description": "Szybka nawigacja i wywoływanie akcji"
+    },
+    "threadToc": {
+      "title": "Spis Treści Wątku",
+      "description": "Szybka nawigacja między wiadomościami w wątku. Pojawia się tylko gdy jest więcej niż 2 wiadomości."
+    },
+    "threadBetterMessageToolbars": {
+      "title": "Ulepszone Paski Narzędzi Wiadomości",
+      "description": "Ulepsza paski narzędzi wiadomości (we wątkach)"
+    },
+    "threadBetterCodeBlocks": {
+      "title": "Ulepszone Bloki Kodu",
+      "description": "Ulepsza bloki kodu (we wątkach)"
+    },
+    "threadBetterCodeBlocksPreviewMermaid": {
+      "title": "Podgląd Bloków Kodu Mermaid",
+      "description": "Podgląd diagramów Mermaid, prostych wykresów itp. w blokach kodu"
+    },
+    "threadExportThread": {
+      "title": "Eksportuj Wątek",
+      "description": "Eksportuje bieżący wątek w formacie Markdown (z opcjonalnymi cytatami). Więcej opcji formatowania wkrótce"
+    },
+    "threadBetterMessageCopyButtons": {
+      "title": "Ulepszone Przyciski Kopiowania Wiadomości",
+      "description": "Kopiuj treść wiadomości bez cytatów. Więcej opcji formatowania wkrótce"
+    },
+    "threadDragAndDropFileToUploadInThread": {
+      "title": "Przeciągnij i Upuść Pliki do Przesłania we Wątku",
+      "description": "Traktuje całą stronę wątku jako strefę upuszczania i pozwala bezpośrednio przeciągać i upuszczać pliki do przesłania jako załączniki"
+    },
+    "threadCollapseEmptyThreadVisualCols": {
+      "title": "Zwiń Puste Kolumny Wizualne Wątku",
+      "description": "Zwija puste kolumny wizualne na stronie wątku"
+    },
+    "imageGenModelSelector": {
+      "title": "Wybór Modelu Generowania Obrazów",
+      "description": "Umożliwia wybór różnych modeli generowania obrazów"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "title": "Automatyczne Przeładowanie przy Przekroczeniu Czasu Cloudflare",
+      "description": "Automatycznie przeładowuje stronę przy przekroczeniu czasu przez Cloudflare"
+    },
+    "blockAnalyticEvents": {
+      "title": "Blokuj Zdarzenia Analityczne",
+      "description": "Zapobiega wysyłaniu przez Perplexity zdarzeń analitycznych/śledzących. Tylko do debugowania"
+    },
+    "homeCustomSlogan": {
+      "title": "Niestandardowy Slogan Strony Głównej",
+      "description": "Dostosuj slogan na stronie głównej"
+    }
+  }
+}

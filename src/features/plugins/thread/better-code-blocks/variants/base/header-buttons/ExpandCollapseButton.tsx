@@ -14,7 +14,13 @@ export function ExpandCollapseButton({
   setMaxHeight,
 }: ExpandCollapseButtonProps) {
   return (
-    <Tooltip content={maxHeight === defaultMaxHeight ? "Expand" : "Collapse"}>
+    <Tooltip
+      content={
+        maxHeight === defaultMaxHeight
+          ? t("plugin-better-code-blocks:headerButtons.expand.expand")
+          : t("plugin-better-code-blocks:headerButtons.expand.collapse")
+      }
+    >
       <div
         className="tw-cursor-pointer tw-text-muted-foreground tw-transition-colors hover:tw-text-foreground"
         onClick={() =>

@@ -1,6 +1,36 @@
 {
-  "extension-description": "Complexity - Perplexity AI Vylepšený",
+  "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporter-message": "Prosím, zvážte možnosť stať sa <highlight>Podporovateľom</highlight>, aby projekt mohol pokračovať!"
+    "supporterMessage": "Prosím zvážte, či sa nechcete stať <emphasis>Podporovateľom</emphasis> a udržať projekt pri živote!",
+    "items": {
+      "notifications": "Oznámenia",
+      "plugins": "Doplnky",
+      "themes": "Témy",
+      "releaseNotes": "Poznámky k vydaniu",
+      "settings": "Nastavenia",
+      "help": "Potrebujete pomoc?"
+    },
+    "updateAnnouncer": {
+      "newVersion": "K dispozícii je nová verzia rozšírenia!",
+      "updatePrompt": "Prosím, aktualizujte pre získanie vylepšení a opráv chýb.",
+      "autoUpdateInfo": "Aktualizácia by sa mala vykonať automaticky po reštarte prehliadača, alebo ju môžete vynútiť manuálne na stránke správy rozšírení.",
+      "manualUpdateInfo": "Alebo kliknite <storeLink>TU</storeLink> pre návrat do obchodu a manuálnu preinštaláciu rozšírenia, ak nič z vyššie uvedeného nefunguje (nezabudnite exportovať svoje nastavenia!)."
+    }
+  },
+  "action": {
+    "enable": "Povoliť",
+    "disable": "Zakázať",
+    "cancel": "Zrušiť",
+    "confirm": "Potvrdiť",
+    "delete": "Vymazať",
+    "create": "Vytvoriť",
+    "back": "Späť",
+    "search": "Hľadať",
+    "options": "Možnosti",
+    "details": "Detaily"
+  },
+  "status": {
+    "loading": "Načítava sa",
+    "noResults": "Nenašli sa žiadne výsledky"
   }
 }

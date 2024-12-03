@@ -1,0 +1,19 @@
+{
+  "headerButtons": {
+    "wrap": {
+      "wrap": "줄 바꿈",
+      "unwrap": "줄 바꿈 해제"
+    },
+    "expand": {
+      "expand": "펼치기",
+      "collapse": "접기"
+    },
+    "mermaid": {
+      "preview": "미리보기",
+      "code": "코드",
+      "openEditor": "Mermaid Live Editor에서 열기",
+      "download": "SVG 다운로드",
+      "downloadError": "❌ SVG를 찾을 수 없음"
+    }
+  }
+} 

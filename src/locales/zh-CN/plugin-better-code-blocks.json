@@ -1,0 +1,19 @@
+{
+  "headerButtons": {
+    "wrap": {
+      "wrap": "自动换行",
+      "unwrap": "取消换行"
+    },
+    "expand": {
+      "expand": "展开",
+      "collapse": "收起"
+    },
+    "mermaid": {
+      "preview": "预览",
+      "code": "代码",
+      "openEditor": "在 Mermaid Live Editor 中打开",
+      "download": "下载 SVG",
+      "downloadError": "❌ 未找到 SVG"
+    }
+  }
+} 

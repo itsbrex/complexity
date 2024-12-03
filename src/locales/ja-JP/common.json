@@ -1,6 +1,36 @@
 {
-  "extension-description": "Complexity - Perplexity AI スーパーチャージド",
+  "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporter-message": "プロジェクトの継続のため、<highlight>サポーター</highlight>になることをご検討ください！"
+    "supporterMessage": "プロジェクトを継続するために<emphasis>サポーター</emphasis>になることをご検討ください！",
+    "items": {
+      "notifications": "通知",
+      "plugins": "プラグイン",
+      "themes": "テーマ",
+      "releaseNotes": "リリースノート",
+      "settings": "設定",
+      "help": "ヘルプが必要ですか？"
+    },
+    "updateAnnouncer": {
+      "newVersion": "拡張機能の新しいバージョンが利用可能です！",
+      "updatePrompt": "機能強化とバグ修正を受け取るためにアップデートしてください。",
+      "autoUpdateInfo": "ブラウザを再起動すると自動的にアップグレードされるはずです。または、拡張機能管理ページで手動で更新を強制することもできます。",
+      "manualUpdateInfo": "上記のいずれも機能しない場合は、<storeLink>ここ</storeLink>をクリックしてストアを再訪問し、拡張機能を手動で再インストールしてください（設定のエクスポートを忘れずに！）。"
+    }
+  },
+  "action": {
+    "enable": "有効化",
+    "disable": "無効化",
+    "cancel": "キャンセル",
+    "confirm": "確認",
+    "delete": "削除",
+    "create": "作成",
+    "back": "戻る",
+    "search": "検索",
+    "options": "オプション",
+    "details": "詳細"
+  },
+  "status": {
+    "loading": "読み込み中",
+    "noResults": "結果が見つかりません"
   }
 }

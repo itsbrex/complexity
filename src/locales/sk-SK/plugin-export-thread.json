@@ -1,0 +1,10 @@
+{
+  "exportButton": {
+    "action": "Exportovať",
+    "copied": "Skopírované",
+    "options": {
+      "default": "Predvolené",
+      "withoutCitations": "Bez citácií"
+    }
+  }
+} 

@@ -1,0 +1,9 @@
+{
+  "copyButton": {
+    "tooltip": "Üzenet másolása",
+    "options": {
+      "default": "Alapértelmezett",
+      "withoutCitations": "Idézetek nélkül"
+    }
+  }
+} 

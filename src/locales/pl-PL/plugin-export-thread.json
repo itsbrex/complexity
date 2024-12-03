@@ -1,0 +1,10 @@
+{
+  "exportButton": {
+    "action": "Eksportuj",
+    "copied": "Skopiowano",
+    "options": {
+      "default": "Domyślne",
+      "withoutCitations": "Bez cytatów"
+    }
+  }
+} 

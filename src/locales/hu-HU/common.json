@@ -1,6 +1,36 @@
 {
-  "extension-description": "Complexity - Perplexity AI Felturbózva",
+  "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporter-message": "Kérjük, fontolja meg, hogy <highlight>Támogató</highlight> lesz, hogy életben tarthassuk a projektet!"
+    "supporterMessage": "Kérjük, fontolja meg, hogy <emphasis>Támogató</emphasis> lesz, hogy életben tartsa a projektet!",
+    "items": {
+      "notifications": "Értesítések",
+      "plugins": "Bővítmények",
+      "themes": "Témák",
+      "releaseNotes": "Kiadási jegyzetek",
+      "settings": "Beállítások",
+      "help": "Segítségre van szüksége?"
+    },
+    "updateAnnouncer": {
+      "newVersion": "Új verzió érhető el a bővítményből!",
+      "updatePrompt": "Kérjük, frissítsen a fejlesztések és hibajavítások fogadásához.",
+      "autoUpdateInfo": "A frissítésnek automatikusan meg kell történnie a böngésző újraindításakor, vagy kényszerítse manuálisan a bővítménykezelő oldalon.",
+      "manualUpdateInfo": "Vagy kattintson <storeLink>IDE</storeLink> az áruház újbóli meglátogatásához és a bővítmény manuális újratelepítéséhez, ha a fentiek egyike sem működik (ne felejtse el exportálni a beállításait!)."
+    }
+  },
+  "action": {
+    "enable": "Engedélyezés",
+    "disable": "Letiltás",
+    "cancel": "Mégse",
+    "confirm": "Megerősítés",
+    "delete": "Törlés",
+    "create": "Létrehozás",
+    "back": "Vissza",
+    "search": "Keresés",
+    "options": "Beállítások",
+    "details": "Részletek"
+  },
+  "status": {
+    "loading": "Betöltés",
+    "noResults": "Nincs találat"
   }
 }

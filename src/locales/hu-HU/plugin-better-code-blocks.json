@@ -1,0 +1,19 @@
+{
+  "headerButtons": {
+    "wrap": {
+      "wrap": "Sortörés",
+      "unwrap": "Sortörés kikapcsolása"
+    },
+    "expand": {
+      "expand": "Kibontás",
+      "collapse": "Összecsukás"
+    },
+    "mermaid": {
+      "preview": "Előnézet",
+      "code": "Kód",
+      "openEditor": "Megnyitás Mermaid Live Editorban",
+      "download": "SVG letöltése",
+      "downloadError": "❌ SVG nem található"
+    }
+  }
+} 

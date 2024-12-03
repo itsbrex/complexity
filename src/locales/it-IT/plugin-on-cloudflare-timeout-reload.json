@@ -1,0 +1,10 @@
+{
+  "dialog": {
+    "header": "Sessione scaduta",
+    "description": "La tua sessione è scaduta (probabilmente a causa di Cloudflare).",
+    "buttons": {
+      "reload": "Ricarica",
+      "dismiss": "Chiudi"
+    }
+  }
+} 

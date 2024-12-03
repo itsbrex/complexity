@@ -16,8 +16,6 @@ export const BaseCodeBlockWrapper = memo(function BaseCodeBlockWrapper() {
     }),
   );
 
-  console.log(language);
-
   return (
     <div
       className={cn(

@@ -1,0 +1,132 @@
+{
+  "themesPage": {
+    "header": {
+      "title": "Temas personalizados",
+      "description": "Personalize sua interface do Perplexity com temas selecionados",
+      "createButton": "Criar novo tema"
+    },
+    "toasts": {
+      "save": {
+        "success": {
+          "title": "✅ Tema salvo",
+          "description": "Seu tema foi salvo com sucesso"
+        },
+        "error": {
+          "title": "❌ Falha ao salvar tema"
+        }
+      },
+      "delete": {
+        "success": {
+          "title": "✅ Tema excluído",
+          "description": "Seu tema foi excluído com sucesso"
+        },
+        "error": {
+          "title": "❌ Falha ao excluir tema"
+        }
+      },
+      "create": {
+        "success": {
+          "title": "✅ Tema criado",
+          "description": "Seu tema foi salvo com sucesso"
+        },
+        "error": {
+          "title": "❌ Falha ao criar tema"
+        }
+      }
+    },
+    "navigation": {
+      "backToThemes": "Voltar aos temas"
+    },
+    "editPage": {
+      "title": "Editando tema",
+      "saveButton": "Salvar alterações"
+    },
+    "createPage": {
+      "title": "Criar tema personalizado",
+      "description": "Crie um tema personalizado com CSS e opções predefinidas. Deixe em branco para usar valores padrão.",
+      "createButton": "Criar tema"
+    },
+    "deleteDialog": {
+      "title": "Excluir tema",
+      "description": "Tem certeza que deseja excluir este tema? Esta ação não pode ser desfeita.",
+      "cancelButton": "Cancelar",
+      "deleteButton": "Excluir"
+    },
+    "sections": {
+      "noThemes": "Nenhum tema encontrado",
+      "local": {
+        "title": "Temas locais",
+        "tab": "Temas locais"
+      },
+      "builtIn": {
+        "title": "Temas integrados",
+        "tab": "Temas integrados"
+      },
+      "community": {
+        "title": "Temas da comunidade",
+        "tab": "Temas da comunidade",
+        "comingSoon": "Em breve"
+      }
+    },
+    "form": {
+      "title": {
+        "label": "Título",
+        "placeholder": "Digite o título do tema"
+      },
+      "fonts": {
+        "label": "Famílias de fontes",
+        "ui": {
+          "placeholder": "interface (ex: Inter)"
+        },
+        "mono": {
+          "placeholder": "monoespaçada (ex: JetBrains Mono, Fira Code)"
+        },
+        "description": "Certifique-se de que as fontes inseridas estejam instaladas no seu sistema ou importe-as na seção CSS abaixo."
+      },
+      "accentColor": {
+        "label": "Cor principal (afeta apenas o modo escuro)",
+        "description": "Complexity gerará tons complementares baseados na cor fornecida"
+      },
+      "enhanceTypography": {
+        "label": "Melhorar tipografia (em threads)",
+        "description": "Enfatiza títulos, texto em negrito, torna o código em linha mais legível e remove ligaduras de fonte."
+      },
+      "css": {
+        "label": "Avançado: CSS",
+        "placeholder": "Digite regras CSS personalizadas",
+        "description": "Adicione regras CSS personalizadas para personalizar ainda mais seu tema"
+      }
+    },
+    "themeCard": {
+      "actions": {
+        "enable": "Ativar",
+        "disable": "Desativar",
+        "edit": "Editar"
+      },
+      "badges": {
+        "colorScheme": {
+          "light": "Claro",
+          "dark": "Escuro"
+        },
+        "compatibility": {
+          "desktop": "Desktop",
+          "mobile": "Móvel"
+        }
+      }
+    }
+  },
+  "themeRegistry": {
+    "complexityBlue": {
+      "description": "Tema oficial com cor de destaque azul característica"
+    },
+    "perplexityDefault": {
+      "description": "Melhorar o tema padrão"
+    },
+    "shyMoment": {
+      "description": "Tema oficial com cor de destaque violeta"
+    },
+    "sourLemon": {
+      "description": "Tema oficial com cor de destaque amarelada"
+    }
+  }
+} 

@@ -1,0 +1,10 @@
+{
+  "exportButton": {
+    "action": "निर्यात",
+    "copied": "कॉपी किया गया",
+    "options": {
+      "default": "डिफ़ॉल्ट",
+      "withoutCitations": "उद्धरण के बिना"
+    }
+  }
+} 

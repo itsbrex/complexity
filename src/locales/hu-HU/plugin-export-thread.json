@@ -1,0 +1,10 @@
+{
+  "exportButton": {
+    "action": "Exportálás",
+    "copied": "Másolva",
+    "options": {
+      "default": "Alapértelmezett",
+      "withoutCitations": "Hivatkozások nélkül"
+    }
+  }
+} 

@@ -11,7 +11,7 @@ export default function CustomHomeSloganPluginDetails() {
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
       <Switch
-        textLabel="Enable"
+        textLabel={t("action.enable")}
         checked={settings?.plugins["home:customSlogan"].enabled}
         onCheckedChange={({ checked }) =>
           mutation.mutate(
@@ -20,7 +20,11 @@ export default function CustomHomeSloganPluginDetails() {
         }
       />
       <div className="tw-flex tw-flex-col tw-gap-2">
-        <Label className="tw-text-muted-foreground">Slogan</Label>
+        <Label className="tw-text-muted-foreground">
+          {t(
+            "dashboard-plugins-page:pluginDetails.customHomeSlogan.sloganLabel",
+          )}
+        </Label>
         <Input
           value={settings?.plugins["home:customSlogan"].slogan}
           onChange={({ target: { value } }) =>

@@ -1,0 +1,145 @@
+{
+  "pluginsPage": {
+    "listing": {
+      "title": "Bővítmények",
+      "searchPlaceholder": "Bővítmények keresése...",
+      "reloadNote": "A Perplexity.ai-n a bővítmény beállítások módosításához a lapot teljesen újra kell tölteni.",
+      "fetchingPlugins": "Bővítmények lekérése..."
+    },
+    "noPluginsFound": {
+      "title": "Nem találhatók bővítmények",
+      "description": "Próbálja meg módosítani a keresési kifejezést/szűrőket vagy <url>kérjen egy újat</url> 😉"
+    },
+    "pluginCard": {
+      "actions": {
+        "addToFavorites": "Hozzáadás a kedvencekhez",
+        "removeFromFavorites": "Eltávolítás a kedvencekből"
+      },
+      "dependencyWarnings": {
+        "disabledDependencies": {
+          "title": "Egy vagy több függőség le van tiltva, kérjük, engedélyezze őket a bővítmény használatához:",
+          "dependencyList": "Függőségek"
+        },
+        "forcedDisabledDependencies": "Ez a bővítmény le van tiltva, mert egy vagy több függősége nem érhető el."
+      }
+    },
+    "lockdownOverlay": {
+      "message": "Ez a bővítmény jelenleg nem érhető el"
+    },
+    "sections": {
+      "favouritePlugins": "Kedvenc bővítmények",
+      "allPlugins": "Összes bővítmény"
+    },
+    "details": {
+      "backToPlugins": "Vissza a bővítményekhez",
+      "unavailable": {
+        "message": "Ez a bővítmény jelenleg nem érhető el. Kérjük, próbálja meg később.",
+        "backButton": "Vissza az irányítópulthoz"
+      }
+    },
+    "tagsFilterLabel": "Címkék"
+  },
+  "pluginDetails": {
+    "betterCodeBlocks": {
+      "description": "A kódblokkok megjelenésének és használhatóságának testreszabása.",
+      "tabs": {
+        "global": "Globális"
+      },
+      "codeTheme": {
+        "searchPlaceholder": "Téma keresése...",
+        "noThemeFound": "Nem található téma.",
+        "label": "Kód téma",
+        "dark": "Sötét",
+        "light": "Világos"
+      },
+      "languageOptions": {
+        "addNewRule": "Új szabály hozzáadása",
+        "fineTuneBlock": "Adott blokk finomhangolása",
+        "languageBlockName": "Nyelv/blokk neve",
+        "noLanguageProvided": "Nem lett megadva nyelv/blokk neve",
+        "failedToCreate": "❌ Nyelvi opció létrehozása sikertelen",
+        "delete": {
+          "title": "Nyelvi opció törlése",
+          "description": "Biztosan törölni szeretné ezt a nyelvi opciót? Ez a művelet nem vonható vissza."
+        },
+        "failedToUpdate": "❌ Opciók frissítése sikertelen",
+        "failedToDelete": "❌ Opciók törlése sikertelen"
+      },
+      "options": {
+        "stickyHeader": "Rögzített fejléc",
+        "unwrapLines": {
+          "label": "Sorok alapértelmezett kibontása",
+          "toggleButton": "Váltógomb megjelenítése"
+        },
+        "maxHeight": {
+          "label": "Maximális magasság",
+          "toggleButton": "Váltógomb megjelenítése",
+          "unit": "px (0px = teljesen összecsukva)",
+          "unitGlobal": "px (>= 300px)"
+        },
+        "placeholderText": {
+          "label": "Egyéni helyőrző szöveg",
+          "title": "Cím",
+          "loading": "Betöltési szöveg",
+          "idle": "Tétlen szöveg"
+        }
+      }
+    },
+    "betterThreadMessageToolbars": {
+      "description": "Hasznos javítások az eszköztár kompaktabbá és könnyebben használhatóvá tételéhez.",
+      "options": {
+        "sticky": {
+          "label": "Rögzítés felül",
+          "description": "Az eszköztár mindig látható marad a lap tetején görgetés közben."
+        },
+        "simplifyRewriteDropdown": {
+          "label": "Átírási legördülő menü egyszerűsítése",
+          "description": "Modell leírásának elrejtése (csak asztali gépeken)."
+        },
+        "hideUnnecessaryButtons": {
+          "label": "Szükségtelen gombok elrejtése",
+          "description": "Megosztás, Tetszik/Nem tetszik gombok elrejtése."
+        },
+        "explicitModelName": {
+          "label": "Egyértelmű modellnév",
+          "description": "Modellnév megjelenítése rámutatás nélkül."
+        }
+      }
+    },
+    "collapseEmptyThreadVisualCols": {
+      "description": "Üres terület eltávolítása minden üzenet jobb oldalán egy szálban. Csak olyan üzeneteknél, amelyeknek nem szerepelnek explicit módon a \"Képek keresése, Videók keresése, Képek generálása\" opciók a jobb oldalon."
+    },
+    "commandMenu": {
+      "description": "Hasonló a Mac Spotlight / Windows PowerToys Run funkcióihoz, de a Perplexity-n belül működik.",
+      "activationHotkey": "Aktiválási gyorsbillentyű:",
+      "sideNote": "Megjegyzés: A szál keresése bármikor sebességkorlátozás alá eshet a Perplexity részéről."
+    },
+    "languageModelSelector": {
+      "description": "Lehetővé teszi az Ön által preferált nyelvi modell módosítását <emphasis>bárhol</emphasis>. A választó megtalálható az összes lekérdezési mezőben.",
+      "mainLocations": "Kezdőlap + Modál + Tér",
+      "followUp": {
+        "enable": "Követés (egy szálban)",
+        "spanFullWidth": "Vízszintesen teljes szélességűre kiterjesztve"
+      }
+    },
+    "imageGenModelSelector": {
+      "description": "Lehetővé teszi az Ön által preferált képgenerálási modell módosítását. A választó megtalálható bármely szál képgenerálási felugró ablakában."
+    },
+    "customHomeSlogan": {
+      "sloganLabel": "Szlogen"
+    },
+    "noFileCreationOnPaste": {
+      "description": "Aktiválási gyorsbillentyű:"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "description": "Hasznos VPN használata esetén vagy amikor a Perplexity/Cloudflare problémákkal küzd az internetszolgáltatójával. Kapcsolja be ezt a lehetőséget, ha automatikusan újra szeretné tölteni az oldalt, amikor ez bekövetkezik.",
+      "behavior": {
+        "label": "Viselkedés",
+        "options": {
+          "reload": "Újratöltés",
+          "warnOnly": "Csak figyelmeztetés"
+        }
+      }
+    }
+  }
+} 

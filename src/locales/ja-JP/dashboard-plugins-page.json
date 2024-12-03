@@ -1,0 +1,145 @@
+{
+  "pluginsPage": {
+    "listing": {
+      "title": "プラグイン",
+      "searchPlaceholder": "プラグインを検索...",
+      "reloadNote": "Perplexity.aiでプラグイン設定を変更する際は、ページを完全に再読み込みする必要があります。",
+      "fetchingPlugins": "プラグインを取得中..."
+    },
+    "noPluginsFound": {
+      "title": "プラグインが見つかりません",
+      "description": "検索キーワード/フィルターを調整するか、<url>新しいプラグインをリクエスト</url>してください 😉"
+    },
+    "pluginCard": {
+      "actions": {
+        "addToFavorites": "お気に入りに追加",
+        "removeFromFavorites": "お気に入りから削除"
+      },
+      "dependencyWarnings": {
+        "disabledDependencies": {
+          "title": "1つ以上の依存関係が無効になっています。このプラグインを使用するには、それらを有効にしてください：",
+          "dependencyList": "依存関係"
+        },
+        "forcedDisabledDependencies": "1つ以上の依存関係が利用できないため、このプラグインは無効になっています。"
+      }
+    },
+    "lockdownOverlay": {
+      "message": "このプラグインは現在利用できません"
+    },
+    "sections": {
+      "favouritePlugins": "お気に入りのプラグイン",
+      "allPlugins": "すべてのプラグイン"
+    },
+    "details": {
+      "backToPlugins": "プラグインに戻る",
+      "unavailable": {
+        "message": "このプラグインは現在利用できません。後でもう一度お試しください。",
+        "backButton": "ダッシュボードに戻る"
+      }
+    },
+    "tagsFilterLabel": "タグ"
+  },
+  "pluginDetails": {
+    "betterCodeBlocks": {
+      "description": "コードブロックの外観と使いやすさをカスタマイズします。",
+      "tabs": {
+        "global": "グローバル"
+      },
+      "codeTheme": {
+        "searchPlaceholder": "テーマを検索...",
+        "noThemeFound": "テーマが見つかりません。",
+        "label": "コードテーマ",
+        "dark": "ダーク",
+        "light": "ライト"
+      },
+      "languageOptions": {
+        "addNewRule": "新しいルールを追加",
+        "fineTuneBlock": "特定のブロックを微調整",
+        "languageBlockName": "言語/ブロック名",
+        "noLanguageProvided": "言語/ブロック名が提供されていません",
+        "failedToCreate": "❌ 言語オプションの作成に失敗しました",
+        "delete": {
+          "title": "言語オプションを削除",
+          "description": "この言語オプションを削除してもよろしいですか？この操作は元に戻せません。"
+        },
+        "failedToUpdate": "❌ オプションの更新に失敗しました",
+        "failedToDelete": "❌ オプションの削除に失敗しました"
+      },
+      "options": {
+        "stickyHeader": "固定ヘッダー",
+        "unwrapLines": {
+          "label": "デフォルトで行を展開",
+          "toggleButton": "切り替えボタンを表示"
+        },
+        "maxHeight": {
+          "label": "最大高さ",
+          "toggleButton": "切り替えボタンを表示",
+          "unit": "px (0px = 完全に折りたたみ)",
+          "unitGlobal": "px (>= 300px)"
+        },
+        "placeholderText": {
+          "label": "カスタムプレースホルダーテキスト",
+          "title": "タイトル",
+          "loading": "読み込み中テキスト",
+          "idle": "アイドル状態のテキスト"
+        }
+      }
+    },
+    "betterThreadMessageToolbars": {
+      "description": "ツールバーをよりコンパクトで使いやすくするための便利な改善。",
+      "options": {
+        "sticky": {
+          "label": "上部に固定",
+          "description": "スクロール時にツールバーを常に画面上部に表示します。"
+        },
+        "simplifyRewriteDropdown": {
+          "label": "書き換えドロップダウンメニューを簡素化",
+          "description": "モデルの説明を非表示（デスクトップのみ）。"
+        },
+        "hideUnnecessaryButtons": {
+          "label": "不要なボタンを非表示",
+          "description": "共有、高評価/低評価ボタンを非表示。"
+        },
+        "explicitModelName": {
+          "label": "明示的なモデル名",
+          "description": "ホバーせずにモデル名を表示。"
+        }
+      }
+    },
+    "collapseEmptyThreadVisualCols": {
+      "description": "スレッド内の各メッセージの右側の空白スペースを削除。右側に「画像を検索、ビデオを検索、画像を生成」オプションが明示的にないメッセージのみ。"
+    },
+    "commandMenu": {
+      "description": "MacのSpotlight / WindowsのPowerToys Runに似ていますが、Perplexity内で動作します。",
+      "activationHotkey": "アクティベーションホットキー：",
+      "sideNote": "注意：スレッド検索は、Perplexityによって常にレート制限の対象となります。"
+    },
+    "languageModelSelector": {
+      "description": "お好みの言語モデルを<emphasis>どこでも</emphasis>変更できます。セレクターはすべてのクエリボックスで見つけられます。",
+      "mainLocations": "ホームページ + モーダル + スペース",
+      "followUp": {
+        "enable": "フォローアップ（スレッド内）",
+        "spanFullWidth": "水平方向に全幅に拡張"
+      }
+    },
+    "imageGenModelSelector": {
+      "description": "お好みの画像生成モデルを変更できます。セレクターは任意のスレッドの画像生成ポップオーバーで見つけられます。"
+    },
+    "customHomeSlogan": {
+      "sloganLabel": "スローガン"
+    },
+    "noFileCreationOnPaste": {
+      "description": "アクティベーションホットキー："
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "description": "VPN使用時、またはPerplexity/Cloudflareがインターネットプロバイダーに問題がある場合に役立ちます。これが発生した際に自動的にページを再読み込みする場合は、このオプションをオンにしてください。",
+      "behavior": {
+        "label": "動作",
+        "options": {
+          "reload": "再読み込み",
+          "warnOnly": "警告のみ"
+        }
+      }
+    }
+  }
+} 

@@ -102,7 +102,7 @@ export function PluginCard({ pluginId }: PluginCardProps) {
                 })
               }
             >
-              Details
+              {t("action.details")}
             </Button>
           )}
           <DropdownMenu>
@@ -135,12 +135,16 @@ export function PluginCard({ pluginId }: PluginCardProps) {
                   {settings?.favoritePluginIds?.includes(pluginId) ? (
                     <>
                       <GoStarFill className="tw-mr-2 tw-h-4 tw-w-4 tw-text-yellow-500" />
-                      Remove from favorites
+                      {t(
+                        "dashboard-plugins-page:pluginsPage.pluginCard.actions.removeFromFavorites",
+                      )}
                     </>
                   ) : (
                     <>
                       <GoStar className="tw-mr-2 tw-h-4 tw-w-4" />
-                      Add to favorites
+                      {t(
+                        "dashboard-plugins-page:pluginsPage.pluginCard.actions.addToFavorites",
+                      )}
                     </>
                   )}
                 </span>
@@ -155,8 +159,9 @@ export function PluginCard({ pluginId }: PluginCardProps) {
               content={
                 <div>
                   <div>
-                    One or more dependencies are disabled, please enable them to
-                    use this plugin:
+                    {t(
+                      "dashboard-plugins-page:pluginsPage.pluginCard.dependencyWarnings.disabledDependencies.title",
+                    )}
                   </div>
                   <Ul>
                     {PLUGINS_METADATA[pluginId]?.dependentPlugins?.map(
@@ -178,8 +183,9 @@ export function PluginCard({ pluginId }: PluginCardProps) {
           <Tooltip
             content={
               <div>
-                This plugin is disabled because one or more of its dependencies
-                are not available.
+                {t(
+                  "dashboard-plugins-page:pluginsPage.pluginCard.dependencyWarnings.forcedDisabledDependencies",
+                )}
               </div>
             }
           >

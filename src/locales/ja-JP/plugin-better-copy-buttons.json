@@ -1,0 +1,9 @@
+{
+  "copyButton": {
+    "tooltip": "メッセージをコピー",
+    "options": {
+      "default": "デフォルト",
+      "withoutCitations": "引用なし"
+    }
+  }
+} 

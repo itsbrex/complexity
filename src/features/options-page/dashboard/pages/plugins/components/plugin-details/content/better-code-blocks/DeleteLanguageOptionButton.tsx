@@ -29,15 +29,20 @@ export function DeleteLanguageOptionButton({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Delete Language Option</DialogTitle>
+          <DialogTitle>
+            {t(
+              "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.delete.title",
+            )}
+          </DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete this language option? This action
-            cannot be undone.
+            {t(
+              "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.delete.description",
+            )}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <Button variant="outline" onClick={() => setIsOpen(false)}>
-            Cancel
+            {t("action.cancel")}
           </Button>
           <Button
             variant="destructive"
@@ -46,7 +51,7 @@ export function DeleteLanguageOptionButton({
               setIsOpen(false);
             }}
           >
-            Delete
+            {t("action.delete")}
           </Button>
         </DialogFooter>
       </DialogContent>

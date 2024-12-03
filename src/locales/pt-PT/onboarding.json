@@ -1,12 +1,26 @@
 {
+  "intro": {
+    "title": "Tire o máximo partido do Perplexity AI",
+    "subtitle": "Vamos começar com uma configuração rápida",
+    "importSettings": "ou importe as suas definições existentes"
+  },
+  "completion": {
+    "title": "Configuração concluída! 🎉",
+    "description": "Está pronto para utilizar a extensão.",
+    "continue": "Continuar para o Painel"
+  },
+  "navigation": {
+    "previous": "Anterior",
+    "next": "Seguinte"
+  },
   "basePermissions": {
-    "title": "O Complexity precisa das suas permissões para funcionar",
+    "title": "O Complexity necessita das suas permissões para funcionar",
     "storage": {
-      "title": "Acesso ao Armazenamento da Extensão",
+      "title": "Acesso ao armazenamento da extensão",
       "description": {
-        "main": "Armazena as suas preferências e definições localmente no armazenamento da extensão.",
+        "main": "Guarde as suas definições localmente no armazenamento da extensão.",
         "security": "A extensão NÃO tem acesso ao histórico do navegador, marcadores ou quaisquer outros dados.",
-        "autoGrant": "Esta permissão é concedida automaticamente quando instala a extensão."
+        "autoGrant": "Esta permissão é concedida automaticamente ao instalar a extensão."
       }
     },
     "cookies": {
@@ -14,15 +28,16 @@
       "description": {
         "intro": "Os cookies sensíveis nunca serão armazenados ou utilizados fora do Perplexity AI. A permissão permite que a extensão:",
         "features": {
-          "sync": "Sincronize as suas preferências do Perplexity AI (como esquema de cores e definições de idioma) com a extensão",
-          "verify": "Verifique o seu estado de Apoiante"
+          "sync": "Sincronize as suas definições do Perplexity AI (como tema de cores e definições de idioma) com a extensão",
+          "verify": "Verifique o seu estado de Supporter"
         },
-        "warning": "Sem esta permissão, a extensão irá utilizar por predefinição o modo Escuro e o idioma inglês. Além disso, as funcionalidades de Apoiante ficarão indisponíveis. Pode ativar esta permissão mais tarde."
+        "warning": "Sem esta permissão, a extensão utilizará as definições predefinidas do dispositivo. Além disso, as funcionalidades de Supporter não estarão disponíveis. Pode ativar esta permissão mais tarde."
       }
     },
     "buttons": {
-      "grant": "Conceder Permissão",
+      "grant": "Conceder permissão",
       "granted": "Concedida"
-    }
+    },
+    "additionalPermissionsHeadsUp": "Poderá ser solicitado a conceder permissões adicionais para certas funcionalidades. Fique descansado, o seu consentimento será sempre solicitado antes de qualquer ação."
   }
 } 

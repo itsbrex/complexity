@@ -4,7 +4,7 @@ import { LuLoader2 } from "react-icons/lu";
 import CopyButton from "@/components/CopyButton";
 import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 import { Separator } from "@/components/ui/separator";
-import { BetterCodeBlockFineGrainedOptions } from "@/data/better-code-blocks/better-code-blocks-options";
+import { BetterCodeBlockFineGrainedOptions } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
 import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/useBetterCodeBlockOptions";
 import { ExpandCollapseButton } from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/ExpandCollapseButton";
@@ -74,7 +74,7 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
     >
       <div className="tw-flex tw-items-center tw-gap-2">
         <div className="tw-font-mono tw-text-sm">
-          {placeholderText?.title ?? language}
+          {placeholderText?.title || language}
         </div>
         {!isInFlight && placeholderText?.idle && (
           <div className="tw-flex tw-items-center tw-gap-2">

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { BetterCodeBlockGlobalOptionsSchema } from "@/data/better-code-blocks/better-code-blocks-options";
+import { BetterCodeBlockGlobalOptionsSchema } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
 
 export const PluginSettingsSchema = z.object({
   enabled: z.boolean(),

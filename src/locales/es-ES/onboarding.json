@@ -1,10 +1,24 @@
 {
+  "intro": {
+    "title": "Saque el máximo provecho de Perplexity AI",
+    "subtitle": "Comencemos con una configuración rápida",
+    "importSettings": "o importe su configuración existente"
+  },
+  "completion": {
+    "title": "¡Configuración completada! 🎉",
+    "description": "Ya está listo para usar la extensión.",
+    "continue": "Continuar al Panel"
+  },
+  "navigation": {
+    "previous": "Anterior",
+    "next": "Siguiente"
+  },
   "basePermissions": {
-    "title": "Complexity necesita tus permisos para funcionar",
+    "title": "Complexity necesita sus permisos para funcionar",
     "storage": {
       "title": "Acceso al almacenamiento de la extensión",
       "description": {
-        "main": "Almacena tus preferencias y configuraciones localmente en el almacenamiento de la extensión.",
+        "main": "Almacene su configuración localmente en el almacenamiento de la extensión.",
         "security": "La extensión NO tiene acceso al historial del navegador, marcadores ni ningún otro dato.",
         "autoGrant": "Este permiso se concede automáticamente al instalar la extensión."
       }
@@ -14,15 +28,16 @@
       "description": {
         "intro": "Las cookies sensibles nunca se almacenarán ni utilizarán fuera de Perplexity AI. El permiso permite que la extensión:",
         "features": {
-          "sync": "Sincronice tus preferencias de Perplexity AI (como el esquema de color y la configuración de idioma) con la extensión",
-          "verify": "Verifique tu estado de Supporter"
+          "sync": "Sincronice sus preferencias de Perplexity AI (como el tema de color y la configuración de idioma) con la extensión",
+          "verify": "Verifique su estado de Supporter"
         },
-        "warning": "Sin este permiso, la extensión usará por defecto el modo Oscuro y el idioma inglés. Además, las funciones de Supporter no estarán disponibles. Puedes habilitar este permiso más tarde."
+        "warning": "Sin este permiso, la extensión utilizará la configuración predeterminada del dispositivo. Además, las funciones de Supporter no estarán disponibles. Puede habilitar este permiso más tarde."
       }
     },
     "buttons": {
       "grant": "Conceder permiso",
       "granted": "Concedido"
-    }
+    },
+    "additionalPermissionsHeadsUp": "Es posible que se le solicite conceder permisos adicionales para ciertas funciones. Tenga la seguridad de que siempre se le pedirá su consentimiento antes de realizar cualquier acción."
   }
 }

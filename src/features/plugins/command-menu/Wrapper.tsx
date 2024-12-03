@@ -1,3 +1,5 @@
+import { Trans } from "react-i18next";
+
 import {
   CommandDialog,
   CommandEmpty,
@@ -82,7 +84,7 @@ export default function CommandMenuWrapper() {
           className="tw-grow tw-border-none"
           placeholder={
             !filter
-              ? "Type a command or search..."
+              ? t("plugin-command-menu:commandMenu.input.placeholder")
               : SEARCH_FILTERS[filter].searchPlaceholder
           }
           searchIcon={false}
@@ -103,9 +105,19 @@ export default function CommandMenuWrapper() {
         {!filter && (
           <>
             <CommandEmpty>
-              No results found for <InlineCode>{searchValue}</InlineCode>.
+              <Trans
+                i18nKey="plugin-command-menu:commandMenu.noResults"
+                components={{
+                  emphasis: <InlineCode />,
+                }}
+                values={{
+                  code: searchValue,
+                }}
+              />
             </CommandEmpty>
-            <CommandGroup heading="Search">
+            <CommandGroup
+              heading={t("plugin-command-menu:commandMenu.groups.search")}
+            >
               {SEARCH_ITEMS.map((item) => (
                 <SearchItem key={item.label} {...item} />
               ))}
@@ -113,7 +125,11 @@ export default function CommandMenuWrapper() {
 
             <CommandSeparator />
 
-            <CommandGroup heading="Quick navigations">
+            <CommandGroup
+              heading={t(
+                "plugin-command-menu:commandMenu.groups.quickNavigations",
+              )}
+            >
               {NAVIGATION_ITEMS.map((item) => (
                 <NavigationItem key={item.label} {...item} />
               ))}
@@ -121,7 +137,9 @@ export default function CommandMenuWrapper() {
 
             <CommandSeparator />
 
-            <CommandGroup heading="Change color scheme">
+            <CommandGroup
+              heading={t("plugin-command-menu:commandMenu.groups.colorScheme")}
+            >
               {COLOR_SCHEME_ITEMS.map((item) => (
                 <ColorSchemeItem key={item.label} {...item} />
               ))}

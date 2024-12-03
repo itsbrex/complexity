@@ -27,6 +27,14 @@ export function setupOptionPageListeners() {
       $("html").attr("data-color-scheme", colorScheme ?? "dark");
 
       unsubscribeColorSchemeObserver();
+    } else {
+      const devicePreferredColorScheme = window.matchMedia?.(
+        "(prefers-color-scheme: dark)",
+      )?.matches
+        ? "dark"
+        : "light";
+
+      $("html").attr("data-color-scheme", devicePreferredColorScheme);
     }
   });
 }

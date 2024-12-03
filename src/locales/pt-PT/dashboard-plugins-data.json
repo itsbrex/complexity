@@ -1,0 +1,98 @@
+{
+  "pluginTags": {
+    "ui": {
+      "label": "Aparência",
+      "description": "Plugins relacionados com a interface do utilizador"
+    },
+    "ux": {
+      "label": "Facilidade de Utilização",
+      "description": "Plugins relacionados com a experiência do utilizador"
+    },
+    "desktopOnly": {
+      "label": "Apenas Desktop",
+      "description": "Utilizável apenas em desktop/largura do ecrã > 768px"
+    },
+    "privacy": {
+      "label": "Privacidade",
+      "description": "Plugins relacionados com a privacidade"
+    },
+    "pplxPro": {
+      "label": "Perplexity Pro",
+      "description": "Requer uma subscrição ativa do Perplexity Pro"
+    },
+    "experimental": {
+      "label": "Experimental",
+      "description": "Plugins experimentais. Sujeitos a alterações ou remoção sem aviso prévio."
+    },
+    "beta": {
+      "label": "Beta",
+      "description": "Plugins em versão beta"
+    },
+    "forFun": {
+      "label": "Por Diversão",
+      "description": "Simplesmente por diversão!"
+    }
+  },
+  "pluginsMetadata": {
+    "queryboxLanguageModelSelector": {
+      "title": "Seletor de Modelo de Linguagem",
+      "description": "Permite a seleção de diferentes modelos de linguagem"
+    },
+    "queryboxNoFileCreationOnPaste": {
+      "title": "Impedir Criação de Ficheiro",
+      "description": "Impede a criação automática de ficheiro ao colar texto (muito) longo na caixa de consulta"
+    },
+    "commandMenu": {
+      "title": "Menu de Comandos",
+      "description": "Navegar rapidamente e invocar ações"
+    },
+    "threadToc": {
+      "title": "Índice do Thread",
+      "description": "Navegar rapidamente entre mensagens num thread. Só aparece quando existem mais de 2 mensagens."
+    },
+    "threadBetterMessageToolbars": {
+      "title": "Barras de Ferramentas de Mensagens Melhoradas",
+      "description": "Melhora as barras de ferramentas de mensagens (nos threads)"
+    },
+    "threadBetterCodeBlocks": {
+      "title": "Blocos de Código Melhorados",
+      "description": "Melhora os blocos de código (nos threads)"
+    },
+    "threadBetterCodeBlocksPreviewMermaid": {
+      "title": "Pré-visualização de Blocos de Código Mermaid",
+      "description": "Pré-visualiza diagramas Mermaid, gráficos simples, etc. nos blocos de código"
+    },
+    "threadExportThread": {
+      "title": "Exportar Thread",
+      "description": "Exporta o thread atual em formato Markdown (com citações opcionais). Mais opções de formatação em breve"
+    },
+    "threadBetterMessageCopyButtons": {
+      "title": "Botões de Cópia de Mensagens Melhorados",
+      "description": "Copiar conteúdo da mensagem sem citações. Mais opções de formatação em breve"
+    },
+    "threadDragAndDropFileToUploadInThread": {
+      "title": "Arrastar e Largar Ficheiros para Carregar no Thread",
+      "description": "Trata toda a página do thread como zona de largada e permite arrastar e largar ficheiros diretamente para carregar como anexos"
+    },
+    "threadCollapseEmptyThreadVisualCols": {
+      "title": "Recolher Colunas Visuais Vazias do Thread",
+      "description": "Recolhe colunas visuais vazias na página do thread"
+    },
+    "imageGenModelSelector": {
+      "title": "Seletor de Modelo de Geração de Imagens",
+      "description": "Permite a seleção de diferentes modelos de geração de imagens"
+    },
+    "onCloudflareTimeoutAutoReload": {
+      "title": "Recarregamento Automático em Timeout do Cloudflare",
+      "description": "Recarrega automaticamente a página em caso de timeout do Cloudflare"
+    },
+    "blockAnalyticEvents": {
+      "title": "Bloquear Eventos Analíticos",
+      "description": "Impede o Perplexity de enviar eventos analíticos/de rastreamento. Apenas para depuração"
+    },
+    "homeCustomSlogan": {
+      "title": "Slogan Personalizado da Página Inicial",
+      "description": "Personalizar o slogan na página inicial"
+    }
+  }
+} 

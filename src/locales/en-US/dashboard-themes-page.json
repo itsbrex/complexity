@@ -1,0 +1,132 @@
+{
+  "themesPage": {
+    "header": {
+      "title": "Custom Themes",
+      "description": "Customize your Perplexity interface with curated themes",
+      "createButton": "Create New Theme"
+    },
+    "toasts": {
+      "save": {
+        "success": {
+          "title": "✅ Theme saved",
+          "description": "Your theme has been saved successfully"
+        },
+        "error": {
+          "title": "❌ Failed to save theme"
+        }
+      },
+      "delete": {
+        "success": {
+          "title": "✅ Theme deleted",
+          "description": "Your theme has been deleted successfully"
+        },
+        "error": {
+          "title": "❌ Failed to delete theme"
+        }
+      },
+      "create": {
+        "success": {
+          "title": "✅ Theme created",
+          "description": "Your theme has been saved successfully"
+        },
+        "error": {
+          "title": "❌ Failed to create theme"
+        }
+      }
+    },
+    "navigation": {
+      "backToThemes": "Back to themes"
+    },
+    "editPage": {
+      "title": "Editing Theme",
+      "saveButton": "Save Changes"
+    },
+    "createPage": {
+      "title": "Create Custom Theme",
+      "description": "Create a custom theme with CSS and predefined options. Leave blank to use default values.",
+      "createButton": "Create Theme"
+    },
+    "deleteDialog": {
+      "title": "Delete Theme",
+      "description": "Are you sure you want to delete this theme? This action cannot be undone.",
+      "cancelButton": "Cancel",
+      "deleteButton": "Delete"
+    },
+    "sections": {
+      "noThemes": "No themes found",
+      "local": {
+        "title": "Local Themes",
+        "tab": "Local Themes"
+      },
+      "builtIn": {
+        "title": "Built-in Themes",
+        "tab": "Built-in Themes"
+      },
+      "community": {
+        "title": "Community Themes",
+        "tab": "Community Themes",
+        "comingSoon": "Coming soon"
+      }
+    },
+    "form": {
+      "title": {
+        "label": "Title",
+        "placeholder": "Enter theme title"
+      },
+      "fonts": {
+        "label": "Font Families",
+        "ui": {
+          "placeholder": "ui (e.g., Inter)"
+        },
+        "mono": {
+          "placeholder": "monospace (e.g., JetBrains Mono, Fira Code)"
+        },
+        "description": "Make sure entered fonts are installed on your system, or import them in the CSS section below."
+      },
+      "accentColor": {
+        "label": "Primary Color (only affects Dark Mode)",
+        "description": "Complexity will generate complementary shades based on provided color"
+      },
+      "enhanceTypography": {
+        "label": "Enhance Typography (in Threads)",
+        "description": "Emphasizes headings, bold text, make inline code more readable, and remove font ligatures."
+      },
+      "css": {
+        "label": "Advanced: CSS",
+        "placeholder": "Enter custom CSS rules",
+        "description": "Add custom CSS rules to further customize your theme"
+      }
+    },
+    "themeCard": {
+      "actions": {
+        "enable": "Enable",
+        "disable": "Disable",
+        "edit": "Edit"
+      },
+      "badges": {
+        "colorScheme": {
+          "light": "Light",
+          "dark": "Dark"
+        },
+        "compatibility": {
+          "desktop": "Desktop",
+          "mobile": "Mobile"
+        }
+      }
+    }
+  },
+  "themeRegistry": {
+    "complexityBlue": {
+      "description": "Official theme with signature blue accent color"
+    },
+    "perplexityDefault": {
+      "description": "Enhance the default theme"
+    },
+    "shyMoment": {
+      "description": "Official theme with purple-ish accent color"
+    },
+    "sourLemon": {
+      "description": "Official theme with yellow-ish accent color"
+    }
+  }
+}

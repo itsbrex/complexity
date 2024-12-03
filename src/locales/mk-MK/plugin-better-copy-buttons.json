@@ -1,0 +1,9 @@
+{
+  "copyButton": {
+    "tooltip": "Копирај порака",
+    "options": {
+      "default": "Стандардно",
+      "withoutCitations": "Без цитати"
+    }
+  }
+} 

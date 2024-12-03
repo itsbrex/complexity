@@ -1,0 +1,9 @@
+{
+  "copyButton": {
+    "tooltip": "Copiar mensagem",
+    "options": {
+      "default": "Padrão",
+      "withoutCitations": "Sem citações"
+    }
+  }
+} 

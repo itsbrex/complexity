@@ -1,6 +1,5 @@
 import { BiExtension } from "react-icons/bi";
 import {
-  LuBell,
   LuFileText,
   LuMessageCircle,
   LuPalette,
@@ -15,33 +14,28 @@ export type NavItem = {
 
 export const navItems: NavItem[] = [
   {
-    icon: LuBell,
-    label: "Notifications",
-    path: "/notifications",
-  },
-  {
     icon: BiExtension,
-    label: "Plugins",
+    label: t("common:sidebar.items.plugins"),
     path: "/plugins",
   },
   {
     icon: LuPalette,
-    label: "Themes",
+    label: t("common:sidebar.items.themes"),
     path: "/themes",
   },
   {
     icon: LuFileText,
-    label: "Release Notes",
+    label: t("common:sidebar.items.releaseNotes"),
     path: "/release-notes",
   },
   {
     icon: LuSettings,
-    label: "Settings",
+    label: t("common:sidebar.items.settings"),
     path: "/settings",
   },
   {
     icon: LuMessageCircle,
-    label: "Need help?",
+    label: t("common:sidebar.items.help"),
     path: "/help",
   },
 ];

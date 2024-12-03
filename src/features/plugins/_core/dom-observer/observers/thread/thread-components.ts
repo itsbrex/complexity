@@ -33,7 +33,10 @@ export async function setupThreadComponentsObserver(
   const settings = PluginsStatesService.getCachedSync()?.pluginsEnableStates;
 
   const shouldObserve =
-    settings?.imageGenModelSelector || settings?.["thread:toc"];
+    settings?.imageGenModelSelector ||
+    settings?.["thread:toc"] ||
+    settings?.["thread:betterCodeBlocks"] ||
+    settings?.["thread:betterMessageToolbars"];
 
   if (!shouldObserve) return;
 
@@ -109,13 +112,6 @@ function monitorThreadWrapperExistence({
 }
 
 async function observeMessageBlocks() {
-  const pluginsStates = PluginsStatesService.getCachedSync();
-
-  const shouldObserve =
-    pluginsStates.pluginsEnableStates?.["thread:betterMessageToolbars"];
-
-  if (!shouldObserve) return;
-
   const messageBlocks = UiUtils.getMessageBlocks();
 
   CallbackQueue.getInstance().enqueue(

@@ -1,3 +1,4 @@
+import { LuLoader2 } from "react-icons/lu";
 import { useRoutes } from "react-router-dom";
 
 import { Input } from "@/components/ui/input";
@@ -7,7 +8,6 @@ import { TagsFilter } from "@/features/options-page/dashboard/pages/plugins/comp
 import { useFilteredPlugins } from "@/features/options-page/dashboard/pages/plugins/hooks/useFilteredPlugins";
 import {
   usePluginContext,
-  PluginProvider,
   type PluginFilters,
 } from "@/features/options-page/dashboard/pages/plugins/PluginContext";
 import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatureFlags";
@@ -34,26 +34,32 @@ function PluginsListing() {
 
   return (
     <div className="tw-w-full">
-      <h1 className="tw-sr-only tw-text-2xl tw-font-bold">Plugins</h1>
+      <h1 className="tw-sr-only tw-text-2xl tw-font-bold">
+        {t("dashboard-plugins-page:pluginsPage.listing.title")}
+      </h1>
 
       <div className="tw-flex tw-flex-col tw-gap-4 md:tw-mt-0">
         <div className="tw-ml-auto tw-flex tw-w-full tw-flex-row-reverse tw-gap-4 md:tw-w-fit md:tw-flex-row md:tw-justify-end">
           <TagsFilter />
           <Input
             type="search"
-            placeholder="Search plugins..."
+            placeholder={t(
+              "dashboard-plugins-page:pluginsPage.listing.searchPlaceholder",
+            )}
             value={filters.searchTerm}
             onChange={handleSearchChange}
           />
         </div>
 
         <div className="tw-ml-auto tw-text-balance tw-text-center tw-text-sm tw-text-muted-foreground md:tw-text-left">
-          A full page reload on Perplexity.ai is required when changing plugin
-          settings.
+          {t("dashboard-plugins-page:pluginsPage.listing.reloadNote")}
         </div>
 
         {isFetchingFeatureFlags ? (
-          <div>Fetching plugins...</div>
+          <div className="tw-flex tw-items-center tw-gap-2">
+            <LuLoader2 className="tw-animate-spin" />
+            {t("dashboard-plugins-page:pluginsPage.listing.fetchingPlugins")}
+          </div>
         ) : (
           <PluginSections
             favoritePluginIds={favoritePluginIds}
@@ -107,11 +113,7 @@ export default function PluginsPage() {
     },
     {
       path: "*",
-      element: (
-        <PluginProvider>
-          <PluginsListing />
-        </PluginProvider>
-      ),
+      element: <PluginsListing />,
     },
   ]);
 }

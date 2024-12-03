@@ -1,6 +1,36 @@
 {
-  "extension-description": "Complexity - Perplexity AI Doładowany",
+  "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporter-message": "Rozważ zostanie <highlight>Wspierającym</highlight>, aby utrzymać projekt przy życiu!"
+    "supporterMessage": "Rozważ zostanie <emphasis>Wspierającym</emphasis>, aby utrzymać projekt przy życiu!",
+    "items": {
+      "notifications": "Powiadomienia",
+      "plugins": "Wtyczki",
+      "themes": "Motywy",
+      "releaseNotes": "Informacje o wydaniu",
+      "settings": "Ustawienia",
+      "help": "Potrzebujesz pomocy?"
+    },
+    "updateAnnouncer": {
+      "newVersion": "Dostępna jest nowa wersja rozszerzenia!",
+      "updatePrompt": "Zaktualizuj, aby otrzymać ulepszenia i poprawki błędów.",
+      "autoUpdateInfo": "Aktualizacja powinna nastąpić automatycznie po ponownym uruchomieniu przeglądarki lub wymuś ją ręcznie na stronie zarządzania rozszerzeniami.",
+      "manualUpdateInfo": "Lub kliknij <storeLink>TUTAJ</storeLink>, aby ponownie odwiedzić sklep i ręcznie przeinstalować rozszerzenie, jeśli żadna z powyższych opcji nie działa (pamiętaj o wyeksportowaniu swoich ustawień!)."
+    }
+  },
+  "action": {
+    "enable": "Włącz",
+    "disable": "Wyłącz",
+    "cancel": "Anuluj",
+    "confirm": "Potwierdź",
+    "delete": "Usuń",
+    "create": "Utwórz",
+    "back": "Wstecz",
+    "search": "Szukaj",
+    "options": "Opcje",
+    "details": "Szczegóły"
+  },
+  "status": {
+    "loading": "Ładowanie",
+    "noResults": "Nie znaleziono wyników"
   }
 }

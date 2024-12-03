@@ -32,22 +32,23 @@ export function DeleteButton({ isDeleting, onDelete }: DeleteButtonProps) {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Delete Theme</DialogTitle>
+          <DialogTitle>
+            {t("dashboard-themes-page:themesPage.deleteDialog.title")}
+          </DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete this theme? This action cannot be
-            undone.
+            {t("dashboard-themes-page:themesPage.deleteDialog.description")}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <Button variant="outline" onClick={() => setIsOpen(false)}>
-            Cancel
+            {t("dashboard-themes-page:themesPage.deleteDialog.cancelButton")}
           </Button>
           <Button
             variant="destructive"
             disabled={isDeleting}
             onClick={onDelete}
           >
-            Delete
+            {t("dashboard-themes-page:themesPage.deleteDialog.deleteButton")}
           </Button>
         </DialogFooter>
       </DialogContent>

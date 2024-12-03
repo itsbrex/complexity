@@ -1,0 +1,30 @@
+body#__next {
+  &[location="thread"] {
+    /* Typography */
+    strong,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply tw-text-primary;
+    }
+
+    /* Message Block Dividers */
+    [data-cplx-component="message-block"]:not(:last-of-type) {
+      @apply tw-border-b-ring/50;
+    }
+  }
+
+  /* Inline Code */
+  code:not(pre code) {
+    &::before,
+    &::after {
+      content: "";
+    }
+
+    @apply tw-rounded-md tw-bg-secondary tw-px-1 tw-py-0.5 tw-text-primary;
+  }
+
+  font-variant-ligatures: none;
+}

@@ -1,0 +1,28 @@
+{
+  "basePermissions": {
+    "title": "Complexity ha bisogno dei tuoi permessi per funzionare",
+    "storage": {
+      "title": "Accesso allo storage dell'estensione",
+      "description": {
+        "main": "Memorizza le tue preferenze e impostazioni localmente nello storage dell'estensione.",
+        "security": "L'estensione NON ha accesso alla cronologia del browser, ai segnalibri o ad altri dati.",
+        "autoGrant": "Questo permesso viene concesso automaticamente quando installi l'estensione."
+      }
+    },
+    "cookies": {
+      "title": "Cookie di Perplexity AI",
+      "description": {
+        "intro": "I cookie sensibili non verranno mai memorizzati o utilizzati al di fuori di Perplexity AI. Il permesso consente all'estensione di:",
+        "features": {
+          "sync": "Sincronizzare le tue preferenze di Perplexity AI (come schema colori e impostazioni della lingua) con l'estensione",
+          "verify": "Verificare il tuo stato di Supporter"
+        },
+        "warning": "Senza questo permesso, l'estensione utilizzerà per impostazione predefinita la modalità scura e la lingua inglese. Inoltre, le funzionalità Supporter non saranno disponibili. Puoi abilitare questo permesso in seguito."
+      }
+    },
+    "buttons": {
+      "grant": "Concedi permesso",
+      "granted": "Concesso"
+    }
+  }
+}

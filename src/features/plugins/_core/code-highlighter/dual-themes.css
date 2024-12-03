@@ -1,0 +1,10 @@
+:root[data-color-scheme="dark"] .shiki,
+:root[data-color-scheme="dark"] .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+.shiki code {
+  display: flex;
+  flex-direction: column;
+}

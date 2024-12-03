@@ -1,0 +1,28 @@
+{
+  "basePermissions": {
+    "title": "Complexity가 작동하려면 권한이 필요합니다",
+    "storage": {
+      "title": "확장 프로그램 스토리지 접근",
+      "description": {
+        "main": "확장 프로그램의 스토리지에 사용자 기본 설정을 로컬로 저장합니다.",
+        "security": "확장 프로그램은 브라우저 기록, 북마크 또는 기타 데이터에 접근할 수 없습니다.",
+        "autoGrant": "이 권한은 확장 프로그램 설치 시 자동으로 부여됩니다."
+      }
+    },
+    "cookies": {
+      "title": "Perplexity AI 쿠키",
+      "description": {
+        "intro": "민감한 쿠키는 절대 Perplexity AI 외부에서 저장되거나 사용되지 않습니다. 이 권한을 통해 확장 프로그램은:",
+        "features": {
+          "sync": "Perplexity AI 기본 설정(색상 구성표 및 언어 설정 등)을 확장 프로그램과 동기화",
+          "verify": "서포터 상태 확인"
+        },
+        "warning": "이 권한이 없으면 확장 프로그램은 기본적으로 다크 모드와 영어로 설정됩니다. 또한 서포터 기능을 사용할 수 없습니다. 나중에 이 권한을 활성화할 수 있습니다."
+      }
+    },
+    "buttons": {
+      "grant": "권한 부여",
+      "granted": "부여됨"
+    }
+  }
+}

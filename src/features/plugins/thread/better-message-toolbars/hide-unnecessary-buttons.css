@@ -1,0 +1,18 @@
+[data-cplx-component="message-block"][data-index] {
+  [data-cplx-component="message-block-query"] + div > div:last-child {
+    .mt-sm.flex {
+      justify-content: flex-end;
+
+      /* hide buttons labels */
+      .-ml-sm.flex button div svg + div {
+        display: none;
+      }
+
+      button:has([data-icon="share"]),
+      button:has([data-icon="thumbs-down"]),
+      button:has([data-icon="thumbs-up"]) {
+        display: none;
+      }
+    }
+  }
+}

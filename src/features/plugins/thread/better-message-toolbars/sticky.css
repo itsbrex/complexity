@@ -1,0 +1,25 @@
+[data-cplx-component="message-block"][data-index] {
+  [data-cplx-component="message-block-query"]
+    + div
+    > div.border-borderMain\/50 {
+    display: flex;
+    flex-direction: column;
+
+    .mt-sm.flex {
+      position: sticky;
+      @apply tw-top-[--navbar-height];
+      order: -1;
+      z-index: 1;
+      @apply tw-mb-8 tw-mt-0 tw-border-b tw-border-dashed tw-border-border/50 tw-bg-background tw-p-2;
+
+      button {
+        @apply tw-rounded-md;
+      }
+
+      &.stuck {
+        @apply tw-border-solid;
+        @apply tw-shadow-[0_16px_16px_-16px_rgba(0,0,0,0.3)];
+      }
+    }
+  }
+}

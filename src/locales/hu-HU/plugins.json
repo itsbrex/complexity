@@ -1,0 +1,8 @@
+{
+  "languageModelSelector": {
+    "tooltip": "Nyelvi modell kiválasztása"
+  },
+  "imageGenModelSelector": {
+    "tooltip": "Képgeneráló modell kiválasztása"
+  }
+} 

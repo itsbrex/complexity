@@ -1,0 +1,10 @@
+[data-cplx-component="message-block-bottom-bar"] {
+  [data-cplx-component="cplx-better-message-copy-buttons"]:not(:empty)
+    + button[aria-label="Copy"] {
+    display: none;
+  }
+
+  [data-cplx-component="cplx-better-message-copy-buttons"]:empty {
+    display: none;
+  }
+}

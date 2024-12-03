@@ -1,0 +1,11 @@
+.mb-lg.md\:text-center.pb-xs.md\:text-center {
+  text-align: center;
+
+  &:not([cplx-custom-slogan]) span {
+    display: none;
+  }
+
+  span {
+    @apply tw-animate-in tw-fade-in-0;
+  }
+}

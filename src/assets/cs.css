@@ -1,0 +1,12 @@
+@import "./vars.css";
+@import "./scrollbar.css";
+
+@config "./tailwind.cs.config.js";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body#__next {
+  @apply tw-font-sans;
+}

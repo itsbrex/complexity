@@ -1,0 +1,17 @@
+.cplx-file-upload-overlay {
+  @apply tw-fixed tw-inset-0 tw-h-full tw-w-full;
+  @apply tw-bg-background/50 tw-backdrop-blur;
+  @apply tw-z-[9999] tw-flex tw-items-center tw-justify-center;
+  @apply tw-pointer-events-none tw-opacity-0;
+  @apply tw-transition-opacity tw-duration-200 tw-ease-in-out;
+}
+
+.cplx-file-upload-overlay.active {
+  @apply tw-opacity-100;
+}
+
+.cplx-file-upload-overlay__content {
+  @apply tw-bg-background tw-text-foreground;
+  @apply tw-rounded-md tw-border-2 tw-border-dashed tw-border-primary;
+  @apply tw-p-8 tw-text-center;
+}

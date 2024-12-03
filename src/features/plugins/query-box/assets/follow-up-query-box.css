@@ -1,0 +1,58 @@
+[cplx-follow-up-query-box] {
+  @apply tw-rounded-md;
+  border: 1px solid var(--border-darker) !important;
+  background: var(--secondary);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2) !important;
+
+  > div {
+    @apply tw-rounded-md;
+
+    > div {
+      @apply tw-rounded-md;
+      transition: none !important;
+      animation: none !important;
+      transform: none !important;
+
+      > div {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        grid-template-rows: 1fr auto !important;
+
+        > div:nth-child(1) {
+          order: 0;
+          grid-column: span 3 / span 3;
+          grid-column-start: 1;
+        }
+
+        > div:nth-child(2) {
+          grid-column: span 2 / span 2;
+          grid-column-start: 1;
+          align-items: center;
+          order: 1;
+        }
+
+        > div:nth-child(3) {
+          grid-column: span 1 / span 1;
+        }
+      }
+    }
+  }
+
+  button:has(svg[data-icon="circle-plus"]) {
+    @apply tw-size-8 tw-rounded-md;
+
+    svg {
+      @apply tw-size-4;
+    }
+  }
+}
+
+.pointer-events-none.fixed.bottom-mobileNavHeight {
+  @apply md:tw-bottom-0 md:tw-mt-0;
+
+  .pointer-events-auto.md\:col-span-8:has(
+      [cplx-follow-up-query-box][cplx-data-span]
+    ) {
+    grid-column: span 12 / span 12 !important;
+  }
+}

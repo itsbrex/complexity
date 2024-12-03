@@ -1,0 +1,13 @@
+[data-cplx-component="cplx-mirrored-code-block"]:not(:empty)
+  + [data-cplx-component="message-block-code-block"] {
+  display: none;
+}
+
+[data-cplx-component="message-block-code-block"]:empty {
+  display: none;
+}
+
+[data-cplx-component="message-block-code-block"] code {
+  white-space: unset !important;
+  width: max-content !important;
+}

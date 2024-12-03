@@ -1,0 +1,8 @@
+{
+  "languageModelSelector": {
+    "tooltip": "Escolher modelo de linguagem"
+  },
+  "imageGenModelSelector": {
+    "tooltip": "Escolher modelo de imagem"
+  }
+} 

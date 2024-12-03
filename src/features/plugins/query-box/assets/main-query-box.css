@@ -1,0 +1,21 @@
+[cplx-main-query-box] {
+  div:has(> textarea) + div {
+    grid-column-start: 1 !important;
+    grid-column-end: 3 !important;
+    display: flex;
+    flex-wrap: wrap;
+    @apply tw-gap-y-1;
+  }
+
+  button:not([aria-label="Submit"]):not(
+      [data-testid="copilot-toggle"]
+    ).rounded-full {
+    border-radius: 0.375rem !important;
+    height: 2rem !important;
+
+    svg {
+      width: 0.9rem !important;
+      height: 0.9rem !important;
+    }
+  }
+}

@@ -93,6 +93,10 @@
     "homeCustomSlogan": {
       "title": "Custom Home Slogan",
       "description": "Customize the slogan on the home page."
+    },
+    "hideGetMobileAppCtaBtn": {
+      "title": "Hide \"Get Mobile App\" Button",
+      "description": "Hide all \"Get Mobile App\" buttons on mobile screens."
     }
   }
 }

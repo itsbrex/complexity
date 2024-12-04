@@ -93,6 +93,10 @@
     "homeCustomSlogan": {
       "title": "홈페이지 맞춤 슬로건",
       "description": "홈페이지의 슬로건 사용자 지정"
+    },
+    "hideGetMobileAppCtaBtn": {
+      "title": "\"모바일 앱 다운로드\" 버튼 숨기기",
+      "description": "모바일 화면에서 모든 \"모바일 앱 다운로드\" 버튼을 숨깁니다."
     }
   }
 }

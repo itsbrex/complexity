@@ -93,6 +93,10 @@
     "homeCustomSlogan": {
       "title": "Niestandardowy Slogan Strony Głównej",
       "description": "Dostosuj slogan na stronie głównej"
+    },
+    "hideGetMobileAppCtaBtn": {
+      "title": "Ukryj przycisk \"Pobierz aplikację mobilną\"",
+      "description": "Ukryj wszystkie przyciski \"Pobierz aplikację mobilną\" na ekranach mobilnych."
     }
   }
 }

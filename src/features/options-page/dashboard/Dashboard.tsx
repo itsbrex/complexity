@@ -18,7 +18,7 @@ export default function Dashboard() {
       </Comp>
 
       <div className="tw-flex tw-flex-1 tw-flex-col tw-gap-4">
-        <main className="tw-mt-11 tw-w-full tw-p-4 md:tw-mt-0">
+        <main className="tw-mx-auto tw-mt-11 tw-w-full tw-max-w-[1800px] tw-p-4 md:tw-mt-0">
           <Suspense fallback={<LoadingOverlay />}>
             <Outlet />
           </Suspense>

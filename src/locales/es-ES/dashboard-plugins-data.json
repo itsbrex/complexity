@@ -93,6 +93,10 @@
     "homeCustomSlogan": {
       "title": "Eslogan personalizado de la página de inicio",
       "description": "Personalizar el eslogan en la página de inicio"
+    },
+    "hideGetMobileAppCtaBtn": {
+      "title": "Ocultar botón \"Obtener aplicación móvil\"",
+      "description": "Ocultar todos los botones \"Obtener aplicación móvil\" en pantallas móviles."
     }
   }
 } 

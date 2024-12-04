@@ -93,6 +93,10 @@
     "homeCustomSlogan": {
       "title": "ホームページカスタムスローガン",
       "description": "ホームページのスローガンをカスタマイズ"
+    },
+    "hideGetMobileAppCtaBtn": {
+      "title": "「モバイルアプリを入手」ボタンを非表示",
+      "description": "モバイル画面での「モバイルアプリを入手」ボタンをすべて非表示にします。"
     }
   }
 } 

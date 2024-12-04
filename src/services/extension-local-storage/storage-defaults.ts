@@ -75,6 +75,9 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       enabled: false,
       slogan: "",
     },
+    "hide-get-mobile-app-cta-btn": {
+      enabled: false,
+    },
   },
   favoritePluginIds: [],
   theme: "complexity",

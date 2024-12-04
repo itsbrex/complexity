@@ -1,0 +1,4 @@
+a[href*="https://perplexity.sng.link"]
+{
+  display: none;
+}

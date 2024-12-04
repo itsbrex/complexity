@@ -93,6 +93,10 @@
     "homeCustomSlogan": {
       "title": "Slogan personalizzato homepage",
       "description": "Personalizza lo slogan nella homepage"
+    },
+    "hideGetMobileAppCtaBtn": {
+      "title": "Nascondi pulsante \"Ottieni app mobile\"",
+      "description": "Nascondi tutti i pulsanti \"Ottieni app mobile\" sugli schermi mobili."
     }
   }
 } 

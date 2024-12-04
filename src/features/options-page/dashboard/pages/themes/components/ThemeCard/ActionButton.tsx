@@ -1,7 +1,5 @@
-import { LuCheckCircle2, LuXCircle } from "react-icons/lu";
-
 import Tooltip from "@/components/Tooltip";
-import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import { Theme } from "@/data/plugins/themes/theme-registry.types";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
@@ -30,17 +28,7 @@ export default function ThemeCardActionButton({
           : t("dashboard-themes-page:themesPage.themeCard.actions.enable")
       }
     >
-      <Button
-        variant="outline"
-        size="icon"
-        className={cn({
-          "tw-bg-destructive/50 tw-text-muted-foreground hover:tw-bg-destructive hover:tw-text-destructive-foreground":
-            isChosenTheme,
-        })}
-        onClick={handleThemeAction}
-      >
-        {isChosenTheme ? <LuXCircle /> : <LuCheckCircle2 />}
-      </Button>
+      <Switch checked={isChosenTheme} onCheckedChange={handleThemeAction} />
     </Tooltip>
   );
 }

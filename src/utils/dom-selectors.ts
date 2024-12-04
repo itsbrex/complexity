@@ -108,6 +108,7 @@ export const DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS = {
         BOTTOM_BAR: "message-block-bottom-bar",
       },
     },
+    NAVBAR: "thread-navbar",
   },
 } as const;
 

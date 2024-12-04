@@ -1,0 +1,4 @@
+[data-cplx-component="thread-navbar"] a[role="button"][href*="https://perplexity.sng"]
+{
+  display: none;
+}

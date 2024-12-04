@@ -18,7 +18,7 @@ export default function ThemeCardEditButton({
       content={t("dashboard-themes-page:themesPage.themeCard.actions.edit")}
     >
       <Button
-        variant="outline"
+        variant="ghost"
         size="icon"
         onClick={() => navigate(`${theme.id}/edit`)}
       >

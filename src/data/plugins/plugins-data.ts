@@ -241,4 +241,15 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     ),
     tags: ["ui", "forFun"],
   },
+  "hide-get-mobile-app-cta-btn": {
+    id: "hide-get-mobile-app-cta-btn",
+    routeSegment: "hide-get-mobile-app-cta-btn",
+    title: t(
+      "dashboard-plugins-data:pluginsMetadata.hideGetMobileAppCtaBtn.title",
+    ),
+    description: t(
+      "dashboard-plugins-data:pluginsMetadata.hideGetMobileAppCtaBtn.description",
+    ),
+    tags: ["ui"],
+  },
 };

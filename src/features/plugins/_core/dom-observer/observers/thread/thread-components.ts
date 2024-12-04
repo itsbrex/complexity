@@ -36,7 +36,8 @@ export async function setupThreadComponentsObserver(
     settings?.imageGenModelSelector ||
     settings?.["thread:toc"] ||
     settings?.["thread:betterCodeBlocks"] ||
-    settings?.["thread:betterMessageToolbars"];
+    settings?.["thread:betterMessageToolbars"] ||
+    settings?.["thread:betterMessageCopyButtons"];
 
   if (!shouldObserve) return;
 
@@ -222,6 +223,10 @@ function observeThreadNavbar() {
   const $navbar = $(DOM_SELECTORS.THREAD.NAVBAR);
 
   if (!$navbar.length) return;
+
+  $navbar.internalComponentAttr(
+    DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.NAVBAR,
+  );
 
   const navbarHeight = $navbar[0].offsetHeight;
 

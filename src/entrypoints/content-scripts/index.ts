@@ -7,6 +7,7 @@ import { initCorePlugins } from "@/entrypoints/content-scripts/loaders/core-plug
 import { setupCsUiPlugins } from "@/entrypoints/content-scripts/loaders/cs-ui-plugins-loader/setup-root";
 import { setupDomBasedPlugins } from "@/entrypoints/content-scripts/loaders/dom-based-plugins-loader";
 import { setupNetworkInterceptPlugins } from "@/entrypoints/content-scripts/loaders/network-intercept-plugins-loader";
+import { setupOneTimeLoadPlugins } from "@/entrypoints/content-scripts/loaders/one-time-plugins-loader";
 import { setupRouteBasedPlugins } from "@/entrypoints/content-scripts/loaders/route-based-plugins-loader";
 import { setupNetworkInterceptListeners } from "@/features/plugins/_core/network-intercept/listeners";
 import { setupSpaRouterDispatchListeners } from "@/features/plugins/_core/spa-router/listeners";
@@ -42,6 +43,7 @@ async function initCoreModules() {
 async function loadPlugins() {
   await initCache();
 
+  setupOneTimeLoadPlugins();
   setupCoreObservers();
   setupThemeLoader();
   setupNetworkInterceptPlugins();

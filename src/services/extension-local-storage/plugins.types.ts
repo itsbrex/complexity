@@ -41,6 +41,7 @@ export const PluginsSchema = z.object({
   "home:customSlogan": PluginSettingsSchema.extend({
     slogan: z.string(),
   }),
+  "hide-get-mobile-app-cta-btn": PluginSettingsSchema,
 });
 
 export type Plugins = z.infer<typeof PluginsSchema>;

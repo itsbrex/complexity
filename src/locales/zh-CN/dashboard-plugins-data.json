@@ -93,6 +93,10 @@
     "homeCustomSlogan": {
       "title": "自定义主页标语",
       "description": "自定义主页上的标语"
+    },
+    "hideGetMobileAppCtaBtn": {
+      "title": "隐藏\"获取移动应用\"按钮",
+      "description": "在移动设备屏幕上隐藏所有\"获取移动应用\"按钮。"
     }
   }
 }

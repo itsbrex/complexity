@@ -17,14 +17,14 @@ export function ThemeBanner({ color }: { color?: string }) {
     <div className="tw-relative tw-flex tw-size-full tw-items-center tw-justify-center tw-bg-[oklch(180_2%_10%)]">
       {shouldGlow && (
         <div
-          className="tw-absolute tw-size-[40vw] tw-rounded-full tw-blur-2xl md:tw-size-[10vw] xl:tw-size-[7.3vw]"
+          className="tw-absolute tw-size-[50%] tw-rounded-full tw-blur-2xl"
           style={{
             backgroundColor: `color-mix(in srgb, ${color} 20%, transparent)`,
           }}
         />
       )}
       <Cplx
-        className="tw-relative tw-size-[40vw] md:tw-size-[10vw] xl:tw-size-[7.3vw]"
+        className="tw-relative tw-size-[50%]"
         primary={color}
         secondary="oklch(93.34% 0.0025 106.45)"
       />

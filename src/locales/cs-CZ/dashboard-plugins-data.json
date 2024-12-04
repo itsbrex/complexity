@@ -93,6 +93,10 @@
     "homeCustomSlogan": {
       "title": "Vlastní slogan domovské stránky",
       "description": "Přizpůsobit slogan na domovské stránce"
+    },
+    "hideGetMobileAppCtaBtn": {
+      "title": "Skrýt tlačítko \"Získat mobilní aplikaci\"",
+      "description": "Skrýt všechna tlačítka \"Získat mobilní aplikaci\" na mobilních obrazovkách."
     }
   }
 } 

@@ -93,6 +93,10 @@
     "homeCustomSlogan": {
       "title": "Prilagođeni Slogan Početne Stranice",
       "description": "Prilagodi slogan na početnoj stranici"
+    },
+    "hideGetMobileAppCtaBtn": {
+      "title": "Sakrij gumb \"Preuzmi mobilnu aplikaciju\"",
+      "description": "Sakrij sve gumbe \"Preuzmi mobilnu aplikaciju\" na mobilnim zaslonima."
     }
   }
 } 

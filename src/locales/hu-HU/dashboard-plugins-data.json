@@ -93,6 +93,10 @@
     "homeCustomSlogan": {
       "title": "Egyedi Kezdőoldali Szlogen",
       "description": "Kezdőoldal szlogonjának testreszabása"
+    },
+    "hideGetMobileAppCtaBtn": {
+      "title": "\"Mobilalkalmazás letöltése\" gomb elrejtése",
+      "description": "Az összes \"Mobilalkalmazás letöltése\" gomb elrejtése mobil képernyőkön."
     }
   }
 } 

@@ -32,5 +32,21 @@
   "status": {
     "loading": "Betöltés",
     "noResults": "Nincs találat"
+  },
+  "helpPage": {
+    "title": "Segítségre van szüksége?",
+    "description": "Kérdése van vagy segítségre van szüksége?",
+    "supportChannels": "A Complexity több támogatási csatornával rendelkezik:"
+  },
+  "sponsorDialog": {
+    "title": "A Complexity-nek szüksége van a segítségére!",
+    "description": "A Complexity fenntartása jelentős időt és erőfeszítést igényel. Mutassa ki megbecsülését a fejlesztés támogatásával, és segítsen, hogy teljesen ingyenes és nyílt forráskódú maradhasson az egész közösség számára.",
+    "donation": {
+      "title": "💖 Adományozás"
+    },
+    "sponsorship": {
+      "title": "🌟 Van ajánlata hosszú távú szponzorációra?",
+      "contactEmail": "Kapcsolat e-mailben"
+    }
   }
 }

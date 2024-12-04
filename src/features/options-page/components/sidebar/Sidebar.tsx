@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import { navItems } from "@/features/options-page/components/sidebar/nav-items";
 import SidebarUpdateAnnouncer from "@/features/options-page/components/SidebarUpdateAnnouncer";
+import SponsorDialogWrapper from "@/features/options-page/components/SponsorDialogWrapper";
 
 export default function Sidebar() {
   return (
@@ -33,15 +34,17 @@ export default function Sidebar() {
       <div className="tw-sticky tw-bottom-0 tw-z-10 tw-flex tw-shrink-0 tw-flex-col tw-gap-4 tw-bg-background tw-p-4">
         <SidebarUpdateAnnouncer />
 
-        <div className="tw-group tw-relative tw-w-full tw-cursor-pointer tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4 tw-text-sm tw-font-medium tw-shadow-lg tw-transition-all hover:tw-scale-105 hover:tw-border-primary hover:tw-bg-primary/10">
-          <Trans
-            i18nKey="sidebar.supporterMessage"
-            components={{
-              emphasis: <span className="tw-font-medium tw-text-primary" />,
-            }}
-          />
-          <LuExternalLink className="tw-absolute tw-right-2 tw-top-2 tw-size-3.5 tw-text-muted group-hover:tw-text-primary" />
-        </div>
+        <SponsorDialogWrapper>
+          <div className="tw-group tw-relative tw-w-full tw-cursor-pointer tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4 tw-text-sm tw-font-medium tw-shadow-lg tw-transition-all hover:tw-scale-105 hover:tw-border-primary hover:tw-bg-primary/10">
+            <Trans
+              i18nKey="sidebar.supporterMessage"
+              components={{
+                emphasis: <span className="tw-font-medium tw-text-primary" />,
+              }}
+            />
+            <LuExternalLink className="tw-absolute tw-right-2 tw-top-2 tw-size-3.5 tw-text-muted group-hover:tw-text-primary" />
+          </div>
+        </SponsorDialogWrapper>
       </div>
     </div>
   );

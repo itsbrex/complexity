@@ -32,5 +32,21 @@
   "status": {
     "loading": "Loading",
     "noResults": "No results found"
+  },
+  "helpPage": {
+    "title": "Need Help?",
+    "description": "Have questions or need assistance?",
+    "supportChannels": "Complexity has multiple support channels:"
+  },
+  "sponsorDialog": {
+    "title": "Complexity Needs Your Help!",
+    "description": "Maintaining Complexity requires a significant amount of time and effort. Show your appreciation by supporting its development and helping keep it completely free and open-source for the entire community.",
+    "donation": {
+      "title": "💖 Make a donation"
+    },
+    "sponsorship": {
+      "title": "🌟 Have an offer for a long term sponsorship?",
+      "contactEmail": "Contact via Email"
+    }
   }
 }

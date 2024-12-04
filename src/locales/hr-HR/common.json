@@ -32,5 +32,21 @@
   "status": {
     "loading": "Učitavanje",
     "noResults": "Nema pronađenih rezultata"
+  },
+  "helpPage": {
+    "title": "Trebate pomoć?",
+    "description": "Imate pitanja ili vam treba pomoć?",
+    "supportChannels": "Complexity ima više kanala za podršku:"
+  },
+  "sponsorDialog": {
+    "title": "Complexity treba vašu pomoć!",
+    "description": "Održavanje Complexityja zahtijeva značajno vrijeme i trud. Pokažite svoju zahvalnost podržavanjem njegovog razvoja i pomozite da ostane potpuno besplatan i otvorenog koda za cijelu zajednicu.",
+    "donation": {
+      "title": "💖 Donirajte"
+    },
+    "sponsorship": {
+      "title": "🌟 Imate ponudu za dugoročno sponzorstvo?",
+      "contactEmail": "Kontaktirajte putem e-maila"
+    }
   }
 }

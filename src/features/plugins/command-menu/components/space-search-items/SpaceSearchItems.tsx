@@ -28,7 +28,9 @@ export default function SpaceSearchItems() {
       })}
     >
       {!isLoadingSpaces && !isErrorSpaces && (
-        <CommandEmpty>{t("plugin-command-menu:commandMenu.spaceSearch.empty")}</CommandEmpty>
+        <CommandEmpty>
+          {t("plugin-command-menu:commandMenu.spaceSearch.empty")}
+        </CommandEmpty>
       )}
       {isErrorSpaces ? (
         <CommandEmpty>

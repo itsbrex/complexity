@@ -25,7 +25,12 @@ export default function SpaceThreadsSearchItems() {
     return (
       <div className="tw-flex tw-animate-pulse tw-items-center tw-justify-center tw-gap-2 tw-p-4 tw-text-sm tw-text-muted-foreground">
         <LuLoader2 className="tw-animate-spin" />
-        <span>{t("plugin-command-menu:commandMenu.spaceSearch.spaceThreads.loading", { title: spacethreadTitle })}</span>
+        <span>
+          {t(
+            "plugin-command-menu:commandMenu.spaceSearch.spaceThreads.loading",
+            { title: spacethreadTitle },
+          )}
+        </span>
       </div>
     );
   }
@@ -39,11 +44,19 @@ export default function SpaceThreadsSearchItems() {
   }
 
   if (spaceThreads && !spaceThreads?.length) {
-    return <CommandEmpty>{t("plugin-command-menu:commandMenu.spaceSearch.spaceThreads.empty")}</CommandEmpty>;
+    return (
+      <CommandEmpty>
+        {t("plugin-command-menu:commandMenu.spaceSearch.spaceThreads.empty")}
+      </CommandEmpty>
+    );
   }
 
   return (
-    <CommandGroup heading={t("plugin-command-menu:commandMenu.spaceSearch.spaceThreads.heading")}>
+    <CommandGroup
+      heading={t(
+        "plugin-command-menu:commandMenu.spaceSearch.spaceThreads.heading",
+      )}
+    >
       {spaceThreads?.map((thread) => (
         <SpaceThreadItem key={thread.uuid} thread={thread} />
       ))}

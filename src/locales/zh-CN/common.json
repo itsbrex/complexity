@@ -32,5 +32,21 @@
   "status": {
     "loading": "加载中",
     "noResults": "未找到结果"
+  },
+  "helpPage": {
+    "title": "需要帮助？",
+    "description": "有问题或需要协助？",
+    "supportChannels": "Complexity 提供多个支持渠道："
+  },
+  "sponsorDialog": {
+    "title": "Complexity 需要您的帮助！",
+    "description": "维护 Complexity 需要大量的时间和精力。请通过支持其开发来表达您的感激之情，帮助它继续为整个社区保持完全免费和开源。",
+    "donation": {
+      "title": "💖 捐赠支持"
+    },
+    "sponsorship": {
+      "title": "🌟 有长期赞助的提议？",
+      "contactEmail": "通过邮件联系"
+    }
   }
 }

@@ -31,10 +31,6 @@
     "forFun": {
       "label": "Zum Spaß",
       "description": "Nur zum Spaß!"
-    },
-    "hideGetMobileAppCtaBtn": {
-      "title": "\"Mobile App herunterladen\"-Button ausblenden",
-      "description": "Alle \"Mobile App herunterladen\"-Buttons auf mobilen Bildschirmen ausblenden."
     }
   },
   "pluginsMetadata": {
@@ -97,6 +93,10 @@
     "homeCustomSlogan": {
       "title": "Benutzerdefinierter Startseiten-Slogan",
       "description": "Passen Sie den Slogan auf der Startseite an."
+    },
+    "hideGetMobileAppCtaBtn": {
+      "title": "\"Mobile App herunterladen\"-Button ausblenden",
+      "description": "Alle \"Mobile App herunterladen\"-Buttons auf mobilen Bildschirmen ausblenden."
     }
   }
 }

@@ -66,7 +66,7 @@ export default function NewItems({
           </span>
         </div>
         {props["data-description"] && (
-          <span className="tw-text-sm tw-text-muted-foreground tw-ml-8">
+          <span className="tw-ml-8 tw-text-sm tw-text-muted-foreground">
             {props["data-description"]}
           </span>
         )}

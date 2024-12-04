@@ -32,5 +32,21 @@
   "status": {
     "loading": "Načítava sa",
     "noResults": "Nenašli sa žiadne výsledky"
+  },
+  "helpPage": {
+    "title": "Potrebujete pomoc?",
+    "description": "Máte otázky alebo potrebujete asistenciu?",
+    "supportChannels": "Complexity má viacero podporných kanálov:"
+  },
+  "sponsorDialog": {
+    "title": "Complexity potrebuje vašu pomoc!",
+    "description": "Údržba Complexity vyžaduje značné množstvo času a úsilia. Prejavte svoju podporu tým, že podporíte jeho vývoj a pomôžete udržať ho úplne zadarmo a s otvoreným zdrojovým kódom pre celú komunitu.",
+    "donation": {
+      "title": "💖 Prispieť darom"
+    },
+    "sponsorship": {
+      "title": "🌟 Máte ponuku dlhodobého sponzorstva?",
+      "contactEmail": "Kontaktujte nás e-mailom"
+    }
   }
 }

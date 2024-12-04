@@ -66,7 +66,9 @@ const BetterCopyButton = memo(function BetterCopyButton({
             className="tw-flex tw-items-center tw-gap-2"
           >
             <BiLogoMarkdown className="tw-size-4" />
-            <span>{t("plugin-better-copy-buttons:copyButton.options.default")}</span>
+            <span>
+              {t("plugin-better-copy-buttons:copyButton.options.default")}
+            </span>
           </DropdownMenuItem>
           <DropdownMenuItem
             value={"without-citations" satisfies CopyOptions}
@@ -74,7 +76,9 @@ const BetterCopyButton = memo(function BetterCopyButton({
           >
             <LuLink2Off className="tw-size-4" />
             <span>
-              {t("plugin-better-copy-buttons:copyButton.options.withoutCitations")}
+              {t(
+                "plugin-better-copy-buttons:copyButton.options.withoutCitations",
+              )}
             </span>
           </DropdownMenuItem>
         </DropdownMenuContent>

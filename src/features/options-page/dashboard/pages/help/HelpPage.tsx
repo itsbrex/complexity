@@ -7,14 +7,10 @@ export default function HelpPage() {
   return (
     <div>
       <div className="tw-flex tw-flex-col tw-gap-2">
-        <h1 className="tw-text-2xl tw-font-bold">Need Help?</h1>
-        <p className="tw-text-muted-foreground">
-          Have questions or need assistance?
-        </p>
+        <h1 className="tw-text-2xl tw-font-bold">{t("helpPage.title")}</h1>
+        <p className="tw-text-muted-foreground">{t("helpPage.description")}</p>
 
-        <div>
-          Complexity has multiple support channels:
-        </div>
+        <div>{t("helpPage.supportChannels")}</div>
 
         <div className="tw-flex tw-items-center tw-gap-2">
           <Button asChild className="tw-w-max">

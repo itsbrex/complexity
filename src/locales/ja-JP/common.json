@@ -32,5 +32,21 @@
   "status": {
     "loading": "読み込み中",
     "noResults": "結果が見つかりません"
+  },
+  "helpPage": {
+    "title": "ヘルプが必要ですか？",
+    "description": "ご質問やお困りの点はありますか？",
+    "supportChannels": "Complexityには複数のサポートチャンネルがあります："
+  },
+  "sponsorDialog": {
+    "title": "Complexityはあなたの助けを必要としています！",
+    "description": "Complexityの維持には多大な時間と労力が必要です。開発をサポートし、コミュニティ全体に完全に無料でオープンソースを提供し続けるためにご支援ください。",
+    "donation": {
+      "title": "💖 寄付をする"
+    },
+    "sponsorship": {
+      "title": "🌟 長期スポンサーシップのご提案をお持ちですか？",
+      "contactEmail": "メールでお問い合わせ"
+    }
   }
 }

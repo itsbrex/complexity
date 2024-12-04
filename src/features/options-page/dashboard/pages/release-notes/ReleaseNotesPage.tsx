@@ -19,7 +19,7 @@ export default function ReleaseNotesPage() {
 
   const {
     data: changelog,
-    isFetching,
+    isLoading,
     isPlaceholderData,
   } = useQuery({
     ...cplxApiQueries.changelog({
@@ -31,7 +31,12 @@ export default function ReleaseNotesPage() {
 
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
-      <h1 className="tw-text-2xl tw-font-bold">Release Notes</h1>
+      <div className="tw-flex tw-flex-col tw-gap-2">
+        <h1 className="tw-text-2xl tw-font-bold">Release Notes</h1>
+        <p className="tw-text-sm tw-text-muted-foreground">
+          Stay up to date with the latest changes and features.
+        </p>
+      </div>
       <div className="tw-flex tw-items-center tw-gap-4">
         {hasPrev && (
           <Button variant="outline" size="sm" onClick={goToPrev}>
@@ -47,11 +52,11 @@ export default function ReleaseNotesPage() {
       </div>
       <div
         className={cn(
-          "tw-prose dark:tw-prose-invert tw-flex tw-max-w-screen-xl tw-flex-col tw-flex-wrap tw-gap-4",
+          "tw-prose tw-flex tw-max-w-screen-xl tw-flex-col tw-flex-wrap tw-gap-4 dark:tw-prose-invert",
           isPlaceholderData && "tw-opacity-50",
         )}
       >
-        {isFetching && (
+        {isLoading && (
           <div className="tw-flex tw-items-center tw-gap-2">
             <LuLoader2 className="tw-size-4 tw-animate-spin" />
             <span>Loading...</span>

@@ -15,4 +15,8 @@ export const cplxApiQueries = createQueryKeys("cplxApi", {
     queryKey: null,
     queryFn: CplxApiService.fetchLanguageModels,
   },
+  changelog: ({ version }: { version?: string } = {}) => ({
+    queryKey: [{ version }],
+    queryFn: () => CplxApiService.fetchChangelog({ version }),
+  }),
 });

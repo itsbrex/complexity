@@ -43,6 +43,10 @@ const unimportConfig: Partial<UnimportPluginOptions> = {
       name: "cn",
       from: normalizePath("src/utils/cn.ts"),
     },
+    {
+      name: "Key",
+      from: "ts-key-enum",
+    },
   ],
 };
 

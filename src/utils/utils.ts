@@ -1,3 +1,5 @@
+import { Key } from "ts-key-enum";
+
 import { APP_CONFIG } from "@/app.config";
 import UiUtils from "@/utils/UiUtils";
 
@@ -420,7 +422,7 @@ export function requestIdleCallbacks(...tasks: (() => void)[]) {
 }
 
 export function invariant(condition: any, message?: string) {
-  if (condition) return;
+  if (condition == true) return;
 
   throw new Error(message);
 }
@@ -463,4 +465,8 @@ export function getTaskScheduler() {
   return document.visibilityState === "visible"
     ? requestAnimationFrame
     : queueMicrotask;
+}
+
+export function keysToString(keys: (Key | string)[]) {
+  return keys.map((key) => key.toLowerCase()).join("+");
 }

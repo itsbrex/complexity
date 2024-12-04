@@ -5,6 +5,7 @@ import {
   commandMenuStore,
   useCommandMenuStore,
 } from "@/features/plugins/command-menu/store";
+import { keysToString } from "@/utils/utils";
 
 export default function useBindCommandMenuHotkeys() {
   const state = useCommandMenuStore();
@@ -16,7 +17,7 @@ export default function useBindCommandMenuHotkeys() {
 
   const { open, setOpen, filter, setFilter } = state;
 
-  useHotkeys("ctrl+k", () => setOpen(!open), {
+  useHotkeys(keysToString([Key.Control, "k"]), () => setOpen(!open), {
     preventDefault: true,
     enableOnContentEditable: true,
     enableOnFormTags: true,
@@ -36,7 +37,7 @@ export default function useBindCommandMenuHotkeys() {
   }, [filter, historyPosition]);
 
   useHotkeys(
-    ["alt+left", "alt+right"],
+    keysToString([Key.Alt, Key.ArrowLeft, Key.Alt, Key.ArrowRight]),
     (e) => {
       if (filterHistory.length < 2) return;
 
@@ -61,7 +62,7 @@ export default function useBindCommandMenuHotkeys() {
   );
 
   useHotkeys(
-    "ctrl+alt+t",
+    keysToString([Key.Control, Key.Alt, "t"]),
     () => {
       if (!open) {
         setOpen(true);
@@ -77,7 +78,7 @@ export default function useBindCommandMenuHotkeys() {
   );
 
   useHotkeys(
-    "ctrl+alt+s",
+    keysToString([Key.Control, Key.Alt, "s"]),
     () => {
       if (!open) {
         setOpen(true);

@@ -34,16 +34,14 @@ export class CplxApiService {
         cplxApiQueries.versions.queryKey,
       ) ?? (await queryClient.fetchQuery(cplxApiQueries.versions));
 
-    const featureFlagsFile = versions?.featureFlagsEntries.includes(
-      currentVersion,
-    )
+    const versionUrl = versions?.featureFlagsEntries.includes(currentVersion)
       ? currentVersion
       : "latest";
 
     return CplxFeatureFlagsSchema.parse(
       JSON.parse(
         await fetchResource(
-          `${APP_CONFIG.CPLX_API_URL}/feature-flags/${featureFlagsFile}.json`,
+          `${APP_CONFIG.CPLX_API_URL}/feature-flags/${versionUrl}.json`,
         ),
       ),
     );
@@ -59,5 +57,24 @@ export class CplxApiService {
           ),
         ),
       );
+  }
+
+  static async fetchChangelog({ version }: { version?: string } = {}) {
+    const targetVersion = version ?? APP_CONFIG.VERSION;
+
+    const versions =
+      queryClient.getQueryData<CplxVersionsApiResponse>(
+        cplxApiQueries.versions.queryKey,
+      ) ?? (await queryClient.fetchQuery(cplxApiQueries.versions));
+
+    const versionUrl =
+      version ??
+      (versions?.changelogEntries.includes(targetVersion)
+        ? targetVersion
+        : versions?.latest);
+
+    return await fetchResource(
+      `${APP_CONFIG.CPLX_API_URL}/changelogs/${versionUrl}.md`,
+    );
   }
 }

@@ -9,6 +9,7 @@ export async function initCache() {
   queryClient.prefetchQuery(cplxApiQueries.versions);
 
   await Promise.all([
+    queryClient.prefetchQuery(cplxApiQueries.changelog()),
     queryClient.prefetchQuery(pluginsStatesQueries.computed),
     queryClient.prefetchQuery(pplxApiQueries.spaces),
     initializeLanguageModels(),

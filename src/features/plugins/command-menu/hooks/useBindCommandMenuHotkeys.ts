@@ -5,9 +5,12 @@ import {
   commandMenuStore,
   useCommandMenuStore,
 } from "@/features/plugins/command-menu/store";
+import usePlatformDetection from "@/hooks/usePlatformDetection";
 import { keysToString } from "@/utils/utils";
 
 export default function useBindCommandMenuHotkeys() {
+  const isMac = usePlatformDetection() === "mac";
+
   const state = useCommandMenuStore();
 
   const [historyPosition, setHistoryPosition] = useState(-1);
@@ -17,11 +20,15 @@ export default function useBindCommandMenuHotkeys() {
 
   const { open, setOpen, filter, setFilter } = state;
 
-  useHotkeys(keysToString([Key.Control, "k"]), () => setOpen(!open), {
-    preventDefault: true,
-    enableOnContentEditable: true,
-    enableOnFormTags: true,
-  });
+  useHotkeys(
+    keysToString([Key.Control, isMac ? "i" : "k"]),
+    () => setOpen(!open),
+    {
+      preventDefault: true,
+      enableOnContentEditable: true,
+      enableOnFormTags: true,
+    },
+  );
 
   useEffect(() => {
     setFilterHistory((prev) => {

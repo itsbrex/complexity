@@ -1,11 +1,8 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { LuChevronRight, LuChevronLeft, LuLoader2 } from "react-icons/lu";
-import { Remark } from "react-remark";
-import rehypeRaw from "rehype-raw";
 
+import ChangelogRenderer from "@/components/ChangelogRenderer";
 import { Button } from "@/components/ui/button";
-import { InlineCode, Ul } from "@/components/ui/typography";
-import ChangelogItemsBlock from "@/features/options-page/dashboard/pages/release-notes/components/ChangelogItemsBlock";
 import { useVersionPagination } from "@/features/options-page/dashboard/pages/release-notes/hooks/useVersionPagination";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
 
@@ -52,7 +49,7 @@ export default function ReleaseNotesPage() {
       </div>
       <div
         className={cn(
-          "tw-prose tw-flex tw-max-w-screen-xl tw-flex-col tw-flex-wrap tw-gap-4 dark:tw-prose-invert",
+          "tw-flex tw-max-w-screen-xl tw-flex-col tw-flex-wrap tw-gap-4",
           isPlaceholderData && "tw-opacity-50",
         )}
       >
@@ -62,21 +59,7 @@ export default function ReleaseNotesPage() {
             <span>Loading...</span>
           </div>
         )}
-        {changelog && (
-          <Remark
-            rehypePlugins={[rehypeRaw as any]}
-            remarkToRehypeOptions={{ allowDangerousHtml: true }}
-            rehypeReactOptions={{
-              components: {
-                code: InlineCode,
-                ul: Ul,
-                "items-block": ChangelogItemsBlock,
-              },
-            }}
-          >
-            {changelog}
-          </Remark>
-        )}
+        {changelog && <ChangelogRenderer changelog={changelog} />}
       </div>
     </div>
   );

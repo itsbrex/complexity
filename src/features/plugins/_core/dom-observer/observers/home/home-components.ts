@@ -15,11 +15,11 @@ const cleanup = () => {
 export function setupHomeComponentsObserver(
   location: ReturnType<typeof whereAmI>,
 ) {
-  const settings = PluginsStatesService.getCachedSync()?.pluginsEnableStates;
+  // const settings = PluginsStatesService.getCachedSync()?.pluginsEnableStates;
 
-  const shouldObserve = settings?.["home:customSlogan"];
+  // const shouldObserve = settings?.["home:customSlogan"];
 
-  if (!shouldObserve) return;
+  // if (!shouldObserve) return;
 
   cleanup();
 

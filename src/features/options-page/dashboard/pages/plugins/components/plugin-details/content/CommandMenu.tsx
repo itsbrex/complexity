@@ -1,9 +1,12 @@
 import KeyCombo from "@/components/KeyCombo";
 import { Switch } from "@/components/ui/switch";
+import usePlatformDetection from "@/hooks/usePlatformDetection";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
 export default function CommandMenuPluginDetails() {
   const { settings, mutation } = useExtensionLocalStorage();
+
+  const isMac = usePlatformDetection() === "mac";
 
   if (!settings) return null;
 
@@ -14,7 +17,7 @@ export default function CommandMenuPluginDetails() {
       </div>
       <div>
         {t("dashboard-plugins-page:pluginDetails.commandMenu.activationHotkey")}{" "}
-        <KeyCombo keys={["Ctrl", "K"]} />
+        <KeyCombo keys={[Key.Control, isMac ? "I" : "K"]} />
       </div>
       <div className="tw-text-sm tw-text-muted-foreground">
         {t("dashboard-plugins-page:pluginDetails.commandMenu.sideNote")}

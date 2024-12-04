@@ -1,20 +1,13 @@
 import { HTMLProps, useMemo } from "react";
 
+import usePlatformDetection from "@/hooks/usePlatformDetection";
+
 export default function KeyCombo({
   keys,
   className,
   ...props
 }: HTMLProps<HTMLSpanElement> & { keys: string[] }) {
-  const isMac = useMemo(() => {
-    if (typeof navigator === "undefined") return false;
-
-    if ((navigator as any).userAgentData?.platform != null) {
-      return /macOS/.test((navigator as any).userAgentData.platform);
-    }
-
-    // Fallback
-    return /Mac|iPod|iPhone|iPad/.test(navigator.userAgent);
-  }, []);
+  const isMac = usePlatformDetection() === "mac";
 
   const processedKeys = useMemo(() => {
     return keys.map((key) => {

@@ -28,34 +28,34 @@ const basePermissionsDetails: Record<
             {t("onboarding:basePermissions.storage.description.security")}
           </div>
         </div>
-        <div>
+        <div className="tw-mt-2">
           {t("onboarding:basePermissions.storage.description.autoGrant")}
         </div>
       </div>
     ),
     icon: LuDatabase,
   },
-  cookies: {
-    permissions: ["cookies"],
-    title: t("onboarding:basePermissions.cookies.title"),
-    description: (
-      <div className="tw-space-y-2">
-        <div>{t("onboarding:basePermissions.cookies.description.intro")}</div>
-        <Ul>
-          <li>
-            {t("onboarding:basePermissions.cookies.description.features.sync")}
-          </li>
-          <li>
-            {t(
-              "onboarding:basePermissions.cookies.description.features.verify",
-            )}
-          </li>
-        </Ul>
-        <div>{t("onboarding:basePermissions.cookies.description.warning")}</div>
-      </div>
-    ),
-    icon: LuCookie,
-  },
+  // cookies: {
+  //   permissions: ["cookies"],
+  //   title: t("onboarding:basePermissions.cookies.title"),
+  //   description: (
+  //     <div className="tw-space-y-2">
+  //       <div>{t("onboarding:basePermissions.cookies.description.intro")}</div>
+  //       <Ul>
+  //         <li>
+  //           {t("onboarding:basePermissions.cookies.description.features.sync")}
+  //         </li>
+  //         <li>
+  //           {t(
+  //             "onboarding:basePermissions.cookies.description.features.verify",
+  //           )}
+  //         </li>
+  //       </Ul>
+  //       <div>{t("onboarding:basePermissions.cookies.description.warning")}</div>
+  //     </div>
+  //   ),
+  //   icon: LuCookie,
+  // },
 };
 
 export default function BasePermissions() {

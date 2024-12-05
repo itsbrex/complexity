@@ -39,34 +39,47 @@ export default function ManagePermissionsDialogWrapper({
               "dashboard-settings-page:settingsPage.items.permissions.dialog.description",
             )}
           </DialogDescription>
-          {TOGGLEABLE_PERMISSIONS.map((permission) => (
-            <div
-              key={permission}
-              className="!tw-mt-4 tw-flex tw-flex-col tw-gap-2"
-            >
-              <Switch
-                className="tw-items-start tw-text-muted-foreground"
-                textLabel={
-                  <div className="tw-flex tw-flex-col">
-                    <div>
-                      {TOGGLEABLE_PERMISSIONS_DETAILS[permission]?.title}
+          {TOGGLEABLE_PERMISSIONS.length > 0 ? (
+            TOGGLEABLE_PERMISSIONS.map((permission) => (
+              <div
+                key={permission}
+                className="!tw-mt-4 tw-flex tw-flex-col tw-gap-2"
+              >
+                <Switch
+                  className="tw-items-start tw-text-muted-foreground"
+                  textLabel={
+                    <div className="tw-flex tw-flex-col">
+                      <div>
+                        {TOGGLEABLE_PERMISSIONS_DETAILS[permission]?.title}
+                      </div>
+                      <div className="tw-text-sm tw-text-muted-foreground">
+                        {
+                          TOGGLEABLE_PERMISSIONS_DETAILS[permission]
+                            ?.description
+                        }
+                      </div>
                     </div>
-                    <div className="tw-text-sm tw-text-muted-foreground">
-                      {TOGGLEABLE_PERMISSIONS_DETAILS[permission]?.description}
-                    </div>
-                  </div>
-                }
-                checked={grandtedPermissions?.permissions?.includes(permission)}
-                onCheckedChange={() => {
-                  if (grandtedPermissions?.permissions?.includes(permission)) {
-                    handleRevokePermission({ permissions: [permission] });
-                  } else {
-                    handleGrantPermission({ permissions: [permission] });
                   }
-                }}
-              />
+                  checked={grandtedPermissions?.permissions?.includes(
+                    permission,
+                  )}
+                  onCheckedChange={() => {
+                    if (
+                      grandtedPermissions?.permissions?.includes(permission)
+                    ) {
+                      handleRevokePermission({ permissions: [permission] });
+                    } else {
+                      handleGrantPermission({ permissions: [permission] });
+                    }
+                  }}
+                />
+              </div>
+            ))
+          ) : (
+            <div className="tw-mx-auto tw-block tw-italic tw-text-muted-foreground">
+              You&apos;re all set!
             </div>
-          ))}
+          )}
         </DialogHeader>
       </DialogContent>
     </Dialog>

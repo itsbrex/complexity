@@ -108,12 +108,7 @@ const StepsContent = forwardRef<
 >(({ className, ...props }, ref) => (
   <ArkSteps.Content
     ref={ref}
-    className={cn(
-      "tw-mt-4 tw-text-sm",
-      "data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out",
-      "data-[state=closed]:tw-fade-out data-[state=open]:tw-fade-in",
-      className,
-    )}
+    className={cn("tw-mt-4 tw-text-sm", className)}
     {...props}
   />
 ));

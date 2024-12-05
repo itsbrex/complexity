@@ -1,5 +1,5 @@
 export const TOGGLEABLE_PERMISSIONS: chrome.runtime.ManifestPermissions[] = [
-  "cookies",
+  // "cookies",
 ];
 
 export const TOGGLEABLE_PERMISSIONS_DETAILS: Partial<

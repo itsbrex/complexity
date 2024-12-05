@@ -13,6 +13,10 @@ import {
 } from "@/components/ui/steps";
 import { H1, H2, H3, P } from "@/components/ui/typography";
 import BasePermissions from "@/features/options-page/onboarding/BasePermissions";
+import BetaNotifications from "@/features/options-page/onboarding/BetaNotifications";
+import DashboardAccess from "@/features/options-page/onboarding/DashboardAccess";
+import NeedHelp from "@/features/options-page/onboarding/NeedHelp";
+import PluginEcosystem from "@/features/options-page/onboarding/PluginEcosystem";
 
 const steps = [
   {
@@ -48,6 +52,26 @@ const steps = [
     title: "Permissions",
     description: "Required permissions",
     component: <BasePermissions />,
+  },
+  {
+    title: "Dashboard Access",
+    description: "Dashboard access",
+    component: <DashboardAccess />,
+  },
+  {
+    title: "Plugin Ecosystem",
+    description: "Plugin ecosystem",
+    component: <PluginEcosystem />,
+  },
+  {
+    title: "Need Help?",
+    description: "Need help?",
+    component: <NeedHelp />,
+  },
+  {
+    title: "Beta Notifications",
+    description: "Beta notifications",
+    component: <BetaNotifications />,
   },
 ];
 

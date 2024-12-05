@@ -12,7 +12,7 @@ export default function HelpPage() {
 
         <div>{t("helpPage.supportChannels")}</div>
 
-        <div className="tw-flex tw-items-center tw-gap-2">
+        <div className="tw-flex tw-items-center tw-gap-4">
           <Button asChild className="tw-w-max">
             <a href="https://discord.gg/cplx" target="_blank" rel="noreferrer">
               <SiDiscord className="tw-mr-2 tw-size-4" />

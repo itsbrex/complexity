@@ -51,15 +51,17 @@ export const commandMenuStore = createWithEqualityFn<CommandMenuStoreType>()(
           clearFilter = true,
           clearSpacethreadFilter = true,
         } = {}) => {
-          set((state) => {
-            state.open = false;
-            if (clearSearchValue) state.searchValue = "";
-            if (clearFilter) state.filter = null;
-            if (clearSpacethreadFilter) {
-              state.spacethreadFilterSlug = null;
-              state.spacethreadTitle = null;
-            }
-          });
+          set((state) => ({
+            open: false,
+            searchValue: clearSearchValue ? "" : state.searchValue,
+            filter: clearFilter ? null : state.filter,
+            spacethreadFilterSlug: clearSpacethreadFilter
+              ? null
+              : state.spacethreadFilterSlug,
+            spacethreadTitle: clearSpacethreadFilter
+              ? null
+              : state.spacethreadTitle,
+          }));
         },
       }),
     ),

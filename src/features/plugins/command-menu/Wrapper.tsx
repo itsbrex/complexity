@@ -118,8 +118,8 @@ export default function CommandMenuWrapper() {
             <CommandGroup
               heading={t("plugin-command-menu:commandMenu.groups.search")}
             >
-              {SEARCH_ITEMS.map((item) => (
-                <SearchItem key={item.label} {...item} />
+              {SEARCH_ITEMS.map((item, idx) => (
+                <SearchItem key={idx} {...item} />
               ))}
             </CommandGroup>
 
@@ -130,8 +130,8 @@ export default function CommandMenuWrapper() {
                 "plugin-command-menu:commandMenu.groups.quickNavigations",
               )}
             >
-              {NAVIGATION_ITEMS.map((item) => (
-                <NavigationItem key={item.label} {...item} />
+              {NAVIGATION_ITEMS.map((item, idx) => (
+                <NavigationItem key={idx} {...item} />
               ))}
             </CommandGroup>
 
@@ -140,8 +140,8 @@ export default function CommandMenuWrapper() {
             <CommandGroup
               heading={t("plugin-command-menu:commandMenu.groups.colorScheme")}
             >
-              {COLOR_SCHEME_ITEMS.map((item) => (
-                <ColorSchemeItem key={item.label} {...item} />
+              {COLOR_SCHEME_ITEMS.map((item, idx) => (
+                <ColorSchemeItem key={idx} {...item} />
               ))}
             </CommandGroup>
           </>

@@ -32,10 +32,6 @@ const SettingsPage = lazy(
   () => import("@/features/options-page/dashboard/pages/settings/SettingsPage"),
 );
 
-const HelpPage = lazy(
-  () => import("@/features/options-page/dashboard/pages/help/HelpPage"),
-);
-
 const Onboarding = lazy(() => import("@/features/options-page/onboarding"));
 
 export const router: ReturnType<typeof createHashRouter> = createHashRouter([
@@ -69,10 +65,6 @@ export const router: ReturnType<typeof createHashRouter> = createHashRouter([
           {
             path: "settings/*",
             element: <Page title="Settings" page={SettingsPage} />,
-          },
-          {
-            path: "help/*",
-            element: <Page title="Help" page={HelpPage} />,
           },
           {
             path: "",

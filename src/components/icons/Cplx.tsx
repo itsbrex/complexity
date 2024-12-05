@@ -2,7 +2,6 @@ import { SVGProps } from "react";
 
 export default function Cplx({
   primary = "oklch(var(--primary))",
-  secondary = "oklch(var(--foreground))",
   ...props
 }: SVGProps<SVGSVGElement> & { primary?: string; secondary?: string }) {
   return (
@@ -20,7 +19,6 @@ export default function Cplx({
         height="88"
         rx="6"
         transform="rotate(-45 44.0001 64.7988)"
-        fill={secondary}
       />
       <rect
         width="28"
@@ -43,7 +41,6 @@ export default function Cplx({
         height="88"
         rx="6"
         transform="matrix(-0.707107 0.707107 0.707107 0.707107 149.823 129)"
-        fill={secondary}
       />
     </svg>
   );

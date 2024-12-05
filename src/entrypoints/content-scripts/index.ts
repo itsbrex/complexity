@@ -43,9 +43,9 @@ async function initCoreModules() {
 async function loadPlugins() {
   await initCache();
 
-  setupOneTimeLoadPlugins();
   setupCoreObservers();
   setupThemeLoader();
+  setupOneTimeLoadPlugins();
   setupNetworkInterceptPlugins();
   setupRouteBasedPlugins();
   setupDomBasedPlugins();

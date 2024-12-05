@@ -1,10 +1,5 @@
 import { BiExtension } from "react-icons/bi";
-import {
-  LuFileText,
-  LuMessageCircle,
-  LuPalette,
-  LuSettings,
-} from "react-icons/lu";
+import { LuFileText, LuPalette, LuSettings } from "react-icons/lu";
 
 export type NavItem = {
   icon: React.ElementType;
@@ -32,10 +27,5 @@ export const navItems: NavItem[] = [
     icon: LuSettings,
     label: "Settings",
     path: "/settings",
-  },
-  {
-    icon: LuMessageCircle,
-    label: "Need help?",
-    path: "/help",
   },
 ];

@@ -14,7 +14,7 @@ export function ThemeBanner({ color }: { color?: string }) {
   if (!color) color = THEME_COLORS["complexity-perplexity"];
 
   return (
-    <div className="tw-relative tw-flex tw-size-full tw-items-center tw-justify-center tw-bg-[oklch(180_2%_10%)]">
+    <div className="tw-relative tw-flex tw-size-full tw-items-center tw-justify-center tw-bg-[oklch(21.67%_0.0016_197.04)]">
       {shouldGlow && (
         <div
           className="tw-absolute tw-size-[50%] tw-rounded-full tw-blur-2xl"
@@ -24,9 +24,8 @@ export function ThemeBanner({ color }: { color?: string }) {
         />
       )}
       <Cplx
-        className="tw-relative tw-size-[50%]"
+        className="tw-relative tw-size-[50%] tw-fill-[oklch(93.34%_0.0025_106.45)]"
         primary={color}
-        secondary="oklch(93.34% 0.0025 106.45)"
       />
     </div>
   );

@@ -4,4 +4,10 @@ import { ExtensionPermissionsService } from "@/services/extension-permissions/ex
 export function setupOptionPageListeners() {
   ExtensionLocalStorageService.initializeReactiveStore();
   ExtensionPermissionsService.setupReactiveListeners();
+
+  const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+
+  $("html").attr("data-color-scheme", theme);
 }

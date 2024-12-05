@@ -3,12 +3,7 @@
     "tailwind.cs.config.js": "tailwind",
     "tailwind.extension.config.js": "tailwind"
   },
-  "catppuccin-icons.associations.folders": {
-    "content-scripts": "folder_scripts",
-    "cs-ui": "folder_templates",
-    "entrypoints": "folder_client",
-    "options-page": "folder_views"
-  },
+  "catppuccin-icons.specificFolders": false,
   "editor.quickSuggestions": {
     "comments": false,
     "other": true,

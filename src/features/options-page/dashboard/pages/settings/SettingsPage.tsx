@@ -1,7 +1,15 @@
-import { LuLeafyGreen } from "react-icons/lu";
+import { FaEllipsisH } from "react-icons/fa";
+import { LuGithub, LuLeafyGreen, LuMail } from "react-icons/lu";
+import { SiDiscord } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Switch } from "@/components/ui/switch";
 import ClearAllDataButton from "@/features/options-page/dashboard/pages/settings/components/ClearAllDataButton";
 import ExportDataButtons from "@/features/options-page/dashboard/pages/settings/components/ExportDataButtons";
@@ -63,6 +71,56 @@ export default function SettingsPage() {
           description="Download extension's data as a file"
         >
           <ExportDataButtons />
+        </SettingsItem>
+      </SettingsSection>
+
+      <SettingsSection title="Support">
+        <SettingsItem
+          title="Need assistance?"
+          description="Get help from the community or email support"
+        >
+          <div className="tw-flex tw-items-center tw-gap-4">
+            <Button asChild className="tw-w-max">
+              <a
+                href="https://discord.gg/fxzqdkwmWx"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SiDiscord className="tw-mr-2 tw-size-4" />
+                <span>Discord</span>
+              </a>
+            </Button>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <FaEllipsisH />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem asChild value="github">
+                  <a
+                    href="https://github.com/pnd280/complexity/issues"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <LuGithub className="tw-mr-2 tw-size-4" />
+                    <span>GitHub Issues</span>
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild value="mail">
+                  <a
+                    href="mailto:pnd280@gmail.com"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <LuMail className="tw-mr-2 tw-size-4" />
+                    <span>pnd280@gmail.com</span>
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </SettingsItem>
       </SettingsSection>
 

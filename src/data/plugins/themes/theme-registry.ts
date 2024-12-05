@@ -14,9 +14,7 @@ export const BUILTIN_THEME_REGISTRY: (Theme & { id: BuiltInThemeId })[] = [
   {
     id: "complexity",
     title: "Complexity Blue",
-    description: t(
-      "dashboard-themes-page:themeRegistry.complexityBlue.description",
-    ),
+    description: "Official theme with signature blue accent color",
     author: "pnd280",
     compatibleWith: ["desktop", "mobile"],
     colorScheme: ["dark"],
@@ -25,9 +23,7 @@ export const BUILTIN_THEME_REGISTRY: (Theme & { id: BuiltInThemeId })[] = [
   {
     id: "complexity-perplexity",
     title: "Perplexity Default",
-    description: t(
-      "dashboard-themes-page:themeRegistry.perplexityDefault.description",
-    ),
+    description: "Enhance the default theme",
     author: "pnd280",
     compatibleWith: ["desktop", "mobile"],
     colorScheme: ["light", "dark"],
@@ -36,7 +32,7 @@ export const BUILTIN_THEME_REGISTRY: (Theme & { id: BuiltInThemeId })[] = [
   {
     id: "complexity-shy-moment",
     title: "Shy Moment",
-    description: t("dashboard-themes-page:themeRegistry.shyMoment.description"),
+    description: "Official theme with purple-ish accent color",
     author: "pnd280",
     compatibleWith: ["desktop", "mobile"],
     colorScheme: ["dark"],
@@ -45,7 +41,7 @@ export const BUILTIN_THEME_REGISTRY: (Theme & { id: BuiltInThemeId })[] = [
   {
     id: "complexity-sour-lemon",
     title: "Sour Lemon",
-    description: t("dashboard-themes-page:themeRegistry.sourLemon.description"),
+    description: "Official theme with yellow-ish accent color",
     author: "pnd280",
     compatibleWith: ["desktop", "mobile"],
     colorScheme: ["dark"],

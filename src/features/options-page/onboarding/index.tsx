@@ -30,7 +30,7 @@ const steps = [
         <div className="tw-space-y-8 tw-text-center md:tw-space-y-12">
           <div className="tw-relative">
             <div className="tw-group tw-relative tw-z-0 tw-mt-8 tw-flex tw-flex-col tw-place-items-center tw-transition-all before:tw-absolute before:tw-h-[300px] before:tw-w-full before:-tw-translate-x-1/2 before:tw-rounded-full before:tw-bg-gradient-to-br before:tw-from-transparent before:tw-to-primary before:tw-opacity-10 before:tw-blur-2xl before:tw-duration-1000 before:tw-ease-in-out before:tw-content-[''] before:tw-animate-in before:tw-fade-in before:tw-zoom-in-0 after:tw-absolute after:-tw-z-20 after:tw-h-[180px] after:tw-w-[240px] after:tw-translate-x-1/3 after:tw-bg-gradient-conic after:tw-from-primary after:tw-via-primary after:tw-opacity-40 after:tw-blur-2xl after:tw-duration-1000 after:tw-ease-in-out after:tw-content-[''] after:tw-animate-in after:tw-fade-in after:tw-zoom-in-0 sm:before:tw-w-[560px] md:tw-mt-12 md:before:tw-h-[400px] md:after:tw-h-[240px] md:after:tw-w-[320px] lg:tw-mb-0 lg:tw-mt-0 before:lg:tw-h-[480px]">
-              <Cplx className="tw-mx-auto tw-size-32 tw-text-primary md:tw-size-48" />
+              <Cplx className="tw-mx-auto tw-size-32 tw-fill-foreground tw-text-primary md:tw-size-48" />
             </div>
           </div>
           <div className="tw-relative tw-z-10">

@@ -14,7 +14,7 @@ export const baseManifest: ExtendedManifestV3Export = {
   }`,
   description: packageData.description,
   version: packageData.version,
-  homepage_url: "https://cplx.vercel.app",
+  homepage_url: "https://cplx.app",
 
   icons: {
     16: "public/img/logo-16.png",

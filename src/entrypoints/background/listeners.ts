@@ -16,6 +16,10 @@ export function setupBackgroundListeners() {
     });
   }
 
+  chrome.action.onClicked.addListener(() => {
+    chrome.tabs.create({ url: "https://perplexity.ai/" });
+  });
+
   chrome.runtime.onInstalled.addListener(({ reason }) => {
     if (reason === "install") {
       chrome.tabs.create({ url: `${getOptionsPageUrl()}#/onboarding` });

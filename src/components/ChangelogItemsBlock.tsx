@@ -8,10 +8,10 @@ const blockVariants = cva("tw-rounded-md tw-p-4", {
     variant: {
       new: "tw-bg-primary/10 [&_[data-releasenote-part='header']]:tw-text-primary [&_strong]:tw-text-foreground",
       "bug-fix":
-        "tw-bg-destructive/10 [&_[data-releasenote-part='header']]:tw-text-destructive [&_strong]:tw-text-destructive-foreground",
+        "tw-bg-destructive/10 [&_[data-releasenote-part='header']]:tw-text-destructive [&_strong]:tw-text-foreground",
       improvement:
         "tw-bg-success/10 [&_[data-releasenote-part='header']]:tw-text-success [&_strong]:tw-text-success-foreground",
-      change: "tw-bg-secondary tw-text-secondary-foreground",
+      change: "tw-bg-secondary tw-text-foreground",
     },
   },
   defaultVariants: {

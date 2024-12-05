@@ -10,12 +10,12 @@ export default function CollapseEmptyThreadVisualColsPluginDetails() {
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
       <P>
-        {t(
-          "dashboard-plugins-page:pluginDetails.collapseEmptyThreadVisualCols.description",
-        )}
+        Remove the empty space on the right side of each message in a thread.
+        Only for messages that explicitly don&apos;t have &quot;Search images,
+        Search videos, Generate Images&quot; options on the right.
       </P>
       <Switch
-        textLabel={t("action.enable")}
+        textLabel="Enable"
         checked={
           settings?.plugins["thread:collapseEmptyThreadVisualCols"].enabled
         }

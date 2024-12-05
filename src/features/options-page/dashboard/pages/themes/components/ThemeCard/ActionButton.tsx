@@ -21,13 +21,7 @@ export default function ThemeCardActionButton({
   }, [mutation, isChosenTheme, theme]);
 
   return (
-    <Tooltip
-      content={
-        isChosenTheme
-          ? t("dashboard-themes-page:themesPage.themeCard.actions.disable")
-          : t("dashboard-themes-page:themesPage.themeCard.actions.enable")
-      }
-    >
+    <Tooltip content={isChosenTheme ? "Disable" : "Enable"}>
       <Switch checked={isChosenTheme} onCheckedChange={handleThemeAction} />
     </Tooltip>
   );

@@ -34,31 +34,28 @@ function PluginsListing() {
 
   return (
     <div className="tw-w-full">
-      <h1 className="tw-sr-only tw-text-2xl tw-font-bold">
-        {t("dashboard-plugins-page:pluginsPage.listing.title")}
-      </h1>
+      <h1 className="tw-sr-only tw-text-2xl tw-font-bold">Plugins</h1>
 
       <div className="tw-flex tw-flex-col tw-gap-4 md:tw-mt-0">
         <div className="tw-ml-auto tw-flex tw-w-full tw-flex-row-reverse tw-gap-4 md:tw-w-fit md:tw-flex-row md:tw-justify-end">
           <TagsFilter />
           <Input
             type="search"
-            placeholder={t(
-              "dashboard-plugins-page:pluginsPage.listing.searchPlaceholder",
-            )}
+            placeholder="Search plugins..."
             value={filters.searchTerm}
             onChange={handleSearchChange}
           />
         </div>
 
         <div className="tw-ml-auto tw-text-balance tw-text-center tw-text-sm tw-text-muted-foreground md:tw-text-left">
-          {t("dashboard-plugins-page:pluginsPage.listing.reloadNote")}
+          A full page reload on Perplexity.ai is required when changing plugin
+          settings.
         </div>
 
         {isFetchingFeatureFlags ? (
           <div className="tw-flex tw-items-center tw-gap-2">
             <LuLoader2 className="tw-animate-spin" />
-            {t("dashboard-plugins-page:pluginsPage.listing.fetchingPlugins")}
+            Fetching plugins...
           </div>
         ) : (
           <PluginSections

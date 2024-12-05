@@ -26,30 +26,21 @@ export default function ImportDataPasteDialogWrapper({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>
-            {t(
-              "dashboard-settings-page:settingsPage.items.import.dialog.title",
-            )}
-          </DialogTitle>
+          <DialogTitle>Import Data</DialogTitle>
           <DialogDescription>
-            {t(
-              "dashboard-settings-page:settingsPage.items.import.dialog.description",
-            )}
+            Current settings will be overridden or merged depending on the
+            version of which the data is exported from
           </DialogDescription>
         </DialogHeader>
         <div className="tw-flex tw-flex-col tw-gap-4">
           <Textarea
             ref={ref}
-            placeholder={t(
-              "dashboard-settings-page:settingsPage.items.import.dialog.placeholder",
-            )}
+            placeholder="Paste your data here..."
             className="tw-min-h-[200px] tw-font-mono"
           />
           <DialogClose asChild>
             <Button onClick={() => onSubmit(ref.current?.value ?? "")}>
-              {t(
-                "dashboard-settings-page:settingsPage.items.import.dialog.submit",
-              )}
+              Submit
             </Button>
           </DialogClose>
         </div>

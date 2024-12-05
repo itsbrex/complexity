@@ -19,43 +19,24 @@ const basePermissionsDetails: Record<
 > = {
   storage: {
     permissions: ["storage"],
-    title: t("onboarding:basePermissions.storage.title"),
+    title: "Extension Storage Access",
     description: (
       <div>
         <div>
-          <div>{t("onboarding:basePermissions.storage.description.main")}</div>
+          <div>Store your settings locally in extension storage.</div>
           <div>
-            {t("onboarding:basePermissions.storage.description.security")}
+            The extension does NOT have access to browsing history, bookmarks,
+            or other data.
           </div>
         </div>
         <div className="tw-mt-2">
-          {t("onboarding:basePermissions.storage.description.autoGrant")}
+          This permission is automatically granted when installing the
+          extension.
         </div>
       </div>
     ),
     icon: LuDatabase,
   },
-  // cookies: {
-  //   permissions: ["cookies"],
-  //   title: t("onboarding:basePermissions.cookies.title"),
-  //   description: (
-  //     <div className="tw-space-y-2">
-  //       <div>{t("onboarding:basePermissions.cookies.description.intro")}</div>
-  //       <Ul>
-  //         <li>
-  //           {t("onboarding:basePermissions.cookies.description.features.sync")}
-  //         </li>
-  //         <li>
-  //           {t(
-  //             "onboarding:basePermissions.cookies.description.features.verify",
-  //           )}
-  //         </li>
-  //       </Ul>
-  //       <div>{t("onboarding:basePermissions.cookies.description.warning")}</div>
-  //     </div>
-  //   ),
-  //   icon: LuCookie,
-  // },
 };
 
 export default function BasePermissions() {
@@ -74,7 +55,7 @@ export default function BasePermissions() {
   return (
     <div className="tw-mx-auto tw-flex tw-max-w-2xl tw-flex-col tw-gap-4 tw-px-2 md:tw-gap-8 md:tw-px-4">
       <H1 className="tw-text-balance tw-text-center">
-        {t("onboarding:basePermissions.title")}
+        Complexity needs your permissions to work
       </H1>
 
       <div className="tw-space-y-3 md:tw-space-y-4">
@@ -121,10 +102,10 @@ export default function BasePermissions() {
                         {isGranted ? (
                           <span className="tw-flex tw-items-center tw-gap-1.5 md:tw-gap-2">
                             <HiCheckCircle className="tw-h-3.5 tw-w-3.5 md:tw-h-4 md:tw-w-4" />
-                            {t("onboarding:basePermissions.buttons.granted")}
+                            Granted
                           </span>
                         ) : (
-                          t("onboarding:basePermissions.buttons.grant")
+                          "Grant Permission"
                         )}
                       </Button>
                     </div>
@@ -135,7 +116,9 @@ export default function BasePermissions() {
           },
         )}
         <P className="tw-text-balance tw-text-center tw-text-xs tw-text-muted-foreground md:tw-text-sm">
-          {t("onboarding:basePermissions.additionalPermissionsHeadsUp")}
+          You may be asked to grant additional permissions for certain features.
+          Rest assured that you&apos;ll always be prompted for consent before
+          any action.
         </P>
       </div>
     </div>

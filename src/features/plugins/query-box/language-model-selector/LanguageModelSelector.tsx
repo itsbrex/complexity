@@ -54,7 +54,7 @@ export default function LanguageModelSelector() {
       onValueChange={handleValueChange}
     >
       <Tooltip
-        content={t("plugins:languageModelSelector.tooltip")}
+        content={t("plugin-model-selectors:languageModelSelector.tooltip")}
         positioning={{ gutter: 8 }}
       >
         <SelectTrigger variant="ghost">

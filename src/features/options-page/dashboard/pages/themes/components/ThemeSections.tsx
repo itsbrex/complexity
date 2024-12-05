@@ -15,7 +15,7 @@ export function ThemeSections({
   const { isMobile } = useIsMobileStore();
 
   if (builtInThemes.length === 0 && localThemes.length === 0) {
-    return <div>{t("dashboard-themes-page:themesPage.sections.noThemes")}</div>;
+    return <div>No themes found</div>;
   }
 
   return isMobile ? (
@@ -57,18 +57,12 @@ function MobileThemeSections({
     <Tabs defaultValue={defaultTab}>
       <TabsList>
         {localThemes.length > 0 && (
-          <TabsTrigger value="local">
-            {t("dashboard-themes-page:themesPage.sections.local.tab")}
-          </TabsTrigger>
+          <TabsTrigger value="local">Local Themes</TabsTrigger>
         )}
         {builtInThemes.length > 0 && (
-          <TabsTrigger value="built-in">
-            {t("dashboard-themes-page:themesPage.sections.builtIn.tab")}
-          </TabsTrigger>
+          <TabsTrigger value="built-in">Built-in Themes</TabsTrigger>
         )}
-        <TabsTrigger value="community">
-          {t("dashboard-themes-page:themesPage.sections.community.tab")}
-        </TabsTrigger>
+        <TabsTrigger value="community">Community Themes</TabsTrigger>
       </TabsList>
 
       {builtInThemes.length > 0 && (
@@ -84,9 +78,7 @@ function MobileThemeSections({
       )}
 
       <TabsContent value="community" className="tw-mt-4">
-        <div className="tw-text-muted-foreground">
-          {t("dashboard-themes-page:themesPage.sections.community.comingSoon")}
-        </div>
+        <div className="tw-text-muted-foreground">Coming soon</div>
       </TabsContent>
     </Tabs>
   );
@@ -100,9 +92,7 @@ function DesktopThemeSections({
     <div className="tw-flex tw-flex-col tw-gap-8">
       {localThemes.length > 0 && (
         <section>
-          <h2 className="tw-mb-4 tw-text-lg tw-font-semibold">
-            {t("dashboard-themes-page:themesPage.sections.local.title")}
-          </h2>
+          <h2 className="tw-mb-4 tw-text-lg tw-font-semibold">Local Themes</h2>
           <ThemesGrid themes={localThemes} type="local" />
         </section>
       )}
@@ -110,7 +100,7 @@ function DesktopThemeSections({
       {builtInThemes.length > 0 && (
         <section>
           <h2 className="tw-mb-4 tw-text-lg tw-font-semibold">
-            {t("dashboard-themes-page:themesPage.sections.builtIn.title")}
+            Built-in Themes
           </h2>
           <ThemesGrid themes={builtInThemes} type="built-in" />
         </section>
@@ -118,11 +108,9 @@ function DesktopThemeSections({
 
       <section>
         <h2 className="tw-mb-4 tw-text-lg tw-font-semibold">
-          {t("dashboard-themes-page:themesPage.sections.community.title")}
+          Community Themes
         </h2>
-        <div className="tw-text-muted-foreground">
-          {t("dashboard-themes-page:themesPage.sections.community.comingSoon")}
-        </div>
+        <div className="tw-text-muted-foreground">Coming soon</div>
       </section>
     </div>
   );

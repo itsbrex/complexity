@@ -26,7 +26,7 @@ export default function PluginDetailsPage({
         className="tw-mb-4 tw-flex tw-items-center tw-gap-2 tw-text-muted-foreground tw-transition hover:tw-text-foreground"
       >
         <LuChevronLeft />
-        {t("dashboard-plugins-page:pluginsPage.details.backToPlugins")}
+        Back to plugins
       </Link>
       <div>
         <h1 className="tw-text-2xl tw-font-bold">{plugin.title}</h1>

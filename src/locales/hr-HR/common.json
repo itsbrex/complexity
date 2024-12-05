@@ -1,42 +1,7 @@
 {
   "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "Molimo razmislite o tome da postanete <emphasis>Podržavatelj</emphasis> kako biste održali projekt živim!",
-    "items": {
-      "notifications": "Obavijesti",
-      "plugins": "Dodaci",
-      "themes": "Teme",
-      "releaseNotes": "Bilješke o izdanju",
-      "settings": "Postavke",
-      "help": "Trebate pomoć?"
-    },
-    "updateAnnouncer": {
-      "newVersion": "Dostupna je nova verzija proširenja!",
-      "updatePrompt": "Molimo ažurirajte kako biste dobili poboljšanja i ispravke grešaka.",
-      "autoUpdateInfo": "Nadogradnja bi se trebala dogoditi automatski kada ponovno pokrenete preglednik, ili je prisilno pokrenite ručno na stranici za upravljanje proširenjima.",
-      "manualUpdateInfo": "Ili kliknite <storeLink>OVDJE</storeLink> za povratak u trgovinu i ručnu ponovnu instalaciju proširenja ako ništa od gore navedenog ne radi (ne zaboravite izvesti svoje postavke!)."
-    }
-  },
-  "action": {
-    "enable": "Omogući",
-    "disable": "Onemogući",
-    "cancel": "Odustani",
-    "confirm": "Potvrdi",
-    "delete": "Izbriši",
-    "create": "Stvori",
-    "back": "Natrag",
-    "search": "Pretraži",
-    "options": "Opcije",
-    "details": "Detalji"
-  },
-  "status": {
-    "loading": "Učitavanje",
-    "noResults": "Nema pronađenih rezultata"
-  },
-  "helpPage": {
-    "title": "Trebate pomoć?",
-    "description": "Imate pitanja ili vam treba pomoć?",
-    "supportChannels": "Complexity ima više kanala za podršku:"
+    "supporterMessage": "Molimo razmislite o tome da postanete <emphasis>Podržavatelj</emphasis> kako biste održali projekt živim!"
   },
   "sponsorDialog": {
     "title": "Complexity treba vašu pomoć!",

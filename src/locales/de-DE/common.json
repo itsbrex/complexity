@@ -1,42 +1,7 @@
 {
   "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "Bitte erwägen Sie, ein <emphasis>Unterstützer</emphasis> zu werden, um das Projekt am Leben zu erhalten!",
-    "items": {
-      "notifications": "Benachrichtigungen",
-      "plugins": "Erweiterungen",
-      "themes": "Designs",
-      "releaseNotes": "Versionshinweise",
-      "settings": "Einstellungen",
-      "help": "Hilfe benötigt?"
-    },
-    "updateAnnouncer": {
-      "newVersion": "Eine neue Version der Erweiterung ist verfügbar!",
-      "updatePrompt": "Bitte aktualisieren Sie, um Verbesserungen und Fehlerbehebungen zu erhalten.",
-      "autoUpdateInfo": "Das Update sollte automatisch erfolgen, wenn Sie den Browser neu starten, oder erzwingen Sie es manuell auf der Erweiterungsverwaltungsseite.",
-      "manualUpdateInfo": "Oder klicken Sie <storeLink>HIER</storeLink>, um den Store erneut zu besuchen und die Erweiterung manuell neu zu installieren, falls keine der obigen Optionen funktioniert (denken Sie daran, Ihre Einstellungen zu exportieren!)."
-    }
-  },
-  "action": {
-    "enable": "Aktivieren",
-    "disable": "Deaktivieren",
-    "cancel": "Abbrechen",
-    "confirm": "Bestätigen",
-    "delete": "Löschen",
-    "create": "Erstellen",
-    "back": "Zurück",
-    "search": "Suchen",
-    "options": "Optionen",
-    "details": "Details"
-  },
-  "status": {
-    "loading": "Lädt",
-    "noResults": "Keine Ergebnisse gefunden"
-  },
-  "helpPage": {
-    "title": "Hilfe benötigt?",
-    "description": "Haben Sie Fragen oder brauchen Sie Unterstützung?",
-    "supportChannels": "Complexity bietet mehrere Unterstützungskanäle:"
+    "supporterMessage": "Bitte erwägen Sie, ein <emphasis>Unterstützer</emphasis> zu werden, um das Projekt am Leben zu erhalten!"
   },
   "sponsorDialog": {
     "title": "Complexity braucht Ihre Hilfe!",

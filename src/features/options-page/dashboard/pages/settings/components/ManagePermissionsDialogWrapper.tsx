@@ -29,15 +29,10 @@ export default function ManagePermissionsDialogWrapper({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>
-            {t(
-              "dashboard-settings-page:settingsPage.items.permissions.dialog.title",
-            )}
-          </DialogTitle>
+          <DialogTitle>Manage Permissions</DialogTitle>
           <DialogDescription>
-            {t(
-              "dashboard-settings-page:settingsPage.items.permissions.dialog.description",
-            )}
+            Grant or revoke extension permissions. Please note that some
+            features may be disabled without the necessary permissions.
           </DialogDescription>
           {TOGGLEABLE_PERMISSIONS.length > 0 ? (
             TOGGLEABLE_PERMISSIONS.map((permission) => (

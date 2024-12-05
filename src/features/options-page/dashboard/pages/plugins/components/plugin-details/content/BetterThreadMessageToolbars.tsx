@@ -4,6 +4,31 @@ import useExtensionLocalStorage from "@/services/extension-local-storage/useExte
 
 type PluginKey = keyof Plugins["thread:betterMessageToolbars"];
 
+type SwitchOption = {
+  label: string;
+  description: string;
+};
+
+const SWITCH_OPTIONS: Record<Exclude<PluginKey, "enabled">, SwitchOption> = {
+  sticky: {
+    label: "Stick to top",
+    description:
+      "Always keep the toolbar visible at the top of the page when scrolling.",
+  },
+  simplifyRewriteDropdown: {
+    label: "Simplify Rewrite Dropdown Menu",
+    description: "Hide model's description (only for desktop).",
+  },
+  hideUnnecessaryButtons: {
+    label: "Hide Unnecessary Buttons",
+    description: "Hide Share, Thumbs Up/Down buttons.",
+  },
+  explicitModelName: {
+    label: "Explicit Model Name",
+    description: "Show the model name without hovering.",
+  },
+};
+
 export default function BetterThreadMessageToolbarsPluginDetails() {
   const { settings, mutation } = useExtensionLocalStorage();
 
@@ -17,21 +42,15 @@ export default function BetterThreadMessageToolbarsPluginDetails() {
   );
 
   const renderSwitch = useCallback(
-    (key: PluginKey) => (
+    (key: Exclude<PluginKey, "enabled">) => (
       <div>
         <Switch
           className="tw-items-start"
           textLabel={
             <div>
-              <div>
-                {t(
-                  `dashboard-plugins-page:pluginDetails.betterThreadMessageToolbars.options.${key}.label`,
-                )}
-              </div>
+              <div>{SWITCH_OPTIONS[key].label}</div>
               <div className="tw-text-sm tw-text-muted-foreground">
-                {t(
-                  `dashboard-plugins-page:pluginDetails.betterThreadMessageToolbars.options.${key}.description`,
-                )}
+                {SWITCH_OPTIONS[key].description}
               </div>
             </div>
           }
@@ -46,24 +65,19 @@ export default function BetterThreadMessageToolbarsPluginDetails() {
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
       <div className="tw-flex tw-flex-col tw-gap-2">
-        {t(
-          "dashboard-plugins-page:pluginDetails.betterThreadMessageToolbars.description",
-        )}
+        Useful tweaks to make the toolbar more compact and easier to use.
       </div>
       <Switch
-        textLabel={t("action.enable")}
+        textLabel="Enable"
         checked={settings?.plugins["thread:betterMessageToolbars"].enabled}
         onCheckedChange={handleCheckedChange("enabled")}
       />
       {settings?.plugins["thread:betterMessageToolbars"].enabled && (
         <div className="tw-flex tw-flex-col tw-gap-2">
-          <div className="tw-text-sm tw-text-muted-foreground">
-            {t("action.options")}
-          </div>
-          {renderSwitch("sticky")}
-          {renderSwitch("simplifyRewriteDropdown")}
-          {renderSwitch("hideUnnecessaryButtons")}
-          {renderSwitch("explicitModelName")}
+          <div className="tw-text-sm tw-text-muted-foreground">Options</div>
+          {Object.keys(SWITCH_OPTIONS).map((key) =>
+            renderSwitch(key as Exclude<PluginKey, "enabled">),
+          )}
         </div>
       )}
     </div>

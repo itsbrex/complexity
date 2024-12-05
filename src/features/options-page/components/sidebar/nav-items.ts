@@ -15,27 +15,27 @@ export type NavItem = {
 export const navItems: NavItem[] = [
   {
     icon: BiExtension,
-    label: t("common:sidebar.items.plugins"),
+    label: "Plugins",
     path: "/plugins",
   },
   {
     icon: LuPalette,
-    label: t("common:sidebar.items.themes"),
+    label: "Themes",
     path: "/themes",
   },
   {
     icon: LuFileText,
-    label: t("common:sidebar.items.releaseNotes"),
+    label: "Release Notes",
     path: "/release-notes",
   },
   {
     icon: LuSettings,
-    label: t("common:sidebar.items.settings"),
+    label: "Settings",
     path: "/settings",
   },
   {
     icon: LuMessageCircle,
-    label: t("common:sidebar.items.help"),
+    label: "Need help?",
     path: "/help",
   },
 ];

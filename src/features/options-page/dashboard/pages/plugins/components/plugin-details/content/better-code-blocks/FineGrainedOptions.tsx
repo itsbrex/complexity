@@ -38,9 +38,7 @@ export default function BetterCodeBlockFineGrainedOptions({
     <div className="tw-flex tw-flex-col tw-gap-4">
       <div className="tw-flex tw-flex-col tw-gap-2">
         <Switch
-          textLabel={t(
-            "dashboard-plugins-page:pluginDetails.betterCodeBlocks.codeTheme.label",
-          )}
+          textLabel="Code theme"
           checked={settings?.theme.enabled}
           onCheckedChange={({ checked }) => {
             mutation.mutate({
@@ -56,11 +54,7 @@ export default function BetterCodeBlockFineGrainedOptions({
         {settings?.theme.enabled && (
           <div className="tw-flex tw-w-full tw-gap-4">
             <div className="tw-flex tw-flex-col tw-gap-2">
-              <Label className="tw-text-muted-foreground">
-                {t(
-                  "dashboard-plugins-page:pluginDetails.betterCodeBlocks.codeTheme.dark",
-                )}
-              </Label>
+              <Label className="tw-text-muted-foreground">Dark</Label>
               <CodeThemeSelector
                 value={settings?.theme.dark}
                 onValueChange={(value) => {
@@ -76,11 +70,7 @@ export default function BetterCodeBlockFineGrainedOptions({
               />
             </div>
             <div className="tw-flex tw-flex-col tw-gap-2">
-              <Label className="tw-text-muted-foreground">
-                {t(
-                  "dashboard-plugins-page:pluginDetails.betterCodeBlocks.codeTheme.light",
-                )}
-              </Label>
+              <Label className="tw-text-muted-foreground">Light</Label>
               <CodeThemeSelector
                 value={settings?.theme.light}
                 onValueChange={(value) => {
@@ -100,9 +90,7 @@ export default function BetterCodeBlockFineGrainedOptions({
       </div>
       <div className="tw-flex tw-flex-col tw-gap-4">
         <Switch
-          textLabel={t(
-            "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.stickyHeader",
-          )}
+          textLabel="Sticky header"
           checked={settings?.stickyHeader}
           onCheckedChange={({ checked }) => {
             mutation.mutate({
@@ -115,9 +103,7 @@ export default function BetterCodeBlockFineGrainedOptions({
         />
         <div className="tw-flex tw-flex-col tw-gap-2">
           <Switch
-            textLabel={t(
-              "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.unwrapLines.label",
-            )}
+            textLabel="Unwrap lines by default"
             checked={settings?.unwrap.enabled}
             onCheckedChange={({ checked }) => {
               mutation.mutate({
@@ -131,9 +117,7 @@ export default function BetterCodeBlockFineGrainedOptions({
             }}
           />
           <Switch
-            textLabel={t(
-              "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.unwrapLines.toggleButton",
-            )}
+            textLabel="Show toggle button"
             className="tw-ml-8"
             checked={settings?.unwrap.showToggleButton}
             onCheckedChange={({ checked }) => {
@@ -151,9 +135,7 @@ export default function BetterCodeBlockFineGrainedOptions({
         <div className="tw-flex tw-flex-col tw-gap-2">
           <div className="tw-flex tw-gap-2">
             <Switch
-              textLabel={t(
-                "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.maxHeight.label",
-              )}
+              textLabel="Max height"
               checked={settings?.maxHeight.enabled}
               onCheckedChange={({ checked }) => {
                 mutation.mutate({
@@ -185,16 +167,12 @@ export default function BetterCodeBlockFineGrainedOptions({
                 }}
               />
               <div className="tw-text-muted-foreground">
-                {t(
-                  "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.maxHeight.unit",
-                )}
+                px (0px = entirely collapsed)
               </div>
             </div>
           </div>
           <Switch
-            textLabel={t(
-              "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.maxHeight.toggleButton",
-            )}
+            textLabel="Show toggle button"
             className="tw-ml-8"
             checked={settings?.maxHeight.showToggleButton}
             onCheckedChange={({ checked }) => {
@@ -210,9 +188,7 @@ export default function BetterCodeBlockFineGrainedOptions({
           />
           <div className="tw-flex tw-flex-col tw-gap-2">
             <Switch
-              textLabel={t(
-                "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.placeholderText.label",
-              )}
+              textLabel="Custom placeholder text"
               checked={settings?.placeholderText.enabled}
               onCheckedChange={({ checked }) => {
                 mutation.mutate({
@@ -228,11 +204,7 @@ export default function BetterCodeBlockFineGrainedOptions({
             {settings?.placeholderText.enabled && (
               <div className="tw-ml-8 tw-flex tw-flex-col tw-gap-2">
                 <div>
-                  <Label className="tw-text-muted-foreground">
-                    {t(
-                      "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.placeholderText.title",
-                    )}
-                  </Label>
+                  <Label className="tw-text-muted-foreground">Title</Label>
                   <Input
                     type="text"
                     maxLength={30}
@@ -247,9 +219,7 @@ export default function BetterCodeBlockFineGrainedOptions({
                 </div>
                 <div>
                   <Label className="tw-text-muted-foreground">
-                    {t(
-                      "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.placeholderText.loading",
-                    )}
+                    Loading text
                   </Label>
                   <Input
                     type="text"
@@ -264,11 +234,7 @@ export default function BetterCodeBlockFineGrainedOptions({
                   />
                 </div>
                 <div>
-                  <Label className="tw-text-muted-foreground">
-                    {t(
-                      "dashboard-plugins-page:pluginDetails.betterCodeBlocks.options.placeholderText.idle",
-                    )}
-                  </Label>
+                  <Label className="tw-text-muted-foreground">Idle text</Label>
                   <Input
                     type="text"
                     maxLength={30}

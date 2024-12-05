@@ -24,9 +24,7 @@ export default function useOptions({ language }: UseOptionsProps = {}) {
     mutationFn: getBetterCodeBlocksOptionsService().updateDraft,
     onError: (error) => {
       toast({
-        title: t(
-          "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.failedToUpdate",
-        ),
+        title: "❌ Failed to update options",
         description: error.message,
       });
     },
@@ -46,9 +44,7 @@ export default function useOptions({ language }: UseOptionsProps = {}) {
     },
     onError: (error) => {
       toast({
-        title: t(
-          "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.failedToDelete",
-        ),
+        title: "❌ Failed to delete options",
         description: error.message,
       });
     },

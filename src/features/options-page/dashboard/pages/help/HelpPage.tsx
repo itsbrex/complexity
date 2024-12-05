@@ -7,14 +7,20 @@ export default function HelpPage() {
   return (
     <div>
       <div className="tw-flex tw-flex-col tw-gap-2">
-        <h1 className="tw-text-2xl tw-font-bold">{t("helpPage.title")}</h1>
-        <p className="tw-text-muted-foreground">{t("helpPage.description")}</p>
+        <h1 className="tw-text-2xl tw-font-bold">Need Help?</h1>
+        <p className="tw-text-muted-foreground">
+          Have questions or need assistance?
+        </p>
 
-        <div>{t("helpPage.supportChannels")}</div>
+        <div>Complexity has multiple support channels:</div>
 
         <div className="tw-flex tw-items-center tw-gap-4">
           <Button asChild className="tw-w-max">
-            <a href="https://discord.gg/cplx" target="_blank" rel="noreferrer">
+            <a
+              href="https://discord.gg/fxzqdkwmWx"
+              target="_blank"
+              rel="noreferrer"
+            >
               <SiDiscord className="tw-mr-2 tw-size-4" />
               <span>Discord</span>
             </a>

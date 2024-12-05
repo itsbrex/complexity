@@ -21,7 +21,6 @@ import { queryClient } from "@/utils/ts-query-client";
 
 export default function CreateNewLanguageOptionButton() {
   const [open, setOpen] = useState(false);
-
   const [language, setLanguage] = useState("");
 
   const mutation = useMutation({
@@ -29,9 +28,7 @@ export default function CreateNewLanguageOptionButton() {
     mutationFn: async ({ language }: { language: string }) => {
       if (!language)
         return toast({
-          title: t(
-            "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.noLanguageProvided",
-          ),
+          title: "No language/block name provided",
         });
 
       const options: BetterCodeBlockFineGrainedOptions = {
@@ -66,9 +63,7 @@ export default function CreateNewLanguageOptionButton() {
     },
     onError: (error) => {
       toast({
-        title: t(
-          "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.failedToCreate",
-        ),
+        title: "❌ Failed to create new language option",
         description: error.message,
       });
     },
@@ -92,11 +87,7 @@ export default function CreateNewLanguageOptionButton() {
       open={open}
       onOpenChange={({ open }) => setOpen(open)}
     >
-      <Tooltip
-        content={t(
-          "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.addNewRule",
-        )}
-      >
+      <Tooltip content="Add new rule">
         <DialogTrigger asChild>
           <Button variant="ghost" size="sm">
             <LuPlus />
@@ -104,17 +95,11 @@ export default function CreateNewLanguageOptionButton() {
         </DialogTrigger>
       </Tooltip>
       <DialogContent portal={false}>
-        <DialogHeader>
-          {t(
-            "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.fineTuneBlock",
-          )}
-        </DialogHeader>
+        <DialogHeader>Fine-tune specific block</DialogHeader>
         <Input
           value={language}
           className="tw-font-mono"
-          placeholder={t(
-            "dashboard-plugins-page:pluginDetails.betterCodeBlocks.languageOptions.languageBlockName",
-          )}
+          placeholder="Language/Block name"
           onChange={({ target }) => setLanguage(target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
@@ -125,10 +110,10 @@ export default function CreateNewLanguageOptionButton() {
         />
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline">{t("action.cancel")}</Button>
+            <Button variant="outline">Cancel</Button>
           </DialogClose>
           <Button disabled={!language} onClick={handleSubmit}>
-            {t("action.create")}
+            Create
           </Button>
         </DialogFooter>
       </DialogContent>

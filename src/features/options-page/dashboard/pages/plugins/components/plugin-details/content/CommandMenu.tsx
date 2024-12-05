@@ -5,7 +5,6 @@ import useExtensionLocalStorage from "@/services/extension-local-storage/useExte
 
 export default function CommandMenuPluginDetails() {
   const { settings, mutation } = useExtensionLocalStorage();
-
   const isMac = usePlatformDetection() === "mac";
 
   if (!settings) return null;
@@ -13,17 +12,18 @@ export default function CommandMenuPluginDetails() {
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
       <div>
-        {t("dashboard-plugins-page:pluginDetails.commandMenu.description")}
+        Similar to Mac&apos;s Spotlight / Windows&apos;s PowerToys Run, but
+        inside Perplexity.
       </div>
       <div>
-        {t("dashboard-plugins-page:pluginDetails.commandMenu.activationHotkey")}{" "}
-        <KeyCombo keys={[Key.Control, isMac ? "I" : "K"]} />
+        Activation hotkey: <KeyCombo keys={[Key.Control, isMac ? "I" : "K"]} />
       </div>
       <div className="tw-text-sm tw-text-muted-foreground">
-        {t("dashboard-plugins-page:pluginDetails.commandMenu.sideNote")}
+        Side note: Thread search is subject to rate limiting by Perplexity at
+        any time.
       </div>
       <Switch
-        textLabel={t("action.enable")}
+        textLabel="Enable"
         checked={settings?.plugins["commandMenu"].enabled ?? false}
         onCheckedChange={({ checked }) => {
           mutation.mutate((draft) => {

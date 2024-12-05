@@ -36,16 +36,8 @@ export default function CodeThemeSelector({
       </PopoverTrigger>
       <PopoverContent className="tw-p-0">
         <Command>
-          <CommandInput
-            placeholder={t(
-              "dashboard-plugins-page:pluginDetails.betterCodeBlocks.codeTheme.searchPlaceholder",
-            )}
-          />
-          <CommandEmpty>
-            {t(
-              "dashboard-plugins-page:pluginDetails.betterCodeBlocks.codeTheme.noThemeFound",
-            )}
-          </CommandEmpty>
+          <CommandInput placeholder="Search theme..." />
+          <CommandEmpty>No theme found.</CommandEmpty>
           <CommandList>
             {CODE_THEMES.map((theme) => (
               <CommandItem

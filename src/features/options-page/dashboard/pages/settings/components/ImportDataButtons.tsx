@@ -20,16 +20,12 @@ export default function ImportDataButtons() {
 
     if (!error) {
       toast({
-        title: t(
-          "dashboard-settings-page:settingsPage.items.import.toast.success",
-        ),
+        title: "✅ Data imported",
       });
     } else {
       console.error(error);
       toast({
-        title: t(
-          "dashboard-settings-page:settingsPage.items.import.toast.invalidData",
-        ),
+        title: "❌ Invalid data",
       });
     }
   };
@@ -49,9 +45,7 @@ export default function ImportDataButtons() {
     } catch (error) {
       console.error(error);
       toast({
-        title: t(
-          "dashboard-settings-page:settingsPage.items.import.toast.failedToRead",
-        ),
+        title: "❌ Failed to read file",
       });
     }
 
@@ -68,17 +62,9 @@ export default function ImportDataButtons() {
         onChange={handleFileChange}
       />
       <ImportDataPasteDialogWrapper onSubmit={handleImportData}>
-        <Button variant="outline">
-          {t(
-            "dashboard-settings-page:settingsPage.items.import.dialog.pasteButton",
-          )}
-        </Button>
+        <Button variant="outline">Paste as text</Button>
       </ImportDataPasteDialogWrapper>
-      <Button onClick={handleChooseFile}>
-        {t(
-          "dashboard-settings-page:settingsPage.items.import.dialog.fileButton",
-        )}
-      </Button>
+      <Button onClick={handleChooseFile}>Choose file</Button>
     </div>
   );
 }

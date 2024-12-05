@@ -13,6 +13,7 @@ export const TOGGLEABLE_PERMISSIONS_DETAILS: Partial<
 > = {
   cookies: {
     title: "Cookies",
-    description: t("dashboard-settings-page:permissions.cookies.description"),
+    description:
+      "Allow the extension to sync settings with your Perplexity.ai preferences. Also used to identify your Supporter status.",
   },
 };

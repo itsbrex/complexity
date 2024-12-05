@@ -41,13 +41,9 @@ function MobilePluginSections({
     <Tabs defaultValue="all">
       <TabsList className="tw-w-full">
         {favoritePluginIds.length > 0 && (
-          <TabsTrigger value="favorites">
-            {t("dashboard-plugins-page:pluginsPage.sections.favouritePlugins")}
-          </TabsTrigger>
+          <TabsTrigger value="favorites">Favourite Plugins</TabsTrigger>
         )}
-        <TabsTrigger value="all">
-          {t("dashboard-plugins-page:pluginsPage.sections.allPlugins")}
-        </TabsTrigger>
+        <TabsTrigger value="all">All Plugins</TabsTrigger>
       </TabsList>
 
       {favoritePluginIds.length > 0 && (
@@ -72,7 +68,7 @@ function DesktopPluginSections({
       {favoritePluginIds.length > 0 && (
         <section>
           <H2 className="tw-mb-4 !tw-text-lg tw-font-semibold">
-            {t("dashboard-plugins-page:pluginsPage.sections.favouritePlugins")}
+            Favourite Plugins
           </H2>
           <PluginsGrid pluginIds={favoritePluginIds} />
         </section>
@@ -80,9 +76,7 @@ function DesktopPluginSections({
 
       {otherPluginIds.length > 0 && (
         <section>
-          <H2 className="tw-mb-4 !tw-text-lg tw-font-semibold">
-            {t("dashboard-plugins-page:pluginsPage.sections.allPlugins")}
-          </H2>
+          <H2 className="tw-mb-4 !tw-text-lg tw-font-semibold">All Plugins</H2>
           <PluginsGrid pluginIds={otherPluginIds} />
         </section>
       )}

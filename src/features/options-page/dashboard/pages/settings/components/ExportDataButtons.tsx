@@ -10,9 +10,7 @@ import { db as indexedDb } from "@/services/indexed-db/indexed-db";
 
 export default function ExportDataButtons() {
   const [copyButtonText, toggleCopyButtonText] = useToggleButtonText({
-    defaultText: t(
-      "dashboard-settings-page:settingsPage.items.export.buttons.copy",
-    ),
+    defaultText: "Copy",
   });
 
   const getExportData = useCallback(async (): Promise<string> => {
@@ -33,11 +31,7 @@ export default function ExportDataButtons() {
     toggleCopyButtonText(
       <div className="tw-flex tw-items-center tw-gap-2">
         <LuCheck />
-        <span>
-          {t(
-            "dashboard-settings-page:settingsPage.items.export.buttons.copied",
-          )}
-        </span>
+        <span>Copied</span>
       </div>,
     );
   }, [getExportData, toggleCopyButtonText]);
@@ -72,22 +66,14 @@ export default function ExportDataButtons() {
         loadingText={
           <div className="tw-flex tw-items-center tw-gap-2">
             <LuLoader2 className="tw-animate-spin" />
-            <span>
-              {t(
-                "dashboard-settings-page:settingsPage.items.export.buttons.exporting",
-              )}
-            </span>
+            <span>Exporting</span>
           </div>
         }
         onClick={handleCopy}
       >
         {copyButtonText}
       </AsyncButton>
-      <Button onClick={handleSaveAsFile}>
-        {t(
-          "dashboard-settings-page:settingsPage.items.export.buttons.saveFile",
-        )}
-      </Button>
+      <Button onClick={handleSaveAsFile}>Save as file</Button>
     </div>
   );
 }

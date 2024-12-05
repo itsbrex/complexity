@@ -7,9 +7,7 @@ export const ColorSchemeBadge = memo(({ type }: { type: "light" | "dark" }) => {
   return (
     <Badge variant="secondary" className="tw-flex tw-items-center tw-gap-2">
       <Icon className="tw-size-3" />
-      {t(
-        `dashboard-themes-page:themesPage.themeCard.badges.colorScheme.${type}`,
-      )}
+      {type === "light" ? "Light" : "Dark"}
     </Badge>
   );
 });
@@ -20,9 +18,7 @@ export const CompatibilityBadge = memo(
     return (
       <Badge variant="outline" className="tw-flex tw-items-center tw-gap-2">
         <Icon className="tw-size-3" />
-        {t(
-          `dashboard-themes-page:themesPage.themeCard.badges.compatibility.${type}`,
-        )}
+        {type === "desktop" ? "Desktop" : "Mobile"}
       </Badge>
     );
   },

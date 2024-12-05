@@ -26,48 +26,27 @@ export default function ClearAllDataButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">
-          {t(
-            "dashboard-settings-page:settingsPage.items.reset.dialog.buttons.clearButton",
-          )}
-        </Button>
+        <Button variant="outline">Clear All Data</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>
-            {t("dashboard-settings-page:settingsPage.items.reset.dialog.title")}
-          </DialogTitle>
+          <DialogTitle>Clear All Data</DialogTitle>
         </DialogHeader>
         <div>
-          {t(
-            "dashboard-settings-page:settingsPage.items.reset.dialog.description",
-          )}
+          Are you sure you want to clear all extension data? This action cannot
+          be undone and will wipe the following data:
           <Ul>
-            <li>
-              {t(
-                "dashboard-settings-page:settingsPage.items.reset.dialog.items.settings",
-              )}
-            </li>
-            <li>
-              {t(
-                "dashboard-settings-page:settingsPage.items.reset.dialog.items.customData",
-              )}
-            </li>
-            <li>
-              {t(
-                "dashboard-settings-page:settingsPage.items.reset.dialog.items.otherData",
-              )}
-            </li>
+            <li>Extension settings</li>
+            <li>All custom themes, code blocks rules, etc.</li>
+            <li>And any other data stored by the extension</li>
           </Ul>
         </div>
         <DialogFooter>
           <DialogTrigger asChild>
-            <Button variant="outline">{t("action.cancel")}</Button>
+            <Button variant="outline">Cancel</Button>
           </DialogTrigger>
           <AsyncButton variant="destructive" onClick={handleClearData}>
-            {t(
-              "dashboard-settings-page:settingsPage.items.reset.dialog.buttons.confirm",
-            )}
+            Yes, Clear All Data
           </AsyncButton>
         </DialogFooter>
       </DialogContent>

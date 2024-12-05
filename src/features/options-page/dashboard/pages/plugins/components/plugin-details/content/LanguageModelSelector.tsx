@@ -1,5 +1,3 @@
-import { Trans } from "react-i18next";
-
 import { Switch } from "@/components/ui/switch";
 import { P } from "@/components/ui/typography";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
@@ -12,17 +10,14 @@ export default function LanguageModelSelectorPluginDetails() {
   return (
     <div className="tw-flex tw-flex-col tw-gap-4 tw-overflow-y-auto">
       <P>
-        <Trans
-          i18nKey="dashboard-plugins-page:pluginDetails.languageModelSelector.description"
-          components={{
-            emphasis: (
-              <span className="tw-font-medium tw-text-primary tw-underline" />
-            ),
-          }}
-        />
+        Allow you to change your preferred language model{" "}
+        <span className="tw-font-medium tw-text-primary tw-underline">
+          anywhere
+        </span>
+        . The selector can be found on all query boxes.
       </P>
       <Switch
-        textLabel={t("action.enable")}
+        textLabel="Enable"
         checked={
           settings?.plugins["queryBox:languageModelSelector"].enabled ?? false
         }
@@ -35,9 +30,7 @@ export default function LanguageModelSelectorPluginDetails() {
       {settings.plugins["queryBox:languageModelSelector"].enabled && (
         <div className="tw-ml-8 tw-flex tw-flex-col tw-gap-2">
           <Switch
-            textLabel={t(
-              "dashboard-plugins-page:pluginDetails.languageModelSelector.mainLocations",
-            )}
+            textLabel="Homepage + Modal + Space"
             checked={
               settings.plugins["queryBox:languageModelSelector"].main ?? false
             }
@@ -49,9 +42,7 @@ export default function LanguageModelSelectorPluginDetails() {
           />
           <div className="tw-flex tw-flex-col tw-gap-2">
             <Switch
-              textLabel={t(
-                "dashboard-plugins-page:pluginDetails.languageModelSelector.followUp.enable",
-              )}
+              textLabel="Follow-up (in a thread)"
               checked={
                 settings.plugins["queryBox:languageModelSelector"].followUp
                   .enabled ?? false
@@ -68,9 +59,7 @@ export default function LanguageModelSelectorPluginDetails() {
               .enabled && (
               <Switch
                 className="tw-ml-8"
-                textLabel={t(
-                  "dashboard-plugins-page:pluginDetails.languageModelSelector.followUp.spanFullWidth",
-                )}
+                textLabel="Horizontally span to full width"
                 checked={
                   settings.plugins["queryBox:languageModelSelector"].followUp
                     .span

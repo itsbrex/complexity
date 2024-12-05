@@ -1,42 +1,7 @@
 {
   "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "Per favore, considera di diventare un <emphasis>Sostenitore</emphasis> per mantenere vivo il progetto!",
-    "items": {
-      "notifications": "Notifiche",
-      "plugins": "Plugin",
-      "themes": "Temi",
-      "releaseNotes": "Note di rilascio",
-      "settings": "Impostazioni",
-      "help": "Serve aiuto?"
-    },
-    "updateAnnouncer": {
-      "newVersion": "È disponibile una nuova versione dell'estensione!",
-      "updatePrompt": "Aggiorna per ricevere miglioramenti e correzioni di bug.",
-      "autoUpdateInfo": "L'aggiornamento dovrebbe avvenire automaticamente al riavvio del browser, oppure puoi forzarlo manualmente nella pagina di gestione delle estensioni.",
-      "manualUpdateInfo": "Oppure clicca <storeLink>QUI</storeLink> per tornare allo store e reinstallare manualmente l'estensione se nessuna delle opzioni precedenti funziona (ricordati di esportare le tue impostazioni!)."
-    }
-  },
-  "action": {
-    "enable": "Attiva",
-    "disable": "Disattiva",
-    "cancel": "Annulla",
-    "confirm": "Conferma",
-    "delete": "Elimina",
-    "create": "Crea",
-    "back": "Indietro",
-    "search": "Cerca",
-    "options": "Opzioni",
-    "details": "Dettagli"
-  },
-  "status": {
-    "loading": "Caricamento",
-    "noResults": "Nessun risultato trovato"
-  },
-  "helpPage": {
-    "title": "Hai bisogno di aiuto?",
-    "description": "Hai domande o hai bisogno di assistenza?",
-    "supportChannels": "Complexity ha diversi canali di supporto:"
+    "supporterMessage": "Per favore, considera di diventare un <emphasis>Sostenitore</emphasis> per mantenere vivo il progetto!"
   },
   "sponsorDialog": {
     "title": "Complexity ha bisogno del tuo aiuto!",

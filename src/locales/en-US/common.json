@@ -1,42 +1,7 @@
 {
   "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "Please consider becoming a <emphasis>Supporter</emphasis> to keep the project alive!",
-    "items": {
-      "notifications": "Notifications",
-      "plugins": "Plugins",
-      "themes": "Themes",
-      "releaseNotes": "Release Notes",
-      "settings": "Settings",
-      "help": "Need help?"
-    },
-    "updateAnnouncer": {
-      "newVersion": "A new version of the extension is available!",
-      "updatePrompt": "Please update to receive enhancements and bug fixes.",
-      "autoUpdateInfo": "The upgrade should be happening automatically when you restart the browser, or force it to manually update in the extension management page.",
-      "manualUpdateInfo": "Or click <storeLink>HERE</storeLink> to revisit the store and manually reinstall the extension if none of the above works (remember to export your settings!)."
-    }
-  },
-  "action": {
-    "enable": "Enable",
-    "disable": "Disable",
-    "cancel": "Cancel",
-    "confirm": "Confirm",
-    "delete": "Delete",
-    "create": "Create",
-    "back": "Back",
-    "search": "Search",
-    "options": "Options",
-    "details": "Details"
-  },
-  "status": {
-    "loading": "Loading",
-    "noResults": "No results found"
-  },
-  "helpPage": {
-    "title": "Need Help?",
-    "description": "Have questions or need assistance?",
-    "supportChannels": "Complexity has multiple support channels:"
+    "supporterMessage": "Please consider becoming a <emphasis>Supporter</emphasis> to keep the project alive!"
   },
   "sponsorDialog": {
     "title": "Complexity Needs Your Help!",

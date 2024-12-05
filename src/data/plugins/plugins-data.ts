@@ -16,38 +16,37 @@ export type PluginTagValues = keyof typeof PLUGIN_TAGS;
 
 export const PLUGIN_TAGS = {
   ui: {
-    label: t("dashboard-plugins-data:pluginTags.ui.label"),
-    description: t("dashboard-plugins-data:pluginTags.ui.description"),
+    label: "Appearance",
+    description: "UI related plugins",
   },
   ux: {
-    label: t("dashboard-plugins-data:pluginTags.ux.label"),
-    description: t("dashboard-plugins-data:pluginTags.ux.description"),
+    label: "Ease of Use",
+    description: "UX related plugins",
   },
   desktopOnly: {
-    label: t("dashboard-plugins-data:pluginTags.desktopOnly.label"),
-    description: t("dashboard-plugins-data:pluginTags.desktopOnly.description"),
+    label: "Desktop Only",
+    description: "Can only be used on desktop/screen width > 768px",
   },
   privacy: {
-    label: t("dashboard-plugins-data:pluginTags.privacy.label"),
-    description: t("dashboard-plugins-data:pluginTags.privacy.description"),
+    label: "Privacy",
+    description: "Privacy related plugins",
   },
   pplxPro: {
-    label: t("dashboard-plugins-data:pluginTags.pplxPro.label"),
-    description: t("dashboard-plugins-data:pluginTags.pplxPro.description"),
+    label: "Perplexity Pro",
+    description: "Requires an active Perplexity Pro subscription",
   },
   experimental: {
-    label: t("dashboard-plugins-data:pluginTags.experimental.label"),
-    description: t(
-      "dashboard-plugins-data:pluginTags.experimental.description",
-    ),
+    label: "Experimental",
+    description:
+      "Experimental plugins. Subject to change or removal without prior notice.",
   },
   beta: {
-    label: t("dashboard-plugins-data:pluginTags.beta.label"),
-    description: t("dashboard-plugins-data:pluginTags.beta.description"),
+    label: "Beta",
+    description: "Beta plugins",
   },
   forFun: {
-    label: t("dashboard-plugins-data:pluginTags.forFun.label"),
-    description: t("dashboard-plugins-data:pluginTags.forFun.description"),
+    label: "For Fun",
+    description: "Just for fun!",
   },
 } as const;
 
@@ -68,68 +67,50 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
   "queryBox:languageModelSelector": {
     id: "queryBox:languageModelSelector",
     routeSegment: "query-box-language-model-selector",
-    title: t(
-      "dashboard-plugins-data:pluginsMetadata.queryboxLanguageModelSelector.title",
-    ),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.queryboxLanguageModelSelector.description",
-    ),
+    title: "Language Model Selector",
+    description: "Enable selection of different language models",
     tags: ["ui", "ux", "pplxPro"],
     dependentCorePlugins: ["networkIntercept", "spaRouter", "domObserver"],
   },
   "queryBox:noFileCreationOnPaste": {
     id: "queryBox:noFileCreationOnPaste",
     routeSegment: "query-box-no-file-creation-on-paste",
-    title: t(
-      "dashboard-plugins-data:pluginsMetadata.queryboxNoFileCreationOnPaste.title",
-    ),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.queryboxNoFileCreationOnPaste.description",
-    ),
+    title: "Prevent File Creation on Paste",
+    description:
+      "Prevent automatic file creation when pasting (very) long text into the query box.",
     tags: ["ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
   },
   commandMenu: {
     id: "commandMenu",
     routeSegment: "command-menu",
-    title: t("dashboard-plugins-data:pluginsMetadata.commandMenu.title"),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.commandMenu.description",
-    ),
+    title: "Command Menu",
+    description: "Quickly navigate around and invoke actions.",
     tags: ["experimental", "ui", "ux", "desktopOnly"],
     dependentCorePlugins: ["spaRouter", "webSocket"],
   },
   "thread:toc": {
     id: "thread:toc",
     routeSegment: "thread-toc",
-    title: t("dashboard-plugins-data:pluginsMetadata.threadToc.title"),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.threadToc.description",
-    ),
+    title: "Thread ToC",
+    description:
+      "Quickly navigate between messages in a thread. Only shows up when there are more than 2 messages.",
     tags: ["ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
   },
   "thread:betterMessageToolbars": {
     id: "thread:betterMessageToolbars",
     routeSegment: "thread-better-message-toolbars",
-    title: t(
-      "dashboard-plugins-data:pluginsMetadata.threadBetterMessageToolbars.title",
-    ),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.threadBetterMessageToolbars.description",
-    ),
+    title: "Better Thread Message Toolbars",
+    description: "Enhance message toolbars (in threads).",
     tags: ["ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
   },
   "thread:betterCodeBlocks": {
     id: "thread:betterCodeBlocks",
     routeSegment: "thread-better-code-blocks",
-    title: t(
-      "dashboard-plugins-data:pluginsMetadata.threadBetterCodeBlocks.title",
-    ),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.threadBetterCodeBlocks.description",
-    ),
+    title: "Better Code Blocks",
+    description: "Enhance code blocks (in threads).",
     tags: ["ui", "ux"],
     dependentCorePlugins: [
       "spaRouter",
@@ -141,12 +122,9 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
   "thread:betterCodeBlocks:previewMermaid": {
     id: "thread:betterCodeBlocks:previewMermaid",
     routeSegment: "thread-better-code-blocks-preview-mermaid",
-    title: t(
-      "dashboard-plugins-data:pluginsMetadata.threadBetterCodeBlocksPreviewMermaid.title",
-    ),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.threadBetterCodeBlocksPreviewMermaid.description",
-    ),
+    title: "Mermaid Code Blocks Preview",
+    description:
+      "Preview mermaid diagrams, simple charts, etc. in code blocks.",
     tags: ["ui"],
     dependentCorePlugins: ["mermaidRenderer"],
     dependentPlugins: ["thread:betterCodeBlocks"],
@@ -154,102 +132,74 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
   "thread:exportThread": {
     id: "thread:exportThread",
     routeSegment: "thread-export-thread",
-    title: t("dashboard-plugins-data:pluginsMetadata.threadExportThread.title"),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.threadExportThread.description",
-    ),
+    title: "Export Thread",
+    description:
+      "Export the current thread in markdown format (with optional citations). More formatting options coming soon.",
     tags: ["ui", "ux"],
     dependentCorePlugins: ["spaRouter"],
   },
   "thread:betterMessageCopyButtons": {
     id: "thread:betterMessageCopyButtons",
     routeSegment: "thread-better-message-copy-buttons",
-    title: t(
-      "dashboard-plugins-data:pluginsMetadata.threadBetterMessageCopyButtons.title",
-    ),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.threadBetterMessageCopyButtons.description",
-    ),
+    title: "Better Thread Message Copy Buttons",
+    description:
+      "Copy message content without citations. More formatting options coming soon.",
     tags: ["ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
   },
   "thread:dragAndDropFileToUploadInThread": {
     id: "thread:dragAndDropFileToUploadInThread",
     routeSegment: "thread-drag-and-drop-file-to-upload-in-thread",
-    title: t(
-      "dashboard-plugins-data:pluginsMetadata.threadDragAndDropFileToUploadInThread.title",
-    ),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.threadDragAndDropFileToUploadInThread.description",
-    ),
+    title: "Drag and Drop File(s) to Upload in a thread",
+    description:
+      "Treat the whole thread page as a drop zone and allow you to directly drag & drop file(s) to upload them as attachment(s).",
     tags: ["ux", "desktopOnly"],
     dependentCorePlugins: ["spaRouter"],
   },
   "thread:collapseEmptyThreadVisualCols": {
     id: "thread:collapseEmptyThreadVisualCols",
     routeSegment: "thread-collapse-empty-thread-visual-cols",
-    title: t(
-      "dashboard-plugins-data:pluginsMetadata.threadCollapseEmptyThreadVisualCols.title",
-    ),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.threadCollapseEmptyThreadVisualCols.description",
-    ),
+    title: "Collapse Empty Thread Visual Columns",
+    description: "Collapse empty visual columns in the thread page.",
     tags: ["ui", "desktopOnly"],
     dependentCorePlugins: ["spaRouter"],
   },
   imageGenModelSelector: {
     id: "imageGenModelSelector",
     routeSegment: "image-gen-model-selector",
-    title: t(
-      "dashboard-plugins-data:pluginsMetadata.imageGenModelSelector.title",
-    ),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.imageGenModelSelector.description",
-    ),
+    title: "Image Generation Model Selector",
+    description: "Enable selection of different image generation models",
     tags: ["ui", "ux", "desktopOnly", "pplxPro"],
     dependentCorePlugins: ["networkIntercept", "spaRouter", "domObserver"],
   },
   onCloudflareTimeoutAutoReload: {
     id: "onCloudflareTimeoutAutoReload",
     routeSegment: "on-cloudflare-timeout-auto-reload",
-    title: t(
-      "dashboard-plugins-data:pluginsMetadata.onCloudflareTimeoutAutoReload.title",
-    ),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.onCloudflareTimeoutAutoReload.description",
-    ),
+    title: "Auto Reload on Cloudflare Timeout",
+    description: "Auto reload the page on Cloudflare timeout",
     tags: ["ux"],
   },
   blockAnalyticEvents: {
     id: "blockAnalyticEvents",
     routeSegment: "block-analytic-events",
-    title: t(
-      "dashboard-plugins-data:pluginsMetadata.blockAnalyticEvents.title",
-    ),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.blockAnalyticEvents.description",
-    ),
+    title: "Block Analytic Events",
+    description:
+      "Prevent Perplexity from sending analytic/tracking events. For debugging purposes only.",
     tags: ["privacy"],
     dependentCorePlugins: ["networkIntercept"],
   },
   "home:customSlogan": {
     id: "home:customSlogan",
     routeSegment: "home-custom-slogan",
-    title: t("dashboard-plugins-data:pluginsMetadata.homeCustomSlogan.title"),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.homeCustomSlogan.description",
-    ),
+    title: "Custom Home Slogan",
+    description: "Customize the slogan on the home page.",
     tags: ["ui", "forFun"],
   },
   "hide-get-mobile-app-cta-btn": {
     id: "hide-get-mobile-app-cta-btn",
     routeSegment: "hide-get-mobile-app-cta-btn",
-    title: t(
-      "dashboard-plugins-data:pluginsMetadata.hideGetMobileAppCtaBtn.title",
-    ),
-    description: t(
-      "dashboard-plugins-data:pluginsMetadata.hideGetMobileAppCtaBtn.description",
-    ),
+    title: 'Hide "Get Mobile App" Button',
+    description: 'Hide all "Get Mobile App" buttons on mobile screens.',
     tags: ["ui"],
   },
 };

@@ -72,10 +72,8 @@ function useNavigateAwayOnInvalidRoute({ pluginId }: { pluginId?: PluginId }) {
 function PluginUnavailable({ onBackClick }: { onBackClick: () => void }) {
   return (
     <div className="tw-flex tw-h-full tw-min-h-[500px] tw-flex-col tw-items-center tw-justify-center tw-gap-4 tw-text-center md:tw-text-left">
-      {t("dashboard-plugins-page:pluginsPage.details.unavailable.message")}
-      <Button onClick={onBackClick}>
-        {t("dashboard-plugins-page:pluginsPage.details.unavailable.backButton")}
-      </Button>
+      This plugin is not available at the moment. Please check back later.
+      <Button onClick={onBackClick}>Back to dashboard</Button>
     </div>
   );
 }

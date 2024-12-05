@@ -18,7 +18,7 @@ export default function HomepageUpdateAnnouncer() {
     <Portal container={$anchor[0]}>
       <ExtensionUpdateInfoDialogWrapper>
         <div className="tw-text-sm tw-text-muted-foreground">
-          {t("common:sidebar.updateAnnouncer.newVersion")}
+          A new version of the extension is available!
         </div>
       </ExtensionUpdateInfoDialogWrapper>
     </Portal>

@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { Trans } from "react-i18next";
 import { LuInfo, LuLoader2 } from "react-icons/lu";
 
 import { APP_CONFIG } from "@/app.config";
@@ -36,35 +35,37 @@ export default function ExtensionUpdateInfoDialogWrapper({
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="tw-max-h-[80vh] tw-overflow-y-auto">
         <DialogHeader className="tw-text-lg tw-font-semibold">
-          {t("common:sidebar.updateAnnouncer.newVersion")}
+          A new version of the extension is available!
         </DialogHeader>
         <DialogDescription>
-          {t("common:sidebar.updateAnnouncer.updatePrompt")}
+          Please update to receive enhancements and bug fixes.
         </DialogDescription>
         <div className="tw-flex tw-flex-col tw-gap-2 tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4">
           <div className="tw-space-y-2">
             <div>
               <LuInfo className="tw-mr-2 tw-inline-block tw-size-5 tw-text-primary" />
-              <span>{t("common:sidebar.updateAnnouncer.autoUpdateInfo")}</span>
+              <span>
+                The upgrade should be happening automatically when you restart
+                the browser, or force it to manually update in the extension
+                management page.
+              </span>
             </div>
             <div className="tw-text-muted-foreground">
-              <Trans
-                i18nKey="common:sidebar.updateAnnouncer.manualUpdateInfo"
-                components={{
-                  storeLink: (
-                    <a
-                      className="tw-underline"
-                      href={
-                        APP_CONFIG.BROWSER === "chrome"
-                          ? "https://chromewebstore.google.com/detail/complexity-perplexity-ai/ffppmilmeaekegkpckebkeahjgmhggpj"
-                          : "https://addons.mozilla.org/en-US/firefox/addon/complexity/"
-                      }
-                      target="_blank"
-                      rel="noreferrer"
-                    />
-                  ),
-                }}
-              />
+              Or click{" "}
+              <a
+                className="tw-underline"
+                href={
+                  APP_CONFIG.BROWSER === "chrome"
+                    ? "https://chromewebstore.google.com/detail/complexity-perplexity-ai/ffppmilmeaekegkpckebkeahjgmhggpj"
+                    : "https://addons.mozilla.org/en-US/firefox/addon/complexity/"
+                }
+                target="_blank"
+                rel="noreferrer"
+              >
+                HERE
+              </a>{" "}
+              to revisit the store and manually reinstall the extension if none
+              of the above works (remember to export your settings!).
             </div>
           </div>
         </div>

@@ -34,17 +34,13 @@ export function useThemeForm() {
     onSuccess: () => {
       navigate("..");
       toast({
-        title: t(
-          "dashboard-themes-page:themesPage.toasts.create.success.title",
-        ),
-        description: t(
-          "dashboard-themes-page:themesPage.toasts.create.success.description",
-        ),
+        title: "✅ Theme created",
+        description: "Your theme has been saved successfully",
       });
     },
     onError: (error: Error) => {
       toast({
-        title: t("dashboard-themes-page:themesPage.toasts.create.error.title"),
+        title: "❌ Failed to create theme",
         description: error.message,
       });
     },

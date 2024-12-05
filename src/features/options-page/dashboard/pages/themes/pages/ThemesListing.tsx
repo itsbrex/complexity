@@ -17,11 +17,9 @@ export default function ThemesListing() {
     <div className="tw-space-y-6">
       <div className="tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-4">
         <div>
-          <h1 className="tw-mb-2 tw-text-2xl tw-font-bold">
-            {t("dashboard-themes-page:themesPage.header.title")}
-          </h1>
+          <h1 className="tw-mb-2 tw-text-2xl tw-font-bold">Custom Themes</h1>
           <p className="tw-text-muted-foreground">
-            {t("dashboard-themes-page:themesPage.header.description")}
+            Customize your Perplexity interface with curated themes
           </p>
         </div>
         <Button
@@ -29,7 +27,7 @@ export default function ThemesListing() {
           onClick={() => navigate("new")}
         >
           <LuPlus className="tw-mr-2 tw-size-5" />
-          {t("dashboard-themes-page:themesPage.header.createButton")}
+          Create New Theme
         </Button>
       </div>
 

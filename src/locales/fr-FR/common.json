@@ -1,42 +1,7 @@
 {
-  "extensionDescription": "Complexity - Perplexity AI Suralimenté",
+  "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "Envisagez de devenir un <emphasis>Supporter</emphasis> pour faire vivre le projet !",
-    "items": {
-      "notifications": "Notifications",
-      "plugins": "Plugins",
-      "themes": "Thèmes",
-      "releaseNotes": "Notes de version",
-      "settings": "Paramètres",
-      "help": "Besoin d'aide ?"
-    },
-    "updateAnnouncer": {
-      "newVersion": "Une nouvelle version de l'extension est disponible !",
-      "updatePrompt": "Veuillez mettre à jour pour recevoir les améliorations et les corrections de bugs.",
-      "autoUpdateInfo": "La mise à jour devrait se faire automatiquement lorsque vous redémarrez le navigateur, ou forcez-la manuellement dans la page de gestion des extensions.",
-      "manualUpdateInfo": "Ou cliquez <storeLink>ICI</storeLink> pour revisiter la boutique et réinstaller manuellement l'extension si aucune des solutions ci-dessus ne fonctionne (n'oubliez pas d'exporter vos paramètres !)."
-    }
-  },
-  "action": {
-    "enable": "Activer",
-    "disable": "Désactiver",
-    "cancel": "Annuler",
-    "confirm": "Confirmer",
-    "delete": "Supprimer",
-    "create": "Créer",
-    "back": "Retour",
-    "search": "Rechercher",
-    "options": "Options",
-    "details": "Détails"
-  },
-  "status": {
-    "loading": "Chargement",
-    "noResults": "Aucun résultat trouvé"
-  },
-  "helpPage": {
-    "title": "Besoin d'aide ?",
-    "description": "Vous avez des questions ou besoin d'assistance ?",
-    "supportChannels": "Complexity dispose de plusieurs canaux de support :"
+    "supporterMessage": "Veuillez envisager de devenir un <emphasis>Supporter</emphasis> pour maintenir le projet en vie !"
   },
   "sponsorDialog": {
     "title": "Complexity a besoin de votre aide !",

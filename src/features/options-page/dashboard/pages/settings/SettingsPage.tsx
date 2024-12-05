@@ -17,44 +17,24 @@ export default function SettingsPage() {
 
   return (
     <div className="tw-mx-auto tw-max-w-3xl tw-space-y-8">
-      <SettingsSection
-        title={t("dashboard-settings-page:settingsPage.sections.general")}
-      >
-        <SettingsItem
-          title={t(
-            "dashboard-settings-page:settingsPage.items.permissions.title",
-          )}
-        >
+      <SettingsSection title="General">
+        <SettingsItem title="Extension Permissions">
           <ManagePermissionsDialogWrapper>
-            <Button>
-              {t(
-                "dashboard-settings-page:settingsPage.items.permissions.action",
-              )}
-            </Button>
+            <Button>Manage Permissions</Button>
           </ManagePermissionsDialogWrapper>
         </SettingsItem>
         <SettingsItem
           title={
             <div className="tw-flex tw-items-center tw-gap-2">
               <LuLeafyGreen className="tw-text-success" />
-              <span>
-                {t(
-                  "dashboard-settings-page:settingsPage.items.energySaving.title",
-                )}
-              </span>
+              <span>Energy Saving Mode</span>
             </div>
           }
           description={
             <div>
-              <div>
-                {t(
-                  "dashboard-settings-page:settingsPage.items.energySaving.description",
-                )}
-              </div>
+              <div>Reduce the extension sensitivity to changes on the page</div>
               <div className="tw-text-sm tw-italic tw-text-muted-foreground">
-                {t(
-                  "dashboard-settings-page:settingsPage.items.energySaving.note",
-                )}
+                (Existing tabs require a refresh to apply)
               </div>
             </div>
           }
@@ -67,48 +47,27 @@ export default function SettingsPage() {
           />
         </SettingsItem>
         <SettingsItem
-          title={t(
-            "dashboard-settings-page:settingsPage.items.onboarding.title",
-          )}
-          description={t(
-            "dashboard-settings-page:settingsPage.items.onboarding.description",
-          )}
+          title="Onboarding"
+          description="Go through the onboarding experience again"
         >
-          <Button onClick={() => navigate("/onboarding")}>
-            {t("dashboard-settings-page:settingsPage.items.onboarding.action")}
-          </Button>
+          <Button onClick={() => navigate("/onboarding")}>🚀 Onboarding</Button>
         </SettingsItem>
       </SettingsSection>
 
-      <SettingsSection
-        title={t("dashboard-settings-page:settingsPage.sections.data")}
-      >
-        <SettingsItem
-          title={t("dashboard-settings-page:settingsPage.items.import.title")}
-          description={t(
-            "dashboard-settings-page:settingsPage.items.import.description",
-          )}
-        >
+      <SettingsSection title="Data">
+        <SettingsItem title="Import" description="Load saved extension's data">
           <ImportDataButtons />
         </SettingsItem>
         <SettingsItem
-          title={t("dashboard-settings-page:settingsPage.items.export.title")}
-          description={t(
-            "dashboard-settings-page:settingsPage.items.export.description",
-          )}
+          title="Export"
+          description="Download extension's data as a file"
         >
           <ExportDataButtons />
         </SettingsItem>
       </SettingsSection>
 
-      <SettingsSection
-        title={t(
-          "dashboard-settings-page:settingsPage.sections.troubleshooting",
-        )}
-      >
-        <SettingsItem
-          title={t("dashboard-settings-page:settingsPage.items.reset.title")}
-        >
+      <SettingsSection title="Troubleshooting">
+        <SettingsItem title="Reset the extension">
           <ClearAllDataButton />
         </SettingsItem>
       </SettingsSection>

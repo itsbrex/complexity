@@ -1,42 +1,7 @@
 {
   "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "请考虑成为<emphasis>支持者</emphasis>以维持项目的发展！",
-    "items": {
-      "notifications": "通知",
-      "plugins": "插件",
-      "themes": "主题",
-      "releaseNotes": "发行说明",
-      "settings": "设置",
-      "help": "需要帮助？"
-    },
-    "updateAnnouncer": {
-      "newVersion": "扩展程序有新版本可用！",
-      "updatePrompt": "请更新以获取增强功能和错误修复。",
-      "autoUpdateInfo": "重启浏览器后应该会自动升级，或者在扩展管理页面中手动强制更新。",
-      "manualUpdateInfo": "如果以上方法都不起作用，请点击<storeLink>这里</storeLink>重新访问商店并手动重新安装扩展程序（记得导出您的设置！）。"
-    }
-  },
-  "action": {
-    "enable": "启用",
-    "disable": "禁用",
-    "cancel": "取消",
-    "confirm": "确认",
-    "delete": "删除",
-    "create": "创建",
-    "back": "返回",
-    "search": "搜索",
-    "options": "选项",
-    "details": "详情"
-  },
-  "status": {
-    "loading": "加载中",
-    "noResults": "未找到结果"
-  },
-  "helpPage": {
-    "title": "需要帮助？",
-    "description": "有问题或需要协助？",
-    "supportChannels": "Complexity 提供多个支持渠道："
+    "supporterMessage": "请考虑成为<emphasis>支持者</emphasis>以维持项目的发展！"
   },
   "sponsorDialog": {
     "title": "Complexity 需要您的帮助！",

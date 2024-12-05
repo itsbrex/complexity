@@ -60,6 +60,7 @@ export const DOM_SELECTORS = {
   },
   HOME: {
     SLOGAN: ".mb-lg.md\\:text-center.pb-xs.md\\:text-center",
+    LANGUAGE_SELECTOR: "select#interface-language-select",
   },
   QUERY_BOX: {
     TEXTAREA: {

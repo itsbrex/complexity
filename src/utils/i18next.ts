@@ -28,12 +28,7 @@ export const supportedLangs = [
 type Resources = {
   [key: string]: {
     common: any;
-    onboarding: any;
-    plugins: any;
-    "dashboard-plugins-data": any;
-    "dashboard-plugins-page": any;
-    "dashboard-themes-page": any;
-    "dashboard-settings-page": any;
+    "plugin-model-selectors": any;
     "plugin-drag-n-drop-file-to-upload-in-thread": any;
     "plugin-export-thread": any;
     "plugin-better-copy-buttons": any;
@@ -46,19 +41,8 @@ type Resources = {
 async function loadLanguageResources(language: string) {
   return {
     common: await import(`~/src/locales/${language}/common.json`),
-    onboarding: await import(`~/src/locales/${language}/onboarding.json`),
-    plugins: await import(`~/src/locales/${language}/plugins.json`),
-    "dashboard-plugins-data": await import(
-      `~/src/locales/${language}/dashboard-plugins-data.json`
-    ),
-    "dashboard-plugins-page": await import(
-      `~/src/locales/${language}/dashboard-plugins-page.json`
-    ),
-    "dashboard-themes-page": await import(
-      `~/src/locales/${language}/dashboard-themes-page.json`
-    ),
-    "dashboard-settings-page": await import(
-      `~/src/locales/${language}/dashboard-settings-page.json`
+    "plugin-model-selectors": await import(
+      `~/src/locales/${language}/plugin-model-selectors.json`
     ),
     "plugin-drag-n-drop-file-to-upload-in-thread": await import(
       `~/src/locales/${language}/plugin-drag-n-drop-file-to-upload-in-thread.json`
@@ -98,12 +82,7 @@ export async function initializeI18next() {
     defaultNS: "common",
     ns: [
       "common",
-      "onboarding",
-      "plugins",
-      "dashboard-plugins-data",
-      "dashboard-plugins-page",
-      "dashboard-themes-page",
-      "dashboard-settings-page",
+      "plugin-model-selectors",
       "plugin-drag-n-drop-file-to-upload-in-thread",
       "plugin-export-thread",
       "plugin-better-copy-buttons",

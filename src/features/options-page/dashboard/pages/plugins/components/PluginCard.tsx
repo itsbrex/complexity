@@ -102,7 +102,7 @@ export function PluginCard({ pluginId }: PluginCardProps) {
                 })
               }
             >
-              {t("action.details")}
+              Details
             </Button>
           )}
           <DropdownMenu>
@@ -135,16 +135,12 @@ export function PluginCard({ pluginId }: PluginCardProps) {
                   {settings?.favoritePluginIds?.includes(pluginId) ? (
                     <>
                       <GoStarFill className="tw-mr-2 tw-h-4 tw-w-4 tw-text-yellow-500" />
-                      {t(
-                        "dashboard-plugins-page:pluginsPage.pluginCard.actions.removeFromFavorites",
-                      )}
+                      Remove from favorites
                     </>
                   ) : (
                     <>
                       <GoStar className="tw-mr-2 tw-h-4 tw-w-4" />
-                      {t(
-                        "dashboard-plugins-page:pluginsPage.pluginCard.actions.addToFavorites",
-                      )}
+                      Add to favorites
                     </>
                   )}
                 </span>
@@ -159,9 +155,8 @@ export function PluginCard({ pluginId }: PluginCardProps) {
               content={
                 <div>
                   <div>
-                    {t(
-                      "dashboard-plugins-page:pluginsPage.pluginCard.dependencyWarnings.disabledDependencies.title",
-                    )}
+                    One or more dependencies are disabled, please enable them to
+                    use this plugin:
                   </div>
                   <Ul>
                     {PLUGINS_METADATA[pluginId]?.dependentPlugins?.map(
@@ -183,9 +178,8 @@ export function PluginCard({ pluginId }: PluginCardProps) {
           <Tooltip
             content={
               <div>
-                {t(
-                  "dashboard-plugins-page:pluginsPage.pluginCard.dependencyWarnings.forcedDisabledDependencies",
-                )}
+                This plugin is disabled because one or more of its dependencies
+                are not available.
               </div>
             }
           >

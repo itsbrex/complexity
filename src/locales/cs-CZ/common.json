@@ -1,42 +1,7 @@
 {
   "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "Prosím zvažte, zda se nechcete stát <emphasis>Podporovatelem</emphasis> a udržet projekt naživu!",
-    "items": {
-      "notifications": "Oznámení",
-      "plugins": "Pluginy",
-      "themes": "Motivy",
-      "releaseNotes": "Poznámky k vydání",
-      "settings": "Nastavení",
-      "help": "Potřebujete pomoc?"
-    },
-    "updateAnnouncer": {
-      "newVersion": "Je k dispozici nová verze rozšíření!",
-      "updatePrompt": "Aktualizujte prosím, abyste získali vylepšení a opravy chyb.",
-      "autoUpdateInfo": "Aktualizace by měla proběhnout automaticky po restartu prohlížeče, nebo ji můžete vynutit ručně na stránce správy rozšíření.",
-      "manualUpdateInfo": "Nebo klikněte <storeLink>ZDE</storeLink> pro návrat do obchodu a ruční přeinstalaci rozšíření, pokud nic z výše uvedeného nefunguje (nezapomeňte exportovat svá nastavení!)."
-    }
-  },
-  "action": {
-    "enable": "Povolit",
-    "disable": "Zakázat",
-    "cancel": "Zrušit",
-    "confirm": "Potvrdit",
-    "delete": "Smazat",
-    "create": "Vytvořit",
-    "back": "Zpět",
-    "search": "Hledat",
-    "options": "Možnosti",
-    "details": "Detaily"
-  },
-  "status": {
-    "loading": "Načítání",
-    "noResults": "Nebyly nalezeny žádné výsledky"
-  },
-  "helpPage": {
-    "title": "Potřebujete pomoc?",
-    "description": "Máte otázky nebo potřebujete asistenci?",
-    "supportChannels": "Complexity má několik podpůrných kanálů:"
+    "supporterMessage": "Zvažte prosím, že se stanete <emphasis>Podporovatelem</emphasis>, abyste udrželi projekt naživu!"
   },
   "sponsorDialog": {
     "title": "Complexity potřebuje vaši pomoc!",

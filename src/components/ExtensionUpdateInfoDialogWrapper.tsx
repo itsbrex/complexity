@@ -24,7 +24,7 @@ export default function ExtensionUpdateInfoDialogWrapper({
 
   const latestVersion = versions?.latest;
 
-  const { data: changelog, isFetching } = useQuery({
+  const { data: changelog, isLoading } = useQuery({
     ...cplxApiQueries.changelog({
       version: latestVersion,
     }),
@@ -69,7 +69,7 @@ export default function ExtensionUpdateInfoDialogWrapper({
           </div>
         </div>
         <div className="tw-flex tw-flex-col tw-gap-2">
-          {isFetching && (
+          {isLoading && (
             <div className="tw-flex tw-items-center tw-gap-2">
               <LuLoader2 className="tw-size-4 tw-animate-spin" />
               <span>Fetching changelog...</span>

@@ -73,8 +73,14 @@ export class CplxApiService {
         ? targetVersion
         : versions?.latest);
 
-    return await fetchResource(
+    const resp = await fetch(
       `${APP_CONFIG.CPLX_API_URL}/changelogs/${versionUrl}.md`,
     );
+
+    if (resp.status === 404) {
+      return "Failed to fetch changelog for this version.";
+    }
+
+    return resp.text();
   }
 }

@@ -16,26 +16,23 @@ export function useVersionPagination(
 
   useEffect(() => {
     if (availableVersions.length > 0) {
-      const initialIndex = availableVersions.findIndex(
-        (v) => v === APP_CONFIG.VERSION,
-      );
-      setCurrentVersionIndex(initialIndex !== -1 ? initialIndex : 0);
+      setCurrentVersionIndex(0);
     }
   }, [availableVersions]);
 
   const currentVersion = availableVersions[currentVersionIndex];
-  const hasNext = currentVersionIndex < availableVersions.length - 1;
-  const hasPrev = currentVersionIndex > 0;
+  const hasPrev = currentVersionIndex < availableVersions.length - 1;
+  const hasNext = currentVersionIndex > 0;
 
   const goToNext = () => {
     if (hasNext) {
-      setCurrentVersionIndex(currentVersionIndex + 1);
+      setCurrentVersionIndex(currentVersionIndex - 1);
     }
   };
 
   const goToPrev = () => {
     if (hasPrev) {
-      setCurrentVersionIndex(currentVersionIndex - 1);
+      setCurrentVersionIndex(currentVersionIndex + 1);
     }
   };
 

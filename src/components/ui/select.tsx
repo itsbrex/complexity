@@ -42,14 +42,14 @@ function Select({
 Select.displayName = "Select";
 
 const selectTriggerVariants = cva(
-  "tw-flex tw-w-full tw-items-center tw-justify-between tw-rounded-md tw-px-2 tw-text-sm tw-font-medium tw-outline-none tw-transition-all tw-duration-150 placeholder:tw-text-muted-foreground disabled:tw-cursor-not-allowed disabled:tw-opacity-50 [&>span]:!tw-truncate",
+  "tw-flex tw-w-full tw-items-center tw-justify-between tw-rounded-md tw-px-2 tw-text-sm tw-font-medium tw-outline-none tw-transition-all tw-duration-150 placeholder:tw-text-muted-foreground disabled:tw-cursor-not-allowed disabled:tw-opacity-50 [&>span]:!tw-truncate focus-visible:tw-bg-primary-foreground",
   {
     variants: {
       variant: {
         default:
           "active:scale-95 tw-bg-button-background hover:tw-text-muted-foreground focus:tw-outline-none",
         ghost:
-          "text-center tw-text-muted-foreground hover:tw-bg-primary-foreground hover:tw-text-foreground active:tw-scale-95",
+          "tw-text-center tw-text-muted-foreground hover:tw-bg-primary-foreground hover:tw-text-foreground active:tw-scale-95",
       },
     },
     defaultVariants: {

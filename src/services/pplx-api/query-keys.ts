@@ -36,6 +36,13 @@ export const pplxApiQueries = createQueryKeys("pplxApi", {
       files: (spaceUuid: Space["uuid"]) => ({
         queryKey: [{ spaceUuid }],
         queryFn: () => PplxApiService.fetchSpaceFiles(spaceUuid),
+        contextQueries: {
+          downloadUrl: (fileUuid: string) => ({
+            queryKey: [{ fileUuid }],
+            queryFn: () =>
+              PplxApiService.fetchSpaceFileDownloadUrl({ spaceUuid, fileUuid }),
+          }),
+        },
       }),
       threads: (spaceSlug: Space["slug"]) => ({
         queryKey: [{ spaceSlug }],

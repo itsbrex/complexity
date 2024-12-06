@@ -4,6 +4,9 @@ import { ENDPOINTS } from "@/services/pplx-api/endpoints";
 import {
   OrgSettingsApiResponseSchema,
   Space,
+  SpaceFileDownloadUrlApiResponse,
+  SpaceFileDownloadUrlApiResponseSchema,
+  SpaceFilesApiResponse,
   SpaceFilesApiResponseSchema,
   SpacesApiResponseSchema,
   SpaceThreadsApiResponse,
@@ -138,7 +141,9 @@ export class PplxApiService {
     );
   }
 
-  static async fetchSpaceFiles(spaceUuid: Space["uuid"]) {
+  static async fetchSpaceFiles(
+    spaceUuid: Space["uuid"],
+  ): Promise<SpaceFilesApiResponse> {
     const resp = await fetch(
       "https://www.perplexity.ai/rest/file-repository/list-files?version=2.13&source=default",
       {
@@ -162,6 +167,40 @@ export class PplxApiService {
     const data = await resp.json();
 
     const parsedData = SpaceFilesApiResponseSchema.parse(data);
+
+    return parsedData;
+  }
+
+  static async fetchSpaceFileDownloadUrl({
+    fileUuid,
+    spaceUuid,
+  }: {
+    fileUuid: string;
+    spaceUuid: string;
+  }): Promise<SpaceFileDownloadUrlApiResponse> {
+    // POST https://www.perplexity.ai/rest/file-repository/download-file?version=2.13&source=default
+    // payload: {"file_uuid":"a1baad94-9a0a-4c84-925e-b8d41960f428","file_repository_info":{"file_repository_type":"COLLECTION","owner_id":"cf11f61d-4f74-4582-9f2c-365f5419989b"}}
+
+    const resp = await fetch(
+      "https://www.perplexity.ai/rest/file-repository/download-file?version=2.13&source=default",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          file_uuid: fileUuid,
+          file_repository_info: {
+            file_repository_type: "COLLECTION",
+            owner_id: spaceUuid,
+          },
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    const data = await resp.json();
+
+    const parsedData = SpaceFileDownloadUrlApiResponseSchema.parse(data);
 
     return parsedData;
   }

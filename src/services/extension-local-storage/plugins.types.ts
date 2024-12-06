@@ -16,6 +16,7 @@ export const PluginsSchema = z.object({
       span: z.boolean(),
     }),
   }),
+  "queryBox:spaceNavigator": PluginSettingsSchema,
   "queryBox:noFileCreationOnPaste": PluginSettingsSchema,
   commandMenu: PluginSettingsSchema,
   "thread:toc": PluginSettingsSchema,

@@ -107,6 +107,14 @@ export const SpaceFilesApiResponseSchema = z.object({
 
 export type SpaceFilesApiResponse = z.infer<typeof SpaceFilesApiResponseSchema>;
 
+export const SpaceFileDownloadUrlApiResponseSchema = z.object({
+  file_url: z.string(),
+});
+
+export type SpaceFileDownloadUrlApiResponse = z.infer<
+  typeof SpaceFileDownloadUrlApiResponseSchema
+>;
+
 export const SpaceThreadsApiResponseSchema = ThreadsSearchApiResponseSchema;
 
 export type SpaceThreadsApiResponse = z.infer<

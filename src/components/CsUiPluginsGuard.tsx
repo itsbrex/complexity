@@ -13,6 +13,7 @@ import {
 import { Ul } from "@/components/ui/typography";
 import { PLUGINS_METADATA } from "@/data/plugins/plugins-data";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
+import usePplxAuth from "@/hooks/usePplxAuth";
 import usePplxUserSettings from "@/hooks/usePplxUserSettings";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
@@ -24,6 +25,7 @@ type CsUiPluginsGuardProps = {
   dependentPluginIds?: PluginId[];
   location?: ReturnType<typeof whereAmI>[];
   children: React.ReactNode;
+  requiresLoggedIn?: boolean;
   requiresPplxPro?: boolean;
 };
 
@@ -31,13 +33,19 @@ export default function CsUiPluginsGuard({
   dependentPluginIds,
   location,
   children,
+  requiresLoggedIn = false,
   requiresPplxPro = false,
 }: CsUiPluginsGuardProps) {
   const { url } = useSpaRouter();
 
   const currentLocation = whereAmI(url);
 
+  const { isLoggedIn } = usePplxAuth();
   const { data: pplxUserSettings } = usePplxUserSettings();
+
+  if (requiresLoggedIn && !isLoggedIn) {
+    return null;
+  }
 
   const hasActivePplxSub =
     pplxUserSettings?.subscription_status != null &&

@@ -72,6 +72,14 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     tags: ["ui", "ux", "pplxPro"],
     dependentCorePlugins: ["networkIntercept", "spaRouter", "domObserver"],
   },
+  "queryBox:spaceNavigator": {
+    id: "queryBox:spaceNavigator",
+    routeSegment: "query-box-space-navigator",
+    title: "Space Navigator",
+    description: "Search & navigate between spaces",
+    tags: ["ui", "ux"],
+    dependentCorePlugins: ["spaRouter", "domObserver"],
+  },
   "queryBox:noFileCreationOnPaste": {
     id: "queryBox:noFileCreationOnPaste",
     routeSegment: "query-box-no-file-creation-on-paste",

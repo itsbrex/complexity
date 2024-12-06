@@ -9,6 +9,7 @@ import {
   ScopedQueryBoxContext,
 } from "@/features/plugins/query-box/context";
 import LanguageModelSelector from "@/features/plugins/query-box/language-model-selector/LanguageModelSelector";
+import SpaceNavigator from "@/features/plugins/query-box/space-navigator/SpaceNavigator";
 import useObserver from "@/features/plugins/query-box/useObserver";
 import { useInsertCss } from "@/hooks/useInsertCss";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
@@ -82,31 +83,27 @@ function Toolbar() {
 
   const settings = ExtensionLocalStorageService.getCachedSync();
 
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
-
-  if (
-    ctx.type === "main" &&
-    !settings?.plugins["queryBox:languageModelSelector"].main
-  ) {
-    return null;
-  }
-
-  if (
-    ctx.type === "follow-up" &&
-    !settings?.plugins["queryBox:languageModelSelector"].followUp.enabled
-  ) {
-    return null;
-  }
-
   return (
-    <div className="tw-flex tw-flex-wrap tw-items-center tw-animate-in tw-fade-in">
+    <div className="tw-flex tw-flex-wrap tw-items-center tw-animate-in tw-fade-in md:tw-flex-nowrap">
+      {ctx.type === "main" && (
+        <CsUiPluginsGuard
+          requiresLoggedIn
+          dependentPluginIds={["queryBox:spaceNavigator"]}
+        >
+          <SpaceNavigator />
+        </CsUiPluginsGuard>
+      )}
       <CsUiPluginsGuard
         requiresPplxPro
         dependentPluginIds={["queryBox:languageModelSelector"]}
       >
-        {pluginsEnableStates?.["queryBox:languageModelSelector"] === true && (
-          <LanguageModelSelector />
-        )}
+        {ctx.type === "main" &&
+          settings?.plugins["queryBox:languageModelSelector"].main && (
+            <LanguageModelSelector />
+          )}
+        {ctx.type === "follow-up" &&
+          settings?.plugins["queryBox:languageModelSelector"].followUp
+            .enabled && <LanguageModelSelector />}
       </CsUiPluginsGuard>
     </div>
   );

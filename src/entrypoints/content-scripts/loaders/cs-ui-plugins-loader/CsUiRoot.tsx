@@ -58,6 +58,7 @@ export default function CsUiRoot() {
       <CsUiPluginsGuard
         dependentPluginIds={[
           "queryBox:languageModelSelector",
+          "queryBox:spaceNavigator",
           "queryBox:noFileCreationOnPaste",
         ]}
       >

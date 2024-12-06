@@ -64,11 +64,11 @@ export const DOM_SELECTORS = {
   },
   QUERY_BOX: {
     TEXTAREA: {
-      MAIN: '[location="home"] textarea[placeholder][autocomplete][style*="height: 48px !important;"]:not([data-testid="quick-search-modal"] textarea)',
+      MAIN: '[location="home"] .grow.block:has(svg[data-icon="bars-filter"]) textarea[placeholder][autocomplete][style*="height: 48px !important;"]:not([data-testid="quick-search-modal"] textarea)',
       MAIN_MODAL:
         '[data-testid="quick-search-modal"] textarea[placeholder][autocomplete][style*="height: 48px !important;"]',
       SPACE:
-        '[location="collection"] textarea[placeholder][autocomplete][style*="height: 48px !important;"]:not([data-testid="quick-search-modal"] textarea)',
+        '[location="collection"] .grow.block:has(svg[data-icon="sources"]) textarea[placeholder][autocomplete][style*="height: 48px !important;"]:not([data-testid="quick-search-modal"] textarea)',
       FOLLOW_UP:
         '[location="thread"] .pointer-events-none.fixed.bottom-mobileNavHeight textarea[placeholder][autocomplete]',
       ARBITRARY: "textarea[placeholder][autocomplete]",

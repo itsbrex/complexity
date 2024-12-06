@@ -24,8 +24,11 @@ import {
   SEARCH_ITEMS,
 } from "@/features/plugins/command-menu/items";
 import { useCommandMenuStore } from "@/features/plugins/command-menu/store";
+import usePplxAuth from "@/hooks/usePplxAuth";
 
 export default function CommandMenuWrapper() {
+  const { isLoggedIn } = usePplxAuth();
+
   const {
     open,
     setOpen,
@@ -98,9 +101,16 @@ export default function CommandMenuWrapper() {
         />
       </div>
       <CommandList>
-        <ThreadSearchItems />
-        <SpaceSearchItems />
-        <SpaceThreadsSearchItems />
+        {filter &&
+          (isLoggedIn ? (
+            <>
+              <ThreadSearchItems />
+              <SpaceSearchItems />
+              <SpaceThreadsSearchItems />
+            </>
+          ) : (
+            <CommandEmpty>Please sign in</CommandEmpty>
+          ))}
 
         {!filter && (
           <>

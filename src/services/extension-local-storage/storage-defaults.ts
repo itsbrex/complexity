@@ -12,6 +12,9 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
         span: true,
       },
     },
+    "queryBox:spaceNavigator": {
+      enabled: false,
+    },
     "queryBox:noFileCreationOnPaste": {
       enabled: false,
     },

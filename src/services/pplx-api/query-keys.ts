@@ -25,8 +25,7 @@ export const pplxApiQueries = createQueryKeys("pplxApi", {
   ) => {
     return {
       queryKey: [{ ...params }],
-
-      queryFn: () => PplxApiService.fetchThreads(params),
+      queryFn: () => PplxApiService.debouncedFetchThreads(params),
     };
   },
   spaces: {

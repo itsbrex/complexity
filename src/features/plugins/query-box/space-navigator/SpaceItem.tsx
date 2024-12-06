@@ -11,13 +11,7 @@ import { Space } from "@/services/pplx-api/pplx-api.types";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import { emojiCodeToString, parseUrl } from "@/utils/utils";
 
-export default function SpaceItem({
-  space,
-  setOpen,
-}: {
-  space: Space;
-  setOpen: (open: boolean) => void;
-}) {
+export default function SpaceItem({ space }: { space: Space }) {
   const url = useSpaRouter((state) => state.url);
 
   const spaceSlugFromUrl = parseUrl(url).pathname.split("/").pop();
@@ -110,9 +104,7 @@ export default function SpaceItem({
                   <div className="tw-text-sm tw-text-muted-foreground">
                     Description
                   </div>
-                  <div className="tw-line-clamp-1">
-                    {space.description}
-                  </div>
+                  <div className="tw-line-clamp-1">{space.description}</div>
                 </div>
               )}
               {space.instructions && (

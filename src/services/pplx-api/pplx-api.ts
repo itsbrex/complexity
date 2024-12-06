@@ -1,3 +1,5 @@
+import throttle from "lodash/throttle";
+
 import type { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import InternalWebSocketManager from "@/features/plugins/_core/web-socket/InternalWebSocketManager";
 import { ENDPOINTS } from "@/services/pplx-api/endpoints";
@@ -133,6 +135,30 @@ export class PplxApiService {
         },
       ),
     );
+  }
+
+  private static _debouncedFetchThreads = throttle(function(
+    this: typeof PplxApiService,
+    {
+      searchValue,
+      limit = 20,
+      offset = 0,
+    }: {
+      searchValue?: string;
+      limit?: number;
+      offset?: number;
+    } = {}
+  ) {
+    return this.fetchThreads({ searchValue, limit, offset });
+  }, 10000, { leading: true });
+
+  static get debouncedFetchThreads() {
+    return (params: Parameters<typeof this.fetchThreads>[0] = {}) => {
+      if (params.searchValue) {
+        return this.fetchThreads(params);
+      }
+      return this._debouncedFetchThreads.call(this, params);
+    };
   }
 
   static async fetchSpaces(): Promise<Space[]> {

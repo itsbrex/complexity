@@ -17,6 +17,7 @@ export function ThreadItem({ thread }: ThreadItemProps) {
   return (
     <CommandItem
       key={thread.slug}
+      asChild
       value={thread.slug}
       className="tw-flex tw-h-10 tw-items-center tw-justify-between tw-gap-8"
       onSelect={() => {
@@ -34,17 +35,22 @@ export function ThreadItem({ thread }: ThreadItemProps) {
         setOpen(false);
       }}
     >
-      <div className="tw-flex-1">
-        <div className="tw-line-clamp-1" title={thread.title}>
-          {thread.title}
+      <a
+        href={`/search/${thread.slug}`}
+        className="tw-flex tw-w-full tw-items-center tw-justify-between"
+      >
+        <div className="tw-flex-1">
+          <div className="tw-line-clamp-1" title={thread.title}>
+            {thread.title.slice(0, 100)}
+          </div>
         </div>
-      </div>
-      <div className="tw-flex tw-flex-shrink-0 tw-items-center tw-gap-2">
-        <SpacePreview thread={thread} />
-        <div className="tw-flex-shrink-0 tw-text-xs tw-text-muted-foreground">
-          {formatHowLongAgo(thread.last_query_datetime)}
+        <div className="tw-flex tw-flex-shrink-0 tw-items-center tw-gap-2">
+          <SpacePreview thread={thread} />
+          <div className="tw-flex-shrink-0 tw-text-xs tw-text-muted-foreground">
+            {formatHowLongAgo(thread.last_query_datetime)}
+          </div>
         </div>
-      </div>
+      </a>
     </CommandItem>
   );
 }

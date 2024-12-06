@@ -42,6 +42,7 @@ export function SpaceItem({ space }: SpaceItemProps) {
   return (
     <CommandItem
       key={space.uuid}
+      asChild
       value={space.uuid}
       keywords={[searchKeyword]}
       className={cn(
@@ -69,11 +70,14 @@ export function SpaceItem({ space }: SpaceItemProps) {
         }
       }}
     >
-      <div className="tw-flex tw-h-full tw-w-full tw-flex-col tw-gap-2">
+      <a
+        href={`/collections/${space.slug}`}
+        className="tw-flex tw-h-full tw-w-full tw-flex-col tw-gap-2"
+      >
         <div className="tw-flex tw-w-full tw-items-center tw-justify-between">
           <div className="tw-flex tw-flex-1 tw-items-center tw-gap-2">
             {space.emoji && <div>{emojiCodeToString(space.emoji)}</div>}
-            <div className="tw-line-clamp-1">{space.title}</div>
+            <div className="tw-line-clamp-1">{space.title.slice(0, 100)}</div>
           </div>
           <div className="tw-flex tw-flex-shrink-0 tw-items-center tw-gap-1">
             {modelSelection && (
@@ -135,7 +139,7 @@ export function SpaceItem({ space }: SpaceItemProps) {
             </span>
           </div>
         )}
-      </div>
+      </a>
     </CommandItem>
   );
 }

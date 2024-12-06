@@ -22,6 +22,7 @@ export default function SpaceThreadItem({ thread }: SpaceThreadItemProps) {
   return (
     <CommandItem
       key={thread.uuid}
+      asChild
       value={thread.uuid}
       keywords={[searchKeyword]}
       className="tw-flex tw-min-h-10 tw-justify-between tw-gap-4"
@@ -40,14 +41,19 @@ export default function SpaceThreadItem({ thread }: SpaceThreadItemProps) {
         }
       }}
     >
-      <div className="tw-flex-1">
-        <div className="tw-line-clamp-1 tw-font-medium">{thread.title}</div>
-      </div>
-      <div className="tw-flex tw-flex-shrink-0 tw-items-center tw-gap-2">
-        <div className="tw-flex-shrink-0 tw-text-xs tw-text-muted-foreground">
-          {formatHowLongAgo(thread.last_query_datetime)}
+      <a
+        href={`/search/${thread.slug}`}
+        className="tw-flex tw-w-full tw-items-center tw-justify-between"
+      >
+        <div className="tw-flex-1">
+          <div className="tw-line-clamp-1">{thread.title.slice(0, 100)}</div>
         </div>
-      </div>
+        <div className="tw-flex tw-flex-shrink-0 tw-items-center tw-gap-2">
+          <div className="tw-flex-shrink-0 tw-text-xs tw-text-muted-foreground">
+            {formatHowLongAgo(thread.last_query_datetime)}
+          </div>
+        </div>
+      </a>
     </CommandItem>
   );
 }

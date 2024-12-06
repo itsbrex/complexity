@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { sendMessage } from "webext-bridge/content-script";
 
 import { toast } from "@/components/ui/use-toast";
 import { ThreadMessageApiResponse } from "@/services/pplx-api/pplx-api.types";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
+import {
+  DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
+  DOM_SELECTORS,
+} from "@/utils/dom-selectors";
 import { errorWrapper } from "@/utils/error-wrapper";
 import { ThreadExport } from "@/utils/thread-export";
 import { parseUrl } from "@/utils/utils";
@@ -70,13 +73,9 @@ async function copyMessageWithCitations({
 }: {
   messageBlockIndex: number;
 }) {
-  navigator.clipboard.writeText(
-    (await sendMessage(
-      "reactVdom:getMessageContent",
-      { index: messageBlockIndex },
-      "window",
-    )) ?? "",
-  );
+  $(
+    `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR}"] ${DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR_CHILD.COPY_BUTTON}`,
+  ).trigger("click");
 }
 
 async function copyMessageWithoutCitations({

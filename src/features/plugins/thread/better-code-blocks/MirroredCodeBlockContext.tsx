@@ -70,7 +70,7 @@ export const MirroredCodeBlockContextProvider = memo(
     storeValue: InitialState;
     children: React.ReactNode;
   }) {
-    const store = useRef(createStore(storeValue)).current;
+    const [store] = useState(() => createStore(storeValue));
 
     useEffect(() => {
       store.setState(storeValue);

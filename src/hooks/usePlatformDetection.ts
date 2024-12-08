@@ -3,7 +3,7 @@ import { useMemo } from "react";
 export type Platform = "windows" | "linux" | "mac";
 
 export default function usePlatformDetection(): Platform {
-  return useMemo(getPlatform, []);
+  return useMemo(() => getPlatform(), []);
 }
 
 export const getPlatform = () => {

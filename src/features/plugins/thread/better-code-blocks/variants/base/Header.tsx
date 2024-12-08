@@ -1,4 +1,4 @@
-import { memo, useRef } from "react";
+import { memo } from "react";
 import { LuLoader2 } from "react-icons/lu";
 
 import CopyButton from "@/components/CopyButton";
@@ -47,17 +47,19 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
     ExtensionLocalStorageService.getCachedSync().plugins[
       "thread:betterMessageToolbars"
     ].sticky;
-  const shouldShowWrapToggleButton = useRef(
-    settings.unwrap.showToggleButton &&
+  const [shouldShowWrapToggleButton] = useState(
+    () =>
+      settings.unwrap.showToggleButton &&
       isContainerHorizontalOverflowing({ codeElement }),
-  ).current;
-  const shouldShowExpandCollapseButton = useRef(
-    settings.maxHeight.showToggleButton &&
+  );
+  const [shouldShowExpandCollapseButton] = useState(
+    () =>
+      settings.maxHeight.showToggleButton &&
       isContainerVerticalOverflowing({
         initialMaxHeight: settings.maxHeight.value,
         codeElement,
       }),
-  ).current;
+  );
 
   return (
     <div

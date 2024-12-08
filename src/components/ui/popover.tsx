@@ -1,6 +1,6 @@
 import { Popover as ArkPopover, Portal } from "@ark-ui/react";
 import { Slot } from "@radix-ui/react-slot";
-import { createContext, useContext } from "react";
+import { createContext, use } from "react";
 
 import { untrapWheel } from "@/utils/utils";
 
@@ -42,7 +42,7 @@ const PopoverTrigger = ({ ...props }: ArkPopover.TriggerProps) => {
 PopoverTrigger.displayName = "PopoverTrigger";
 
 const PopoverContent = ({ className, ...props }: ArkPopover.ContentProps) => {
-  const { portal } = useContext(PopoverLocalContext);
+  const { portal } = use(PopoverLocalContext);
 
   if (typeof portal === "undefined") {
     throw new Error("PopoverContent must be a child of Popover");

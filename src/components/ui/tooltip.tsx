@@ -1,5 +1,5 @@
 import { Tooltip as ArkTooltip, Portal } from "@ark-ui/react";
-import React, { FC } from "react";
+import React, { use } from "react";
 
 type TooltipContext = {
   positioning: ArkTooltip.RootProps["positioning"];
@@ -13,7 +13,7 @@ const TooltipContext = createContext<TooltipContext>({
 
 const TooltipContextProvider = TooltipContext.Provider;
 
-const TooltipRoot: FC<ArkTooltip.RootProps> = ({ positioning, ...props }) => {
+const TooltipRoot = ({ positioning, ...props }: ArkTooltip.RootProps) => {
   return (
     <TooltipContextProvider value={{ positioning }}>
       <ArkTooltip.Root
@@ -45,7 +45,7 @@ const TooltipContent = ({
 }: ArkTooltip.ContentProps & {
   portal: boolean;
 }) => {
-  const { positioning } = useContext(TooltipContext);
+  const { positioning } = use(TooltipContext);
 
   if (!positioning) {
     throw new Error("TooltipContent must be used within a TooltipContext");

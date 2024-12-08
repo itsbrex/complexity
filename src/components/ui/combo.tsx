@@ -1,7 +1,7 @@
 import { Combobox as ArkCombobox, Portal } from "@ark-ui/react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { ComponentProps, createContext, useContext } from "react";
+import { ComponentProps, createContext, use } from "react";
 import {
   LuChevronDown as ChevronDown,
   LuX as ClearIcon,
@@ -174,7 +174,7 @@ const ComboboxClearTrigger = ({
 ComboboxClearTrigger.displayName = "ComboboxClearTrigger";
 
 const ComboboxContent = ({ className, ...props }: ArkCombobox.ContentProps) => {
-  const { portal } = useContext(ComboboxContext);
+  const { portal } = use(ComboboxContext);
 
   if (typeof portal === "undefined") {
     throw new Error("ComboboxContent must be a child of Combobox");

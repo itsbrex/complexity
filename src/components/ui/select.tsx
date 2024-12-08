@@ -1,7 +1,7 @@
 import { Portal, Select as ArkSelect } from "@ark-ui/react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { ComponentProps, createContext, useContext } from "react";
+import { ComponentProps, createContext, use } from "react";
 import { LuChevronDown as ChevronDown, LuCheck } from "react-icons/lu";
 
 import { untrapWheel } from "@/utils/utils";
@@ -89,7 +89,7 @@ SelectValue.displayName = "SelectValue";
 export type SelectContentProps = ArkSelect.ContentProps;
 
 const SelectContent = ({ className, ...props }: SelectContentProps) => {
-  const { portal } = useContext(SelectContext);
+  const { portal } = use(SelectContext);
 
   if (typeof portal === "undefined") {
     throw new Error("SelectContent must be a child of Select");

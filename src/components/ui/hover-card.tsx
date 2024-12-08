@@ -1,6 +1,6 @@
 import { HoverCard as ArkHoverCard, Portal } from "@ark-ui/react";
 import { Slot } from "@radix-ui/react-slot";
-import { createContext, useContext } from "react";
+import { createContext, use } from "react";
 
 const HoverCardRootProvider = ArkHoverCard.RootProvider;
 
@@ -43,7 +43,7 @@ const HoverCardContent = ({
   className,
   ...props
 }: ArkHoverCard.ContentProps) => {
-  const { portal } = useContext(HoverCardLocalContext);
+  const { portal } = use(HoverCardLocalContext);
 
   if (typeof portal === "undefined") {
     throw new Error("HoverCardContent must be a child of HoverCard");

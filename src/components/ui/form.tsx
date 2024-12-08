@@ -1,5 +1,5 @@
 import { Slot } from "@radix-ui/react-slot";
-import { ComponentProps, createContext, useContext, useId } from "react";
+import { ComponentProps, createContext, use, useId } from "react";
 import {
   Controller,
   type ControllerProps,
@@ -29,15 +29,15 @@ function FormField<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({ ...props }: ControllerProps<TFieldValues, TName>) {
   return (
-    <FormFieldContext.Provider value={{ name: props.name }}>
+    (<FormFieldContext value={{ name: props.name }}>
       <Controller {...props} />
-    </FormFieldContext.Provider>
+    </FormFieldContext>)
   );
 }
 
 function useFormField() {
-  const fieldContext = useContext(FormFieldContext);
-  const itemContext = useContext(FormItemContext);
+  const fieldContext = use(FormFieldContext);
+  const itemContext = use(FormItemContext);
   const { getFieldState, formState } = useFormContext();
 
   const fieldState = getFieldState(fieldContext.name, formState);
@@ -70,9 +70,9 @@ const FormItem = ({ className, ...props }: ComponentProps<"div">) => {
   const id = useId();
 
   return (
-    <FormItemContext.Provider value={{ id }}>
+    (<FormItemContext value={{ id }}>
       <div className={cn("tw-space-y-2", className)} {...props} />
-    </FormItemContext.Provider>
+    </FormItemContext>)
   );
 };
 FormItem.displayName = "FormItem";

@@ -1,3 +1,5 @@
+import { use } from "react";
+
 import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 import { Portal } from "@/components/ui/portal";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
@@ -77,7 +79,7 @@ function useInsertToolbarCss() {
 }
 
 function Toolbar() {
-  const ctx = useContext(ScopedQueryBoxContext);
+  const ctx = use(ScopedQueryBoxContext);
 
   if (!ctx) throw new Error("Toolbar must be used within a QueryBoxContext");
 

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, use, useState, ReactNode } from "react";
 
 import { type PluginTagValues } from "@/data/plugins/plugins-data";
 
@@ -27,9 +27,7 @@ const PluginContext = createContext<PluginContextType>([
 export function PluginProvider({ children }: { children: ReactNode }) {
   const state = useState<PluginFilters>(defaultFilters);
 
-  return (
-    <PluginContext.Provider value={state}>{children}</PluginContext.Provider>
-  );
+  return (<PluginContext value={state}>{children}</PluginContext>);
 }
 
-export const usePluginContext = () => useContext(PluginContext);
+export const usePluginContext = () => use(PluginContext);

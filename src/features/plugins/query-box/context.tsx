@@ -21,9 +21,9 @@ const QueryBoxContextProvider = ({
   const queryBoxStore = store();
 
   return (
-    <ScopedQueryBoxContext.Provider value={queryBoxStore}>
+    (<ScopedQueryBoxContext value={queryBoxStore}>
       {children}
-    </ScopedQueryBoxContext.Provider>
+    </ScopedQueryBoxContext>)
   );
 };
 

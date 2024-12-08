@@ -1,5 +1,4 @@
 import React from "react";
-import { Helmet } from "react-helmet";
 
 type PageProps = {
   title: string;
@@ -17,9 +16,9 @@ type PageProps = {
 export default function Page({ title, page, children }: PageProps) {
   return (
     <>
-      <Helmet key={title}>
+      <title key={title}>
         <title>{title}</title>
-      </Helmet>
+      </title>
       {page ? React.createElement(page) : children}
     </>
   );

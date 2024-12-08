@@ -1,5 +1,5 @@
 import { Tooltip as ArkTooltip, Portal } from "@ark-ui/react";
-import React, { ElementRef, FC, forwardRef } from "react";
+import React, { FC } from "react";
 
 type TooltipContext = {
   positioning: ArkTooltip.RootProps["positioning"];
@@ -26,29 +26,25 @@ const TooltipRoot: FC<ArkTooltip.RootProps> = ({ positioning, ...props }) => {
   );
 };
 
-const TooltipTrigger = forwardRef<
-  ElementRef<typeof ArkTooltip.Trigger>,
-  ArkTooltip.TriggerProps
->(({ ...props }, ref) => {
+const TooltipTrigger = ({ ...props }: ArkTooltip.TriggerProps) => {
   return (
     <ArkTooltip.Context>
       {({ setOpen }) => (
-        <ArkTooltip.Trigger
-          ref={ref}
-          onTouchStart={() => setOpen(true)}
-          {...props}
-        />
+        <ArkTooltip.Trigger onTouchStart={() => setOpen(true)} {...props} />
       )}
     </ArkTooltip.Context>
   );
-});
+};
 
 TooltipTrigger.displayName = "TooltipTrigger";
 
-const TooltipContent = forwardRef<
-  ElementRef<typeof ArkTooltip.Content>,
-  ArkTooltip.ContentProps & { portal?: boolean }
->(({ className, portal, ...props }, ref) => {
+const TooltipContent = ({
+  className,
+  portal,
+  ...props
+}: ArkTooltip.ContentProps & {
+  portal: boolean;
+}) => {
   const { positioning } = useContext(TooltipContext);
 
   if (!positioning) {
@@ -61,7 +57,6 @@ const TooltipContent = forwardRef<
     <Comp>
       <ArkTooltip.Positioner>
         <ArkTooltip.Content
-          ref={ref}
           className={cn(
             "tw-z-50 tw-max-w-[400px] tw-overflow-hidden tw-whitespace-pre-line tw-rounded-md tw-bg-foreground tw-px-2 tw-py-1 tw-font-sans tw-text-xs tw-text-popover tw-shadow-md tw-duration-150 dark:tw-bg-primary-foreground dark:tw-text-popover-foreground",
             "data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out",
@@ -77,7 +72,7 @@ const TooltipContent = forwardRef<
       </ArkTooltip.Positioner>
     </Comp>
   );
-});
+};
 
 TooltipContent.displayName = "TooltipContent";
 

@@ -1,4 +1,5 @@
 import { Command as CommandPrimitive } from "cmdk";
+import { ComponentProps } from "react";
 
 import KeyCombo from "@/components/KeyCombo";
 import { CommandItem, CommandShortcut } from "@/components/ui/command";
@@ -9,9 +10,7 @@ export type BaseCommandMenuItem = BaseItem & {
   onSelect?: () => void;
 };
 
-type BaseMenuItemProps = React.ComponentPropsWithoutRef<
-  typeof CommandPrimitive.Item
-> &
+type BaseMenuItemProps = ComponentProps<typeof CommandPrimitive.Item> &
   BaseCommandMenuItem & {
     closeOnSelect?: boolean;
   };

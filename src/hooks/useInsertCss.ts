@@ -11,7 +11,7 @@ export function useInsertCss({
   id: string;
   inject?: boolean;
 }) {
-  const cleanupRef = useRef<CleanupFunction>();
+  const cleanupRef = useRef<CleanupFunction>(null);
 
   useEffect(() => {
     const cleanup = () => {

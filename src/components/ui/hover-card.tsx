@@ -1,6 +1,6 @@
 import { HoverCard as ArkHoverCard, Portal } from "@ark-ui/react";
 import { Slot } from "@radix-ui/react-slot";
-import { createContext, forwardRef, type ElementRef, useContext } from "react";
+import { createContext, useContext } from "react";
 
 const HoverCardRootProvider = ArkHoverCard.RootProvider;
 
@@ -33,19 +33,16 @@ function HoverCard({
 
 HoverCard.displayName = "HoverCard";
 
-const HoverCardTrigger = forwardRef<
-  ElementRef<typeof ArkHoverCard.Trigger>,
-  ArkHoverCard.TriggerProps
->(({ ...props }, ref) => {
-  return <ArkHoverCard.Trigger ref={ref} {...props} />;
-});
+const HoverCardTrigger = ({ ...props }: ArkHoverCard.TriggerProps) => {
+  return <ArkHoverCard.Trigger {...props} />;
+};
 
 HoverCardTrigger.displayName = "HoverCardTrigger";
 
-const HoverCardContent = forwardRef<
-  ElementRef<typeof ArkHoverCard.Content>,
-  ArkHoverCard.ContentProps
->(({ className, ...props }, ref) => {
+const HoverCardContent = ({
+  className,
+  ...props
+}: ArkHoverCard.ContentProps) => {
   const { portal } = useContext(HoverCardLocalContext);
 
   if (typeof portal === "undefined") {
@@ -58,7 +55,6 @@ const HoverCardContent = forwardRef<
     <Comp>
       <ArkHoverCard.Positioner>
         <ArkHoverCard.Content
-          ref={ref}
           className={cn(
             "tw-bg-hoverCard tw-text-hoverCard-foreground tw-z-50 tw-w-max tw-rounded-md tw-border tw-border-border/50 tw-bg-popover tw-p-4 tw-shadow-md focus-visible:tw-outline-none",
             "data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out",
@@ -73,7 +69,7 @@ const HoverCardContent = forwardRef<
       </ArkHoverCard.Positioner>
     </Comp>
   );
-});
+};
 
 HoverCardContent.displayName = "HoverCardContent";
 

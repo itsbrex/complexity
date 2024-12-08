@@ -1,10 +1,5 @@
 import { Menu, Portal } from "@ark-ui/react";
-import {
-  forwardRef,
-  Fragment,
-  type ElementRef,
-  type HTMLAttributes,
-} from "react";
+import { Fragment, type HTMLAttributes } from "react";
 import { LuChevronRight as ChevronRight } from "react-icons/lu";
 
 const DropdownMenuRootProvider = Menu.RootProvider;
@@ -15,26 +10,23 @@ function DropdownMenu({ ...props }: Menu.RootProps) {
 
 const DropdownMenuContext = Menu.Context;
 
-const DropdownMenuTrigger = forwardRef<
-  ElementRef<typeof Menu.Trigger>,
-  Menu.TriggerProps
->(({ className, ...props }, ref) => (
-  <Menu.Trigger ref={ref} className={cn(className)} {...props} />
-));
+const DropdownMenuTrigger = ({ className, ...props }: Menu.TriggerProps) => (
+  <Menu.Trigger className={cn(className)} {...props} />
+);
 
 DropdownMenuTrigger.displayName = "DropdownMenuTrigger";
 
-const DropdownMenuContent = forwardRef<
-  ElementRef<typeof Menu.Content>,
-  Menu.ContentProps & { portal?: boolean }
->(({ portal = true, className, ...props }, ref) => {
+const DropdownMenuContent = ({
+  portal = true,
+  className,
+  ...props
+}: Menu.ContentProps & { portal?: boolean }) => {
   const Comp = portal ? Portal : Fragment;
 
   return (
     <Comp>
       <Menu.Positioner>
         <Menu.Content
-          ref={ref}
           className={cn(
             "tw-z-50 tw-min-w-[8rem] tw-overflow-hidden tw-rounded-md tw-border tw-border-border/50 tw-bg-popover tw-p-1 tw-text-popover-foreground tw-shadow-md focus-visible:tw-outline-none",
             "data-[state=open]:tw-animate-in data-[state=open]:tw-fade-in data-[state=open]:tw-zoom-in-95",
@@ -50,18 +42,16 @@ const DropdownMenuContent = forwardRef<
       </Menu.Positioner>
     </Comp>
   );
-});
+};
 
 DropdownMenuContent.displayName = "DropdownMenuContent";
 
-const DropdownMenuItem = forwardRef<
-  ElementRef<typeof Menu.Item>,
-  Menu.ItemProps & {
-    inset?: boolean;
-  }
->(({ className, inset, ...props }, ref) => (
+const DropdownMenuItem = ({
+  className,
+  inset,
+  ...props
+}: Menu.ItemProps & { inset?: boolean }) => (
   <Menu.Item
-    ref={ref}
     className={cn(
       "tw-relative tw-flex tw-cursor-default tw-select-none tw-items-center tw-rounded-sm tw-px-2 tw-py-1.5 tw-text-sm tw-outline-none tw-transition-colors focus:tw-bg-primary-foreground focus:tw-text-primary data-[disabled]:tw-pointer-events-none data-[highlighted]:tw-bg-primary-foreground data-[highlighted]:tw-text-primary data-[disabled]:tw-opacity-50",
       inset && "tw-pl-8",
@@ -69,20 +59,18 @@ const DropdownMenuItem = forwardRef<
     )}
     {...props}
   />
-));
+);
 
 DropdownMenuItem.displayName = "DropdownMenuItem";
 
 const DropdownMenuGroup = Menu.ItemGroup;
 
-const DropdownMenuLabel = forwardRef<
-  ElementRef<typeof Menu.ItemGroupLabel>,
-  Menu.ItemGroupLabelProps & {
-    inset?: boolean;
-  }
->(({ className, inset, ...props }, ref) => (
+const DropdownMenuLabel = ({
+  className,
+  inset,
+  ...props
+}: Menu.ItemGroupLabelProps & { inset?: boolean }) => (
   <Menu.ItemGroupLabel
-    ref={ref}
     className={cn(
       "tw-px-2 tw-py-1.5 tw-text-sm tw-text-muted-foreground",
       inset && "tw-pl-8",
@@ -90,20 +78,19 @@ const DropdownMenuLabel = forwardRef<
     )}
     {...props}
   />
-));
+);
 
 DropdownMenuLabel.displayName = "DropdownMenuLabel";
 
-const DropdownMenuSeparator = forwardRef<
-  ElementRef<typeof Menu.Separator>,
-  Menu.SeparatorProps
->(({ className, ...props }, ref) => (
+const DropdownMenuSeparator = ({
+  className,
+  ...props
+}: Menu.SeparatorProps) => (
   <Menu.Separator
-    ref={ref}
     className={cn("tw--mx-1 tw-my-1 tw-h-px tw-bg-muted", className)}
     {...props}
   />
-));
+);
 
 DropdownMenuSeparator.displayName = "DropdownMenuSeparator";
 
@@ -118,14 +105,12 @@ const DropdownMenuSub = ({ ...props }: Menu.RootProps) => (
   />
 );
 
-const DropdownMenuSubTrigger = forwardRef<
-  ElementRef<typeof Menu.TriggerItem>,
-  Menu.TriggerItemProps & {
-    inset?: boolean;
-  }
->(({ className, children, ...props }, ref) => (
+const DropdownMenuSubTrigger = ({
+  className,
+  children,
+  ...props
+}: Menu.TriggerItemProps) => (
   <Menu.TriggerItem
-    ref={ref}
     className={cn(
       "tw-relative tw-flex tw-cursor-default tw-select-none tw-items-center tw-justify-between tw-rounded-sm tw-text-sm tw-outline-none tw-transition-colors focus:tw-bg-primary-foreground focus:tw-text-primary data-[disabled]:tw-pointer-events-none data-[highlighted]:tw-bg-primary-foreground data-[highlighted]:tw-text-primary data-[disabled]:tw-opacity-50",
       className,
@@ -135,13 +120,16 @@ const DropdownMenuSubTrigger = forwardRef<
     {children}
     <ChevronRight className="tw-mr-2 tw-size-4" />
   </Menu.TriggerItem>
-));
+);
 DropdownMenuSubTrigger.displayName = "DropdownMenuSubTrigger";
 
-const DropdownMenuShortcut = forwardRef<
-  HTMLDivElement,
-  HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
+const DropdownMenuShortcut = ({
+  ref,
+  className,
+  ...props
+}: HTMLAttributes<HTMLDivElement> & {
+  ref: React.RefObject<HTMLDivElement>;
+}) => {
   return (
     <div
       ref={ref}
@@ -152,7 +140,7 @@ const DropdownMenuShortcut = forwardRef<
       {...props}
     />
   );
-});
+};
 
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
 

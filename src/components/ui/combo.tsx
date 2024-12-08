@@ -1,13 +1,7 @@
 import { Combobox as ArkCombobox, Portal } from "@ark-ui/react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import {
-  forwardRef,
-  type ElementRef,
-  type ComponentPropsWithoutRef,
-  createContext,
-  useContext,
-} from "react";
+import { ComponentProps, createContext, useContext } from "react";
 import {
   LuChevronDown as ChevronDown,
   LuX as ClearIcon,
@@ -31,7 +25,7 @@ const ComboboxContextProvider = ComboboxContext.Provider;
 function Combobox({
   portal,
   ...props
-}: ComponentPropsWithoutRef<typeof ArkCombobox.Root> & {
+}: ComponentProps<typeof ArkCombobox.Root> & {
   portal?: boolean;
 }) {
   return (
@@ -64,14 +58,16 @@ const comboboxTriggerVariants = cva(
   },
 );
 
-const ComboboxTrigger = forwardRef<
-  ElementRef<typeof ArkCombobox.Trigger>,
-  ComponentPropsWithoutRef<typeof ArkCombobox.Trigger> &
-    VariantProps<typeof comboboxTriggerVariants>
->(({ variant, className, children, ...props }, ref) => {
+const ComboboxTrigger = ({
+  variant,
+  className,
+  children,
+  ...props
+}: ArkCombobox.TriggerProps & {
+  variant: VariantProps<typeof comboboxTriggerVariants>["variant"];
+}) => {
   return (
     <ArkCombobox.Trigger
-      ref={ref}
       className={cn(comboboxTriggerVariants({ variant }), className)}
       {...props}
     >
@@ -79,19 +75,15 @@ const ComboboxTrigger = forwardRef<
       <ChevronDown className="tw-ml-2 tw-size-4 tw-text-muted-foreground" />
     </ArkCombobox.Trigger>
   );
-});
+};
 
 ComboboxTrigger.displayName = "ComboboxTrigger";
 
-const ComboboxInput = forwardRef<
-  ElementRef<typeof ArkCombobox.Input>,
-  ComponentPropsWithoutRef<typeof ArkCombobox.Input>
->(({ className, ...props }, ref) => {
+const ComboboxInput = ({ className, ...props }: ArkCombobox.InputProps) => {
   return (
     <div className="tw-relative tw-w-full">
       <ArkCombobox.Control>
         <ArkCombobox.Input
-          ref={ref}
           className={cn(
             "tw-flex tw-h-9 tw-w-full tw-rounded-md tw-border tw-border-input tw-bg-transparent tw-px-3 tw-py-1 tw-text-sm tw-shadow-sm tw-transition-colors",
             "placeholder:tw-text-muted-foreground",
@@ -104,12 +96,13 @@ const ComboboxInput = forwardRef<
       </ArkCombobox.Control>
     </div>
   );
-});
+};
 
-const ComboboxInputMultipleValues = forwardRef<
-  ElementRef<typeof ArkCombobox.Input>,
-  ComponentPropsWithoutRef<typeof ArkCombobox.Input>
->(({ className, placeholder, ...props }, ref) => {
+const ComboboxInputMultipleValues = ({
+  className,
+  placeholder,
+  ...props
+}: ArkCombobox.InputProps) => {
   return (
     <div className="tw-relative tw-w-full">
       <ArkCombobox.Control>
@@ -140,7 +133,6 @@ const ComboboxInputMultipleValues = forwardRef<
             </div>
           </ArkCombobox.Label>
           <ArkCombobox.Input
-            ref={ref}
             placeholder={placeholder}
             className={cn(
               "tw-flex-1 tw-bg-transparent tw-outline-none placeholder:tw-text-muted-foreground disabled:tw-cursor-not-allowed disabled:tw-opacity-50",
@@ -152,19 +144,19 @@ const ComboboxInputMultipleValues = forwardRef<
       </ArkCombobox.Control>
     </div>
   );
-});
+};
 
 ComboboxInputMultipleValues.displayName = "ComboboxInputMultipleValues";
 
 ComboboxInput.displayName = "ComboboxInput";
 
-const ComboboxClearTrigger = forwardRef<
-  ElementRef<typeof ArkCombobox.ClearTrigger>,
-  ComponentPropsWithoutRef<typeof ArkCombobox.ClearTrigger>
->(({ className, children, ...props }, ref) => {
+const ComboboxClearTrigger = ({
+  className,
+  children,
+  ...props
+}: ArkCombobox.ClearTriggerProps) => {
   return (
     <ArkCombobox.ClearTrigger
-      ref={ref}
       className={cn(
         "tw-absolute tw-right-2 tw-top-2 tw-rounded-sm tw-opacity-70 tw-ring-offset-background tw-transition-opacity",
         "hover:tw-opacity-100",
@@ -177,14 +169,11 @@ const ComboboxClearTrigger = forwardRef<
       {children ?? <ClearIcon className="tw-size-4" />}
     </ArkCombobox.ClearTrigger>
   );
-});
+};
 
 ComboboxClearTrigger.displayName = "ComboboxClearTrigger";
 
-const ComboboxContent = forwardRef<
-  ElementRef<typeof ArkCombobox.Content>,
-  ComponentPropsWithoutRef<typeof ArkCombobox.Content>
->(({ className, ...props }, ref) => {
+const ComboboxContent = ({ className, ...props }: ArkCombobox.ContentProps) => {
   const { portal } = useContext(ComboboxContext);
 
   if (typeof portal === "undefined") {
@@ -197,7 +186,6 @@ const ComboboxContent = forwardRef<
     <Comp>
       <ArkCombobox.Positioner>
         <ArkCombobox.Content
-          ref={ref}
           className={cn(
             "custom-scrollbar tw-z-50 tw-max-h-[300px] tw-min-w-[8rem] tw-overflow-auto tw-rounded-md tw-border tw-border-border/50 tw-bg-popover tw-p-1 tw-text-popover-foreground tw-shadow-md",
             "data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out",
@@ -210,17 +198,17 @@ const ComboboxContent = forwardRef<
       </ArkCombobox.Positioner>
     </Comp>
   );
-});
+};
 
 ComboboxContent.displayName = "ComboboxContent";
 
-const ComboboxItem = forwardRef<
-  ElementRef<typeof ArkCombobox.Item>,
-  ComponentPropsWithoutRef<typeof ArkCombobox.Item>
->(({ className, children, ...props }, ref) => {
+const ComboboxItem = ({
+  className,
+  children,
+  ...props
+}: ArkCombobox.ItemProps) => {
   return (
     <ArkCombobox.Item
-      ref={ref}
       className={cn(
         "tw-relative tw-flex tw-w-full tw-cursor-pointer tw-select-none tw-items-center tw-rounded-sm tw-px-2 tw-py-1.5 tw-text-sm tw-outline-none",
         "data-[disabled]:tw-pointer-events-none data-[disabled]:tw-opacity-50",
@@ -239,19 +227,15 @@ const ComboboxItem = forwardRef<
       </ArkCombobox.ItemText>
     </ArkCombobox.Item>
   );
-});
+};
 
 ComboboxItem.displayName = "ComboboxItem";
 
 const ComboboxGroup = ArkCombobox.ItemGroup;
 
-const ComboboxLabel = forwardRef<
-  ElementRef<typeof ArkCombobox.Label>,
-  ComponentPropsWithoutRef<typeof ArkCombobox.Label>
->(({ className, ...props }, ref) => {
+const ComboboxLabel = ({ className, ...props }: ArkCombobox.LabelProps) => {
   return (
     <ArkCombobox.Label
-      ref={ref}
       className={cn(
         "tw-mb-2 tw-block tw-text-xs tw-font-medium tw-text-muted-foreground",
         className,
@@ -259,17 +243,16 @@ const ComboboxLabel = forwardRef<
       {...props}
     />
   );
-});
+};
 
 ComboboxLabel.displayName = "ComboboxLabel";
 
-const ComboboxItemGroupLabel = forwardRef<
-  ElementRef<typeof ArkCombobox.ItemGroupLabel>,
-  ComponentPropsWithoutRef<typeof ArkCombobox.ItemGroupLabel>
->(({ className, ...props }, ref) => {
+const ComboboxItemGroupLabel = ({
+  className,
+  ...props
+}: ArkCombobox.ItemGroupLabelProps) => {
   return (
     <ArkCombobox.ItemGroupLabel
-      ref={ref}
       className={cn(
         "tw-py-1.5 tw-pl-2 tw-pr-2 tw-text-xs tw-text-muted-foreground",
         className,
@@ -277,7 +260,7 @@ const ComboboxItemGroupLabel = forwardRef<
       {...props}
     />
   );
-});
+};
 
 ComboboxItemGroupLabel.displayName = "ComboboxItemGroupLabel";
 

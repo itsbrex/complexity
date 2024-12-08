@@ -15,7 +15,7 @@ export default function OnCloudflareTimeout() {
   const settings = ExtensionLocalStorageService.getCachedSync();
   const { isSessionTimeout, handleReload } = useCloudflareTimeout();
   const [countdown, setCountdown] = useState(5);
-  const countdownInterval = useRef<NodeJS.Timeout>();
+  const countdownInterval = useRef<NodeJS.Timeout>(undefined);
 
   const isAutoReload =
     settings?.plugins.onCloudflareTimeoutAutoReload.behavior === "reload";

@@ -6,8 +6,8 @@ import { createWithEqualityFn } from "zustand/traditional";
 import { SearchFilter } from "@/features/plugins/command-menu/items";
 
 type CommandMenuStoreType = {
-  inputRef: RefObject<HTMLInputElement> | null;
-  setInputRef: (value: RefObject<HTMLInputElement> | null) => void;
+  inputRef: RefObject<HTMLInputElement | null> | null;
+  setInputRef: (value: RefObject<HTMLInputElement | null> | null) => void;
   open: boolean;
   setOpen: (value: boolean) => void;
   searchValue: string;

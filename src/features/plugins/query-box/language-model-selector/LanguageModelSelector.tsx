@@ -38,6 +38,8 @@ export default function LanguageModelSelector() {
   const modelsLimits = useModelLimits();
 
   const handleValueChange = (details: { value: LanguageModel["code"][] }) => {
+    if (details.value[0] == null) return;
+
     setValue(details.value[0]);
     setTimeout(() => {
       UiUtils.getActiveQueryBoxTextarea().trigger("focus");
@@ -161,6 +163,8 @@ function MobileSelectContent({ ...props }: DialogProps) {
 
             {models.map((model) => {
               const Icon = languageModelProviderIcons[provider];
+
+              if (Icon == null) return null;
 
               return (
                 <SelectItem

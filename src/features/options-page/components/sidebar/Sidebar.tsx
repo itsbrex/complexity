@@ -39,7 +39,12 @@ export default function Sidebar() {
             <Trans
               i18nKey="sidebar.supporterMessage"
               components={{
-                emphasis: <span className="tw-font-medium tw-text-primary" />,
+                emphasis: (
+                  <span
+                    key="sidebar.supporterMessage"
+                    className="tw-font-medium tw-text-primary"
+                  />
+                ),
               }}
             />
             <LuExternalLink className="tw-absolute tw-right-2 tw-top-2 tw-size-3.5 tw-text-muted group-hover:tw-text-primary" />

@@ -46,7 +46,10 @@ export default function vitePluginReloadOnDynamicallyInjectedStyleChanges(option
         const allMatches = [...dynamicMatches, ...staticMatches];
 
         allMatches.forEach((match) => {
-          const importPath = match[1].split("?")[0];
+          const importPath = match[1]?.split("?")[0];
+
+          if (importPath == null) return;
+
           let absolutePath;
 
           // Handle @ alias

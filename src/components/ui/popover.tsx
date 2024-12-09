@@ -1,6 +1,6 @@
 import { Popover as ArkPopover, Portal } from "@ark-ui/react";
 import { Slot } from "@radix-ui/react-slot";
-import { createContext, forwardRef, type ElementRef, useContext } from "react";
+import { createContext, use } from "react";
 
 import { untrapWheel } from "@/utils/utils";
 
@@ -35,20 +35,14 @@ function Popover({
 
 Popover.displayName = "Popover";
 
-const PopoverTrigger = forwardRef<
-  ElementRef<typeof ArkPopover.Trigger>,
-  ArkPopover.TriggerProps
->(({ ...props }, ref) => {
-  return <ArkPopover.Trigger ref={ref} {...props} />;
-});
+const PopoverTrigger = ({ ...props }: ArkPopover.TriggerProps) => {
+  return <ArkPopover.Trigger {...props} />;
+};
 
 PopoverTrigger.displayName = "PopoverTrigger";
 
-const PopoverContent = forwardRef<
-  ElementRef<typeof ArkPopover.Content>,
-  ArkPopover.ContentProps
->(({ className, ...props }, ref) => {
-  const { portal } = useContext(PopoverLocalContext);
+const PopoverContent = ({ className, ...props }: ArkPopover.ContentProps) => {
+  const { portal } = use(PopoverLocalContext);
 
   if (typeof portal === "undefined") {
     throw new Error("PopoverContent must be a child of Popover");
@@ -60,7 +54,6 @@ const PopoverContent = forwardRef<
     <Comp>
       <ArkPopover.Positioner>
         <ArkPopover.Content
-          ref={ref}
           className={cn(
             "tw-z-50 tw-w-max tw-rounded-md tw-border tw-border-border/50 tw-bg-popover tw-p-4 tw-text-popover-foreground tw-shadow-md focus-visible:tw-outline-none",
             "data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out",
@@ -76,7 +69,7 @@ const PopoverContent = forwardRef<
       </ArkPopover.Positioner>
     </Comp>
   );
-});
+};
 
 PopoverContent.displayName = "PopoverContent";
 

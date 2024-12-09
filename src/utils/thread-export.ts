@@ -155,7 +155,7 @@ export class ThreadExport {
     includeCitations: boolean;
     messageIndex?: number;
   }) {
-    if (messageIndex != null) {
+    if (messageIndex != null && threadJSON[messageIndex] != null) {
       return ThreadExport.exportMessage({
         message: threadJSON[messageIndex],
         includeCitations,

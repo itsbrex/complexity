@@ -47,7 +47,11 @@ export default class UiUtils {
     const messageBlocks = [] as MessageBlock[];
 
     for (let i = 0; i < children.length; i++) {
-      const $wrapper = $(children[i]);
+      const child = children[i];
+
+      if (child == null) continue;
+
+      const $wrapper = $(child);
 
       $wrapper.internalComponentAttr(internalBlockAttr).attr("data-index", i);
 
@@ -112,14 +116,22 @@ export default class UiUtils {
     const returnValue = [] as CodeBlock[][];
 
     for (let i = 0; i < messageBlocks.length; i++) {
-      const codeBlocks = $(messageBlocks[i].$answer)
+      const messageBlock = messageBlocks[i];
+
+      if (messageBlock == null) continue;
+
+      const codeBlocks = $(messageBlock.$answer)
         .find(DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.WRAPPER)
         .toArray();
 
       const codeBlocksInMessageBlock = [] as CodeBlock[];
 
       for (let j = 0; j < codeBlocks.length; j++) {
-        const $codeBlock = $(codeBlocks[j]);
+        const codeBlock = codeBlocks[j];
+
+        if (codeBlock == null) continue;
+
+        const $codeBlock = $(codeBlock);
 
         $codeBlock
           .internalComponentAttr(
@@ -170,14 +182,14 @@ export default class UiUtils {
     messageBlockIndex: number;
     codeBlockIndex: number;
   }) {
-    const isMessageBlockInFlight = messageBlocks[messageBlockIndex].isInFlight;
+    const isMessageBlockInFlight = messageBlocks[messageBlockIndex]?.isInFlight;
 
     if (!isMessageBlockInFlight) return false;
 
     const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}"][data-index="${codeBlockIndex}"]`;
 
     const isInFlight =
-      !!messageBlocks[messageBlockIndex].isInFlight &&
+      !!messageBlocks[messageBlockIndex]?.isInFlight &&
       $(selector).next().length === 0;
 
     return isInFlight;

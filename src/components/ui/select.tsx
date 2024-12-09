@@ -1,13 +1,7 @@
 import { Portal, Select as ArkSelect } from "@ark-ui/react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import {
-  forwardRef,
-  type ElementRef,
-  type ComponentPropsWithoutRef,
-  createContext,
-  useContext,
-} from "react";
+import { ComponentProps, createContext, use } from "react";
 import { LuChevronDown as ChevronDown, LuCheck } from "react-icons/lu";
 
 import { untrapWheel } from "@/utils/utils";
@@ -25,7 +19,7 @@ const SelectContextProvider = SelectContext.Provider;
 function Select({
   portal,
   ...props
-}: ComponentPropsWithoutRef<typeof ArkSelect.Root> & {
+}: ComponentProps<typeof ArkSelect.Root> & {
   portal?: boolean;
 }) {
   return (
@@ -42,7 +36,7 @@ function Select({
 Select.displayName = "Select";
 
 const selectTriggerVariants = cva(
-  "tw-flex tw-w-full tw-items-center tw-justify-between tw-rounded-md tw-px-2 tw-text-sm tw-font-medium tw-outline-none tw-transition-all tw-duration-150 placeholder:tw-text-muted-foreground disabled:tw-cursor-not-allowed disabled:tw-opacity-50 [&>span]:!tw-truncate focus-visible:tw-bg-primary-foreground",
+  "tw-flex tw-w-full tw-items-center tw-justify-between tw-rounded-md tw-px-2 tw-text-sm tw-font-medium tw-outline-none tw-transition-all tw-duration-150 placeholder:tw-text-muted-foreground focus-visible:tw-bg-primary-foreground disabled:tw-cursor-not-allowed disabled:tw-opacity-50 [&>span]:!tw-truncate",
   {
     variants: {
       variant: {
@@ -61,13 +55,14 @@ const selectTriggerVariants = cva(
 export type SelectTriggerProps = ArkSelect.TriggerProps &
   VariantProps<typeof selectTriggerVariants>;
 
-const SelectTrigger = forwardRef<
-  ElementRef<typeof ArkSelect.Trigger>,
-  SelectTriggerProps
->(({ variant, className, children, ...props }, ref) => {
+const SelectTrigger = ({
+  variant,
+  className,
+  children,
+  ...props
+}: SelectTriggerProps) => {
   return (
     <ArkSelect.Trigger
-      ref={ref}
       className={cn(selectTriggerVariants({ variant }), className)}
       {...props}
     >
@@ -77,34 +72,24 @@ const SelectTrigger = forwardRef<
       )}
     </ArkSelect.Trigger>
   );
-});
+};
 
 SelectTrigger.displayName = "SelectTrigger";
 
 export type SelectValueProps = ArkSelect.ValueTextProps;
 
-const SelectValue = forwardRef<
-  ElementRef<typeof ArkSelect.ValueText>,
-  SelectValueProps
->(({ className, ...props }, ref) => {
+const SelectValue = ({ className, ...props }: SelectValueProps) => {
   return (
-    <ArkSelect.ValueText
-      ref={ref}
-      className={cn("tw-truncate", className)}
-      {...props}
-    />
+    <ArkSelect.ValueText className={cn("tw-truncate", className)} {...props} />
   );
-});
+};
 
 SelectValue.displayName = "SelectValue";
 
 export type SelectContentProps = ArkSelect.ContentProps;
 
-const SelectContent = forwardRef<
-  ElementRef<typeof ArkSelect.Content>,
-  SelectContentProps
->(({ className, ...props }, ref) => {
-  const { portal } = useContext(SelectContext);
+const SelectContent = ({ className, ...props }: SelectContentProps) => {
+  const { portal } = use(SelectContext);
 
   if (typeof portal === "undefined") {
     throw new Error("SelectContent must be a child of Select");
@@ -116,7 +101,6 @@ const SelectContent = forwardRef<
     <Comp>
       <ArkSelect.Positioner>
         <ArkSelect.Content
-          ref={ref}
           className={cn(
             "custom-scrollbar tw-z-50 tw-overflow-auto tw-rounded-md tw-border tw-border-border/50 tw-bg-popover tw-p-1 tw-text-popover-foreground tw-shadow-md focus-visible:tw-outline-none",
             "data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out",
@@ -132,7 +116,7 @@ const SelectContent = forwardRef<
       </ArkSelect.Positioner>
     </Comp>
   );
-});
+};
 
 SelectContent.displayName = "SelectContent";
 
@@ -140,13 +124,9 @@ const SelectGroup = ArkSelect.ItemGroup;
 
 export type SelectLabelProps = ArkSelect.LabelProps;
 
-const SelectLabel = forwardRef<
-  ElementRef<typeof ArkSelect.Label>,
-  SelectLabelProps
->(({ className, ...props }, ref) => {
+const SelectLabel = ({ className, ...props }: SelectLabelProps) => {
   return (
     <ArkSelect.Label
-      ref={ref}
       className={cn(
         "tw-py-1.5 tw-pl-2 tw-pr-2 tw-text-xs tw-text-muted-foreground",
         className,
@@ -154,7 +134,7 @@ const SelectLabel = forwardRef<
       {...props}
     />
   );
-});
+};
 
 SelectLabel.displayName = "SelectLabel";
 
@@ -162,15 +142,11 @@ export type SelectItemProps = ArkSelect.ItemProps & {
   item: string;
 };
 
-const SelectItem = forwardRef<
-  ElementRef<typeof ArkSelect.Item>,
-  SelectItemProps
->(({ className, children, ...props }, ref) => {
+const SelectItem = ({ className, children, ...props }: SelectItemProps) => {
   return (
     <ArkSelect.Context>
       {({ multiple, value }) => (
         <ArkSelect.Item
-          ref={ref}
           className={cn(
             "tw-relative tw-flex tw-cursor-pointer tw-select-none tw-items-center tw-rounded-sm tw-px-2 tw-py-1.5 tw-text-sm tw-outline-none",
             "data-[disabled]:tw-cursor-not-allowed data-[disabled]:tw-opacity-50",
@@ -191,7 +167,7 @@ const SelectItem = forwardRef<
       )}
     </ArkSelect.Context>
   );
-});
+};
 
 SelectItem.displayName = "SelectItem";
 

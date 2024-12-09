@@ -1,7 +1,10 @@
 import type { BundledTheme } from "shiki";
 
 import { TRANSFORMER } from "@/data/plugins/code-highlighter/code-themes";
-import { LANGUAGE_CODES } from "@/data/plugins/code-highlighter/language-codes";
+import {
+  INTERPRETED_LANGUAGE_CODE,
+  isInterpretedLanguageCode,
+} from "@/data/plugins/code-highlighter/language-codes";
 import dualThemesCss from "@/features/plugins/_core/code-highlighter/dual-themes.css?inline";
 import { setupCodeHighlighterListeners } from "@/features/plugins/_core/code-highlighter/listeners.main";
 import { injectMainWorldScriptBlock, insertCss } from "@/utils/utils";
@@ -74,15 +77,19 @@ export class CodeHighlighter {
 
       if (
         !(language in window.shiki!.bundledLanguages) &&
-        !(language in LANGUAGE_CODES)
+        !(language in INTERPRETED_LANGUAGE_CODE)
       )
         return null;
 
       const preprocessedCodeString =
         TRANSFORMER[language]?.pre?.(codeString) ?? codeString;
 
+      const langKey = isInterpretedLanguageCode(language)
+        ? INTERPRETED_LANGUAGE_CODE[language]
+        : language;
+
       const html = await window.shiki!.codeToHtml(preprocessedCodeString, {
-        lang: language in LANGUAGE_CODES ? LANGUAGE_CODES[language] : language,
+        lang: langKey,
         themes,
       });
 

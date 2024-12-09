@@ -1,13 +1,5 @@
 import { Slot } from "@radix-ui/react-slot";
-import {
-  type ComponentPropsWithoutRef,
-  createContext,
-  type ElementRef,
-  forwardRef,
-  type HTMLAttributes,
-  useContext,
-  useId,
-} from "react";
+import { ComponentProps, createContext, use, useId } from "react";
 import {
   Controller,
   type ControllerProps,
@@ -37,15 +29,15 @@ function FormField<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({ ...props }: ControllerProps<TFieldValues, TName>) {
   return (
-    <FormFieldContext.Provider value={{ name: props.name }}>
+    (<FormFieldContext value={{ name: props.name }}>
       <Controller {...props} />
-    </FormFieldContext.Provider>
+    </FormFieldContext>)
   );
 }
 
 function useFormField() {
-  const fieldContext = useContext(FormFieldContext);
-  const itemContext = useContext(FormItemContext);
+  const fieldContext = use(FormFieldContext);
+  const itemContext = use(FormItemContext);
   const { getFieldState, formState } = useFormContext();
 
   const fieldState = getFieldState(fieldContext.name, formState);
@@ -74,46 +66,36 @@ const FormItemContext = createContext<FormItemContextValue>(
   {} as FormItemContextValue,
 );
 
-const FormItem = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
-    const id = useId();
+const FormItem = ({ className, ...props }: ComponentProps<"div">) => {
+  const id = useId();
 
-    return (
-      <FormItemContext.Provider value={{ id }}>
-        <div ref={ref} className={cn("tw-space-y-2", className)} {...props} />
-      </FormItemContext.Provider>
-    );
-  },
-);
+  return (
+    (<FormItemContext value={{ id }}>
+      <div className={cn("tw-space-y-2", className)} {...props} />
+    </FormItemContext>)
+  );
+};
 FormItem.displayName = "FormItem";
 
-const FormLabel = forwardRef<
-  ElementRef<typeof Label>,
-  ComponentPropsWithoutRef<typeof Label>
->(({ className, ...props }, ref) => {
+const FormLabel = ({ className, ...props }: ComponentProps<typeof Label>) => {
   const { error, formItemId } = useFormField();
 
   return (
     <Label
-      ref={ref}
       className={cn(error && "tw-text-destructive", className)}
       htmlFor={formItemId}
       {...props}
     />
   );
-});
+};
 FormLabel.displayName = "FormLabel";
 
-const FormControl = forwardRef<
-  ElementRef<typeof Slot>,
-  ComponentPropsWithoutRef<typeof Slot>
->(({ ...props }, ref) => {
+const FormControl = ({ ...props }: ComponentProps<typeof Slot>) => {
   const { error, formItemId, formDescriptionId, formMessageId } =
     useFormField();
 
   return (
     <Slot
-      ref={ref}
       id={formItemId}
       aria-describedby={
         !error
@@ -124,30 +106,27 @@ const FormControl = forwardRef<
       {...props}
     />
   );
-});
+};
 FormControl.displayName = "FormControl";
 
-const FormDescription = forwardRef<
-  HTMLParagraphElement,
-  HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => {
+const FormDescription = ({ className, ...props }: ComponentProps<"p">) => {
   const { formDescriptionId } = useFormField();
 
   return (
     <p
-      ref={ref}
       id={formDescriptionId}
       className={cn("tw-text-sm tw-text-muted-foreground", className)}
       {...props}
     />
   );
-});
+};
 FormDescription.displayName = "FormDescription";
 
-const FormMessage = forwardRef<
-  HTMLParagraphElement,
-  HTMLAttributes<HTMLParagraphElement>
->(({ className, children, ...props }, ref) => {
+const FormMessage = ({
+  className,
+  children,
+  ...props
+}: ComponentProps<"p">) => {
   const { error, formMessageId } = useFormField();
 
   const errorMessage = children ?? error?.message;
@@ -156,7 +135,6 @@ const FormMessage = forwardRef<
 
   return (
     <p
-      ref={ref}
       id={formMessageId}
       className={cn("tw-text-sm tw-font-medium tw-text-destructive", className)}
       {...props}
@@ -164,7 +142,7 @@ const FormMessage = forwardRef<
       {errorMessage}
     </p>
   );
-});
+};
 FormMessage.displayName = "FormMessage";
 
 export {

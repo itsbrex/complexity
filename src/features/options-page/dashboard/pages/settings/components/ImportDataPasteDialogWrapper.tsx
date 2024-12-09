@@ -34,7 +34,6 @@ export default function ImportDataPasteDialogWrapper({
         </DialogHeader>
         <div className="tw-flex tw-flex-col tw-gap-4">
           <Textarea
-            ref={ref}
             placeholder="Paste your data here..."
             className="tw-min-h-[200px] tw-font-mono"
           />

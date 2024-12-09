@@ -155,7 +155,7 @@ function MobileSelectContent({ ...props }: DialogProps) {
   }, []);
 
   return (
-    <Sheet unmountOnExit {...props}>
+    <Sheet lazyMount unmountOnExit {...props}>
       <SheetContent side="bottom" className="tw-space-y-6">
         {groupedLanguageModelsByProvider.map(({ provider, models }) => (
           <SelectGroup key={provider} className="tw-space-y-3">

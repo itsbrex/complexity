@@ -86,7 +86,7 @@ function Toolbar() {
   const settings = ExtensionLocalStorageService.getCachedSync();
 
   return (
-    <div className="tw-flex tw-flex-wrap tw-items-center tw-animate-in tw-fade-in md:tw-flex-nowrap">
+    <div className="tw-flex tw-flex-wrap tw-items-center md:tw-flex-nowrap">
       {ctx.type === "main" && (
         <CsUiPluginsGuard
           requiresLoggedIn

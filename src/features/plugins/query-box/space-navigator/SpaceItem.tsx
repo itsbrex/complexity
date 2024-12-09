@@ -7,11 +7,14 @@ import { CommandItem } from "@/components/ui/command";
 import { PopoverContent } from "@/components/ui/popover";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import SpaceItemFile from "@/features/plugins/query-box/space-navigator/SpaceItemFile";
+import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { Space } from "@/services/pplx-api/pplx-api.types";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import { emojiCodeToString, parseUrl } from "@/utils/utils";
 
 export default function SpaceItem({ space }: { space: Space }) {
+  const { isMobile } = useIsMobileStore();
+
   const url = useSpaRouter((state) => state.url);
 
   const spaceSlugFromUrl = parseUrl(url).pathname.split("/").pop();
@@ -50,7 +53,7 @@ export default function SpaceItem({ space }: { space: Space }) {
   });
 
   const shouldShowPopover =
-    !!space.description ||
+    (!isMobile && !!space.description) ||
     !!space.instructions ||
     (files?.num_total_files ?? 0) > 0;
 

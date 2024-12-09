@@ -94,8 +94,6 @@ const dispatchRouteChange = debounce(
 export async function waitForRouteChangeComplete(
   location: ReturnType<typeof whereAmI>,
 ) {
-  applyRouteIdAttrs(location);
-
   const locationChecks: Partial<
     Record<ReturnType<typeof whereAmI>, () => MaybePromise<boolean>>
   > = {
@@ -106,6 +104,8 @@ export async function waitForRouteChangeComplete(
   const check = locationChecks[location] ?? UiUtils.waitForSpaIdle;
 
   await waitForConditionOrTimeout(check);
+
+  applyRouteIdAttrs(location);
 
   async function checkThreadLoaded() {
     await UiUtils.waitForSpaIdle();

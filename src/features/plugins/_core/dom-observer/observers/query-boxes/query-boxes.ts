@@ -20,6 +20,7 @@ export async function setupQueryBoxesObserver(
 
   const shouldObserve =
     settings?.["queryBox:languageModelSelector"] ||
+    settings?.["queryBox:spaceNavigator"] ||
     settings?.["queryBox:noFileCreationOnPaste"];
 
   if (!shouldObserve) return;

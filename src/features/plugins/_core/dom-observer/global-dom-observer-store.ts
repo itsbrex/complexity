@@ -61,7 +61,10 @@ export const globalDomObserverStore =
               const currentKey =
                 key as keyof GlobalDomObserverStore["queryBoxes"];
 
-              if (value != null && value !== get().queryBoxes[currentKey]) {
+              if (
+                value !== undefined &&
+                value !== get().queryBoxes[currentKey]
+              ) {
                 set({
                   queryBoxes: {
                     ...get().queryBoxes,
@@ -79,7 +82,10 @@ export const globalDomObserverStore =
               const currentKey =
                 key as keyof GlobalDomObserverStore["homeComponents"];
 
-              if (value != null && value !== get().homeComponents[currentKey]) {
+              if (
+                value !== undefined &&
+                value !== get().homeComponents[currentKey]
+              ) {
                 set({
                   homeComponents: {
                     ...get().homeComponents,
@@ -106,7 +112,7 @@ export const globalDomObserverStore =
                 key as keyof GlobalDomObserverStore["threadComponents"];
 
               if (
-                value != null &&
+                value !== undefined &&
                 value !== get().threadComponents[currentKey]
               ) {
                 set({

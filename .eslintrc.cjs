@@ -1,5 +1,3 @@
-const { includes } = require("lodash");
-
 module.exports = {
   // Root and environment configuration
   root: true,
@@ -27,7 +25,6 @@ module.exports = {
     "unicorn",
     "@limegrass/import-alias",
     "boundaries",
-    "react-compiler",
   ],
 
   // Files to ignore
@@ -116,7 +113,6 @@ module.exports = {
     ],
 
     // React rules
-    "react-compiler/react-compiler": "error",
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true },

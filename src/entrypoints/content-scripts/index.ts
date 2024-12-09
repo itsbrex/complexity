@@ -43,8 +43,8 @@ async function initCoreModules() {
 async function loadPlugins() {
   await initCache();
 
-  setupCoreObservers();
   setupThemeLoader();
+  setupCoreObservers();
   setupOneTimeLoadPlugins();
   setupNetworkInterceptPlugins();
   setupRouteBasedPlugins();

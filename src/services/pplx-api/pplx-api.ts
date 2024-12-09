@@ -137,20 +137,24 @@ export class PplxApiService {
     );
   }
 
-  private static _debouncedFetchThreads = throttle(function(
-    this: typeof PplxApiService,
-    {
-      searchValue,
-      limit = 20,
-      offset = 0,
-    }: {
-      searchValue?: string;
-      limit?: number;
-      offset?: number;
-    } = {}
-  ) {
-    return this.fetchThreads({ searchValue, limit, offset });
-  }, 10000, { leading: true });
+  private static _debouncedFetchThreads = throttle(
+    function (
+      this: typeof PplxApiService,
+      {
+        searchValue,
+        limit = 20,
+        offset = 0,
+      }: {
+        searchValue?: string;
+        limit?: number;
+        offset?: number;
+      } = {},
+    ) {
+      return this.fetchThreads({ searchValue, limit, offset });
+    },
+    10000,
+    { leading: true },
+  );
 
   static get debouncedFetchThreads() {
     return (params: Parameters<typeof this.fetchThreads>[0] = {}) => {

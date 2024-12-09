@@ -5,7 +5,10 @@ import { cplxApiQueries } from "@/services/cplx-api/query-keys";
 import { compareVersions } from "@/utils/utils";
 
 export default function useExtensionUpdate() {
-  const { data: versions } = useQuery(cplxApiQueries.versions);
+  const { data: versions } = useQuery({
+    ...cplxApiQueries.versions,
+    staleTime: 1000,
+  });
 
   const isUpdateAvailable = useMemo(() => {
     if (!versions) return false;

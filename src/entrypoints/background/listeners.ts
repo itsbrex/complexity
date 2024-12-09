@@ -1,11 +1,5 @@
-import { onMessage } from "webext-bridge/background";
-
 import { APP_CONFIG } from "@/app.config";
 import { getOptionsPageUrl } from "@/utils/utils";
-
-export type BackgroundEvents = {
-  "bg:get-tab-id": () => number;
-};
 
 export function setupBackgroundListeners() {
   if (APP_CONFIG.IS_DEV) {
@@ -24,10 +18,6 @@ export function setupBackgroundListeners() {
     if (reason === "install") {
       chrome.tabs.create({ url: `${getOptionsPageUrl()}#/onboarding` });
     }
-  });
-
-  onMessage("bg:get-tab-id", ({ sender }) => {
-    return sender.tabId;
   });
 
   createDashboardShortcut();

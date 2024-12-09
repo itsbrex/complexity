@@ -12,7 +12,7 @@ function Portal({ children, container }: PortalProps) {
   return (
     <ArkPortal
       container={{
-        current: container ?? $("#complexity-root")[0],
+        current: container ?? $("#complexity-root")[0]!,
       }}
     >
       {children}

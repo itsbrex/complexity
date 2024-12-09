@@ -154,7 +154,7 @@ function observerMessageBlockBottomBar({
 }: {
   messageBlocks: MessageBlock[];
 }) {
-  if (!messageBlocks.length) return;
+  if (messageBlocks[0] == null) return;
 
   const $messageBlockBottomBars = messageBlocks[0].$wrapper.find(
     DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR,

@@ -137,14 +137,16 @@ export async function fetchResource(url: string) {
   const response = await fetch(url);
   return response.text();
 }
-export function getCookie(name: string) {
-  const nameEQ = name + "=";
-  const ca = document.cookie.split(";");
 
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) === " ") c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+export function getCookie(name: string): string | null {
+  const nameEQ = `${name}=`;
+  const cookies = document.cookie.split(";");
+
+  for (const cookie of cookies) {
+    const trimmedCookie = cookie.trim();
+    if (trimmedCookie.startsWith(nameEQ)) {
+      return trimmedCookie.substring(nameEQ.length);
+    }
   }
 
   return null;

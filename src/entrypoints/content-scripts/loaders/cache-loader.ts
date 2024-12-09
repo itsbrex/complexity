@@ -6,7 +6,7 @@ import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import { queryClient } from "@/utils/ts-query-client";
 
 export async function initCache() {
-  queryClient.prefetchQuery(cplxApiQueries.versions);
+  await queryClient.prefetchQuery(cplxApiQueries.versions);
 
   await Promise.all([
     queryClient.prefetchQuery(cplxApiQueries.changelog()),

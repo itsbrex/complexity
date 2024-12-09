@@ -15,6 +15,8 @@ export async function setupCsUiPlugins() {
     .attr("id", "complexity-root")
     .appendTo(document.body);
 
+  if ($root[0] == null) return;
+
   const root = createRoot($root[0]);
 
   root.render(

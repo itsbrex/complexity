@@ -46,9 +46,10 @@ export function useThreadTocItems() {
         const id = `toc-item-${idx}`;
         $wrapper.attr("id", id);
         observer.observe($wrapper[0]);
+
         return {
           id,
-          title: title.length > 0 ? title : prevTocItems[idx].title,
+          title: title.length > 0 ? title : (prevTocItems[idx]?.title ?? ""),
           element: $wrapper,
           isActive: id === activeItemIdRef.current,
         };

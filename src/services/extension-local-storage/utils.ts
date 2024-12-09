@@ -45,7 +45,7 @@ export function setPathToUndefined({
   // Traverse through all paths except the last one
   for (let i = 0; i < paths.length - 1; i++) {
     const path = paths[i];
-    if (typeof current[path] === "object") {
+    if (path != null && typeof current[path] === "object") {
       current = current[path];
     } else {
       return result; // Return if path doesn't exist
@@ -55,7 +55,10 @@ export function setPathToUndefined({
   // Set the last path to undefined
   if (paths.length > 0) {
     const lastPath = paths[paths.length - 1];
-    if (Object.prototype.hasOwnProperty.call(current, lastPath)) {
+    if (
+      lastPath != null &&
+      Object.prototype.hasOwnProperty.call(current, lastPath)
+    ) {
       current[lastPath] = undefined;
     }
   }

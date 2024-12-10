@@ -83,6 +83,10 @@ class PplxThemeLoaderService {
   }
 
   private async injectThemeStyles(tabId: number): Promise<void> {
+    if (!(await chrome.permissions.contains({ permissions: ["scripting"] }))) {
+      return;
+    }
+
     this.injectedTabs.add(tabId);
 
     try {

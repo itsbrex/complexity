@@ -5,11 +5,14 @@ import { NavLink } from "react-router-dom";
 import { navItems } from "@/features/options-page/components/sidebar/nav-items";
 import SidebarUpdateAnnouncer from "@/features/options-page/components/SidebarUpdateAnnouncer";
 import SponsorDialogWrapper from "@/features/options-page/components/SponsorDialogWrapper";
-
+import packageJson from "~/package.json";
 export default function Sidebar() {
   return (
     <div className="tw-sticky tw-top-0 tw-flex tw-h-screen tw-flex-col">
       <div className="tw-flex-1 tw-overflow-y-auto tw-p-4 tw-px-2">
+        <div className="tw-mx-auto tw-mb-4 tw-w-fit tw-text-xs tw-text-muted-foreground">
+          v{packageJson.version}
+        </div>
         {navItems.map(({ icon: Icon, label, path }) => (
           <NavLink
             key={label}

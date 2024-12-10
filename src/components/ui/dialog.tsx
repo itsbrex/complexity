@@ -73,7 +73,7 @@ function DialogHeader({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       className={cn(
-        "tw-flex tw-flex-col tw-space-y-1.5 tw-text-center sm:tw-text-left",
+        "tw-flex tw-flex-col tw-space-y-1.5",
         className,
       )}
       {...props}

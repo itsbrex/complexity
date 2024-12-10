@@ -1,6 +1,5 @@
 import { MatchPattern } from "@webext-core/match-patterns";
 import { defineProxyService } from "@webext-core/proxy-service";
-import debounce from "lodash/debounce";
 
 import { APP_CONFIG } from "@/app.config";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
@@ -62,25 +61,23 @@ class PplxThemeLoaderService {
     this.themeConfig = { css, chosenThemeId };
   }
 
-  private applyTheme = debounce(
-    async (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => {
-      if (changeInfo.status === "complete") return;
+  private applyTheme = async (
+    tabId: number,
+    changeInfo: chrome.tabs.TabChangeInfo,
+  ) => {
+    if (changeInfo.status === "complete") return;
 
-      const tab = await chrome.tabs.get(tabId);
-      if (!tab.url) return;
+    const tab = await chrome.tabs.get(tabId);
+    if (!tab.url) return;
 
-      if (this.isFreshPageLoad(changeInfo)) {
-        this.injectedTabs.delete(tabId);
-      }
+    if (this.isFreshPageLoad(changeInfo)) {
+      this.injectedTabs.delete(tabId);
+    }
 
-      if (this.injectedTabs.has(tabId) || !this.isMatchPatterns(tab.url))
-        return;
+    if (this.injectedTabs.has(tabId) || !this.isMatchPatterns(tab.url)) return;
 
-      await this.injectThemeStyles(tabId);
-    },
-    500,
-    { leading: true },
-  );
+    await this.injectThemeStyles(tabId);
+  };
 
   private isFreshPageLoad(changeInfo: chrome.tabs.TabChangeInfo): boolean {
     return changeInfo.status === "loading" && changeInfo.url == null;

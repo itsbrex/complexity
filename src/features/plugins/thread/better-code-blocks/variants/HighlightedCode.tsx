@@ -85,7 +85,7 @@ const HighlightedCode = memo(() => {
       );
 
       setHighlightedCode(highlighted);
-    }, `highlight-code-block-${sourceMessageBlockIndex}-${sourceCodeBlockIndex}`);
+    }, `highlight-code-block-${Math.random()}`);
   }, [
     codeString,
     language,

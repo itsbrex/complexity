@@ -151,11 +151,8 @@ class UniqueQueue {
   }
 
   pushFront(items: QueueItem[]): void {
-    // Remove existing IDs to prevent duplicates
     items.forEach((item) => this.set.delete(item.id));
-    // Add new items to front of queue
     this.queue.unshift(...items);
-    // Re-add IDs to set
     items.forEach((item) => this.set.add(item.id));
   }
 

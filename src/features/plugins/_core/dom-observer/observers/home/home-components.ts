@@ -29,7 +29,11 @@ export function setupHomeComponentsObserver(
     config: { childList: true, subtree: true },
     onMutation: () =>
       CallbackQueue.getInstance().enqueueArray([
-        { callback: observeSlogan, id: DOM_OBSERVER_ID.COMMON },
+        { callback: observeSlogan, id: `${DOM_OBSERVER_ID.COMMON}-slogan` },
+        {
+          callback: observeHomeBottomBar,
+          id: `${DOM_OBSERVER_ID.COMMON}-bottom-bar`,
+        },
       ]),
   });
 
@@ -49,6 +53,18 @@ function observeSlogan() {
 
   globalDomObserverStore.getState().setHomeComponents({
     slogan: $slogan[0],
+  });
+}
+
+function observeHomeBottomBar() {
+  const $bottomBar = $(DOM_SELECTORS.HOME.BOTTOM_BAR);
+
+  if (!$bottomBar.length || $bottomBar.attr(OBSERVER_ID.BOTTOM_BAR)) return;
+
+  $bottomBar.attr(OBSERVER_ID.BOTTOM_BAR, "true");
+
+  globalDomObserverStore.getState().setHomeComponents({
+    bottomBar: $bottomBar[0],
   });
 }
 

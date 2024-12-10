@@ -25,6 +25,7 @@ export type GlobalDomObserverStore = {
   ) => void;
   homeComponents: {
     slogan: HTMLElement | null;
+    bottomBar: HTMLElement | null;
   };
   setHomeComponents: (
     newHomeComponents: Partial<GlobalDomObserverStore["homeComponents"]>,
@@ -76,6 +77,7 @@ export const globalDomObserverStore =
           },
           homeComponents: {
             slogan: null,
+            bottomBar: null,
           },
           setHomeComponents: (newHomeComponents) => {
             Object.entries(newHomeComponents).forEach(([key, value]) => {

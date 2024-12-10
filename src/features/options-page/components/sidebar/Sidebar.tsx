@@ -2,10 +2,11 @@ import { Trans } from "react-i18next";
 import { LuExternalLink } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 
+import SponsorDialogWrapper from "@/components/SponsorDialogWrapper";
 import { navItems } from "@/features/options-page/components/sidebar/nav-items";
 import SidebarUpdateAnnouncer from "@/features/options-page/components/SidebarUpdateAnnouncer";
-import SponsorDialogWrapper from "@/features/options-page/components/SponsorDialogWrapper";
 import packageJson from "~/package.json";
+
 export default function Sidebar() {
   return (
     <div className="tw-sticky tw-top-0 tw-flex tw-h-screen tw-flex-col">

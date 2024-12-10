@@ -59,6 +59,7 @@ export const DOM_SELECTORS = {
   },
   HOME: {
     SLOGAN: ".mb-lg.md\\:text-center.pb-xs.md\\:text-center",
+    BOTTOM_BAR: ".hidden.pb-md.md\\:block>>div",
     LANGUAGE_SELECTOR: "select#interface-language-select",
   },
   QUERY_BOX: {

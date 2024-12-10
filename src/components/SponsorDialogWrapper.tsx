@@ -17,7 +17,7 @@ export default function SponsorDialogWrapper({
   children: React.ReactNode;
 }) {
   return (
-    <Dialog closeOnEscape={false} closeOnInteractOutside={false}>
+    <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <div className="tw-absolute tw-inset-0 -tw-z-10 tw-bg-gradient-to-b tw-from-primary/20 tw-to-transparent" />
@@ -34,7 +34,7 @@ export default function SponsorDialogWrapper({
             {t("common:sponsorDialog.donation.title")}
           </div>
           <div className="tw-flex tw-flex-col tw-gap-2">
-            <Button className="tw-space-x-2">
+            <Button asChild className="tw-space-x-2">
               <a
                 href="https://paypal.me/pnd280"
                 target="_blank"
@@ -45,7 +45,7 @@ export default function SponsorDialogWrapper({
                 <span>PayPal</span>
               </a>
             </Button>
-            <Button className="tw-space-x-2">
+            <Button asChild className="tw-space-x-2">
               <a
                 href="https://ko-fi.com/pnd280"
                 target="_blank"
@@ -62,7 +62,7 @@ export default function SponsorDialogWrapper({
           <div className="tw-text-muted-foreground">
             {t("common:sponsorDialog.sponsorship.title")}
           </div>
-          <Button className="tw-group tw-w-full tw-space-x-2">
+          <Button asChild className="tw-group tw-w-full tw-space-x-2">
             <a href="mailto:pnd280@gmail.com" target="_blank" rel="noreferrer">
               <span className="tw-flex tw-items-center tw-gap-2 group-hover:tw-hidden">
                 <LuMail className="tw-size-6" />

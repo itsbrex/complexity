@@ -10,8 +10,9 @@ A powerful browser extension that enhances your PerplexityAI experience with adv
 
 <p align="center">
   <div>
-    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpnd280%2Fcomplexity%2Frefs%2Fheads%2Frelease-notes%2Fversions.json&query=chrome&label=stable" alt="Stable version">
-    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpnd280%2Fcomplexity%2Falpha%2Fpackage.json&query=%24.version&label=alpha&color=yellow" alt="Alpha version">
+    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fcdn.cplx.app%2Fversions.json&query=latest&logo=google-chrome&label=chrome" alt="Stable chrome version">
+    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fcdn.cplx.app%2Fversions.json&query=latestFirefox&logo=firefox&logoColor=orange&label=firefox" alt="Stable firefox version">
+    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpnd280%2Fcomplexity%2Fnxt%2Fpackage.json&query=%24.version&logo=test&label=beta&color=yellow" alt="beta">
     <a href="https://discord.gg/fxzqdkwmWx" target="_blank"><img src="https://img.shields.io/discord/1245377426331144304?logo=discord&label=discord&link=https%3A%2F%2Fdiscord.gg%2FfxzqdkwmWx" alt="Discord"></a>
   </div>
   <div>

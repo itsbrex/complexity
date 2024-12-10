@@ -1,10 +1,8 @@
 import { APP_CONFIG } from "@/app.config";
-import type { CplxVersionsApiResponse } from "@/services/cplx-api/cplx-api.types";
+import { CplxVersions } from "@/services/cplx-api/cplx-api.types";
 import { compareVersions } from "@/utils/utils";
 
-export function useVersionPagination(
-  versions: CplxVersionsApiResponse | undefined,
-) {
+export function useVersionPagination(versions: CplxVersions | undefined) {
   const [currentVersionIndex, setCurrentVersionIndex] = useState(0);
 
   const availableVersions = useMemo(() => {

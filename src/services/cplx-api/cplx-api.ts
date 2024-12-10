@@ -6,6 +6,7 @@ import {
   LanguageModelSchema,
 } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import {
+  CplxVersions,
   CplxVersionsApiResponse,
   CplxVersionsApiResponseSchema,
 } from "@/services/cplx-api/cplx-api.types";
@@ -18,19 +19,29 @@ import { queryClient } from "@/utils/ts-query-client";
 import { fetchResource, jsonUtils } from "@/utils/utils";
 
 export class CplxApiService {
-  static async fetchVersions(): Promise<CplxVersionsApiResponse> {
-    return CplxVersionsApiResponseSchema.parse(
+  static async fetchVersions(): Promise<CplxVersions> {
+    const parsedData = CplxVersionsApiResponseSchema.parse(
       JSON.parse(
         await fetchResource(`${APP_CONFIG.CPLX_API_URL}/versions.json`),
       ),
     );
+
+    const latest = (
+      APP_CONFIG.BROWSER === "chrome" ? "latest" : "latestFirefox"
+    ) satisfies keyof CplxVersionsApiResponse;
+
+    return {
+      latest: parsedData[latest],
+      changelogEntries: parsedData.changelogEntries,
+      featureFlagsEntries: parsedData.featureFlagsEntries,
+    };
   }
 
   static async fetchFeatureFlags(): Promise<CplxFeatureFlags> {
     const currentVersion = APP_CONFIG.VERSION;
 
     const versions =
-      queryClient.getQueryData<CplxVersionsApiResponse>(
+      queryClient.getQueryData<CplxVersions>(
         cplxApiQueries.versions.queryKey,
       ) ?? (await queryClient.fetchQuery(cplxApiQueries.versions));
 
@@ -63,7 +74,7 @@ export class CplxApiService {
     const targetVersion = version ?? APP_CONFIG.VERSION;
 
     const versions =
-      queryClient.getQueryData<CplxVersionsApiResponse>(
+      queryClient.getQueryData<CplxVersions>(
         cplxApiQueries.versions.queryKey,
       ) ?? (await queryClient.fetchQuery(cplxApiQueries.versions));
 

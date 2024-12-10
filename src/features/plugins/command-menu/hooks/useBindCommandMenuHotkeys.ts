@@ -6,9 +6,12 @@ import {
   useCommandMenuStore,
 } from "@/features/plugins/command-menu/store";
 import usePlatformDetection from "@/hooks/usePlatformDetection";
+import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { keysToString } from "@/utils/utils";
 
 export default function useBindCommandMenuHotkeys() {
+  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+
   const isMac = usePlatformDetection() === "mac";
 
   const state = useCommandMenuStore();
@@ -112,6 +115,7 @@ export default function useBindCommandMenuHotkeys() {
       setOpen(false);
     },
     {
+      enabled: pluginsEnableStates?.["zenMode"],
       preventDefault: true,
       enableOnContentEditable: true,
       enableOnFormTags: true,

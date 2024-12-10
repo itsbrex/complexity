@@ -28,7 +28,8 @@ export function withGuard<P extends unknown[], R>(
     if (!suppressGuardError) {
       const error = new Error(errorMessage);
       Error.captureStackTrace(error, wrappedFunction);
-      const stackLine = error.stack?.split("\n")[1]?.trim() ?? "Unknown location";
+      const stackLine =
+        error.stack?.split("\n")[1]?.trim() ?? "Unknown location";
       console.error(`${stackLine}: ${errorMessage}`);
     }
 

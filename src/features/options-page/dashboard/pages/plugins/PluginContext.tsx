@@ -27,7 +27,7 @@ const PluginContext = createContext<PluginContextType>([
 export function PluginProvider({ children }: { children: ReactNode }) {
   const state = useState<PluginFilters>(defaultFilters);
 
-  return (<PluginContext value={state}>{children}</PluginContext>);
+  return <PluginContext value={state}>{children}</PluginContext>;
 }
 
 export const usePluginContext = () => use(PluginContext);

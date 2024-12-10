@@ -2,13 +2,13 @@ import { APP_CONFIG } from "@/app.config";
 import { getOptionsPageUrl } from "@/utils/utils";
 
 export function setupBackgroundListeners() {
-  if (APP_CONFIG.IS_DEV) {
-    chrome.runtime.onInstalled.addListener(() => {
-      chrome.tabs.create({
-        url: getOptionsPageUrl(),
-      });
-    });
-  }
+  // if (APP_CONFIG.IS_DEV) {
+  //   chrome.runtime.onInstalled.addListener(() => {
+  //     chrome.tabs.create({
+  //       url: getOptionsPageUrl(),
+  //     });
+  //   });
+  // }
 
   chrome.action.onClicked.addListener(() => {
     chrome.tabs.create({ url: "https://perplexity.ai/" });

@@ -29,9 +29,9 @@ function FormField<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({ ...props }: ControllerProps<TFieldValues, TName>) {
   return (
-    (<FormFieldContext value={{ name: props.name }}>
+    <FormFieldContext value={{ name: props.name }}>
       <Controller {...props} />
-    </FormFieldContext>)
+    </FormFieldContext>
   );
 }
 
@@ -70,9 +70,9 @@ const FormItem = ({ className, ...props }: ComponentProps<"div">) => {
   const id = useId();
 
   return (
-    (<FormItemContext value={{ id }}>
+    <FormItemContext value={{ id }}>
       <div className={cn("tw-space-y-2", className)} {...props} />
-    </FormItemContext>)
+    </FormItemContext>
   );
 };
 FormItem.displayName = "FormItem";

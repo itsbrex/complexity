@@ -16,9 +16,7 @@ type PageProps = {
 export default function Page({ title, page, children }: PageProps) {
   return (
     <>
-      <title key={title}>
-        <title>{title}</title>
-      </title>
+      <title>{title}</title>
       {page ? React.createElement(page) : children}
     </>
   );

@@ -199,6 +199,10 @@ export function parseUrl(url: string = window.location.href): ParsedUrl {
 }
 
 export function whereAmI(providedUrl?: string) {
+  if (typeof window === "undefined") {
+    return "unknown";
+  }
+
   const url = parseUrl(providedUrl || window.location.href);
 
   const hostname = url.hostname;

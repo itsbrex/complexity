@@ -10,9 +10,16 @@ class PplxThemeLoaderService {
   private static instance: PplxThemeLoaderService;
   private injectedTabs = new Set<number>();
 
-  private perplexityAiMatchPattern = new MatchPattern(
-    APP_CONFIG["perplexity-ai"].globalMatches[0]!,
-  );
+  private perplexityAiMatchPatterns = [
+    new MatchPattern(APP_CONFIG["perplexity-ai"].globalMatches[0]!),
+    new MatchPattern(APP_CONFIG["perplexity-ai"].globalMatches[1]!),
+  ];
+
+  private isMatchPatterns(url: string): boolean {
+    return this.perplexityAiMatchPatterns.some((pattern) =>
+      pattern.includes(url),
+    );
+  }
 
   private themeConfig = {
     chosenThemeId: "",
@@ -66,10 +73,7 @@ class PplxThemeLoaderService {
         this.injectedTabs.delete(tabId);
       }
 
-      if (
-        this.injectedTabs.has(tabId) ||
-        !this.perplexityAiMatchPattern.includes(tab.url)
-      )
+      if (this.injectedTabs.has(tabId) || !this.isMatchPatterns(tab.url))
         return;
 
       await this.injectThemeStyles(tabId);

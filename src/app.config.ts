@@ -21,7 +21,7 @@ const APP_CONFIG = {
   IS_DEV: Boolean(parsedEnv.DEV) || parsedEnv.NODE_ENV === "development",
   CPLX_API_URL: parsedEnv.VITE_CPLX_API_URL,
   "perplexity-ai": {
-    globalMatches: ["https://*.perplexity.ai/*"],
+    globalMatches: ["https://www.perplexity.ai/*", "https://perplexity.ai/*"],
     globalExcludeMatches: [
       "https://stripe.perplexity.ai/*",
       "https://*.perplexity.ai/p/api/*",

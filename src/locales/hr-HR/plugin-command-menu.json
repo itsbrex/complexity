@@ -7,6 +7,7 @@
     "groups": {
       "search": "Pretraži",
       "quickNavigations": "Brza navigacija",
+      "zenMode": "Zen način",
       "colorScheme": "Promijeni shemu boja"
     },
     "filters": {
@@ -32,14 +33,14 @@
       "system": "Sustav"
     },
     "threadSearch": {
-      "error": "Neuspjelo učitavanje razgovora. Molimo pokušajte kasnije.",
+      "error": "Dohvaćanje razgovora nije uspjelo. Molimo pokušajte kasnije.",
       "loading": "Učitavanje razgovora",
       "empty": {
         "withSearch": "Nisu pronađeni razgovori.",
         "withoutSearch": "Počnite tipkati za pretraživanje"
       },
       "heading": {
-        "withSearch": "{{count}} najnovijih razgovora s traženim pojmom",
+        "withSearch": "{{count}} najnoviji razgovor(i) s traženim pojmom",
         "withoutSearch": "Nedavni razgovori"
       },
       "spacePreview": {
@@ -47,12 +48,12 @@
       }
     },
     "spaceSearch": {
-      "error": "Neuspjelo učitavanje prostora. Molimo pokušajte kasnije.",
+      "error": "Dohvaćanje prostora nije uspjelo. Molimo pokušajte kasnije.",
       "loading": "Učitavanje prostora",
       "empty": "Nisu pronađeni prostori.",
       "spaceThreads": {
         "loading": "Učitavanje razgovora za \"{{title}}\"",
-        "error": "Neuspjelo učitavanje razgovora. Molimo pokušajte kasnije.",
+        "error": "Dohvaćanje razgovora nije uspjelo. Molimo pokušajte kasnije.",
         "empty": "Nisu pronađeni razgovori u ovom prostoru.",
         "heading": "Complexity može pretraživati samo 50 najnovijih razgovora."
       },

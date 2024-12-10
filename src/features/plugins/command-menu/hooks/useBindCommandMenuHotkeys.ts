@@ -44,7 +44,10 @@ export default function useBindCommandMenuHotkeys() {
   }, [filter, historyPosition]);
 
   useHotkeys(
-    keysToString([Key.Alt, Key.ArrowLeft, Key.Alt, Key.ArrowRight]),
+    [
+      keysToString([Key.Alt, Key.ArrowLeft]),
+      keysToString([Key.Alt, Key.ArrowRight]),
+    ],
     (e) => {
       if (filterHistory.length < 2) return;
 
@@ -92,6 +95,21 @@ export default function useBindCommandMenuHotkeys() {
         if (filter === "spaces") return;
       }
       setFilter(filter === "spaces" ? null : "spaces");
+    },
+    {
+      preventDefault: true,
+      enableOnContentEditable: true,
+      enableOnFormTags: true,
+    },
+  );
+
+  useHotkeys(
+    keysToString([Key.Control, Key.Alt, "z"]),
+    () => {
+      const previousZenMode = $("body").attr("data-cplx-zen-mode");
+      const newZenMode = previousZenMode === "true" ? "false" : "true";
+      $("body").attr("data-cplx-zen-mode", newZenMode);
+      setOpen(false);
     },
     {
       preventDefault: true,

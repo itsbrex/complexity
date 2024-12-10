@@ -7,6 +7,7 @@
     "groups": {
       "search": "Search",
       "quickNavigations": "Quick navigations",
+      "zenMode": "Zen Mode",
       "colorScheme": "Change color scheme"
     },
     "filters": {

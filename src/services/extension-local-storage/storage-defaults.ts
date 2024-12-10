@@ -81,6 +81,9 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "hide-get-mobile-app-cta-btn": {
       enabled: false,
     },
+    zenMode: {
+      enabled: false,
+    },
   },
   favoritePluginIds: [],
   theme: "complexity",

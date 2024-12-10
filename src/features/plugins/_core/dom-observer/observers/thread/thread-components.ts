@@ -37,7 +37,8 @@ export async function setupThreadComponentsObserver(
     settings?.["thread:toc"] ||
     settings?.["thread:betterCodeBlocks"] ||
     settings?.["thread:betterMessageToolbars"] ||
-    settings?.["thread:betterMessageCopyButtons"];
+    settings?.["thread:betterMessageCopyButtons"] ||
+    settings?.["zenMode"];
 
   if (!shouldObserve) return;
 

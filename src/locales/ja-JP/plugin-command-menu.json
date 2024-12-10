@@ -1,13 +1,14 @@
 {
   "commandMenu": {
     "input": {
-      "placeholder": "コマンドを入力または検索..."
+      "placeholder": "コマンドを入力するか検索..."
     },
     "noResults": "<emphasis>{{code}}</emphasis>の検索結果が見つかりません。",
     "groups": {
       "search": "検索",
       "quickNavigations": "クイックナビゲーション",
-      "colorScheme": "カラーテーマを変更"
+      "zenMode": "禅モード",
+      "colorScheme": "カラーテーマの変更"
     },
     "filters": {
       "threads": {
@@ -43,7 +44,7 @@
         "withoutSearch": "最近のスレッド"
       },
       "spacePreview": {
-        "tooltip": "このスペース内のスレッドを検索するにはクリックしてください"
+        "tooltip": "このスペース内のスレッドを検索するにはクリ��クしてください"
       }
     },
     "spaceSearch": {
@@ -58,8 +59,8 @@
       },
       "spaceItem": {
         "details": {
-          "description": "説明:",
-          "instructions": "手順:"
+          "description": "説明：",
+          "instructions": "手順："
         },
         "searchHint": "このスペース内のスレッドを検索する"
       }

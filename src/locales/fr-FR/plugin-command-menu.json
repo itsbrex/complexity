@@ -7,6 +7,7 @@
     "groups": {
       "search": "Rechercher",
       "quickNavigations": "Navigations rapides",
+      "zenMode": "Mode Zen",
       "colorScheme": "Changer le thème de couleur"
     },
     "filters": {
@@ -39,7 +40,7 @@
         "withoutSearch": "Commencez à taper pour rechercher"
       },
       "heading": {
-        "withSearch": "{{count}} dernière(s) discussion(s) avec le terme recherché",
+        "withSearch": "{{count}} discussion(s) récente(s) avec le terme recherché",
         "withoutSearch": "Discussions récentes"
       },
       "spacePreview": {

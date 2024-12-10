@@ -1,0 +1,54 @@
+body[data-cplx-zen-mode="true"] {
+  .min-h-\[100dvh\] {
+    /* Sidebar */
+    > div:first-child {
+      display: none;
+    }
+
+    /* Padding compensation */
+    > div:last-child {
+      @apply tw-pl-2;
+    }
+  }
+
+  &[location="home"] {
+    .hidden.pb-md.md\:block {
+      display: none !important;
+    }
+  }
+
+  &[location="thread"] {
+    [data-cplx-component="thread-navbar"] {
+      > div > div:last-child {
+        /* Convert to page button */
+        > div:first-child > button {
+          display: none;
+        }
+
+        /* share button */
+        > div:last-child {
+          display: none;
+        }
+      }
+    }
+
+    [data-cplx-component="message-block"] {
+      /* Related follow-ups section */
+      [data-cplx-component="message-block-query"]
+        + div
+        + div:has(> div.mt-lg.border-t.pt-lg.duration-1000) {
+        display: none;
+      }
+
+      [data-cplx-component="message-block-text-col"] {
+        grid-column: span 12 / span 12 !important;
+      }
+
+      [data-cplx-component="message-block-visual-col"] {
+        display: none !important;
+      }
+    }
+
+    
+  }
+}

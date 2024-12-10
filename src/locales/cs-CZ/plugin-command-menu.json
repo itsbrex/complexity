@@ -7,6 +7,7 @@
     "groups": {
       "search": "Hledat",
       "quickNavigations": "Rychlá navigace",
+      "zenMode": "Zen režim",
       "colorScheme": "Změnit barevné schéma"
     },
     "filters": {
@@ -24,7 +25,7 @@
       "discover": "Objevit",
       "library": "Knihovna",
       "userSettings": "Nastavení uživatele",
-      "labs": "Laboratoře"
+      "labs": "Laboratoř"
     },
     "colorSchemes": {
       "dark": "Tmavý",
@@ -39,7 +40,7 @@
         "withoutSearch": "Začněte psát pro vyhledávání"
       },
       "heading": {
-        "withSearch": "{{count}} nejnovějších vláken s hledaným výrazem",
+        "withSearch": "{{count}} nejnovější vlákno/a s hledaným výrazem",
         "withoutSearch": "Nedávná vlákna"
       },
       "spacePreview": {

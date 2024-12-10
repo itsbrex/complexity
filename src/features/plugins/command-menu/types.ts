@@ -12,6 +12,11 @@ export type BaseItem = {
   shortcut?: string[];
 };
 
+export type ZenModeItem = BaseItem & {
+  type: "enable" | "disable";
+  action: () => void;
+};
+
 export type SearchItem = BaseItem & {
   code: SearchFilter;
 };

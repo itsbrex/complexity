@@ -1,12 +1,13 @@
 {
   "commandMenu": {
     "input": {
-      "placeholder": "Zadajte príkaz alebo hľadajte..."
+      "placeholder": "Zadajte príkaz alebo vyhľadávajte..."
     },
     "noResults": "Pre <emphasis>{{code}}</emphasis> neboli nájdené žiadne výsledky.",
     "groups": {
       "search": "Hľadať",
       "quickNavigations": "Rýchla navigácia",
+      "zenMode": "Zen režim",
       "colorScheme": "Zmeniť farebnú schému"
     },
     "filters": {
@@ -23,7 +24,7 @@
       "home": "Domov",
       "discover": "Objaviť",
       "library": "Knižnica",
-      "userSettings": "Nastavenia používateľa",
+      "userSettings": "Používateľské nastavenia",
       "labs": "Laboratórium"
     },
     "colorSchemes": {
@@ -39,7 +40,7 @@
         "withoutSearch": "Začnite písať pre vyhľadávanie"
       },
       "heading": {
-        "withSearch": "{{count}} najnovších vlákien s hľadaným výrazom",
+        "withSearch": "{{count}} najnovšie vlákno/a s hľadaným výrazom",
         "withoutSearch": "Nedávne vlákna"
       },
       "spacePreview": {

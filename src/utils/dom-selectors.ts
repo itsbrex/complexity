@@ -50,7 +50,6 @@ export const DOM_SELECTORS = {
         COPY_BUTTON: 'button[aria-label="Copy"]',
         THUMBS_DOWN_BUTTON: 'button:has([data-icon="thumbs-down"]',
         MISC_BUTTON: 'button:has([data-icon="ellipsis"])',
-        REWRITE_BUTTON: 'button:contains("Rewrite")',
       },
     },
     POPPER: {

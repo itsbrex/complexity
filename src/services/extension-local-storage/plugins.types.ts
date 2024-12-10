@@ -43,6 +43,7 @@ export const PluginsSchema = z.object({
     slogan: z.string(),
   }),
   "hide-get-mobile-app-cta-btn": PluginSettingsSchema,
+  zenMode: PluginSettingsSchema,
 });
 
 export type Plugins = z.infer<typeof PluginsSchema>;

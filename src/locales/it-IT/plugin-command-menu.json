@@ -7,6 +7,7 @@
     "groups": {
       "search": "Cerca",
       "quickNavigations": "Navigazione rapida",
+      "zenMode": "Modalità Zen",
       "colorScheme": "Cambia schema colori"
     },
     "filters": {
@@ -32,14 +33,14 @@
       "system": "Sistema"
     },
     "threadSearch": {
-      "error": "Impossibile caricare le discussioni. Riprova più tardi.",
+      "error": "Impossibile recuperare le discussioni. Riprova più tardi.",
       "loading": "Caricamento discussioni",
       "empty": {
         "withSearch": "Nessuna discussione trovata.",
         "withoutSearch": "Inizia a digitare per cercare"
       },
       "heading": {
-        "withSearch": "{{count}} ultime discussioni con il termine di ricerca",
+        "withSearch": "{{count}} discussione/i più recente/i con il termine di ricerca",
         "withoutSearch": "Discussioni recenti"
       },
       "spacePreview": {
@@ -47,12 +48,12 @@
       }
     },
     "spaceSearch": {
-      "error": "Impossibile caricare gli spazi. Riprova più tardi.",
+      "error": "Impossibile recuperare gli spazi. Riprova più tardi.",
       "loading": "Caricamento spazi",
       "empty": "Nessuno spazio trovato.",
       "spaceThreads": {
         "loading": "Caricamento discussioni per \"{{title}}\"",
-        "error": "Impossibile caricare le discussioni. Riprova più tardi.",
+        "error": "Impossibile recuperare le discussioni. Riprova più tardi.",
         "empty": "Nessuna discussione trovata in questo spazio.",
         "heading": "Complexity può cercare solo nelle 50 discussioni più recenti."
       },

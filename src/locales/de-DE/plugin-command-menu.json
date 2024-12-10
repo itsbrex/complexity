@@ -7,6 +7,7 @@
     "groups": {
       "search": "Suchen",
       "quickNavigations": "Schnellnavigation",
+      "zenMode": "Zen-Modus",
       "colorScheme": "Farbschema ändern"
     },
     "filters": {
@@ -39,7 +40,7 @@
         "withoutSearch": "Beginnen Sie mit der Eingabe, um zu suchen"
       },
       "heading": {
-        "withSearch": "{{count}} neueste(r) Thread(s) mit dem Suchbegriff",
+        "withSearch": "{{count}} neueste Thread(s) mit dem Suchbegriff",
         "withoutSearch": "Aktuelle Threads"
       },
       "spacePreview": {

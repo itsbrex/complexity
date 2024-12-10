@@ -1,16 +1,17 @@
 import { Switch as ArkSwitch } from "@ark-ui/react";
-import { ElementRef, ReactNode } from "react";
+import { ReactNode } from "react";
 
-const Switch = forwardRef<
-  ElementRef<typeof ArkSwitch.Root>,
-  ArkSwitch.RootProps & {
-    labelClassName?: string;
-    textLabel?: ReactNode;
-  }
->(({ textLabel, labelClassName, className, ...props }, ref) => {
+function Switch({
+  textLabel,
+  labelClassName,
+  className,
+  ...props
+}: ArkSwitch.RootProps & {
+  labelClassName?: string;
+  textLabel?: ReactNode;
+}) {
   return (
     <ArkSwitch.Root
-      ref={ref}
       className={cn("tw-flex tw-items-center tw-space-x-2", className)}
       {...props}
     >
@@ -46,7 +47,7 @@ const Switch = forwardRef<
       </ArkSwitch.Context>
     </ArkSwitch.Root>
   );
-});
+}
 
 Switch.displayName = "Switch";
 

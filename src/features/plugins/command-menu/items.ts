@@ -1,4 +1,11 @@
-import { LuComputer, LuMoon, LuSettings, LuSun } from "react-icons/lu";
+import {
+  LuComputer,
+  LuGrid,
+  LuLayoutGrid,
+  LuMoon,
+  LuSettings,
+  LuSun,
+} from "react-icons/lu";
 import { SiPerplexity } from "react-icons/si";
 
 import PplxDiscover from "@/components/icons/PplxDiscover";
@@ -7,10 +14,34 @@ import PplxLibrary from "@/components/icons/PplxLibrary";
 import PplxSpace from "@/components/icons/PplxSpace";
 import PplxThread from "@/components/icons/PplxThread";
 import type {
+  ZenModeItem,
   ColorSchemeItem,
   NavigationItem,
   SearchItem,
 } from "@/features/plugins/command-menu/types";
+
+export const ZENMODE_ITEMS: ZenModeItem[] = [
+  {
+    type: "enable",
+    label: "Enable Zen Mode",
+    icon: LuLayoutGrid,
+    keywords: ["enable", "zen", "mode"],
+    action: () => {
+      $("body").attr("data-cplx-zen-mode", "true");
+    },
+    shortcut: ["Ctrl", "Alt", "Z"],
+  },
+  {
+    type: "disable",
+    label: "Disable Zen Mode",
+    icon: LuGrid,
+    keywords: ["disable", "zen", "mode"],
+    action: () => {
+      $("body").attr("data-cplx-zen-mode", "false");
+    },
+    shortcut: ["Ctrl", "Alt", "Z"],
+  },
+];
 
 export type SearchFilter = "threads" | "spaces" | "spaces-threads";
 

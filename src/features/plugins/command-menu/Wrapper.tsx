@@ -16,8 +16,10 @@ import SearchItem from "@/features/plugins/command-menu/components/SearchItem";
 import SpaceSearchItems from "@/features/plugins/command-menu/components/space-search-items/SpaceSearchItems";
 import SpaceThreadsSearchItems from "@/features/plugins/command-menu/components/space-search-items/SpaceThreadsSearchItems";
 import ThreadSearchItems from "@/features/plugins/command-menu/components/thread-search-items/ThreadSearchItems";
+import ZenModeItem from "@/features/plugins/command-menu/components/ZenModeItem";
 import useBindCommandMenuHotkeys from "@/features/plugins/command-menu/hooks/useBindCommandMenuHotkeys";
 import {
+  ZENMODE_ITEMS,
   COLOR_SCHEME_ITEMS,
   NAVIGATION_ITEMS,
   SEARCH_FILTERS,
@@ -142,6 +144,16 @@ export default function CommandMenuWrapper() {
             >
               {NAVIGATION_ITEMS.map((item, idx) => (
                 <NavigationItem key={idx} {...item} />
+              ))}
+            </CommandGroup>
+
+            <CommandSeparator />
+
+            <CommandGroup
+              heading={t("plugin-command-menu:commandMenu.groups.zenMode")}
+            >
+              {ZENMODE_ITEMS.map((item, idx) => (
+                <ZenModeItem key={idx} {...item} />
               ))}
             </CommandGroup>
 

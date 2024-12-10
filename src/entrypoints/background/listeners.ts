@@ -1,22 +1,23 @@
-import { APP_CONFIG } from "@/app.config";
-import { getOptionsPageUrl } from "@/utils/utils";
+import { compareVersions, getOptionsPageUrl } from "@/utils/utils";
 
 export function setupBackgroundListeners() {
-  // if (APP_CONFIG.IS_DEV) {
-  //   chrome.runtime.onInstalled.addListener(() => {
-  //     chrome.tabs.create({
-  //       url: getOptionsPageUrl(),
-  //     });
-  //   });
-  // }
-
   chrome.action.onClicked.addListener(() => {
     chrome.tabs.create({ url: "https://perplexity.ai/" });
   });
 
-  chrome.runtime.onInstalled.addListener(({ reason }) => {
-    if (reason === "install") {
-      chrome.tabs.create({ url: `${getOptionsPageUrl()}#/onboarding` });
+  chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
+    if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
+      chrome.tabs.create({
+        url: `${getOptionsPageUrl()}#/onboarding`,
+      });
+    } else if (
+      reason === chrome.runtime.OnInstalledReason.UPDATE &&
+      previousVersion &&
+      compareVersions("1.0.0.0", previousVersion) > 0
+    ) {
+      chrome.tabs.create({
+        url: `${getOptionsPageUrl()}#/onboarding?fromAlpha=true`,
+      });
     }
   });
 

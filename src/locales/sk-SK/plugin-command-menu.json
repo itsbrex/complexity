@@ -64,6 +64,33 @@
         },
         "searchHint": "pre vyhľadávanie vlákien v tomto Priestore"
       }
+    },
+    "zenMode": {
+      "enable": "Povoliť Zen režim",
+      "disable": "Zak��zať Zen režim"
+    },
+    "keywords": {
+      "enable": "povoliť",
+      "zen": "zen",
+      "mode": "režim",
+      "disable": "zakázať",
+      "threads": "vlákna",
+      "spaces": "priestory",
+      "search": "hľadať",
+      "home": "domov",
+      "discover": "objaviť",
+      "library": "knižnica",
+      "user": "používateľ",
+      "settings": "nastavenia",
+      "labs": "laboratórium",
+      "navigate": "navigovať",
+      "dark": "tmavý",
+      "light": "svetlý",
+      "system": "systémový",
+      "theme": "téma",
+      "change": "zmeniť",
+      "color": "farba",
+      "scheme": "schéma"
     }
   }
 } 

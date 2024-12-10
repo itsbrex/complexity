@@ -64,6 +64,33 @@
         },
         "searchHint": "aby wyszukać wątki w tej Przestrzeni"
       }
+    },
+    "zenMode": {
+      "enable": "Włącz tryb Zen",
+      "disable": "Wyłącz tryb Zen"
+    },
+    "keywords": {
+      "enable": "włącz",
+      "zen": "zen",
+      "mode": "tryb",
+      "disable": "wyłącz",
+      "threads": "wątki",
+      "spaces": "przestrzenie",
+      "search": "szukaj",
+      "home": "strona główna",
+      "discover": "odkrywaj",
+      "library": "biblioteka",
+      "user": "użytkownik",
+      "settings": "ustawienia",
+      "labs": "laboratorium",
+      "navigate": "nawiguj",
+      "dark": "ciemny",
+      "light": "jasny",
+      "system": "systemowy",
+      "theme": "motyw",
+      "change": "zmień",
+      "color": "kolor",
+      "scheme": "schemat"
     }
   }
 } 

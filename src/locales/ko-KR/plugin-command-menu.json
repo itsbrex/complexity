@@ -64,6 +64,33 @@
         },
         "searchHint": "이 스페이스의 스레드 검색"
       }
+    },
+    "zenMode": {
+      "enable": "젠 모드 활성화",
+      "disable": "젠 모드 비활성화"
+    },
+    "keywords": {
+      "enable": "활성화",
+      "zen": "젠",
+      "mode": "모드",
+      "disable": "비활성화",
+      "threads": "스레드",
+      "spaces": "스페이스",
+      "search": "검색",
+      "home": "홈",
+      "discover": "탐색",
+      "library": "라이브러리",
+      "user": "사용자",
+      "settings": "설정",
+      "labs": "실험실",
+      "navigate": "이동",
+      "dark": "다크",
+      "light": "라이트",
+      "system": "시스템",
+      "theme": "테마",
+      "change": "변경",
+      "color": "색상",
+      "scheme": "스키마"
     }
   }
 } 

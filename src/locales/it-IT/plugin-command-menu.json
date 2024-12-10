@@ -64,6 +64,33 @@
         },
         "searchHint": "per cercare discussioni in questo Spazio"
       }
+    },
+    "zenMode": {
+      "enable": "Attiva modalità Zen",
+      "disable": "Disattiva modalità Zen"
+    },
+    "keywords": {
+      "enable": "attiva",
+      "zen": "zen",
+      "mode": "modalità",
+      "disable": "disattiva",
+      "threads": "discussioni",
+      "spaces": "spazi",
+      "search": "cerca",
+      "home": "home",
+      "discover": "scopri",
+      "library": "libreria",
+      "user": "utente",
+      "settings": "impostazioni",
+      "labs": "laboratori",
+      "navigate": "naviga",
+      "dark": "scuro",
+      "light": "chiaro",
+      "system": "sistema",
+      "theme": "tema",
+      "change": "cambia",
+      "color": "colore",
+      "scheme": "schema"
     }
   }
 } 

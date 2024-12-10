@@ -35,6 +35,7 @@ type Resources = {
     "plugin-better-code-blocks": any;
     "plugin-on-cloudflare-timeout-reload": any;
     "plugin-command-menu": any;
+    "plugin-space-navigator": any;
   };
 };
 
@@ -61,6 +62,9 @@ async function loadLanguageResources(language: string) {
     ),
     "plugin-command-menu": await import(
       `~/src/locales/${language}/plugin-command-menu.json`
+    ),
+    "plugin-space-navigator": await import(
+      `~/src/locales/${language}/plugin-space-navigator.json`
     ),
   };
 }
@@ -89,6 +93,7 @@ export async function initializeI18next() {
       "plugin-better-code-blocks",
       "plugin-on-cloudflare-timeout-reload",
       "plugin-command-menu",
+      "plugin-space-navigator",
     ],
     resources,
   });

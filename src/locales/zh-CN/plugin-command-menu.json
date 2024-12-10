@@ -64,6 +64,33 @@
         },
         "searchHint": "搜索此空间中的主题"
       }
+    },
+    "zenMode": {
+      "enable": "启用禅模式",
+      "disable": "禁用禅模式"
+    },
+    "keywords": {
+      "enable": "启用",
+      "zen": "禅",
+      "mode": "模式",
+      "disable": "禁用",
+      "threads": "主题",
+      "spaces": "空间",
+      "search": "搜索",
+      "home": "首页",
+      "discover": "发现",
+      "library": "资料库",
+      "user": "用户",
+      "settings": "设置",
+      "labs": "实验室",
+      "navigate": "导航",
+      "dark": "深色",
+      "light": "浅色",
+      "system": "系统",
+      "theme": "主题",
+      "change": "更改",
+      "color": "颜色",
+      "scheme": "方案"
     }
   }
 } 

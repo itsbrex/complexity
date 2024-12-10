@@ -1,0 +1,21 @@
+{
+  "spaceNavigator": {
+    "button": {
+      "label": "Keresés és navigálás a térbe",
+      "defaultText": "Terek"
+    },
+    "search": {
+      "placeholder": "Keresés...",
+      "noResults": "Nincs találat."
+    },
+    "loading": "Betöltés...",
+    "spaceItem": {
+      "currentLocation": "Itt vagy",
+      "details": {
+        "description": "Leírás",
+        "instructions": "Útmutató",
+        "files": "Fájlok ({{count}})"
+      }
+    }
+  }
+} 

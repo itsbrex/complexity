@@ -64,6 +64,33 @@
         },
         "searchHint": "za pretraživanje razgovora u ovom Prostoru"
       }
+    },
+    "zenMode": {
+      "enable": "Omogući Zen način",
+      "disable": "Onemogući Zen način"
+    },
+    "keywords": {
+      "enable": "omogući",
+      "zen": "zen",
+      "mode": "način",
+      "disable": "onemogući",
+      "threads": "razgovori",
+      "spaces": "prostori",
+      "search": "pretraži",
+      "home": "početna",
+      "discover": "otkrij",
+      "library": "biblioteka",
+      "user": "korisnik",
+      "settings": "postavke",
+      "labs": "laboratorij",
+      "navigate": "navigiraj",
+      "dark": "tamno",
+      "light": "svijetlo",
+      "system": "sustav",
+      "theme": "tema",
+      "change": "promijeni",
+      "color": "boja",
+      "scheme": "shema"
     }
   }
 } 

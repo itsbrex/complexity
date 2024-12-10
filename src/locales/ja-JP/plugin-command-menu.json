@@ -44,7 +44,7 @@
         "withoutSearch": "最近のスレッド"
       },
       "spacePreview": {
-        "tooltip": "このスペース内のスレッドを検索するにはクリ��クしてください"
+        "tooltip": "このスペース内のスレッドを検索するにはクリクしてください"
       }
     },
     "spaceSearch": {
@@ -64,6 +64,33 @@
         },
         "searchHint": "このスペース内のスレッドを検索する"
       }
+    },
+    "zenMode": {
+      "enable": "禅モードを有効にする",
+      "disable": "禅モードを無効にする"
+    },
+    "keywords": {
+      "enable": "有効",
+      "zen": "禅",
+      "mode": "モード",
+      "disable": "無効",
+      "threads": "スレッド",
+      "spaces": "スペース",
+      "search": "検索",
+      "home": "ホーム",
+      "discover": "発見",
+      "library": "ライブラリ",
+      "user": "ユーザー",
+      "settings": "設定",
+      "labs": "ラボ",
+      "navigate": "ナビゲート",
+      "dark": "ダーク",
+      "light": "ライト",
+      "system": "システム",
+      "theme": "テーマ",
+      "change": "変更",
+      "color": "カラー",
+      "scheme": "スキーム"
     }
   }
 } 

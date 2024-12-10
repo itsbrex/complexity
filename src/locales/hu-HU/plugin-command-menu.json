@@ -64,6 +64,33 @@
         },
         "searchHint": "beszélgetések keresése ebben a Térben"
       }
+    },
+    "zenMode": {
+      "enable": "Zen mód bekapcsolása",
+      "disable": "Zen mód kikapcsolása"
+    },
+    "keywords": {
+      "enable": "bekapcsolás",
+      "zen": "zen",
+      "mode": "mód",
+      "disable": "kikapcsolás",
+      "threads": "beszélgetések",
+      "spaces": "terek",
+      "search": "keresés",
+      "home": "kezdőlap",
+      "discover": "felfedezés",
+      "library": "könyvtár",
+      "user": "felhasználó",
+      "settings": "beállítások",
+      "labs": "laboratórium",
+      "navigate": "navigálás",
+      "dark": "sötét",
+      "light": "világos",
+      "system": "rendszer",
+      "theme": "téma",
+      "change": "módosítás",
+      "color": "szín",
+      "scheme": "séma"
     }
   }
 } 

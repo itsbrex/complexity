@@ -64,6 +64,33 @@
         },
         "searchHint": "pour rechercher des discussions dans cet Espace"
       }
+    },
+    "zenMode": {
+      "enable": "Activer le mode Zen",
+      "disable": "Désactiver le mode Zen"
+    },
+    "keywords": {
+      "enable": "activer",
+      "zen": "zen",
+      "mode": "mode",
+      "disable": "désactiver",
+      "threads": "discussions",
+      "spaces": "espaces",
+      "search": "rechercher",
+      "home": "accueil",
+      "discover": "découvrir",
+      "library": "bibliothèque",
+      "user": "utilisateur",
+      "settings": "paramètres",
+      "labs": "laboratoires",
+      "navigate": "naviguer",
+      "dark": "sombre",
+      "light": "clair",
+      "system": "système",
+      "theme": "thème",
+      "change": "changer",
+      "color": "couleur",
+      "scheme": "schéma"
     }
   }
-} 
+}

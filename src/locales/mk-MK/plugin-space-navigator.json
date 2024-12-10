@@ -1,0 +1,21 @@
+{
+  "spaceNavigator": {
+    "button": {
+      "label": "Пребарај и навигирај до простор",
+      "defaultText": "Простори"
+    },
+    "search": {
+      "placeholder": "Пребарај...",
+      "noResults": "Не се пронајдени резултати."
+    },
+    "loading": "Се вчитува...",
+    "spaceItem": {
+      "currentLocation": "Вие сте тука",
+      "details": {
+        "description": "Опис",
+        "instructions": "Инструкции",
+        "files": "Датотеки ({{count}})"
+      }
+    }
+  }
+} 

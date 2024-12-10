@@ -23,9 +23,13 @@ import type {
 export const ZENMODE_ITEMS: ZenModeItem[] = [
   {
     type: "enable",
-    label: "Enable Zen Mode",
+    label: t("plugin-command-menu:commandMenu.zenMode.enable"),
     icon: LuLayoutGrid,
-    keywords: ["enable", "zen", "mode"],
+    keywords: [
+      t("plugin-command-menu:commandMenu.keywords.enable"),
+      t("plugin-command-menu:commandMenu.keywords.zen"),
+      t("plugin-command-menu:commandMenu.keywords.mode"),
+    ],
     action: () => {
       $("body").attr("data-cplx-zen-mode", "true");
     },
@@ -33,9 +37,13 @@ export const ZENMODE_ITEMS: ZenModeItem[] = [
   },
   {
     type: "disable",
-    label: "Disable Zen Mode",
+    label: t("plugin-command-menu:commandMenu.zenMode.disable"),
     icon: LuGrid,
-    keywords: ["disable", "zen", "mode"],
+    keywords: [
+      t("plugin-command-menu:commandMenu.keywords.disable"),
+      t("plugin-command-menu:commandMenu.keywords.zen"),
+      t("plugin-command-menu:commandMenu.keywords.mode"),
+    ],
     action: () => {
       $("body").attr("data-cplx-zen-mode", "false");
     },
@@ -79,82 +87,102 @@ export const SEARCH_ITEMS: SearchItem[] = [
     icon: PplxThread,
     code: SEARCH_FILTERS.threads.code,
     label: t("plugin-command-menu:commandMenu.filters.threads.label"),
-    keywords: ["threads"],
+    keywords: [t("plugin-command-menu:commandMenu.keywords.threads")],
     shortcut: ["Ctrl", "Alt", "T"],
   },
   {
     icon: PplxSpace,
     code: SEARCH_FILTERS.spaces.code,
     label: t("plugin-command-menu:commandMenu.filters.spaces.label"),
-    keywords: ["spaces"],
+    keywords: [t("plugin-command-menu:commandMenu.keywords.spaces")],
     shortcut: ["Ctrl", "Alt", "S"],
   },
 ];
 
-SEARCH_ITEMS.forEach((item) => item.keywords.push("search"));
+SEARCH_ITEMS.forEach((item) =>
+  item.keywords.push(t("plugin-command-menu:commandMenu.keywords.search")),
+);
 
 export const NAVIGATION_ITEMS: NavigationItem[] = [
   {
     icon: SiPerplexity,
     label: t("plugin-command-menu:commandMenu.navigation.home"),
     path: "/",
-    keywords: ["home"],
+    keywords: [t("plugin-command-menu:commandMenu.keywords.home")],
     whereAmI: "home",
   },
   {
     icon: PplxDiscover,
     label: t("plugin-command-menu:commandMenu.navigation.discover"),
     path: "/discover",
-    keywords: ["discover"],
+    keywords: [t("plugin-command-menu:commandMenu.keywords.discover")],
     whereAmI: "discover",
   },
   {
     icon: PplxLibrary,
     label: t("plugin-command-menu:commandMenu.navigation.library"),
     path: "/library",
-    keywords: ["library"],
+    keywords: [t("plugin-command-menu:commandMenu.keywords.library")],
     whereAmI: "library",
   },
   {
     icon: LuSettings,
     label: t("plugin-command-menu:commandMenu.navigation.userSettings"),
     path: "/settings/account",
-    keywords: ["user", "settings"],
+    keywords: [
+      t("plugin-command-menu:commandMenu.keywords.user"),
+      t("plugin-command-menu:commandMenu.keywords.settings"),
+    ],
     whereAmI: "settings",
   },
   {
     icon: PplxLabs,
     label: t("plugin-command-menu:commandMenu.navigation.labs"),
     path: "https://labs.perplexity.ai/",
-    keywords: ["labs"],
+    keywords: [t("plugin-command-menu:commandMenu.keywords.labs")],
     external: true,
     whereAmI: "unknown",
   },
 ];
 
-NAVIGATION_ITEMS.forEach((item) => item.keywords.push("navigate"));
+NAVIGATION_ITEMS.forEach((item) =>
+  item.keywords.push(t("plugin-command-menu:commandMenu.keywords.navigate")),
+);
 
 export const COLOR_SCHEME_ITEMS: ColorSchemeItem[] = [
   {
     scheme: "dark",
     icon: LuMoon,
     label: t("plugin-command-menu:commandMenu.colorSchemes.dark"),
-    keywords: ["dark", "theme"],
+    keywords: [
+      t("plugin-command-menu:commandMenu.keywords.dark"),
+      t("plugin-command-menu:commandMenu.keywords.theme"),
+    ],
   },
   {
     scheme: "light",
     icon: LuSun,
     label: t("plugin-command-menu:commandMenu.colorSchemes.light"),
-    keywords: ["light", "theme"],
+    keywords: [
+      t("plugin-command-menu:commandMenu.keywords.light"),
+      t("plugin-command-menu:commandMenu.keywords.theme"),
+    ],
   },
   {
     scheme: "system",
     icon: LuComputer,
     label: t("plugin-command-menu:commandMenu.colorSchemes.system"),
-    keywords: ["system", "theme"],
+    keywords: [
+      t("plugin-command-menu:commandMenu.keywords.system"),
+      t("plugin-command-menu:commandMenu.keywords.theme"),
+    ],
   },
 ];
 
-COLOR_SCHEME_ITEMS.forEach((item) =>
-  item.keywords.push(..."change color scheme".split(" ")),
-);
+COLOR_SCHEME_ITEMS.forEach((item) => {
+  item.keywords.push(
+    t("plugin-command-menu:commandMenu.keywords.change"),
+    t("plugin-command-menu:commandMenu.keywords.color"),
+    t("plugin-command-menu:commandMenu.keywords.scheme"),
+  );
+});

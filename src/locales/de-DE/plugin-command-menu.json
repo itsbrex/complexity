@@ -64,6 +64,33 @@
         },
         "searchHint": "um Threads in diesem Space zu suchen"
       }
+    },
+    "zenMode": {
+      "enable": "Zen-Modus aktivieren",
+      "disable": "Zen-Modus deaktivieren"
+    },
+    "keywords": {
+      "enable": "aktivieren",
+      "zen": "zen",
+      "mode": "modus",
+      "disable": "deaktivieren",
+      "threads": "threads",
+      "spaces": "spaces",
+      "search": "suchen",
+      "home": "startseite",
+      "discover": "entdecken",
+      "library": "bibliothek",
+      "user": "benutzer",
+      "settings": "einstellungen",
+      "labs": "labor",
+      "navigate": "navigieren",
+      "dark": "dunkel",
+      "light": "hell",
+      "system": "system",
+      "theme": "theme",
+      "change": "ändern",
+      "color": "farbe",
+      "scheme": "schema"
     }
   }
 } 

@@ -1,0 +1,21 @@
+{
+  "spaceNavigator": {
+    "button": {
+      "label": "Suchen & zum Space navigieren",
+      "defaultText": "Spaces"
+    },
+    "search": {
+      "placeholder": "Suchen...",
+      "noResults": "Keine Ergebnisse gefunden."
+    },
+    "loading": "Lädt...",
+    "spaceItem": {
+      "currentLocation": "Sie sind hier",
+      "details": {
+        "description": "Beschreibung",
+        "instructions": "Anweisungen",
+        "files": "Dateien ({{count}})"
+      }
+    }
+  }
+} 

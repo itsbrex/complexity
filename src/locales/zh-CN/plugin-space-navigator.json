@@ -1,0 +1,21 @@
+{
+  "spaceNavigator": {
+    "button": {
+      "label": "搜索并导航至空间",
+      "defaultText": "空间"
+    },
+    "search": {
+      "placeholder": "搜索...",
+      "noResults": "未找到结果。"
+    },
+    "loading": "加载中...",
+    "spaceItem": {
+      "currentLocation": "当前位置",
+      "details": {
+        "description": "描述",
+        "instructions": "说明",
+        "files": "文件 ({{count}})"
+      }
+    }
+  }
+} 

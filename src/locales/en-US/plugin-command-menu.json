@@ -64,6 +64,33 @@
         },
         "searchHint": "to search for threads in this Space"
       }
+    },
+    "zenMode": {
+      "enable": "Enable Zen Mode",
+      "disable": "Disable Zen Mode"
+    },
+    "keywords": {
+      "enable": "enable",
+      "zen": "zen",
+      "mode": "mode",
+      "disable": "disable",
+      "threads": "threads",
+      "spaces": "spaces",
+      "search": "search",
+      "home": "home",
+      "discover": "discover",
+      "library": "library",
+      "user": "user",
+      "settings": "settings",
+      "labs": "labs",
+      "navigate": "navigate",
+      "dark": "dark",
+      "light": "light",
+      "system": "system",
+      "theme": "theme",
+      "change": "change",
+      "color": "color",
+      "scheme": "scheme"
     }
   }
 }

@@ -33,13 +33,22 @@ export default function SpaceNavigatorContent({
         return 0;
       }}
     >
-      <CommandInput placeholder="Search..." searchIcon={false} />
-      {!isLoading && <CommandEmpty>No results found.</CommandEmpty>}
+      <CommandInput
+        placeholder={t(
+          "plugin-space-navigator:spaceNavigator.search.placeholder",
+        )}
+        searchIcon={false}
+      />
+      {!isLoading && (
+        <CommandEmpty>
+          {t("plugin-space-navigator:spaceNavigator.search.noResults")}
+        </CommandEmpty>
+      )}
       <CommandList>
         {isLoading ? (
           <div className="tw-my-10 tw-w-full tw-space-x-2 tw-text-center">
             <LuLoader2 className="tw-inline-block tw-size-4 tw-animate-spin" />
-            <span>Loading...</span>
+            <span>{t("plugin-space-navigator:spaceNavigator.loading")}</span>
           </div>
         ) : (
           <CommandGroup className={cn({ "tw-opacity-50": isFetching })}>

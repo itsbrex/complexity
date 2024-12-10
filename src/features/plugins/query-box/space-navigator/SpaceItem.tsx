@@ -94,7 +94,9 @@ export default function SpaceItem({ space }: { space: Space }) {
         </div>
         {isOnSpacePage && (
           <div className="tw-text-xs tw-text-muted-foreground">
-            You&apos;re here
+            {t(
+              "plugin-space-navigator:spaceNavigator.spaceItem.currentLocation",
+            )}
           </div>
         )}
       </CommandItem>
@@ -105,7 +107,9 @@ export default function SpaceItem({ space }: { space: Space }) {
               {space.description && (
                 <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
                   <div className="tw-text-sm tw-text-muted-foreground">
-                    Description
+                    {t(
+                      "plugin-space-navigator:spaceNavigator.spaceItem.details.description",
+                    )}
                   </div>
                   <div className="tw-line-clamp-1">{space.description}</div>
                 </div>
@@ -113,7 +117,9 @@ export default function SpaceItem({ space }: { space: Space }) {
               {space.instructions && (
                 <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
                   <div className="tw-text-sm tw-text-muted-foreground">
-                    Instructions
+                    {t(
+                      "plugin-space-navigator:spaceNavigator.spaceItem.details.instructions",
+                    )}
                   </div>
                   <div className="tw-max-h-[200px] tw-overflow-auto tw-rounded-md tw-bg-secondary tw-p-2">
                     {space.instructions}
@@ -123,7 +129,12 @@ export default function SpaceItem({ space }: { space: Space }) {
               {files && files?.num_total_files > 0 && (
                 <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
                   <div className="tw-text-sm tw-text-muted-foreground">
-                    Files ({files.num_total_files})
+                    {t(
+                      "plugin-space-navigator:spaceNavigator.spaceItem.details.files",
+                      {
+                        count: files.num_total_files,
+                      },
+                    )}
                   </div>
                   {files.files.map((file) => (
                     <SpaceItemFile

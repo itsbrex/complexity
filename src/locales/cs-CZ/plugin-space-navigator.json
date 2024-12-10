@@ -1,0 +1,21 @@
+{
+  "spaceNavigator": {
+    "button": {
+      "label": "Hledat a přejít do prostoru",
+      "defaultText": "Prostory"
+    },
+    "search": {
+      "placeholder": "Hledat...",
+      "noResults": "Žádné výsledky nenalezeny."
+    },
+    "loading": "Načítání...",
+    "spaceItem": {
+      "currentLocation": "Jste zde",
+      "details": {
+        "description": "Popis",
+        "instructions": "Pokyny",
+        "files": "Soubory ({{count}})"
+      }
+    }
+  }
+} 

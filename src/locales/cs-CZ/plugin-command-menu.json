@@ -64,6 +64,33 @@
         },
         "searchHint": "pro vyhledávání vláken v tomto Prostoru"
       }
+    },
+    "zenMode": {
+      "enable": "Povolit Zen režim",
+      "disable": "Zakázat Zen režim"
+    },
+    "keywords": {
+      "enable": "povolit",
+      "zen": "zen",
+      "mode": "režim",
+      "disable": "zakázat",
+      "threads": "vlákna",
+      "spaces": "prostory",
+      "search": "hledat",
+      "home": "domů",
+      "discover": "objevit",
+      "library": "knihovna",
+      "user": "uživatel",
+      "settings": "nastavení",
+      "labs": "laboratoř",
+      "navigate": "navigovat",
+      "dark": "tmavý",
+      "light": "světlý",
+      "system": "systémový",
+      "theme": "téma",
+      "change": "změnit",
+      "color": "barva",
+      "scheme": "schéma"
     }
   }
 } 

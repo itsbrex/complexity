@@ -199,7 +199,7 @@ export function parseUrl(url: string = window.location.href): ParsedUrl {
 }
 
 export function whereAmI(providedUrl?: string) {
-  if (typeof window === "undefined") {
+  if (!providedUrl && typeof window === "undefined") {
     return "unknown";
   }
 

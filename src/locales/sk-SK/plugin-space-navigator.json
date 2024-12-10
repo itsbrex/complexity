@@ -1,0 +1,21 @@
+{
+  "spaceNavigator": {
+    "button": {
+      "label": "Hľadať a prejsť do priestoru",
+      "defaultText": "Priestory"
+    },
+    "search": {
+      "placeholder": "Hľadať...",
+      "noResults": "Nenašli sa žiadne výsledky."
+    },
+    "loading": "Načítava sa...",
+    "spaceItem": {
+      "currentLocation": "Ste tu",
+      "details": {
+        "description": "Popis",
+        "instructions": "Pokyny",
+        "files": "Súbory ({{count}})"
+      }
+    }
+  }
+} 

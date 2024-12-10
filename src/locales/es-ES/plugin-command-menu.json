@@ -64,6 +64,33 @@
         },
         "searchHint": "para buscar hilos en este Espacio"
       }
+    },
+    "zenMode": {
+      "enable": "Activar modo Zen",
+      "disable": "Desactivar modo Zen"
+    },
+    "keywords": {
+      "enable": "activar",
+      "zen": "zen",
+      "mode": "modo",
+      "disable": "desactivar",
+      "threads": "hilos",
+      "spaces": "espacios",
+      "search": "buscar",
+      "home": "inicio",
+      "discover": "descubrir",
+      "library": "biblioteca",
+      "user": "usuario",
+      "settings": "ajustes",
+      "labs": "laboratorios",
+      "navigate": "navegar",
+      "dark": "oscuro",
+      "light": "claro",
+      "system": "sistema",
+      "theme": "tema",
+      "change": "cambiar",
+      "color": "color",
+      "scheme": "esquema"
     }
   }
 } 

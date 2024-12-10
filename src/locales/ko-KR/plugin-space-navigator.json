@@ -1,0 +1,21 @@
+{
+  "spaceNavigator": {
+    "button": {
+      "label": "스페이스 검색 및 이동",
+      "defaultText": "스페이스"
+    },
+    "search": {
+      "placeholder": "검색...",
+      "noResults": "결과를 찾을 수 없습니다."
+    },
+    "loading": "로딩 중...",
+    "spaceItem": {
+      "currentLocation": "현재 위치",
+      "details": {
+        "description": "설명",
+        "instructions": "안내",
+        "files": "파일 ({{count}})"
+      }
+    }
+  }
+} 

@@ -3,6 +3,7 @@ import type { MermaidConfig } from "mermaid";
 import { setupMermaidRendererListeners } from "@/features/plugins/_core/mermaid-renderer/listeners.main";
 import UiUtils from "@/utils/UiUtils";
 import { injectMainWorldScriptBlock } from "@/utils/utils";
+import packageJson from "~/package.json";
 
 export class MermaidRenderer {
   private static instance: MermaidRenderer | null = null;
@@ -38,9 +39,9 @@ export class MermaidRenderer {
       };
 
       const scriptContent = `
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-        import 'https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.2/dist/svg-pan-zoom.min.js';
-        import * as jsBase64 from 'https://cdn.jsdelivr.net/npm/js-base64@3.7.7/+esm';
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@${packageJson.devDependencies["mermaid"]}/dist/mermaid.esm.min.mjs';
+        import 'https://cdn.jsdelivr.net/npm/svg-pan-zoom@${packageJson.devDependencies["svg-pan-zoom"]}/dist/svg-pan-zoom.min.js';
+        import * as jsBase64 from 'https://cdn.jsdelivr.net/npm/js-base64@${packageJson.devDependencies["js-base64"]}/+esm';
         import pako from 'https://cdn.jsdelivr.net/npm/pako@2.1.0/+esm';
 
         window.pako = pako;

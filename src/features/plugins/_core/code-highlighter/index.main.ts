@@ -8,6 +8,7 @@ import {
 import dualThemesCss from "@/features/plugins/_core/code-highlighter/dual-themes.css?inline";
 import { setupCodeHighlighterListeners } from "@/features/plugins/_core/code-highlighter/listeners.main";
 import { injectMainWorldScriptBlock, insertCss } from "@/utils/utils";
+import packageJson from "~/package.json";
 
 export class CodeHighlighter {
   private static instance: CodeHighlighter | null = null;
@@ -38,7 +39,7 @@ export class CodeHighlighter {
 
     if (!this.importPromise) {
       const scriptContent = `
-        import * as shiki from 'https://esm.sh/shiki@1.24.0';
+        import * as shiki from 'https://esm.sh/shiki@${packageJson.devDependencies["shiki"]}';
         window.shiki = shiki;
       `;
 

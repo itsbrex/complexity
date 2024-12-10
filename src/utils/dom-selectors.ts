@@ -103,6 +103,7 @@ export const DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS = {
         QUERY: "message-block-query",
         ANSWER: "message-block-answer",
         ANSWER_HEADING: "message-block-answer-heading",
+        ANSWER_HEADING_MODEL_NAME: "message-block-answer-heading-model-name",
         CODE_BLOCK: "message-block-code-block",
         MIRRORED_CODE_BLOCK: "cplx-mirrored-code-block",
         BOTTOM_BAR: "message-block-bottom-bar",

@@ -16,22 +16,27 @@ class PplxThemeLoaderService {
   };
 
   private constructor() {
-    this.listenForPermissionsChanges();
-  }
-
-  private async listenForPermissionsChanges() {
-    chrome.permissions.onAdded.addListener(async () => {
-      const hasPermissions = await chrome.permissions.contains({
-        permissions: ["scripting", "webNavigation"],
-      });
+    this.initPermissionsEventListener();
+    setTimeout(async () => {
+      const hasPermissions = await this.hasPermissions();
 
       if (!hasPermissions) return;
 
-      this.addEventListeners();
+      this.initNavigationEventListener();
     });
   }
 
-  private addEventListeners() {
+  private async initPermissionsEventListener() {
+    chrome.permissions.onAdded.addListener(async () => {
+      const hasPermissions = await this.hasPermissions();
+
+      if (!hasPermissions) return;
+
+      this.initNavigationEventListener();
+    });
+  }
+
+  private initNavigationEventListener() {
     chrome.webNavigation.onCommitted.removeListener(this.handleNavigation);
 
     chrome.webNavigation.onCommitted.addListener(this.handleNavigation, {
@@ -41,13 +46,6 @@ class PplxThemeLoaderService {
         },
       ],
     });
-  }
-
-  public static getInstance(): PplxThemeLoaderService {
-    if (PplxThemeLoaderService.instance == null) {
-      PplxThemeLoaderService.instance = new PplxThemeLoaderService();
-    }
-    return PplxThemeLoaderService.instance;
   }
 
   private handleNavigation = async (
@@ -70,6 +68,21 @@ class PplxThemeLoaderService {
       console.error("Failed to apply theme:", error);
     }
   };
+
+  private async hasPermissions() {
+    const hasPermissions = await chrome.permissions.contains({
+      permissions: ["scripting", "webNavigation"],
+    });
+
+    return hasPermissions;
+  }
+
+  public static getInstance(): PplxThemeLoaderService {
+    if (PplxThemeLoaderService.instance == null) {
+      PplxThemeLoaderService.instance = new PplxThemeLoaderService();
+    }
+    return PplxThemeLoaderService.instance;
+  }
 
   async updateThemeConfig({
     css,

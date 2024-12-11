@@ -40,9 +40,9 @@ export const DOM_SELECTORS = {
       },
       CODE_BLOCK: {
         /** The outermost container that wraps the pre & code block */
-        WRAPPER: "div.w-full.max-w-\\[90vw\\]",
+        WRAPPER: "div.w-full.md\\:max-w-\\[90vw\\]",
         NATIVE_HEADER: ".codeWrapper>div:first-child",
-        NATIVE_COPY_BUTTON: 'button[aria-label="Copy Code"]',
+        NATIVE_COPY_BUTTON: 'button:has(svg[data-icon="copy"])',
       },
       /** The bottom toolbar of the message (share, rewrite, model name, etc.) */
       BOTTOM_BAR: ".mt-sm.flex.items-center.justify-between",

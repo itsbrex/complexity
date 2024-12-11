@@ -22,7 +22,7 @@ const defineMozManifest = defineManifest as unknown as (
 const mozManifest: MozManifest = {
   ...baseManifest,
   permissions: ["storage", "unlimitedStorage", "contextMenus"],
-  optional_permissions: ["scripting"],
+  optional_permissions: ["scripting", "webNavigation"],
   browser_specific_settings: {
     gecko: {
       id: "complexity@ngocdg",

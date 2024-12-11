@@ -2,23 +2,13 @@ import { MatchPattern } from "@webext-core/match-patterns";
 import { defineProxyService } from "@webext-core/proxy-service";
 
 import { APP_CONFIG } from "@/app.config";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
-import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
 
 class PplxThemeLoaderService {
   private static instance: PplxThemeLoaderService;
-  private injectedTabs = new Set<number>();
-
   private perplexityAiMatchPatterns = [
     new MatchPattern(APP_CONFIG["perplexity-ai"].globalMatches[0]!),
     new MatchPattern(APP_CONFIG["perplexity-ai"].globalMatches[1]!),
   ];
-
-  private isMatchPatterns(url: string): boolean {
-    return this.perplexityAiMatchPatterns.some((pattern) =>
-      pattern.includes(url),
-    );
-  }
 
   private themeConfig = {
     chosenThemeId: "",
@@ -26,8 +16,31 @@ class PplxThemeLoaderService {
   };
 
   private constructor() {
-    this.updateThemeConfigOptimistically();
-    this.setupInjectionListener();
+    this.listenForPermissionsChanges();
+  }
+
+  private async listenForPermissionsChanges() {
+    chrome.permissions.onAdded.addListener(async () => {
+      const hasPermissions = await chrome.permissions.contains({
+        permissions: ["scripting", "webNavigation"],
+      });
+
+      if (!hasPermissions) return;
+
+      this.addEventListeners();
+    });
+  }
+
+  private addEventListeners() {
+    chrome.webNavigation.onCommitted.removeListener(this.handleNavigation);
+
+    chrome.webNavigation.onCommitted.addListener(this.handleNavigation, {
+      url: [
+        {
+          hostContains: "perplexity.ai",
+        },
+      ],
+    });
   }
 
   public static getInstance(): PplxThemeLoaderService {
@@ -37,19 +50,26 @@ class PplxThemeLoaderService {
     return PplxThemeLoaderService.instance;
   }
 
-  private setupInjectionListener() {
-    chrome.tabs.onUpdated.removeListener(this.applyTheme);
-    chrome.tabs.onUpdated.addListener(this.applyTheme);
-  }
+  private handleNavigation = async (
+    details: chrome.webNavigation.WebNavigationFramedCallbackDetails,
+  ) => {
+    if (details.frameId !== 0) return;
+    if (
+      !this.perplexityAiMatchPatterns.some((pattern) =>
+        pattern.includes(details.url),
+      )
+    )
+      return;
 
-  async updateThemeConfigOptimistically() {
-    const chosenThemeId = (await ExtensionLocalStorageService.get()).theme;
-
-    this.updateThemeConfig({
-      chosenThemeId,
-      css: await getThemeCss(chosenThemeId),
-    });
-  }
+    try {
+      await chrome.scripting.insertCSS({
+        target: { tabId: details.tabId },
+        css: this.themeConfig.css,
+      });
+    } catch (error) {
+      console.error("Failed to apply theme:", error);
+    }
+  };
 
   async updateThemeConfig({
     css,
@@ -59,50 +79,6 @@ class PplxThemeLoaderService {
     chosenThemeId: string;
   }) {
     this.themeConfig = { css, chosenThemeId };
-  }
-
-  private applyTheme = async (
-    tabId: number,
-    changeInfo: chrome.tabs.TabChangeInfo,
-  ) => {
-    if (changeInfo.status === "complete") return;
-
-    const tab = await chrome.tabs.get(tabId);
-    if (!tab.url) return;
-
-    if (this.isFreshPageLoad(changeInfo)) {
-      this.injectedTabs.delete(tabId);
-    }
-
-    if (this.injectedTabs.has(tabId) || !this.isMatchPatterns(tab.url)) return;
-
-    await this.injectThemeStyles(tabId);
-  };
-
-  private isFreshPageLoad(changeInfo: chrome.tabs.TabChangeInfo): boolean {
-    return changeInfo.status === "loading" && changeInfo.url == null;
-  }
-
-  private async injectThemeStyles(tabId: number): Promise<void> {
-    if (!(await chrome.permissions.contains({ permissions: ["scripting"] }))) {
-      return;
-    }
-
-    this.injectedTabs.add(tabId);
-
-    try {
-      await chrome.scripting.removeCSS({
-        target: { tabId },
-        css: this.themeConfig.css,
-      });
-
-      await chrome.scripting.insertCSS({
-        target: { tabId },
-        css: this.themeConfig.css,
-      });
-    } catch (error) {
-      console.error("Failed to apply theme:", error);
-    }
   }
 }
 

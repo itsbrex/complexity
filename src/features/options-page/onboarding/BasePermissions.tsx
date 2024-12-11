@@ -1,6 +1,6 @@
 import { ComponentType, SVGProps } from "react";
 import { HiCheckCircle } from "react-icons/hi2";
-import { LuDatabase, LuPalette } from "react-icons/lu";
+import { LuDatabase } from "react-icons/lu";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -36,19 +36,6 @@ const basePermissionsDetails: Record<
       </div>
     ),
     icon: LuDatabase,
-  },
-  scripting: {
-    permissions: ["scripting"],
-    title: "Custom themes",
-    description: (
-      <div>
-        <div>
-          The extension uses this permission to apply custom themes onto
-          Perplexity.ai pages at instant speed.
-        </div>
-      </div>
-    ),
-    icon: LuPalette,
   },
 };
 
@@ -96,11 +83,6 @@ export default function BasePermissions() {
                     <H3 className="tw-text-sm tw-font-medium tw-text-primary md:tw-text-base">
                       {title}
                     </H3>
-                    {permissions && (
-                      <div className="tw-text-xs tw-text-muted-foreground md:tw-text-sm">
-                        id: {permissions?.join(", ")}
-                      </div>
-                    )}
                     <div className="tw-text-xs tw-text-foreground md:tw-text-sm">
                       {description}
                     </div>

@@ -1,6 +1,10 @@
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import {
+  ExtensionLocalStorageService,
+  fetchExtensionLocalStorageData,
+} from "@/services/extension-local-storage/extension-local-storage";
 import { ExtensionPermissionsService } from "@/services/extension-permissions/extension-permissions";
 import { getPplxThemeLoaderService } from "@/services/pplx-theme-loader";
+import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
 import { queryClient } from "@/utils/ts-query-client";
 
 export function setupOptionPageListeners() {
@@ -12,6 +16,8 @@ export function setupOptionPageListeners() {
     : "light";
 
   $("html").attr("data-color-scheme", theme);
+
+  updateChosenThemeOptimistically();
 
   queryClient.getMutationCache().subscribe(async ({ mutation, type }) => {
     const mutationKey = mutation?.options.mutationKey;
@@ -29,7 +35,16 @@ export function setupOptionPageListeners() {
       type === "updated";
 
     if (isThemeMutation || isExtensionLocalStorageMutation) {
-      getPplxThemeLoaderService().updateThemeConfigOptimistically();
+      updateChosenThemeOptimistically();
     }
+  });
+}
+
+async function updateChosenThemeOptimistically() {
+  const chosenThemeId = (await fetchExtensionLocalStorageData()).theme;
+
+  getPplxThemeLoaderService().updateThemeConfig({
+    chosenThemeId,
+    css: await getThemeCss(chosenThemeId),
   });
 }

@@ -55,7 +55,7 @@ export default function CsUiRoot() {
     <>
       <CsUiPluginsGuard location={["home"]}>
         <HomepageUpdateAnnouncer />
-        <SponsorHomeLink />
+        {/* <SponsorHomeLink /> */}
       </CsUiPluginsGuard>
       <CsUiPluginsGuard
         dependentPluginIds={[

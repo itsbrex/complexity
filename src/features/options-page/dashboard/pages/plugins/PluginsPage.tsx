@@ -35,10 +35,10 @@ function PluginsListing() {
   const handleSearchChange = usePluginSearch(setFilters);
 
   return (
-    <div className="tw-w-full">
+    <div className="tw-size-full">
       <h1 className="tw-sr-only tw-text-2xl tw-font-bold">Plugins</h1>
 
-      <div className="tw-flex tw-flex-col tw-gap-4 md:tw-mt-0">
+      <div className="tw-flex tw-flex-col tw-gap-4 md:tw-mt-0 tw-size-full">
         <div className="tw-ml-auto tw-flex tw-w-full tw-flex-row-reverse tw-gap-4 md:tw-w-fit md:tw-flex-row md:tw-justify-end">
           <TagsFilter />
           <Input
@@ -49,7 +49,7 @@ function PluginsListing() {
           />
         </div>
 
-        <ToggleAllPluginsSwitch />
+        {!isFetchingFeatureFlags && <ToggleAllPluginsSwitch />}
 
         <div className="tw-ml-auto tw-text-balance tw-text-center tw-text-sm tw-text-muted-foreground md:tw-text-left">
           A full page reload on Perplexity.ai is required when changing plugin
@@ -57,7 +57,7 @@ function PluginsListing() {
         </div>
 
         {isFetchingFeatureFlags ? (
-          <div className="tw-flex tw-items-center tw-gap-2">
+          <div className="tw-flex tw-size-max tw-items-center tw-gap-2 tw-m-auto">
             <LuLoader2 className="tw-animate-spin" />
             Fetching plugins...
           </div>

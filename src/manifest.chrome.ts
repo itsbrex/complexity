@@ -5,7 +5,7 @@ import { baseManifest } from "./manifest.base";
 const chromeManifest = {
   ...baseManifest,
   permissions: ["storage", "unlimitedStorage", "contextMenus"],
-  optional_permissions: ["scripting"],
+  optional_permissions: ["scripting", "webNavigation"],
   background: {
     service_worker: "src/entrypoints/background/index.ts",
     type: "module",

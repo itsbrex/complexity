@@ -6,7 +6,7 @@ import { APP_CONFIG } from "@/app.config";
 import "@/assets/cs.css";
 import csUiRootCss from "@/assets/cs.css?inline";
 import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
-import { SponsorHomeLink } from "@/components/SponsorHomeLink";
+// import { SponsorHomeLink } from "@/components/SponsorHomeLink";
 import { Toaster } from "@/components/Toaster";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import { useInsertCss } from "@/hooks/useInsertCss";

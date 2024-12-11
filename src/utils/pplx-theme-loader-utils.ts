@@ -1,9 +1,18 @@
+import { APP_CONFIG } from "@/app.config";
 import { BUILTIN_THEME_REGISTRY } from "@/data/plugins/themes/theme-registry";
 import { Theme } from "@/data/plugins/themes/theme-registry.types";
-import { getLocalThemesService } from "@/services/indexed-db/themes/themes";
+import {
+  getLocalThemeCssFallback,
+  getLocalThemesService,
+} from "@/services/indexed-db/themes/themes";
 
 export async function getThemeCss(themeId: Theme["id"]) {
-  return getBuiltInThemeCss(themeId) || (await getLocalThemeCss(themeId)) || "";
+  const localThemeGetter =
+    APP_CONFIG.BROWSER === "firefox"
+      ? getLocalThemeCssFallback
+      : getLocalThemeCss;
+
+  return getBuiltInThemeCss(themeId) || (await localThemeGetter(themeId)) || "";
 }
 
 export function getBuiltInThemeCss(themeId: Theme["id"]) {

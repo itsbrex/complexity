@@ -1,9 +1,9 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { HTMLAttributes } from "react";
-import { LuSparkles } from "react-icons/lu";
+import { LuArrowLeftRight, LuRocket, LuSparkles } from "react-icons/lu";
 import { TbBugOff } from "react-icons/tb";
 
-const blockVariants = cva("tw-rounded-md tw-p-4", {
+const blockVariants = cva("tw-rounded-md tw-p-4 tw-my-2", {
   variants: {
     variant: {
       new: "tw-bg-primary/10 [&_[data-releasenote-part='header']]:tw-text-primary [&_strong]:tw-text-foreground",
@@ -22,8 +22,8 @@ const blockVariants = cva("tw-rounded-md tw-p-4", {
 const ICON = {
   new: LuSparkles,
   "bug-fix": TbBugOff,
-  improvement: LuSparkles,
-  change: LuSparkles,
+  improvement: LuRocket,
+  change: LuArrowLeftRight,
 };
 
 const HEADER_TEXT = {

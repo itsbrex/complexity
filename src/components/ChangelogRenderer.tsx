@@ -15,7 +15,7 @@ export default function ChangelogRenderer({
   return (
     <div
       className={cn(
-        "tw-prose tw-flex tw-flex-col tw-gap-4 dark:tw-prose-invert",
+        "tw-prose tw-flex tw-flex-col dark:tw-prose-invert",
         className,
       )}
       {...props}

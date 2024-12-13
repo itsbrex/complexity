@@ -216,7 +216,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Zen Mode",
     description:
       "Hide elements on the page to focus on the content (toggleable). Enable via the Command Menu plugin.",
-    tags: ["ui"],
+    tags: ["ui", "desktopOnly"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
     dependentPlugins: ["commandMenu"],
   },

@@ -5,7 +5,7 @@ import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
 import { insertCss } from "@/utils/utils";
 
 export async function setupPplxThemeLoader() {
-  const chosenThemeId = (await ExtensionLocalStorageService.get()).theme;
+  const chosenThemeId = ExtensionLocalStorageService.getCachedSync().theme;
   const css = await getThemeCss(chosenThemeId);
 
   insertCss({
@@ -13,5 +13,6 @@ export async function setupPplxThemeLoader() {
     id: "cplx-custom-theme",
   });
 
-  sendMessage("bg:removePreloadedTheme", undefined, "background");
+  if (ExtensionLocalStorageService.getCachedSync().preloadTheme)
+    sendMessage("bg:removePreloadedTheme", undefined, "background");
 }

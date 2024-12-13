@@ -1,5 +1,6 @@
 import { sendMessage } from "webext-bridge/content-script";
 
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PplxApiService } from "@/services/pplx-api/pplx-api";
 
 const isCloudflareVerificationPage = () => $(document.body).hasClass("no-js");
@@ -10,7 +11,9 @@ export async function contentScriptGuard() {
     ignoreInvalidPages();
     checkForExistingExtensionInstance();
   } catch (error) {
-    sendMessage("bg:removePreloadedTheme", undefined, "background");
+    if (ExtensionLocalStorageService.getCachedSync().preloadTheme)
+      sendMessage("bg:removePreloadedTheme", undefined, "background");
+
     throw error;
   }
 }

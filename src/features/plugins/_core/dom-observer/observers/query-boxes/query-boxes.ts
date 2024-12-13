@@ -7,10 +7,18 @@ import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import UiUtils from "@/utils/UiUtils";
 import { whereAmI } from "@/utils/utils";
 
-const DOM_OBSERVER_ID = "query-boxes";
+const DOM_OBSERVER_ID = {
+  HOME: "query-boxes-home",
+  COLLECTION: "query-boxes-collection",
+  THREAD: "query-boxes-thread",
+  MODAL: "query-boxes-modal",
+};
 
 const cleanup = () => {
-  DomObserver.destroy(DOM_OBSERVER_ID);
+  DomObserver.destroy(DOM_OBSERVER_ID.HOME);
+  DomObserver.destroy(DOM_OBSERVER_ID.COLLECTION);
+  DomObserver.destroy(DOM_OBSERVER_ID.THREAD);
+  DomObserver.destroy(DOM_OBSERVER_ID.MODAL);
 };
 
 export async function setupQueryBoxesObserver(
@@ -27,42 +35,69 @@ export async function setupQueryBoxesObserver(
 
   cleanup();
 
-  DomObserver.create(DOM_OBSERVER_ID, {
+  if (location === "home") {
+    globalDomObserverStore.getState().setQueryBoxes({
+      spaceQueryBox: null,
+      followUpQueryBox: null,
+    });
+
+    DomObserver.create(DOM_OBSERVER_ID.HOME, {
+      target: document.body,
+      config: { childList: true, subtree: true },
+      onMutation: () =>
+        CallbackQueue.getInstance().enqueue(
+          () => observeMainQueryBox(),
+          DOM_OBSERVER_ID.HOME,
+        ),
+    });
+  }
+
+  if (location === "collection") {
+    globalDomObserverStore.getState().setQueryBoxes({
+      mainQueryBox: null,
+      followUpQueryBox: null,
+    });
+
+    DomObserver.create(DOM_OBSERVER_ID.COLLECTION, {
+      target: document.body,
+      config: { childList: true, subtree: true },
+      onMutation: () =>
+        CallbackQueue.getInstance().enqueue(
+          () => observeSpaceQueryBox(),
+          DOM_OBSERVER_ID.COLLECTION,
+        ),
+    });
+  }
+
+  if (location === "thread") {
+    globalDomObserverStore.getState().setQueryBoxes({
+      mainQueryBox: null,
+      spaceQueryBox: null,
+    });
+
+    DomObserver.create(DOM_OBSERVER_ID.THREAD, {
+      target: document.body,
+      config: { childList: true, subtree: true },
+      onMutation: () =>
+        CallbackQueue.getInstance().enqueue(
+          () => observeFollowUpQueryBox(),
+          DOM_OBSERVER_ID.THREAD,
+        ),
+    });
+  }
+
+  DomObserver.create(DOM_OBSERVER_ID.MODAL, {
     target: document.body,
     config: { childList: true, subtree: true },
-    onMutation: observerFn.bind(null, location),
+    onMutation: () =>
+      CallbackQueue.getInstance().enqueue(
+        () => observeMainModalQueryBox(),
+        DOM_OBSERVER_ID.MODAL,
+      ),
   });
 }
 
-function observerFn(location: ReturnType<typeof whereAmI>) {
-  CallbackQueue.getInstance().enqueueArray([
-    {
-      callback: observeMainQueryBox.bind(null, location),
-      id: `${DOM_OBSERVER_ID}-main-query-box`,
-    },
-    {
-      callback: observeMainModalQueryBox,
-      id: `${DOM_OBSERVER_ID}-main-modal-query-box`,
-    },
-    {
-      callback: observeSpaceQueryBox.bind(null, location),
-      id: `${DOM_OBSERVER_ID}-space-query-box`,
-    },
-    {
-      callback: observeFollowUpQueryBox.bind(null, location),
-      id: `${DOM_OBSERVER_ID}-follow-up-query-box`,
-    },
-  ]);
-}
-
-function observeMainQueryBox(location: ReturnType<typeof whereAmI>) {
-  if (location !== "home") {
-    globalDomObserverStore.getState().setQueryBoxes({
-      mainQueryBox: null,
-    });
-    return;
-  }
-
+function observeMainQueryBox() {
   const id = OBSERVER_ID.MAIN_QUERY_BOX;
 
   const $mainQueryBox = UiUtils.getActiveQueryBox({ type: "main" });
@@ -92,14 +127,7 @@ function observeMainModalQueryBox() {
   });
 }
 
-function observeSpaceQueryBox(location: ReturnType<typeof whereAmI>) {
-  if (location !== "collection") {
-    globalDomObserverStore.getState().setQueryBoxes({
-      spaceQueryBox: null,
-    });
-    return;
-  }
-
+function observeSpaceQueryBox() {
   if ($(`[${OBSERVER_ID.SPACE_QUERY_BOX}]`).length) return;
 
   const $spaceQueryBox = UiUtils.getActiveQueryBox({
@@ -115,14 +143,7 @@ function observeSpaceQueryBox(location: ReturnType<typeof whereAmI>) {
   });
 }
 
-async function observeFollowUpQueryBox(location: ReturnType<typeof whereAmI>) {
-  if (location !== "thread") {
-    globalDomObserverStore.getState().setQueryBoxes({
-      followUpQueryBox: null,
-    });
-    return;
-  }
-
+async function observeFollowUpQueryBox() {
   if ($(`[${OBSERVER_ID.FOLLOW_UP_QUERY_BOX}]`).length) return;
 
   const $followUpQueryBox = UiUtils.getActiveQueryBox({
@@ -133,7 +154,7 @@ async function observeFollowUpQueryBox(location: ReturnType<typeof whereAmI>) {
   if (!$followUpQueryBox.length) {
     await sleep(200);
     CallbackQueue.getInstance().enqueue(
-      observeFollowUpQueryBox.bind(null, location),
+      observeFollowUpQueryBox,
       `${DOM_OBSERVER_ID}-follow-up-query-box`,
     );
     return;

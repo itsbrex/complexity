@@ -9,13 +9,13 @@ import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 
 export default function Dashboard() {
   const { isMobile } = useIsMobileStore();
-  const Comp = isMobile ? MobileSidebarWrapper : DesktopSidebarWrapper;
+  const SidebarWrapper = isMobile ? MobileSidebarWrapper : DesktopSidebarWrapper;
 
   return (
     <div className="tw-flex tw-min-h-screen tw-bg-background">
-      <Comp>
+      <SidebarWrapper>
         <Sidebar />
-      </Comp>
+      </SidebarWrapper>
 
       <div className="tw-flex tw-flex-1 tw-flex-col tw-gap-4">
         <main className="tw-mx-auto tw-mt-11 tw-min-h-[100dvh] tw-w-full tw-max-w-[1800px] tw-p-4 md:tw-mt-0">

@@ -24,12 +24,12 @@ export default function MobileSidebar({
       open={isOpen}
       onOpenChange={({ open }) => setIsOpen(open)}
     >
-      <SheetTrigger asChild>
-        <div className="tw-fixed tw-left-0 tw-top-0 tw-z-10 tw-flex tw-size-max tw-w-full tw-cursor-pointer tw-items-start tw-gap-4 tw-bg-background tw-p-4">
+      <div className="tw-fixed tw-left-0 tw-top-0 tw-z-10 tw-flex tw-size-max tw-w-full tw-cursor-pointer tw-items-start tw-gap-4 tw-bg-background tw-p-4">
+        <SheetTrigger asChild>
           <LuPanelLeft className="tw-my-auto tw-size-4" />
-          <MyBreadcrumb navItems={navItems} />
-        </div>
-      </SheetTrigger>
+        </SheetTrigger>
+        <MyBreadcrumb navItems={navItems} />
+      </div>
       <SheetContent side="left" className="tw-h-full tw-p-0">
         {children}
       </SheetContent>

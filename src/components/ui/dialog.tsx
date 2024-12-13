@@ -87,7 +87,7 @@ function DialogFooter({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       className={cn(
-        "tw-flex tw-flex-row-reverse sm:tw-flex-row sm:tw-justify-end sm:tw-space-x-2",
+        "tw-flex tw-flex-col-reverse sm:tw-flex-row sm:tw-justify-end tw-gap-2",
         className,
       )}
       {...props}

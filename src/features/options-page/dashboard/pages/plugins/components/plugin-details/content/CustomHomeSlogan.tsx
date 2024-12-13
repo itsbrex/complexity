@@ -1,3 +1,5 @@
+import debounce from "lodash/debounce";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -5,6 +7,16 @@ import useExtensionLocalStorage from "@/services/extension-local-storage/useExte
 
 export default function CustomHomeSloganPluginDetails() {
   const { settings, mutation } = useExtensionLocalStorage();
+
+  const debouncedMutate = useMemo(
+    () =>
+      debounce((newValue: string) => {
+        mutation.mutate(
+          (draft) => (draft.plugins["home:customSlogan"].slogan = newValue),
+        );
+      }, 300),
+    [mutation],
+  );
 
   if (!settings) return null;
 
@@ -22,12 +34,8 @@ export default function CustomHomeSloganPluginDetails() {
       <div className="tw-flex tw-flex-col tw-gap-2">
         <Label className="tw-text-muted-foreground">Slogan</Label>
         <Input
-          value={settings?.plugins["home:customSlogan"].slogan}
-          onChange={({ target: { value } }) =>
-            mutation.mutate(
-              (draft) => (draft.plugins["home:customSlogan"].slogan = value),
-            )
-          }
+          defaultValue={settings?.plugins["home:customSlogan"].slogan}
+          onChange={({ target: { value } }) => debouncedMutate(value)}
         />
       </div>
     </div>

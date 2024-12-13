@@ -4,6 +4,7 @@ import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import SpaceNaviagorDesktopWrapper from "@/features/plugins/query-box/space-navigator/DesktopWrapper";
 import SpaceNavigatorMobileWrapper from "@/features/plugins/query-box/space-navigator/MobileWrapper";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
+import { useCookies } from "@/hooks/useCookies";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import { parseUrl } from "@/utils/utils";
 
@@ -29,6 +30,12 @@ export default function SpaceNavigator() {
     isFetching,
     spaceNameFromUrl,
   };
+
+  const isIncognito =
+    useCookies().find((cookie) => cookie.name === "pplx.is-incognito")
+      ?.value === "true";
+
+  if (isIncognito) return null;
 
   return isMobile ? (
     <SpaceNavigatorMobileWrapper {...sharedProps} />

@@ -40,7 +40,12 @@ export function setupHomeComponentsObserver(
   DomObserver.create(DOM_OBSERVER_ID.LANGUAGE_SELECTOR, {
     target: $(DOM_SELECTORS.HOME.LANGUAGE_SELECTOR)[0],
     config: { attributes: true, attributeFilter: ["aria-label"] },
-    onMutation: () => observeLanguageSelector(),
+    // onMutation: () => observeLanguageSelector(),
+    onMutation: () =>
+      CallbackQueue.getInstance().enqueue(
+        () => observeLanguageSelector(),
+        `${DOM_OBSERVER_ID.LANGUAGE_SELECTOR}-language-selector`,
+      ),
   });
 }
 

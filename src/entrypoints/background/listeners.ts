@@ -2,6 +2,7 @@ import { onMessage } from "webext-bridge/background";
 
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
+import { enableThemePreloader } from "@/utils/update-migrations";
 import { compareVersions, getOptionsPageUrl } from "@/utils/utils";
 
 export type BackgroundEvents = {
@@ -33,6 +34,11 @@ export function setupBackgroundListeners() {
         url: `${getOptionsPageUrl()}#/onboarding?fromAlpha=true`,
       });
     }
+
+    if (!previousVersion) return;
+
+    // migrations
+    enableThemePreloader({ previousVersion });
   });
 
   createDashboardShortcut();

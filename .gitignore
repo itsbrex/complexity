@@ -31,6 +31,7 @@ tsconfig.tsbuildinfo
 .cursorignore
 .cursorrules
 .ai-prompts
+cdn-template
 
 # secrets
 secrets.*.js

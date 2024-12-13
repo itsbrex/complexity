@@ -4,7 +4,7 @@ import {
   fetchExtensionLocalStorageData,
 } from "@/services/extension-local-storage/extension-local-storage";
 import { ExtensionPermissionsService } from "@/services/extension-permissions/extension-permissions";
-import { getPplxThemePreloaderService } from "@/services/pplx-theme-loader";
+import { getPplxThemePreloaderService } from "@/services/pplx-theme-preloader";
 import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
 import { queryClient } from "@/utils/ts-query-client";
 

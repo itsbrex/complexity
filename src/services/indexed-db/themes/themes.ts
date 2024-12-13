@@ -1,6 +1,5 @@
 import { defineProxyService } from "@webext-core/proxy-service";
 
-import { APP_CONFIG } from "@/app.config";
 import { Theme } from "@/data/plugins/themes/theme-registry.types";
 import { db } from "@/services/indexed-db/indexed-db";
 
@@ -29,12 +28,3 @@ class LocalThemesService {
 
 export const [registerLocalThemesService, getLocalThemesService] =
   defineProxyService("LocalThemesService", () => new LocalThemesService());
-
-export const getLocalThemeCssFallback = async (themeId: Theme["id"]) => {
-  if (APP_CONFIG.BROWSER !== "firefox") {
-    throw new Error("This function is only supposed to be used in Firefox");
-  }
-
-  const theme = await new LocalThemesService().get(themeId);
-  return theme?.css ?? "";
-};

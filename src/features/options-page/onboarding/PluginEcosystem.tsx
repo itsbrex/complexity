@@ -25,13 +25,15 @@ export default function PluginEcosystem() {
         independently. Each plugin can have further configuration options.
       </div>
 
-      <div className="tw-relative tw-rounded-md tw-border tw-border-primary/50">
-        <div className="tw-absolute tw-left-1/2 tw-top-1/2 tw-z-0 tw-size-[120%] -tw-translate-x-1/2 -tw-translate-y-1/2 tw-rounded-full tw-bg-primary/20 tw-blur-2xl tw-transition-all tw-duration-500 tw-ease-in-out" />
-        <img
-          src="https://i.imgur.com/I576QlN.png"
-          alt="Plugin Ecosystem"
-          className="tw-relative tw-w-full tw-rounded-md tw-shadow-lg"
-        />
+      <div className="tw-w-full tw-px-8">
+        <div className="tw-relative tw-rounded-md tw-border tw-border-primary/50">
+          <div className="tw-absolute tw-left-1/2 tw-top-1/2 tw-z-0 tw-size-[120%] -tw-translate-x-1/2 -tw-translate-y-1/2 tw-rounded-full tw-bg-primary/20 tw-blur-2xl tw-transition-all tw-duration-500 tw-ease-in-out" />
+          <img
+            src="https://i.imgur.com/I576QlN.png"
+            alt="Plugin Ecosystem"
+            className="tw-relative tw-w-full tw-rounded-md tw-shadow-lg"
+          />
+        </div>
       </div>
     </div>
   );

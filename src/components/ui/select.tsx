@@ -6,15 +6,17 @@ import { LuChevronDown as ChevronDown, LuCheck } from "react-icons/lu";
 
 import { untrapWheel } from "@/utils/utils";
 
-type SelectContext = {
+type SelectLocalContext = {
   portal: boolean;
 };
 
-const SelectContext = createContext<SelectContext>({
+const SelectLocalContext = createContext<SelectLocalContext>({
   portal: true,
 });
 
-const SelectContextProvider = SelectContext.Provider;
+const SelectLocalContextProvider = SelectLocalContext.Provider;
+
+const SelectContext = ArkSelect.Context;
 
 function Select({
   portal,
@@ -23,13 +25,13 @@ function Select({
   portal?: boolean;
 }) {
   return (
-    <SelectContextProvider
+    <SelectLocalContextProvider
       value={{
         portal: portal ?? true,
       }}
     >
       <ArkSelect.Root unmountOnExit={false} lazyMount={true} {...props} />
-    </SelectContextProvider>
+    </SelectLocalContextProvider>
   );
 }
 
@@ -56,7 +58,7 @@ export type SelectTriggerProps = ArkSelect.TriggerProps &
   VariantProps<typeof selectTriggerVariants>;
 
 const SelectTrigger = ({
-  variant,
+  variant = "default",
   className,
   children,
   ...props
@@ -89,7 +91,7 @@ SelectValue.displayName = "SelectValue";
 export type SelectContentProps = ArkSelect.ContentProps;
 
 const SelectContent = ({ className, ...props }: SelectContentProps) => {
-  const { portal } = use(SelectContext);
+  const { portal } = use(SelectLocalContext);
 
   if (typeof portal === "undefined") {
     throw new Error("SelectContent must be a child of Select");
@@ -173,6 +175,7 @@ SelectItem.displayName = "SelectItem";
 
 export {
   Select,
+  SelectContext,
   SelectTrigger,
   SelectValue,
   SelectContent,

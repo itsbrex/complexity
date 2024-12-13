@@ -15,6 +15,7 @@ import { H1, H2, H3, P } from "@/components/ui/typography";
 import BasePermissions from "@/features/options-page/onboarding/BasePermissions";
 import BetaNotifications from "@/features/options-page/onboarding/BetaNotifications";
 import DashboardAccess from "@/features/options-page/onboarding/DashboardAccess";
+import ExtensionIconAction from "@/features/options-page/onboarding/ExtensionIconAction";
 import NeedHelp from "@/features/options-page/onboarding/NeedHelp";
 import PluginEcosystem from "@/features/options-page/onboarding/PluginEcosystem";
 import useIsFromAlpha from "@/features/options-page/onboarding/useIsFromAlpha";
@@ -36,19 +37,25 @@ const steps = [
     component: <DashboardAccess />,
   },
   {
+    title: "Extension Icon Action",
+    description:
+      "Customize the behavior when left-click on the extension's icon",
+    component: <ExtensionIconAction />,
+  },
+  {
     title: "Plugin Ecosystem",
     description: "Plugin ecosystem",
     component: <PluginEcosystem />,
   },
   {
-    title: "Need Help?",
-    description: "Need help?",
-    component: <NeedHelp />,
-  },
-  {
     title: "Beta Notifications",
     description: "Beta notifications",
     component: <BetaNotifications />,
+  },
+  {
+    title: "Need Help?",
+    description: "Need help?",
+    component: <NeedHelp />,
   },
 ];
 

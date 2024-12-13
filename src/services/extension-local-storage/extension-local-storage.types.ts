@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { EXTENSION_ICON_ACTIONS } from "@/data/dashboard/extension-storage";
 import {
   PluginsSchema,
   PluginId,
@@ -12,6 +13,7 @@ export const ExtensionLocalStorageSchema = z.object({
   favoritePluginIds: z.array(z.string() as z.ZodType<PluginId>),
   theme: z.string(),
   energySavingMode: z.boolean(),
+  extensionIconAction: z.enum(EXTENSION_ICON_ACTIONS),
 });
 
 export type ExtensionLocalStorage = z.infer<typeof ExtensionLocalStorageSchema>;

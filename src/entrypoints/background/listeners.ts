@@ -1,8 +1,14 @@
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { compareVersions, getOptionsPageUrl } from "@/utils/utils";
 
 export function setupBackgroundListeners() {
-  chrome.action.onClicked.addListener(() => {
-    chrome.tabs.create({ url: "https://perplexity.ai/" });
+  chrome.action.onClicked.addListener(async () => {
+    const action = (await ExtensionLocalStorageService.get())
+      .extensionIconAction;
+
+    if (action === "perplexity")
+      chrome.tabs.create({ url: "https://perplexity.ai/" });
+    else chrome.runtime.openOptionsPage();
   });
 
   chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {

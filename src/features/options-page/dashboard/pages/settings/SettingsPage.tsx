@@ -13,6 +13,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import ClearAllDataButton from "@/features/options-page/dashboard/pages/settings/components/ClearAllDataButton";
 import ExportDataButtons from "@/features/options-page/dashboard/pages/settings/components/ExportDataButtons";
+import ExtensionIconActionSelect from "@/features/options-page/dashboard/pages/settings/components/ExtensionIconActionSelect";
 import ImportDataButtons from "@/features/options-page/dashboard/pages/settings/components/ImportDataButtons";
 import ManagePermissionsDialogWrapper from "@/features/options-page/dashboard/pages/settings/components/ManagePermissionsDialogWrapper";
 import SettingsItem from "@/features/options-page/dashboard/pages/settings/SettingsItem";
@@ -30,6 +31,9 @@ export default function SettingsPage() {
           <ManagePermissionsDialogWrapper>
             <Button>Manage Permissions</Button>
           </ManagePermissionsDialogWrapper>
+        </SettingsItem>
+        <SettingsItem title="Extension Icon Action">
+          <ExtensionIconActionSelect />
         </SettingsItem>
         <SettingsItem
           title={

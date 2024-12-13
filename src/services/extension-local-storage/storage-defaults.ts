@@ -88,4 +88,5 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
   favoritePluginIds: [],
   theme: "complexity",
   energySavingMode: false,
+  extensionIconAction: "perplexity",
 } as const;

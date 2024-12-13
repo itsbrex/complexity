@@ -1,5 +1,6 @@
 import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-queue";
 import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
+import { whereAmI } from "@/utils/utils";
 
 type Cookie = {
   name: string;
@@ -9,6 +10,9 @@ type Cookie = {
 const DOM_OBSERVER_ID = "cookies-pplx-incognito-mode";
 
 export function useCookies() {
+  if (whereAmI() === "unknown")
+    throw new Error("useCookies can only be used in perplexity.ai domains");
+
   const [cookies, setCookies] = useState<Cookie[]>([]);
 
   const parseCookies = useCallback(() => {

@@ -1,5 +1,3 @@
-import { use } from "react";
-
 import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 import { Portal } from "@/components/ui/portal";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";

@@ -3,14 +3,17 @@ import { LuExternalLink } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 
 import SponsorDialogWrapper from "@/components/SponsorDialogWrapper";
+import { MobileSidebarContext } from "@/features/options-page/components/sidebar/MobileWrapper";
 import { navItems } from "@/features/options-page/components/sidebar/nav-items";
 import SidebarUpdateAnnouncer from "@/features/options-page/components/SidebarUpdateAnnouncer";
 import packageJson from "~/package.json";
 
 export default function Sidebar() {
+  const { setIsOpen } = use(MobileSidebarContext);
+
   return (
-    <div className="tw-sticky tw-top-0 tw-flex tw-h-screen tw-flex-col">
-      <div className="tw-flex-1 tw-overflow-y-auto tw-p-4 tw-px-2">
+    <div className="tw-sticky tw-top-0 tw-flex tw-h-full tw-flex-col tw-justify-between">
+      <div className="tw-overflow-y-auto tw-p-4 tw-px-2">
         <div className="tw-mx-auto tw-mb-4 tw-w-fit tw-text-xs tw-text-muted-foreground">
           v{packageJson.version}
         </div>
@@ -39,7 +42,12 @@ export default function Sidebar() {
         <SidebarUpdateAnnouncer />
 
         <SponsorDialogWrapper>
-          <div className="tw-group tw-relative tw-w-full tw-cursor-pointer tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4 tw-text-sm tw-font-medium tw-shadow-lg tw-transition-all hover:tw-scale-105 hover:tw-border-primary hover:tw-bg-primary/10">
+          <div
+            className="tw-group tw-relative tw-w-full tw-cursor-pointer tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4 tw-text-sm tw-font-medium tw-shadow-lg tw-transition-all hover:tw-scale-105 hover:tw-border-primary hover:tw-bg-primary/10"
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          >
             <Trans
               i18nKey="sidebar.supporterMessage"
               components={{

@@ -11,6 +11,7 @@ const unimportConfig: Partial<UnimportPluginOptions> = {
       imports: [
         "lazy",
         "forwardRef",
+        "use",
         "createContext",
         "useDeferredValue",
         "memo",

@@ -63,8 +63,8 @@ body:
     id: browser
     attributes:
       label: Browser
-      description: Provide the browser(s) and version(s) where the issue occurs.
-      placeholder: e.g. Google Chrome 128
+      description: Provide the browser(s) and version(s) where the issue occurs. Please explicitly mention "mobile" if the issue occurs on mobile browsers.
+      placeholder: e.g. Google Chrome 128, Firefox Android 133
     validations:
       required: true
   - type: textarea

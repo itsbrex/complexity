@@ -8,9 +8,11 @@ export class ExtensionLocalStorageApi {
     await chrome.storage.local.set(store);
   }
 
-  static async listen(callback: () => void) {
-    chrome.storage.local.onChanged.addListener(() => {
-      callback();
+  static async listen(
+    callback: (changes: Partial<ExtensionLocalStorage>) => void,
+  ) {
+    chrome.storage.local.onChanged.addListener((changes) => {
+      callback(changes);
     });
   }
 }

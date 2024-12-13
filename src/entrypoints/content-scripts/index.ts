@@ -8,6 +8,7 @@ import { setupDomBasedPlugins } from "@/entrypoints/content-scripts/loaders/dom-
 import { setupExtensionMessaging } from "@/entrypoints/content-scripts/loaders/extension-messaging-loader";
 import { setupNetworkInterceptPlugins } from "@/entrypoints/content-scripts/loaders/network-intercept-plugins-loader";
 import { setupOneTimeLoadPlugins } from "@/entrypoints/content-scripts/loaders/one-time-plugins-loader";
+import { setupPplxThemeLoader } from "@/entrypoints/content-scripts/loaders/pplx-theme-loader";
 import { setupRouteBasedPlugins } from "@/entrypoints/content-scripts/loaders/route-based-plugins-loader";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { contentScriptGuard } from "@/utils/content-scripts-guard";
@@ -19,6 +20,7 @@ import { initializeI18next } from "@/utils/i18next";
   await initCoreModules();
   await initCache();
 
+  setupPplxThemeLoader();
   setupCoreObservers();
   setupOneTimeLoadPlugins();
   setupNetworkInterceptPlugins();

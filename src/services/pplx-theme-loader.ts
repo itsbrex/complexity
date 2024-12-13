@@ -3,6 +3,7 @@ import { defineProxyService } from "@webext-core/proxy-service";
 
 import { APP_CONFIG } from "@/app.config";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { ExtensionLocalStorageApi } from "@/services/extension-local-storage/extension-local-storage-api";
 import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
 
 const PERPLEXITY_MATCH_PATTERNS = [
@@ -11,9 +12,15 @@ const PERPLEXITY_MATCH_PATTERNS = [
 ] as const;
 
 const hasRequiredPermissions = async () => {
-  return chrome.permissions.contains({
+  const hasPermissions = await chrome.permissions.contains({
     permissions: ["scripting", "webNavigation"],
   });
+
+  const isEnabled = (await ExtensionLocalStorageService.get()).preloadTheme;
+
+  const isChrome = APP_CONFIG.BROWSER === "chrome";
+
+  return hasPermissions && isEnabled && isChrome;
 };
 
 const isValidPerplexityUrl = (url: string) => {
@@ -25,8 +32,9 @@ type ThemeConfig = {
   css: string;
 };
 
-class PplxThemeLoaderService {
-  private static instance: PplxThemeLoaderService;
+// This service only breifly injects the theme to prevent FOUC (and then immediately removes it), the css should be injected by the content script
+class PplxThemePreloaderService {
+  private static instance: PplxThemePreloaderService;
   private themeConfig: ThemeConfig = {
     chosenThemeId: "",
     css: "",
@@ -60,6 +68,11 @@ class PplxThemeLoaderService {
   }
 
   private initPermissionsEventListener() {
+    ExtensionLocalStorageApi.listen((changes) => {
+      if (changes.preloadTheme == null) return;
+      this.tryActivateNavigationListener();
+    });
+
     chrome.permissions.onAdded.addListener(() => {
       this.tryActivateNavigationListener();
     });
@@ -72,7 +85,7 @@ class PplxThemeLoaderService {
   private activateNavigationListener() {
     this.deactivateNavigationListener();
 
-    chrome.webNavigation.onCommitted.addListener(this.handleNavigation, {
+    chrome.webNavigation.onCommitted.addListener(this.preloadTheme, {
       url: [{ hostContains: "perplexity.ai" }],
     });
 
@@ -80,13 +93,15 @@ class PplxThemeLoaderService {
   }
 
   private deactivateNavigationListener() {
-    chrome.webNavigation.onCommitted.removeListener(this.handleNavigation);
+    chrome.webNavigation.onCommitted.removeListener(this.preloadTheme);
     this.isListenerActive = false;
   }
 
-  private handleNavigation = async (
+  private preloadTheme = async (
     details: chrome.webNavigation.WebNavigationFramedCallbackDetails,
   ) => {
+    if (!(await hasRequiredPermissions())) return;
+
     if (details.frameId !== 0 || !isValidPerplexityUrl(details.url)) return;
 
     try {
@@ -99,11 +114,11 @@ class PplxThemeLoaderService {
     }
   };
 
-  public static getInstance(): PplxThemeLoaderService {
-    if (PplxThemeLoaderService.instance == null) {
-      PplxThemeLoaderService.instance = new PplxThemeLoaderService();
+  public static getInstance(): PplxThemePreloaderService {
+    if (PplxThemePreloaderService.instance == null) {
+      PplxThemePreloaderService.instance = new PplxThemePreloaderService();
     }
-    return PplxThemeLoaderService.instance;
+    return PplxThemePreloaderService.instance;
   }
 
   async updateThemeConfig(config: ThemeConfig) {
@@ -111,7 +126,7 @@ class PplxThemeLoaderService {
   }
 }
 
-export const [registerPplxThemeLoaderService, getPplxThemeLoaderService] =
-  defineProxyService("PplxThemeLoaderService", () =>
-    PplxThemeLoaderService.getInstance(),
+export const [registerPplxThemePreloaderService, getPplxThemePreloaderService] =
+  defineProxyService("PplxThemePreloaderService", () =>
+    PplxThemePreloaderService.getInstance(),
   );

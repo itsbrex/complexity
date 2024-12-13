@@ -86,7 +86,7 @@ export function InlineCode({
   return (
     <code
       className={cn(
-        "tw-relative tw-rounded tw-bg-muted tw-px-[0.3rem] tw-py-[0.2rem] tw-font-mono tw-text-sm tw-font-semibold",
+        "tw-relative tw-inline-block tw-rounded tw-bg-muted tw-px-[0.3rem] tw-py-[0.2rem] tw-font-mono tw-text-sm tw-font-semibold",
         className,
       )}
       {...props}

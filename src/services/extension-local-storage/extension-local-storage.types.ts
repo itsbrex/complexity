@@ -12,6 +12,7 @@ export const ExtensionLocalStorageSchema = z.object({
   plugins: PluginsSchema,
   favoritePluginIds: z.array(z.string() as z.ZodType<PluginId>),
   theme: z.string(),
+  preloadTheme: z.boolean(),
   energySavingMode: z.boolean(),
   extensionIconAction: z.enum(EXTENSION_ICON_ACTIONS),
 });

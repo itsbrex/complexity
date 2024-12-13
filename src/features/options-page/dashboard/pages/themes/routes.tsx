@@ -2,7 +2,6 @@ import { LoaderFunctionArgs, RouteObject, redirect } from "react-router-dom";
 
 import { BUILTIN_THEME_REGISTRY } from "@/data/plugins/themes/theme-registry";
 import Page from "@/features/options-page/components/Page";
-import ThemesPagePermissionGuardPage from "@/features/options-page/dashboard/pages/themes/pages/PermissionGuard";
 import { getLocalThemesService } from "@/services/indexed-db/themes/themes";
 
 const CreateThemePage = lazy(
@@ -26,7 +25,7 @@ const ThemesListing = lazy(
     ),
 );
 
-export async function themeLoader({ params }: LoaderFunctionArgs) {
+export async function themePreloader({ params }: LoaderFunctionArgs) {
   const { themeId } = params;
 
   if (!themeId) return redirect("/themes");
@@ -59,17 +58,13 @@ export const ThemesPageRoutes: RouteObject[] = [
       {
         path: "edit",
         id: "editTheme",
-        loader: themeLoader,
+        loader: themePreloader,
         element: <Page title="Edit Custom Theme" page={EditThemePage} />,
       },
     ],
   },
   {
     index: true,
-    element: (
-      <ThemesPagePermissionGuardPage>
-        <Page title="Custom Themes" page={ThemesListing} />
-      </ThemesPagePermissionGuardPage>
-    ),
+    element: <Page title="Custom Themes" page={ThemesListing} />,
   },
 ];

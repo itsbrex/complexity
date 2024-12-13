@@ -1,5 +1,13 @@
+import { onMessage } from "webext-bridge/background";
+
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
 import { compareVersions, getOptionsPageUrl } from "@/utils/utils";
+
+export type BackgroundEvents = {
+  "bg:getTabId": () => number;
+  "bg:removePreloadedTheme": () => void;
+};
 
 export function setupBackgroundListeners() {
   chrome.action.onClicked.addListener(async () => {
@@ -28,6 +36,20 @@ export function setupBackgroundListeners() {
   });
 
   createDashboardShortcut();
+
+  onMessage("bg:getTabId", ({ sender }) => sender.tabId);
+
+  onMessage("bg:removePreloadedTheme", async ({ sender }) => {
+    const chosenThemeId = (await ExtensionLocalStorageService.get()).theme;
+    const css = await getThemeCss(chosenThemeId);
+
+    if (!css) return;
+
+    chrome.scripting.removeCSS({
+      target: { tabId: sender.tabId },
+      css,
+    });
+  });
 }
 
 function createDashboardShortcut() {

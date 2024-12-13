@@ -86,6 +86,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     },
   },
   favoritePluginIds: [],
+  preloadTheme: false,
   theme: "complexity",
   energySavingMode: false,
   extensionIconAction: "perplexity",

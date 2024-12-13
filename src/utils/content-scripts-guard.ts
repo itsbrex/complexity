@@ -1,11 +1,18 @@
+import { sendMessage } from "webext-bridge/content-script";
+
 import { PplxApiService } from "@/services/pplx-api/pplx-api";
 
 const isCloudflareVerificationPage = () => $(document.body).hasClass("no-js");
 
 export async function contentScriptGuard() {
-  await checkForMaintenance();
-  ignoreInvalidPages();
-  checkForExistingExtensionInstance();
+  try {
+    await checkForMaintenance();
+    ignoreInvalidPages();
+    checkForExistingExtensionInstance();
+  } catch (error) {
+    sendMessage("bg:removePreloadedTheme", undefined, "background");
+    throw error;
+  }
 }
 
 async function checkForMaintenance() {

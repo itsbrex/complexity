@@ -1,8 +1,10 @@
 import { LuPlus } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 
+import { APP_CONFIG } from "@/app.config";
 import { Button } from "@/components/ui/button";
 import { BUILTIN_THEME_REGISTRY } from "@/data/plugins/themes/theme-registry";
+import PreloadThemeSwitch from "@/features/options-page/dashboard/pages/themes/components/PreloadThemeSwitch";
 import { ThemeSections } from "@/features/options-page/dashboard/pages/themes/components/ThemeSections";
 import { useLocalThemes } from "@/services/indexed-db/themes/useLocalThemes";
 
@@ -30,6 +32,8 @@ export default function ThemesListing() {
           Create New Theme
         </Button>
       </div>
+
+      {APP_CONFIG.BROWSER === "chrome" && <PreloadThemeSwitch />}
 
       <ThemeSections
         localThemes={localThemes ?? []}

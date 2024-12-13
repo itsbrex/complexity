@@ -1,9 +1,10 @@
+import { APP_CONFIG } from "@/app.config";
 import {
   ExtensionLocalStorageService,
   fetchExtensionLocalStorageData,
 } from "@/services/extension-local-storage/extension-local-storage";
 import { ExtensionPermissionsService } from "@/services/extension-permissions/extension-permissions";
-import { getPplxThemeLoaderService } from "@/services/pplx-theme-loader";
+import { getPplxThemePreloaderService } from "@/services/pplx-theme-loader";
 import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
 import { queryClient } from "@/utils/ts-query-client";
 
@@ -19,31 +20,33 @@ export function setupOptionPageListeners() {
 
   updateChosenThemeOptimistically();
 
-  queryClient.getMutationCache().subscribe(async ({ mutation, type }) => {
-    const mutationKey = mutation?.options.mutationKey;
+  if (APP_CONFIG.BROWSER === "chrome") {
+    queryClient.getMutationCache().subscribe(async ({ mutation, type }) => {
+      const mutationKey = mutation?.options.mutationKey;
 
-    if (!mutationKey) return;
+      if (!mutationKey) return;
 
-    const isThemeMutation =
-      mutationKey[0] === "customTheme" &&
-      mutation.state.status === "success" &&
-      type === "updated";
+      const isThemeMutation =
+        mutationKey[0] === "customTheme" &&
+        mutation.state.status === "success" &&
+        type === "updated";
 
-    const isExtensionLocalStorageMutation =
-      mutationKey[0] === "updateExtensionLocalStorage" &&
-      mutation.state.status === "success" &&
-      type === "updated";
+      const isExtensionLocalStorageMutation =
+        mutationKey[0] === "updateExtensionLocalStorage" &&
+        mutation.state.status === "success" &&
+        type === "updated";
 
-    if (isThemeMutation || isExtensionLocalStorageMutation) {
-      updateChosenThemeOptimistically();
-    }
-  });
+      if (isThemeMutation || isExtensionLocalStorageMutation) {
+        updateChosenThemeOptimistically();
+      }
+    });
+  }
 }
 
 async function updateChosenThemeOptimistically() {
   const chosenThemeId = (await fetchExtensionLocalStorageData()).theme;
 
-  getPplxThemeLoaderService().updateThemeConfig({
+  getPplxThemePreloaderService().updateThemeConfig({
     chosenThemeId,
     css: await getThemeCss(chosenThemeId),
   });

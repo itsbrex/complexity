@@ -31,7 +31,7 @@ function Switch({
               <ArkSwitch.Label
                 className={cn(
                   "tw-duration-15 tw-text-sm tw-transition-colors",
-                  "tw-cursor-pointer data-[state=unchecked]:tw-text-muted-foreground hover:data-[state=unchecked]:tw-text-foreground",
+                  "tw-cursor-pointer data-[disabled]:tw-cursor-not-allowed data-[state=unchecked]:tw-text-muted-foreground data-[disabled]:tw-opacity-50 hover:data-[state=unchecked]:tw-text-foreground",
                   {
                     "tw-text-primary": checked,
                   },

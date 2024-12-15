@@ -45,6 +45,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       },
       maxHeight: {
         enabled: true,
+        collapseByDefault: false,
         value: 500,
         showToggleButton: true,
       },

@@ -138,6 +138,21 @@ export default function BetterCodeBlockGlobalOptions() {
             </div>
           </div>
           <Switch
+            textLabel="Collapse by default"
+            className="tw-ml-8"
+            checked={
+              settings?.plugins["thread:betterCodeBlocks"].maxHeight
+                ?.collapseByDefault
+            }
+            onCheckedChange={({ checked }) => {
+              mutation.mutate((draft) => {
+                draft.plugins[
+                  "thread:betterCodeBlocks"
+                ].maxHeight.collapseByDefault = checked;
+              });
+            }}
+          />
+          <Switch
             textLabel="Show toggle button"
             className="tw-ml-8"
             checked={

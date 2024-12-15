@@ -45,6 +45,7 @@ export default function CreateNewLanguageOptionButton() {
         },
         maxHeight: {
           enabled: false,
+          collapseByDefault: false,
           showToggleButton: false,
           value: 500,
         },

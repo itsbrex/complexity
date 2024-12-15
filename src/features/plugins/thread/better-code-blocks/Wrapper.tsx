@@ -41,7 +41,10 @@ const MemoizedWrapper = memo(function MemoizedWrapper({
         isMessageBlockInFlight,
         codeElement,
         isWrapped: !settings.unwrap.enabled,
-        maxHeight: settings.maxHeight.enabled ? settings.maxHeight.value : 9999,
+        maxHeight:
+          settings.maxHeight.enabled && settings.maxHeight.collapseByDefault
+            ? settings.maxHeight.value
+            : 9999,
         content: "code",
       }}
     >

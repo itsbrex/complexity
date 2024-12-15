@@ -12,7 +12,7 @@ export default function Sidebar() {
   const { setIsOpen } = use(MobileSidebarContext);
 
   return (
-    <div className="tw-sticky tw-top-0 tw-flex tw-h-full tw-flex-col tw-justify-between">
+    <div className="tw-sticky tw-top-0 tw-flex tw-h-full tw-flex-col tw-justify-between md:tw-h-screen">
       <div className="tw-overflow-y-auto tw-p-4 tw-px-2">
         <div className="tw-mx-auto tw-mb-4 tw-w-fit tw-text-xs tw-text-muted-foreground">
           v{packageJson.version}

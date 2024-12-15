@@ -14,6 +14,7 @@ export const BetterCodeBlockGlobalOptionsSchema = z.object({
   }),
   maxHeight: z.object({
     enabled: z.boolean(),
+    collapseByDefault: z.boolean(),
     value: z.number(),
     showToggleButton: z.boolean(),
   }),

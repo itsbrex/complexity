@@ -1,6 +1,6 @@
 # Privacy Policy for Complexity
 
-*Last updated: February 2024*
+*Last updated: November 2024*
 
 ## Our Commitment to Privacy
 

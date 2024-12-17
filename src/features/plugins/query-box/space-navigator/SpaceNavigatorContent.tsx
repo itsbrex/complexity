@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import { LuLoader2 } from "react-icons/lu";
 
 import {
@@ -8,19 +9,11 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import SpaceItem from "@/features/plugins/query-box/space-navigator/SpaceItem";
-import { type Space } from "@/services/pplx-api/pplx-api.types";
+import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 
-type SpaceNavigatorContentProps = {
-  spaces?: Space[];
-  isLoading: boolean;
-  isFetching: boolean;
-};
+export default function SpaceNavigatorContent() {
+  const { data: spaces, isLoading } = useQuery(pplxApiQueries.spaces);
 
-export default function SpaceNavigatorContent({
-  spaces,
-  isLoading,
-  isFetching,
-}: SpaceNavigatorContentProps) {
   return (
     <Command
       filter={(value, search, keywords) => {
@@ -51,7 +44,7 @@ export default function SpaceNavigatorContent({
             <span>{t("plugin-space-navigator:spaceNavigator.loading")}</span>
           </div>
         ) : (
-          <CommandGroup className={cn({ "tw-opacity-50": isFetching })}>
+          <CommandGroup>
             {spaces?.map((space) => (
               <SpaceItem key={space.uuid} space={space} />
             ))}

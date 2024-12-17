@@ -3,10 +3,10 @@ import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
 
 export type ScopedQueryBoxStore = {
-  type: "main" | "follow-up";
+  type: "main" | "modal" | "space" | "follow-up";
 };
 
-const createScopedQueryBoxStore = (type: "main" | "follow-up") =>
+const createScopedQueryBoxStore = (type: ScopedQueryBoxStore["type"]) =>
   createWithEqualityFn<ScopedQueryBoxStore>()(
     subscribeWithSelector(
       immer(
@@ -18,4 +18,9 @@ const createScopedQueryBoxStore = (type: "main" | "follow-up") =>
   );
 
 export const mainQueryBoxStore = createScopedQueryBoxStore("main");
+
+export const modalQueryBoxStore = createScopedQueryBoxStore("modal");
+
 export const followUpQueryBoxStore = createScopedQueryBoxStore("follow-up");
+
+export const spaceQueryBoxStore = createScopedQueryBoxStore("space");

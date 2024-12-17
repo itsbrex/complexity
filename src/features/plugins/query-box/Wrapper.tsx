@@ -4,11 +4,16 @@ import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import followUpQueryBoxCss from "@/features/plugins/query-box/assets/follow-up-query-box.css?inline";
 import mainQueryBoxCss from "@/features/plugins/query-box/assets/main-query-box.css?inline";
 import {
-  FollowUpQueryBoxContextProvider,
-  MainQueryBoxContextProvider,
+  QueryBoxContextProvider,
   ScopedQueryBoxContext,
 } from "@/features/plugins/query-box/context";
 import LanguageModelSelector from "@/features/plugins/query-box/language-model-selector/LanguageModelSelector";
+import {
+  followUpQueryBoxStore,
+  mainQueryBoxStore,
+  modalQueryBoxStore,
+  spaceQueryBoxStore,
+} from "@/features/plugins/query-box/scoped-store";
 import SpaceNavigator from "@/features/plugins/query-box/space-navigator/SpaceNavigator";
 import useObserver from "@/features/plugins/query-box/useObserver";
 import { useInsertCss } from "@/hooks/useInsertCss";
@@ -28,21 +33,28 @@ export default function QueryBoxWrapper() {
 
   return (
     <>
-      <MainQueryBoxContextProvider>
-        {[
-          mainQueryBoxPortalContainer,
-          mainModalQueryBoxPortalContainer,
-          spaceQueryBoxPortalContainer,
-        ].map((container, idx) => (
-          <Portal key={idx} container={container}>
-            <Toolbar />
-          </Portal>
-        ))}
-      </MainQueryBoxContextProvider>
-      <Portal container={followUpQueryBoxPortalContainer}>
-        <FollowUpQueryBoxContextProvider>
+      <QueryBoxContextProvider store={mainQueryBoxStore}>
+        <Portal container={mainQueryBoxPortalContainer}>
           <Toolbar />
-        </FollowUpQueryBoxContextProvider>
+        </Portal>
+      </QueryBoxContextProvider>
+
+      <QueryBoxContextProvider store={modalQueryBoxStore}>
+        <Portal container={mainModalQueryBoxPortalContainer}>
+          <Toolbar />
+        </Portal>
+      </QueryBoxContextProvider>
+
+      <QueryBoxContextProvider store={spaceQueryBoxStore}>
+        <Portal container={spaceQueryBoxPortalContainer}>
+          <Toolbar />
+        </Portal>
+      </QueryBoxContextProvider>
+
+      <Portal container={followUpQueryBoxPortalContainer}>
+        <QueryBoxContextProvider store={followUpQueryBoxStore}>
+          <Toolbar />
+        </QueryBoxContextProvider>
       </Portal>
     </>
   );
@@ -85,7 +97,7 @@ function Toolbar() {
 
   return (
     <div className="tw-flex tw-flex-wrap tw-items-center md:tw-flex-nowrap">
-      {ctx.type === "main" && (
+      {(ctx.type === "main" || ctx.type === "space") && (
         <CsUiPluginsGuard
           requiresLoggedIn
           dependentPluginIds={["queryBox:spaceNavigator"]}
@@ -97,7 +109,9 @@ function Toolbar() {
         requiresPplxPro
         dependentPluginIds={["queryBox:languageModelSelector"]}
       >
-        {ctx.type === "main" &&
+        {(ctx.type === "main" ||
+          ctx.type === "space" ||
+          ctx.type === "modal") &&
           settings?.plugins["queryBox:languageModelSelector"].main && (
             <LanguageModelSelector />
           )}

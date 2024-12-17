@@ -11,7 +11,7 @@ export const ScopedQueryBoxContext = createContext<ScopedQueryBoxStore | null>(
   null,
 );
 
-const QueryBoxContextProvider = ({
+export const QueryBoxContextProvider = ({
   children,
   store,
 }: {
@@ -26,23 +26,3 @@ const QueryBoxContextProvider = ({
     </ScopedQueryBoxContext>
   );
 };
-
-export const MainQueryBoxContextProvider = ({
-  children,
-}: {
-  children: ReactNode;
-}) => (
-  <QueryBoxContextProvider store={mainQueryBoxStore}>
-    {children}
-  </QueryBoxContextProvider>
-);
-
-export const FollowUpQueryBoxContextProvider = ({
-  children,
-}: {
-  children: ReactNode;
-}) => (
-  <QueryBoxContextProvider store={followUpQueryBoxStore}>
-    {children}
-  </QueryBoxContextProvider>
-);

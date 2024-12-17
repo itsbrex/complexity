@@ -5,14 +5,14 @@ import {
   commandMenuStore,
   useCommandMenuStore,
 } from "@/features/plugins/command-menu/store";
-import usePlatformDetection from "@/hooks/usePlatformDetection";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { keysToString } from "@/utils/utils";
 
 export default function useBindCommandMenuHotkeys() {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-  const isMac = usePlatformDetection() === "mac";
+  const settings = ExtensionLocalStorageService.getCachedSync();
 
   const state = useCommandMenuStore();
 
@@ -23,14 +23,20 @@ export default function useBindCommandMenuHotkeys() {
 
   const { open, setOpen, filter, setFilter } = state;
 
+  const activationHotkey = settings.plugins.commandMenu.hotkey ?? [];
+
   useHotkeys(
-    keysToString([Key.Control, isMac ? "i" : "k"]),
-    () => setOpen(!open),
+    keysToString(activationHotkey),
+    (e) => {
+      e.stopImmediatePropagation();
+      setOpen(!open);
+    },
     {
       preventDefault: true,
       enableOnContentEditable: true,
       enableOnFormTags: true,
     },
+    [activationHotkey],
   );
 
   useEffect(() => {

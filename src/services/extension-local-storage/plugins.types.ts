@@ -18,7 +18,9 @@ export const PluginsSchema = z.object({
   }),
   "queryBox:spaceNavigator": PluginSettingsSchema,
   "queryBox:noFileCreationOnPaste": PluginSettingsSchema,
-  commandMenu: PluginSettingsSchema,
+  commandMenu: PluginSettingsSchema.extend({
+    hotkey: z.array(z.string()),
+  }),
   "thread:toc": PluginSettingsSchema,
   "thread:betterMessageToolbars": PluginSettingsSchema.extend({
     sticky: z.boolean(),

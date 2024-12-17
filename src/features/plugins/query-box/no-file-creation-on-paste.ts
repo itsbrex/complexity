@@ -1,3 +1,5 @@
+import { isHotkeyPressed } from "react-hotkeys-hook";
+
 import { GlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/query-boxes/observer-ids";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
@@ -28,23 +30,10 @@ export function noFileCreationOnPaste(
       "keydown.noFileCreationOnPaste keyup.noFileCreationOnPaste",
     );
 
-    let isShiftKeyPressed = false;
-
-    const handleKeyDown = (e: JQuery.TriggeredEvent) => {
-      if (e.key === "Shift") isShiftKeyPressed = true;
-    };
-
-    const handleKeyUp = (e: JQuery.TriggeredEvent) => {
-      if (e.key === "Shift") isShiftKeyPressed = false;
-    };
-
-    $(document).on("keydown.noFileCreationOnPaste", handleKeyDown);
-    $(document).on("keyup.noFileCreationOnPaste", handleKeyUp);
-
     $textarea.on("paste", (e) => {
       const clipboardEvent = e.originalEvent as ClipboardEvent;
 
-      if (clipboardEvent.clipboardData && isShiftKeyPressed) {
+      if (clipboardEvent.clipboardData && isHotkeyPressed(Key.Shift)) {
         if (clipboardEvent.clipboardData.types.includes("text/plain")) {
           e.stopImmediatePropagation();
         }

@@ -1,11 +1,19 @@
-import KeyCombo from "@/components/KeyCombo";
+import { useHotkeyRecorder } from "@/components/HotkeyRecorder";
 import { Switch } from "@/components/ui/switch";
-import usePlatformDetection from "@/hooks/usePlatformDetection";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
 export default function CommandMenuPluginDetails() {
   const { settings, mutation } = useExtensionLocalStorage();
-  const isMac = usePlatformDetection() === "mac";
+  const defaultKeys = settings?.plugins["commandMenu"].hotkey ?? [];
+
+  const { HotkeyRecorderUI } = useHotkeyRecorder({
+    defaultKeys,
+    onSave: (keys) => {
+      mutation.mutate((draft) => {
+        draft.plugins["commandMenu"].hotkey = keys;
+      });
+    },
+  });
 
   if (!settings) return null;
 
@@ -15,8 +23,9 @@ export default function CommandMenuPluginDetails() {
         Similar to Mac&apos;s Spotlight / Windows&apos;s PowerToys Run, but
         inside Perplexity.
       </div>
-      <div>
-        Activation hotkey: <KeyCombo keys={[Key.Control, isMac ? "I" : "K"]} />
+      <div className="tw-flex tw-flex-col tw-gap-2">
+        <div>Activation hotkey:</div>
+        <HotkeyRecorderUI />
       </div>
       <div className="tw-text-sm tw-text-muted-foreground">
         Side note: Thread search is subject to rate limiting by Perplexity at

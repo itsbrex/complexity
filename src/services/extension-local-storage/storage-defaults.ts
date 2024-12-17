@@ -1,3 +1,4 @@
+import { getPlatform } from "@/hooks/usePlatformDetection";
 import { ExtensionLocalStorage } from "@/services/extension-local-storage/extension-local-storage.types";
 import packageJson from "~/package.json";
 
@@ -19,6 +20,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       enabled: false,
     },
     commandMenu: {
+      hotkey: [getPlatform() === "mac" ? Key.Meta : Key.Control, "k"],
       enabled: false,
     },
     "thread:toc": {

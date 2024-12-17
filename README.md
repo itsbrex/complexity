@@ -39,6 +39,7 @@ A powerful browser extension that enhances your PerplexityAI experience with adv
 
 - A comprehensive set of added features and UI/UX improvements with excellent modularity and customization
 - Multi-language support
+- Compatible with Firefox mobile browsers.
 
 ## Quick Start
 
@@ -63,7 +64,7 @@ pnpm dev
 
 [Privacy policy](./PRIVACY.md)
 
-## Made possible by
+## Made possible with
 
 - Vite (+CRXJS)
 - React 18

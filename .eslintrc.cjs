@@ -67,16 +67,25 @@ module.exports = {
         pattern: ["src/features/plugins/_core/*/**/*"],
       },
       {
-        type: "thread-plugin",
+        type: "plugin-family",
         mode: "full",
-        capture: ["threadPluginName"],
-        pattern: ["src/features/plugins/thread/*/**/*"],
+        capture: ["familyName"],
+        pattern: ["src/features/plugins/{home,thread,query-box}/*"],
+      },
+      {
+        type: "nested-plugin",
+        mode: "full",
+        capture: ["familyName", "nestedPluginName"],
+        pattern: ["src/features/plugins/{home,thread,query-box}/*/**/*"],
       },
       {
         type: "plugin",
         mode: "full",
         capture: ["pluginName"],
-        pattern: ["src/features/plugins/*/**/*"],
+        pattern: [
+          "src/features/plugins/*/**/*",
+          "src/features/plugins/{home,thread,query-box}/*/**/*",
+        ],
       },
       {
         type: "feature",
@@ -204,15 +213,25 @@ module.exports = {
             ],
           },
           {
-            from: ["thread-plugin"],
+            from: ["plugin-family"],
             allow: [
               "shared",
               "core-plugin",
-              ["plugin", { pluginName: "thread" }],
+              ["plugin-family", { familyName: "${from.familyName}" }],
+              ["nested-plugin", { familyName: "${from.familyName}" }],
+            ],
+          },
+          {
+            from: ["nested-plugin"],
+            allow: [
+              "shared",
+              "core-plugin",
+              ["plugin-family", { familyName: "${from.familyName}" }],
               [
-                "thread-plugin",
-                { threadPluginName: "${from.threadPluginName}" },
+                "nested-plugin",
+                { nestedPluginName: "${from.nestedPluginName}" },
               ],
+              ["nested-plugin", { nestedPluginName: "assets" }],
             ],
           },
           {
@@ -223,7 +242,8 @@ module.exports = {
               "feature",
               "core-plugin",
               "plugin",
-              "thread-plugin",
+              "plugin-family",
+              "nested-plugin",
             ],
           },
         ],

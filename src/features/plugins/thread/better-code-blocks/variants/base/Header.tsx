@@ -54,6 +54,7 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
   );
   const [shouldShowExpandCollapseButton] = useState(
     () =>
+      settings.maxHeight.enabled &&
       settings.maxHeight.showToggleButton &&
       isContainerVerticalOverflowing({
         initialMaxHeight: settings.maxHeight.value,

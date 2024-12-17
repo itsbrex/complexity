@@ -171,36 +171,40 @@ export default function BetterCodeBlockFineGrainedOptions({
               </div>
             </div>
           </div>
-          <Switch
-            textLabel="Collapse by default"
-            className="tw-ml-8"
-            checked={settings?.maxHeight.collapseByDefault}
-            onCheckedChange={({ checked }) => {
-              mutation.mutate({
-                language,
-                newDraft: {
-                  maxHeight: {
-                    collapseByDefault: checked,
-                  },
-                },
-              });
-            }}
-          />
-          <Switch
-            textLabel="Show toggle button"
-            className="tw-ml-8"
-            checked={settings?.maxHeight.showToggleButton}
-            onCheckedChange={({ checked }) => {
-              mutation.mutate({
-                language,
-                newDraft: {
-                  maxHeight: {
-                    showToggleButton: checked,
-                  },
-                },
-              });
-            }}
-          />
+          {settings?.maxHeight.enabled && (
+            <>
+              <Switch
+                textLabel="Collapse by default"
+                className="tw-ml-8"
+                checked={settings?.maxHeight.collapseByDefault}
+                onCheckedChange={({ checked }) => {
+                  mutation.mutate({
+                    language,
+                    newDraft: {
+                      maxHeight: {
+                        collapseByDefault: checked,
+                      },
+                    },
+                  });
+                }}
+              />
+              <Switch
+                textLabel="Show toggle button"
+                className="tw-ml-8"
+                checked={settings?.maxHeight.showToggleButton}
+                onCheckedChange={({ checked }) => {
+                  mutation.mutate({
+                    language,
+                    newDraft: {
+                      maxHeight: {
+                        showToggleButton: checked,
+                      },
+                    },
+                  });
+                }}
+              />
+            </>
+          )}
           <div className="tw-flex tw-flex-col tw-gap-2">
             <Switch
               textLabel="Custom placeholder text"

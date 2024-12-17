@@ -20,7 +20,10 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       enabled: false,
     },
     commandMenu: {
-      hotkey: [getPlatform() === "mac" ? Key.Meta : Key.Control, "k"],
+      hotkey: [
+        getPlatform() === "mac" ? Key.Meta : Key.Control,
+        getPlatform() === "mac" ? "i" : "k",
+      ],
       enabled: false,
     },
     "thread:toc": {

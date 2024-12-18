@@ -40,7 +40,7 @@ export const DOM_SELECTORS = {
       },
       CODE_BLOCK: {
         /** The outermost container that wraps the pre & code block */
-        WRAPPER: "div.w-full.md\\:max-w-\\[90vw\\]",
+        WRAPPER: "div.w-full.md\\:max-w-\\[90vw\\]:has(>pre)",
         NATIVE_HEADER: ".codeWrapper>div:first-child",
         NATIVE_COPY_BUTTON: 'button:has(svg[data-icon="copy"])',
       },

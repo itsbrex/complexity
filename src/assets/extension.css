@@ -26,12 +26,3 @@
       "calt" 1;
   }
 }
-
-body {
-  .classRandom {
-    @apply tw-bg-red-500;
-  }
-  .anotherRandomClass {
-    display: none;
-  }
-}

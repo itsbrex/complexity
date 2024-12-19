@@ -83,7 +83,7 @@ export default class InternalWebSocketManager {
 
   public async sendMessageWithAck<T = unknown>(params: {
     id?: string;
-    data: [string, Record<string, unknown>];
+    data: [string, ...unknown[]];
   }): Promise<T> {
     const socket = await this.ensureConnectedSocket(params.id);
     return socket.emitWithAck(...params.data);
@@ -91,7 +91,7 @@ export default class InternalWebSocketManager {
 
   public async sendMessage(params: {
     id?: string;
-    data: [string, Record<string, unknown>];
+    data: [string, ...unknown[]];
   }): Promise<void> {
     const socket = await this.ensureConnectedSocket(params.id);
     socket.emit(...params.data);

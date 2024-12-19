@@ -54,18 +54,10 @@ export function usePanelPosition(): UsePanelPosition | null {
 
   useEffect(() => {
     const debouncedUpdate = debounce(() => {
-      setTimeout(() => setPanelPosition(calculatePosition()), 300);
-    }, 100);
+      setPanelPosition(calculatePosition());
+    }, 300);
 
-    const cleanup = () => {
-      debouncedUpdate.cancel();
-      DomObserver.destroy(DOM_OBSERVER_ID);
-    };
-
-    if (isMobile) {
-      debouncedUpdate();
-      return cleanup;
-    }
+    debouncedUpdate();
 
     DomObserver.create(DOM_OBSERVER_ID, {
       target: $(DOM_SELECTORS.SIDEBAR)[0],
@@ -77,7 +69,10 @@ export function usePanelPosition(): UsePanelPosition | null {
         CallbackQueue.getInstance().enqueue(debouncedUpdate, DOM_OBSERVER_ID),
     });
 
-    return cleanup;
+    return () => {
+      debouncedUpdate.cancel();
+      DomObserver.destroy(DOM_OBSERVER_ID);
+    };
   }, [calculatePosition, isMobile, windowSize]);
 
   return panelPosition;

@@ -8,6 +8,8 @@ import {
   globalDomObserverStore,
 } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/thread/observer-ids";
+import { spaRouterStoreSubscribe } from "@/features/plugins/_core/spa-router/listeners";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import {
   DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
@@ -27,7 +29,19 @@ const cleanup = () => {
   DomObserver.destroy(DOM_OBSERVER_ID.COMMON);
 };
 
-export async function setupThreadComponentsObserver(
+CsLoaderRegistry.register({
+  id: "coreDomObserver:threadComponents",
+  loader: () => {
+    setupThreadComponentsObserver(whereAmI());
+
+    spaRouterStoreSubscribe(({ url }) => {
+      setupThreadComponentsObserver(whereAmI(url));
+    });
+  },
+  dependencies: ["cache:pluginsStates", "messaging:spaRouter"],
+});
+
+async function setupThreadComponentsObserver(
   location: ReturnType<typeof whereAmI>,
 ) {
   const settings = PluginsStatesService.getCachedSync()?.pluginsEnableStates;

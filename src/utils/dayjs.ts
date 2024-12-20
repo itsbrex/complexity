@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { getLanguage, SupportedLangs } from "@/utils/i18next";
 
 const LANGUAGE_CODES: Record<SupportedLangs, string> = {
@@ -49,6 +50,10 @@ const IMPORT_MAP: Record<SupportedLangs, () => Promise<unknown>> = {
 dayjs.extend(utc);
 dayjs.extend(relativeTime);
 
+export function formatHowLongAgo(date: string) {
+  return dayjs.utc(date).local().fromNow();
+}
+
 export async function initializeDayjsLocale() {
   let language = await getLanguage();
 
@@ -60,6 +65,8 @@ export async function initializeDayjsLocale() {
   dayjs.locale(LANGUAGE_CODES[language as SupportedLangs]);
 }
 
-export function formatHowLongAgo(date: string) {
-  return dayjs.utc(date).local().fromNow();
-}
+CsLoaderRegistry.register({
+  id: "lib:dayjs",
+  loader: initializeDayjsLocale,
+});
+

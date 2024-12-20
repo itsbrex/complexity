@@ -2,6 +2,8 @@ import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-qu
 import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/query-boxes/observer-ids";
+import { spaRouterStoreSubscribe } from "@/features/plugins/_core/spa-router/listeners";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import UiUtils from "@/utils/UiUtils";
@@ -21,9 +23,22 @@ const cleanup = () => {
   DomObserver.destroy(DOM_OBSERVER_ID.MODAL);
 };
 
-export async function setupQueryBoxesObserver(
-  location: ReturnType<typeof whereAmI>,
-) {
+CsLoaderRegistry.register({
+  id: "coreDomObserver:queryBoxes",
+  loader: () => {
+    setupQueryBoxesObserver(whereAmI());
+    spaRouterStoreSubscribe(({ url }) => {
+      setupQueryBoxesObserver(whereAmI(url));
+    });
+  },
+  dependencies: [
+    "cache:extensionLocalStorage",
+    "cache:pluginsStates",
+    "messaging:spaRouter",
+  ],
+});
+
+async function setupQueryBoxesObserver(location: ReturnType<typeof whereAmI>) {
   const settings = PluginsStatesService.getCachedSync()?.pluginsEnableStates;
 
   const shouldObserve =

@@ -44,7 +44,7 @@ export const baseManifest: ExtendedManifestV3Export = {
 
   web_accessible_resources: [
     {
-      resources: ["public/img/logo-*.png"],
+      resources: ["public/img/logo-*.png", "*.css"],
       matches: ["*://*/*"],
     },
   ],

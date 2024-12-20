@@ -3,6 +3,7 @@ import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
 
 import { RouterEvent } from "@/features/plugins/_core/spa-router/spa-router.types";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 
 onlyExtensionGuard();
 
@@ -16,11 +17,16 @@ export type DispatchEvents = {
   }) => void;
 };
 
-export function setupSpaRouterDispatchListeners() {
+function setupSpaRouterDispatchListeners() {
   onMessage("spa-router:route-change", ({ data: { trigger, newUrl } }) => {
     spaRouterStore.setState({ url: newUrl, trigger });
   });
 }
+
+CsLoaderRegistry.register({
+  id: "messaging:spaRouter",
+  loader: setupSpaRouterDispatchListeners,
+});
 
 type SpaRouterStore = {
   url: string;

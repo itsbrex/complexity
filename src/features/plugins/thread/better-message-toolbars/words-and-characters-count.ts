@@ -1,6 +1,10 @@
 import { sendMessage } from "webext-bridge/content-script";
 
-import { ExtendedMessageBlock } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
+import {
+  ExtendedMessageBlock,
+  globalDomObserverStore,
+} from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import {
@@ -30,7 +34,9 @@ const createQueryHoverContainer = (content: string) => {
   return $(
     `<div><span>${content}</span><div class="mx-2xs h-4 border-l border-borderMain/50 ring-borderMain/50 divide-borderMain/50 dark:divide-borderMainDark/50  dark:ring-borderMainDark/50 dark:border-borderMainDark/50 bg-transparent"></div></div>`,
   )
-    .addClass("tw-ml-2 tw-text-muted-foreground tw-italic tw-text-xs tw-flex tw-items-center tw-gap-2")
+    .addClass(
+      "tw-ml-2 tw-text-muted-foreground tw-italic tw-text-xs tw-flex tw-items-center tw-gap-2",
+    )
     .internalComponentAttr(
       DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
         .QUERY_HOVER_CONTAINER,
@@ -61,8 +67,13 @@ const displayWordsAndCharactersCount = async ({
   $buttonBar.attr(OBSERVER_ID, "true");
   await sleep(200);
 
-  const queryWordsCount = $query.text().split(" ").length;
-  const queryCharactersCount = $query.text().length;
+  const queryWordsCount = $query
+    .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
+    .text()
+    .split(" ").length;
+  const queryCharactersCount = $query
+    .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
+    .text().length;
 
   const queryWordsAndCharactersCountContainer = createQueryHoverContainer(
     `words: ${queryWordsCount}, characters: ${queryCharactersCount}`,
@@ -89,7 +100,7 @@ const displayWordsAndCharactersCount = async ({
   $answerHeading.append(answerWordsAndCharactersCountContainer);
 };
 
-export function wordsAndCharactersCount(messageBlocks: ExtendedMessageBlock[]) {
+function wordsAndCharactersCount(messageBlocks: ExtendedMessageBlock[]) {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
   if (
     !pluginsEnableStates?.["thread:betterMessageToolbars"] ||
@@ -111,3 +122,16 @@ export function wordsAndCharactersCount(messageBlocks: ExtendedMessageBlock[]) {
     },
   );
 }
+
+CsLoaderRegistry.register({
+  id: "plugin:thread:betterMessageToolbars:wordsAndCharactersCount",
+  loader: () => {
+    globalDomObserverStore.subscribe(
+      (state) => state.threadComponents.messageBlocks,
+      (messageBlocks) => {
+        wordsAndCharactersCount(messageBlocks ?? []);
+      },
+    );
+  },
+  dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
+});

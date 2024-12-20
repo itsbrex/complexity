@@ -6,12 +6,9 @@ import {
   XhrEventData,
 } from "@/features/plugins/_core/network-intercept/listeners.types";
 import MiddlewareManager from "@/features/plugins/_core/network-intercept/MiddlewareManager";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 
 onlyExtensionGuard();
-
-export function setupNetworkInterceptListeners() {
-  setupInterceptorsListeners();
-}
 
 export type InterceptorsEvents = {
   "network-intercept:webSocketEvent": (
@@ -65,3 +62,8 @@ function setupInterceptorsListeners() {
     },
   );
 }
+
+CsLoaderRegistry.register({
+  id: "messaging:networkIntercept",
+  loader: setupInterceptorsListeners,
+});

@@ -1,5 +1,6 @@
 import i18n from "i18next";
 
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { whereAmI } from "@/utils/utils";
 
 export type SupportedLangs = (typeof supportedLangs)[number];
@@ -69,36 +70,6 @@ async function loadLanguageResources(language: string) {
   };
 }
 
-export async function initializeI18next() {
-  const language = await getLanguage();
-
-  const resources: Resources = {
-    [language]: await loadLanguageResources(language),
-  };
-
-  if (language !== "en-US") {
-    resources["en-US"] = await loadLanguageResources("en-US");
-  }
-
-  await i18n.init({
-    lng: language,
-    fallbackLng: "en-US",
-    defaultNS: "common",
-    ns: [
-      "common",
-      "plugin-model-selectors",
-      "plugin-drag-n-drop-file-to-upload-in-thread",
-      "plugin-export-thread",
-      "plugin-better-copy-buttons",
-      "plugin-better-code-blocks",
-      "plugin-on-cloudflare-timeout-reload",
-      "plugin-command-menu",
-      "plugin-space-navigator",
-    ],
-    resources,
-  });
-}
-
 async function getCookieLocale(
   isExtension: boolean,
 ): Promise<string | undefined> {
@@ -131,3 +102,38 @@ export async function getLanguage() {
 export const t = i18n.t;
 
 export { i18n };
+
+export async function initializeI18next() {
+  const language = await getLanguage();
+
+  const resources: Resources = {
+    [language]: await loadLanguageResources(language),
+  };
+
+  if (language !== "en-US") {
+    resources["en-US"] = await loadLanguageResources("en-US");
+  }
+
+  await i18n.init({
+    lng: language,
+    fallbackLng: "en-US",
+    defaultNS: "common",
+    ns: [
+      "common",
+      "plugin-model-selectors",
+      "plugin-drag-n-drop-file-to-upload-in-thread",
+      "plugin-export-thread",
+      "plugin-better-copy-buttons",
+      "plugin-better-code-blocks",
+      "plugin-on-cloudflare-timeout-reload",
+      "plugin-command-menu",
+      "plugin-space-navigator",
+    ],
+    resources,
+  });
+}
+
+CsLoaderRegistry.register({
+  id: "lib:i18next",
+  loader: initializeI18next,
+});

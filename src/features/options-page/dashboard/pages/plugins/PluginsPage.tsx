@@ -38,7 +38,7 @@ function PluginsListing() {
     <div className="tw-size-full">
       <h1 className="tw-sr-only tw-text-2xl tw-font-bold">Plugins</h1>
 
-      <div className="tw-flex tw-flex-col tw-gap-4 md:tw-mt-0 tw-size-full">
+      <div className="tw-flex tw-size-full tw-flex-col tw-gap-4 md:tw-mt-0">
         <div className="tw-ml-auto tw-flex tw-w-full tw-flex-row-reverse tw-gap-4 md:tw-w-fit md:tw-flex-row md:tw-justify-end">
           <TagsFilter />
           <Input
@@ -57,7 +57,7 @@ function PluginsListing() {
         </div>
 
         {isFetchingFeatureFlags ? (
-          <div className="tw-flex tw-size-max tw-items-center tw-gap-2 tw-m-auto">
+          <div className="tw-m-auto tw-flex tw-size-max tw-items-center tw-gap-2">
             <LuLoader2 className="tw-animate-spin" />
             Fetching plugins...
           </div>

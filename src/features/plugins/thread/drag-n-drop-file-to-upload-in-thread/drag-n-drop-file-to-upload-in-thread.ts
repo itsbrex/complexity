@@ -1,4 +1,6 @@
+import { spaRouterStoreSubscribe } from "@/features/plugins/_core/spa-router/listeners";
 import styles from "@/features/plugins/thread/drag-n-drop-file-to-upload-in-thread/drag-n-drop-file-to-upload-in-thread.css?inline";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import UiUtils from "@/utils/UiUtils";
 import { insertCss, whereAmI } from "@/utils/utils";
@@ -12,7 +14,7 @@ const DRAGENTER_EVENT = "dragenter.cplx-file-upload";
 let removeCss: (() => void) | null = null;
 let $overlay: JQuery<HTMLElement> | null = null;
 
-export async function setupDragNDropFileToUploadInThread(
+export function setupDragNDropFileToUploadInThread(
   location: ReturnType<typeof whereAmI>,
 ) {
   if (
@@ -118,3 +120,15 @@ export async function setupDragNDropFileToUploadInThread(
     $fileInput[0].dispatchEvent(new Event("change", { bubbles: true }));
   });
 }
+
+CsLoaderRegistry.register({
+  id: "plugin:thread:dragAndDropFileToUploadInThread",
+  loader: () => {
+    setupDragNDropFileToUploadInThread(whereAmI());
+
+    spaRouterStoreSubscribe(({ url }) => {
+      setupDragNDropFileToUploadInThread(whereAmI(url));
+    });
+  },
+  dependencies: ["cache:pluginsStates", "messaging:spaRouter"],
+});

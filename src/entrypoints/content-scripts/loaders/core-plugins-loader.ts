@@ -1,8 +1,16 @@
+import {
+  allowWindowMessaging,
+  sendMessage,
+} from "webext-bridge/content-script";
+
 import { CorePluginId, PLUGINS_METADATA } from "@/data/plugins/plugins-data";
 import InternalWebSocketManager from "@/features/plugins/_core/web-socket/InternalWebSocketManager";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
-import { injectMainWorldScript } from "@/utils/utils";
+import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
+import { injectMainWorldScript, insertCss } from "@/utils/utils";
 
 import codeHighlighterPlugin from "@/features/plugins/_core/code-highlighter/index.main?script&module";
 import mermaidRendererPlugin from "@/features/plugins/_core/mermaid-renderer/index.main?script&module";
@@ -76,3 +84,33 @@ function shouldEnableCorePlugin(corePluginId: CorePluginId) {
 
   return shouldInject;
 }
+
+CsLoaderRegistry.register({
+  id: "plugins:core",
+  loader: initCorePlugins,
+  dependencies: ["cache:extensionLocalStorage"],
+});
+
+CsLoaderRegistry.register({
+  id: "messaging:namespaceSetup",
+  loader: () => {
+    allowWindowMessaging("com.complexity");
+  },
+});
+
+CsLoaderRegistry.register({
+  id: "plugin:pplxThemeLoader",
+  loader: async () => {
+    const chosenThemeId = ExtensionLocalStorageService.getCachedSync().theme;
+    const css = await getThemeCss(chosenThemeId);
+
+    insertCss({
+      css,
+      id: "cplx-custom-theme",
+    });
+
+    if (ExtensionLocalStorageService.getCachedSync().preloadTheme)
+      sendMessage("bg:removePreloadedTheme", undefined, "background");
+  },
+  dependencies: ["cache:extensionLocalStorage"],
+});

@@ -2,6 +2,8 @@ import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-qu
 import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/home/observer-ids";
+import { spaRouterStoreSubscribe } from "@/features/plugins/_core/spa-router/listeners";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 import { whereAmI } from "@/utils/utils";
 
@@ -17,9 +19,19 @@ const cleanup = () => {
 
 let previousLanguage = "";
 
-export function setupHomeComponentsObserver(
-  location: ReturnType<typeof whereAmI>,
-) {
+CsLoaderRegistry.register({
+  id: "coreDomObserver:homeComponents",
+  loader: () => {
+    setupHomeComponentsObserver(whereAmI());
+
+    spaRouterStoreSubscribe(({ url }) => {
+      setupHomeComponentsObserver(whereAmI(url));
+    });
+  },
+  dependencies: ["messaging:spaRouter"],
+});
+
+function setupHomeComponentsObserver(location: ReturnType<typeof whereAmI>) {
   cleanup();
 
   if (location !== "home") return;

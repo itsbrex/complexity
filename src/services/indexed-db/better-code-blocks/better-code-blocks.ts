@@ -4,12 +4,13 @@ import merge from "lodash/merge";
 import { DeepPartial } from "react-hook-form";
 
 import { BetterCodeBlockFineGrainedOptions } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { betterCodeBlocksFineGrainedOptionsQueries } from "@/services/indexed-db/better-code-blocks/query-keys";
 import { db } from "@/services/indexed-db/indexed-db";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { queryClient } from "@/utils/ts-query-client";
 
-class BetterCodeBlocksService {
+class BetterCodeBlocksFineGrainedService {
   async add(options: BetterCodeBlockFineGrainedOptions): Promise<string> {
     return await db.betterCodeBlocks.add(options);
   }
@@ -59,20 +60,23 @@ class BetterCodeBlocksService {
 }
 
 export const [
-  registerBetterCodeBlocksOptionsService,
-  getBetterCodeBlocksOptionsService,
+  registerBetterCodeBlocksFineGrainedOptionsService,
+  getBetterCodeBlocksFineGrainedOptionsService,
 ] = defineProxyService(
-  "BetterCodeBlocksOptionsService",
-  () => new BetterCodeBlocksService(),
+  "BetterCodeBlocksFineGrainedOptionsService",
+  () => new BetterCodeBlocksFineGrainedService(),
 );
 
-export async function initializeBetterCodeBlocksOptions() {
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+CsLoaderRegistry.register({
+  id: "cache:betterCodeBlocksFineGrainedOptions",
+  loader: async () => {
+    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-  if (!pluginsEnableStates?.["thread:betterCodeBlocks"]) return;
+    if (!pluginsEnableStates?.["thread:betterCodeBlocks"]) return;
 
-  await queryClient.prefetchQuery({
-    ...betterCodeBlocksFineGrainedOptionsQueries.list,
-    gcTime: Infinity,
-  });
-}
+    await queryClient.prefetchQuery({
+      ...betterCodeBlocksFineGrainedOptionsQueries.list,
+      gcTime: Infinity,
+    });
+  },
+});

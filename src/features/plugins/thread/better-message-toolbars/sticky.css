@@ -19,7 +19,7 @@
 
       &.stuck {
         border-style: solid;
-        box-shadow: 0 16px 16px -16px rgba(0,0,0,0.3);
+        box-shadow: 0 16px 16px -16px rgba(0, 0, 0, 0.3);
       }
     }
   }

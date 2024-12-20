@@ -200,7 +200,7 @@ module.exports = {
             from: ["core-plugin"],
             allow: [
               "shared",
-              ["core-plugin", { corePluginName: "${from.corePluginName}" }],
+              "core-plugin",
               "entrypoint",
             ],
           },

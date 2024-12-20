@@ -278,6 +278,10 @@ export const isExtensionContext = () => {
   return !isMainWorldContext();
 };
 
+export const isInContentScript = () => {
+  return whereAmI() !== "unknown";
+};
+
 export async function injectMainWorldScript({
   url,
   head = true,

@@ -131,8 +131,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     id: "thread:betterCodeBlocks:previewMermaid",
     routeSegment: "thread-better-code-blocks-preview-mermaid",
     title: "Mermaid Code Blocks Preview",
-    description:
-      "Preview mermaid diagrams, simple charts, etc. in code blocks",
+    description: "Preview mermaid diagrams, simple charts, etc. in code blocks",
     tags: ["ui"],
     dependentCorePlugins: ["mermaidRenderer"],
     dependentPlugins: ["thread:betterCodeBlocks"],

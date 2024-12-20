@@ -3,21 +3,21 @@ import { sendMessage } from "webext-bridge/content-script";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PplxApiService } from "@/services/pplx-api/pplx-api";
 
-const isCloudflareVerificationPage = () => $(document.body).hasClass("no-js");
-
-export async function contentScriptGuard() {
-  checkForMaintenance().catch(() => {
+export function contentScriptGuard() {
+  const removePreloadedTheme = () => {
     if (ExtensionLocalStorageService.getCachedSync().preloadTheme)
       sendMessage("bg:removePreloadedTheme", undefined, "background");
+  };
+
+  checkForMaintenance().catch(() => {
+    removePreloadedTheme();
   });
 
   try {
     ignoreInvalidPages();
     checkForExistingExtensionInstance();
   } catch (error) {
-    if (ExtensionLocalStorageService.getCachedSync().preloadTheme)
-      sendMessage("bg:removePreloadedTheme", undefined, "background");
-
+    removePreloadedTheme();
     throw error;
   }
 }
@@ -28,7 +28,9 @@ async function checkForMaintenance() {
 }
 
 function ignoreInvalidPages() {
-  if (isCloudflareVerificationPage())
+  const isCloudflareVerificationPage = $(document.body).hasClass("no-js");
+
+  if (isCloudflareVerificationPage)
     throw new Error("Cloudflare verification page");
 }
 

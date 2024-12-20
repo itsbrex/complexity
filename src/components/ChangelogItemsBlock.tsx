@@ -3,7 +3,7 @@ import { HTMLAttributes } from "react";
 import { LuArrowLeftRight, LuRocket, LuSparkles } from "react-icons/lu";
 import { TbBugOff } from "react-icons/tb";
 
-const blockVariants = cva("tw-rounded-md tw-p-4 tw-my-2", {
+const blockVariants = cva("tw-my-2 tw-rounded-md tw-p-4", {
   variants: {
     variant: {
       new: "tw-bg-primary/10 [&_[data-releasenote-part='header']]:tw-text-primary [&_strong]:tw-text-foreground",

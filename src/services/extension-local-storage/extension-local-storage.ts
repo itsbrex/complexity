@@ -1,5 +1,6 @@
 import { produce } from "immer";
 
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageApi } from "@/services/extension-local-storage/extension-local-storage-api";
 import {
   ExtensionLocalStorageSchema,
@@ -137,3 +138,11 @@ async function mergeData(
 export async function fetchExtensionLocalStorageData(): Promise<ExtensionLocalStorage> {
   return parseStoreData(await ExtensionLocalStorageApi.get());
 }
+
+CsLoaderRegistry.register({
+  id: "cache:extensionLocalStorage",
+  loader: async () => {
+    await ExtensionLocalStorageService.get();
+  },
+});
+

@@ -1,10 +1,14 @@
 import { isHotkeyPressed } from "react-hotkeys-hook";
 
-import { GlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
+import {
+  globalDomObserverStore,
+  GlobalDomObserverStore,
+} from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/query-boxes/observer-ids";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 
-export function noFileCreationOnPaste(
+function noFileCreationOnPaste(
   queryBoxes: GlobalDomObserverStore["queryBoxes"],
 ) {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
@@ -41,3 +45,16 @@ export function noFileCreationOnPaste(
     });
   });
 }
+
+CsLoaderRegistry.register({
+  id: "plugin:queryBox:noFileCreationOnPaste",
+  loader: () => {
+    globalDomObserverStore.subscribe(
+      (state) => state.queryBoxes,
+      (queryBoxes) => {
+        noFileCreationOnPaste(queryBoxes);
+      },
+    );
+  },
+  dependencies: ["cache:pluginsStates"],
+});

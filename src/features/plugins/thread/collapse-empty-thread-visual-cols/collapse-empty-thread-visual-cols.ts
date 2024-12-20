@@ -1,10 +1,11 @@
 import styles from "@/features/plugins/thread/collapse-empty-thread-visual-cols/collapse-empty-thread-visual-cols.css?inline";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { insertCss, whereAmI } from "@/utils/utils";
 
 let removeCss: (() => void) | null = null;
 
-export function setupCollapseEmptyThreadVisualCols(
+function setupCollapseEmptyThreadVisualCols(
   location: ReturnType<typeof whereAmI>,
 ) {
   if (
@@ -21,3 +22,11 @@ export function setupCollapseEmptyThreadVisualCols(
     id: "cplx-collapse-empty-thread-visual-cols",
   });
 }
+
+CsLoaderRegistry.register({
+  id: "plugin:thread:collapseEmptyThreadVisualCols",
+  loader: () => {
+    setupCollapseEmptyThreadVisualCols(whereAmI());
+  },
+  dependencies: ["cache:pluginsStates"],
+});

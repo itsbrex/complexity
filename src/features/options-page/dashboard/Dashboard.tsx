@@ -9,7 +9,9 @@ import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 
 export default function Dashboard() {
   const { isMobile } = useIsMobileStore();
-  const SidebarWrapper = isMobile ? MobileSidebarWrapper : DesktopSidebarWrapper;
+  const SidebarWrapper = isMobile
+    ? MobileSidebarWrapper
+    : DesktopSidebarWrapper;
 
   return (
     <div className="tw-flex tw-min-h-screen tw-bg-background">

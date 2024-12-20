@@ -72,10 +72,7 @@ DialogContent.displayName = ArkDialog.Content.displayName;
 function DialogHeader({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn(
-        "tw-flex tw-flex-col tw-space-y-1.5",
-        className,
-      )}
+      className={cn("tw-flex tw-flex-col tw-space-y-1.5", className)}
       {...props}
     />
   );
@@ -87,7 +84,7 @@ function DialogFooter({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       className={cn(
-        "tw-flex tw-flex-col-reverse sm:tw-flex-row sm:tw-justify-end tw-gap-2",
+        "tw-flex tw-flex-col-reverse tw-gap-2 sm:tw-flex-row sm:tw-justify-end",
         className,
       )}
       {...props}

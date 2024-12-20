@@ -2,7 +2,11 @@ import { sendMessage } from "webext-bridge/content-script";
 
 import { languageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
 import { isLanguageModelCode } from "@/data/plugins/query-box/language-model-selector/language-models.types";
-import { ExtendedMessageBlock } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
+import {
+  ExtendedMessageBlock,
+  globalDomObserverStore,
+} from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import {
@@ -79,7 +83,7 @@ const displayModelBadge = async ({
   $target.append(modelNameElement);
 };
 
-export function explicitModelName(messageBlocks: ExtendedMessageBlock[]) {
+function explicitModelName(messageBlocks: ExtendedMessageBlock[]) {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
   if (
     !pluginsEnableStates?.["thread:betterMessageToolbars"] ||
@@ -93,3 +97,20 @@ export function explicitModelName(messageBlocks: ExtendedMessageBlock[]) {
     displayModelBadge({ $wrapper, $answerHeading, isInFlight, index });
   });
 }
+
+CsLoaderRegistry.register({
+  id: "plugin:thread:betterMessageToolbars:explicitModelName",
+  loader: () => {
+    globalDomObserverStore.subscribe(
+      (state) => state.threadComponents.messageBlocks,
+      (messageBlocks) => {
+        explicitModelName(messageBlocks ?? []);
+      },
+    );
+  },
+  dependencies: [
+    "cache:pluginsStates",
+    "cache:extensionLocalStorage",
+    "cache:languageModels",
+  ],
+});

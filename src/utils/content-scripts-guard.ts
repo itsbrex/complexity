@@ -6,8 +6,12 @@ import { PplxApiService } from "@/services/pplx-api/pplx-api";
 const isCloudflareVerificationPage = () => $(document.body).hasClass("no-js");
 
 export async function contentScriptGuard() {
+  checkForMaintenance().catch(() => {
+    if (ExtensionLocalStorageService.getCachedSync().preloadTheme)
+      sendMessage("bg:removePreloadedTheme", undefined, "background");
+  });
+
   try {
-    await checkForMaintenance();
     ignoreInvalidPages();
     checkForExistingExtensionInstance();
   } catch (error) {

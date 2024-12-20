@@ -3,6 +3,7 @@ import { sendMessage } from "webext-bridge/content-script";
 import { languageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
 import { isLanguageModelCode } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { ExtendedMessageBlock } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import {
   DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
@@ -17,8 +18,8 @@ const handleInFlightMessage = ($answerHeading: JQuery<Element>) => {
   $answerHeading.find(":nth-child(2)").removeClass("tw-hidden");
 };
 
-const createModelNameElement = (modelName: string) => {
-  return $(`<span>${modelName.toLocaleUpperCase()}</span>`)
+const createModelBadge = (modelName: string) => {
+  return $(`<div>${modelName.toLocaleUpperCase()}</div>`)
     .addClass(
       "tw-font-mono tw-animate-in tw-fade-in tw-border tw-border-border/50 tw-p-1 tw-px-2 tw-rounded-md tw-text-xs tw-bg-secondary",
     )
@@ -28,7 +29,7 @@ const createModelNameElement = (modelName: string) => {
     );
 };
 
-const updateMessageToolbar = async ({
+const displayModelBadge = async ({
   $wrapper,
   $answerHeading,
   isInFlight,
@@ -74,16 +75,21 @@ const updateMessageToolbar = async ({
     .addClass("tw-hidden");
   $target.find(":nth-child(2)").addClass("tw-hidden");
 
-  // Add explicit model name
-  const modelNameElement = createModelNameElement(model.label);
+  const modelNameElement = createModelBadge(model.label);
   $target.append(modelNameElement);
 };
 
 export function explicitModelName(messageBlocks: ExtendedMessageBlock[]) {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
-  if (!pluginsEnableStates?.["thread:betterMessageToolbars"]) return;
+  if (
+    !pluginsEnableStates?.["thread:betterMessageToolbars"] ||
+    !ExtensionLocalStorageService.getCachedSync().plugins[
+      "thread:betterMessageToolbars"
+    ].explicitModelName
+  )
+    return;
 
   messageBlocks.forEach(({ $wrapper, $answerHeading, isInFlight }, index) => {
-    updateMessageToolbar({ $wrapper, $answerHeading, isInFlight, index });
+    displayModelBadge({ $wrapper, $answerHeading, isInFlight, index });
   });
 }

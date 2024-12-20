@@ -27,6 +27,10 @@ const SWITCH_OPTIONS: Record<Exclude<PluginKey, "enabled">, SwitchOption> = {
     label: "Explicit Model Name",
     description: "Show the model name without hovering.",
   },
+  wordsAndCharactersCount: {
+    label: "Word and Character Count",
+    description: "Show words and characters count.",
+  },
 };
 
 export default function BetterThreadMessageToolbarsPluginDetails() {
@@ -43,21 +47,20 @@ export default function BetterThreadMessageToolbarsPluginDetails() {
 
   const renderSwitch = useCallback(
     (key: Exclude<PluginKey, "enabled">) => (
-      <div>
-        <Switch
-          className="tw-items-start"
-          textLabel={
-            <div>
-              <div>{SWITCH_OPTIONS[key].label}</div>
-              <div className="tw-text-sm tw-text-muted-foreground">
-                {SWITCH_OPTIONS[key].description}
-              </div>
+      <Switch
+        key={key}
+        className="tw-items-start"
+        textLabel={
+          <div>
+            <div>{SWITCH_OPTIONS[key].label}</div>
+            <div className="tw-text-sm tw-text-muted-foreground">
+              {SWITCH_OPTIONS[key].description}
             </div>
-          }
-          checked={settings?.plugins["thread:betterMessageToolbars"][key]}
-          onCheckedChange={handleCheckedChange(key)}
-        />
-      </div>
+          </div>
+        }
+        checked={settings?.plugins["thread:betterMessageToolbars"][key]}
+        onCheckedChange={handleCheckedChange(key)}
+      />
     ),
     [settings, handleCheckedChange],
   );

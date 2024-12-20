@@ -35,6 +35,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       simplifyRewriteDropdown: true,
       explicitModelName: true,
       hideUnnecessaryButtons: true,
+      wordsAndCharactersCount: true,
     },
     "thread:betterCodeBlocks": {
       enabled: false,

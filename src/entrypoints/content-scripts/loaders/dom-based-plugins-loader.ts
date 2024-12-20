@@ -2,6 +2,7 @@ import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/gl
 import { setupCustomSlogan } from "@/features/plugins/home/custom-slogan/custom-slogan";
 import { noFileCreationOnPaste } from "@/features/plugins/query-box/no-file-creation-on-paste";
 import { explicitModelName } from "@/features/plugins/thread/better-message-toolbars/explicit-model-name";
+import { wordsAndCharactersCount } from "@/features/plugins/thread/better-message-toolbars/words-and-characters-count";
 import { whereAmI } from "@/utils/utils";
 
 export async function setupDomBasedPlugins() {
@@ -23,6 +24,7 @@ export async function setupDomBasedPlugins() {
     (state) => state.threadComponents.messageBlocks,
     (messageBlocks) => {
       explicitModelName(messageBlocks ?? []);
+      wordsAndCharactersCount(messageBlocks ?? []);
     },
   );
 }

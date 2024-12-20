@@ -27,6 +27,7 @@ export const PluginsSchema = z.object({
     simplifyRewriteDropdown: z.boolean(),
     explicitModelName: z.boolean(),
     hideUnnecessaryButtons: z.boolean(),
+    wordsAndCharactersCount: z.boolean(),
   }),
   "thread:betterCodeBlocks": PluginSettingsSchema.merge(
     BetterCodeBlockGlobalOptionsSchema,

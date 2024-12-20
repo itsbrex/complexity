@@ -22,6 +22,7 @@ export const DOM_SELECTORS = {
         /** The query box */
         QUERY: ".my-md.md\\:my-lg",
         QUERY_TITLE: ".group\\/query",
+        QUERY_HOVER_CONTAINER: ".pointer-events-none.absolute.bottom-0.right-0",
         EDIT_TEXT_AREA: "textarea[placeholder]",
         /** The answer heading */
         ANSWER_HEADING:
@@ -102,9 +103,12 @@ export const DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS = {
       VISUAL_COL: "message-block-visual-col",
       TEXT_COL_CHILD: {
         QUERY: "message-block-query",
+        QUERY_HOVER_CONTAINER: "message-block-query-hover-container",
         ANSWER: "message-block-answer",
         ANSWER_HEADING: "message-block-answer-heading",
         ANSWER_HEADING_MODEL_NAME: "message-block-answer-heading-model-name",
+        ANSWER_HEADING_WORDS_AND_CHARACTERS_COUNT:
+          "message-block-answer-heading-words-and-characters-count",
         CODE_BLOCK: "message-block-code-block",
         MIRRORED_CODE_BLOCK: "cplx-mirrored-code-block",
         BOTTOM_BAR: "message-block-bottom-bar",

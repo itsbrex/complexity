@@ -13,5 +13,9 @@
       "title": "🌟 Tem uma proposta para patrocínio a longo prazo?",
       "contactEmail": "Contacto por e-mail"
     }
+  },
+  "misc": {
+    "words": "palavras",
+    "characters": "caracteres"
   }
 }

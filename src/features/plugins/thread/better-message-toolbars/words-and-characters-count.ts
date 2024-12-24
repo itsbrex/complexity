@@ -76,7 +76,7 @@ const displayWordsAndCharactersCount = async ({
     .text().length;
 
   const queryWordsAndCharactersCountContainer = createQueryHoverContainer(
-    `words: ${queryWordsCount}, characters: ${queryCharactersCount}`,
+    `${t("common:misc.words")}: ${queryWordsCount}, ${t("common:misc.characters")}: ${queryCharactersCount}`,
   );
 
   $query
@@ -95,7 +95,7 @@ const displayWordsAndCharactersCount = async ({
   const answerCharactersCount = answer.length;
 
   const answerWordsAndCharactersCountContainer = createAnswerHeadingContainer(
-    `words: ${answerWordsCount}, characters: ${answerCharactersCount}`,
+    `${t("common:misc.words")}: ${answerWordsCount}, ${t("common:misc.characters")}: ${answerCharactersCount}`,
   );
   $answerHeading.append(answerWordsAndCharactersCountContainer);
 };

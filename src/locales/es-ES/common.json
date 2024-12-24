@@ -13,5 +13,9 @@
       "title": "🌟 ¿Tienes una oferta para un patrocinio a largo plazo?",
       "contactEmail": "Contactar por correo electrónico"
     }
+  },
+  "misc": {
+    "words": "palabras",
+    "characters": "caracteres"
   }
 }

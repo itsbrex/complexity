@@ -13,5 +13,9 @@
       "title": "🌟 Have an offer for a long term sponsorship?",
       "contactEmail": "Contact via Email"
     }
+  },
+  "misc": {
+    "words": "words",
+    "characters": "characters"
   }
 }

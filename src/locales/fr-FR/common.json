@@ -13,5 +13,9 @@
       "title": "🌟 Vous avez une offre de parrainage à long terme ?",
       "contactEmail": "Contacter par email"
     }
+  },
+  "misc": {
+    "words": "mots",
+    "characters": "caractères"
   }
 }

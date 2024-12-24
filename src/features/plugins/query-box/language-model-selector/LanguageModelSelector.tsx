@@ -39,6 +39,16 @@ export default function LanguageModelSelector() {
       })}
       value={[value]}
       onValueChange={handleValueChange}
+      onKeyDown={(event) => {
+        if (event.key === Key.Escape) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          setTimeout(() => {
+            UiUtils.getActiveQueryBoxTextarea().trigger("focus");
+          }, 100);
+        }
+      }}
     >
       <Tooltip
         content={t("plugin-model-selectors:languageModelSelector.tooltip")}

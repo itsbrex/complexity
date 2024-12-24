@@ -2,17 +2,23 @@ import { Dexie } from "dexie";
 
 import { BetterCodeBlockFineGrainedOptions } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
 import { ExtensionData } from "@/data/dashboard/extension-data.types";
+import { PromptHistory } from "@/data/plugins/prompt-history/prompt-history.type";
 import { Theme } from "@/data/plugins/themes/theme-registry.types";
 
 export class IndexedDbService extends Dexie {
   themes!: Dexie.Table<Theme, string>;
   betterCodeBlocks!: Dexie.Table<BetterCodeBlockFineGrainedOptions, string>;
+  promptHistory!: Dexie.Table<PromptHistory, string>;
 
   constructor() {
     super("ComplexityDatabase");
     this.version(1).stores({
       themes: "&id, title, author",
       betterCodeBlocks: "&language",
+    });
+
+    this.version(2).stores({
+      promptHistory: "&id, prompt, createdAt",
     });
   }
 

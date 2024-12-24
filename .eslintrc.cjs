@@ -229,9 +229,8 @@ module.exports = {
               ["plugin-family", { familyName: "${from.familyName}" }],
               [
                 "nested-plugin",
-                { nestedPluginName: "${from.nestedPluginName}" },
+                { familyName: "${from.familyName}" },
               ],
-              ["nested-plugin", { nestedPluginName: "assets" }],
             ],
           },
           {

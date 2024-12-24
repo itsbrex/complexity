@@ -16,6 +16,13 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "queryBox:spaceNavigator": {
       enabled: false,
     },
+    "queryBox:slashCommandMenu:promptHistory": {
+      enabled: false,
+      trigger: {
+        onSubmit: true,
+        onNavigation: true,
+      },
+    },
     "queryBox:noFileCreationOnPaste": {
       enabled: false,
     },

@@ -26,7 +26,6 @@ export default function CodeThemeSelector({
 
   return (
     <Popover
-      portal={false}
       positioning={{ placement: "bottom-start" }}
       open={open}
       onOpenChange={({ open }) => setOpen(open)}
@@ -34,7 +33,7 @@ export default function CodeThemeSelector({
       <PopoverTrigger asChild>
         <Button variant="outline">{value}</Button>
       </PopoverTrigger>
-      <PopoverContent className="tw-p-0">
+      <PopoverContent className="tw-p-0" portal={false}>
         <Command>
           <CommandInput placeholder="Search theme..." />
           <CommandEmpty>No theme found.</CommandEmpty>

@@ -17,6 +17,12 @@ export const PluginsSchema = z.object({
     }),
   }),
   "queryBox:spaceNavigator": PluginSettingsSchema,
+  "queryBox:slashCommandMenu:promptHistory": PluginSettingsSchema.extend({
+    trigger: z.object({
+      onSubmit: z.boolean(),
+      onNavigation: z.boolean(),
+    }),
+  }),
   "queryBox:noFileCreationOnPaste": PluginSettingsSchema,
   commandMenu: PluginSettingsSchema.extend({
     hotkey: z.array(z.string()),

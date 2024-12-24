@@ -8,7 +8,7 @@ import {
   globalDomObserverStore,
 } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/thread/observer-ids";
-import { spaRouterStoreSubscribe } from "@/features/plugins/_core/spa-router/listeners";
+import { spaRouteChangeCompleteSubscribe } from "@/features/plugins/_core/spa-router/listeners";
 import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import {
@@ -34,7 +34,7 @@ CsLoaderRegistry.register({
   loader: () => {
     setupThreadComponentsObserver(whereAmI());
 
-    spaRouterStoreSubscribe(({ url }) => {
+    spaRouteChangeCompleteSubscribe((url) => {
       setupThreadComponentsObserver(whereAmI(url));
     });
   },

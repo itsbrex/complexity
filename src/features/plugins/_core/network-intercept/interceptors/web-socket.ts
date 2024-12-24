@@ -36,7 +36,7 @@ function proxyWebSocketInstance(instance: WebSocket) {
 }
 
 function passivelyCaptureWebSocket() {
-  WebSocket.prototype.send = async function (data: any) {
+  WebSocket.prototype.send = async function (data) {
     if (!capturedInstances.has(this)) {
       setWebSocketInstance(this);
     }
@@ -63,7 +63,7 @@ function passivelyCaptureWebSocket() {
       }
     }
 
-    return webSocketOriginalSend.apply(this, [data] as any);
+    return webSocketOriginalSend.apply(this, [data]);
   };
 }
 

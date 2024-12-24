@@ -13,6 +13,7 @@ import {
 import { Ul } from "@/components/ui/typography";
 import { PLUGINS_METADATA } from "@/data/plugins/plugins-data";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
+import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import usePplxAuth from "@/hooks/usePplxAuth";
 import usePplxUserSettings from "@/hooks/usePplxUserSettings";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
@@ -24,6 +25,7 @@ import packageJson from "~/package.json";
 type CsUiPluginsGuardProps = {
   dependentPluginIds?: PluginId[];
   location?: ReturnType<typeof whereAmI>[];
+  desktopOnly?: boolean;
   children: React.ReactNode;
   requiresLoggedIn?: boolean;
   requiresPplxPro?: boolean;
@@ -33,15 +35,22 @@ export default function CsUiPluginsGuard({
   dependentPluginIds,
   location,
   children,
+  desktopOnly = false,
   requiresLoggedIn = false,
   requiresPplxPro = false,
 }: CsUiPluginsGuardProps) {
   const { url } = useSpaRouter();
 
+  const { isMobile } = useIsMobileStore();
+
   const currentLocation = whereAmI(url);
 
   const { isLoggedIn } = usePplxAuth();
   const { data: pplxUserSettings } = usePplxUserSettings();
+
+  if (desktopOnly && isMobile) {
+    return null;
+  }
 
   if (requiresLoggedIn && !isLoggedIn) {
     return null;

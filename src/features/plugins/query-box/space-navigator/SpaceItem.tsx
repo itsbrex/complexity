@@ -102,7 +102,7 @@ export default function SpaceItem({ space }: { space: Space }) {
       </CommandItem>
       {shouldShowPopover === true && (
         <PopoverRootProvider unmountOnExit lazyMount value={popover}>
-          <PopoverContent className="tw-hidden tw-min-w-[300px] tw-max-w-[500px] tw-p-4 md:tw-block">
+          <PopoverContent className="tw-hidden tw-max-w-[300px] tw-p-4 md:tw-block xl:tw-max-w-[500px]">
             <div className="tw-flex tw-flex-col tw-gap-4 tw-overflow-auto">
               {space.description && (
                 <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">

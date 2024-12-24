@@ -20,7 +20,6 @@ export default function SpaceNavigatorDesktopWrapper({
       lazyMount
       closeOnEscape
       closeOnInteractOutside
-      portal={false}
       positioning={{
         placement: "bottom-start",
       }}
@@ -32,7 +31,7 @@ export default function SpaceNavigatorDesktopWrapper({
       >
         <PopoverTrigger asChild>{children}</PopoverTrigger>
       </Tooltip>
-      <PopoverContent className="tw-p-0">
+      <PopoverContent className="tw-p-0" portal={false}>
         <SpaceNavigatorContent />
       </PopoverContent>
     </Popover>

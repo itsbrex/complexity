@@ -44,7 +44,7 @@ export default function OnCloudflareTimeoutAutoReloadPluginDetails() {
 
   return (
     <div className="tw-flex tw-max-w-lg tw-flex-col tw-gap-4">
-      <P className="tw-text-balance">
+      <P>
         Helpful when you are using VPNs, or when Perplexity/Cloudflare has
         issues with your ISP. Turn this on if you want to automatically reload
         the page when this occurs.

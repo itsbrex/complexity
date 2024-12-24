@@ -61,12 +61,12 @@ export default function CsUiRoot() {
         dependentPluginIds={[
           "queryBox:languageModelSelector",
           "queryBox:spaceNavigator",
-          "queryBox:noFileCreationOnPaste",
+          "queryBox:slashCommandMenu:promptHistory",
         ]}
       >
         <QueryBoxWrapper />
       </CsUiPluginsGuard>
-      <CsUiPluginsGuard dependentPluginIds={["commandMenu"]}>
+      <CsUiPluginsGuard desktopOnly dependentPluginIds={["commandMenu"]}>
         <CommandMenuWrapper />
       </CsUiPluginsGuard>
       <CsUiPluginsGuard location={["thread"]}>
@@ -88,6 +88,7 @@ function ThreadComponent() {
     <Fragment key={url}>
       <CsUiPluginsGuard
         requiresPplxPro
+        desktopOnly
         dependentPluginIds={["imageGenModelSelector"]}
       >
         <ImageGenModelSelectorWrapper />

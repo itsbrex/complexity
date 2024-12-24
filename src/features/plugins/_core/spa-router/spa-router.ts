@@ -1,4 +1,3 @@
-import debounce from "lodash/debounce";
 import { sendMessage } from "webext-bridge/window";
 
 import {
@@ -70,26 +69,34 @@ function createProxiedReplaceState(
   };
 }
 
-const dispatchRouteChange = debounce(
-  async ({ trigger, newUrl }: { trigger: RouterEvent; newUrl: string }) => {
-    const fullUrl = new URL(newUrl, window.location.origin).href;
+const dispatchRouteChange = async ({
+  trigger,
+  newUrl,
+}: {
+  trigger: RouterEvent;
+  newUrl: string;
+}) => {
+  const fullUrl = new URL(newUrl, window.location.origin).href;
 
-    if (fullUrl !== lastDispatchedUrl) {
-      lastDispatchedUrl = fullUrl;
+  if (fullUrl !== lastDispatchedUrl) {
+    lastDispatchedUrl = fullUrl;
 
-      // hacky solution since router events are no longer available in next app router 🥲 (routeChangeStart, routeChangeComplete)
-      await waitForRouteChangeComplete(whereAmI(fullUrl));
+    sendMessage(
+      "spa-router:route-change",
+      { state: "pending", trigger, newUrl },
+      "content-script",
+    );
 
-      sendMessage(
-        "spa-router:route-change",
-        { trigger, newUrl },
-        "content-script",
-      );
-    }
-  },
-  300,
-  { leading: false, trailing: true },
-);
+    // hacky solution since router events are no longer available in next app router 🥲 (routeChangeStart, routeChangeComplete)
+    await waitForRouteChangeComplete(whereAmI(fullUrl));
+
+    sendMessage(
+      "spa-router:route-change",
+      { state: "complete", trigger, newUrl },
+      "content-script",
+    );
+  }
+};
 
 export async function waitForRouteChangeComplete(
   location: ReturnType<typeof whereAmI>,

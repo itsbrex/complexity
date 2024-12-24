@@ -122,5 +122,6 @@ export const TEST_ID_SELECTORS = {
   QUERY_BOX: {
     LANGUAGE_MODEL_SELECTOR: "cplx-language-model-selector",
     IMAGE_GEN_MODEL_SELECTOR: "cplx-image-gen-model-selector",
+    SPACE_NAVIGATOR: "cplx-space-navigator",
   },
 } as const;

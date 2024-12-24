@@ -2,7 +2,7 @@ import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-qu
 import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/query-boxes/observer-ids";
-import { spaRouterStoreSubscribe } from "@/features/plugins/_core/spa-router/listeners";
+import { spaRouteChangeCompleteSubscribe } from "@/features/plugins/_core/spa-router/listeners";
 import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
@@ -27,7 +27,7 @@ CsLoaderRegistry.register({
   id: "coreDomObserver:queryBoxes",
   loader: () => {
     setupQueryBoxesObserver(whereAmI());
-    spaRouterStoreSubscribe(({ url }) => {
+    spaRouteChangeCompleteSubscribe((url) => {
       setupQueryBoxesObserver(whereAmI(url));
     });
   },

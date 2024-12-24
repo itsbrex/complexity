@@ -200,7 +200,7 @@ export default class UiUtils {
   }: {
     type?: QueryBoxType;
   } = {}): JQuery<HTMLTextAreaElement> {
-    if (!type) return $(DOM_SELECTORS.QUERY_BOX.TEXTAREA.ARBITRARY);
+    if (!type) return $(`${DOM_SELECTORS.QUERY_BOX.TEXTAREA.ARBITRARY}:last`);
 
     // Cache the parents lookup since it's used multiple times
     const $parents = $(
@@ -225,7 +225,7 @@ export default class UiUtils {
     }
 
     // Single DOM traversal instead of multiple .find() calls
-    return $parents.find(selector) as JQuery<HTMLTextAreaElement>;
+    return $parents.find(selector);
   }
 
   static getActiveQueryBox({ type }: { type?: QueryBoxType } = {}) {
@@ -278,39 +278,6 @@ export default class UiUtils {
       end,
       newText,
     };
-  }
-
-  static setReactTextareaValue(
-    textarea: HTMLTextAreaElement,
-    newValue: string,
-  ) {
-    if (textarea == null) return;
-
-    const nativeTextareaValueSetter = Object.getOwnPropertyDescriptor(
-      HTMLTextAreaElement.prototype,
-      "value",
-    )?.set;
-
-    if (nativeTextareaValueSetter) {
-      nativeTextareaValueSetter.call(textarea, newValue);
-    }
-
-    textarea.dispatchEvent(new Event("input", { bubbles: true }));
-  }
-
-  static setReactInputValue(input: HTMLInputElement, newValue: string) {
-    if (input == null) return;
-
-    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
-      window.HTMLInputElement.prototype,
-      "value",
-    )?.set;
-
-    if (nativeInputValueSetter) {
-      nativeInputValueSetter.call(input, newValue);
-    }
-
-    input.dispatchEvent(new Event("input", { bubbles: true }));
   }
 
   static waitForSpaIdle(): Promise<boolean> {

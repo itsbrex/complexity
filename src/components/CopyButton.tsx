@@ -1,13 +1,13 @@
-import { HTMLAttributes } from "react";
+import { ComponentProps } from "react";
 import { LuCheck as Check, LuCopy as Copy } from "react-icons/lu";
 
 import useToggleButtonText from "@/hooks/useToggleButtonText";
 
-type CopyButtonProps = HTMLAttributes<HTMLDivElement> & {
+type CopyButtonProps = ComponentProps<"div"> & {
   content?: string;
   onCopy?: () => void;
   disabled?: boolean;
-  iconProps?: HTMLAttributes<SVGElement>;
+  iconProps?: ComponentProps<"svg">;
 };
 
 export default function CopyButton({
@@ -16,10 +16,13 @@ export default function CopyButton({
   className,
   disabled,
   iconProps,
+  onClick,
   ...props
 }: CopyButtonProps) {
   const [copyButtonText, setCopyButtonText] = useToggleButtonText({
-    defaultText: <Copy className="tw-size-4" {...iconProps} />,
+    defaultText: (
+      <Copy {...iconProps} className={cn("tw-size-4", iconProps?.className)} />
+    ),
   });
 
   return (
@@ -31,14 +34,21 @@ export default function CopyButton({
         },
         className,
       )}
-      onClick={() => {
+      onClick={(e) => {
         if (content && !onCopy) {
           navigator.clipboard.writeText(content);
         } else {
           onCopy?.();
         }
 
-        setCopyButtonText(<Check className="tw-size-4" {...iconProps} />);
+        setCopyButtonText(
+          <Check
+            {...iconProps}
+            className={cn("tw-size-4", iconProps?.className)}
+          />,
+        );
+
+        onClick?.(e);
       }}
       {...props}
     >

@@ -19,6 +19,8 @@ import "@/features/plugins/_core/dom-observer/observers/thread/thread-components
 
 // Query Box Plugins
 import "@/features/plugins/query-box/language-model-selector/network-intercept-middlewares";
+import "@/features/plugins/query-box/prompt-history/network-intercept-middlewares";
+import "@/features/plugins/query-box/prompt-history/listeners";
 import "@/features/plugins/query-box/no-file-creation-on-paste";
 
 // Thread Plugins

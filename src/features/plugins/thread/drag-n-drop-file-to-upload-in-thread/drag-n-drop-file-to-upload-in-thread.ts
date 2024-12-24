@@ -1,4 +1,4 @@
-import { spaRouterStoreSubscribe } from "@/features/plugins/_core/spa-router/listeners";
+import { spaRouteChangeCompleteSubscribe } from "@/features/plugins/_core/spa-router/listeners";
 import styles from "@/features/plugins/thread/drag-n-drop-file-to-upload-in-thread/drag-n-drop-file-to-upload-in-thread.css?inline";
 import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
@@ -126,7 +126,7 @@ CsLoaderRegistry.register({
   loader: () => {
     setupDragNDropFileToUploadInThread(whereAmI());
 
-    spaRouterStoreSubscribe(({ url }) => {
+    spaRouteChangeCompleteSubscribe((url) => {
       setupDragNDropFileToUploadInThread(whereAmI(url));
     });
   },

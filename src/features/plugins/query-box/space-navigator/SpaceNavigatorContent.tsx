@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/command";
 import SpaceItem from "@/features/plugins/query-box/space-navigator/SpaceItem";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
+import UiUtils from "@/utils/UiUtils";
 
 export default function SpaceNavigatorContent() {
   const { data: spaces, isLoading } = useQuery(pplxApiQueries.spaces);
@@ -24,6 +25,16 @@ export default function SpaceNavigatorContent() {
 
         if (extendValue.includes(normalizedSearch)) return 1;
         return 0;
+      }}
+      onKeyDown={(event) => {
+        if (event.key === Key.Escape) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          setTimeout(() => {
+            UiUtils.getActiveQueryBoxTextarea().trigger("focus");
+          }, 100);
+        }
       }}
     >
       <CommandInput

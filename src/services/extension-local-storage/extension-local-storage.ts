@@ -145,4 +145,3 @@ CsLoaderRegistry.register({
     await ExtensionLocalStorageService.get();
   },
 });
-

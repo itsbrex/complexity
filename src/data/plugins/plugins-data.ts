@@ -27,6 +27,10 @@ export const PLUGIN_TAGS = {
     label: "Desktop Only",
     description: "Can only be used on desktop/screen width > 768px",
   },
+  slashCommand: {
+    label: "Slash Command",
+    description: "Plugins that are enabled by typing a slash command",
+  },
   privacy: {
     label: "Privacy",
     description: "Privacy related plugins",
@@ -56,7 +60,7 @@ export type CplxPluginMetadata = Record<
     id: PluginId;
     routeSegment: string;
     title: string;
-    description: string;
+    description: React.ReactNode;
     tags?: PluginTagValues[];
     dependentCorePlugins?: CorePluginId[];
     dependentPlugins?: PluginId[];
@@ -79,6 +83,14 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description: "Search & navigate between spaces",
     tags: ["ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
+  },
+  "queryBox:slashCommandMenu:promptHistory": {
+    id: "queryBox:slashCommandMenu:promptHistory",
+    routeSegment: "query-box-slash-command-menu-prompt-history",
+    title: "Prompt History",
+    description: "Reuse previous prompts. Usage: type /h in the query box",
+    tags: ["slashCommand", "ui", "ux"],
+    dependentCorePlugins: ["spaRouter", "domObserver", "webSocket"],
   },
   "queryBox:noFileCreationOnPaste": {
     id: "queryBox:noFileCreationOnPaste",

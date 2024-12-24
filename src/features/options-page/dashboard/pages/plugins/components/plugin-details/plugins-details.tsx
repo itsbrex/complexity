@@ -7,12 +7,14 @@ import NoFileCreationOnPastePluginDetails from "@/features/options-page/dashboar
 import OnCloudflareTimeoutAutoReloadPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content//OnCloudflareTimeoutAutoReload";
 import BetterCodeBlocksPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/better-code-blocks/BetterCodeBlocks";
 import CommandMenuPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/CommandMenu";
+import PromptHistoryPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/PromptHistory";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 
 export type PluginPluginDetails = Partial<Record<PluginId, React.ReactNode>>;
 
 export const PLUGIN_DETAILS: PluginPluginDetails = {
   "queryBox:languageModelSelector": <LanguageModelSelectorPluginDetails />,
+  "queryBox:slashCommandMenu:promptHistory": <PromptHistoryPluginDetails />,
   "queryBox:noFileCreationOnPaste": <NoFileCreationOnPastePluginDetails />,
   commandMenu: <CommandMenuPluginDetails />,
   "thread:betterMessageToolbars": <BetterThreadMessageToolbarsPluginDetails />,

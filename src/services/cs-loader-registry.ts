@@ -35,6 +35,8 @@ export const LOADER_IDS = [
   "plugin:thread:betterMessageToolbars:explicitModelName",
   "plugin:thread:betterMessageToolbars:wordsAndCharactersCount",
 
+  "plugin:queryBox:promptHistory:networkInterceptMiddleware",
+  "plugin:queryBox:promptHistory:listeners",
   "plugin:queryBox:noFileCreationOnPaste",
 
   "plugin:home:customSlogan",
@@ -109,7 +111,7 @@ export class CsLoaderRegistry {
   }
 }
 
-if (APP_CONFIG.IS_DEV) {
+if (APP_CONFIG.IS_DEV && isInContentScript()) {
   setTimeout(() => {
     for (const loaderId of LOADER_IDS) {
       if (!CsLoaderRegistry.isLoaderLoaded(loaderId)) {

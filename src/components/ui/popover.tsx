@@ -1,36 +1,13 @@
 import { Popover as ArkPopover, Portal } from "@ark-ui/react";
 import { Slot } from "@radix-ui/react-slot";
-import { createContext, use } from "react";
+import { RefObject } from "react";
 
 import { untrapWheel } from "@/utils/utils";
 
-type PopoverLocalContext = {
-  portal: boolean;
-};
-
-const PopoverLocalContext = createContext<PopoverLocalContext>({
-  portal: true,
-});
-
-const PopoverLocalContextProvider = PopoverLocalContext.Provider;
-
 const PopoverRootProvider = ArkPopover.RootProvider;
 
-function Popover({
-  portal,
-  ...props
-}: ArkPopover.RootProps & {
-  portal?: boolean;
-}) {
-  return (
-    <PopoverLocalContextProvider
-      value={{
-        portal: portal ?? true,
-      }}
-    >
-      <ArkPopover.Root unmountOnExit={true} lazyMount={true} {...props} />
-    </PopoverLocalContextProvider>
-  );
+function Popover({ ...props }: ArkPopover.RootProps) {
+  return <ArkPopover.Root unmountOnExit={true} lazyMount={true} {...props} />;
 }
 
 Popover.displayName = "Popover";
@@ -41,19 +18,22 @@ const PopoverTrigger = ({ ...props }: ArkPopover.TriggerProps) => {
 
 PopoverTrigger.displayName = "PopoverTrigger";
 
-const PopoverContent = ({ className, ...props }: ArkPopover.ContentProps) => {
-  const { portal } = use(PopoverLocalContext);
-
-  if (typeof portal === "undefined") {
-    throw new Error("PopoverContent must be a child of Popover");
-  }
-
+const PopoverContent = ({
+  className,
+  portal = true,
+  ref,
+  ...props
+}: ArkPopover.ContentProps & {
+  ref?: RefObject<HTMLDivElement | null>;
+  portal?: boolean;
+}) => {
   const Comp = portal ? Portal : Slot;
 
   return (
     <Comp>
       <ArkPopover.Positioner>
         <ArkPopover.Content
+          ref={ref}
           className={cn(
             "tw-z-50 tw-w-max tw-rounded-md tw-border tw-border-border/50 tw-bg-popover tw-p-4 tw-text-popover-foreground tw-shadow-md focus-visible:tw-outline-none",
             "data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out",

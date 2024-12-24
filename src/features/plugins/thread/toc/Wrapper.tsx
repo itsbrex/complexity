@@ -71,7 +71,11 @@ export default function ThreadTocWrapper() {
         ref={containerRef}
         className={cn(
           "tw-custom-scrollbar tw-fixed tw-top-[--panel-top]",
-          "tw-max-h-[50vh] tw-w-[--panel-width] tw-overflow-y-auto",
+          "tw-w-[--panel-width] tw-overflow-y-auto",
+          {
+            "tw-max-h-[60vh]": isFloating,
+            "tw-max-h-[80vh]": !isFloating,
+          },
           "tw-transition-all tw-animate-in tw-fade-in",
           {
             "tw-left-[--panel-left]": !isFloating,

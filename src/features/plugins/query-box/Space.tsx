@@ -41,7 +41,7 @@ export default function SpaceQueryBoxWrapper() {
         desktopOnly
         dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
       >
-        <SlashCommandMenuWrapper anchor={spaceQueryBox} />
+        <SlashCommandMenuWrapper anchor={spaceQueryBox} type="space" />
       </CsUiPluginsGuard>
     </>
   );

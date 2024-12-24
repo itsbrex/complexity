@@ -34,7 +34,7 @@ export default function MainModalQueryBoxWrapper() {
         desktopOnly
         dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
       >
-        <SlashCommandMenuWrapper anchor={mainModalQueryBox} />
+        <SlashCommandMenuWrapper anchor={mainModalQueryBox} type="main-modal" />
       </CsUiPluginsGuard>
     </>
   );

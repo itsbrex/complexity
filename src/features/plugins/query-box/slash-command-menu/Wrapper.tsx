@@ -16,16 +16,18 @@ import FilterItems from "@/features/plugins/query-box/slash-command-menu/FilterI
 import { useSlashCommandMenuStore } from "@/features/plugins/query-box/slash-command-menu/store";
 import useQueryBoxObserver from "@/features/plugins/query-box/slash-command-menu/useQueryBoxObserver";
 import UiUtils from "@/utils/UiUtils";
+import { QueryBoxType } from "@/utils/UiUtils.types";
 
 type SlashCommandMenuWrapperProps = {
   anchor: HTMLElement | null;
+  type: QueryBoxType;
 };
 
 export default function SlashCommandMenuWrapper({
   anchor,
+  type,
 }: SlashCommandMenuWrapperProps) {
-  const isMainQueryBox =
-    anchor?.getAttribute(OBSERVER_ID.MAIN_QUERY_BOX) === "true";
+  const isMainQueryBox = type === "main";
   const isActive = UiUtils.getActiveQueryBox()[0] === anchor;
 
   const { isOpen } = useSlashCommandMenuStore();

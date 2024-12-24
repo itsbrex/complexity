@@ -33,7 +33,7 @@ export default function FollowUpQueryBoxWrapper() {
         desktopOnly
         dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
       >
-        <SlashCommandMenuWrapper anchor={followUpQueryBox} />
+        <SlashCommandMenuWrapper anchor={followUpQueryBox} type="follow-up" />
       </CsUiPluginsGuard>
     </>
   );

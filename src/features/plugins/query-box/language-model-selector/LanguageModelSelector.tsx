@@ -6,7 +6,6 @@ import { languageModels } from "@/data/plugins/query-box/language-model-selector
 import { DesktopSelectContent } from "@/features/plugins/query-box/language-model-selector/components/DesktopSelectContent";
 import { MobileSelectContent } from "@/features/plugins/query-box/language-model-selector/components/MobileSelectContent";
 import { ModelTrigger } from "@/features/plugins/query-box/language-model-selector/components/ModelTrigger";
-import { useModelLimits } from "@/features/plugins/query-box/language-model-selector/hooks/useModelLimits";
 import { useSharedQueryBoxStore } from "@/features/plugins/query-box/shared-store";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { TEST_ID_SELECTORS } from "@/utils/dom-selectors";
@@ -19,8 +18,6 @@ export default function LanguageModelSelector() {
   const setValue = useSharedQueryBoxStore(
     (state) => state.setSelectedLanguageModel,
   );
-
-  const modelsLimits = useModelLimits();
 
   const handleValueChange = (details: { value: string[] }) => {
     if (details.value[0] == null) return;
@@ -55,7 +52,7 @@ export default function LanguageModelSelector() {
         positioning={{ gutter: 8 }}
       >
         <SelectTrigger variant="ghost">
-          <ModelTrigger value={value} limit={modelsLimits[value]} />
+          <ModelTrigger value={value} />
         </SelectTrigger>
       </Tooltip>
       <SelectContext>

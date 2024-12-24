@@ -10,6 +10,7 @@ export const LanguageModelSchema = z.object({
   shortLabel: z.string(),
   code: z.string().transform((value) => value as LanguageModelCode),
   provider: z.string().transform((value) => value as LanguageModelProvider),
+  unknownLimit: z.boolean().optional(),
 });
 
 export type LanguageModel = z.infer<typeof LanguageModelSchema>;

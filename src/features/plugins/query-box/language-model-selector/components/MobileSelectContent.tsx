@@ -1,14 +1,14 @@
-import { LuCpu, LuInfinity } from "react-icons/lu";
+import { LuCpu } from "react-icons/lu";
 
+import { DialogProps } from "@/components/ui/dialog";
 import { SelectGroup, SelectItem, SelectLabel } from "@/components/ui/select";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { getGroupedLanguageModelsByProvider } from "@/data/plugins/query-box/language-model-selector/language-models";
 import { languageModelProviderIcons } from "@/data/plugins/query-box/language-model-selector/language-models-icons";
 import { useModelLimits } from "@/features/plugins/query-box/language-model-selector/hooks/useModelLimits";
-import { SelectContentProps } from "@/features/plugins/query-box/language-model-selector/types";
 import { isReactNode } from "@/types/utils.types";
 
-export function MobileSelectContent({ ...props }: SelectContentProps) {
+export function MobileSelectContent({ ...props }: DialogProps) {
   const modelsLimits = useModelLimits();
 
   const groupedLanguageModelsByProvider = useMemo(() => {
@@ -44,11 +44,7 @@ export function MobileSelectContent({ ...props }: SelectContentProps) {
                     </div>
 
                     <div className="tw-text-sm tw-text-muted-foreground">
-                      {modelsLimits[model.code] === 9999 ? (
-                        <LuInfinity className="tw-size-5" />
-                      ) : (
-                        modelsLimits[model.code]
-                      )}
+                      {modelsLimits[model.code]}
                     </div>
                   </div>
                 </SelectItem>

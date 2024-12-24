@@ -1,4 +1,4 @@
-import { LuCpu, LuInfinity } from "react-icons/lu";
+import { LuCpu } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
 import {
@@ -29,13 +29,8 @@ export function DesktopSelectContent() {
             return (
               <Tooltip
                 key={model.code}
-                content={
-                  modelsLimits[model.code] === 9999 ? (
-                    <LuInfinity />
-                  ) : (
-                    modelsLimits[model.code]
-                  )
-                }
+                content={modelsLimits[model.code]}
+                disabled={modelsLimits[model.code] == null}
                 positioning={{ placement: "right", gutter: 10 }}
               >
                 <SelectItem key={model.code} item={model.code}>

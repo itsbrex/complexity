@@ -9,13 +9,17 @@ export function useModelLimits() {
 
   const getModelLimit = useCallback(
     (model: LanguageModel) => {
+      if (model.unknownLimit) {
+        return null;
+      }
+
       switch (model.code) {
         case "claude3opus":
           return data?.opus_limit ?? 0;
         case "o1":
           return data?.o1_limit ?? 0;
         case "turbo":
-          return 9999;
+          return Infinity;
         default:
           return data?.gpt4_limit ?? 0;
       }
@@ -24,7 +28,7 @@ export function useModelLimits() {
   );
 
   const [modelsLimits, setModelsLimits] = useImmer<
-    Partial<Record<LanguageModel["code"], number>>
+    Partial<Record<LanguageModel["code"], number | null>>
   >({});
 
   useEffect(() => {

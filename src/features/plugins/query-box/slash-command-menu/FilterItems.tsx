@@ -26,7 +26,10 @@ export default function ActionItems() {
           }}
         >
           <div className="tw-flex tw-items-center tw-gap-2">
-            <div>{item.label}</div>
+            <div className="tw-flex tw-items-center tw-gap-2">
+              {item.Icon && <item.Icon className="tw-size-4" />}
+              <div>{item.label}</div>
+            </div>
             {item.description && (
               <div className="tw-text-muted-foreground">
                 ({item.description})

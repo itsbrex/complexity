@@ -28,47 +28,68 @@ export default function PromptHistoryPluginDetails() {
         onCheckedChange={({ checked }) => handleEnableChange(checked)}
       />
 
-      <div className="tw-ml-8 tw-flex tw-flex-col tw-gap-2">
-        <Switch
-          className="tw-items-start"
-          textLabel={
-            <div>
-              <div>On submit</div>
-              <div className="tw-text-sm tw-text-muted-foreground">
-                When you submit a new prompt
+      {pluginSettings?.enabled && (
+        <div className="tw-ml-8 tw-flex tw-flex-col tw-gap-2">
+          <Switch
+            className="tw-items-start"
+            textLabel={
+              <div>
+                <div>Save on submit</div>
+                <div className="tw-text-sm tw-text-muted-foreground">
+                  When you submit a new prompt
+                </div>
               </div>
-            </div>
-          }
-          checked={pluginSettings?.trigger.onSubmit ?? false}
-          onCheckedChange={({ checked }) => {
-            mutation.mutate((draft) => {
-              draft.plugins[
-                "queryBox:slashCommandMenu:promptHistory"
-              ].trigger.onSubmit = checked;
-            });
-          }}
-        />
-        <Switch
-          className="tw-items-start"
-          textLabel={
-            <div>
-              <div>On navigation</div>
-              <div className="tw-text-sm tw-text-muted-foreground">
-                When you (accidentally) navigate away from the page (or when
-                Perplexity forces the page to reload)
+            }
+            checked={pluginSettings?.trigger.onSubmit ?? false}
+            onCheckedChange={({ checked }) => {
+              mutation.mutate((draft) => {
+                draft.plugins[
+                  "queryBox:slashCommandMenu:promptHistory"
+                ].trigger.onSubmit = checked;
+              });
+            }}
+          />
+          <Switch
+            className="tw-items-start"
+            textLabel={
+              <div>
+                <div>Save on navigation</div>
+                <div className="tw-text-sm tw-text-muted-foreground">
+                  When you (accidentally) navigate away from the page (or when
+                  Perplexity forces the page to reload)
+                </div>
               </div>
-            </div>
-          }
-          checked={pluginSettings?.trigger.onNavigation ?? false}
-          onCheckedChange={({ checked }) => {
-            mutation.mutate((draft) => {
-              draft.plugins[
-                "queryBox:slashCommandMenu:promptHistory"
-              ].trigger.onNavigation = checked;
-            });
-          }}
-        />
-      </div>
+            }
+            checked={pluginSettings?.trigger.onNavigation ?? false}
+            onCheckedChange={({ checked }) => {
+              mutation.mutate((draft) => {
+                draft.plugins[
+                  "queryBox:slashCommandMenu:promptHistory"
+                ].trigger.onNavigation = checked;
+              });
+            }}
+          />
+          <Switch
+            className="tw-items-start"
+            textLabel={
+              <div>
+                <div>Show menu trigger button on query boxes</div>
+                <div className="tw-text-sm tw-text-muted-foreground">
+                  Open the menu by clicking the button on any query boxes
+                </div>
+              </div>
+            }
+            checked={pluginSettings?.showTriggerButton ?? false}
+            onCheckedChange={({ checked }) => {
+              mutation.mutate((draft) => {
+                draft.plugins[
+                  "queryBox:slashCommandMenu:promptHistory"
+                ].showTriggerButton = checked;
+              });
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }

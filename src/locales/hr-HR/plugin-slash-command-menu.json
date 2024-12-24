@@ -1,0 +1,34 @@
+{
+  "slashCommandMenu": {
+    "filterItems": {
+      "heading": "Pretraži",
+      "promptHistory": {
+        "label": "Povijest upita",
+        "description": "automatski spremljeni upiti",
+        "clearButton": {
+          "label": "obriši",
+          "dialog": {
+            "title": "Obriši svu povijest",
+            "description": "Jeste li sigurni da želite obrisati svu povijest upita? Ova radnja se ne može poništiti.",
+            "actions": {
+              "cancel": "Odustani",
+              "confirm": "Obriši sve"
+            }
+          }
+        }
+      }
+    },
+    "actionItems": {
+      "heading": "Akcija",
+      "changeModel": {
+        "label": "Promijeni jezični model"
+      },
+      "searchSpaces": {
+        "label": "Pretraži i navigiraj prostorom"
+      }
+    },
+    "triggerButton": {
+      "label": "Slash naredbe"
+    }
+  }
+} 

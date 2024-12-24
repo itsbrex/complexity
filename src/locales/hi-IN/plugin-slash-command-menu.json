@@ -1,0 +1,34 @@
+{
+  "slashCommandMenu": {
+    "filterItems": {
+      "heading": "खोजें",
+      "promptHistory": {
+        "label": "प्रॉम्प्ट इतिहास",
+        "description": "स्वतः सहेजे गए प्रॉम्प्ट",
+        "clearButton": {
+          "label": "साफ़ करें",
+          "dialog": {
+            "title": "सभी इतिहास साफ़ करें",
+            "description": "क्या आप वाकई सभी प्रॉम्प्ट इतिहास को साफ़ करना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।",
+            "actions": {
+              "cancel": "रद्द करें",
+              "confirm": "सभी साफ़ करें"
+            }
+          }
+        }
+      }
+    },
+    "actionItems": {
+      "heading": "कार्रवाई",
+      "changeModel": {
+        "label": "भाषा मॉडल बदलें"
+      },
+      "searchSpaces": {
+        "label": "स्पेस खोजें और नेविगेट करें"
+      }
+    },
+    "triggerButton": {
+      "label": "स्लैश कमांड"
+    }
+  }
+} 

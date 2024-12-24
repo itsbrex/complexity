@@ -1,0 +1,34 @@
+{
+  "slashCommandMenu": {
+    "filterItems": {
+      "heading": "Пребарај",
+      "promptHistory": {
+        "label": "Историја на промпти",
+        "description": "автоматски зачувани промпти",
+        "clearButton": {
+          "label": "исчисти",
+          "dialog": {
+            "title": "Исчисти ја целата историја",
+            "description": "Дали сте сигурни дека сакате да ја исчистите целата историја на промпти? Оваа акција не може да се врати назад.",
+            "actions": {
+              "cancel": "Откажи",
+              "confirm": "Исчисти сè"
+            }
+          }
+        }
+      }
+    },
+    "actionItems": {
+      "heading": "Акција",
+      "changeModel": {
+        "label": "Промени јазичен модел"
+      },
+      "searchSpaces": {
+        "label": "Пребарај и навигирај низ простори"
+      }
+    },
+    "triggerButton": {
+      "label": "Слеш команди"
+    }
+  }
+} 

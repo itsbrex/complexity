@@ -1,0 +1,34 @@
+{
+  "slashCommandMenu": {
+    "filterItems": {
+      "heading": "Suchen",
+      "promptHistory": {
+        "label": "Prompt-Verlauf",
+        "description": "automatisch gespeicherte Prompts",
+        "clearButton": {
+          "label": "löschen",
+          "dialog": {
+            "title": "Gesamten Verlauf löschen",
+            "description": "Sind Sie sicher, dass Sie den gesamten Prompt-Verlauf löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+            "actions": {
+              "cancel": "Abbrechen",
+              "confirm": "Alles löschen"
+            }
+          }
+        }
+      }
+    },
+    "actionItems": {
+      "heading": "Aktion",
+      "changeModel": {
+        "label": "Sprachmodell ändern"
+      },
+      "searchSpaces": {
+        "label": "Spaces durchsuchen & navigieren"
+      }
+    },
+    "triggerButton": {
+      "label": "Slash-Befehle"
+    }
+  }
+} 

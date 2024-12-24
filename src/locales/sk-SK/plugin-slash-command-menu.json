@@ -1,0 +1,34 @@
+{
+  "slashCommandMenu": {
+    "filterItems": {
+      "heading": "Hľadať",
+      "promptHistory": {
+        "label": "História promptov",
+        "description": "automaticky uložené prompty",
+        "clearButton": {
+          "label": "vymazať",
+          "dialog": {
+            "title": "Vymazať celú históriu",
+            "description": "Naozaj chcete vymazať celú históriu promptov? Túto akciu nie je možné vrátiť späť.",
+            "actions": {
+              "cancel": "Zrušiť",
+              "confirm": "Vymazať všetko"
+            }
+          }
+        }
+      }
+    },
+    "actionItems": {
+      "heading": "Akcia",
+      "changeModel": {
+        "label": "Zmeniť jazykový model"
+      },
+      "searchSpaces": {
+        "label": "Hľadať a prechádzať priestory"
+      }
+    },
+    "triggerButton": {
+      "label": "Slash príkazy"
+    }
+  }
+} 

@@ -1,3 +1,4 @@
+import { useSlashCommandMenuStore } from "@/features/plugins/query-box/slash-command-menu/store";
 import UiUtils from "@/utils/UiUtils";
 
 export function useSlashCommandState({
@@ -12,30 +13,29 @@ export function useSlashCommandState({
   setSearchValue: (value: string) => void;
 }) {
   const $textarea = $(queryBoxAnchor ?? {}).find("textarea");
-  const ignoreLeftCount = useRef<number | null>(null);
-  const ignoreRightCount = useRef<number | null>(null);
+  const setSearchValueBoundary = useSlashCommandMenuStore(
+    (state) => state.setSearchValueBoundary,
+  );
 
   useEffect(() => {
     if (!isOpen) {
-      ignoreLeftCount.current = null;
-      ignoreRightCount.current = null;
+      setSearchValueBoundary({ ignoreLeftCount: null, ignoreRightCount: null });
     }
-  }, [isOpen]);
+  }, [isOpen, setSearchValueBoundary]);
 
   const handleOpenState = useCallback(
     (e: JQuery.KeyDownEvent) => {
       setTimeout(() => {
         if (!isOpen) {
           const { word } = UiUtils.getWordOnCaret($textarea[0]);
-          const isSlashCommand = (() => {
-            return e.key === "/" && word === "/";
-          })();
-          const isBackSpaceOnSlash = (() => {
-            return e.key === Key.Backspace && word === "/";
-          })();
+          const isSlashCommand = e.key === "/" && word === "/";
+          const isBackSpaceOnSlash = e.key === Key.Backspace && word === "/";
 
           if (isSlashCommand || isBackSpaceOnSlash) {
-            ignoreLeftCount.current = $textarea[0].selectionStart;
+            setSearchValueBoundary({
+              ignoreLeftCount: $textarea[0].selectionStart,
+              ignoreRightCount: null,
+            });
             setIsOpen(true);
           }
         } else {
@@ -44,64 +44,66 @@ export function useSlashCommandState({
             return;
           }
 
-          if (
-            ignoreLeftCount.current != null &&
-            ignoreRightCount.current == null
-          ) {
+          const { ignoreLeftCount, ignoreRightCount } =
+            useSlashCommandMenuStore.getState().searchValueBoundary;
+
+          if (ignoreLeftCount != null && ignoreRightCount == null) {
             const relativeSpacePos = $textarea[0].value
-              .slice(ignoreLeftCount.current - 1)
+              .slice(ignoreLeftCount - 1)
               .search(/\s/);
 
+            let newIgnoreRightCount: number;
             if (relativeSpacePos === -1) {
-              ignoreRightCount.current = 0;
+              newIgnoreRightCount = 0;
             } else {
-              const absoluteSpacePos =
-                relativeSpacePos + ignoreLeftCount.current;
-
+              const absoluteSpacePos = relativeSpacePos + ignoreLeftCount;
               const isLastCharSpace =
                 absoluteSpacePos === $textarea[0].value.length - 1;
 
               if (isLastCharSpace) {
-                ignoreRightCount.current = 0;
+                newIgnoreRightCount = 0;
               } else {
                 const totalCharsFromSpacePosToEnd =
                   $textarea[0].value.length - absoluteSpacePos;
-
-                ignoreRightCount.current = totalCharsFromSpacePosToEnd + 1;
+                newIgnoreRightCount = totalCharsFromSpacePosToEnd + 1;
               }
             }
+            setSearchValueBoundary({
+              ignoreLeftCount,
+              ignoreRightCount: newIgnoreRightCount,
+            });
           }
 
+          const currentBoundary =
+            useSlashCommandMenuStore.getState().searchValueBoundary;
           const isCaretOutsideBoundary =
             !(
-              ignoreLeftCount.current == null ||
-              ignoreRightCount.current == null
+              currentBoundary.ignoreLeftCount == null ||
+              currentBoundary.ignoreRightCount == null
             ) &&
-            ($textarea[0].selectionStart < ignoreLeftCount.current! ||
+            ($textarea[0].selectionStart < currentBoundary.ignoreLeftCount! ||
               $textarea[0].selectionStart >
-                $textarea[0].value.length - ignoreRightCount.current!);
+                $textarea[0].value.length - currentBoundary.ignoreRightCount!);
 
           if (
-            ignoreLeftCount.current == null ||
-            ignoreRightCount.current == null ||
+            currentBoundary.ignoreLeftCount == null ||
+            currentBoundary.ignoreRightCount == null ||
             isCaretOutsideBoundary
           )
             return setIsOpen(false);
 
-          const text = $textarea[0].value;
-
-          const recordedText = text.slice(
-            ignoreLeftCount.current - 1,
-            text.length - ignoreRightCount.current,
+          const recordedText = $textarea[0].value.slice(
+            currentBoundary.ignoreLeftCount - 1,
+            $textarea[0].value.length - currentBoundary.ignoreRightCount,
           );
 
           if (!recordedText.startsWith("/")) return setIsOpen(false);
 
           setSearchValue(recordedText.slice(1));
         }
-      }, 0);
+      }, 10);
     },
-    [$textarea, isOpen, setIsOpen, setSearchValue],
+    [$textarea, isOpen, setIsOpen, setSearchValue, setSearchValueBoundary],
   );
 
   useEffect(() => {

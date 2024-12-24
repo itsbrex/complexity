@@ -37,6 +37,8 @@ export const LOADER_IDS = [
 
   "plugin:queryBox:promptHistory:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:listeners",
+  "plugin:queryBox:slashCommandMenu:filterItems",
+  "plugin:queryBox:slashCommandMenu:actionItems",
   "plugin:queryBox:noFileCreationOnPaste",
 
   "plugin:home:customSlogan",

@@ -1,0 +1,34 @@
+{
+  "slashCommandMenu": {
+    "filterItems": {
+      "heading": "Search",
+      "promptHistory": {
+        "label": "Prompt History",
+        "description": "auto-saved prompts",
+        "clearButton": {
+          "label": "clear",
+          "dialog": {
+            "title": "Clear All History",
+            "description": "Are you sure you want to clear all prompt history? This action cannot be undone.",
+            "actions": {
+              "cancel": "Cancel",
+              "confirm": "Clear All"
+            }
+          }
+        }
+      }
+    },
+    "actionItems": {
+      "heading": "Action",
+      "changeModel": {
+        "label": "Change language model"
+      },
+      "searchSpaces": {
+        "label": "Search & Navigate Spaces"
+      }
+    },
+    "triggerButton": {
+      "label": "Slash Commands"
+    }
+  }
+}

@@ -3,6 +3,7 @@ import { LuCpu } from "react-icons/lu";
 
 import PplxSpace from "@/components/icons/PplxSpace";
 import { slashCommandMenuStore } from "@/features/plugins/query-box/slash-command-menu/store";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { TEST_ID_SELECTORS } from "@/utils/dom-selectors";
 
 export type CommandActionItem = {
@@ -14,27 +15,39 @@ export type CommandActionItem = {
   action: (params?: { textarea?: HTMLTextAreaElement | null }) => void;
 };
 
-export const ACTION_ITEMS: CommandActionItem[] = [
-  {
-    label: "Change language model",
-    Icon: LuCpu,
-    command: "m",
-    action: () => {
-      slashCommandMenuStore.getState().queryBoxAction.deleteTriggerWord();
-      $(
-        `[data-testid=${TEST_ID_SELECTORS.QUERY_BOX.LANGUAGE_MODEL_SELECTOR}] button:last`,
-      ).trigger("click");
-    },
+export let ACTION_ITEMS: CommandActionItem[] = [];
+
+CsLoaderRegistry.register({
+  id: "plugin:queryBox:slashCommandMenu:actionItems",
+  dependencies: ["lib:i18next"],
+  loader: () => {
+    ACTION_ITEMS = [
+      {
+        label: t(
+          "plugin-slash-command-menu:slashCommandMenu.actionItems.changeModel.label",
+        ),
+        Icon: LuCpu,
+        command: "m",
+        action: () => {
+          slashCommandMenuStore.getState().queryBoxAction.deleteTriggerWord();
+          $(
+            `[data-testid=${TEST_ID_SELECTORS.QUERY_BOX.LANGUAGE_MODEL_SELECTOR}] button:last`,
+          ).trigger("click");
+        },
+      },
+      {
+        label: t(
+          "plugin-slash-command-menu:slashCommandMenu.actionItems.searchSpaces.label",
+        ),
+        Icon: PplxSpace,
+        command: "s",
+        action: () => {
+          slashCommandMenuStore.getState().queryBoxAction.deleteTriggerWord();
+          $(
+            `[data-testid=${TEST_ID_SELECTORS.QUERY_BOX.SPACE_NAVIGATOR}]:last`,
+          ).trigger("click");
+        },
+      },
+    ];
   },
-  {
-    label: "Search & Navigate Spaces",
-    Icon: PplxSpace,
-    command: "s",
-    action: () => {
-      slashCommandMenuStore.getState().queryBoxAction.deleteTriggerWord();
-      $(
-        `[data-testid=${TEST_ID_SELECTORS.QUERY_BOX.SPACE_NAVIGATOR}]:last`,
-      ).trigger("click");
-    },
-  },
-];
+});

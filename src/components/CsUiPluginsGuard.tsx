@@ -17,8 +17,12 @@ import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import usePplxAuth from "@/hooks/usePplxAuth";
 import usePplxUserSettings from "@/hooks/usePplxUserSettings";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { ExtensionLocalStorage } from "@/services/extension-local-storage/extension-local-storage.types";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
-import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
+import {
+  PluginsStates,
+  PluginsStatesService,
+} from "@/services/plugins-states/plugins-states";
 import { whereAmI } from "@/utils/utils";
 import packageJson from "~/package.json";
 
@@ -29,6 +33,12 @@ type CsUiPluginsGuardProps = {
   children: React.ReactNode;
   requiresLoggedIn?: boolean;
   requiresPplxPro?: boolean;
+  additionalCheck?: (
+    props: Omit<CsUiPluginsGuardProps, "additionalCheck" | "children"> & {
+      pluginsEnableStates: PluginsStates["pluginsEnableStates"];
+      settings: ExtensionLocalStorage;
+    },
+  ) => boolean;
 };
 
 export default function CsUiPluginsGuard({
@@ -38,6 +48,7 @@ export default function CsUiPluginsGuard({
   desktopOnly = false,
   requiresLoggedIn = false,
   requiresPplxPro = false,
+  additionalCheck,
 }: CsUiPluginsGuardProps) {
   const { url } = useSpaRouter();
 
@@ -72,6 +83,21 @@ export default function CsUiPluginsGuard({
         (pluginId) => pluginsEnableStates?.[pluginId],
       )) ||
     (location && !location.some((loc) => loc === currentLocation))
+  ) {
+    return null;
+  }
+
+  if (
+    additionalCheck &&
+    !additionalCheck({
+      dependentPluginIds,
+      location,
+      desktopOnly,
+      requiresLoggedIn,
+      requiresPplxPro,
+      pluginsEnableStates,
+      settings: ExtensionLocalStorageService.getCachedSync(),
+    })
   ) {
     return null;
   }

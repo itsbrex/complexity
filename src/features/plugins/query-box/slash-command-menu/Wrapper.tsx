@@ -8,7 +8,6 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { PopoverContent, PopoverRootProvider } from "@/components/ui/popover";
-import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/query-boxes/observer-ids";
 import PromptHistorySlashMenuItemsWrapper from "@/features/plugins/query-box/prompt-history/Wrapper";
 import ActionItems from "@/features/plugins/query-box/slash-command-menu/ActionItems";
 import { FilterMode } from "@/features/plugins/query-box/slash-command-menu/filter-items";

@@ -15,6 +15,14 @@ type SlashCommandMenuStore = {
   setSelectedValue: (value: string) => void;
   searchValue: string;
   setSearchValue: (value: string) => void;
+  searchValueBoundary: {
+    ignoreLeftCount: number | null;
+    ignoreRightCount: number | null;
+  };
+  setSearchValueBoundary: (boundary: {
+    ignoreLeftCount: number | null;
+    ignoreRightCount: number | null;
+  }) => void;
   filter: FilterMode | null;
   setFilter: (filter: FilterMode | null) => void;
   queryBoxAction: {
@@ -48,6 +56,12 @@ export const useSlashCommandMenuStore =
           setSelectedValue: (value) => set({ selectedValue: value }),
           searchValue: "",
           setSearchValue: (value) => set({ searchValue: value }),
+          searchValueBoundary: {
+            ignoreLeftCount: null,
+            ignoreRightCount: null,
+          },
+          setSearchValueBoundary: (boundary) =>
+            set({ searchValueBoundary: boundary }),
           filter: null,
           setFilter: (filter) => set({ filter }),
           queryBoxAction: {
@@ -60,9 +74,15 @@ export const useSlashCommandMenuStore =
 
               if (!$textarea.length) return;
 
-              const { start, end } = UiUtils.getWordOnCaret($textarea[0]);
+              const { ignoreLeftCount, ignoreRightCount } =
+                get().searchValueBoundary;
 
-              $textarea[0].setSelectionRange(start, end);
+              if (ignoreLeftCount == null || ignoreRightCount == null) return;
+
+              $textarea[0].setSelectionRange(
+                ignoreLeftCount - 1,
+                $textarea[0].value.length - ignoreRightCount,
+              );
               document.execCommand("delete", false, undefined);
             },
             clearSearchValue() {
@@ -70,11 +90,23 @@ export const useSlashCommandMenuStore =
 
               if (!$textarea.length) return;
 
-              const { word, start, end } = UiUtils.getWordOnCaret($textarea[0]);
+              const { ignoreLeftCount, ignoreRightCount } =
+                get().searchValueBoundary;
+
+              if (ignoreLeftCount == null || ignoreRightCount == null) return;
+
+              const word = $textarea[0].value.slice(
+                ignoreLeftCount - 1,
+                $textarea[0].value.length - ignoreRightCount,
+              );
 
               if (word === "/") return;
 
-              $textarea[0].setSelectionRange(start + 1, end);
+              $textarea[0].setSelectionRange(
+                ignoreLeftCount,
+                $textarea[0].value.length - ignoreRightCount,
+              );
+
               document.execCommand("delete", false, undefined);
 
               set({ searchValue: "" });

@@ -18,6 +18,7 @@ export const PluginsSchema = z.object({
   }),
   "queryBox:spaceNavigator": PluginSettingsSchema,
   "queryBox:slashCommandMenu:promptHistory": PluginSettingsSchema.extend({
+    showTriggerButton: z.boolean(),
     trigger: z.object({
       onSubmit: z.boolean(),
       onNavigation: z.boolean(),

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -34,23 +32,34 @@ export default function ClearAllButton() {
     >
       <DialogTrigger asChild>
         <div className="tw-ml-auto tw-cursor-pointer tw-text-xs tw-text-muted-foreground tw-transition-colors hover:tw-text-foreground hover:tw-underline">
-          clear
+          {t(
+            "plugin-slash-command-menu:slashCommandMenu.filterItems.promptHistory.clearButton.label",
+          )}
         </div>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Clear All History</DialogTitle>
+          <DialogTitle>
+            {t(
+              "plugin-slash-command-menu:slashCommandMenu.filterItems.promptHistory.clearButton.dialog.title",
+            )}
+          </DialogTitle>
           <DialogDescription>
-            Are you sure you want to clear all prompt history? This action
-            cannot be undone.
+            {t(
+              "plugin-slash-command-menu:slashCommandMenu.filterItems.promptHistory.clearButton.dialog.description",
+            )}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <Button variant="outline" onClick={() => setIsOpen(false)}>
-            Cancel
+            {t(
+              "plugin-slash-command-menu:slashCommandMenu.filterItems.promptHistory.clearButton.dialog.actions.cancel",
+            )}
           </Button>
           <Button variant="destructive" onClick={handleClearAll}>
-            Clear All
+            {t(
+              "plugin-slash-command-menu:slashCommandMenu.filterItems.promptHistory.clearButton.dialog.actions.confirm",
+            )}
           </Button>
         </DialogFooter>
       </DialogContent>

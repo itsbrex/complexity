@@ -8,10 +8,14 @@ import { slashCommandMenuStore } from "@/features/plugins/query-box/slash-comman
 
 export default function ActionItems() {
   return (
-    <CommandGroup heading="Action">
-      {ACTION_ITEMS.map((item) => (
+    <CommandGroup
+      heading={t(
+        "plugin-slash-command-menu:slashCommandMenu.actionItems.heading",
+      )}
+    >
+      {ACTION_ITEMS.map((item, idx) => (
         <CommandItem
-          key={item.label}
+          key={idx}
           value={item.command}
           keywords={item.keywords ?? item.label.split(" ")}
           className="tw-min-h-10"

@@ -8,14 +8,16 @@ export function ModelTrigger({ value, limit }: ModelTriggerProps) {
   return (
     <div className="tw-flex tw-min-h-8 tw-items-center tw-justify-center tw-gap-1">
       <LuCpu className="tw-size-4" />
-      <SelectValue>
-        {languageModels.find((model) => model.code === value)?.shortLabel}
-      </SelectValue>
-      {limit != null && limit <= 100 && (
-        <span className="tw-self-start tw-text-[.5rem] tw-text-primary">
-          {limit}
-        </span>
-      )}
+      <div className="tw-hidden tw-gap-1 md:tw-flex">
+        <SelectValue>
+          {languageModels.find((model) => model.code === value)?.shortLabel}
+        </SelectValue>
+        {limit != null && limit <= 100 && (
+          <span className="tw-self-start tw-text-[.5rem] tw-text-primary">
+            {limit}
+          </span>
+        )}
+      </div>
     </div>
   );
 }

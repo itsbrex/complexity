@@ -39,10 +39,10 @@ export default function SpaceNavigator() {
         data-testid={TEST_ID_SELECTORS.QUERY_BOX.SPACE_NAVIGATOR}
       >
         <PplxSpace className="tw-size-4" />
-        <span>
+        <div className="tw-hidden md:tw-block">
           {spaceNameFromUrl ??
             t("plugin-space-navigator:spaceNavigator.button.defaultText")}
-        </span>
+        </div>
       </button>
     </Wrapper>
   );

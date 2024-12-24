@@ -1,0 +1,34 @@
+{
+  "slashCommandMenu": {
+    "filterItems": {
+      "heading": "Rechercher",
+      "promptHistory": {
+        "label": "Historique des prompts",
+        "description": "prompts sauvegardés automatiquement",
+        "clearButton": {
+          "label": "effacer",
+          "dialog": {
+            "title": "Effacer tout l'historique",
+            "description": "Êtes-vous sûr de vouloir effacer tout l'historique des prompts ? Cette action ne peut pas être annulée.",
+            "actions": {
+              "cancel": "Annuler",
+              "confirm": "Tout effacer"
+            }
+          }
+        }
+      }
+    },
+    "actionItems": {
+      "heading": "Action",
+      "changeModel": {
+        "label": "Changer de modèle de langage"
+      },
+      "searchSpaces": {
+        "label": "Rechercher et naviguer dans les espaces"
+      }
+    },
+    "triggerButton": {
+      "label": "Commandes slash"
+    }
+  }
+} 

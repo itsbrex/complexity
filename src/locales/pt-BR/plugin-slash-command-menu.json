@@ -1,0 +1,34 @@
+{
+  "slashCommandMenu": {
+    "filterItems": {
+      "heading": "Pesquisar",
+      "promptHistory": {
+        "label": "Histórico de prompts",
+        "description": "prompts salvos automaticamente",
+        "clearButton": {
+          "label": "limpar",
+          "dialog": {
+            "title": "Limpar todo o histórico",
+            "description": "Tem certeza que deseja limpar todo o histórico de prompts? Esta ação não pode ser desfeita.",
+            "actions": {
+              "cancel": "Cancelar",
+              "confirm": "Limpar tudo"
+            }
+          }
+        }
+      }
+    },
+    "actionItems": {
+      "heading": "Ação",
+      "changeModel": {
+        "label": "Alterar modelo de linguagem"
+      },
+      "searchSpaces": {
+        "label": "Pesquisar e navegar nos espaços"
+      }
+    },
+    "triggerButton": {
+      "label": "Comandos slash"
+    }
+  }
+} 

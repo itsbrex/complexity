@@ -1,0 +1,34 @@
+{
+  "slashCommandMenu": {
+    "filterItems": {
+      "heading": "Претрага",
+      "promptHistory": {
+        "label": "Историја промптова",
+        "description": "аутоматски сачувани промптови",
+        "clearButton": {
+          "label": "обриши",
+          "dialog": {
+            "title": "Обриши сву историју",
+            "description": "Да ли сте сигурни да желите да обришете сву историју промптова? Ова радња се не може поништити.",
+            "actions": {
+              "cancel": "Откажи",
+              "confirm": "Обриши све"
+            }
+          }
+        }
+      }
+    },
+    "actionItems": {
+      "heading": "Акција",
+      "changeModel": {
+        "label": "Промијени језички модел"
+      },
+      "searchSpaces": {
+        "label": "Претражи и навигирај просторе"
+      }
+    },
+    "triggerButton": {
+      "label": "Слеш команде"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "slashCommandMenu": {
+    "filterItems": {
+      "heading": "検索",
+      "promptHistory": {
+        "label": "プロンプト履歴",
+        "description": "自動保存されたプロンプト",
+        "clearButton": {
+          "label": "クリア",
+          "dialog": {
+            "title": "履歴をすべて削除",
+            "description": "プロンプト履歴をすべて削除してもよろしいですか？この操作は取り消せません。",
+            "actions": {
+              "cancel": "キャンセル",
+              "confirm": "すべて削除"
+            }
+          }
+        }
+      }
+    },
+    "actionItems": {
+      "heading": "アクション",
+      "changeModel": {
+        "label": "言語モデルを変更"
+      },
+      "searchSpaces": {
+        "label": "スペースの検索と移動"
+      }
+    },
+    "triggerButton": {
+      "label": "スラッシュコマンド"
+    }
+  }
+} 

@@ -1,0 +1,34 @@
+{
+  "slashCommandMenu": {
+    "filterItems": {
+      "heading": "Keresés",
+      "promptHistory": {
+        "label": "Prompt előzmények",
+        "description": "automatikusan mentett promptok",
+        "clearButton": {
+          "label": "törlés",
+          "dialog": {
+            "title": "Összes előzmény törlése",
+            "description": "Biztosan törölni szeretné az összes prompt előzményt? Ez a művelet nem vonható vissza.",
+            "actions": {
+              "cancel": "Mégse",
+              "confirm": "Összes törlése"
+            }
+          }
+        }
+      }
+    },
+    "actionItems": {
+      "heading": "Művelet",
+      "changeModel": {
+        "label": "Nyelvi modell váltása"
+      },
+      "searchSpaces": {
+        "label": "Terek keresése és navigálása"
+      }
+    },
+    "triggerButton": {
+      "label": "Perjel parancsok"
+    }
+  }
+} 

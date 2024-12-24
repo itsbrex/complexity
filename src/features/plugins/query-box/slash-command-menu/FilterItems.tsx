@@ -13,10 +13,14 @@ export default function ActionItems() {
   const { setFilter } = useSlashCommandMenuStore();
 
   return (
-    <CommandGroup heading="Filter">
-      {FILTER_ITEMS.map((item) => (
+    <CommandGroup
+      heading={t(
+        "plugin-slash-command-menu:slashCommandMenu.filterItems.heading",
+      )}
+    >
+      {FILTER_ITEMS.map((item, idx) => (
         <CommandItem
-          key={item.label}
+          key={idx}
           value={item.command}
           keywords={item.keywords ?? item.label.split(" ")}
           className="tw-min-h-10"

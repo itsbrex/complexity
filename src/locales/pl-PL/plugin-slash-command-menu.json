@@ -1,0 +1,34 @@
+{
+  "slashCommandMenu": {
+    "filterItems": {
+      "heading": "Szukaj",
+      "promptHistory": {
+        "label": "Historia promptów",
+        "description": "automatycznie zapisane prompty",
+        "clearButton": {
+          "label": "wyczyść",
+          "dialog": {
+            "title": "Wyczyść całą historię",
+            "description": "Czy na pewno chcesz wyczyścić całą historię promptów? Tej akcji nie można cofnąć.",
+            "actions": {
+              "cancel": "Anuluj",
+              "confirm": "Wyczyść wszystko"
+            }
+          }
+        }
+      }
+    },
+    "actionItems": {
+      "heading": "Akcja",
+      "changeModel": {
+        "label": "Zmień model językowy"
+      },
+      "searchSpaces": {
+        "label": "Szukaj i nawiguj po przestrzeniach"
+      }
+    },
+    "triggerButton": {
+      "label": "Komendy slash"
+    }
+  }
+} 

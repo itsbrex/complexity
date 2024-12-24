@@ -1,6 +1,7 @@
 import { PopoverRootProvider, usePopover } from "@ark-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useCommandState } from "cmdk";
+import { LuLink } from "react-icons/lu";
 import { sendMessage } from "webext-bridge/content-script";
 
 import { CommandItem } from "@/components/ui/command";
@@ -137,6 +138,31 @@ export default function SpaceItem({ space }: { space: Space }) {
                   </div>
                   <div className="tw-max-h-[200px] tw-overflow-auto tw-rounded-md tw-bg-secondary tw-p-2">
                     {space.instructions}
+                  </div>
+                </div>
+              )}
+              {space.focused_web_config?.link_configs.length > 0 && (
+                <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
+                  <div className="tw-truncate tw-text-sm tw-text-muted-foreground">
+                    {t(
+                      "plugin-space-navigator:spaceNavigator.spaceItem.details.focusedWebLinks",
+                      {
+                        count: space.focused_web_config.link_configs.length,
+                      },
+                    )}
+                  </div>
+                  <div className="tw-flex tw-flex-wrap tw-items-center tw-gap-2">
+                    {space.focused_web_config.link_configs.map((link, idx) => (
+                      <div
+                        key={idx}
+                        className="tw-flex tw-items-center tw-gap-2"
+                      >
+                        <LuLink className="tw-size-4" />
+                        <div className="tw-line-clamp-1 tw-underline">
+                          {link.link}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}

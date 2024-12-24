@@ -6,7 +6,7 @@
     },
     "search": {
       "placeholder": "Hledat...",
-      "noResults": "Žádné výsledky nenalezeny."
+      "noResults": "Nebyly nalezeny žádné výsledky."
     },
     "loading": "Načítání...",
     "spaceItem": {
@@ -14,7 +14,8 @@
       "details": {
         "description": "Popis",
         "instructions": "Pokyny",
-        "files": "Soubory ({{count}})"
+        "files": "Soubory ({{count}})",
+        "focusedWebLinks": "Zaměřené webové odkazy ({{count}})"
       }
     }
   }

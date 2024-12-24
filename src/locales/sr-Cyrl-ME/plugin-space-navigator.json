@@ -5,8 +5,8 @@
       "defaultText": "Простори"
     },
     "search": {
-      "placeholder": "Претражи...",
-      "noResults": "Нема пронађених резултата."
+      "placeholder": "Претрага...",
+      "noResults": "Нису пронађени резултати."
     },
     "loading": "Учитавање...",
     "spaceItem": {
@@ -14,7 +14,8 @@
       "details": {
         "description": "Опис",
         "instructions": "Упутства",
-        "files": "Датотеке ({{count}})"
+        "files": "Датотеке ({{count}})",
+        "focusedWebLinks": "Фокусирани веб линкови ({{count}})"
       }
     }
   }

@@ -8,13 +8,14 @@
       "placeholder": "Suchen...",
       "noResults": "Keine Ergebnisse gefunden."
     },
-    "loading": "Lädt...",
+    "loading": "Laden...",
     "spaceItem": {
       "currentLocation": "Sie sind hier",
       "details": {
         "description": "Beschreibung",
         "instructions": "Anweisungen",
-        "files": "Dateien ({{count}})"
+        "files": "Dateien ({{count}})",
+        "focusedWebLinks": "Fokussierte Weblinks ({{count}})"
       }
     }
   }

@@ -14,7 +14,8 @@
       "details": {
         "description": "Opis",
         "instructions": "Upute",
-        "files": "Datoteke ({{count}})"
+        "files": "Datoteke ({{count}})",
+        "focusedWebLinks": "Fokusirane web poveznice ({{count}})"
       }
     }
   }

@@ -1,7 +1,7 @@
 {
   "spaceNavigator": {
     "button": {
-      "label": "搜索并导航至空间",
+      "label": "搜索并导航到空间",
       "defaultText": "空间"
     },
     "search": {
@@ -14,7 +14,8 @@
       "details": {
         "description": "描述",
         "instructions": "说明",
-        "files": "文件 ({{count}})"
+        "files": "文件 ({{count}})",
+        "focusedWebLinks": "重点网页链接 ({{count}})"
       }
     }
   }

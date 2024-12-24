@@ -1,7 +1,7 @@
 {
   "spaceNavigator": {
     "button": {
-      "label": "スペースを検索して移動",
+      "label": "スペースを検索＆移動",
       "defaultText": "スペース"
     },
     "search": {
@@ -14,7 +14,8 @@
       "details": {
         "description": "説明",
         "instructions": "手順",
-        "files": "ファイル ({{count}})"
+        "files": "ファイル ({{count}})",
+        "focusedWebLinks": "フォーカスされたWebリンク ({{count}})"
       }
     }
   }

@@ -14,7 +14,8 @@
       "details": {
         "description": "विवरण",
         "instructions": "निर्देश",
-        "files": "फ़ाइलें ({{count}})"
+        "files": "फ़ाइलें ({{count}})",
+        "focusedWebLinks": "केंद्रित वेब लिंक ({{count}})"
       }
     }
   }

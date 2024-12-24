@@ -13,8 +13,9 @@
       "currentLocation": "Itt vagy",
       "details": {
         "description": "Leírás",
-        "instructions": "Útmutató",
-        "files": "Fájlok ({{count}})"
+        "instructions": "Utasítások",
+        "files": "Fájlok ({{count}})",
+        "focusedWebLinks": "Kiemelt webes hivatkozások ({{count}})"
       }
     }
   }

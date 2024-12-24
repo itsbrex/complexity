@@ -13,8 +13,9 @@
       "currentLocation": "현재 위치",
       "details": {
         "description": "설명",
-        "instructions": "안내",
-        "files": "파일 ({{count}})"
+        "instructions": "지침",
+        "files": "파일 ({{count}})",
+        "focusedWebLinks": "중점 웹 링크 ({{count}})"
       }
     }
   }

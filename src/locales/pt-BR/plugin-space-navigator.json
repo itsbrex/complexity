@@ -14,7 +14,8 @@
       "details": {
         "description": "Descrição",
         "instructions": "Instruções",
-        "files": "Arquivos ({{count}})"
+        "files": "Arquivos ({{count}})",
+        "focusedWebLinks": "Links da web em destaque ({{count}})"
       }
     }
   }

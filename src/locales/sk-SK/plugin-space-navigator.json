@@ -1,12 +1,12 @@
 {
   "spaceNavigator": {
     "button": {
-      "label": "Hľadať a prejsť do priestoru",
+      "label": "Vyhľadať a prejsť do priestoru",
       "defaultText": "Priestory"
     },
     "search": {
-      "placeholder": "Hľadať...",
-      "noResults": "Nenašli sa žiadne výsledky."
+      "placeholder": "Vyhľadávanie...",
+      "noResults": "Neboli nájdené žiadne výsledky."
     },
     "loading": "Načítava sa...",
     "spaceItem": {
@@ -14,7 +14,8 @@
       "details": {
         "description": "Popis",
         "instructions": "Pokyny",
-        "files": "Súbory ({{count}})"
+        "files": "Súbory ({{count}})",
+        "focusedWebLinks": "Zamerané webové odkazy ({{count}})"
       }
     }
   }

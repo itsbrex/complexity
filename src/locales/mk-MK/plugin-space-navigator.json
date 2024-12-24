@@ -14,7 +14,8 @@
       "details": {
         "description": "Опис",
         "instructions": "Инструкции",
-        "files": "Датотеки ({{count}})"
+        "files": "Датотеки ({{count}})",
+        "focusedWebLinks": "Фокусирани веб-линкови ({{count}})"
       }
     }
   }

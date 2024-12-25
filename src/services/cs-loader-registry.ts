@@ -9,6 +9,7 @@ export const LOADER_IDS = [
   "cache:extensionLocalStorage",
   "cache:pluginsStates",
   "cache:languageModels",
+  "cache:focusModes",
   "cache:betterCodeBlocksFineGrainedOptions",
 
   "messaging:namespaceSetup",
@@ -35,6 +36,8 @@ export const LOADER_IDS = [
   "plugin:thread:betterMessageToolbars:explicitModelName",
   "plugin:thread:betterMessageToolbars:wordsAndCharactersCount",
 
+  "plugin:queryBox:initSharedStore",
+  "plugin:queryBox:focusSelector:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:listeners",
   "plugin:queryBox:slashCommandMenu:filterItems",

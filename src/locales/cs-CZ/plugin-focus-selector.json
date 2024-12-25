@@ -1,0 +1,19 @@
+{
+  "tooltip": "Zaměření: {{mode}}",
+  "modes": {
+    "internet": "Web",
+    "writing": "Psaní",
+    "scholar": "Akademické",
+    "wolfram": "Matematika",
+    "youtube": "Video",
+    "reddit": "Sociální"
+  },
+  "descriptions": {
+    "internet": "Vyhledávat na celém internetu",
+    "writing": "Generovat text nebo chatovat bez vyhledávání na webu",
+    "scholar": "Vyhledávat publikované akademické články",
+    "wolfram": "Řešit rovnice a najít číselné odpovědi",
+    "youtube": "Objevovat a sledovat videa",
+    "reddit": "Vyhledávat diskuze a názory"
+  }
+} 

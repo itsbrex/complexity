@@ -20,6 +20,9 @@
     },
     "actionItems": {
       "heading": "Akce",
+      "changeFocusMode": {
+        "label": "Změnit režim soustředění"
+      },
       "changeModel": {
         "label": "Změnit jazykový model"
       },

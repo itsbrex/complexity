@@ -87,8 +87,8 @@ function ThreadComponent() {
   return (
     <Fragment key={url}>
       <CsUiPluginsGuard
-        requiresPplxPro
         desktopOnly
+        allowedAccountTypes={["pro", "enterprise"]}
         dependentPluginIds={["imageGenModelSelector"]}
       >
         <ImageGenModelSelectorWrapper />

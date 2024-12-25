@@ -1,0 +1,19 @@
+{
+  "tooltip": "포커스: {{mode}}",
+  "modes": {
+    "internet": "웹",
+    "writing": "글쓰기",
+    "scholar": "학술",
+    "wolfram": "수학",
+    "youtube": "동영상",
+    "reddit": "소셜"
+  },
+  "descriptions": {
+    "internet": "전체 인터넷 검색",
+    "writing": "웹 검색 없이 텍스트 생성 또는 채팅",
+    "scholar": "발행된 학술 논문 검색",
+    "wolfram": "방정식을 풀고 수치 답변 찾기",
+    "youtube": "동영상 탐색 및 시청",
+    "reddit": "토론과 의견 검색"
+  }
+} 

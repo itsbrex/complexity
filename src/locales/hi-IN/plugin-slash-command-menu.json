@@ -20,6 +20,9 @@
     },
     "actionItems": {
       "heading": "कार्रवाई",
+      "changeFocusMode": {
+        "label": "फोकस मोड बदलें"
+      },
       "changeModel": {
         "label": "भाषा मॉडल बदलें"
       },

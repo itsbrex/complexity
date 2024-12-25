@@ -1,0 +1,19 @@
+{
+  "tooltip": "Fokus: {{mode}}",
+  "modes": {
+    "internet": "Web",
+    "writing": "Pisanje",
+    "scholar": "Akademski",
+    "wolfram": "Matematika",
+    "youtube": "Video",
+    "reddit": "Društveno"
+  },
+  "descriptions": {
+    "internet": "Pretraži cijeli internet",
+    "writing": "Generiraj tekst ili chataj bez pretraživanja weba",
+    "scholar": "Pretraži objavljene akademske radove",
+    "wolfram": "Riješi jednadžbe i pronađi numeričke odgovore",
+    "youtube": "Otkrij i gledaj videe",
+    "reddit": "Pretraži rasprave i mišljenja"
+  }
+} 

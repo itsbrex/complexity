@@ -1,0 +1,19 @@
+{
+  "tooltip": "フォーカス：{{mode}}",
+  "modes": {
+    "internet": "ウェブ",
+    "writing": "文章作成",
+    "scholar": "学術",
+    "wolfram": "数学",
+    "youtube": "動画",
+    "reddit": "ソーシャル"
+  },
+  "descriptions": {
+    "internet": "インターネット全体を検索",
+    "writing": "ウェブ検索なしでテキスト生成やチャット",
+    "scholar": "公開された学術論文を検索",
+    "wolfram": "方程式を解いて数値解を見つける",
+    "youtube": "動画を探して視聴",
+    "reddit": "ディスカッションや意見を検索"
+  }
+} 

@@ -29,6 +29,7 @@ export const supportedLangs = [
 type Resources = {
   [key: string]: {
     common: any;
+    "plugin-focus-selector": any;
     "plugin-model-selectors": any;
     "plugin-drag-n-drop-file-to-upload-in-thread": any;
     "plugin-export-thread": any;
@@ -44,6 +45,9 @@ type Resources = {
 async function loadLanguageResources(language: string) {
   return {
     common: await import(`~/src/locales/${language}/common.json`),
+    "plugin-focus-selector": await import(
+      `~/src/locales/${language}/plugin-focus-selector.json`
+    ),
     "plugin-model-selectors": await import(
       `~/src/locales/${language}/plugin-model-selectors.json`
     ),
@@ -124,6 +128,7 @@ export async function initializeI18next() {
     defaultNS: "common",
     ns: [
       "common",
+      "plugin-focus-selector",
       "plugin-model-selectors",
       "plugin-drag-n-drop-file-to-upload-in-thread",
       "plugin-export-thread",

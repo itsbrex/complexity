@@ -4,15 +4,22 @@ import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
 
 import {
+  FocusMode,
+  isFocusModeCode,
+} from "@/data/plugins/focus-selector/focus-modes";
+import {
   isLanguageModelCode,
   LanguageModel,
 } from "@/data/plugins/query-box/language-model-selector/language-models.types";
+import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PplxApiService } from "@/services/pplx-api/pplx-api";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
-import { extensionExec } from "@/types/hof";
 import { queryClient } from "@/utils/ts-query-client";
 
 type SharedQueryBoxStore = {
+  selectedFocusMode: FocusMode["code"];
+  setSelectedFocusMode: (focusMode: FocusMode["code"]) => void;
   selectedLanguageModel: LanguageModel["code"];
   setSelectedLanguageModel: (
     selectedLanguageModel: LanguageModel["code"],
@@ -23,6 +30,21 @@ const useSharedQueryBoxStore = createWithEqualityFn<SharedQueryBoxStore>()(
   subscribeWithSelector(
     immer(
       (set): SharedQueryBoxStore => ({
+        selectedFocusMode: "internet",
+        setSelectedFocusMode: (focusMode) => {
+          set({ selectedFocusMode: focusMode });
+
+          const settings = ExtensionLocalStorageService.getCachedSync();
+
+          const persistMode = settings?.plugins["queryBox:focusSelector"].mode;
+
+          if (persistMode === "persistent") {
+            ExtensionLocalStorageService.set((draft) => {
+              draft.plugins["queryBox:focusSelector"].defaultFocusMode =
+                focusMode;
+            });
+          }
+        },
         selectedLanguageModel: "turbo",
         setSelectedLanguageModel: async (selectedLanguageModel) => {
           set({ selectedLanguageModel });
@@ -38,27 +60,36 @@ const useSharedQueryBoxStore = createWithEqualityFn<SharedQueryBoxStore>()(
 
 const sharedQueryBoxStore = useSharedQueryBoxStore;
 
-async function initSharedQueryBoxStore() {
-  let firstTime = true;
-
-  new QueryObserver(queryClient, pplxApiQueries.userSettings).subscribe(
-    (data) => {
+CsLoaderRegistry.register({
+  id: "plugin:queryBox:initSharedStore",
+  dependencies: ["cache:extensionLocalStorage"],
+  loader: async () => {
+    const pplxUserSettingsObserverRemove = new QueryObserver(
+      queryClient,
+      pplxApiQueries.userSettings,
+    ).subscribe((data) => {
       if (data.data) {
         sharedQueryBoxStore.setState((state) => {
-          if (firstTime)
-            state.selectedLanguageModel = isLanguageModelCode(
-              data.data.default_model,
-            )
-              ? data.data.default_model
-              : "turbo";
+          state.selectedLanguageModel = isLanguageModelCode(
+            data.data.default_model,
+          )
+            ? data.data.default_model
+            : "turbo";
         });
 
-        firstTime = false;
+        pplxUserSettingsObserverRemove();
       }
-    },
-  );
-}
+    });
 
-extensionExec(() => initSharedQueryBoxStore())();
+    const settings = ExtensionLocalStorageService.getCachedSync();
 
-export { initSharedQueryBoxStore, sharedQueryBoxStore, useSharedQueryBoxStore };
+    const defaultFocusMode = settings?.plugins["queryBox:focusSelector"]
+      .defaultFocusMode as FocusMode["code"];
+
+    if (isFocusModeCode(defaultFocusMode)) {
+      sharedQueryBoxStore.setState({ selectedFocusMode: defaultFocusMode });
+    }
+  },
+});
+
+export { sharedQueryBoxStore, useSharedQueryBoxStore };

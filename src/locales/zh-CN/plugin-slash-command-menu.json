@@ -20,6 +20,9 @@
     },
     "actionItems": {
       "heading": "操作",
+      "changeFocusMode": {
+        "label": "更改专注模式"
+      },
       "changeModel": {
         "label": "更改语言模型"
       },

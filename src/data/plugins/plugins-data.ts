@@ -76,6 +76,15 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     tags: ["ui", "ux", "pplxPro"],
     dependentCorePlugins: ["networkIntercept", "spaRouter", "domObserver"],
   },
+  "queryBox:focusSelector": {
+    id: "queryBox:focusSelector",
+    routeSegment: "query-box-focus-selector",
+    title: "Better Focus Selector",
+    description:
+      "Replace the default Perplexity's focus selector with a more customizable one",
+    tags: ["ui", "ux"],
+    dependentCorePlugins: ["spaRouter", "domObserver"],
+  },
   "queryBox:spaceNavigator": {
     id: "queryBox:spaceNavigator",
     routeSegment: "query-box-space-navigator",

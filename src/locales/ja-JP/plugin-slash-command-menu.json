@@ -20,6 +20,9 @@
     },
     "actionItems": {
       "heading": "アクション",
+      "changeFocusMode": {
+        "label": "フォーカスモードを変更"
+      },
       "changeModel": {
         "label": "言語モデルを変更"
       },

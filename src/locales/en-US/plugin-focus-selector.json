@@ -1,0 +1,19 @@
+{
+  "tooltip": "Focus: {{mode}}",
+  "modes": {
+    "internet": "Web",
+    "writing": "Writing",
+    "scholar": "Academic",
+    "wolfram": "Math",
+    "youtube": "Video",
+    "reddit": "Social"
+  },
+  "descriptions": {
+    "internet": "Search across the entire internet",
+    "writing": "Generate text or chat without searching the web",
+    "scholar": "Search for published academic papers",
+    "wolfram": "Solve equations and find numerical answers",
+    "youtube": "Discover and watch videos",
+    "reddit": "Search for discussions and opinions"
+  }
+}

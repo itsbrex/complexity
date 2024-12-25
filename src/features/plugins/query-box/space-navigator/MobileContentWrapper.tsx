@@ -1,3 +1,4 @@
+import Tooltip from "@/components/Tooltip";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import SpaceNavigatorContent from "@/features/plugins/query-box/space-navigator/SpaceNavigatorContent";
 
@@ -10,7 +11,11 @@ export default function SpaceNavigatorMobileContentWrapper({
 }: SpaceNavigatorMobileContentWrapperProps) {
   return (
     <Sheet lazyMount>
-      <SheetTrigger asChild>{children}</SheetTrigger>
+      <Tooltip
+        content={t("plugin-space-navigator:spaceNavigator.button.label")}
+      >
+        <SheetTrigger asChild>{children}</SheetTrigger>
+      </Tooltip>
       <SheetContent side="bottom" className="tw-p-0">
         <SpaceNavigatorContent />
       </SheetContent>

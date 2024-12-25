@@ -30,6 +30,9 @@ export default function LanguageModelSelector() {
 
   return (
     <Select
+      lazyMount
+      unmountOnExit
+      portal={false}
       data-testid={TEST_ID_SELECTORS.QUERY_BOX.LANGUAGE_MODEL_SELECTOR}
       collection={createListCollection({
         items: languageModels.map((model) => model.code),

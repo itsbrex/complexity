@@ -20,6 +20,9 @@
     },
     "actionItems": {
       "heading": "Акција",
+      "changeFocusMode": {
+        "label": "Промени режим на фокус"
+      },
       "changeModel": {
         "label": "Промени јазичен модел"
       },

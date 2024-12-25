@@ -32,7 +32,7 @@ export default function FollowUpQueryBoxWrapper() {
             <SlashCommandMenuTriggerButton />
           </CsUiPluginsGuard>
           <CsUiPluginsGuard
-            requiresPplxPro
+            allowedAccountTypes={["pro", "enterprise"]}
             dependentPluginIds={["queryBox:languageModelSelector"]}
           >
             {settings?.plugins["queryBox:languageModelSelector"].followUp

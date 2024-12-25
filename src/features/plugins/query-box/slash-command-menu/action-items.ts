@@ -1,5 +1,5 @@
 import { ComponentType, SVGProps } from "react";
-import { LuCpu } from "react-icons/lu";
+import { LuCpu, LuGlobe } from "react-icons/lu";
 
 import PplxSpace from "@/components/icons/PplxSpace";
 import { slashCommandMenuStore } from "@/features/plugins/query-box/slash-command-menu/store";
@@ -22,6 +22,19 @@ CsLoaderRegistry.register({
   dependencies: ["lib:i18next"],
   loader: () => {
     ACTION_ITEMS = [
+      {
+        label: t(
+          "plugin-slash-command-menu:slashCommandMenu.actionItems.changeFocusMode.label",
+        ),
+        Icon: LuGlobe,
+        command: "f",
+        action: () => {
+          slashCommandMenuStore.getState().queryBoxAction.deleteTriggerWord();
+          $(
+            `[data-testid=${TEST_ID_SELECTORS.QUERY_BOX.FOCUS_SELECTOR}] button:last`,
+          ).trigger("click");
+        },
+      },
       {
         label: t(
           "plugin-slash-command-menu:slashCommandMenu.actionItems.changeModel.label",

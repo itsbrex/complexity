@@ -120,6 +120,7 @@ export const DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS = {
 
 export const TEST_ID_SELECTORS = {
   QUERY_BOX: {
+    FOCUS_SELECTOR: "cplx-focus-selector",
     LANGUAGE_MODEL_SELECTOR: "cplx-language-model-selector",
     IMAGE_GEN_MODEL_SELECTOR: "cplx-image-gen-model-selector",
     SPACE_NAVIGATOR: "cplx-space-navigator",

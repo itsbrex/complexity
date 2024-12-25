@@ -13,12 +13,17 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
         span: true,
       },
     },
+    "queryBox:focusSelector": {
+      enabled: false,
+      mode: "persistent",
+      defaultFocusMode: "internet",
+    },
     "queryBox:spaceNavigator": {
       enabled: false,
     },
     "queryBox:slashCommandMenu:promptHistory": {
       enabled: false,
-      showTriggerButton: false,
+      showTriggerButton: true,
       trigger: {
         onSubmit: true,
         onNavigation: true,

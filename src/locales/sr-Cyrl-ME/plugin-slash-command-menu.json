@@ -20,6 +20,9 @@
     },
     "actionItems": {
       "heading": "Акција",
+      "changeFocusMode": {
+        "label": "Промијени режим фокуса"
+      },
       "changeModel": {
         "label": "Промијени језички модел"
       },

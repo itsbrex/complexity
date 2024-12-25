@@ -20,6 +20,9 @@
     },
     "actionItems": {
       "heading": "Művelet",
+      "changeFocusMode": {
+        "label": "Fókusz mód váltása"
+      },
       "changeModel": {
         "label": "Nyelvi modell váltása"
       },

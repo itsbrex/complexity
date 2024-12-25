@@ -32,7 +32,7 @@ type CsUiPluginsGuardProps = {
   desktopOnly?: boolean;
   children: React.ReactNode;
   requiresLoggedIn?: boolean;
-  requiresPplxPro?: boolean;
+  allowedAccountTypes?: ("free" | "pro" | "enterprise")[];
   additionalCheck?: (
     props: Omit<CsUiPluginsGuardProps, "additionalCheck" | "children"> & {
       pluginsEnableStates: PluginsStates["pluginsEnableStates"];
@@ -47,17 +47,15 @@ export default function CsUiPluginsGuard({
   children,
   desktopOnly = false,
   requiresLoggedIn = false,
-  requiresPplxPro = false,
+  allowedAccountTypes = ["free", "pro", "enterprise"],
   additionalCheck,
 }: CsUiPluginsGuardProps) {
   const { url } = useSpaRouter();
-
-  const { isMobile } = useIsMobileStore();
-
   const currentLocation = whereAmI(url);
-
-  const { isLoggedIn } = usePplxAuth();
+  const { isMobile } = useIsMobileStore();
+  const { isLoggedIn, isOrgMember } = usePplxAuth();
   const { data: pplxUserSettings } = usePplxUserSettings();
+  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
   if (desktopOnly && isMobile) {
     return null;
@@ -71,11 +69,13 @@ export default function CsUiPluginsGuard({
     pplxUserSettings?.subscription_status != null &&
     pplxUserSettings?.subscription_status !== "none";
 
-  if (requiresPplxPro && !hasActivePplxSub) {
+  if (isOrgMember && !allowedAccountTypes.includes("enterprise")) {
     return null;
   }
 
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+  if (!allowedAccountTypes.includes("free") && !hasActivePplxSub) {
+    return null;
+  }
 
   if (
     (dependentPluginIds &&
@@ -94,7 +94,7 @@ export default function CsUiPluginsGuard({
       location,
       desktopOnly,
       requiresLoggedIn,
-      requiresPplxPro,
+      allowedAccountTypes,
       pluginsEnableStates,
       settings: ExtensionLocalStorageService.getCachedSync(),
     })

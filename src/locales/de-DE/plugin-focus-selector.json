@@ -1,0 +1,19 @@
+{
+  "tooltip": "Fokus: {{mode}}",
+  "modes": {
+    "internet": "Web",
+    "writing": "Schreiben",
+    "scholar": "Akademisch",
+    "wolfram": "Mathematik",
+    "youtube": "Video",
+    "reddit": "Sozial"
+  },
+  "descriptions": {
+    "internet": "Das gesamte Internet durchsuchen",
+    "writing": "Text generieren oder chatten ohne Websuche",
+    "scholar": "Veröffentlichte akademische Arbeiten suchen",
+    "wolfram": "Gleichungen lösen und numerische Antworten finden",
+    "youtube": "Videos entdecken und ansehen",
+    "reddit": "Diskussionen und Meinungen suchen"
+  }
+} 

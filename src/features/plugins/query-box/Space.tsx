@@ -39,7 +39,7 @@ export default function SpaceQueryBoxWrapper() {
             <SpaceNavigator />
           </CsUiPluginsGuard>
           <CsUiPluginsGuard
-            requiresPplxPro
+            allowedAccountTypes={["pro", "enterprise"]}
             dependentPluginIds={["queryBox:languageModelSelector"]}
           >
             {settings?.plugins["queryBox:languageModelSelector"].main && (

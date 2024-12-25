@@ -20,6 +20,9 @@
     },
     "actionItems": {
       "heading": "작업",
+      "changeFocusMode": {
+        "label": "포커스 모드 변경"
+      },
       "changeModel": {
         "label": "언어 모델 변경"
       },

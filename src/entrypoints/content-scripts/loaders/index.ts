@@ -19,6 +19,9 @@ import "@/features/plugins/_core/dom-observer/observers/thread/thread-components
 
 // Query Box Plugins
 import "@/features/plugins/query-box/language-model-selector/network-intercept-middlewares";
+import "@/features/plugins/query-box/focus-selector/network-intercept-middlewares";
+import "@/features/plugins/query-box/shared-store";
+import "@/data/plugins/focus-selector/focus-modes";
 import "@/features/plugins/query-box/prompt-history/network-intercept-middlewares";
 import "@/features/plugins/query-box/prompt-history/listeners";
 import "@/features/plugins/query-box/slash-command-menu/filter-items";

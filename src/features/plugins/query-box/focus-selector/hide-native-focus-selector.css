@@ -1,0 +1,11 @@
+[cplx-main-query-box],
+[cplx-main-modal-query-box] {
+  span button:has(svg[data-icon="bars-filter"]),
+  span button:has(svg[data-icon="chevron-down"]) {
+    display: none;
+  }
+
+  button svg[data-icon="circle-plus"] + div {
+    display: none;
+  }
+}

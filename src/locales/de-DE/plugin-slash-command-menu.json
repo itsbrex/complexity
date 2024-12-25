@@ -20,6 +20,9 @@
     },
     "actionItems": {
       "heading": "Aktion",
+      "changeFocusMode": {
+        "label": "Fokusmodus ändern"
+      },
       "changeModel": {
         "label": "Sprachmodell ändern"
       },

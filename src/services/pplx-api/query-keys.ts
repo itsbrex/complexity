@@ -11,6 +11,12 @@ export const pplxApiQueries = createQueryKeys("pplxApi", {
   auth: {
     queryKey: null,
     queryFn: PplxApiService.fetchAuthSession,
+    contextQueries: {
+      orgStatus: {
+        queryKey: null,
+        queryFn: PplxApiService.fetchOrgSettings,
+      },
+    },
   },
   threadInfo: (threadSlug: string) => ({
     queryKey: [{ threadSlug }],

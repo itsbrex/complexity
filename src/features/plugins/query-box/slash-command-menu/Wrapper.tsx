@@ -125,7 +125,7 @@ const CommandContent = ({
         }}
         shouldFilter={shouldFilter}
         value={selectedValue}
-        className="tw-bg-secondary"
+        className="tw-bg-background dark:tw-bg-secondary"
         onValueChange={setSelectedValue}
       >
         <CommandInput

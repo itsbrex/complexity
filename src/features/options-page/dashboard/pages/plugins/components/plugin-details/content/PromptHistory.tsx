@@ -69,25 +69,6 @@ export default function PromptHistoryPluginDetails() {
               });
             }}
           />
-          <Switch
-            className="tw-items-start"
-            textLabel={
-              <div>
-                <div>Show menu trigger button on query boxes</div>
-                <div className="tw-text-sm tw-text-muted-foreground">
-                  Open the menu by clicking the button on any query boxes
-                </div>
-              </div>
-            }
-            checked={pluginSettings?.showTriggerButton ?? false}
-            onCheckedChange={({ checked }) => {
-              mutation.mutate((draft) => {
-                draft.plugins[
-                  "queryBox:slashCommandMenu:promptHistory"
-                ].showTriggerButton = checked;
-              });
-            }}
-          />
         </div>
       )}
     </div>

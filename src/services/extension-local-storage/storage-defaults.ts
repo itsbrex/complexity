@@ -23,7 +23,6 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     },
     "queryBox:slashCommandMenu:promptHistory": {
       enabled: false,
-      showTriggerButton: true,
       trigger: {
         onSubmit: true,
         onNavigation: true,

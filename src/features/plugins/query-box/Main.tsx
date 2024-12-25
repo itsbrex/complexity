@@ -31,10 +31,6 @@ export default function MainQueryBoxWrapper() {
         <CsUiPluginsGuard
           desktopOnly
           dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
-          additionalCheck={(props) =>
-            props.settings.plugins["queryBox:slashCommandMenu:promptHistory"]
-              .showTriggerButton
-          }
         >
           <SlashCommandMenuTriggerButton />
         </CsUiPluginsGuard>

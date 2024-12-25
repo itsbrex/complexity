@@ -99,7 +99,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     routeSegment: "query-box-slash-command-menu-prompt-history",
     title: "Prompt History",
     description: "Reuse previous prompts. Usage: type /h in the query box",
-    tags: ["experimental", "slashCommand", "ui", "ux"],
+    tags: ["experimental", "slashCommand", "desktopOnly", "ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver", "webSocket"],
   },
   "queryBox:noFileCreationOnPaste": {

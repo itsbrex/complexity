@@ -1,5 +1,4 @@
 import { usePopover } from "@ark-ui/react";
-import { useEffect, useRef } from "react";
 
 import {
   Command,
@@ -48,7 +47,7 @@ export default function SlashCommandMenuWrapper({
         commandRef={commandRef}
         commandInputRef={commandInputRef}
         anchor={anchor}
-        isMainQueryBox={isMainQueryBox}
+        queryBoxType={type}
       />
     </PopoverRootProvider>
   );
@@ -65,7 +64,7 @@ const useSlashCommandPopover = ({
 }) => {
   const { isOpen } = useSlashCommandMenuStore();
 
-  const popover = usePopover({
+  return usePopover({
     open: isOpen,
     positioning: {
       placement: "top-start",
@@ -76,28 +75,20 @@ const useSlashCommandPopover = ({
     autoFocus: false,
     modal: false,
   });
-
-  useEffect(() => {
-    popover.reposition({
-      getAnchorRect: () => anchor?.getBoundingClientRect() ?? null,
-    });
-  });
-
-  return popover;
 };
 
 type CommandContentProps = {
   commandRef: React.RefObject<HTMLDivElement | null>;
   commandInputRef: React.RefObject<HTMLInputElement | null>;
   anchor: HTMLElement;
-  isMainQueryBox: boolean;
+  queryBoxType: QueryBoxType;
 };
 
 const CommandContent = ({
   commandRef,
   commandInputRef,
   anchor,
-  isMainQueryBox,
+  queryBoxType,
 }: CommandContentProps) => {
   const { selectedValue, setSelectedValue, searchValue, filter } =
     useSlashCommandMenuStore();
@@ -112,7 +103,8 @@ const CommandContent = ({
       className={cn(
         "tw-overflow-y-auto tw-border-border tw-p-0 tw-shadow-none",
         {
-          "tw-rounded-b-none tw-border-2 tw-border-b-0": isMainQueryBox,
+          "tw-rounded-b-none tw-border-2 tw-border-b-0":
+            queryBoxType === "main",
         },
       )}
       portal={false}
@@ -155,8 +147,8 @@ const CommandContent = ({
 
           {filter === null && (
             <>
-              <FilterItems />
-              <ActionItems />
+              <FilterItems queryBoxType={queryBoxType} />
+              <ActionItems queryBoxType={queryBoxType} />
             </>
           )}
 

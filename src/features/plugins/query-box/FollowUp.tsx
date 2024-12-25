@@ -18,34 +18,32 @@ export default function FollowUpQueryBoxWrapper() {
     findToolbarPortalContainer(followUpQueryBox);
 
   return (
-    <>
-      <Portal container={followUpQueryBoxToolbarPortalContainer}>
-        <div className="tw-flex tw-flex-wrap tw-items-center md:tw-flex-nowrap">
-          <CsUiPluginsGuard
-            desktopOnly
-            dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
-            additionalCheck={(props) =>
-              props.settings.plugins["queryBox:slashCommandMenu:promptHistory"]
-                .showTriggerButton
-            }
-          >
-            <SlashCommandMenuTriggerButton />
-          </CsUiPluginsGuard>
-          <CsUiPluginsGuard
-            allowedAccountTypes={["pro", "enterprise"]}
-            dependentPluginIds={["queryBox:languageModelSelector"]}
-          >
-            {settings?.plugins["queryBox:languageModelSelector"].followUp
-              .enabled && <LanguageModelSelector />}
-          </CsUiPluginsGuard>
-        </div>
-      </Portal>
+    <Portal container={followUpQueryBoxToolbarPortalContainer}>
+      <div className="tw-flex tw-flex-wrap tw-items-center md:tw-flex-nowrap">
+        <CsUiPluginsGuard
+          desktopOnly
+          dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
+          additionalCheck={(props) =>
+            props.settings.plugins["queryBox:slashCommandMenu:promptHistory"]
+              .showTriggerButton
+          }
+        >
+          <SlashCommandMenuTriggerButton />
+        </CsUiPluginsGuard>
+        <CsUiPluginsGuard
+          allowedAccountTypes={["pro", "enterprise"]}
+          dependentPluginIds={["queryBox:languageModelSelector"]}
+        >
+          {settings?.plugins["queryBox:languageModelSelector"].followUp
+            .enabled && <LanguageModelSelector />}
+        </CsUiPluginsGuard>
+      </div>
       <CsUiPluginsGuard
         desktopOnly
         dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
       >
         <SlashCommandMenuWrapper anchor={followUpQueryBox} type="follow-up" />
       </CsUiPluginsGuard>
-    </>
+    </Portal>
   );
 }

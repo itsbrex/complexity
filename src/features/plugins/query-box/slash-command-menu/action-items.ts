@@ -5,8 +5,18 @@ import PplxSpace from "@/components/icons/PplxSpace";
 import { slashCommandMenuStore } from "@/features/plugins/query-box/slash-command-menu/store";
 import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { TEST_ID_SELECTORS } from "@/utils/dom-selectors";
+import { QueryBoxType } from "@/utils/UiUtils.types";
+
+const ACTION_ITEMS_IDS = [
+  "changeFocusMode",
+  "changeModel",
+  "searchSpaces",
+] as const;
+
+type ActionItemId = (typeof ACTION_ITEMS_IDS)[number];
 
 export type CommandActionItem = {
+  id: ActionItemId;
   label: string;
   Icon?: ComponentType<SVGProps<SVGSVGElement>>;
   description?: string;
@@ -23,6 +33,7 @@ CsLoaderRegistry.register({
   loader: () => {
     ACTION_ITEMS = [
       {
+        id: "changeFocusMode",
         label: t(
           "plugin-slash-command-menu:slashCommandMenu.actionItems.changeFocusMode.label",
         ),
@@ -36,6 +47,7 @@ CsLoaderRegistry.register({
         },
       },
       {
+        id: "changeModel",
         label: t(
           "plugin-slash-command-menu:slashCommandMenu.actionItems.changeModel.label",
         ),
@@ -49,6 +61,7 @@ CsLoaderRegistry.register({
         },
       },
       {
+        id: "searchSpaces",
         label: t(
           "plugin-slash-command-menu:slashCommandMenu.actionItems.searchSpaces.label",
         ),
@@ -64,3 +77,24 @@ CsLoaderRegistry.register({
     ];
   },
 });
+
+export function getActionItems(queryBoxType: QueryBoxType) {
+  switch (queryBoxType) {
+    case "main":
+      return ACTION_ITEMS;
+    case "main-modal":
+      return ACTION_ITEMS.filter((item) =>
+        (["changeFocusMode", "changeModel"] as ActionItemId[]).includes(
+          item.id,
+        ),
+      );
+    case "space":
+      return ACTION_ITEMS.filter((item) =>
+        (["changeModel", "searchSpaces"] as ActionItemId[]).includes(item.id),
+      );
+    case "follow-up":
+      return ACTION_ITEMS.filter((item) =>
+        (["changeModel"] as ActionItemId[]).includes(item.id),
+      );
+  }
+}

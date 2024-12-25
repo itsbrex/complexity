@@ -3,13 +3,18 @@ import {
   CommandItem,
   CommandShortcut,
 } from "@/components/ui/command";
-import { FILTER_ITEMS } from "@/features/plugins/query-box/slash-command-menu/filter-items";
+import { getFilterItems } from "@/features/plugins/query-box/slash-command-menu/filter-items";
 import {
   slashCommandMenuStore,
   useSlashCommandMenuStore,
 } from "@/features/plugins/query-box/slash-command-menu/store";
+import { QueryBoxType } from "@/utils/UiUtils.types";
 
-export default function ActionItems() {
+export default function FilterItems({
+  queryBoxType,
+}: {
+  queryBoxType: QueryBoxType;
+}) {
   const { setFilter } = useSlashCommandMenuStore();
 
   return (
@@ -18,7 +23,7 @@ export default function ActionItems() {
         "plugin-slash-command-menu:slashCommandMenu.filterItems.heading",
       )}
     >
-      {FILTER_ITEMS.map((item, idx) => (
+      {getFilterItems(queryBoxType).map((item, idx) => (
         <CommandItem
           key={idx}
           value={item.command}

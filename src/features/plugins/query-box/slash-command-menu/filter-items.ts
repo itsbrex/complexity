@@ -2,6 +2,7 @@ import { ComponentType, SVGProps } from "react";
 import { LuHistory } from "react-icons/lu";
 
 import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { QueryBoxType } from "@/utils/UiUtils.types";
 
 const FILTER_MODES = ["promptHistory"] as const;
 
@@ -37,3 +38,7 @@ CsLoaderRegistry.register({
     ];
   },
 });
+
+export function getFilterItems(queryBoxType: QueryBoxType) {
+  return FILTER_ITEMS;
+}

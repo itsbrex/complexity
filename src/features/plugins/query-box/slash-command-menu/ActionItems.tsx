@@ -3,17 +3,22 @@ import {
   CommandItem,
   CommandShortcut,
 } from "@/components/ui/command";
-import { ACTION_ITEMS } from "@/features/plugins/query-box/slash-command-menu/action-items";
+import { getActionItems } from "@/features/plugins/query-box/slash-command-menu/action-items";
 import { slashCommandMenuStore } from "@/features/plugins/query-box/slash-command-menu/store";
+import { QueryBoxType } from "@/utils/UiUtils.types";
 
-export default function ActionItems() {
+export default function ActionItems({
+  queryBoxType,
+}: {
+  queryBoxType: QueryBoxType;
+}) {
   return (
     <CommandGroup
       heading={t(
         "plugin-slash-command-menu:slashCommandMenu.actionItems.heading",
       )}
     >
-      {ACTION_ITEMS.map((item, idx) => (
+      {getActionItems(queryBoxType).map((item, idx) => (
         <CommandItem
           key={idx}
           value={item.command}

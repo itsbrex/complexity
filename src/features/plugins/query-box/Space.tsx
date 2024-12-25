@@ -19,41 +19,39 @@ export default function SpaceQueryBoxWrapper() {
     findToolbarPortalContainer(spaceQueryBox);
 
   return (
-    <>
-      <Portal container={spaceQueryBoxToolbarPortalContainer}>
-        <div className="tw-flex tw-flex-wrap tw-items-center md:tw-flex-nowrap">
-          <CsUiPluginsGuard
-            desktopOnly
-            dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
-            additionalCheck={(props) =>
-              props.settings.plugins["queryBox:slashCommandMenu:promptHistory"]
-                .showTriggerButton
-            }
-          >
-            <SlashCommandMenuTriggerButton />
-          </CsUiPluginsGuard>
-          <CsUiPluginsGuard
-            requiresLoggedIn
-            dependentPluginIds={["queryBox:spaceNavigator"]}
-          >
-            <SpaceNavigator />
-          </CsUiPluginsGuard>
-          <CsUiPluginsGuard
-            allowedAccountTypes={["pro", "enterprise"]}
-            dependentPluginIds={["queryBox:languageModelSelector"]}
-          >
-            {settings?.plugins["queryBox:languageModelSelector"].main && (
-              <LanguageModelSelector />
-            )}
-          </CsUiPluginsGuard>
-        </div>
-      </Portal>
+    <Portal container={spaceQueryBoxToolbarPortalContainer}>
+      <div className="tw-flex tw-flex-wrap tw-items-center md:tw-flex-nowrap">
+        <CsUiPluginsGuard
+          desktopOnly
+          dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
+          additionalCheck={(props) =>
+            props.settings.plugins["queryBox:slashCommandMenu:promptHistory"]
+              .showTriggerButton
+          }
+        >
+          <SlashCommandMenuTriggerButton />
+        </CsUiPluginsGuard>
+        <CsUiPluginsGuard
+          requiresLoggedIn
+          dependentPluginIds={["queryBox:spaceNavigator"]}
+        >
+          <SpaceNavigator />
+        </CsUiPluginsGuard>
+        <CsUiPluginsGuard
+          allowedAccountTypes={["pro", "enterprise"]}
+          dependentPluginIds={["queryBox:languageModelSelector"]}
+        >
+          {settings?.plugins["queryBox:languageModelSelector"].main && (
+            <LanguageModelSelector />
+          )}
+        </CsUiPluginsGuard>
+      </div>
       <CsUiPluginsGuard
         desktopOnly
         dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
       >
         <SlashCommandMenuWrapper anchor={spaceQueryBox} type="space" />
       </CsUiPluginsGuard>
-    </>
+    </Portal>
   );
 }

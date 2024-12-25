@@ -26,7 +26,8 @@ export class IndexedDbService extends Dexie {
     const themes = await this.themes.toArray();
     const betterCodeBlocksFineGrainedOptions =
       await this.betterCodeBlocks.toArray();
-    return { themes, betterCodeBlocksFineGrainedOptions };
+    const promptHistory = await this.promptHistory.toArray();
+    return { themes, betterCodeBlocksFineGrainedOptions, promptHistory };
   }
 
   async import(data: ExtensionData["db"]) {
@@ -34,11 +35,13 @@ export class IndexedDbService extends Dexie {
     await this.betterCodeBlocks.bulkPut(
       data.betterCodeBlocksFineGrainedOptions,
     );
+    await this.promptHistory.bulkPut(data.promptHistory);
   }
 
   async clearAll() {
     await this.themes.clear();
     await this.betterCodeBlocks.clear();
+    await this.promptHistory.clear();
   }
 }
 

@@ -64,7 +64,11 @@ export const useSlashCommandMenuStore =
           queryBoxAction: {
             insertTextAtCaret: (text) => {
               get().queryBoxAction.deleteTriggerWord();
-              document.execCommand("insertText", false, text);
+
+              queueMicrotask(() => {
+                UiUtils.getActiveQueryBoxTextarea().trigger("focus");
+                document.execCommand("insertText", false, text);
+              });
             },
             deleteTriggerWord: () => {
               const $textarea = UiUtils.getActiveQueryBoxTextarea();
@@ -80,7 +84,11 @@ export const useSlashCommandMenuStore =
                 ignoreLeftCount - 1,
                 $textarea[0].value.length - ignoreRightCount,
               );
-              document.execCommand("delete", false, undefined);
+
+              queueMicrotask(() => {
+                $textarea.trigger("focus");
+                document.execCommand("delete", false, undefined);
+              });
             },
             clearSearchValue() {
               const $textarea = UiUtils.getActiveQueryBoxTextarea();
@@ -104,7 +112,10 @@ export const useSlashCommandMenuStore =
                 $textarea[0].value.length - ignoreRightCount,
               );
 
-              document.execCommand("delete", false, undefined);
+              queueMicrotask(() => {
+                $textarea.trigger("focus");
+                document.execCommand("delete", false, undefined);
+              });
 
               set({ searchValue: "" });
             },

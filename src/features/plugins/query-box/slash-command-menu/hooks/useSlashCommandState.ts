@@ -1,4 +1,7 @@
-import { useSlashCommandMenuStore } from "@/features/plugins/query-box/slash-command-menu/store";
+import {
+  slashCommandMenuStore,
+  useSlashCommandMenuStore,
+} from "@/features/plugins/query-box/slash-command-menu/store";
 import UiUtils from "@/utils/UiUtils";
 
 export function useSlashCommandState({
@@ -31,32 +34,23 @@ export function useSlashCommandState({
           const isSlashCommand = e.key === "/" && word === "/";
           const isBackSpaceOnSlash = e.key === Key.Backspace && word === "/";
 
-          if (isSlashCommand || isBackSpaceOnSlash) {
-            setSearchValueBoundary({
-              ignoreLeftCount: $textarea[0].selectionStart,
-              ignoreRightCount: null,
-            });
-            setIsOpen(true);
-          }
-        } else {
-          if (e.key === Key.Escape) {
-            setIsOpen(false);
-            return;
-          }
+          if (!isSlashCommand && !isBackSpaceOnSlash) return;
 
-          const { ignoreLeftCount, ignoreRightCount } =
-            useSlashCommandMenuStore.getState().searchValueBoundary;
+          setIsOpen(true);
+          slashCommandMenuStore.setState((draft) => {
+            draft.searchValueBoundary.ignoreLeftCount =
+              $textarea[0].selectionStart;
 
-          if (ignoreLeftCount != null && ignoreRightCount == null) {
             const relativeSpacePos = $textarea[0].value
-              .slice(ignoreLeftCount - 1)
+              .slice(draft.searchValueBoundary.ignoreLeftCount - 1)
               .search(/\s/);
 
             let newIgnoreRightCount: number;
             if (relativeSpacePos === -1) {
               newIgnoreRightCount = 0;
             } else {
-              const absoluteSpacePos = relativeSpacePos + ignoreLeftCount;
+              const absoluteSpacePos =
+                relativeSpacePos + draft.searchValueBoundary.ignoreLeftCount;
               const isLastCharSpace =
                 absoluteSpacePos === $textarea[0].value.length - 1;
 
@@ -68,10 +62,13 @@ export function useSlashCommandState({
                 newIgnoreRightCount = totalCharsFromSpacePosToEnd + 1;
               }
             }
-            setSearchValueBoundary({
-              ignoreLeftCount,
-              ignoreRightCount: newIgnoreRightCount,
-            });
+
+            draft.searchValueBoundary.ignoreRightCount = newIgnoreRightCount;
+          });
+        } else {
+          if (e.key === Key.Escape) {
+            setIsOpen(false);
+            return;
           }
 
           const currentBoundary =
@@ -103,7 +100,7 @@ export function useSlashCommandState({
         }
       }, 10);
     },
-    [$textarea, isOpen, setIsOpen, setSearchValue, setSearchValueBoundary],
+    [$textarea, isOpen, setIsOpen, setSearchValue],
   );
 
   useEffect(() => {

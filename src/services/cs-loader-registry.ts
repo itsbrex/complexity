@@ -40,8 +40,6 @@ export const LOADER_IDS = [
   "plugin:queryBox:focusSelector:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:listeners",
-  "plugin:queryBox:slashCommandMenu:filterItems",
-  "plugin:queryBox:slashCommandMenu:actionItems",
   "plugin:queryBox:noFileCreationOnPaste",
   "plugin:queryBox:submitOnCtrlEnter",
   "plugin:home:customSlogan",

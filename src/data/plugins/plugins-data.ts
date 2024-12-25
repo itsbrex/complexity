@@ -99,7 +99,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     routeSegment: "query-box-slash-command-menu-prompt-history",
     title: "Prompt History",
     description: "Reuse previous prompts. Usage: type /h in the query box",
-    tags: ["slashCommand", "ui", "ux"],
+    tags: ["experimental", "slashCommand", "ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver", "webSocket"],
   },
   "queryBox:noFileCreationOnPaste": {
@@ -116,7 +116,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     routeSegment: "query-box-submit-on-ctrl-enter",
     title: `Submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
     description: `Insert new line on Enter, submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
-    tags: ["ux"],
+    tags: ["experimental", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
   },
   commandMenu: {

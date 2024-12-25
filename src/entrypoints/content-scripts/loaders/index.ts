@@ -25,6 +25,7 @@ import "@/data/plugins/focus-selector/focus-modes";
 import "@/features/plugins/query-box/prompt-history/network-intercept-middlewares";
 import "@/features/plugins/query-box/prompt-history/listeners";
 import "@/features/plugins/query-box/no-file-creation-on-paste";
+import "@/features/plugins/query-box/submit-on-ctrl-enter";
 
 // Thread Plugins
 import "@/features/plugins/thread/drag-n-drop-file-to-upload-in-thread/drag-n-drop-file-to-upload-in-thread";

@@ -50,3 +50,22 @@ body[data-cplx-zen-mode="true"] {
     }
   }
 }
+
+body[data-cplx-zen-mode-always-hide-related-questions="true"] {
+  [data-cplx-component="message-block"] {
+    /* Related follow-ups section */
+    [data-cplx-component="message-block-query"]
+      + div
+      + div:has(> div.mt-lg.border-t.pt-lg.duration-1000) {
+      display: none;
+    }
+
+    [data-cplx-component="message-block-text-col"] {
+      grid-column: span 12 / span 12 !important;
+    }
+
+    [data-cplx-component="message-block-visual-col"] {
+      display: none !important;
+    }
+  }
+}

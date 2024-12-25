@@ -4,4 +4,5 @@ export const OBSERVER_ID = {
   SPACE_QUERY_BOX: "cplx-space-query-box",
   FOLLOW_UP_QUERY_BOX: "cplx-follow-up-query-box",
   NO_FILE_CREATION_ON_PASTE: "cplx-no-file-creation-on-paste",
+  SUBMIT_ON_CTRL_ENTER: "cplx-submit-on-ctrl-enter",
 };

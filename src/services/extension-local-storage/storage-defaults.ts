@@ -32,6 +32,9 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "queryBox:noFileCreationOnPaste": {
       enabled: false,
     },
+    "queryBox:submitOnCtrlEnter": {
+      enabled: false,
+    },
     commandMenu: {
       hotkey: [
         getPlatform() === "mac" ? Key.Meta : Key.Control,
@@ -103,6 +106,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     },
     zenMode: {
       enabled: false,
+      alwaysHideRelatedQuestions: false,
     },
   },
   favoritePluginIds: [],

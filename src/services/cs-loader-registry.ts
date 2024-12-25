@@ -43,7 +43,7 @@ export const LOADER_IDS = [
   "plugin:queryBox:slashCommandMenu:filterItems",
   "plugin:queryBox:slashCommandMenu:actionItems",
   "plugin:queryBox:noFileCreationOnPaste",
-
+  "plugin:queryBox:submitOnCtrlEnter",
   "plugin:home:customSlogan",
 
   "csui:root",

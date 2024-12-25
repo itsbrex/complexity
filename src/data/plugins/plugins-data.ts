@@ -1,3 +1,4 @@
+import { getPlatform } from "@/hooks/usePlatformDetection";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 
 const CORE_PLUGINS = [
@@ -107,6 +108,14 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Prevent File Creation on Paste",
     description:
       "Prevent automatic file creation when pasting (very) long text into the query box",
+    tags: ["ux"],
+    dependentCorePlugins: ["spaRouter", "domObserver"],
+  },
+  "queryBox:submitOnCtrlEnter": {
+    id: "queryBox:submitOnCtrlEnter",
+    routeSegment: "query-box-submit-on-ctrl-enter",
+    title: `Submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
+    description: `Insert new line on Enter, submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
     tags: ["ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
   },

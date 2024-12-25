@@ -1,5 +1,3 @@
-import { isHotkeyPressed } from "react-hotkeys-hook";
-
 import {
   globalDomObserverStore,
   GlobalDomObserverStore,
@@ -8,12 +6,10 @@ import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/que
 import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 
-function noFileCreationOnPaste(
-  queryBoxes: GlobalDomObserverStore["queryBoxes"],
-) {
+function submitOnCtrlEnter(queryBoxes: GlobalDomObserverStore["queryBoxes"]) {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-  if (!pluginsEnableStates?.["queryBox:noFileCreationOnPaste"]) return;
+  if (!pluginsEnableStates?.["queryBox:submitOnCtrlEnter"]) return;
 
   Object.values(queryBoxes).forEach((queryBox) => {
     if (!queryBox) return;
@@ -22,33 +18,27 @@ function noFileCreationOnPaste(
 
     if (!$textarea.length) return;
 
-    if (
-      !$textarea.length ||
-      $textarea.attr(OBSERVER_ID.NO_FILE_CREATION_ON_PASTE)
-    )
+    if (!$textarea.length || $textarea.attr(OBSERVER_ID.SUBMIT_ON_CTRL_ENTER))
       return;
 
-    $textarea.attr(OBSERVER_ID.NO_FILE_CREATION_ON_PASTE, "true");
+    $textarea.attr(OBSERVER_ID.SUBMIT_ON_CTRL_ENTER, "true");
 
-    $textarea.on("paste", (e) => {
-      const clipboardEvent = e.originalEvent as ClipboardEvent;
-
-      if (clipboardEvent.clipboardData && isHotkeyPressed(Key.Shift)) {
-        if (clipboardEvent.clipboardData.types.includes("text/plain")) {
-          e.stopImmediatePropagation();
-        }
+    $textarea.on("keydown", (e) => {
+      if (e.key === "Enter") {
+        if (e.ctrlKey || e.metaKey) return;
+        e.stopPropagation();
       }
     });
   });
 }
 
 CsLoaderRegistry.register({
-  id: "plugin:queryBox:noFileCreationOnPaste",
+  id: "plugin:queryBox:submitOnCtrlEnter",
   loader: () => {
     globalDomObserverStore.subscribe(
       (state) => state.queryBoxes,
       (queryBoxes) => {
-        noFileCreationOnPaste(queryBoxes);
+        submitOnCtrlEnter(queryBoxes);
       },
     );
   },

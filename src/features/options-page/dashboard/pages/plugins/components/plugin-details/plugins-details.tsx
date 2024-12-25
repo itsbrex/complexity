@@ -9,6 +9,7 @@ import BetterCodeBlocksPluginDetails from "@/features/options-page/dashboard/pag
 import CommandMenuPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/CommandMenu";
 import FocusSelectorPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/FocusSelector";
 import PromptHistoryPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/PromptHistory";
+import ZenModePluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/ZenMode";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 
 export type PluginPluginDetails = Partial<Record<PluginId, React.ReactNode>>;
@@ -27,4 +28,5 @@ export const PLUGIN_DETAILS: PluginPluginDetails = {
   imageGenModelSelector: <ImageGenModelSelectorPluginDetails />,
   onCloudflareTimeoutAutoReload: <OnCloudflareTimeoutAutoReloadPluginDetails />,
   "home:customSlogan": <CustomHomeSloganPluginDetails />,
+  zenMode: <ZenModePluginDetails />,
 };

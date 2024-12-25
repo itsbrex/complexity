@@ -36,6 +36,7 @@ export const PluginsSchema = z.object({
   commandMenu: PluginSettingsSchema.extend({
     hotkey: z.array(z.string()),
   }),
+  "queryBox:submitOnCtrlEnter": PluginSettingsSchema,
   "thread:toc": PluginSettingsSchema,
   "thread:betterMessageToolbars": PluginSettingsSchema.extend({
     sticky: z.boolean(),
@@ -61,7 +62,9 @@ export const PluginsSchema = z.object({
     slogan: z.string(),
   }),
   "hide-get-mobile-app-cta-btn": PluginSettingsSchema,
-  zenMode: PluginSettingsSchema,
+  zenMode: PluginSettingsSchema.extend({
+    alwaysHideRelatedQuestions: z.boolean(),
+  }),
 });
 
 export type Plugins = z.infer<typeof PluginsSchema>;

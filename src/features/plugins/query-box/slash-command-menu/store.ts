@@ -41,7 +41,7 @@ export const useSlashCommandMenuStore =
                 searchValue: "",
                 filter: null,
                 isOpen,
-                // selectedValue: FILTER_ITEMS[0]?.command ?? "",
+                selectedValue: "",
               });
             }
 

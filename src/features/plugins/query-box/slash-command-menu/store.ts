@@ -2,10 +2,7 @@ import { subscribeWithSelector } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
 
-import {
-  FILTER_ITEMS,
-  FilterMode,
-} from "@/features/plugins/query-box/slash-command-menu/filter-items";
+import { FilterMode } from "@/features/plugins/query-box/slash-command-menu/FilterItems";
 import UiUtils from "@/utils/UiUtils";
 
 type SlashCommandMenuStore = {
@@ -44,7 +41,7 @@ export const useSlashCommandMenuStore =
                 searchValue: "",
                 filter: null,
                 isOpen,
-                selectedValue: FILTER_ITEMS[0]?.command ?? "",
+                // selectedValue: FILTER_ITEMS[0]?.command ?? "",
               });
             }
 

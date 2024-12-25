@@ -3,18 +3,20 @@ import { usePopover } from "@ark-ui/react";
 import {
   Command,
   CommandEmpty,
+  CommandGroup,
   CommandInput,
   CommandList,
 } from "@/components/ui/command";
 import { PopoverContent, PopoverRootProvider } from "@/components/ui/popover";
+import { QueryBoxType } from "@/data/plugins/query-box/types";
 import PromptHistorySlashMenuItemsWrapper from "@/features/plugins/query-box/prompt-history/Wrapper";
 import ActionItems from "@/features/plugins/query-box/slash-command-menu/ActionItems";
-import { FilterMode } from "@/features/plugins/query-box/slash-command-menu/filter-items";
-import FilterItems from "@/features/plugins/query-box/slash-command-menu/FilterItems";
+import FilterItems, {
+  FilterMode,
+} from "@/features/plugins/query-box/slash-command-menu/FilterItems";
 import { useSlashCommandMenuStore } from "@/features/plugins/query-box/slash-command-menu/store";
 import useQueryBoxObserver from "@/features/plugins/query-box/slash-command-menu/useQueryBoxObserver";
 import UiUtils from "@/utils/UiUtils";
-import { QueryBoxType } from "@/utils/UiUtils.types";
 
 type SlashCommandMenuWrapperProps = {
   anchor: HTMLElement | null;
@@ -146,10 +148,10 @@ const CommandContent = ({
           <CommandEmpty>No results found</CommandEmpty>
 
           {filter === null && (
-            <>
+            <CommandGroup>
               <FilterItems queryBoxType={queryBoxType} />
               <ActionItems queryBoxType={queryBoxType} />
-            </>
+            </CommandGroup>
           )}
 
           {filter === "promptHistory" && <PromptHistorySlashMenuItemsWrapper />}

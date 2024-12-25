@@ -1,9 +1,10 @@
+import { QueryBoxType } from "@/data/plugins/query-box/types";
 import { ExtendedMessageBlock } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import {
   DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
   DOM_SELECTORS,
 } from "@/utils/dom-selectors";
-import { CodeBlock, MessageBlock, QueryBoxType } from "@/utils/UiUtils.types";
+import { CodeBlock, MessageBlock } from "@/utils/UiUtils.types";
 
 export default class UiUtils {
   static isDarkTheme() {

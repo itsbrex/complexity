@@ -1,5 +1,3 @@
-export type QueryBoxType = "main" | "main-modal" | "space" | "follow-up";
-
 export type MessageBlock = {
   $wrapper: JQuery<Element>;
   $query: JQuery<Element>;

@@ -1,53 +1,18 @@
-import {
-  CommandGroup,
-  CommandItem,
-  CommandShortcut,
-} from "@/components/ui/command";
-import { getFilterItems } from "@/features/plugins/query-box/slash-command-menu/filter-items";
-import {
-  slashCommandMenuStore,
-  useSlashCommandMenuStore,
-} from "@/features/plugins/query-box/slash-command-menu/store";
-import { QueryBoxType } from "@/utils/UiUtils.types";
+import { QueryBoxType } from "@/data/plugins/query-box/types";
+import PromptHistoryFilterItem from "@/features/plugins/query-box/slash-command-menu/components/filter-items/PromptHistory";
+
+const FILTER_MODES = ["promptHistory"] as const;
+
+export type FilterMode = (typeof FILTER_MODES)[number];
 
 export default function FilterItems({
   queryBoxType,
 }: {
   queryBoxType: QueryBoxType;
 }) {
-  const { setFilter } = useSlashCommandMenuStore();
-
   return (
-    <CommandGroup
-      heading={t(
-        "plugin-slash-command-menu:slashCommandMenu.filterItems.heading",
-      )}
-    >
-      {getFilterItems(queryBoxType).map((item, idx) => (
-        <CommandItem
-          key={idx}
-          value={item.command}
-          keywords={item.keywords ?? item.label.split(" ")}
-          className="tw-min-h-10"
-          onSelect={() => {
-            setFilter(item.filter);
-            slashCommandMenuStore.getState().queryBoxAction.clearSearchValue();
-          }}
-        >
-          <div className="tw-flex tw-items-center tw-gap-2">
-            <div className="tw-flex tw-items-center tw-gap-2">
-              {item.Icon && <item.Icon className="tw-size-4" />}
-              <div>{item.label}</div>
-            </div>
-            {item.description && (
-              <div className="tw-text-muted-foreground">
-                ({item.description})
-              </div>
-            )}
-          </div>
-          <CommandShortcut>/{item.command}</CommandShortcut>
-        </CommandItem>
-      ))}
-    </CommandGroup>
+    <>
+      <PromptHistoryFilterItem queryBoxType={queryBoxType} />
+    </>
   );
 }

@@ -148,6 +148,9 @@ CsLoaderRegistry.register({
   id: "cache:pluginsStates",
   dependencies: ["cache:extensionLocalStorage"],
   loader: async () => {
-    await PluginsStatesService.get();
+    await queryClient.prefetchQuery({
+      ...pluginsStatesQueries.computed,
+      gcTime: Infinity,
+    });
   },
 });

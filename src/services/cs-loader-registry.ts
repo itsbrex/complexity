@@ -42,6 +42,7 @@ export const LOADER_IDS = [
   "plugin:queryBox:promptHistory:listeners",
   "plugin:queryBox:noFileCreationOnPaste",
   "plugin:queryBox:submitOnCtrlEnter",
+  "plugin:queryBox:fullWidthFollowUp",
   "plugin:home:customSlogan",
 
   "csui:root",

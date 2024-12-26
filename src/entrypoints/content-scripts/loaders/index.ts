@@ -26,6 +26,7 @@ import "@/features/plugins/query-box/prompt-history/network-intercept-middleware
 import "@/features/plugins/query-box/prompt-history/listeners";
 import "@/features/plugins/query-box/no-file-creation-on-paste";
 import "@/features/plugins/query-box/submit-on-ctrl-enter";
+import "@/features/plugins/query-box/full-width-follow-up/full-with-follow-up";
 
 // Thread Plugins
 import "@/features/plugins/thread/drag-n-drop-file-to-upload-in-thread/drag-n-drop-file-to-upload-in-thread";

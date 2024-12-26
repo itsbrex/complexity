@@ -49,10 +49,4 @@
 
 .pointer-events-none.fixed.bottom-mobileNavHeight {
   @apply md:tw-bottom-0 md:tw-mt-0;
-
-  .pointer-events-auto.md\:col-span-8:has(
-      [cplx-follow-up-query-box][cplx-data-span]
-    ) {
-    grid-column: span 12 / span 12 !important;
-  }
 }

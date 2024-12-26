@@ -4,7 +4,6 @@ import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/gl
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/query-boxes/observer-ids";
 import { spaRouteChangeCompleteSubscribe } from "@/features/plugins/_core/spa-router/listeners";
 import { CsLoaderRegistry } from "@/services/cs-loader-registry";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import UiUtils from "@/utils/UiUtils";
 import { whereAmI } from "@/utils/utils";
@@ -176,14 +175,6 @@ async function observeFollowUpQueryBox() {
   }
 
   $followUpQueryBox.attr(OBSERVER_ID.FOLLOW_UP_QUERY_BOX, "true");
-
-  if (
-    ExtensionLocalStorageService.getCachedSync()?.plugins[
-      "queryBox:languageModelSelector"
-    ].followUp.span
-  ) {
-    $followUpQueryBox.attr("cplx-data-span", "true");
-  }
 
   globalDomObserverStore.getState().setQueryBoxes({
     followUpQueryBox: $followUpQueryBox[0],

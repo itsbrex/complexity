@@ -1,0 +1,4 @@
+.pointer-events-none.fixed.bottom-mobileNavHeight
+  .pointer-events-auto.md\:col-span-8:has([cplx-follow-up-query-box]) {
+  grid-column: span 12 / span 12 !important;
+}

@@ -44,35 +44,16 @@ export default function LanguageModelSelectorPluginDetails() {
             <Switch
               textLabel="Follow-up (in a thread)"
               checked={
-                settings.plugins["queryBox:languageModelSelector"].followUp
-                  .enabled ?? false
+                settings.plugins["queryBox:languageModelSelector"].followUp ??
+                false
               }
               onCheckedChange={({ checked }) => {
                 mutation.mutate((draft) => {
-                  draft.plugins[
-                    "queryBox:languageModelSelector"
-                  ].followUp.enabled = checked;
+                  draft.plugins["queryBox:languageModelSelector"].followUp =
+                    checked;
                 });
               }}
             />
-            {settings.plugins["queryBox:languageModelSelector"].followUp
-              .enabled && (
-              <Switch
-                className="tw-ml-8"
-                textLabel="Horizontally span to full width"
-                checked={
-                  settings.plugins["queryBox:languageModelSelector"].followUp
-                    .span
-                }
-                onCheckedChange={({ checked }) => {
-                  mutation.mutate((draft) => {
-                    draft.plugins[
-                      "queryBox:languageModelSelector"
-                    ].followUp.span = checked;
-                  });
-                }}
-              />
-            )}
           </div>
         </div>
       )}

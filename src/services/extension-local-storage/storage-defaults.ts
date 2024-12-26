@@ -8,10 +8,10 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "queryBox:languageModelSelector": {
       enabled: false,
       main: true,
-      followUp: {
-        enabled: true,
-        span: true,
-      },
+      followUp: true,
+    },
+    "queryBox:fullWidthFollowUp": {
+      enabled: false,
     },
     "queryBox:focusSelector": {
       enabled: false,

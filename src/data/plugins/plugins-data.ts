@@ -119,6 +119,14 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     tags: ["ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
   },
+  "queryBox:fullWidthFollowUp": {
+    id: "queryBox:fullWidthFollowUp",
+    routeSegment: "query-box-full-width-follow-up",
+    title: "Full Width Follow Up Query Box",
+    description: "Make the query box in threads wider",
+    tags: ["ui"],
+    dependentCorePlugins: ["spaRouter"],
+  },
   commandMenu: {
     id: "commandMenu",
     routeSegment: "command-menu",

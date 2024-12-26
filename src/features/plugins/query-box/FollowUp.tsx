@@ -32,8 +32,9 @@ export default function FollowUpQueryBoxWrapper() {
             allowedAccountTypes={["pro", "enterprise"]}
             dependentPluginIds={["queryBox:languageModelSelector"]}
           >
-            {settings?.plugins["queryBox:languageModelSelector"].followUp
-              .enabled && <LanguageModelSelector />}
+            {settings?.plugins["queryBox:languageModelSelector"].followUp && (
+              <LanguageModelSelector />
+            )}
           </CsUiPluginsGuard>
         </div>
         <CsUiPluginsGuard

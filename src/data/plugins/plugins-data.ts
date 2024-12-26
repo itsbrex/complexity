@@ -114,9 +114,9 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
   "queryBox:submitOnCtrlEnter": {
     id: "queryBox:submitOnCtrlEnter",
     routeSegment: "query-box-submit-on-ctrl-enter",
-    title: `Submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
+    title: `Query Box: Submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
     description: `Insert new line on Enter, submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
-    tags: ["experimental", "ux"],
+    tags: ["ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
   },
   commandMenu: {

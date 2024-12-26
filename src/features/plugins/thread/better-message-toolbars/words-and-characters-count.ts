@@ -23,7 +23,9 @@ const handleInFlightMessage = ($answerHeading: JQuery<Element>) => {
 
 const createAnswerHeadingContainer = (content: string) => {
   return $(`<div>${content}</div>`)
-    .addClass("tw-text-muted-foreground tw-italic tw-text-xs")
+    .addClass(
+      "tw-text-muted-foreground tw-italic tw-text-xs tw-ml-4 tw-text-right",
+    )
     .internalComponentAttr(
       DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
         .ANSWER_HEADING_WORDS_AND_CHARACTERS_COUNT,
@@ -67,16 +69,21 @@ const displayWordsAndCharactersCount = async ({
   $buttonBar.attr(OBSERVER_ID, "true");
   await sleep(200);
 
-  const queryWordsCount = $query
+  const query = $query
     .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
-    .text()
-    .split(" ").length;
-  const queryCharactersCount = $query
-    .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
-    .text().length;
+    .text();
+
+  const queryWordsCount = query.split(" ").length;
+  const queryCharactersCount = query.length;
+  const queryTokensCount = Math.ceil(query.length / 4);
+
+  const shouldDisplayTokensCount =
+    ExtensionLocalStorageService.getCachedSync().plugins[
+      "thread:betterMessageToolbars"
+    ].tokensCount;
 
   const queryWordsAndCharactersCountContainer = createQueryHoverContainer(
-    `${t("common:misc.words")}: ${queryWordsCount}, ${t("common:misc.characters")}: ${queryCharactersCount}`,
+    `${t("common:misc.words")}: ${queryWordsCount}, ${t("common:misc.characters")}: ${queryCharactersCount}${shouldDisplayTokensCount ? `, tokens: ~${queryTokensCount}` : ""}`,
   );
 
   $query
@@ -93,20 +100,24 @@ const displayWordsAndCharactersCount = async ({
 
   const answerWordsCount = answer.split(" ").length;
   const answerCharactersCount = answer.length;
+  const answerTokensCount = Math.ceil(answer.length / 4);
 
   const answerWordsAndCharactersCountContainer = createAnswerHeadingContainer(
-    `${t("common:misc.words")}: ${answerWordsCount}, ${t("common:misc.characters")}: ${answerCharactersCount}`,
+    `${t("common:misc.words")}: ${answerWordsCount}, ${t("common:misc.characters")}: ${answerCharactersCount}${shouldDisplayTokensCount ? `, tokens: ~${answerTokensCount}` : ""}`,
   );
   $answerHeading.append(answerWordsAndCharactersCountContainer);
 };
 
 function wordsAndCharactersCount(messageBlocks: ExtendedMessageBlock[]) {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+  const settings =
+    ExtensionLocalStorageService.getCachedSync().plugins[
+      "thread:betterMessageToolbars"
+    ];
+
   if (
     !pluginsEnableStates?.["thread:betterMessageToolbars"] ||
-    !ExtensionLocalStorageService.getCachedSync().plugins[
-      "thread:betterMessageToolbars"
-    ].wordsAndCharactersCount
+    !settings.wordsAndCharactersCount
   )
     return;
 

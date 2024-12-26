@@ -43,6 +43,7 @@ export const PluginsSchema = z.object({
     explicitModelName: z.boolean(),
     hideUnnecessaryButtons: z.boolean(),
     wordsAndCharactersCount: z.boolean(),
+    tokensCount: z.boolean(),
   }),
   "thread:betterCodeBlocks": PluginSettingsSchema.merge(
     BetterCodeBlockGlobalOptionsSchema,

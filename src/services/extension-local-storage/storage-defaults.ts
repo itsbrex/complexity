@@ -51,6 +51,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       explicitModelName: true,
       hideUnnecessaryButtons: true,
       wordsAndCharactersCount: true,
+      tokensCount: false,
     },
     "thread:betterCodeBlocks": {
       enabled: false,

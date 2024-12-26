@@ -101,7 +101,10 @@ export default function Onboarding() {
                     )}
                     {hasNextStep && <StepsNextTrigger>Next</StepsNextTrigger>}
                     {!hasNextStep && (
-                      <Button size="lg" onClick={() => navigate("/")}>
+                      <Button
+                        size="lg"
+                        onClick={() => navigate("/plugins?from=onboarding")}
+                      >
                         Continue to Dashboard
                       </Button>
                     )}

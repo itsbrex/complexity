@@ -29,9 +29,10 @@ import useExtensionLocalStorage from "@/services/extension-local-storage/useExte
 
 type PluginCardProps = {
   pluginId: PluginId;
+  isForceDisabled: boolean;
 };
 
-export function PluginCard({ pluginId }: PluginCardProps) {
+export function PluginCard({ pluginId, isForceDisabled }: PluginCardProps) {
   const navigate = useNavigate();
 
   const { settings, mutation } = useExtensionLocalStorage();
@@ -187,14 +188,16 @@ export function PluginCard({ pluginId }: PluginCardProps) {
           </Tooltip>
         )}
 
-        <Switch
-          checked={settings?.plugins[pluginId].enabled ?? false}
-          onCheckedChange={({ checked }) => {
-            mutation.mutate((draft) => {
-              draft.plugins[pluginId].enabled = checked;
-            });
-          }}
-        />
+        {!isForceDisabled && (
+          <Switch
+            checked={settings?.plugins[pluginId].enabled ?? false}
+            onCheckedChange={({ checked }) => {
+              mutation.mutate((draft) => {
+                draft.plugins[pluginId].enabled = checked;
+              });
+            }}
+          />
+        )}
       </CardFooter>
     </Card>
   );

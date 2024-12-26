@@ -12,14 +12,20 @@ export function PluginsGrid({ pluginIds }: PluginGridProps) {
 
   return (
     <div className="tw-grid tw-gap-4 sm:tw-grid-cols-2 xl:tw-grid-cols-3 2xl:tw-grid-cols-4">
-      {pluginIds.map((pluginId) => (
-        <div key={pluginId} className="tw-relative">
-          <PluginCard pluginId={pluginId} />
-          {featureFlags?.anon?.forceDisable.includes(pluginId) && (
-            <PluginLockdownOverlay />
-          )}
-        </div>
-      ))}
+      {pluginIds.map((pluginId) => {
+        const isForceDisabled =
+          featureFlags?.anon?.forceDisable.includes(pluginId);
+
+        return (
+          <div key={pluginId} className="tw-relative">
+            <PluginCard
+              pluginId={pluginId}
+              isForceDisabled={!!isForceDisabled}
+            />
+            {isForceDisabled && <PluginLockdownOverlay />}
+          </div>
+        );
+      })}
     </div>
   );
 }

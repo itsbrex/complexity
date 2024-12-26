@@ -2,8 +2,6 @@ import { LuLoader2 } from "react-icons/lu";
 import { useRoutes } from "react-router-dom";
 
 import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
-import { PLUGINS_METADATA } from "@/data/plugins/plugins-data";
 import PluginDetailsWrapper from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/PluginDetailsWrapper";
 import { PluginSections } from "@/features/options-page/dashboard/pages/plugins/components/PluginSections";
 import { TagsFilter } from "@/features/options-page/dashboard/pages/plugins/components/TagsFilter";
@@ -48,8 +46,6 @@ function PluginsListing() {
             onChange={handleSearchChange}
           />
         </div>
-
-        {!isFetchingFeatureFlags && <ToggleAllPluginsSwitch />}
 
         <div className="tw-ml-auto tw-text-balance tw-text-center tw-text-sm tw-text-muted-foreground md:tw-text-left">
           A full page reload on Perplexity.ai is required when changing plugin
@@ -117,37 +113,4 @@ export default function PluginsPage() {
       element: <PluginsListing />,
     },
   ]);
-}
-
-function ToggleAllPluginsSwitch() {
-  const { settings, mutation } = useExtensionLocalStorage();
-
-  const isAllPluginsEnabled = useMemo(() => {
-    return Object.values(PLUGINS_METADATA).every(
-      (plugin) => settings?.plugins[plugin.id]?.enabled === true,
-    );
-  }, [settings]);
-
-  return (
-    <div
-      className={cn(
-        "tw-mx-auto tw-flex tw-flex-col tw-items-center tw-gap-2 md:tw-ml-auto md:tw-mr-0 md:tw-items-end",
-      )}
-    >
-      <Switch
-        textLabel="Toggle All"
-        checked={isAllPluginsEnabled}
-        onCheckedChange={({ checked }) => {
-          mutation.mutate((draft) => {
-            for (const plugin of Object.values(PLUGINS_METADATA)) {
-              draft.plugins[plugin.id].enabled = checked;
-            }
-          });
-        }}
-      />
-      <div className="tw-text-balance tw-text-sm tw-text-muted-foreground">
-        Please read the plugin descriptions before enabling them.
-      </div>
-    </div>
-  );
 }

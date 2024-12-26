@@ -2,6 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { H2 } from "@/components/ui/typography";
 import NoPluginsFound from "@/features/options-page/dashboard/pages/plugins/components/NoPluginsFound";
 import { PluginsGrid } from "@/features/options-page/dashboard/pages/plugins/components/PluginsGrid";
+import PluginsEnableSet from "@/features/options-page/dashboard/pages/plugins/PluginsEnableSet";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 
@@ -38,24 +39,25 @@ function MobilePluginSections({
   otherPluginIds,
 }: PluginSectionsProps) {
   return (
-    <Tabs defaultValue="all">
-      <TabsList className="tw-w-full">
+    <div className="tw-flex tw-flex-col">
+      <PluginsEnableSet />
+      <Tabs defaultValue="all">
+        <TabsList className="tw-w-full">
+          {favoritePluginIds.length > 0 && (
+            <TabsTrigger value="favorites">Favourite Plugins</TabsTrigger>
+          )}
+          <TabsTrigger value="all">All Plugins</TabsTrigger>
+        </TabsList>
         {favoritePluginIds.length > 0 && (
-          <TabsTrigger value="favorites">Favourite Plugins</TabsTrigger>
+          <TabsContent value="favorites" className="tw-mt-4">
+            <PluginsGrid pluginIds={favoritePluginIds} />
+          </TabsContent>
         )}
-        <TabsTrigger value="all">All Plugins</TabsTrigger>
-      </TabsList>
-
-      {favoritePluginIds.length > 0 && (
-        <TabsContent value="favorites" className="tw-mt-4">
-          <PluginsGrid pluginIds={favoritePluginIds} />
+        <TabsContent value="all" className="tw-mt-4">
+          <PluginsGrid pluginIds={otherPluginIds} />
         </TabsContent>
-      )}
-
-      <TabsContent value="all" className="tw-mt-4">
-        <PluginsGrid pluginIds={otherPluginIds} />
-      </TabsContent>
-    </Tabs>
+      </Tabs>
+    </div>
   );
 }
 
@@ -76,7 +78,12 @@ function DesktopPluginSections({
 
       {otherPluginIds.length > 0 && (
         <section>
-          <H2 className="tw-mb-4 !tw-text-lg tw-font-semibold">All Plugins</H2>
+          <div className="tw-flex tw-items-center tw-justify-between tw-gap-4">
+            <H2 className="tw-mb-4 !tw-text-lg tw-font-semibold">
+              All Plugins
+            </H2>
+            <PluginsEnableSet />
+          </div>
           <PluginsGrid pluginIds={otherPluginIds} />
         </section>
       )}

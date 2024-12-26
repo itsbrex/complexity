@@ -1,16 +1,14 @@
 import PplxSpace from "@/components/icons/PplxSpace";
 import { CommandItem } from "@/components/ui/command";
 import { QueryBoxType } from "@/data/plugins/query-box/types";
+import { useScopedQueryBoxContext } from "@/features/plugins/query-box/context/context";
 import { slashCommandMenuStore } from "@/features/plugins/query-box/slash-command-menu/store";
 import { TEST_ID_SELECTORS } from "@/utils/dom-selectors";
 
-export default function SearchSpacesActionItem({
-  queryBoxType,
-}: {
-  queryBoxType: QueryBoxType;
-}) {
-  if (!(["main", "space"] as QueryBoxType[]).includes(queryBoxType))
-    return null;
+export default function SearchSpacesActionItem() {
+  const { store } = useScopedQueryBoxContext();
+
+  if (!(["main", "space"] as QueryBoxType[]).includes(store.type)) return null;
 
   const label = t(
     "plugin-slash-command-menu:slashCommandMenu.actionItems.searchSpaces.label",

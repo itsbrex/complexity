@@ -8,7 +8,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { PopoverContent, PopoverRootProvider } from "@/components/ui/popover";
-import { QueryBoxType } from "@/data/plugins/query-box/types";
+import { useScopedQueryBoxContext } from "@/features/plugins/query-box/context/context";
 import PromptHistorySlashMenuItemsWrapper from "@/features/plugins/query-box/prompt-history/Wrapper";
 import ActionItems from "@/features/plugins/query-box/slash-command-menu/ActionItems";
 import FilterItems, {
@@ -20,14 +20,14 @@ import UiUtils from "@/utils/UiUtils";
 
 type SlashCommandMenuWrapperProps = {
   anchor: HTMLElement | null;
-  type: QueryBoxType;
 };
 
 export default function SlashCommandMenuWrapper({
   anchor,
-  type,
 }: SlashCommandMenuWrapperProps) {
-  const isMainQueryBox = type === "main";
+  const { store } = useScopedQueryBoxContext();
+
+  const isMainQueryBox = store.type === "main";
   const isActive = UiUtils.getActiveQueryBox()[0] === anchor;
 
   const { isOpen } = useSlashCommandMenuStore();
@@ -49,7 +49,6 @@ export default function SlashCommandMenuWrapper({
         commandRef={commandRef}
         commandInputRef={commandInputRef}
         anchor={anchor}
-        queryBoxType={type}
       />
     </PopoverRootProvider>
   );
@@ -83,15 +82,15 @@ type CommandContentProps = {
   commandRef: React.RefObject<HTMLDivElement | null>;
   commandInputRef: React.RefObject<HTMLInputElement | null>;
   anchor: HTMLElement;
-  queryBoxType: QueryBoxType;
 };
 
 const CommandContent = ({
   commandRef,
   commandInputRef,
   anchor,
-  queryBoxType,
 }: CommandContentProps) => {
+  const { store } = useScopedQueryBoxContext();
+
   const { selectedValue, setSelectedValue, searchValue, filter } =
     useSlashCommandMenuStore();
 
@@ -105,8 +104,7 @@ const CommandContent = ({
       className={cn(
         "tw-overflow-y-auto tw-border-border tw-p-0 tw-shadow-none",
         {
-          "tw-rounded-b-none tw-border-2 tw-border-b-0":
-            queryBoxType === "main",
+          "tw-rounded-b-none tw-border-2 tw-border-b-0": store.type === "main",
         },
       )}
       portal={false}
@@ -149,8 +147,8 @@ const CommandContent = ({
 
           {filter === null && (
             <CommandGroup>
-              <FilterItems queryBoxType={queryBoxType} />
-              <ActionItems queryBoxType={queryBoxType} />
+              <FilterItems />
+              <ActionItems />
             </CommandGroup>
           )}
 

@@ -1,17 +1,12 @@
 import { LuHistory } from "react-icons/lu";
 
 import { CommandItem, CommandShortcut } from "@/components/ui/command";
-import { QueryBoxType } from "@/data/plugins/query-box/types";
 import {
   slashCommandMenuStore,
   useSlashCommandMenuStore,
 } from "@/features/plugins/query-box/slash-command-menu/store";
 
-export default function PromptHistoryFilterItem({
-  queryBoxType,
-}: {
-  queryBoxType: QueryBoxType;
-}) {
+export default function PromptHistoryFilterItem() {
   const { setFilter } = useSlashCommandMenuStore();
 
   const label = t(

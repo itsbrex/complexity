@@ -1,6 +1,7 @@
 import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 import { Portal } from "@/components/ui/portal";
 import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
+import { ScopedQueryBoxContextProvider } from "@/features/plugins/query-box/context/context";
 import FocusSelectorWrapper from "@/features/plugins/query-box/focus-selector/Wrapper";
 import LanguageModelSelector from "@/features/plugins/query-box/language-model-selector/LanguageModelSelector";
 import SlashCommandMenuTriggerButton from "@/features/plugins/query-box/prompt-history/TriggerButton";
@@ -19,35 +20,37 @@ export default function MainModalQueryBoxWrapper() {
     findToolbarPortalContainer(mainModalQueryBox);
 
   return (
-    <Portal container={mainModalQueryBoxToolbarPortalContainer}>
-      <div className="tw-flex tw-flex-wrap tw-items-center md:tw-flex-nowrap">
-        <CsUiPluginsGuard
-          allowedAccountTypes={["free", "pro"]}
-          dependentPluginIds={["queryBox:focusSelector"]}
-        >
-          <FocusSelectorWrapper />
-        </CsUiPluginsGuard>
+    <ScopedQueryBoxContextProvider storeValue={{ type: "main-modal" }}>
+      <Portal container={mainModalQueryBoxToolbarPortalContainer}>
+        <div className="tw-flex tw-flex-wrap tw-items-center md:tw-flex-nowrap">
+          <CsUiPluginsGuard
+            allowedAccountTypes={["free", "pro"]}
+            dependentPluginIds={["queryBox:focusSelector"]}
+          >
+            <FocusSelectorWrapper />
+          </CsUiPluginsGuard>
+          <CsUiPluginsGuard
+            desktopOnly
+            dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
+          >
+            <SlashCommandMenuTriggerButton />
+          </CsUiPluginsGuard>
+          <CsUiPluginsGuard
+            allowedAccountTypes={["pro", "enterprise"]}
+            dependentPluginIds={["queryBox:languageModelSelector"]}
+          >
+            {settings?.plugins["queryBox:languageModelSelector"].main && (
+              <LanguageModelSelector />
+            )}
+          </CsUiPluginsGuard>
+        </div>
         <CsUiPluginsGuard
           desktopOnly
           dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
         >
-          <SlashCommandMenuTriggerButton />
+          <SlashCommandMenuWrapper anchor={mainModalQueryBox} />
         </CsUiPluginsGuard>
-        <CsUiPluginsGuard
-          allowedAccountTypes={["pro", "enterprise"]}
-          dependentPluginIds={["queryBox:languageModelSelector"]}
-        >
-          {settings?.plugins["queryBox:languageModelSelector"].main && (
-            <LanguageModelSelector />
-          )}
-        </CsUiPluginsGuard>
-      </div>
-      <CsUiPluginsGuard
-        desktopOnly
-        dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
-      >
-        <SlashCommandMenuWrapper anchor={mainModalQueryBox} type="main-modal" />
-      </CsUiPluginsGuard>
-    </Portal>
+      </Portal>
+    </ScopedQueryBoxContextProvider>
   );
 }

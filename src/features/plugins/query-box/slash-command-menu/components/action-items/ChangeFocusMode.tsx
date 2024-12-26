@@ -2,15 +2,14 @@ import { LuGlobe } from "react-icons/lu";
 
 import { CommandItem } from "@/components/ui/command";
 import { QueryBoxType } from "@/data/plugins/query-box/types";
+import { useScopedQueryBoxContext } from "@/features/plugins/query-box/context/context";
 import { slashCommandMenuStore } from "@/features/plugins/query-box/slash-command-menu/store";
 import { TEST_ID_SELECTORS } from "@/utils/dom-selectors";
 
-export default function ChangeFocusModeActionItem({
-  queryBoxType,
-}: {
-  queryBoxType: QueryBoxType;
-}) {
-  if (!(["main", "main-modal"] as QueryBoxType[]).includes(queryBoxType))
+export default function ChangeFocusModeActionItem() {
+  const { store } = useScopedQueryBoxContext();
+
+  if (!(["main", "main-modal"] as QueryBoxType[]).includes(store.type))
     return null;
 
   const label = t(

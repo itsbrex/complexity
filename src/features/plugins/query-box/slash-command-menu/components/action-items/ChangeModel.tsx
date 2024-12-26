@@ -2,15 +2,10 @@ import { LuCpu } from "react-icons/lu";
 
 import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 import { CommandItem } from "@/components/ui/command";
-import { QueryBoxType } from "@/data/plugins/query-box/types";
 import { slashCommandMenuStore } from "@/features/plugins/query-box/slash-command-menu/store";
 import { TEST_ID_SELECTORS } from "@/utils/dom-selectors";
 
-export default function ChangeModelActionItem({
-  queryBoxType,
-}: {
-  queryBoxType: QueryBoxType;
-}) {
+export default function ChangeModelActionItem() {
   const label = t(
     "plugin-slash-command-menu:slashCommandMenu.actionItems.changeModel.label",
   );

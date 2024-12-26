@@ -73,6 +73,14 @@ module.exports = {
         pattern: ["src/features/plugins/{home,thread,query-box}/*"],
       },
       {
+        type: "nested-plugin-utils",
+        mode: "full",
+        capture: ["familyName", "utilsName"],
+        pattern: [
+          "src/features/plugins/{home,thread,query-box}/{assets,context,utils,types,components,hooks}/**/*",
+        ],
+      },
+      {
         type: "nested-plugin",
         mode: "full",
         capture: ["familyName", "nestedPluginName"],
@@ -198,11 +206,7 @@ module.exports = {
           },
           {
             from: ["core-plugin"],
-            allow: [
-              "shared",
-              "core-plugin",
-              "entrypoint",
-            ],
+            allow: ["shared", "core-plugin", "entrypoint"],
           },
           {
             from: ["plugin"],
@@ -219,6 +223,7 @@ module.exports = {
               "core-plugin",
               ["plugin-family", { familyName: "${from.familyName}" }],
               ["nested-plugin", { familyName: "${from.familyName}" }],
+              ["nested-plugin-utils", { familyName: "${from.familyName}" }],
             ],
           },
           {
@@ -227,10 +232,18 @@ module.exports = {
               "shared",
               "core-plugin",
               ["plugin-family", { familyName: "${from.familyName}" }],
-              [
-                "nested-plugin",
-                { familyName: "${from.familyName}" },
-              ],
+              ["nested-plugin", { familyName: "${from.familyName}" }],
+              ["nested-plugin-utils", { familyName: "${from.familyName}" }],
+            ],
+          },
+          {
+            from: ["nested-plugin-utils"],
+            allow: [
+              "shared",
+              "core-plugin",
+              ["plugin-family", { familyName: "${from.familyName}" }],
+              ["nested-plugin", { familyName: "${from.familyName}" }],
+              ["nested-plugin-utils", { familyName: "${from.familyName}" }],
             ],
           },
           {

@@ -9,57 +9,58 @@ import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 
 CsLoaderRegistry.register({
   id: "networkIntercept:languageModelSelector",
+  dependencies: ["cache:pluginsStates"],
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-    if (pluginsEnableStates?.["queryBox:languageModelSelector"])
-      MiddlewareManager.updateMiddleware({
-        id: "force-change-language-model",
-        middlewareFn({ data, skip }) {
-          if (data.type === "network-intercept:fetchEvent") {
-            return skip();
-          }
+    if (!pluginsEnableStates?.["queryBox:languageModelSelector"]) return;
 
-          const wsMessage = parseWebSocketData(data.payload.data);
-          const payload = wsMessage.payload;
-
-          const hasValidMessageStructure =
-            wsMessage.messageId != null &&
-            Array.isArray(payload) &&
-            payload.length > 0 &&
-            payload[0] != null;
-
-          if (!hasValidMessageStructure) {
-            return skip();
-          }
-
-          if (payload.length < 3) {
-            return skip();
-          }
-
-          const isPerplexityAskMessage = payload[0] === "perplexity_ask";
-
-          const isRewriteMessage = payload[2].query_source == "retry";
-
-          if (isPerplexityAskMessage && !isRewriteMessage) {
-            const newPayload = [
-              ...payload.slice(0, 2),
-              {
-                ...payload[2],
-                model_preference:
-                  sharedQueryBoxStore.getState().selectedLanguageModel,
-              },
-            ];
-
-            return encodeWebSocketData({
-              type: "message",
-              data: `${wsMessage.messageId}${JSON.stringify(newPayload)}`,
-            });
-          }
-
+    MiddlewareManager.updateMiddleware({
+      id: "force-change-language-model",
+      middlewareFn({ data, skip }) {
+        if (data.type === "network-intercept:fetchEvent") {
           return skip();
-        },
-      });
+        }
+
+        const wsMessage = parseWebSocketData(data.payload.data);
+        const payload = wsMessage.payload;
+
+        const hasValidMessageStructure =
+          wsMessage.messageId != null &&
+          Array.isArray(payload) &&
+          payload.length > 0 &&
+          payload[0] != null;
+
+        if (!hasValidMessageStructure) {
+          return skip();
+        }
+
+        if (payload.length < 3) {
+          return skip();
+        }
+
+        const isPerplexityAskMessage = payload[0] === "perplexity_ask";
+
+        const isRewriteMessage = payload[2].query_source == "retry";
+
+        if (isPerplexityAskMessage && !isRewriteMessage) {
+          const newPayload = [
+            ...payload.slice(0, 2),
+            {
+              ...payload[2],
+              model_preference:
+                sharedQueryBoxStore.getState().selectedLanguageModel,
+            },
+          ];
+
+          return encodeWebSocketData({
+            type: "message",
+            data: `${wsMessage.messageId}${JSON.stringify(newPayload)}`,
+          });
+        }
+
+        return skip();
+      },
+    });
   },
-  dependencies: ["cache:pluginsStates"],
 });

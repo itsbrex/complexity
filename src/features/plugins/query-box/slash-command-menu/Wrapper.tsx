@@ -69,7 +69,7 @@ const useSlashCommandPopover = ({
     open: isOpen,
     positioning: {
       placement: "top-start",
-      gutter: isMainQueryBox ? 0 : 5,
+      gutter: isMainQueryBox ? 1 : 5,
       getAnchorRect: () => anchor?.getBoundingClientRect() ?? null,
     },
     portalled: false,
@@ -123,7 +123,9 @@ const CommandContent = ({
         }}
         shouldFilter={shouldFilter}
         value={selectedValue}
-        className="tw-bg-background dark:tw-bg-secondary"
+        className={cn("tw-bg-background dark:tw-bg-secondary", {
+          "tw-rounded-b-none": store.type === "main",
+        })}
         onValueChange={setSelectedValue}
       >
         <CommandInput

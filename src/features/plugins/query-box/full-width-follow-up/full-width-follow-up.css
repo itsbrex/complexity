@@ -2,3 +2,7 @@
   .pointer-events-auto.md\:col-span-8:has([cplx-follow-up-query-box]) {
   grid-column: span 12 / span 12 !important;
 }
+
+.isolate.col-span-4:has(svg[data-icon="sources"]) div.sticky > div {
+  max-height: 70vh !important;
+}

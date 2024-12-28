@@ -1,6 +1,6 @@
 import {
   LuComputer,
-  LuGrid,
+  LuGrid3X3,
   LuLayoutGrid,
   LuMoon,
   LuSettings,
@@ -38,7 +38,7 @@ export const ZENMODE_ITEMS: ZenModeItem[] = [
   {
     type: "disable",
     label: t("plugin-command-menu:commandMenu.zenMode.disable"),
-    icon: LuGrid,
+    icon: LuGrid3X3,
     keywords: [
       t("plugin-command-menu:commandMenu.keywords.disable"),
       t("plugin-command-menu:commandMenu.keywords.zen"),

@@ -1,4 +1,4 @@
-import { LuLoader2 } from "react-icons/lu";
+import { LuLoaderCircle } from "react-icons/lu";
 import { useRoutes } from "react-router-dom";
 
 import { Input } from "@/components/ui/input";
@@ -54,7 +54,7 @@ function PluginsListing() {
 
         {isFetchingFeatureFlags ? (
           <div className="tw-m-auto tw-flex tw-size-max tw-items-center tw-gap-2">
-            <LuLoader2 className="tw-animate-spin" />
+            <LuLoaderCircle className="tw-animate-spin" />
             Fetching plugins...
           </div>
         ) : (

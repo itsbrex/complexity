@@ -1,5 +1,5 @@
 import { BiLogoMarkdown } from "react-icons/bi";
-import { LuCheck, LuCopy, LuLink2Off, LuLoader2 } from "react-icons/lu";
+import { LuCheck, LuCopy, LuLink2Off, LuLoaderCircle } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
 import {
@@ -110,7 +110,7 @@ const CopyButtonTrigger = memo(
           onClick={onClick}
         >
           {isFetching ? (
-            <LuLoader2 className="tw-size-4 tw-animate-spin" />
+            <LuLoaderCircle className="tw-size-4 tw-animate-spin" />
           ) : (
             icon
           )}

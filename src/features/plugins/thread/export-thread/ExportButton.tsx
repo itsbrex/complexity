@@ -1,5 +1,5 @@
 import { BiLogoMarkdown } from "react-icons/bi";
-import { LuCheck, LuDownload, LuLink2Off, LuLoader2 } from "react-icons/lu";
+import { LuCheck, LuDownload, LuLink2Off, LuLoaderCircle } from "react-icons/lu";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -21,7 +21,7 @@ const ExportButton = memo(function ExportButton() {
     () =>
       isFetching ? (
         <div className="tw-flex tw-items-center tw-gap-2">
-          <LuLoader2 className="tw-size-4 tw-animate-spin" />
+          <LuLoaderCircle className="tw-size-4 tw-animate-spin" />
           {!isMobile && (
             <span>{t("plugin-export-thread:exportButton.action")}</span>
           )}

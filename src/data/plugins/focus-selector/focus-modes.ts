@@ -5,7 +5,7 @@ import {
   LuGlobe,
   LuLibrary,
   LuPen,
-  LuPlayCircle,
+  LuYoutube,
 } from "react-icons/lu";
 
 import { CsLoaderRegistry } from "@/services/cs-loader-registry";
@@ -58,7 +58,7 @@ export let FOCUS_MODES: FocusMode[] = [
     label: "Video",
     code: "youtube",
     description: "Discover and watch videos",
-    Icon: LuPlayCircle,
+    Icon: LuYoutube,
   },
   {
     label: "Social",
@@ -101,7 +101,7 @@ CsLoaderRegistry.register({
         label: t("plugin-focus-selector:modes.youtube"),
         code: "youtube",
         description: t("plugin-focus-selector:descriptions.youtube"),
-        Icon: LuPlayCircle,
+        Icon: LuYoutube,
       },
       {
         label: t("plugin-focus-selector:modes.reddit"),

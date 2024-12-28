@@ -1,4 +1,4 @@
-import { LuHelpCircle } from "react-icons/lu";
+import { LuCircleHelp } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
 import { Button } from "@/components/ui/button";
@@ -56,7 +56,7 @@ export default function PreloadThemeSwitch() {
             </div>
           }
         >
-          <LuHelpCircle className="tw-size-4" />
+          <LuCircleHelp className="tw-size-4" />
         </Tooltip>
       </div>
       {!hasPermissions && (

@@ -1,5 +1,5 @@
 import { UseFormReturn } from "react-hook-form";
-import { LuLoader2 } from "react-icons/lu";
+import { LuLoaderCircle } from "react-icons/lu";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -164,7 +164,7 @@ export function ThemeForm({
           {footer}
           <Button type="submit" disabled={isPending || !form.formState.isDirty}>
             {isPending ? (
-              <LuLoader2 className="tw-size-4 tw-animate-spin" />
+              <LuLoaderCircle className="tw-size-4 tw-animate-spin" />
             ) : (
               submitText
             )}

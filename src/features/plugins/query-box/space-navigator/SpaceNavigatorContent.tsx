@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { LuLoader2 } from "react-icons/lu";
+import { LuLoaderCircle } from "react-icons/lu";
 
 import {
   Command,
@@ -51,7 +51,7 @@ export default function SpaceNavigatorContent() {
       <CommandList>
         {isLoading ? (
           <div className="tw-my-10 tw-w-full tw-space-x-2 tw-text-center">
-            <LuLoader2 className="tw-inline-block tw-size-4 tw-animate-spin" />
+            <LuLoaderCircle className="tw-inline-block tw-size-4 tw-animate-spin" />
             <span>{t("plugin-space-navigator:spaceNavigator.loading")}</span>
           </div>
         ) : (

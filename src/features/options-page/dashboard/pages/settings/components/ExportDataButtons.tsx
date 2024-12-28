@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { LuCheck, LuLoader2 } from "react-icons/lu";
+import { LuCheck, LuLoaderCircle } from "react-icons/lu";
 
 import AsyncButton from "@/components/AsyncButton";
 import { Button } from "@/components/ui/button";
@@ -65,7 +65,7 @@ export default function ExportDataButtons() {
         variant="outline"
         loadingText={
           <div className="tw-flex tw-items-center tw-gap-2">
-            <LuLoader2 className="tw-animate-spin" />
+            <LuLoaderCircle className="tw-animate-spin" />
             <span>Exporting</span>
           </div>
         }

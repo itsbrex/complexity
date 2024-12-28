@@ -1,4 +1,4 @@
-import { LuAlertCircle } from "react-icons/lu";
+import { LuCircleAlert } from "react-icons/lu";
 import { useNavigate, useRouteError } from "react-router-dom";
 
 import { Result } from "@/components/Result";
@@ -25,7 +25,7 @@ export default function ErrorPage({ error, resetError }: ErrorPageProps) {
   return (
     <div className="tw-flex tw-h-full tw-min-h-screen tw-items-center tw-justify-center">
       <Result
-        icon={LuAlertCircle}
+        icon={LuCircleAlert}
         title="Something went wrong"
         description={
           <div className="tw-text-balance">

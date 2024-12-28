@@ -1,9 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
 import { ComponentProps, type ReactNode } from "react";
-import {
-  LuChevronRight as ChevronRight,
-  LuMoreHorizontal as MoreHorizontal,
-} from "react-icons/lu";
+import { LuChevronRight, LuEllipsis } from "react-icons/lu";
 
 type BreadcrumbProps = ComponentProps<"nav"> & {
   separator?: ReactNode;
@@ -85,7 +82,7 @@ const BreadcrumbSeparator = ({
     className={cn("[&>svg]:tw-h-3.5 [&>svg]:tw-w-3.5", className)}
     {...props}
   >
-    {children ?? <ChevronRight />}
+    {children ?? <LuChevronRight />}
   </li>
 );
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
@@ -103,7 +100,7 @@ const BreadcrumbEllipsis = ({
     )}
     {...props}
   >
-    <MoreHorizontal className="tw-h-4 tw-w-4" />
+    <LuEllipsis className="tw-h-4 tw-w-4" />
     <span className="tw-sr-only">More</span>
   </span>
 );

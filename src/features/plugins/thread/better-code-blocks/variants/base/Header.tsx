@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { LuLoader2 } from "react-icons/lu";
+import { LuLoaderCircle } from "react-icons/lu";
 
 import CopyButton from "@/components/CopyButton";
 import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
@@ -105,7 +105,7 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
                 {placeholderText.loading}
               </span>
             )}
-            <LuLoader2 className="tw-animate-spin" />
+            <LuLoaderCircle className="tw-animate-spin" />
           </span>
         )}
         {!isInFlight && (

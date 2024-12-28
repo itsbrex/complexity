@@ -1,5 +1,5 @@
 import { GoKebabHorizontal, GoStar, GoStarFill } from "react-icons/go";
-import { LuAlertTriangle } from "react-icons/lu";
+import { LuTriangleAlert } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 
 import Tooltip from "@/components/Tooltip";
@@ -171,7 +171,7 @@ export function PluginCard({ pluginId, isForceDisabled }: PluginCardProps) {
                 </div>
               }
             >
-              <LuAlertTriangle className="tw-size-4 tw-text-yellow-300 dark:tw-text-yellow-500" />
+              <LuTriangleAlert className="tw-size-4 tw-text-yellow-300 dark:tw-text-yellow-500" />
             </Tooltip>
           )}
 
@@ -184,7 +184,7 @@ export function PluginCard({ pluginId, isForceDisabled }: PluginCardProps) {
               </div>
             }
           >
-            <LuAlertTriangle className="tw-size-4 tw-text-destructive" />
+            <LuTriangleAlert className="tw-size-4 tw-text-destructive" />
           </Tooltip>
         )}
 

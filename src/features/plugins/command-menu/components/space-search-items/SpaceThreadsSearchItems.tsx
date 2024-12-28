@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { LuLoader2 } from "react-icons/lu";
+import { LuLoaderCircle } from "react-icons/lu";
 
 import { CommandEmpty, CommandGroup } from "@/components/ui/command";
 import SpaceThreadItem from "@/features/plugins/command-menu/components/space-search-items/SpaceThreadItem";
@@ -24,7 +24,7 @@ export default function SpaceThreadsSearchItems() {
   if (isLoading) {
     return (
       <div className="tw-flex tw-animate-pulse tw-items-center tw-justify-center tw-gap-2 tw-p-4 tw-text-sm tw-text-muted-foreground">
-        <LuLoader2 className="tw-animate-spin" />
+        <LuLoaderCircle className="tw-animate-spin" />
         <span>
           {t(
             "plugin-command-menu:commandMenu.spaceSearch.spaceThreads.loading",

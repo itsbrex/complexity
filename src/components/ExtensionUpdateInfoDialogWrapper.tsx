@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { LuInfo, LuLoader2 } from "react-icons/lu";
+import { LuInfo, LuLoaderCircle } from "react-icons/lu";
 
 import { APP_CONFIG } from "@/app.config";
 import ChangelogRenderer from "@/components/ChangelogRenderer";
@@ -72,7 +72,7 @@ export default function ExtensionUpdateInfoDialogWrapper({
         <div className="tw-flex tw-flex-col tw-gap-2">
           {isLoading && (
             <div className="tw-flex tw-items-center tw-gap-2">
-              <LuLoader2 className="tw-size-4 tw-animate-spin" />
+              <LuLoaderCircle className="tw-size-4 tw-animate-spin" />
               <span>Fetching changelog...</span>
             </div>
           )}

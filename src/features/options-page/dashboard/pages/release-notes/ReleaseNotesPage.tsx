@@ -1,5 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { LuChevronRight, LuChevronLeft, LuLoader2 } from "react-icons/lu";
+import { LuChevronRight, LuChevronLeft, LuLoaderCircle } from "react-icons/lu";
 
 import ChangelogRenderer from "@/components/ChangelogRenderer";
 import { Button } from "@/components/ui/button";
@@ -55,7 +55,7 @@ export default function ReleaseNotesPage() {
       >
         {isLoading && (
           <div className="tw-flex tw-items-center tw-gap-2">
-            <LuLoader2 className="tw-size-4 tw-animate-spin" />
+            <LuLoaderCircle className="tw-size-4 tw-animate-spin" />
             <span>Loading...</span>
           </div>
         )}

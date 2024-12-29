@@ -106,6 +106,8 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     },
     zenMode: {
       enabled: false,
+      persistent: false,
+      lastState: false,
       alwaysHideRelatedQuestions: false,
     },
   },

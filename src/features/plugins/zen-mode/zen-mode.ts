@@ -18,6 +18,13 @@ CsLoaderRegistry.register({
 
     const settings = ExtensionLocalStorageService.getCachedSync();
 
+    if (settings?.plugins["zenMode"].persistent) {
+      $("body").attr(
+        "data-cplx-zen-mode",
+        settings?.plugins["zenMode"].lastState.toString() ?? "false",
+      );
+    }
+
     if (settings?.plugins["zenMode"].alwaysHideRelatedQuestions) {
       $("body").attr(
         "data-cplx-zen-mode-always-hide-related-questions",
@@ -25,5 +32,5 @@ CsLoaderRegistry.register({
       );
     }
   },
-  dependencies: ["cache:pluginsStates"],
+  dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
 });

@@ -19,6 +19,7 @@ import type {
   NavigationItem,
   SearchItem,
 } from "@/features/plugins/command-menu/types";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
 export const ZENMODE_ITEMS: ZenModeItem[] = [
   {
@@ -32,6 +33,14 @@ export const ZENMODE_ITEMS: ZenModeItem[] = [
     ],
     action: () => {
       $("body").attr("data-cplx-zen-mode", "true");
+      if (
+        ExtensionLocalStorageService.getCachedSync()?.plugins["zenMode"]
+          .persistent
+      ) {
+        ExtensionLocalStorageService.set((draft) => {
+          draft.plugins["zenMode"].lastState = true;
+        });
+      }
     },
     shortcut: ["Ctrl", "Alt", "Z"],
   },
@@ -46,6 +55,14 @@ export const ZENMODE_ITEMS: ZenModeItem[] = [
     ],
     action: () => {
       $("body").attr("data-cplx-zen-mode", "false");
+      if (
+        ExtensionLocalStorageService.getCachedSync()?.plugins["zenMode"]
+          .persistent
+      ) {
+        ExtensionLocalStorageService.set((draft) => {
+          draft.plugins["zenMode"].lastState = false;
+        });
+      }
     },
     shortcut: ["Ctrl", "Alt", "Z"],
   },

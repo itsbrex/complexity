@@ -16,17 +16,28 @@ export default function ZenModePluginDetails() {
         }}
       />
       {settings?.plugins["zenMode"].enabled && (
-        <Switch
-          textLabel="Always hide related questions"
-          checked={
-            settings?.plugins["zenMode"].alwaysHideRelatedQuestions ?? false
-          }
-          onCheckedChange={({ checked }) => {
-            mutation.mutate((draft) => {
-              draft.plugins["zenMode"].alwaysHideRelatedQuestions = checked;
-            });
-          }}
-        />
+        <>
+          <Switch
+            textLabel="Persistent across reloads"
+            checked={settings?.plugins["zenMode"].persistent ?? false}
+            onCheckedChange={({ checked }) => {
+              mutation.mutate((draft) => {
+                draft.plugins["zenMode"].persistent = checked;
+              });
+            }}
+          />
+          <Switch
+            textLabel="Always hide related questions"
+            checked={
+              settings?.plugins["zenMode"].alwaysHideRelatedQuestions ?? false
+            }
+            onCheckedChange={({ checked }) => {
+              mutation.mutate((draft) => {
+                draft.plugins["zenMode"].alwaysHideRelatedQuestions = checked;
+              });
+            }}
+          />
+        </>
       )}
     </div>
   );

@@ -5,6 +5,7 @@ import {
   commandMenuStore,
   useCommandMenuStore,
 } from "@/features/plugins/command-menu/store";
+import { getPlatform } from "@/hooks/usePlatformDetection";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { keysToString } from "@/utils/utils";
@@ -81,7 +82,11 @@ export default function useBindCommandMenuHotkeys() {
   );
 
   useHotkeys(
-    keysToString([Key.Control, Key.Alt, "t"]),
+    keysToString([
+      getPlatform() === "mac" ? Key.Meta : Key.Control,
+      Key.Alt,
+      "t",
+    ]),
     () => {
       if (!open) {
         setOpen(true);
@@ -97,7 +102,11 @@ export default function useBindCommandMenuHotkeys() {
   );
 
   useHotkeys(
-    keysToString([Key.Control, Key.Alt, "s"]),
+    keysToString([
+      getPlatform() === "mac" ? Key.Meta : Key.Control,
+      Key.Alt,
+      "s",
+    ]),
     () => {
       if (!open) {
         setOpen(true);
@@ -113,11 +122,23 @@ export default function useBindCommandMenuHotkeys() {
   );
 
   useHotkeys(
-    keysToString([Key.Control, Key.Alt, "z"]),
+    keysToString([
+      getPlatform() === "mac" ? Key.Meta : Key.Control,
+      Key.Alt,
+      "z",
+    ]),
     () => {
       const previousZenMode = $("body").attr("data-cplx-zen-mode");
       const newZenMode = previousZenMode === "true" ? "false" : "true";
       $("body").attr("data-cplx-zen-mode", newZenMode);
+      if (
+        ExtensionLocalStorageService.getCachedSync()?.plugins["zenMode"]
+          .persistent
+      ) {
+        ExtensionLocalStorageService.set((draft) => {
+          draft.plugins["zenMode"].lastState = newZenMode === "true";
+        });
+      }
       setOpen(false);
     },
     {

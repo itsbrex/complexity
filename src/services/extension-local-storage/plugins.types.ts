@@ -61,6 +61,8 @@ export const PluginsSchema = z.object({
   }),
   "hide-get-mobile-app-cta-btn": PluginSettingsSchema,
   zenMode: PluginSettingsSchema.extend({
+    persistent: z.boolean(),
+    lastState: z.boolean(),
     alwaysHideRelatedQuestions: z.boolean(),
   }),
 });

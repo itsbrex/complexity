@@ -1,5 +1,4 @@
 import debounce from "lodash/debounce";
-import { useMemo, useCallback } from "react";
 import { sendMessage } from "webext-bridge/content-script";
 
 import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-queue";
@@ -7,22 +6,18 @@ import {
   ExtendedCodeBlock,
   useGlobalDomObserverStore,
 } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
+import {
+  useMirroredCodeBlocksStore,
+  MirroredCodeBlock,
+} from "@/features/plugins/thread/better-code-blocks/store";
 import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
-
-export type MirroredCodeBlock = ExtendedCodeBlock & {
-  portalContainer: HTMLElement | null;
-  codeString: string | null;
-  language: string | null;
-};
 
 const OBSERVER_ID =
   DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
     .MIRRORED_CODE_BLOCK;
 
-export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
-  const [mirroredCodeBlocks, setMirroredCodeBlocks] = useState<
-    MirroredCodeBlock[][]
-  >([]);
+export default function useProcessCodeBlocks() {
+  const setBlocks = useMirroredCodeBlocksStore((state) => state.setBlocks);
   const codeBlocks = useGlobalDomObserverStore(
     (state) => state.threadComponents.codeBlocks,
   );
@@ -102,25 +97,21 @@ export function useMirroredCodeBlocks(): MirroredCodeBlock[][] {
                 ),
               ),
             );
-            setMirroredCodeBlocks(processedBlocks);
+            setBlocks(processedBlocks);
           } catch (error) {
             console.error("Error processing mirrored code blocks:", error);
-            setMirroredCodeBlocks([]);
+            setBlocks([]);
           }
         }, "process-code-blocks");
       }, 0),
-    [processCodeBlock],
+    [processCodeBlock, setBlocks],
   );
 
   useEffect(() => {
     if (!codeBlocks) return;
-
     debouncedProcessBlocks(codeBlocks);
-
     return () => {
       debouncedProcessBlocks.cancel();
     };
   }, [codeBlocks, debouncedProcessBlocks]);
-
-  return mirroredCodeBlocks;
 }

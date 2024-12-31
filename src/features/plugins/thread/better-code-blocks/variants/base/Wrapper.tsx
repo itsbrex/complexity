@@ -1,45 +1,42 @@
-import { TabContent } from "@ark-ui/react";
-
-import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
-import { Tabs } from "@/components/ui/tabs";
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
 import BetterCodeBlockHeader from "@/features/plugins/thread/better-code-blocks/variants/base/Header";
-import MermaidPreviewContent from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/mermaid-preview/Content";
 import HighlightedCodeWrapper from "@/features/plugins/thread/better-code-blocks/variants/HighlightedCode";
+import { useCanvasStore } from "@/features/plugins/thread/canvas/store";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
-export const BaseCodeBlockWrapper = memo(function BaseCodeBlockWrapper() {
-  const { maxHeight, content, language } = useMirroredCodeBlockContext()(
-    (state) => ({
+const BaseCodeBlockWrapper = memo(function BaseCodeBlockWrapper() {
+  const { maxHeight, sourceMessageBlockIndex, sourceCodeBlockIndex } =
+    useMirroredCodeBlockContext()((state) => ({
       maxHeight: state.maxHeight,
-      content: state.content,
-      language: state.language,
-    }),
+      sourceMessageBlockIndex: state.sourceMessageBlockIndex,
+      sourceCodeBlockIndex: state.sourceCodeBlockIndex,
+    }));
+
+  const isCanvasEnabled =
+    ExtensionLocalStorageService.getCachedSync().plugins["thread:canvas"]
+      .enabled;
+  const selectedCanvasCodeBlockLocation = useCanvasStore(
+    (state) => state.selectedCodeBlockLocation,
   );
+  const isSelectedCanvasCodeBlock =
+    selectedCanvasCodeBlockLocation?.messageBlockIndex ===
+      sourceMessageBlockIndex &&
+    selectedCanvasCodeBlockLocation?.codeBlockIndex === sourceCodeBlockIndex;
 
   return (
     <div
       className={cn(
-        "tw-relative tw-my-4 tw-flex tw-flex-col tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-font-mono",
+        "tw-relative tw-my-4 tw-flex tw-flex-col tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-font-mono tw-transition-all",
         {
           "tw-overflow-hidden": maxHeight === 0,
+          "tw-border-primary": isCanvasEnabled && isSelectedCanvasCodeBlock,
         },
       )}
     >
       <BetterCodeBlockHeader />
-      <Tabs value={content}>
-        <TabContent value="code">
-          <HighlightedCodeWrapper />
-        </TabContent>
-        {language === "mermaid" && (
-          <CsUiPluginsGuard
-            dependentPluginIds={["thread:betterCodeBlocks:previewMermaid"]}
-          >
-            <TabContent value="mermaid">
-              <MermaidPreviewContent />
-            </TabContent>
-          </CsUiPluginsGuard>
-        )}
-      </Tabs>
+      <HighlightedCodeWrapper />
     </div>
   );
 });
+
+export default BaseCodeBlockWrapper;

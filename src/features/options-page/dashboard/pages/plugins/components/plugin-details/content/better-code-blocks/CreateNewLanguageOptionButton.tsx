@@ -34,11 +34,6 @@ export default function CreateNewLanguageOptionButton() {
       const options: BetterCodeBlockFineGrainedOptions = {
         language,
         stickyHeader: false,
-        theme: {
-          enabled: false,
-          dark: "dark-plus",
-          light: "light-plus",
-        },
         unwrap: {
           enabled: false,
           showToggleButton: false,

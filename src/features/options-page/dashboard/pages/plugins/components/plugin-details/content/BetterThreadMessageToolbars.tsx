@@ -113,8 +113,8 @@ export default function BetterThreadMessageToolbarsPluginDetails() {
                 <div>
                   <div>Estimated Token Count</div>
                   <div className="tw-text-sm tw-text-muted-foreground">
-                    Tokens are calculated by dividing visible characters by 4 and
-                    do NOT include web sources/attachments
+                    Tokens are calculated by dividing visible characters by 4
+                    and do NOT include web sources/attachments
                   </div>
                 </div>
               }

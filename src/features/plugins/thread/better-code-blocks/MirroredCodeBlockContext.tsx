@@ -2,7 +2,7 @@ import { subscribeWithSelector } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
 
-import { MirroredCodeBlock } from "@/features/plugins/thread/better-code-blocks/useMirroredCodeBlocks";
+import { MirroredCodeBlock } from "@/features/plugins/thread/better-code-blocks/store";
 import { RemoveNull } from "@/types/utils.types";
 
 type MirroredCodeBlockContext = ReturnType<typeof createStore>;
@@ -24,8 +24,6 @@ type MirroredCodeBlockStore = Pick<
   setIsWrapped: (isWrapped: boolean) => void;
   maxHeight: number;
   setMaxHeight: (maxHeight: number) => void;
-  content: "code" | "mermaid";
-  setContent: (content: "code" | "mermaid") => void;
 };
 
 type InitialState = Omit<
@@ -46,11 +44,6 @@ export const createStore = (initialState: InitialState) =>
         setMaxHeight: (maxHeight) => {
           set((state) => {
             state.maxHeight = maxHeight;
-          });
-        },
-        setContent: (content) => {
-          set((state) => {
-            state.content = content;
           });
         },
       })),

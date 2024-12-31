@@ -1,0 +1,42 @@
+{
+  "canvas": {
+    "placeholder": {
+      "markdown": {
+        "description": "点击查看内容"
+      },
+      "mermaid": {
+        "description": "点击查看图表"
+      },
+      "html": {
+        "description": "点击查看网页"
+      },
+      "react": {
+        "description": "点击查看网页"
+      }
+    },
+    "version": "版本 {{number}}",
+    "toggle": {
+      "preview": "预览",
+      "markdown": {
+        "raw": "原始文本"
+      },
+      "code": "代码"
+    },
+    "list": {
+      "title": "此主题中的Canvas块",
+      "generating": "生成中...",
+      "versions": "{{count}}个版本"
+    },
+    "tooltip": {
+      "refresh": "刷新",
+      "openList": "打开Canvas列表",
+      "openInCodeSandbox": "在CodeSandbox中打开",
+      "openInMermaid": "在Mermaid实时编辑器中打开",
+      "downloadSvg": "下载SVG"
+    },
+    "error": {
+      "noSvg": "未找到SVG",
+      "previewUrl": "生成预览URL失败"
+    }
+  }
+} 

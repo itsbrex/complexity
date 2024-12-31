@@ -31,6 +31,8 @@ export const LOADER_IDS = [
   "plugin:zenMode",
   "plugin:blockAnalyticEvents",
 
+  "plugin:thread:canvas:resetOpenStateOnRouteChange",
+  "plugin:thread:canvas:codeBlockPlaceholdersData",
   "plugin:thread:dragAndDropFileToUploadInThread",
   "plugin:thread:collapseEmptyThreadVisualCols",
   "plugin:thread:betterMessageToolbars:explicitModelName",
@@ -44,6 +46,8 @@ export const LOADER_IDS = [
   "plugin:queryBox:submitOnCtrlEnter",
   "plugin:queryBox:fullWidthFollowUp",
   "plugin:home:customSlogan",
+
+  "store:colorScheme",
 
   "csui:root",
 ] as const;

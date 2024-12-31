@@ -1,13 +1,7 @@
-import type { BundledTheme } from "shiki";
 import { z } from "zod";
 
 export const BetterCodeBlockGlobalOptionsSchema = z.object({
   stickyHeader: z.boolean(),
-  theme: z.object({
-    enabled: z.boolean(),
-    light: z.string().transform((val): BundledTheme => val as BundledTheme),
-    dark: z.string().transform((val): BundledTheme => val as BundledTheme),
-  }),
   unwrap: z.object({
     enabled: z.boolean(),
     showToggleButton: z.boolean(),

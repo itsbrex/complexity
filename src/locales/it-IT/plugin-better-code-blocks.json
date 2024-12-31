@@ -7,13 +7,6 @@
     "expand": {
       "expand": "Espandi",
       "collapse": "Comprimi"
-    },
-    "mermaid": {
-      "preview": "Anteprima",
-      "code": "Codice",
-      "openEditor": "Apri in Mermaid Live Editor",
-      "download": "Scarica SVG",
-      "downloadError": "❌ Nessun SVG trovato"
     }
   }
-} 
+}

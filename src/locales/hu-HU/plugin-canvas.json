@@ -1,0 +1,42 @@
+{
+  "canvas": {
+    "placeholder": {
+      "markdown": {
+        "description": "Kattintson a tartalom megtekintéséhez"
+      },
+      "mermaid": {
+        "description": "Kattintson a diagram megtekintéséhez"
+      },
+      "html": {
+        "description": "Kattintson a weboldal megtekintéséhez"
+      },
+      "react": {
+        "description": "Kattintson a weboldal megtekintéséhez"
+      }
+    },
+    "version": "{{number}}. verzió",
+    "toggle": {
+      "preview": "Előnézet",
+      "markdown": {
+        "raw": "Nyers szöveg"
+      },
+      "code": "Kód"
+    },
+    "list": {
+      "title": "Canvas blokkok ebben a szálban",
+      "generating": "Generálás...",
+      "versions": "{{count}} verzió"
+    },
+    "tooltip": {
+      "refresh": "Frissítés",
+      "openList": "Canvas lista megnyitása",
+      "openInCodeSandbox": "Megnyitás CodeSandbox-ban",
+      "openInMermaid": "Megnyitás a Mermaid Live Editorban",
+      "downloadSvg": "SVG letöltése"
+    },
+    "error": {
+      "noSvg": "Nem található SVG",
+      "previewUrl": "Az előnézeti URL generálása sikertelen"
+    }
+  }
+} 

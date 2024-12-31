@@ -7,13 +7,6 @@
     "expand": {
       "expand": "Rozbaliť",
       "collapse": "Zbaliť"
-    },
-    "mermaid": {
-      "preview": "Náhľad",
-      "code": "Kód",
-      "openEditor": "Otvoriť v Mermaid Live Editore",
-      "download": "Stiahnuť SVG",
-      "downloadError": "❌ SVG nenájdené"
     }
   }
-} 
+}

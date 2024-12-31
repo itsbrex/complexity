@@ -56,11 +56,6 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "thread:betterCodeBlocks": {
       enabled: false,
       stickyHeader: true,
-      theme: {
-        enabled: true,
-        light: "light-plus",
-        dark: "dark-plus",
-      },
       unwrap: {
         enabled: true,
         showToggleButton: true,
@@ -72,8 +67,9 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
         showToggleButton: true,
       },
     },
-    "thread:betterCodeBlocks:previewMermaid": {
+    "thread:canvas": {
       enabled: false,
+      mode: "manual",
     },
     "thread:exportThread": {
       enabled: false,

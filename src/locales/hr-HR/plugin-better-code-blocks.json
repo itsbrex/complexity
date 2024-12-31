@@ -7,13 +7,6 @@
     "expand": {
       "expand": "Proširi",
       "collapse": "Sažmi"
-    },
-    "mermaid": {
-      "preview": "Pregled",
-      "code": "Kod",
-      "openEditor": "Otvori u Mermaid Live Editoru",
-      "download": "Preuzmi SVG",
-      "downloadError": "❌ SVG nije pronađen"
     }
   }
 } 

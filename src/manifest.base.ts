@@ -48,4 +48,12 @@ export const baseManifest: ExtendedManifestV3Export = {
       matches: ["*://*/*"],
     },
   ],
+
+  // content_security_policy: {
+  //   extension_pages: "script-src 'self'; object-src 'self';",
+  //   sandbox:
+  //     "sandbox allow-scripts allow-forms allow-popups allow-modals; script-src 'self' child-src 'self';",
+  // },
+
+  permissions: ["https://codesandbox.io/*"],
 };

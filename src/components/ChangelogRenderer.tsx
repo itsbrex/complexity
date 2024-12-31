@@ -1,9 +1,9 @@
 import { HTMLAttributes } from "react";
-import { Remark } from "react-remark";
+import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
 
 import ChangelogItemsBlock from "@/components/ChangelogItemsBlock";
-import { InlineCode, Ul } from "@/components/ui/typography";
 
 export default function ChangelogRenderer({
   changelog,
@@ -20,19 +20,15 @@ export default function ChangelogRenderer({
       )}
       {...props}
     >
-      <Remark
-        rehypePlugins={[rehypeRaw as any]}
-        remarkToRehypeOptions={{ allowDangerousHtml: true }}
-        rehypeReactOptions={{
-          components: {
-            code: InlineCode,
-            ul: Ul,
-            "items-block": ChangelogItemsBlock,
-          },
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
+        components={{
+          "items-block": ChangelogItemsBlock,
         }}
       >
         {changelog}
-      </Remark>
+      </ReactMarkdown>
     </div>
   );
 }

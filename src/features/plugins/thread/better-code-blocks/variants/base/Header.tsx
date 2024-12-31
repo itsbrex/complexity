@@ -2,13 +2,12 @@ import { memo } from "react";
 import { LuLoaderCircle } from "react-icons/lu";
 
 import CopyButton from "@/components/CopyButton";
-import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 import { Separator } from "@/components/ui/separator";
 import { BetterCodeBlockFineGrainedOptions } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
 import useBetterCodeBlockOptions from "@/features/plugins/thread/better-code-blocks/useBetterCodeBlockOptions";
+import CanvasSimpleModeRenderButton from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/CanvasSimpleModeRenderButton";
 import { ExpandCollapseButton } from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/ExpandCollapseButton";
-import MermaidPreviewButtonsWrapper from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/mermaid-preview/Wrapper";
 import { WrapToggleButton } from "@/features/plugins/thread/better-code-blocks/variants/base/header-buttons/WrapToggleButton";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
@@ -35,29 +34,28 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
     setMaxHeight: state.setMaxHeight,
   }));
 
-  const settings = useBetterCodeBlockOptions({ language });
+  const settings = ExtensionLocalStorageService.getCachedSync();
+  const fineGrainedSettings = useBetterCodeBlockOptions({ language });
 
   const placeholderText:
     | BetterCodeBlockFineGrainedOptions["placeholderText"]
-    | undefined = (settings as BetterCodeBlockFineGrainedOptions)
+    | undefined = (fineGrainedSettings as BetterCodeBlockFineGrainedOptions)
     ?.placeholderText;
 
-  const isSticky = settings.stickyHeader;
+  const isSticky = fineGrainedSettings.stickyHeader;
   const isBottomBarSticky =
-    ExtensionLocalStorageService.getCachedSync().plugins[
-      "thread:betterMessageToolbars"
-    ].sticky;
+    settings.plugins["thread:betterMessageToolbars"].sticky;
   const [shouldShowWrapToggleButton] = useState(
     () =>
-      settings.unwrap.showToggleButton &&
+      fineGrainedSettings.unwrap.showToggleButton &&
       isContainerHorizontalOverflowing({ codeElement }),
   );
   const [shouldShowExpandCollapseButton] = useState(
     () =>
-      settings.maxHeight.enabled &&
-      settings.maxHeight.showToggleButton &&
+      fineGrainedSettings.maxHeight.enabled &&
+      fineGrainedSettings.maxHeight.showToggleButton &&
       isContainerVerticalOverflowing({
-        initialMaxHeight: settings.maxHeight.value,
+        initialMaxHeight: fineGrainedSettings.maxHeight.value,
         codeElement,
       }),
   );
@@ -76,7 +74,7 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
       )}
     >
       <div className="tw-flex tw-items-center tw-gap-2">
-        <div className="tw-font-mono tw-text-sm">
+        <div className="tw-line-clamp-1 tw-font-mono tw-text-sm">
           {placeholderText?.title || language}
         </div>
         {!isInFlight && placeholderText?.idle && (
@@ -90,14 +88,6 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
       </div>
 
       <div className="tw-flex tw-items-center tw-gap-4">
-        {!isInFlight && language === "mermaid" && (
-          <CsUiPluginsGuard
-            dependentPluginIds={["thread:betterCodeBlocks:previewMermaid"]}
-          >
-            <MermaidPreviewButtonsWrapper />
-          </CsUiPluginsGuard>
-        )}
-
         {isInFlight && (
           <span className="tw-flex tw-items-center tw-gap-2">
             {placeholderText?.loading && (
@@ -110,6 +100,7 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
         )}
         {!isInFlight && (
           <>
+            <CanvasSimpleModeRenderButton />
             {maxHeight > 0 && shouldShowWrapToggleButton && (
               <WrapToggleButton
                 isWrapped={isWrapped}
@@ -119,7 +110,7 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
             <CopyButton content={codeString} />
             {shouldShowExpandCollapseButton && (
               <ExpandCollapseButton
-                defaultMaxHeight={settings.maxHeight.value}
+                defaultMaxHeight={fineGrainedSettings.maxHeight.value}
                 maxHeight={maxHeight}
                 setMaxHeight={setMaxHeight}
               />

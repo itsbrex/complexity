@@ -4,7 +4,6 @@ import { useMemo } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import CodeThemeSelector from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/better-code-blocks/CodeThemeSelector";
 import { DeleteLanguageOptionButton } from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/better-code-blocks/DeleteLanguageOptionButton";
 import useOptions from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/better-code-blocks/useOptions";
 
@@ -36,58 +35,6 @@ export default function BetterCodeBlockFineGrainedOptions({
 
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
-      <div className="tw-flex tw-flex-col tw-gap-2">
-        <Switch
-          textLabel="Code theme"
-          checked={settings?.theme.enabled}
-          onCheckedChange={({ checked }) => {
-            mutation.mutate({
-              language,
-              newDraft: {
-                theme: {
-                  enabled: checked,
-                },
-              },
-            });
-          }}
-        />
-        {settings?.theme.enabled && (
-          <div className="tw-flex tw-w-full tw-gap-4">
-            <div className="tw-flex tw-flex-col tw-gap-2">
-              <Label className="tw-text-muted-foreground">Dark</Label>
-              <CodeThemeSelector
-                value={settings?.theme.dark}
-                onValueChange={(value) => {
-                  mutation.mutate({
-                    language,
-                    newDraft: {
-                      theme: {
-                        dark: value,
-                      },
-                    },
-                  });
-                }}
-              />
-            </div>
-            <div className="tw-flex tw-flex-col tw-gap-2">
-              <Label className="tw-text-muted-foreground">Light</Label>
-              <CodeThemeSelector
-                value={settings?.theme.light}
-                onValueChange={(value) => {
-                  mutation.mutate({
-                    language,
-                    newDraft: {
-                      theme: {
-                        light: value,
-                      },
-                    },
-                  });
-                }}
-              />
-            </div>
-          </div>
-        )}
-      </div>
       <div className="tw-flex tw-flex-col tw-gap-4">
         <Switch
           textLabel="Sticky header"

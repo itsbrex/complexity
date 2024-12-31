@@ -1,0 +1,42 @@
+{
+  "canvas": {
+    "placeholder": {
+      "markdown": {
+        "description": "Click to view content"
+      },
+      "mermaid": {
+        "description": "Click to view diagram"
+      },
+      "html": {
+        "description": "Click to view web page"
+      },
+      "react": {
+        "description": "Click to view web page"
+      }
+    },
+    "version": "Version {{number}}",
+    "toggle": {
+      "preview": "Preview",
+      "markdown": {
+        "raw": "Raw text"
+      },
+      "code": "Code"
+    },
+    "list": {
+      "title": "Canvas blocks in this thread",
+      "generating": "Generating...",
+      "versions": "{{count}} versions"
+    },
+    "tooltip": {
+      "refresh": "Refresh",
+      "openList": "Open Canvas List",
+      "openInCodeSandbox": "Open in CodeSandbox",
+      "openInMermaid": "Open in Mermaid Live Editor",
+      "downloadSvg": "Download SVG"
+    },
+    "error": {
+      "noSvg": "No SVG found",
+      "previewUrl": "Failed to generate preview URL"
+    }
+  }
+}

@@ -7,13 +7,6 @@
     "expand": {
       "expand": "Прошири",
       "collapse": "Собери"
-    },
-    "mermaid": {
-      "preview": "Преглед",
-      "code": "Код",
-      "openEditor": "Отвори во Mermaid Live Editor",
-      "download": "Преземи SVG",
-      "downloadError": "❌ Не е пронајден SVG"
     }
   }
 } 

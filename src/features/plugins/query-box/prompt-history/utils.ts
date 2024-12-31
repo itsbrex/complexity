@@ -26,7 +26,5 @@ export const handlePromptSave = async (params?: {
 
   if (prompt == null || prompt?.length === 0) return;
 
-  console.log("Saving unsubmitted prompt:", prompt);
-
   await getPromptHistoryService().deduplicateAdd(prompt);
 };

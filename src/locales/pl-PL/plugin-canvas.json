@@ -1,0 +1,42 @@
+{
+  "canvas": {
+    "placeholder": {
+      "markdown": {
+        "description": "Kliknij, aby zobaczyć zawartość"
+      },
+      "mermaid": {
+        "description": "Kliknij, aby zobaczyć diagram"
+      },
+      "html": {
+        "description": "Kliknij, aby zobaczyć stronę internetową"
+      },
+      "react": {
+        "description": "Kliknij, aby zobaczyć stronę internetową"
+      }
+    },
+    "version": "Wersja {{number}}",
+    "toggle": {
+      "preview": "Podgląd",
+      "markdown": {
+        "raw": "Surowy tekst"
+      },
+      "code": "Kod"
+    },
+    "list": {
+      "title": "Bloki Canvas w tym wątku",
+      "generating": "Generowanie...",
+      "versions": "{{count}} wersji"
+    },
+    "tooltip": {
+      "refresh": "Odśwież",
+      "openList": "Otwórz listę Canvas",
+      "openInCodeSandbox": "Otwórz w CodeSandbox",
+      "openInMermaid": "Otwórz w Mermaid Live Editor",
+      "downloadSvg": "Pobierz SVG"
+    },
+    "error": {
+      "noSvg": "Nie znaleziono SVG",
+      "previewUrl": "Nie udało się wygenerować URL podglądu"
+    }
+  }
+} 

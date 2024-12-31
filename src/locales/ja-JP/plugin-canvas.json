@@ -1,0 +1,42 @@
+{
+  "canvas": {
+    "placeholder": {
+      "markdown": {
+        "description": "クリックしてコンテンツを表示"
+      },
+      "mermaid": {
+        "description": "クリックして図を表示"
+      },
+      "html": {
+        "description": "クリックしてウェブページを表示"
+      },
+      "react": {
+        "description": "クリックしてウェブページを表示"
+      }
+    },
+    "version": "バージョン {{number}}",
+    "toggle": {
+      "preview": "プレビュー",
+      "markdown": {
+        "raw": "生テキスト"
+      },
+      "code": "コード"
+    },
+    "list": {
+      "title": "このスレッドのCanvasブロック",
+      "generating": "生成中...",
+      "versions": "{{count}}バージョン"
+    },
+    "tooltip": {
+      "refresh": "更新",
+      "openList": "Canvasリストを開く",
+      "openInCodeSandbox": "CodeSandboxで開く",
+      "openInMermaid": "Mermaidライブエディタで開く",
+      "downloadSvg": "SVGをダウンロード"
+    },
+    "error": {
+      "noSvg": "SVGが見つかりません",
+      "previewUrl": "プレビューURLの生成に失敗しました"
+    }
+  }
+} 

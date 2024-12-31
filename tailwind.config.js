@@ -16,14 +16,14 @@ export default {
       typography: {
         DEFAULT: {
           css: {
-            'code::before': {
-              content: '""'
+            "code::before": {
+              content: '""',
             },
-            'code::after': {
-              content: '""'
-            }
-          }
-        }
+            "code::after": {
+              content: '""',
+            },
+          },
+        },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -73,8 +73,5 @@ export default {
       },
     },
   },
-  plugins: [
-    require("tailwindcss-animate"),
-    require("@tailwindcss/typography")
-  ],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };

@@ -4,8 +4,10 @@ import debounce from "lodash/debounce";
 import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-queue";
 import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
+import { useCanvasStore } from "@/features/plugins/thread/canvas/store";
 import { PANEL_WIDTH } from "@/features/plugins/thread/toc/Wrapper";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
+import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 
 const DOM_OBSERVER_ID = "thread-navigation-toc-panel-position";
@@ -16,14 +18,18 @@ type UsePanelPosition = {
 };
 
 export function usePanelPosition(): UsePanelPosition | null {
+  const isCanvasEnabled =
+    PluginsStatesService.getCachedSync().pluginsEnableStates?.["thread:canvas"];
+  const isCanvasOpen = useCanvasStore(
+    (state) => state.selectedCodeBlockLocation != null,
+  );
+  const isCanvasListOpen = useCanvasStore((state) => state.isCanvasListOpen);
+
   const { isMobile } = useIsMobileStore();
-
   const windowSize = useWindowSize();
-
   const [panelPosition, setPanelPosition] = useState<UsePanelPosition | null>(
     null,
   );
-
   const threadWrapper = useGlobalDomObserverStore(
     (state) => state.threadComponents.wrapper,
   );
@@ -48,14 +54,17 @@ export function usePanelPosition(): UsePanelPosition | null {
 
     return {
       position,
-      isFloating,
+      isFloating:
+        isFloating ||
+        (isCanvasOpen && !!isCanvasEnabled) ||
+        (isCanvasListOpen && !!isCanvasEnabled),
     };
-  }, [threadWrapper]);
+  }, [threadWrapper, isCanvasOpen, isCanvasEnabled, isCanvasListOpen]);
 
   useEffect(() => {
     const debouncedUpdate = debounce(() => {
       setPanelPosition(calculatePosition());
-    }, 300);
+    }, 100);
 
     debouncedUpdate();
 
@@ -73,7 +82,7 @@ export function usePanelPosition(): UsePanelPosition | null {
       debouncedUpdate.cancel();
       DomObserver.destroy(DOM_OBSERVER_ID);
     };
-  }, [calculatePosition, isMobile, windowSize]);
+  }, [calculatePosition, isMobile, windowSize, isCanvasOpen]);
 
   return panelPosition;
 }

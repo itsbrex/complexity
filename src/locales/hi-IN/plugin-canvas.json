@@ -1,0 +1,42 @@
+{
+  "canvas": {
+    "placeholder": {
+      "markdown": {
+        "description": "सामग्री देखने के लिए क्लिक करें"
+      },
+      "mermaid": {
+        "description": "आरेख देखने के लिए क्लिक करें"
+      },
+      "html": {
+        "description": "वेबपेज देखने के लिए क्लिक करें"
+      },
+      "react": {
+        "description": "वेबपेज देखने के लिए क्लिक करें"
+      }
+    },
+    "version": "संस्करण {{number}}",
+    "toggle": {
+      "preview": "पूर्वावलोकन",
+      "markdown": {
+        "raw": "कच्चा टेक्स्ट"
+      },
+      "code": "कोड"
+    },
+    "list": {
+      "title": "इस थ्रेड में Canvas ब्लॉक",
+      "generating": "जनरेट हो रहा है...",
+      "versions": "{{count}} संस्करण"
+    },
+    "tooltip": {
+      "refresh": "रीफ्रेश करें",
+      "openList": "Canvas सूची खोलें",
+      "openInCodeSandbox": "CodeSandbox में खोलें",
+      "openInMermaid": "Mermaid लाइव एडिटर में खोलें",
+      "downloadSvg": "SVG डाउनलोड करें"
+    },
+    "error": {
+      "noSvg": "कोई SVG नहीं मिला",
+      "previewUrl": "पूर्वावलोकन URL जनरेट करने में विफल"
+    }
+  }
+} 

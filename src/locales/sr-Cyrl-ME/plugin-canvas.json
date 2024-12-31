@@ -1,0 +1,42 @@
+{
+  "canvas": {
+    "placeholder": {
+      "markdown": {
+        "description": "Кликните да видите садржај"
+      },
+      "mermaid": {
+        "description": "Кликните да видите дијаграм"
+      },
+      "html": {
+        "description": "Кликните да видите веб страницу"
+      },
+      "react": {
+        "description": "Кликните да видите веб страницу"
+      }
+    },
+    "version": "Верзија {{number}}",
+    "toggle": {
+      "preview": "Преглед",
+      "markdown": {
+        "raw": "Сирови текст"
+      },
+      "code": "Код"
+    },
+    "list": {
+      "title": "Canvas блокови у овој теми",
+      "generating": "Генерисање...",
+      "versions": "{{count}} верзија"
+    },
+    "tooltip": {
+      "refresh": "Освјежи",
+      "openList": "Отвори Canvas листу",
+      "openInCodeSandbox": "Отвори у CodeSandbox",
+      "openInMermaid": "Отвори у Mermaid Live Editor",
+      "downloadSvg": "Преузми SVG"
+    },
+    "error": {
+      "noSvg": "SVG није пронађен",
+      "previewUrl": "Неуспјешно генерисање URL-а за преглед"
+    }
+  }
+} 

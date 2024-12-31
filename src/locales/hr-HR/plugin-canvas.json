@@ -1,0 +1,42 @@
+{
+  "canvas": {
+    "placeholder": {
+      "markdown": {
+        "description": "Kliknite za prikaz sadržaja"
+      },
+      "mermaid": {
+        "description": "Kliknite za prikaz dijagrama"
+      },
+      "html": {
+        "description": "Kliknite za prikaz web stranice"
+      },
+      "react": {
+        "description": "Kliknite za prikaz web stranice"
+      }
+    },
+    "version": "Verzija {{number}}",
+    "toggle": {
+      "preview": "Pregled",
+      "markdown": {
+        "raw": "Sirovi tekst"
+      },
+      "code": "Kod"
+    },
+    "list": {
+      "title": "Canvas blokovi u ovoj temi",
+      "generating": "Generiranje...",
+      "versions": "{{count}} verzija"
+    },
+    "tooltip": {
+      "refresh": "Osvježi",
+      "openList": "Otvori Canvas listu",
+      "openInCodeSandbox": "Otvori u CodeSandbox",
+      "openInMermaid": "Otvori u Mermaid Live Editoru",
+      "downloadSvg": "Preuzmi SVG"
+    },
+    "error": {
+      "noSvg": "SVG nije pronađen",
+      "previewUrl": "Neuspjelo generiranje URL-a za pregled"
+    }
+  }
+} 

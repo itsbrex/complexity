@@ -1,0 +1,42 @@
+{
+  "canvas": {
+    "placeholder": {
+      "markdown": {
+        "description": "Clique para ver o conteúdo"
+      },
+      "mermaid": {
+        "description": "Clique para ver o diagrama"
+      },
+      "html": {
+        "description": "Clique para ver a página web"
+      },
+      "react": {
+        "description": "Clique para ver a página web"
+      }
+    },
+    "version": "Versão {{number}}",
+    "toggle": {
+      "preview": "Pré-visualização",
+      "markdown": {
+        "raw": "Texto puro"
+      },
+      "code": "Código"
+    },
+    "list": {
+      "title": "Blocos Canvas neste tópico",
+      "generating": "A gerar...",
+      "versions": "{{count}} versões"
+    },
+    "tooltip": {
+      "refresh": "Atualizar",
+      "openList": "Abrir lista do Canvas",
+      "openInCodeSandbox": "Abrir no CodeSandbox",
+      "openInMermaid": "Abrir no Editor Live do Mermaid",
+      "downloadSvg": "Descarregar SVG"
+    },
+    "error": {
+      "noSvg": "Nenhum SVG encontrado",
+      "previewUrl": "Falha ao gerar URL de pré-visualização"
+    }
+  }
+} 

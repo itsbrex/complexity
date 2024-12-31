@@ -34,6 +34,7 @@ type Resources = {
     "plugin-drag-n-drop-file-to-upload-in-thread": any;
     "plugin-export-thread": any;
     "plugin-better-copy-buttons": any;
+    "plugin-canvas": any;
     "plugin-better-code-blocks": any;
     "plugin-on-cloudflare-timeout-reload": any;
     "plugin-command-menu": any;
@@ -59,6 +60,9 @@ async function loadLanguageResources(language: string) {
     ),
     "plugin-better-copy-buttons": await import(
       `~/src/locales/${language}/plugin-better-copy-buttons.json`
+    ),
+    "plugin-canvas": await import(
+      `~/src/locales/${language}/plugin-canvas.json`
     ),
     "plugin-better-code-blocks": await import(
       `~/src/locales/${language}/plugin-better-code-blocks.json`
@@ -133,6 +137,7 @@ export async function initializeI18next() {
       "plugin-drag-n-drop-file-to-upload-in-thread",
       "plugin-export-thread",
       "plugin-better-copy-buttons",
+      "plugin-canvas",
       "plugin-better-code-blocks",
       "plugin-on-cloudflare-timeout-reload",
       "plugin-command-menu",

@@ -7,7 +7,6 @@ const CORE_PLUGINS = [
   "webSocket",
   "domObserver",
   "reactVdom",
-  "codeHighlighter",
   "mermaidRenderer",
 ] as const;
 
@@ -132,7 +131,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     routeSegment: "command-menu",
     title: "Command Menu",
     description: "Quickly navigate around and invoke actions",
-    tags: ["experimental", "ui", "ux", "desktopOnly"],
+    tags: ["ui", "ux", "desktopOnly"],
     dependentCorePlugins: ["spaRouter", "webSocket"],
   },
   "thread:toc": {
@@ -158,21 +157,17 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Better Code Blocks",
     description: "Enhance code blocks (in threads)",
     tags: ["ui", "ux"],
-    dependentCorePlugins: [
-      "spaRouter",
-      "domObserver",
-      "reactVdom",
-      "codeHighlighter",
-    ],
+    dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
   },
-  "thread:betterCodeBlocks:previewMermaid": {
-    id: "thread:betterCodeBlocks:previewMermaid",
-    routeSegment: "thread-better-code-blocks-preview-mermaid",
-    title: "Mermaid Code Blocks Preview",
-    description: "Preview mermaid diagrams, simple charts, etc. in code blocks",
-    tags: ["ui"],
-    dependentCorePlugins: ["mermaidRenderer"],
+  "thread:canvas": {
+    id: "thread:canvas",
+    routeSegment: "thread-canvas",
+    title: "Canvas",
+    description:
+      "Visualize and interact with generated content side by side. Very experimental",
+    tags: ["experimental", "desktopOnly", "ui"],
     dependentPlugins: ["thread:betterCodeBlocks"],
+    dependentCorePlugins: ["spaRouter", "domObserver", "mermaidRenderer"],
   },
   "thread:exportThread": {
     id: "thread:exportThread",

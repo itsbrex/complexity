@@ -1,16 +1,28 @@
-import { BaseCodeBlockWrapper } from "@/features/plugins/thread/better-code-blocks/variants/base/Wrapper";
+import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
+import BaseCodeBlockWrapper from "@/features/plugins/thread/better-code-blocks/variants/base/Wrapper";
+import CanvasPlaceholderWrapper from "@/features/plugins/thread/better-code-blocks/variants/canvas-placeholders/Wrapper";
+import { isAutonomousCanvasLanguageString } from "@/features/plugins/thread/canvas/canvas.types";
+import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
-const VARIANTS = {
-  base: BaseCodeBlockWrapper,
-} as const;
+const MirroredCodeBlock = memo(function MirroredCodeBlock() {
+  const { language } = useMirroredCodeBlockContext()((state) => ({
+    language: state.language,
+  }));
 
-const MirroredCodeBlock = memo(function MirroredCodeBlock({
-  variant,
-}: {
-  variant: keyof typeof VARIANTS;
-}) {
-  const Variant = VARIANTS[variant];
-  return <Variant />;
+  const { isMobile } = useIsMobileStore();
+  if (isMobile) return <BaseCodeBlockWrapper />;
+
+  const settings = ExtensionLocalStorageService.getCachedSync();
+  const isAutonomousCanvasEnabled =
+    settings.plugins["thread:canvas"].enabled &&
+    settings.plugins["thread:canvas"].mode === "auto";
+  const isAutonomousCanvasLanguage =
+    isAutonomousCanvasEnabled && isAutonomousCanvasLanguageString(language);
+
+  if (isAutonomousCanvasLanguage) return <CanvasPlaceholderWrapper />;
+
+  return <BaseCodeBlockWrapper />;
 });
 
 export default MirroredCodeBlock;

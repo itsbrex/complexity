@@ -1,9 +1,8 @@
 import type { IconType } from "react-icons";
 
+import { ColorScheme } from "@/data/color-scheme-store";
 import { SearchFilter } from "@/features/plugins/command-menu/items";
 import { whereAmI } from "@/utils/utils";
-
-export type ColorScheme = "dark" | "light" | "system";
 
 export type BaseItem = {
   icon: IconType;

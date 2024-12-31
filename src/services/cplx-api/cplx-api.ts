@@ -73,11 +73,10 @@ export class CplxApiService {
     //     provider: "Anthropic",
     //   },
     //   {
-    //     label: "GPT-o1",
-    //     shortLabel: "GPT-o1",
+    //     label: "O1",
+    //     shortLabel: "O1",
     //     code: "o1",
     //     provider: "OpenAI",
-    //     unknownLimit: true,
     //   },
     //   {
     //     label: "GPT-4 Omni",

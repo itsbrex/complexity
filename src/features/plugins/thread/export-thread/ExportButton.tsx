@@ -1,5 +1,10 @@
 import { BiLogoMarkdown } from "react-icons/bi";
-import { LuCheck, LuDownload, LuLink2Off, LuLoaderCircle } from "react-icons/lu";
+import {
+  LuCheck,
+  LuDownload,
+  LuLink2Off,
+  LuLoaderCircle,
+} from "react-icons/lu";
 
 import { Button } from "@/components/ui/button";
 import {

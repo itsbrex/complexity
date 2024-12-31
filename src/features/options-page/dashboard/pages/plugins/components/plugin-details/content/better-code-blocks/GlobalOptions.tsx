@@ -2,9 +2,7 @@ import debounce from "lodash/debounce";
 import { useMemo } from "react";
 
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import CodeThemeSelector from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/better-code-blocks/CodeThemeSelector";
 import useOptions from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/better-code-blocks/useOptions";
 
 export default function BetterCodeBlockGlobalOptions() {
@@ -21,44 +19,6 @@ export default function BetterCodeBlockGlobalOptions() {
 
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
-      <div className="tw-flex tw-flex-col tw-gap-2">
-        <Switch
-          textLabel="Code theme"
-          checked={settings?.plugins["thread:betterCodeBlocks"].theme.enabled}
-          onCheckedChange={({ checked }) => {
-            mutation.mutate((draft) => {
-              draft.plugins["thread:betterCodeBlocks"].theme.enabled = checked;
-            });
-          }}
-        />
-        {settings?.plugins["thread:betterCodeBlocks"].theme.enabled && (
-          <div className="tw-flex tw-w-full tw-gap-4">
-            <div className="tw-flex tw-flex-col tw-gap-2">
-              <Label className="tw-text-muted-foreground">Dark</Label>
-              <CodeThemeSelector
-                value={settings?.plugins["thread:betterCodeBlocks"].theme.dark}
-                onValueChange={(value) => {
-                  mutation.mutate((draft) => {
-                    draft.plugins["thread:betterCodeBlocks"].theme.dark = value;
-                  });
-                }}
-              />
-            </div>
-            <div className="tw-flex tw-flex-col tw-gap-2">
-              <Label className="tw-text-muted-foreground">Light</Label>
-              <CodeThemeSelector
-                value={settings?.plugins["thread:betterCodeBlocks"].theme.light}
-                onValueChange={(value) => {
-                  mutation.mutate((draft) => {
-                    draft.plugins["thread:betterCodeBlocks"].theme.light =
-                      value;
-                  });
-                }}
-              />
-            </div>
-          </div>
-        )}
-      </div>
       <div className="tw-flex tw-flex-col tw-gap-4">
         <Switch
           textLabel="Sticky header"

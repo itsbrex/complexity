@@ -7,13 +7,6 @@
     "expand": {
       "expand": "展開",
       "collapse": "折りたたむ"
-    },
-    "mermaid": {
-      "preview": "プレビュー",
-      "code": "コード",
-      "openEditor": "Mermaid Live Editorで開く",
-      "download": "SVGをダウンロード",
-      "downloadError": "❌ SVGが見つかりません"
     }
   }
 } 

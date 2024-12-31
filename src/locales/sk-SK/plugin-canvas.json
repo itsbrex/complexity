@@ -1,0 +1,42 @@
+{
+  "canvas": {
+    "placeholder": {
+      "markdown": {
+        "description": "Kliknite pre zobrazenie obsahu"
+      },
+      "mermaid": {
+        "description": "Kliknite pre zobrazenie diagramu"
+      },
+      "html": {
+        "description": "Kliknite pre zobrazenie webovej stránky"
+      },
+      "react": {
+        "description": "Kliknite pre zobrazenie webovej stránky"
+      }
+    },
+    "version": "Verzia {{number}}",
+    "toggle": {
+      "preview": "Náhľad",
+      "markdown": {
+        "raw": "Surový text"
+      },
+      "code": "Kód"
+    },
+    "list": {
+      "title": "Canvas bloky v tomto vlákne",
+      "generating": "Generovanie...",
+      "versions": "{{count}} verzií"
+    },
+    "tooltip": {
+      "refresh": "Obnoviť",
+      "openList": "Otvoriť zoznam Canvas",
+      "openInCodeSandbox": "Otvoriť v CodeSandbox",
+      "openInMermaid": "Otvoriť v Mermaid Live Editore",
+      "downloadSvg": "Stiahnuť SVG"
+    },
+    "error": {
+      "noSvg": "SVG nenájdené",
+      "previewUrl": "Nepodarilo sa vygenerovať URL náhľadu"
+    }
+  }
+} 

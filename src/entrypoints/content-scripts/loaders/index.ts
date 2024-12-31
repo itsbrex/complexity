@@ -29,11 +29,11 @@ import "@/features/plugins/query-box/submit-on-ctrl-enter";
 import "@/features/plugins/query-box/full-width-follow-up/full-with-follow-up";
 
 // Thread Plugins
+import "@/features/plugins/thread/canvas/store";
 import "@/features/plugins/thread/drag-n-drop-file-to-upload-in-thread/drag-n-drop-file-to-upload-in-thread";
 import "@/features/plugins/thread/collapse-empty-thread-visual-cols/collapse-empty-thread-visual-cols";
 import "@/features/plugins/thread/better-message-toolbars/explicit-model-name";
 import "@/features/plugins/thread/better-message-toolbars/words-and-characters-count";
-
 // Home Plugins
 import "@/features/plugins/home/custom-slogan/custom-slogan";
 
@@ -41,6 +41,9 @@ import "@/features/plugins/home/custom-slogan/custom-slogan";
 import "@/features/plugins/hide-get-mobile-app-cta-btn/hide-get-mobile-app-cta-btn";
 import "@/features/plugins/zen-mode/zen-mode";
 import "@/features/plugins/block-analytic-events/network-intercept-middlewares";
+
+// Global Store
+import "@/data/color-scheme-store";
 
 // Loaders
 import "@/entrypoints/content-scripts/loaders/core-plugins-loader";

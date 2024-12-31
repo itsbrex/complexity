@@ -1,0 +1,10 @@
+#sandpack-container {
+  .sp-wrapper,
+  .sp-layout,
+  .sp-preview,
+  .sp.preview-container,
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}

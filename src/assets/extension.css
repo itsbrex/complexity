@@ -1,6 +1,6 @@
 @import "./vars.css";
 @import "./scrollbar.css";
-
+@import "./typography.css";
 @config "./tailwind.extension.config.js";
 
 @tailwind base;

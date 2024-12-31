@@ -30,6 +30,9 @@ const OnCloudflareTimeout = lazy(
 const BetterCodeBlocksWrapper = lazy(
   () => import("@/features/plugins/thread/better-code-blocks/Wrapper"),
 );
+const CanvasWrapper = lazy(
+  () => import("@/features/plugins/thread/canvas/Wrapper"),
+);
 const BetterMessageCopyButtons = lazy(
   () => import("@/features/plugins/thread/better-message-copy-buttons/Wrapper"),
 );
@@ -85,7 +88,7 @@ function ThreadComponent() {
   const { url } = useSpaRouter();
 
   return (
-    <Fragment key={url}>
+    <>
       <CsUiPluginsGuard
         desktopOnly
         allowedAccountTypes={["pro", "enterprise"]}
@@ -93,12 +96,17 @@ function ThreadComponent() {
       >
         <ImageGenModelSelectorWrapper />
       </CsUiPluginsGuard>
-      <CsUiPluginsGuard dependentPluginIds={["thread:toc"]}>
-        <ThreadTocWrapper />
+      <CsUiPluginsGuard
+        desktopOnly
+        dependentPluginIds={["thread:betterCodeBlocks", "thread:canvas"]}
+      >
+        <CanvasWrapper />
       </CsUiPluginsGuard>
+
       <CsUiPluginsGuard dependentPluginIds={["thread:betterMessageToolbars"]}>
         <BetterMessageToolbarsWrapper />
       </CsUiPluginsGuard>
+
       <CsUiPluginsGuard dependentPluginIds={["thread:betterCodeBlocks"]}>
         <BetterCodeBlocksWrapper />
       </CsUiPluginsGuard>
@@ -107,9 +115,14 @@ function ThreadComponent() {
       >
         <BetterMessageCopyButtons />
       </CsUiPluginsGuard>
-      <CsUiPluginsGuard dependentPluginIds={["thread:exportThread"]}>
-        <ExportThreadWrapper />
-      </CsUiPluginsGuard>
-    </Fragment>
+      <Fragment key={url}>
+        <CsUiPluginsGuard dependentPluginIds={["thread:toc"]}>
+          <ThreadTocWrapper />
+        </CsUiPluginsGuard>
+        <CsUiPluginsGuard dependentPluginIds={["thread:exportThread"]}>
+          <ExportThreadWrapper />
+        </CsUiPluginsGuard>
+      </Fragment>
+    </>
   );
 }

@@ -46,11 +46,15 @@ export const PLUGIN_TAGS = {
   },
   beta: {
     label: "Beta",
-    description: "Beta plugins",
+    description: "Official plugins but still in testing/development",
   },
   forFun: {
     label: "For Fun",
     description: "Just for fun!",
+  },
+  new: {
+    label: "New",
+    description: "Recently added plugins",
   },
 } as const;
 
@@ -98,7 +102,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     routeSegment: "query-box-slash-command-menu-prompt-history",
     title: "Prompt History",
     description: "Reuse previous prompts. Usage: type /h in the query box",
-    tags: ["experimental", "slashCommand", "desktopOnly", "ui", "ux"],
+    tags: ["new", "experimental", "slashCommand", "desktopOnly", "ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver", "webSocket"],
   },
   "queryBox:noFileCreationOnPaste": {
@@ -115,7 +119,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     routeSegment: "query-box-submit-on-ctrl-enter",
     title: `Query Box: Submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
     description: `Insert new line on Enter, submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
-    tags: ["ux"],
+    tags: ["new", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
   },
   "queryBox:fullWidthFollowUp": {
@@ -164,8 +168,8 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     routeSegment: "thread-canvas",
     title: "Canvas",
     description:
-      "Visualize and interact with generated content side by side. Very experimental",
-    tags: ["experimental", "desktopOnly", "ui"],
+      "Visualize and interact with generated content side by side. Similar to claude.ai's artifacts. Very experimental",
+    tags: ["new", "experimental", "desktopOnly", "ui"],
     dependentPlugins: ["thread:betterCodeBlocks"],
     dependentCorePlugins: ["spaRouter", "domObserver", "mermaidRenderer"],
   },
@@ -209,7 +213,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     routeSegment: "thread-custom-thread-container-width",
     title: "Custom Thread Container Width",
     description: "Customize the maximum width of the thread container",
-    tags: ["ui", "desktopOnly"],
+    tags: ["new", "ui", "desktopOnly"],
     dependentCorePlugins: ["spaRouter"],
   },
   imageGenModelSelector: {

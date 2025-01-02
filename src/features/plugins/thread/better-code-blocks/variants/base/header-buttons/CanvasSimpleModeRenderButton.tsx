@@ -24,7 +24,7 @@ export default function CanvasSimpleModeRenderButton() {
     return null;
 
   return (
-    <CsUiPluginsGuard dependentPluginIds={["thread:canvas"]}>
+    <CsUiPluginsGuard desktopOnly dependentPluginIds={["thread:canvas"]}>
       <Tooltip content="Render in Canvas">
         <div
           className="tw-cursor-pointer tw-text-muted-foreground tw-transition-colors hover:tw-text-foreground"

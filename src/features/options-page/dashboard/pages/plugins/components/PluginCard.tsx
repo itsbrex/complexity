@@ -78,11 +78,16 @@ export function PluginCard({ pluginId, isForceDisabled }: PluginCardProps) {
             {tags.map((tag) => (
               <Tooltip key={tag} content={PLUGIN_TAGS[tag].description}>
                 <Badge
-                  variant="default"
-                  className={cn({
-                    "tw-bg-destructive tw-text-destructive-foreground hover:tw-bg-destructive/80":
-                      tag === "experimental",
-                  })}
+                  variant="secondary"
+                  className={cn(
+                    "tw-border tw-border-border/50 hover:tw-bg-background",
+                    {
+                      "tw-bg-destructive tw-text-destructive-foreground hover:tw-bg-destructive/80":
+                        tag === "experimental",
+                      "tw-bg-primary tw-text-primary-foreground hover:tw-bg-primary/80":
+                        tag === "new",
+                    },
+                  )}
                 >
                   {PLUGIN_TAGS[tag].label.toLocaleUpperCase()}
                 </Badge>

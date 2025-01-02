@@ -39,9 +39,7 @@ export class PluginsStatesService {
         cplxApiQueries.featureFlags.queryKey,
       );
 
-      if (cachedData) {
-        return cachedData;
-      }
+      if (cachedData) return cachedData;
     }
 
     return await queryClient.fetchQuery({
@@ -98,13 +96,11 @@ export class PluginsStatesService {
   }
 
   static getCachedSync(): PluginsStates {
-    const DEFAULT_RETURN = this.getDefaultPluginsStates();
-
     const pluginsStates = queryClient.getQueryData<PluginsStates>(
       pluginsStatesQueries.computed.queryKey,
     );
 
-    return pluginsStates ?? DEFAULT_RETURN;
+    return pluginsStates ?? this.getDefaultPluginsStates();
   }
 
   private static areAllDependentPluginsEnabled({

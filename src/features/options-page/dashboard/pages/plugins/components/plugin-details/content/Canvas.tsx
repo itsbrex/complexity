@@ -1,4 +1,5 @@
 import { createListCollection } from "@ark-ui/react";
+import { ReactNode } from "react";
 
 import { Label } from "@/components/ui/label";
 import {
@@ -14,10 +15,24 @@ import useExtensionLocalStorage from "@/services/extension-local-storage/useExte
 
 const DESCRIPTION: Record<
   ExtensionLocalStorage["plugins"]["thread:canvas"]["mode"],
-  string
+  ReactNode
 > = {
   manual: "Manually click on the render button to preview the code",
-  auto: "Autonomous mode, requires extra setup and prompting to work",
+  auto: (
+    <span>
+      Autonomous mode, requires this{" "}
+      <a
+        href="https://cdn.cplx.app/prompts/canvas-instruction-claude.md"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="tw-text-primary tw-underline"
+      >
+        pre-prompt
+      </a>{" "}
+      to work. You can either paste the prompt directly alongside your query or
+      use Space&apos;s instruction.
+    </span>
+  ),
 };
 
 export default function CanvasPluginDetails() {

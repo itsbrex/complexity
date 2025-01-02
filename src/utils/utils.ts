@@ -293,6 +293,8 @@ export async function injectMainWorldScript({
 }) {
   if (!inject) return;
 
+  await waitForDocumentReady();
+
   return new Promise((resolve, reject) => {
     $("<script>")
       .attr({
@@ -347,6 +349,20 @@ export function injectMainWorldScriptBlock({
       );
 
     document.body.appendChild(script);
+  });
+}
+
+export function waitForDocumentReady() {
+  return new Promise((resolve) => {
+    if (
+      document.readyState === "complete" &&
+      document.head != null &&
+      document.body != null
+    ) {
+      resolve(null);
+    } else {
+      $(resolve);
+    }
   });
 }
 

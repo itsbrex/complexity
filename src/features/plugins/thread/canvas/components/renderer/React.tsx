@@ -3,8 +3,10 @@ import {
   SandpackLayout,
   SandpackPreview,
   SandpackPreviewRef,
+  useSandpack,
 } from "@codesandbox/sandpack-react";
 
+import { Button } from "@/components/ui/button";
 import {
   getMirroredCodeBlockByLocation,
   useMirroredCodeBlocksStore,
@@ -15,6 +17,7 @@ import {
   useCanvasStore,
 } from "@/features/plugins/thread/canvas/store";
 import { useInsertCss } from "@/hooks/useInsertCss";
+import UiUtils from "@/utils/UiUtils";
 
 export default function ReactRenderer() {
   const selectedCodeBlockLocation = useCanvasStore(
@@ -52,7 +55,9 @@ const MemoizedPreviewContainer = memo(function MemoizedPreviewContainer({
 
   useEffect(() => {
     if (previewRef.current) {
-      canvasStore.getState().setSandpackPreviewRef(previewRef.current);
+      canvasStore.setState({
+        sandpackPreviewRef: previewRef.current,
+      });
     }
   }, []);
 
@@ -81,7 +86,34 @@ const MemoizedPreviewContainer = memo(function MemoizedPreviewContainer({
             showOpenInCodeSandbox={false}
           />
         </SandpackLayout>
+        <FixErrorButton />
       </SandpackProvider>
     </div>
   );
 });
+
+function FixErrorButton() {
+  const { sandpack } = useSandpack();
+
+  if (!sandpack.error) return null;
+
+  return (
+    <Button
+      variant="destructive"
+      className="tw-absolute tw-bottom-4 tw-right-8 tw-z-10 tw-animate-in tw-fade-in-0"
+      onClick={() => {
+        if (!sandpack.error) return;
+
+        const $textarea = UiUtils.getActiveQueryBoxTextarea();
+
+        if (!$textarea.length) return;
+
+        $textarea.trigger("focus");
+
+        document.execCommand("insertText", false, sandpack.error.message);
+      }}
+    >
+      Fix Error
+    </Button>
+  );
+}

@@ -9,6 +9,8 @@ const INTERPRETED_LANGUAGES: Record<string, string> = {
   html: "xml",
   mermaid: "hsp",
   react: "javascript",
+  jsx: "javascript",
+  tsx: "typescript",
 };
 
 const CodeHighlighter = memo(function CodeHighlighter({

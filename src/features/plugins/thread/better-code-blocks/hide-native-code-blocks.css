@@ -3,6 +3,10 @@
   display: none;
 }
 
+div.w-full.md\:max-w-\[90vw\]:has(> pre code > span > span:not(:empty)) {
+  visibility: hidden;
+}
+
 [data-cplx-component="message-block-code-block"]:empty {
   display: none;
 }

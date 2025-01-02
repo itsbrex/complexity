@@ -1,3 +1,4 @@
+import throttle from "lodash/throttle";
 import { sendMessage } from "webext-bridge/content-script";
 
 import { CallbackQueue } from "@/features/plugins/_core/dom-observer/callback-queue";
@@ -201,38 +202,41 @@ function observerMessageBlockBottomBar({
   });
 }
 
-async function observeCodeBlocks(messageBlocks: ExtendedMessageBlock[]) {
-  const pluginsStates = PluginsStatesService.getCachedSync();
+const observeCodeBlocks = throttle(
+  async (messageBlocks: ExtendedMessageBlock[]) => {
+    const pluginsStates = PluginsStatesService.getCachedSync();
 
-  const shouldObserve =
-    pluginsStates.pluginsEnableStates?.["thread:betterCodeBlocks"];
+    const shouldObserve =
+      pluginsStates.pluginsEnableStates?.["thread:betterCodeBlocks"];
 
-  if (!shouldObserve) return;
+    if (!shouldObserve) return;
 
-  const codeBlocks = UiUtils.getCodeBlocks(messageBlocks);
+    const codeBlocks = UiUtils.getCodeBlocks(messageBlocks);
 
-  if (!codeBlocks.length) return;
+    if (!codeBlocks.length) return;
 
-  const extendedCodeBlocks: ExtendedCodeBlock[][] = await Promise.all(
-    codeBlocks.map(
-      async (messageBlock, messageBlockIndex) =>
-        await Promise.all(
-          messageBlock.map(async (codeBlock, codeBlockIndex) => ({
-            ...codeBlock,
-            isInFlight: UiUtils.isCodeBlockInFlight({
-              messageBlocks,
-              messageBlockIndex,
-              codeBlockIndex,
-            }),
-          })),
-        ),
-    ),
-  );
+    const extendedCodeBlocks: ExtendedCodeBlock[][] = await Promise.all(
+      codeBlocks.map(
+        async (messageBlock, messageBlockIndex) =>
+          await Promise.all(
+            messageBlock.map(async (codeBlock, codeBlockIndex) => ({
+              ...codeBlock,
+              isInFlight: UiUtils.isCodeBlockInFlight({
+                messageBlocks,
+                messageBlockIndex,
+                codeBlockIndex,
+              }),
+            })),
+          ),
+      ),
+    );
 
-  globalDomObserverStore.getState().setThreadComponents({
-    codeBlocks: extendedCodeBlocks,
-  });
-}
+    globalDomObserverStore.getState().setThreadComponents({
+      codeBlocks: extendedCodeBlocks,
+    });
+  },
+  500,
+);
 
 function observeThreadNavbar() {
   const $navbar = $(DOM_SELECTORS.THREAD.NAVBAR);

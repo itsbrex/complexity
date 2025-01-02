@@ -37,7 +37,7 @@ export const LOADER_IDS = [
   "plugin:thread:collapseEmptyThreadVisualCols",
   "plugin:thread:betterMessageToolbars:explicitModelName",
   "plugin:thread:betterMessageToolbars:wordsAndCharactersCount",
-
+  "plugin:thread:customThreadContainerWidth",
   "plugin:queryBox:initSharedStore",
   "plugin:queryBox:focusSelector:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:networkInterceptMiddleware",

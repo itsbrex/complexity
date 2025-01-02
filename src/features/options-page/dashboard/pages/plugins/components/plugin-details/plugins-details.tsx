@@ -8,6 +8,7 @@ import OnCloudflareTimeoutAutoReloadPluginDetails from "@/features/options-page/
 import BetterCodeBlocksPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/better-code-blocks/BetterCodeBlocks";
 import CanvasPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/Canvas";
 import CommandMenuPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/CommandMenu";
+import CustomThreadContainerWidthPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/CustomThreadContainerWidth";
 import FocusSelectorPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/FocusSelector";
 import PromptHistoryPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/PromptHistory";
 import ZenModePluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/ZenMode";
@@ -26,6 +27,9 @@ export const PLUGIN_DETAILS: PluginPluginDetails = {
   "thread:canvas": <CanvasPluginDetails />,
   "thread:collapseEmptyThreadVisualCols": (
     <CollapseEmptyThreadVisualColsPluginDetails />
+  ),
+  "thread:customThreadContainerWidth": (
+    <CustomThreadContainerWidthPluginDetails />
   ),
   imageGenModelSelector: <ImageGenModelSelectorPluginDetails />,
   onCloudflareTimeoutAutoReload: <OnCloudflareTimeoutAutoReloadPluginDetails />,

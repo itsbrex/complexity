@@ -83,6 +83,10 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "thread:collapseEmptyThreadVisualCols": {
       enabled: false,
     },
+    "thread:customThreadContainerWidth": {
+      enabled: false,
+      value: 768,
+    },
     imageGenModelSelector: {
       enabled: false,
     },

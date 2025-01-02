@@ -34,6 +34,8 @@ import "@/features/plugins/thread/drag-n-drop-file-to-upload-in-thread/drag-n-dr
 import "@/features/plugins/thread/collapse-empty-thread-visual-cols/collapse-empty-thread-visual-cols";
 import "@/features/plugins/thread/better-message-toolbars/explicit-model-name";
 import "@/features/plugins/thread/better-message-toolbars/words-and-characters-count";
+import "@/features/plugins/thread/custom-thread-container-width/custom-thread-container-width";
+
 // Home Plugins
 import "@/features/plugins/home/custom-slogan/custom-slogan";
 

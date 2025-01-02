@@ -204,6 +204,14 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     tags: ["ui", "desktopOnly"],
     dependentCorePlugins: ["spaRouter"],
   },
+  "thread:customThreadContainerWidth": {
+    id: "thread:customThreadContainerWidth",
+    routeSegment: "thread-custom-thread-container-width",
+    title: "Custom Thread Container Width",
+    description: "Customize the maximum width of the thread container",
+    tags: ["ui", "desktopOnly"],
+    dependentCorePlugins: ["spaRouter"],
+  },
   imageGenModelSelector: {
     id: "imageGenModelSelector",
     routeSegment: "image-gen-model-selector",

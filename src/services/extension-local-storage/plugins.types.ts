@@ -57,6 +57,9 @@ export const PluginsSchema = z.object({
   onCloudflareTimeoutAutoReload: PluginSettingsSchema.extend({
     behavior: z.enum(["reload", "warn-only"]),
   }),
+  "thread:customThreadContainerWidth": PluginSettingsSchema.extend({
+    value: z.number(),
+  }),
   blockAnalyticEvents: PluginSettingsSchema,
   "home:customSlogan": PluginSettingsSchema.extend({
     slogan: z.string(),

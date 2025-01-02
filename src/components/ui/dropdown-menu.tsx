@@ -87,7 +87,7 @@ const DropdownMenuSeparator = ({
   ...props
 }: Menu.SeparatorProps) => (
   <Menu.Separator
-    className={cn("tw--mx-1 tw-my-1 tw-h-px tw-bg-muted", className)}
+    className={cn("-tw-mx-1 tw-my-1 tw-h-px tw-bg-muted", className)}
     {...props}
   />
 );

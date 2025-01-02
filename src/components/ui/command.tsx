@@ -126,7 +126,7 @@ const CommandSeparator = ({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Separator>) => (
   <CommandPrimitive.Separator
-    className={cn("tw--mx-1 tw-h-px tw-bg-border", className)}
+    className={cn("-tw-mx-1 tw-h-px tw-bg-border", className)}
     {...props}
   />
 );

@@ -1,3 +1,5 @@
+import { CSSProperties, ReactNode } from "react";
+
 import CodeHighlighter from "@/components/CodeHighlighter";
 import {
   useMirroredCodeBlocksStore,
@@ -18,32 +20,42 @@ export default function CodeView() {
     messageBlockIndex: selectedCodeBlockLocation?.messageBlockIndex,
     codeBlockIndex: selectedCodeBlockLocation?.codeBlockIndex,
   });
+  const isInFlight = selectedCodeBlock?.isInFlight;
   const codeString = selectedCodeBlock?.codeString ?? "";
   const language = getInterpretedCanvasLanguage(
     selectedCodeBlock?.language ?? "",
   );
 
-  const lineNumberStyle = useMemo(() => {
+  const lineNumberStyle = useMemo((): CSSProperties => {
     return {
       color: "oklch(var(--muted-foreground))",
-      paddingLeft: "1rem",
     };
+  }, []);
+
+  const preTag = useMemo(() => {
+    const PreComponent = ({ children }: { children: ReactNode }) => (
+      <pre className="tw-px-4 tw-py-2">{children}</pre>
+    );
+    PreComponent.displayName = "PreTag";
+    return PreComponent;
   }, []);
 
   return (
     <div
       id="canvas-code-view"
       className={cn(
-        "tw-h-full tw-w-max tw-min-w-full [&>pre]:tw-m-0 [&>pre]:tw-size-full [&>pre]:tw-rounded-t-none [&_span]:tw-duration-300 [&_span]:tw-animate-in [&_span]:tw-fade-in",
+        "tw-h-full tw-w-max tw-min-w-full tw-text-xs [&>pre]:tw-m-0 [&>pre]:tw-size-full [&>pre]:tw-rounded-t-none",
+        {
+          "[&_span]:tw-duration-300 [&_span]:tw-animate-in [&_span]:tw-fade-in":
+            isInFlight,
+        },
       )}
     >
       <CodeHighlighter
         showLineNumbers
-        showInlineLineNumbers
-        wrapLines
-        wrapLongLines
         language={language}
         lineNumberStyle={lineNumberStyle}
+        PreTag={preTag}
       >
         {codeString}
       </CodeHighlighter>

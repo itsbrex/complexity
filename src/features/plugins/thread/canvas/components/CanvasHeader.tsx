@@ -73,7 +73,7 @@ export default function CanvasHeader() {
             <Tooltip content={t("plugin-canvas:canvas.tooltip.refresh")}>
               <Button
                 variant="ghost"
-                size="icon"
+                size="iconSm"
                 className="tw-animate-in tw-fade-in"
                 onClick={() => canvasStore.getState().refreshPreview()}
               >
@@ -88,7 +88,7 @@ export default function CanvasHeader() {
                 <Tooltip content={t("plugin-canvas:canvas.tooltip.openList")}>
                   <Button
                     variant="ghost"
-                    size="icon"
+                    size="iconSm"
                     onClick={() => canvasStore.getState().openCanvasList()}
                   >
                     <LuList className="tw-size-4" />
@@ -100,7 +100,7 @@ export default function CanvasHeader() {
         </div>
         <Button
           variant="ghost"
-          size="icon"
+          size="iconSm"
           onClick={() => canvasStore.getState().close()}
         >
           <LuX className="tw-size-4" />

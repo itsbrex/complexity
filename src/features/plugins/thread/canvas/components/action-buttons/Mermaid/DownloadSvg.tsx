@@ -9,7 +9,7 @@ export default function MermaidDownloadSvg() {
     <Tooltip content={t("plugin-canvas:canvas.tooltip.downloadSvg")}>
       <Button
         variant="ghost"
-        size="icon"
+        size="iconSm"
         onClick={() => {
           const selector = `#canvas-mermaid-container[data-processed="true"] svg`;
 

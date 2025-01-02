@@ -28,8 +28,8 @@ const CommandDialog = ({
   ...props
 }: CommandDialogProps) => {
   return (
-    <Dialog {...props}>
-      <DialogContent className="tw-overflow-hidden !tw-p-0 tw-shadow-lg">
+    <Dialog lazyMount unmountOnExit closeOnInteractOutside {...props}>
+      <DialogContent className="tw-overflow-hidden tw-p-0 tw-shadow-lg">
         <Command
           className="[&_[cmdk-group-heading]]:tw-px-2 [&_[cmdk-group-heading]]:tw-font-medium [&_[cmdk-group-heading]]:tw-text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:tw-pt-0 [&_[cmdk-group]]:tw-px-2 [&_[cmdk-input-wrapper]_svg]:tw-h-4 [&_[cmdk-input-wrapper]_svg]:tw-w-4 [&_[cmdk-input]]:tw-h-12 [&_[cmdk-item]]:tw-px-2 [&_[cmdk-item]]:tw-py-2 [&_[cmdk-item]_svg]:tw-h-4 [&_[cmdk-item]_svg]:tw-w-4"
           filter={(value, search, keywords) => {

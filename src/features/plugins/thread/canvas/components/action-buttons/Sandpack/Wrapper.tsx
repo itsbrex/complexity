@@ -26,7 +26,7 @@ export default function SandpackCanvasActionButtonsWrapper() {
       <Tooltip content={t("plugin-canvas:canvas.tooltip.openInCodeSandbox")}>
         <Button
           variant="ghost"
-          size="icon"
+          size="iconSm"
           disabled={isPending}
           onClick={() => {
             createCodeSandbox();

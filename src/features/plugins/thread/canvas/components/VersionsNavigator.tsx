@@ -50,7 +50,7 @@ export default function AutonomousCanvasVersionsNavigator() {
     >
       <Button
         variant="ghost"
-        size="icon"
+        size="iconSm"
         disabled={!hasPreviousVersion}
         onClick={() => {
           canvasStore.setState((draft) => {
@@ -81,7 +81,7 @@ export default function AutonomousCanvasVersionsNavigator() {
       </div>
       <Button
         variant="ghost"
-        size="icon"
+        size="iconSm"
         disabled={!hasNextVersion}
         onClick={() => {
           canvasStore.setState((draft) => {

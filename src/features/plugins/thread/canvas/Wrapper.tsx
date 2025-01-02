@@ -53,7 +53,7 @@ export default function CanvasWrapper() {
       <div
         data-active-panel={isCanvasListOpen ? "list" : "canvas"}
         className={cn(
-          "tw-fixed tw-right-8 tw-my-8 tw-h-[calc(100dvh-var(--navbar-height)-11rem)] tw-overflow-hidden tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-transition-all tw-animate-in tw-fade-in tw-slide-in-from-right xl:tw-sticky xl:tw-top-[calc(var(--navbar-height)+2rem)] xl:tw-my-0 xl:tw-h-[calc(100dvh-var(--navbar-height)-4rem)]",
+          "tw-fixed tw-right-8 tw-my-8 tw-h-[calc(100dvh-var(--navbar-height)-11rem)] tw-overflow-hidden tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-text-sm tw-transition-all tw-animate-in tw-fade-in tw-slide-in-from-right xl:tw-sticky xl:tw-top-[calc(var(--navbar-height)+2rem)] xl:tw-my-0 xl:tw-h-[calc(100dvh-var(--navbar-height)-4rem)]",
           {
             "tw-w-[80vw] xl:tw-w-[200%]": isCanvasOpen,
             "tw-w-[30vw] xl:tw-w-[20%] xl:tw-min-w-[400px]": isCanvasListOpen,

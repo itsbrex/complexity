@@ -102,7 +102,7 @@ export function SpaceItem({ space }: SpaceItemProps) {
           </div>
         </div>
         {isHighlighted && (space.description || space.instructions) && (
-          <div className="tw-flex tw-flex-col tw-gap-1 tw-rounded-md tw-border tw-border-border/50 tw-bg-background tw-p-2">
+          <div className="tw-flex tw-flex-col tw-gap-1 tw-rounded-md tw-border tw-border-border/50 tw-bg-background tw-p-2 tw-max-w-full">
             {space.description && (
               <div className="tw-flex tw-items-baseline tw-gap-1">
                 <div className="tw-text-xs tw-font-medium">

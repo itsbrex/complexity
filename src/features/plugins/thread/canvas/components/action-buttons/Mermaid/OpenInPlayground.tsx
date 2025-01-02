@@ -25,7 +25,7 @@ export default function MermaidOpenInPlayground() {
     <Tooltip content={t("plugin-canvas:canvas.tooltip.openInMermaid")}>
       <Button
         variant="ghost"
-        size="icon"
+        size="iconSm"
         onClick={async () => {
           if (!selectedCodeBlock.codeString) return;
 

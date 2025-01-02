@@ -1,18 +1,29 @@
+import { ReactNode } from "react";
+
 import CodeHighlighter from "@/components/CodeHighlighter";
 import { useMirroredCodeBlockContext } from "@/features/plugins/thread/better-code-blocks/MirroredCodeBlockContext";
 import { getInterpretedCanvasLanguage } from "@/features/plugins/thread/canvas/canvas.types";
 
 const HighlightedCodeWrapper = memo(() => {
-  const { maxHeight, isWrapped, codeString, language } =
+  const { maxHeight, isWrapped, codeString, language, isInFlight } =
     useMirroredCodeBlockContext()((state) => ({
       codeElement: state.codeElement,
       codeString: state.codeString,
       language: state.language,
       maxHeight: state.maxHeight,
       isWrapped: state.isWrapped,
+      isInFlight: state.isInFlight,
     }));
 
   const interpretedLanguage = getInterpretedCanvasLanguage(language ?? "text");
+
+  const preTag = useMemo(() => {
+    const PreComponent = ({ children }: { children: ReactNode }) => (
+      <pre className="tw-px-4 tw-py-2">{children}</pre>
+    );
+    PreComponent.displayName = "PreTag";
+    return PreComponent;
+  }, []);
 
   return (
     <div
@@ -23,13 +34,15 @@ const HighlightedCodeWrapper = memo(() => {
     >
       <div
         className={cn(
-          "[&>pre]:tw-m-0 [&>pre]:tw-rounded-t-none [&>pre]:!tw-p-2 [&>pre]:!tw-px-4 [&_span]:tw-duration-300 [&_span]:tw-animate-in [&_span]:tw-fade-in",
+          "[&>pre]:tw-m-0 [&>pre]:tw-rounded-t-none [&>pre]:!tw-p-2 [&>pre]:!tw-px-4",
           {
             "[&_code]:!tw-whitespace-pre-wrap": isWrapped,
+            "[&_span]:tw-duration-300 [&_span]:tw-animate-in [&_span]:tw-fade-in":
+              isInFlight,
           },
         )}
       >
-        <CodeHighlighter language={interpretedLanguage}>
+        <CodeHighlighter language={interpretedLanguage} PreTag={preTag}>
           {codeString}
         </CodeHighlighter>
       </div>

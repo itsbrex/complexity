@@ -66,9 +66,8 @@ export default function CommandMenuWrapper() {
 
   return (
     <CommandDialog
-      lazyMount
-      unmountOnExit
       open={open}
+      preventScroll={false}
       commandProps={{
         filter(value, search, keywords) {
           const extendValue = value + (keywords?.join("") ?? "");

@@ -42,7 +42,7 @@ export default function CanvasFooter() {
           asChild
           className="tw-group tw-animate-in tw-fade-in"
           variant="ghost"
-          size="icon"
+          size="iconSm"
         >
           <CopyButton
             content={codeString ?? ""}

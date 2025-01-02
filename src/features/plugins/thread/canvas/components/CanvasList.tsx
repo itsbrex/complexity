@@ -12,12 +12,12 @@ export default function CanvasList() {
   return (
     <div className="tw-flex tw-size-full tw-flex-col tw-gap-4">
       <div className="tw-flex tw-items-center tw-justify-between tw-border-b tw-border-border/50 tw-bg-background tw-p-2">
-        <div className="tw-p-4 tw-py-2 tw-text-xl tw-text-foreground">
+        <div className="tw-p-2 tw-text-muted-foreground">
           {t("plugin-canvas:canvas.list.title")}
         </div>
         <Button
           variant="ghost"
-          size="icon"
+          size="iconSm"
           onClick={() => {
             canvasStore.getState().closeCanvasList();
           }}

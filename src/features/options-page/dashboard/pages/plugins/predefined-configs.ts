@@ -40,7 +40,11 @@ export const ALL_PLUGINS: ExtensionLocalStorage["plugins"] = produce(
   DEFAULT_STORAGE.plugins,
   (draft) => {
     Object.keys(draft).forEach((key) => {
-      draft[key as keyof typeof draft].enabled = true;
+      const pluginIdKey = key as keyof typeof draft;
+
+      if (pluginIdKey === "queryBox:submitOnCtrlEnter") return;
+
+      draft[pluginIdKey].enabled = true;
     });
   },
 );

@@ -15,7 +15,7 @@ export default function ChangelogRenderer({
   return (
     <div
       className={cn(
-        "tw-prose tw-flex tw-flex-col dark:tw-prose-invert",
+        "tw-prose tw-flex tw-flex-col dark:tw-prose-invert tw-max-w-max",
         className,
       )}
       {...props}
@@ -25,6 +25,13 @@ export default function ChangelogRenderer({
         rehypePlugins={[rehypeRaw]}
         components={{
           "items-block": ChangelogItemsBlock,
+          img: ({ src, alt }) => (
+            <img
+              src={src}
+              alt={alt}
+              className="tw-rounded-md tw-border tw-border-border/50 tw-max-w-[1000px]"
+            />
+          ),
         }}
       >
         {changelog}

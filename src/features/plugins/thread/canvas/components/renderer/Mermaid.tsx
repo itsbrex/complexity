@@ -23,11 +23,13 @@ export default function MermaidRenderer() {
 
   const code = selectedCodeBlock?.codeString;
 
+  const [refreshKey, refreshContainer] = useReducer((state) => state + 1, 0);
+
   const {
     mutate,
     isPending,
-    isSuccess,
-    data: result,
+    isSuccess: mermaidRendererResponded,
+    data: isSuccess,
   } = useMutation({
     mutationFn: async () => {
       return await sendMessage(
@@ -41,27 +43,31 @@ export default function MermaidRenderer() {
   });
 
   useEffect(() => {
+    refreshContainer();
+
     setTimeout(() => {
       mutate();
     }, 300);
   }, [mutate, code]);
 
   return (
-    <div className="tw-relative tw-size-full">
-      {isSuccess && !result && (
-        <div className="tw-absolute tw-inset-1/2 tw-w-max -tw-translate-x-1/2 -tw-translate-y-1/2 tw-animate-in tw-fade-in">
-          Failed to render provided mermaid code. Try to reload the Canvas.
+    <div className="tw-relative tw-size-full" key={refreshKey}>
+      {mermaidRendererResponded && !isSuccess && (
+        <div className="tw-absolute tw-inset-1/2 tw-w-max -tw-translate-x-1/2 -tw-translate-y-1/2">
+          <span className="tw-animate-in tw-fade-in">
+            Failed to render provided mermaid code. Try to reload the Canvas.
+          </span>
         </div>
       )}
       <div
         id="canvas-mermaid-container"
-        className={cn("tw-size-full tw-transition-opacity", {
-          "tw-opacity-0": !isSuccess,
+        className={cn("tw-size-full tw-text-secondary tw-transition-opacity", {
+          "tw-opacity-0": !mermaidRendererResponded || !isSuccess,
         })}
       >
         {code}
       </div>
-      {(isPending || result == null) && (
+      {(isPending || isSuccess == null) && (
         <div className="tw-absolute tw-inset-1/2 -tw-translate-x-1/2 -tw-translate-y-1/2 tw-animate-in tw-fade-in">
           <LuLoaderCircle className="tw-size-10 tw-animate-spin tw-text-muted-foreground" />
         </div>

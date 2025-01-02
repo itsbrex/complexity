@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import { LightAsync as SyntaxHighlighter } from "react-syntax-highlighter";
+import SyntaxHighlighter from "react-syntax-highlighter";
 import lightStyle from "react-syntax-highlighter/dist/esm/styles/hljs/vs";
 import darkStyle from "react-syntax-highlighter/dist/esm/styles/hljs/vs2015";
 

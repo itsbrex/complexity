@@ -12,6 +12,8 @@ type CommandMenuStoreType = {
   setOpen: (value: boolean) => void;
   searchValue: string;
   setSearchValue: (value: string) => void;
+  selectedValue: string;
+  setSelectedValue: (value: string) => void;
   filter: SearchFilter | null;
   setFilter: (value: SearchFilter | null) => void;
   spacethreadTitle: string | null;
@@ -39,6 +41,8 @@ export const commandMenuStore = createWithEqualityFn<CommandMenuStoreType>()(
         setOpen: (value) => set({ open: value }),
         searchValue: "",
         setSearchValue: (value) => set({ searchValue: value }),
+        selectedValue: "",
+        setSelectedValue: (value) => set({ selectedValue: value }),
         filter: null,
         setFilter: (value) => set({ filter: value }),
         spacethreadFilterSlug: null,

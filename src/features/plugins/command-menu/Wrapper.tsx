@@ -36,6 +36,8 @@ export default function CommandMenuWrapper() {
     setOpen,
     searchValue,
     setSearchValue,
+    selectedValue,
+    setSelectedValue,
     filter,
     setFilter,
     setInputRef,
@@ -69,6 +71,8 @@ export default function CommandMenuWrapper() {
       open={open}
       preventScroll={false}
       commandProps={{
+        value: selectedValue,
+        onValueChange: setSelectedValue,
         filter(value, search, keywords) {
           const extendValue = value + (keywords?.join("") ?? "");
 

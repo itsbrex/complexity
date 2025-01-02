@@ -7,7 +7,7 @@ import type { SearchItem as SearchItemType } from "@/features/plugins/command-me
 type SearchItemProps = BaseCommandMenuItem & SearchItemType;
 
 export default function SearchItem(props: SearchItemProps) {
-  const { filter, setFilter } = useCommandMenuStore();
+  const { filter, setFilter, setSearchValue } = useCommandMenuStore();
 
   if (filter === props.code) return null;
 
@@ -17,7 +17,13 @@ export default function SearchItem(props: SearchItemProps) {
     <BaseMenuItem
       {...baseMenuItemInheritedProps}
       closeOnSelect={false}
-      onSelect={onSelect || (() => setFilter(props.code))}
+      onSelect={
+        onSelect ||
+        (() => {
+          setFilter(props.code);
+          setSearchValue("");
+        })
+      }
     />
   );
 }

@@ -46,10 +46,10 @@ export default function CanvasPluginDetails() {
                 <tr className="tw-bg-secondary tw-text-secondary-foreground">
                   <th className="tw-border tw-border-border tw-p-2"></th>
                   <th className="tw-border tw-border-border tw-p-2 tw-font-semibold">
-                    NOT use pre-prompt
+                    Without pre-prompt
                   </th>
                   <th className="tw-border tw-border-border tw-p-2 tw-font-semibold">
-                    Use pre-prompt
+                    With pre-prompt
                   </th>
                 </tr>
               </thead>
@@ -73,7 +73,7 @@ export default function CanvasPluginDetails() {
                     Manual activation
                   </td>
                   <td className="tw-border tw-border-border tw-p-2 tw-text-center">
-                    Automatically render by the AI
+                    Automatic rendering by the AI
                   </td>
                 </tr>
                 <tr>

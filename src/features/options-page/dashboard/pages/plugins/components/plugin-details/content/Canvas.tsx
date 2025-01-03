@@ -43,7 +43,7 @@ export default function CanvasPluginDetails() {
           <div className="tw-mt-6">
             <table className="tw-w-full tw-border-collapse tw-rounded-lg tw-border tw-border-border">
               <thead>
-                <tr className="tw-bg-muted/50">
+                <tr className="tw-bg-secondary tw-text-secondary-foreground">
                   <th className="tw-border tw-border-border tw-p-2"></th>
                   <th className="tw-border tw-border-border tw-p-2 tw-font-semibold">
                     NOT use pre-prompt
@@ -55,7 +55,7 @@ export default function CanvasPluginDetails() {
               </thead>
               <tbody>
                 <tr>
-                  <td className="tw-border tw-border-border tw-p-2 tw-font-medium">
+                  <td className="tw-border tw-border-border tw-bg-secondary tw-p-2 tw-text-secondary-foreground">
                     AI awareness
                   </td>
                   <td className="tw-border tw-border-border tw-p-2 tw-text-center">
@@ -66,7 +66,7 @@ export default function CanvasPluginDetails() {
                   </td>
                 </tr>
                 <tr>
-                  <td className="tw-border tw-border-border tw-p-2 tw-font-medium">
+                  <td className="tw-border tw-border-border tw-bg-secondary tw-p-2 tw-text-secondary-foreground">
                     Render condition
                   </td>
                   <td className="tw-border tw-border-border tw-p-2 tw-text-center">
@@ -77,54 +77,61 @@ export default function CanvasPluginDetails() {
                   </td>
                 </tr>
                 <tr>
-                  <td className="tw-border tw-border-border tw-p-2 tw-font-medium">
+                  <td className="tw-border tw-border-border tw-bg-secondary tw-p-2 tw-text-secondary-foreground">
                     Supported languages
                   </td>
                   <td className="tw-border tw-border-border tw-p-2">
                     <div className="tw-mx-auto tw-flex tw-w-max tw-flex-col tw-items-center tw-gap-1">
-                      <InlineCode className="tw-w-max">markdown</InlineCode>
-                      <InlineCode className="tw-w-max">mermaid</InlineCode>
-                      <InlineCode className="tw-w-max">plantuml</InlineCode>
-                      <InlineCode className="tw-w-max">html</InlineCode>(*)
+                      <InlineCode className="tw-w-max">✅ markdown</InlineCode>
+                      <InlineCode className="tw-w-max">✅ mermaid</InlineCode>
+                      <InlineCode className="tw-w-max">✅ plantuml</InlineCode>
+                      <InlineCode className="tw-w-max">✅ html</InlineCode>
+                      <InlineCode className="tw-w-max">❌ react</InlineCode>
                     </div>
                   </td>
                   <td className="tw-border tw-border-border tw-p-2">
                     <div className="tw-mx-auto tw-flex tw-w-max tw-flex-col tw-items-center tw-gap-1">
-                      <InlineCode className="tw-w-max">markdown</InlineCode>
-                      <InlineCode className="tw-w-max">mermaid</InlineCode>
-                      <InlineCode className="tw-w-max">plantuml</InlineCode>
-                      <InlineCode className="tw-w-max">html</InlineCode>
-                      <InlineCode className="tw-w-max">react</InlineCode>
+                      <InlineCode className="tw-w-max">✅ markdown</InlineCode>
+                      <InlineCode className="tw-w-max">✅ mermaid</InlineCode>
+                      <InlineCode className="tw-w-max">✅ plantuml</InlineCode>
+                      <InlineCode className="tw-w-max">✅ html</InlineCode>
+                      <InlineCode className="tw-w-max">✅ react</InlineCode>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td className="tw-border tw-border-border tw-p-2 tw-font-medium">
+                  <td className="tw-border tw-border-border tw-bg-secondary tw-p-2 tw-text-secondary-foreground">
                     Ease of use
                   </td>
                   <td className="tw-border tw-border-border tw-p-2 tw-text-center tw-text-muted-foreground">
                     No setup required
                   </td>
                   <td className="tw-border tw-border-border tw-p-2 tw-text-center">
-                    Require initial setup and prompting
+                    Requires pre-prompt
                   </td>
                 </tr>
                 <tr>
-                  <td className="tw-border tw-border-border tw-p-2 tw-font-medium">
+                  <td className="tw-border tw-border-border tw-bg-secondary tw-p-2 tw-text-secondary-foreground">
                     Action
                   </td>
                   <td className="tw-border tw-border-border tw-p-2 tw-text-center tw-text-muted-foreground">
                     No action required
                   </td>
                   <td className="tw-border tw-border-border tw-p-2 tw-text-center">
-                    <Button>Install Canvas pre-prompt as a Space</Button>
+                    <Button
+                      onClick={() => {
+                        window.open(
+                          "https://perplexity.ai/#/cplx/canvas/install-pre-prompt-as-space",
+                          "_blank",
+                        );
+                      }}
+                    >
+                      Install Canvas pre-prompt as a Space
+                    </Button>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <p className="tw-mt-2 tw-text-muted-foreground">
-              (*) Represents the exact header text of the code block
-            </p>
           </div>
         </div>
       )}

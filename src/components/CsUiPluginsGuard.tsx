@@ -39,6 +39,7 @@ type CsUiPluginsGuardProps = {
       settings: ExtensionLocalStorage;
     },
   ) => boolean;
+  onNotSatisfiedAllConditions?: () => void;
 };
 
 export default function CsUiPluginsGuard({
@@ -49,6 +50,7 @@ export default function CsUiPluginsGuard({
   requiresLoggedIn = false,
   allowedAccountTypes = ["free", "pro", "enterprise"],
   additionalCheck,
+  onNotSatisfiedAllConditions,
 }: CsUiPluginsGuardProps) {
   const { url } = useSpaRouter();
   const currentLocation = whereAmI(url);
@@ -70,10 +72,12 @@ export default function CsUiPluginsGuard({
     pplxUserSettings?.subscription_status !== "none";
 
   if (isOrgMember && !allowedAccountTypes.includes("enterprise")) {
+    onNotSatisfiedAllConditions?.();
     return null;
   }
 
   if (!allowedAccountTypes.includes("free") && !hasActivePplxSub) {
+    onNotSatisfiedAllConditions?.();
     return null;
   }
 
@@ -84,6 +88,7 @@ export default function CsUiPluginsGuard({
       )) ||
     (location && !location.some((loc) => loc === currentLocation))
   ) {
+    onNotSatisfiedAllConditions?.();
     return null;
   }
 
@@ -99,6 +104,7 @@ export default function CsUiPluginsGuard({
       settings: ExtensionLocalStorageService.getCachedSync(),
     })
   ) {
+    onNotSatisfiedAllConditions?.();
     return null;
   }
 

@@ -11,6 +11,7 @@ import {
   SpaceFilesApiResponse,
   SpaceFilesApiResponseSchema,
   SpacesApiResponseSchema,
+  SpaceSchema,
   SpaceThreadsApiResponse,
   SpaceThreadsApiResponseSchema,
   ThreadMessageApiResponse,
@@ -241,5 +242,31 @@ export class PplxApiService {
     return SpaceThreadsApiResponseSchema.parse(
       JSON.parse(await fetchResource(ENDPOINTS.FETCH_SPACE_THREADS(spaceSlug))),
     );
+  }
+
+  static async createSpace(
+    space: Pick<
+      Space,
+      "title" | "instructions" | "emoji" | "model_selection" | "description"
+    >,
+  ): Promise<Space> {
+    const resp =
+      await InternalWebSocketManager.getInstance().sendMessageWithAck({
+        data: [
+          "create_collection",
+          {
+            version: "2.15",
+            source: "default",
+            title: space.title,
+            description: space.description,
+            emoji: space.emoji,
+            instructions: space.instructions,
+            access: 1,
+            model_selection: space.model_selection,
+          },
+        ],
+      });
+
+    return SpaceSchema.parse(resp);
   }
 }

@@ -30,18 +30,23 @@ export default function HtmlRenderer() {
   });
 
   const code = selectedCodeBlock?.codeString;
+  const isInFlight = selectedCodeBlock?.isInFlight;
 
   if (!code) {
     return null;
   }
 
-  return <MemoizedPreviewContainer code={code} />;
+  return (
+    <MemoizedPreviewContainer code={code} isInFlight={isInFlight ?? false} />
+  );
 }
 
 const MemoizedPreviewContainer = memo(function MemoizedPreviewContainer({
   code,
+  isInFlight,
 }: {
   code: string;
+  isInFlight: boolean;
 }) {
   useInsertCss({
     id: "sandpack",
@@ -60,7 +65,10 @@ const MemoizedPreviewContainer = memo(function MemoizedPreviewContainer({
     <div id="sandpack-container" className="tw-relative tw-size-full">
       <SandpackProvider
         template="static"
-        files={{ "/index.html": code, "/assets/style.css": "something here" }}
+        files={{
+          "/index.html": isInFlight ? "" : code,
+          "/assets/style.css": "something here",
+        }}
       >
         <SandpackLayout>
           <SandpackPreview

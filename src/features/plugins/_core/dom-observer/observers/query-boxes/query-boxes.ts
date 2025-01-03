@@ -11,14 +11,14 @@ import { whereAmI } from "@/utils/utils";
 const DOM_OBSERVER_ID = {
   HOME: "query-boxes-home",
   COLLECTION: "query-boxes-collection",
-  THREAD: "query-boxes-thread",
+  FOLLOW_UP: "query-boxes-follow-up",
   MODAL: "query-boxes-modal",
 };
 
 const cleanup = () => {
   DomObserver.destroy(DOM_OBSERVER_ID.HOME);
   DomObserver.destroy(DOM_OBSERVER_ID.COLLECTION);
-  DomObserver.destroy(DOM_OBSERVER_ID.THREAD);
+  DomObserver.destroy(DOM_OBSERVER_ID.FOLLOW_UP);
   DomObserver.destroy(DOM_OBSERVER_ID.MODAL);
 };
 
@@ -89,13 +89,13 @@ async function setupQueryBoxesObserver(location: ReturnType<typeof whereAmI>) {
       spaceQueryBox: null,
     });
 
-    DomObserver.create(DOM_OBSERVER_ID.THREAD, {
+    DomObserver.create(DOM_OBSERVER_ID.FOLLOW_UP, {
       target: document.body,
       config: { childList: true, subtree: true },
       onMutation: () =>
         CallbackQueue.getInstance().enqueue(
           () => observeFollowUpQueryBox(),
-          DOM_OBSERVER_ID.THREAD,
+          DOM_OBSERVER_ID.FOLLOW_UP,
         ),
     });
   }
@@ -169,7 +169,7 @@ async function observeFollowUpQueryBox() {
     await sleep(200);
     CallbackQueue.getInstance().enqueue(
       observeFollowUpQueryBox,
-      `${DOM_OBSERVER_ID}-follow-up-query-box`,
+      DOM_OBSERVER_ID.FOLLOW_UP,
     );
     return;
   }

@@ -46,12 +46,18 @@ export default function CanvasWrapper() {
     inject: isCanvasOpen || isCanvasListOpen,
   });
 
+  useEffect(() => {
+    $(document.body).attr(
+      "data-cplx-canvas-active-panel",
+      isCanvasListOpen ? "list" : "canvas",
+    );
+  }, [isCanvasOpen, isCanvasListOpen]);
+
   if (!isCanvasOpen && !isCanvasListOpen) return null;
 
   return (
     <Portal container={threadWrapperElement}>
       <div
-        data-active-panel={isCanvasListOpen ? "list" : "canvas"}
         className={cn(
           "tw-fixed tw-right-8 tw-my-8 tw-h-[calc(100dvh-var(--navbar-height)-11rem)] tw-overflow-hidden tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-text-sm tw-transition-all tw-animate-in tw-fade-in tw-slide-in-from-right xl:tw-sticky xl:tw-top-[calc(var(--navbar-height)+2rem)] xl:tw-my-0 xl:tw-h-[calc(100dvh-var(--navbar-height)-4rem)]",
           {

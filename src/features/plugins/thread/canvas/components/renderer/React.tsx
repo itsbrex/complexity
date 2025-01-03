@@ -33,18 +33,23 @@ export default function ReactRenderer() {
   });
 
   const code = selectedCodeBlock?.codeString;
+  const isInFlight = selectedCodeBlock?.isInFlight;
 
   if (!code) {
     return null;
   }
 
-  return <MemoizedPreviewContainer code={code} />;
+  return (
+    <MemoizedPreviewContainer code={code} isInFlight={isInFlight ?? false} />
+  );
 }
 
 const MemoizedPreviewContainer = memo(function MemoizedPreviewContainer({
   code,
+  isInFlight,
 }: {
   code: string;
+  isInFlight: boolean;
 }) {
   useInsertCss({
     id: "sandpack",
@@ -71,7 +76,9 @@ const MemoizedPreviewContainer = memo(function MemoizedPreviewContainer({
           },
         }}
         files={{
-          "/App.js": code,
+          "/App.js": isInFlight
+            ? "export default function App() { return null; }"
+            : code,
         }}
         options={{
           externalResources: [
@@ -100,7 +107,7 @@ function FixErrorButton() {
   return (
     <Button
       variant="destructive"
-      className="tw-absolute tw-bottom-4 tw-right-8 tw-z-10 tw-animate-in tw-fade-in-0"
+      className="tw-absolute tw-bottom-4 tw-left-4 tw-z-10 tw-animate-in tw-fade-in-0"
       onClick={() => {
         if (!sandpack.error) return;
 

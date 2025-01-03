@@ -245,6 +245,10 @@ export class DomObserver {
     return this.handleOperation({ type: "resume", id });
   }
 
+  public static resumeAll(): void {
+    this.instances.forEach((_, id) => this.resume(id));
+  }
+
   public static enableLogging(): void {
     this.isLogging = true;
   }

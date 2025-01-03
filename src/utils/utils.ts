@@ -373,6 +373,8 @@ export function insertCss({
   css: string;
   id: string;
 }): () => void {
+  if (!id.startsWith("cplx-")) id = `cplx-${id}`;
+
   const styleSelector = `style#${id}`;
   const removeStyle = () => $(styleSelector).remove();
 

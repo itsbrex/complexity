@@ -55,9 +55,7 @@ export function usePanelPosition(): UsePanelPosition | null {
     return {
       position,
       isFloating:
-        isFloating ||
-        (isCanvasOpen && !!isCanvasEnabled) ||
-        (isCanvasListOpen && !!isCanvasEnabled),
+        isFloating || (!!isCanvasEnabled && (isCanvasOpen || isCanvasListOpen)),
     };
   }, [threadWrapper, isCanvasOpen, isCanvasEnabled, isCanvasListOpen]);
 

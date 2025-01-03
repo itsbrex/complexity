@@ -31,7 +31,7 @@ export const baseManifest: ExtendedManifestV3Export = {
   },
 
   host_permissions: APP_CONFIG["perplexity-ai"].globalMatches,
-  optional_host_permissions: ["https://*/*"],
+  optional_host_permissions: [],
 
   content_scripts: [
     {

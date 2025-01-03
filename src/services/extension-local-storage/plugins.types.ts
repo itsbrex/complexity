@@ -46,9 +46,7 @@ export const PluginsSchema = z.object({
   "thread:betterCodeBlocks": PluginSettingsSchema.merge(
     BetterCodeBlockGlobalOptionsSchema,
   ),
-  "thread:canvas": PluginSettingsSchema.extend({
-    mode: z.enum(["auto", "manual"]),
-  }),
+  "thread:canvas": PluginSettingsSchema,
   "thread:exportThread": PluginSettingsSchema,
   "thread:betterMessageCopyButtons": PluginSettingsSchema,
   "thread:dragAndDropFileToUploadInThread": PluginSettingsSchema,

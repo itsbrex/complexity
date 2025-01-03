@@ -16,7 +16,6 @@ import {
 } from "@/features/plugins/thread/canvas/canvas.types";
 import { CANVAS_PLACEHOLDERS } from "@/features/plugins/thread/canvas/canvases";
 import { CsLoaderRegistry } from "@/services/cs-loader-registry";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
 import { scrollToElement, whereAmI } from "@/utils/utils";
@@ -102,7 +101,7 @@ export const canvasStore = createWithEqualityFn<CanvasStoreType>()(
 
 CsLoaderRegistry.register({
   id: "plugin:thread:canvas:resetOpenStateOnRouteChange",
-  dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
+  dependencies: ["cache:pluginsStates"],
   loader: () => {
     const isCanvasEnabled =
       PluginsStatesService.getCachedSync().pluginsEnableStates?.[
@@ -114,12 +113,7 @@ CsLoaderRegistry.register({
       if (whereAmI(url) !== "thread") canvasStore.getState().close();
     });
 
-    const settings =
-      ExtensionLocalStorageService.getCachedSync().plugins["thread:canvas"];
-
-    if (settings?.mode === "auto") {
-      initializeAutonomousMode();
-    }
+    initializeAutonomousMode();
   },
 });
 

@@ -69,7 +69,6 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     },
     "thread:canvas": {
       enabled: false,
-      mode: "manual",
     },
     "thread:exportThread": {
       enabled: false,

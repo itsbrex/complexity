@@ -14,11 +14,9 @@ const MirroredCodeBlock = memo(function MirroredCodeBlock() {
   if (isMobile) return <BaseCodeBlockWrapper />;
 
   const settings = ExtensionLocalStorageService.getCachedSync();
-  const isAutonomousCanvasEnabled =
-    settings.plugins["thread:canvas"].enabled &&
-    settings.plugins["thread:canvas"].mode === "auto";
   const isAutonomousCanvasLanguage =
-    isAutonomousCanvasEnabled && isAutonomousCanvasLanguageString(language);
+    settings.plugins["thread:canvas"].enabled &&
+    isAutonomousCanvasLanguageString(language);
 
   if (isAutonomousCanvasLanguage) return <CanvasPlaceholderWrapper />;
 

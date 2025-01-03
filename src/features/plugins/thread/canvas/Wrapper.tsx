@@ -13,7 +13,6 @@ import { useCanvasStore } from "@/features/plugins/thread/canvas/store";
 import useHandleAutonomousCanvasState from "@/features/plugins/thread/canvas/useHandleAutonomousCanvasState";
 import { useHandleCanvasState } from "@/features/plugins/thread/canvas/useHandleCanvasState";
 import { useInsertCss } from "@/hooks/useInsertCss";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
 export default function CanvasWrapper() {
   const threadWrapperElement = useGlobalDomObserverStore(
@@ -23,9 +22,6 @@ export default function CanvasWrapper() {
   useHandleCanvasState();
   useHandleAutonomousCanvasState();
 
-  const isAutonomousMode =
-    ExtensionLocalStorageService.getCachedSync().plugins["thread:canvas"]
-      .mode === "auto";
   const selectedCodeBlockLocation = useCanvasStore(
     (state) => state.selectedCodeBlockLocation,
   );
@@ -66,7 +62,7 @@ export default function CanvasWrapper() {
           },
         )}
       >
-        {isAutonomousMode && isCanvasListOpen && <CanvasList />}
+        {isCanvasListOpen && <CanvasList />}
         {isCanvasOpen && selectedCodeBlock != null && (
           <div className="tw-flex tw-size-full tw-flex-col">
             <CanvasHeader />

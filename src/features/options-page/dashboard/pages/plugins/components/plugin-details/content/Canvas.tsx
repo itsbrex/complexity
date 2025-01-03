@@ -1,45 +1,13 @@
-import { createListCollection } from "@ark-ui/react";
-import { ReactNode } from "react";
-
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import { ExtensionLocalStorage } from "@/services/extension-local-storage/extension-local-storage.types";
+import { InlineCode } from "@/components/ui/typography";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
-
-const DESCRIPTION: Record<
-  ExtensionLocalStorage["plugins"]["thread:canvas"]["mode"],
-  ReactNode
-> = {
-  manual: "Manually click on the render button to preview the code",
-  auto: (
-    <span>
-      Autonomous mode, requires this{" "}
-      <a
-        href="https://cdn.cplx.app/prompts/canvas-instruction-claude.md"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="tw-text-primary tw-underline"
-      >
-        pre-prompt
-      </a>{" "}
-      to work. You can either paste the prompt directly alongside your query or
-      use Space&apos;s instruction.
-    </span>
-  ),
-};
 
 export default function CanvasPluginDetails() {
   const { settings, mutation } = useExtensionLocalStorage();
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-4">
+    <div className="tw-flex tw-max-w-screen-lg tw-flex-col tw-gap-4 tw-overflow-auto">
       <Switch
         textLabel="Enable"
         checked={settings?.plugins["thread:canvas"].enabled}
@@ -52,48 +20,109 @@ export default function CanvasPluginDetails() {
 
       {settings?.plugins["thread:canvas"].enabled && (
         <div className="tw-flex tw-flex-col tw-gap-2">
-          <Select
-            className="tw-w-max"
-            value={[settings?.plugins["thread:canvas"].mode ?? "manual"]}
-            collection={createListCollection<{
-              label: string;
-              value: ExtensionLocalStorage["plugins"]["thread:canvas"]["mode"];
-            }>({
-              items: [
-                {
-                  label: "Manual",
-                  value: "manual",
-                },
-                {
-                  label: "Autonomous",
-                  value: "auto",
-                },
-              ],
-              itemToString(item) {
-                return item.label;
-              },
-              itemToValue(item) {
-                return item.value;
-              },
-            })}
-            onValueChange={({ value }) =>
-              mutation.mutate((draft) => {
-                draft.plugins["thread:canvas"].mode =
-                  value[0] as ExtensionLocalStorage["plugins"]["thread:canvas"]["mode"];
-              })
-            }
-          >
-            <Label className="tw-text-muted-foreground">Mode</Label>
-            <SelectTrigger>
-              <SelectValue className="tw-py-2" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem item="manual">Manual</SelectItem>
-              <SelectItem item="auto">Autonomous</SelectItem>
-            </SelectContent>
-          </Select>
-          <div>
-            {DESCRIPTION[settings?.plugins["thread:canvas"].mode ?? "manual"]}
+          <p className="tw-text-muted-foreground">
+            For the AI to acknowledge the ability to use Canvas, you need to use
+            this{" "}
+            <a
+              href="https://cdn.cplx.app/prompts/canvas-instruction-claude.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="tw-text-primary hover:tw-underline"
+            >
+              pre-prompt
+            </a>
+            , either use Space&apos;s Instruction or directly place it before
+            the query. Feel free to modify it as you see fit, however make sure
+            to follow the specified syntaxes.
+          </p>
+          <p className="tw-text-muted-foreground">
+            <span className="tw-text-foreground tw-underline">Otherwise</span>,
+            Complexity will show a &quot;Render in Canvas&quot; button on the
+            header of applicable code blocks.
+          </p>
+          <div className="tw-mt-6">
+            <table className="tw-w-full tw-border-collapse tw-rounded-lg tw-border tw-border-border">
+              <thead>
+                <tr className="tw-bg-muted/50">
+                  <th className="tw-border tw-border-border tw-p-2"></th>
+                  <th className="tw-border tw-border-border tw-p-2 tw-font-semibold">
+                    NOT use pre-prompt
+                  </th>
+                  <th className="tw-border tw-border-border tw-p-2 tw-font-semibold">
+                    Use pre-prompt
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="tw-border tw-border-border tw-p-2 tw-font-medium">
+                    AI awareness
+                  </td>
+                  <td className="tw-border tw-border-border tw-p-2 tw-text-center">
+                    ❌
+                  </td>
+                  <td className="tw-border tw-border-border tw-p-2 tw-text-center">
+                    ✅
+                  </td>
+                </tr>
+                <tr>
+                  <td className="tw-border tw-border-border tw-p-2 tw-font-medium">
+                    Render condition
+                  </td>
+                  <td className="tw-border tw-border-border tw-p-2 tw-text-center">
+                    Manual activation
+                  </td>
+                  <td className="tw-border tw-border-border tw-p-2 tw-text-center">
+                    Automatically render by the AI
+                  </td>
+                </tr>
+                <tr>
+                  <td className="tw-border tw-border-border tw-p-2 tw-font-medium">
+                    Supported languages
+                  </td>
+                  <td className="tw-border tw-border-border tw-p-2">
+                    <div className="tw-mx-auto tw-flex tw-w-max tw-flex-col tw-items-center tw-gap-1">
+                      <InlineCode className="tw-w-max">markdown</InlineCode>
+                      <InlineCode className="tw-w-max">mermaid</InlineCode>
+                      <InlineCode className="tw-w-max">html</InlineCode>(*)
+                    </div>
+                  </td>
+                  <td className="tw-border tw-border-border tw-p-2">
+                    <div className="tw-mx-auto tw-flex tw-w-max tw-flex-col tw-items-center tw-gap-1">
+                      <InlineCode className="tw-w-max">markdown</InlineCode>
+                      <InlineCode className="tw-w-max">mermaid</InlineCode>
+                      <InlineCode className="tw-w-max">html</InlineCode>
+                      <InlineCode className="tw-w-max">react</InlineCode>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="tw-border tw-border-border tw-p-2 tw-font-medium">
+                    Ease of use
+                  </td>
+                  <td className="tw-border tw-border-border tw-p-2 tw-text-center tw-text-muted-foreground">
+                    No setup required
+                  </td>
+                  <td className="tw-border tw-border-border tw-p-2 tw-text-center">
+                    Require initial setup and prompting
+                  </td>
+                </tr>
+                <tr>
+                  <td className="tw-border tw-border-border tw-p-2 tw-font-medium">
+                    Action
+                  </td>
+                  <td className="tw-border tw-border-border tw-p-2 tw-text-center tw-text-muted-foreground">
+                    No action required
+                  </td>
+                  <td className="tw-border tw-border-border tw-p-2 tw-text-center">
+                    <Button>Install Canvas pre-prompt as a Space</Button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p className="tw-mt-2 tw-text-muted-foreground">
+              (*) Represents the exact header text of the code block
+            </p>
           </div>
         </div>
       )}

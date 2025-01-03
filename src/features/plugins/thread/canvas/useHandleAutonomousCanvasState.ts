@@ -12,13 +12,8 @@ import {
   canvasStore,
   useCanvasStore,
 } from "@/features/plugins/thread/canvas/store";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
 export default function useHandleAutonoumousCanvasState() {
-  const enabled =
-    ExtensionLocalStorageService.getCachedSync().plugins["thread:canvas"]
-      .mode === "auto";
-
   const selectedCodeBlockLocation = useCanvasStore(
     (state) => state.selectedCodeBlockLocation,
   );
@@ -36,8 +31,6 @@ export default function useHandleAutonoumousCanvasState() {
 
   useEffect(
     function handleInFlightCodeBlocks() {
-      if (!enabled) return;
-
       messageBlockLoop: for (
         let messageIndex = mirroredCodeBlocks.length - 1;
         messageIndex >= 0;
@@ -106,7 +99,6 @@ export default function useHandleAutonoumousCanvasState() {
       selectedCodeBlockLocation?.codeBlockIndex,
       mirroredCodeBlocks,
       isCanvasOpen,
-      enabled,
     ],
   );
 
@@ -114,8 +106,6 @@ export default function useHandleAutonoumousCanvasState() {
 
   useEffect(
     function handleAutoPreview() {
-      if (!enabled) return;
-
       const shouldTriggerAutoPreview =
         isCanvasOpen &&
         !hasAutoPreviewTriggered &&
@@ -148,7 +138,6 @@ export default function useHandleAutonoumousCanvasState() {
       hasAutoPreviewTriggered,
       selectedCodeBlockLocation,
       mirroredCodeBlocks,
-      enabled,
     ],
   );
 }

@@ -67,6 +67,7 @@ export const PluginsSchema = z.object({
     persistent: z.boolean(),
     lastState: z.boolean(),
     alwaysHideRelatedQuestions: z.boolean(),
+    alwaysHideVisualCols: z.boolean(),
   }),
 });
 

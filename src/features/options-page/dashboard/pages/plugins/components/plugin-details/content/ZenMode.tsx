@@ -37,6 +37,15 @@ export default function ZenModePluginDetails() {
               });
             }}
           />
+          <Switch
+            textLabel="Always hide visual columns"
+            checked={settings?.plugins["zenMode"].alwaysHideVisualCols ?? false}
+            onCheckedChange={({ checked }) => {
+              mutation.mutate((draft) => {
+                draft.plugins["zenMode"].alwaysHideVisualCols = checked;
+              });
+            }}
+          />
         </>
       )}
     </div>

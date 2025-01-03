@@ -1,0 +1,11 @@
+body[data-cplx-zen-mode-always-hide-visual-cols="true"],
+body[data-cplx-zen-mode-always-hide-visual-cols="true"][data-cplx-canvas-active-panel="list"]
+  [data-cplx-component="thread-wrapper"] {
+  .col-span-8[data-cplx-component="message-block-text-col"] {
+    grid-column: span 12 / span 12 !important;
+  }
+
+  .col-span-4[data-cplx-component="message-block-visual-col"] {
+    display: none !important;
+  }
+}

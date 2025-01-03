@@ -1,4 +1,5 @@
 import type { MermaidConfig } from "mermaid";
+import pako from "pako";
 
 import { setupMermaidRendererListeners } from "@/features/plugins/_core/mermaid-renderer/listeners.main";
 import UiUtils from "@/utils/UiUtils";
@@ -42,9 +43,7 @@ export class MermaidRenderer {
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@${packageJson.devDependencies["mermaid"]}/dist/mermaid.esm.min.mjs';
         import 'https://cdn.jsdelivr.net/npm/svg-pan-zoom@${packageJson.devDependencies["svg-pan-zoom"]}/dist/svg-pan-zoom.min.js';
         import * as jsBase64 from 'https://cdn.jsdelivr.net/npm/js-base64@${packageJson.devDependencies["js-base64"]}/+esm';
-        import pako from 'https://cdn.jsdelivr.net/npm/pako@2.1.0/+esm';
 
-        window.pako = pako;
         window.jsBase64 = jsBase64;
         window.mermaid = mermaid;
 
@@ -125,7 +124,7 @@ export class MermaidRenderer {
       });
 
       const data = new TextEncoder().encode(json);
-      const compressed = window.pako!.deflate(data, { level: 9 });
+      const compressed = pako.deflate(data, { level: 9 });
       const encoded = window.jsBase64!.fromUint8Array(compressed, true);
 
       return `https://mermaidchart.com/play#pako:${encoded}`;

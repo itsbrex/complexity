@@ -1,7 +1,7 @@
 {
   "name": "complexity",
   "displayName": "Complexity - Perplexity AI Supercharged",
-  "version": "1.2.1.0",
+  "version": "1.2.2.0",
   "author": "pnd280",
   "description": "⚡ Supercharge your Perplexity AI",
   "type": "module",
@@ -54,6 +54,7 @@
     "jquery": "^3.7.1",
     "lodash": "^4.17.21",
     "lz-string": "^1.5.0",
+    "pako": "^2.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",

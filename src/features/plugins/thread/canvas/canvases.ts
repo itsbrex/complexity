@@ -9,10 +9,12 @@ import {
   CanvasState,
 } from "@/features/plugins/thread/canvas/canvas.types";
 import MermaidCanvasActionButtonsWrapper from "@/features/plugins/thread/canvas/components/action-buttons/Mermaid/Wrapper";
+import PlantUmlCanvasActionButtonsWrapper from "@/features/plugins/thread/canvas/components/action-buttons/PlantUml/Wrapper";
 import SandpackCanvasActionButtonsWrapper from "@/features/plugins/thread/canvas/components/action-buttons/Sandpack/Wrapper";
 import HtmlRenderer from "@/features/plugins/thread/canvas/components/renderer/Html";
 import MarkdownRenderer from "@/features/plugins/thread/canvas/components/renderer/Markdown";
 import MermaidRenderer from "@/features/plugins/thread/canvas/components/renderer/Mermaid";
+import PlantUmlRenderer from "@/features/plugins/thread/canvas/components/renderer/PlantUmlRenderer";
 import ReactRenderer from "@/features/plugins/thread/canvas/components/renderer/React";
 import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 
@@ -21,12 +23,14 @@ export const CANVAS_LANGUAGES = {
   mermaid: "mermaid",
   html: "html",
   react: "react",
+  plantuml: "plantuml",
 } as const satisfies Partial<Record<string, string>>;
 
 export const CANVAS_INTERPRETED_LANGUAGES: Record<string, CanvasLanguage> = {
   svg: "html",
   md: "markdown",
   mmd: "mermaid",
+  plantuml: "plantuml",
 };
 
 export const CANVAS_LANGUAGE_PREVIEW_TOGGLE_TEXT: Record<
@@ -37,6 +41,7 @@ export const CANVAS_LANGUAGE_PREVIEW_TOGGLE_TEXT: Record<
   mermaid: t("plugin-canvas:canvas.toggle.preview"),
   html: t("plugin-canvas:canvas.toggle.preview"),
   react: t("plugin-canvas:canvas.toggle.preview"),
+  plantuml: t("plugin-canvas:canvas.toggle.preview"),
 };
 
 export const CANVAS_LANGUAGE_RAW_TOGGLE_TEXT: Record<CanvasLanguage, string> = {
@@ -44,6 +49,7 @@ export const CANVAS_LANGUAGE_RAW_TOGGLE_TEXT: Record<CanvasLanguage, string> = {
   mermaid: t("plugin-canvas:canvas.toggle.code"),
   html: t("plugin-canvas:canvas.toggle.code"),
   react: t("plugin-canvas:canvas.toggle.code"),
+  plantuml: t("plugin-canvas:canvas.toggle.code"),
 };
 
 export const CANVAS_INITIAL_STATE: Record<CanvasLanguage, CanvasState> = {
@@ -51,6 +57,7 @@ export const CANVAS_INITIAL_STATE: Record<CanvasLanguage, CanvasState> = {
   mermaid: "code",
   html: "code",
   react: "code",
+  plantuml: "code",
 };
 
 type CanvasPlaceholders = Record<
@@ -89,6 +96,11 @@ CsLoaderRegistry.register({
         defaultTitle: "React",
         description: t("plugin-canvas:canvas.placeholder.react.description"),
       },
+      plantuml: {
+        icon: LiaProjectDiagramSolid,
+        defaultTitle: "PlantUML",
+        description: t("plugin-canvas:canvas.placeholder.mermaid.description"),
+      },
     };
   },
 });
@@ -98,6 +110,7 @@ export const CANVAS_RENDERER: Record<CanvasLanguage, ComponentType> = {
   markdown: MarkdownRenderer,
   html: HtmlRenderer,
   react: ReactRenderer,
+  plantuml: PlantUmlRenderer,
 };
 
 export const CANVAS_LANGUAGE_ACTION_BUTTONS: Record<
@@ -108,4 +121,5 @@ export const CANVAS_LANGUAGE_ACTION_BUTTONS: Record<
   html: null,
   react: null,
   markdown: null,
+  plantuml: PlantUmlCanvasActionButtonsWrapper,
 };

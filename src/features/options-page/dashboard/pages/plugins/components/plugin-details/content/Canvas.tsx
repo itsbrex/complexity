@@ -84,6 +84,7 @@ export default function CanvasPluginDetails() {
                     <div className="tw-mx-auto tw-flex tw-w-max tw-flex-col tw-items-center tw-gap-1">
                       <InlineCode className="tw-w-max">markdown</InlineCode>
                       <InlineCode className="tw-w-max">mermaid</InlineCode>
+                      <InlineCode className="tw-w-max">plantuml</InlineCode>
                       <InlineCode className="tw-w-max">html</InlineCode>(*)
                     </div>
                   </td>
@@ -91,6 +92,7 @@ export default function CanvasPluginDetails() {
                     <div className="tw-mx-auto tw-flex tw-w-max tw-flex-col tw-items-center tw-gap-1">
                       <InlineCode className="tw-w-max">markdown</InlineCode>
                       <InlineCode className="tw-w-max">mermaid</InlineCode>
+                      <InlineCode className="tw-w-max">plantuml</InlineCode>
                       <InlineCode className="tw-w-max">html</InlineCode>
                       <InlineCode className="tw-w-max">react</InlineCode>
                     </div>

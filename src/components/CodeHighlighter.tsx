@@ -20,10 +20,20 @@ const CodeHighlighter = memo(function CodeHighlighter({
 }: ComponentProps<typeof SyntaxHighlighter>) {
   const colorScheme = useColorSchemeStore((state) => state.colorScheme);
 
+  const interpretedLanguage = language
+    ? (INTERPRETED_LANGUAGES[language] ?? language)
+    : "text";
+
+  const targetLanguage = SyntaxHighlighter.supportedLanguages.includes(
+    interpretedLanguage,
+  )
+    ? interpretedLanguage
+    : "text";
+
   return (
     <SyntaxHighlighter
       style={colorScheme === "dark" ? darkStyle : lightStyle}
-      language={INTERPRETED_LANGUAGES[language ?? ""] ?? language}
+      language={targetLanguage}
       {...props}
     >
       {children}

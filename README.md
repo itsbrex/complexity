@@ -46,9 +46,9 @@ A powerful browser extension that enhances your PerplexityAI experience with adv
 - Build and use the extension locally
 
 ```bash
-pnpm zip
+pnpm build
 # or
-pnpm zip:firefox
+pnpm build:firefox
 ```
 
 - Local development (only works on Chromium-based browsers)
@@ -67,8 +67,9 @@ pnpm dev
 ## Made possible with
 
 - Vite (+CRXJS)
-- React 18
+- React
 - JQuery
+- CodeSandbox's Sandpack
 - _No coffee_
 
 ## 💖 Keep the project alive

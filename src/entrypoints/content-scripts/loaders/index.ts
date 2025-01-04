@@ -1,5 +1,3 @@
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
-
 import "@/utils/dayjs";
 import "@/utils/i18next";
 
@@ -50,5 +48,3 @@ import "@/data/color-scheme-store";
 // Loaders
 import "@/entrypoints/content-scripts/loaders/core-plugins-loader";
 import "@/entrypoints/content-scripts/loaders/cs-ui-plugins-loader/setup-root";
-
-CsLoaderRegistry.executeAll();

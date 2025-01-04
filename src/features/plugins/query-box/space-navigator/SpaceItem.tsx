@@ -126,7 +126,9 @@ export default function SpaceItem({ space }: { space: Space }) {
                       "plugin-space-navigator:spaceNavigator.spaceItem.details.description",
                     )}
                   </div>
-                  <div className="tw-line-clamp-1">{space.description}</div>
+                  <div className="tw-line-clamp-1 tw-whitespace-pre-wrap">
+                    {space.description}
+                  </div>
                 </div>
               )}
               {space.instructions && (
@@ -136,7 +138,7 @@ export default function SpaceItem({ space }: { space: Space }) {
                       "plugin-space-navigator:spaceNavigator.spaceItem.details.instructions",
                     )}
                   </div>
-                  <div className="tw-max-h-[200px] tw-overflow-auto tw-rounded-md tw-bg-secondary tw-p-2">
+                  <div className="tw-max-h-[200px] tw-overflow-auto tw-whitespace-pre-wrap tw-rounded-md tw-bg-secondary tw-p-2">
                     {space.instructions}
                   </div>
                 </div>

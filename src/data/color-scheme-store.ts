@@ -4,6 +4,7 @@ import { createWithEqualityFn } from "zustand/traditional";
 
 import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
 import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { setCookie, whereAmI } from "@/utils/utils";
 
 export type ColorScheme = "light" | "dark" | "system";
 
@@ -18,7 +19,25 @@ export const colorSchemeStore = createWithEqualityFn<ColorSchemeStoreType>()(
       (set): ColorSchemeStoreType => ({
         colorScheme: "system",
         setColorScheme: (scheme) => {
-          $("html").attr("data-color-scheme", scheme);
+          const systemPreference = window.matchMedia(
+            "(prefers-color-scheme: dark)",
+          ).matches
+            ? "dark"
+            : "light";
+
+          if (scheme === "system") {
+            $("html").attr("data-color-scheme", systemPreference);
+          } else {
+            $("html").attr("data-color-scheme", scheme);
+          }
+
+          if (whereAmI() !== "unknown") {
+            setCookie(
+              "colorScheme",
+              scheme === "system" ? systemPreference : scheme,
+              365,
+            );
+          }
         },
       }),
     ),

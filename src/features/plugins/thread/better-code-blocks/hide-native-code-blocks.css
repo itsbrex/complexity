@@ -3,7 +3,7 @@
   display: none;
 }
 
-div.w-full.md\:max-w-\[90vw\]:has(> pre code > span > span:not(:empty)) {
+div.w-full.md\:max-w-\[90vw\] {
   visibility: hidden;
 }
 

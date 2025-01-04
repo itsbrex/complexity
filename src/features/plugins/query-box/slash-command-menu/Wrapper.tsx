@@ -28,6 +28,7 @@ export default function SlashCommandMenuWrapper({
   const { store } = useScopedQueryBoxContext();
 
   const isMainQueryBox = store.type === "main";
+  const isSpaceQueryBox = store.type === "space";
   const isActive = UiUtils.getActiveQueryBox()[0] === anchor;
 
   const { isOpen } = useSlashCommandMenuStore();
@@ -35,7 +36,11 @@ export default function SlashCommandMenuWrapper({
   const commandInputRef = useRef<HTMLInputElement>(null);
 
   useQueryBoxObserver({ queryBoxAnchor: anchor, commandRef, commandInputRef });
-  const popover = useSlashCommandPopover({ anchor, isMainQueryBox });
+  const popover = useSlashCommandPopover({
+    anchor,
+    isMainQueryBox,
+    isSpaceQueryBox,
+  });
 
   if (!anchor || !document.contains(anchor) || !isActive) return null;
 
@@ -59,16 +64,18 @@ const DONT_FILTER_ITEM_FILTER_MODES: FilterMode[] = ["promptHistory"];
 const useSlashCommandPopover = ({
   anchor,
   isMainQueryBox,
+  isSpaceQueryBox,
 }: {
   anchor: HTMLElement | null;
   isMainQueryBox: boolean;
+  isSpaceQueryBox: boolean;
 }) => {
   const { isOpen } = useSlashCommandMenuStore();
 
   return usePopover({
     open: isOpen,
     positioning: {
-      placement: "top-start",
+      placement: isSpaceQueryBox ? "bottom-start" : "top-start",
       gutter: isMainQueryBox ? 1 : 5,
       getAnchorRect: () => anchor?.getBoundingClientRect() ?? null,
     },

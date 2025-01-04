@@ -79,7 +79,7 @@ export default function PromptHistorySlashMenuItemsWrapper() {
   return (
     <CommandGroup
       heading={
-        <div className="tw-flex tw-items-center tw-gap-1 tw-text-foreground">
+        <div className="tw-flex tw-items-center tw-gap-1 tw-text-muted-foreground">
           <LuHistory />
           <span>auto-saved prompts</span>
           <ClearAllButton />

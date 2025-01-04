@@ -110,7 +110,11 @@ CsLoaderRegistry.register({
     if (!isCanvasEnabled) return;
 
     spaRouteChangeCompleteSubscribe((url) => {
-      if (whereAmI(url) !== "thread") canvasStore.getState().close();
+      if (whereAmI(url) !== "thread")
+        canvasStore.setState({
+          isCanvasListOpen: false,
+          selectedCodeBlockLocation: null,
+        });
     });
 
     initializeAutonomousMode();

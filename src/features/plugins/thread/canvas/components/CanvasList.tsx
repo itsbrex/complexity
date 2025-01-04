@@ -11,8 +11,8 @@ export default function CanvasList() {
 
   return (
     <div className="tw-flex tw-size-full tw-flex-col tw-gap-4">
-      <div className="tw-flex tw-items-center tw-justify-between tw-border-b tw-border-border/50 tw-bg-background tw-p-2">
-        <div className="tw-p-2 tw-text-muted-foreground">
+      <div className="tw-flex tw-items-center tw-justify-between tw-border-b tw-border-border/50 tw-bg-background tw-p-2 tw-px-4">
+        <div className="tw-text-muted-foreground">
           {t("plugin-canvas:canvas.list.title")}
         </div>
         <Button
@@ -48,11 +48,7 @@ export default function CanvasList() {
                   )}
                 </div>
                 <div className="tw-flex tw-w-full tw-flex-col tw-border-l tw-bg-background tw-px-4 tw-py-2">
-                  <div
-                    className={cn(
-                      "tw-truncate tw-text-lg tw-text-foreground tw-transition-all group-hover:tw-text-primary",
-                    )}
-                  >
+                  <div className="tw-line-clamp-1 tw-text-base tw-text-foreground tw-transition-all group-hover:tw-text-primary">
                     {title}
                   </div>
 
@@ -63,12 +59,12 @@ export default function CanvasList() {
                       </span>
                     ) : (
                       <>
-                        <span className="tw-text-sm tw-text-muted-foreground">
+                        <span className="tw-hidden tw-text-sm tw-text-muted-foreground lg:tw-block">
                           {description}
                         </span>
                         {count > 1 && (
-                          <span className="tw-text-sm tw-text-muted-foreground">
-                            •{" "}
+                          <span className="tw-flex tw-items-center tw-gap-1 tw-text-sm tw-text-muted-foreground">
+                            <span className="tw-hidden lg:tw-block">•</span>
                             {t("plugin-canvas:canvas.list.versions", { count })}
                           </span>
                         )}

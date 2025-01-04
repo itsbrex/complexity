@@ -14,7 +14,7 @@ import SandpackCanvasActionButtonsWrapper from "@/features/plugins/thread/canvas
 import HtmlRenderer from "@/features/plugins/thread/canvas/components/renderer/Html";
 import MarkdownRenderer from "@/features/plugins/thread/canvas/components/renderer/Markdown";
 import MermaidRenderer from "@/features/plugins/thread/canvas/components/renderer/Mermaid";
-import PlantUmlRenderer from "@/features/plugins/thread/canvas/components/renderer/PlantUmlRenderer";
+import PlantUmlRenderer from "@/features/plugins/thread/canvas/components/renderer/PlantUml";
 import ReactRenderer from "@/features/plugins/thread/canvas/components/renderer/React";
 import { CsLoaderRegistry } from "@/services/cs-loader-registry";
 

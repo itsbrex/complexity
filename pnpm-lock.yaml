@@ -122,6 +122,9 @@ importers:
       socket.io-client:
         specifier: ^4.8.1
         version: 4.8.1
+      svg-pan-zoom:
+        specifier: ^3.6.2
+        version: 3.6.2
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
@@ -270,9 +273,6 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.6.9
         version: 0.6.9(prettier@3.4.2)
-      svg-pan-zoom:
-        specifier: ^3.6.2
-        version: 3.6.2
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17

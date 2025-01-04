@@ -71,7 +71,7 @@ const CanvasPlaceholderWrapper = memo(function CanvasPlaceholderWrapper() {
       <div className="tw-flex tw-max-w-[300px] tw-flex-col tw-border-l tw-bg-background tw-px-4 tw-py-2">
         <div
           className={cn(
-            "tw-truncate tw-text-lg tw-text-foreground tw-transition-all group-hover:tw-text-primary",
+            "tw-line-clamp-1 tw-text-base tw-text-foreground tw-transition-all group-hover:tw-text-primary",
             {
               "tw-text-primary": isSelected,
             },

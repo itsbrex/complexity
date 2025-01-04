@@ -4,7 +4,10 @@ import { MermaidRenderer } from "@/features/plugins/_core/mermaid-renderer/index
 
 export type MermaidRendererEvents = {
   "mermaidRenderer:isInitialized": () => boolean;
-  "mermaidRenderer:render": (params: { selector: string }) => boolean;
+  "mermaidRenderer:render": (params: { selector: string }) => {
+    success: boolean;
+    error?: string;
+  };
   "mermaidRenderer:getPlaygroundUrl": (params: { code: string }) => string;
 };
 

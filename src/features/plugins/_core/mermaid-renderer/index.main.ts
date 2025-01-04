@@ -1,5 +1,6 @@
 import type { MermaidConfig } from "mermaid";
 import pako from "pako";
+import svgPanZoom from "svg-pan-zoom";
 
 import { setupMermaidRendererListeners } from "@/features/plugins/_core/mermaid-renderer/listeners.main";
 import UiUtils from "@/utils/UiUtils";
@@ -25,29 +26,15 @@ export class MermaidRenderer {
   }
 
   private async importMermaid(): Promise<void> {
-    if (window.mermaid && window.svgPanZoom) return;
+    if (window.mermaid) return;
 
     if (!this.importPromise) {
-      const isDarkTheme = UiUtils.isDarkTheme();
-
-      const config: MermaidConfig = {
-        startOnLoad: false,
-        theme: isDarkTheme ? "dark" : "base",
-        gitGraph: {
-          useMaxWidth: true,
-        },
-        fontFamily: "var(--font-fk-grotesk)",
-      };
-
       const scriptContent = `
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@${packageJson.devDependencies["mermaid"]}/dist/mermaid.esm.min.mjs';
-        import 'https://cdn.jsdelivr.net/npm/svg-pan-zoom@${packageJson.devDependencies["svg-pan-zoom"]}/dist/svg-pan-zoom.min.js';
         import * as jsBase64 from 'https://cdn.jsdelivr.net/npm/js-base64@${packageJson.devDependencies["js-base64"]}/+esm';
 
         window.jsBase64 = jsBase64;
         window.mermaid = mermaid;
-
-        window.mermaid.initialize(${JSON.stringify(config)});
       `;
 
       this.importPromise = injectMainWorldScriptBlock({
@@ -63,23 +50,45 @@ export class MermaidRenderer {
   }
 
   static isInitialized() {
-    return !!window.mermaid && !!window.svgPanZoom;
+    return !!window.mermaid;
   }
 
-  async handleRenderRequest(selector: string) {
+  async handleRenderRequest(
+    selector: string,
+  ): Promise<{ success: boolean; error?: string }> {
     const $target = $(selector);
 
     if ($target.length === 0) {
       console.warn("No elements found for rendering Mermaid canvas");
-      return false;
+      return {
+        success: false,
+        error: "No elements found for rendering Mermaid canvas",
+      };
     }
 
     const isRendered = $target.find("svg").length > 0;
 
-    if (isRendered) return true;
+    if (isRendered) {
+      return {
+        success: true,
+      };
+    }
 
     try {
       await this.importMermaid();
+
+      const isDarkTheme = UiUtils.isDarkTheme();
+
+      const config: MermaidConfig = {
+        startOnLoad: false,
+        theme: isDarkTheme ? "dark" : "base",
+        gitGraph: {
+          useMaxWidth: true,
+        },
+        fontFamily: "var(--font-fk-grotesk)",
+      };
+
+      window.mermaid!.initialize(config);
 
       await window.mermaid!.run({
         nodes: [$target[0]],
@@ -93,7 +102,7 @@ export class MermaidRenderer {
         height: "100%",
       });
 
-      const svgPanZoomInstance = window.svgPanZoom!($svg[0], {
+      const svgPanZoomInstance = svgPanZoom($svg[0], {
         center: true,
         fit: true,
         contain: true,
@@ -108,10 +117,14 @@ export class MermaidRenderer {
         svgPanZoomInstance.resetPan();
       });
 
-      return true;
+      return {
+        success: true,
+      };
     } catch (error) {
-      console.error("[MermaidRenderer] Error rendering:", error);
-      return false;
+      return {
+        success: false,
+        error: (error as any).str,
+      };
     }
   }
 

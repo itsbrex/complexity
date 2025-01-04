@@ -42,7 +42,15 @@ function encodePlantUML(plantUmlText: string) {
   return result;
 }
 
-export function generatePlantUMLUrl(plantUmlText: string) {
+export function generatePlantUMLUrl(
+  plantUmlText: string,
+  darkMode: boolean = false,
+) {
   const encoded = encodePlantUML(plantUmlText);
-  return `https://www.plantuml.com/plantuml/svg/${encoded}`;
+  return `https://www.plantuml.com/plantuml/${darkMode ? "d" : ""}svg/${encoded}`;
+}
+
+export function generateTextPlantUMLUrl(plantUmlText: string) {
+  const encoded = encodePlantUML(plantUmlText);
+  return `https://www.plantuml.com/plantuml/txt/${encoded}`;
 }

@@ -1,6 +1,5 @@
 import * as jsBase64 from "js-base64";
 import type { Mermaid } from "mermaid";
-import type * as svgPanZoom from "svg-pan-zoom";
 
 declare global {
   interface Window {
@@ -18,7 +17,6 @@ declare global {
     };
 
     mermaid?: Mermaid;
-    svgPanZoom?: typeof svgPanZoom;
     jsBase64?: typeof jsBase64;
   }
 }

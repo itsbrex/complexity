@@ -11,6 +11,11 @@ import {
   getMirroredCodeBlockByLocation,
   useMirroredCodeBlocksStore,
 } from "@/features/plugins/thread/better-code-blocks/store";
+import {
+  formatCanvasTitle,
+  getCanvasTitle,
+  isAutonomousCanvasLanguageString,
+} from "@/features/plugins/thread/canvas/canvas.types";
 import styles from "@/features/plugins/thread/canvas/components/renderer/sandpack.css?inline";
 import {
   canvasStore,
@@ -100,6 +105,24 @@ const MemoizedPreviewContainer = memo(function MemoizedPreviewContainer({
 });
 
 function FixErrorButton() {
+  const selectedCodeBlockLocation = useCanvasStore(
+    (state) => state.selectedCodeBlockLocation,
+  );
+  const mirroredCodeBlocks = useMirroredCodeBlocksStore(
+    (state) => state.blocks,
+  );
+  const selectedCodeBlock = getMirroredCodeBlockByLocation({
+    mirroredCodeBlocks,
+    messageBlockIndex: selectedCodeBlockLocation?.messageBlockIndex,
+    codeBlockIndex: selectedCodeBlockLocation?.codeBlockIndex,
+  });
+
+  const isAutonomousCanvas = isAutonomousCanvasLanguageString(
+    selectedCodeBlock?.language,
+  );
+
+  const title = formatCanvasTitle(getCanvasTitle(selectedCodeBlock?.language));
+
   const { sandpack } = useSandpack();
 
   if (!sandpack.error) return null;
@@ -115,9 +138,11 @@ function FixErrorButton() {
 
         if (!$textarea.length) return;
 
+        const errorText = `${isAutonomousCanvas && title ? `An error occurred while rendering "${title}": ` : ""}\n\n${sandpack.error.message}`;
+
         $textarea.trigger("focus");
 
-        document.execCommand("insertText", false, sandpack.error.message);
+        document.execCommand("insertText", false, errorText);
       }}
     >
       Fix Error

@@ -102,8 +102,6 @@ export default function useHandleAutonoumousCanvasState() {
     ],
   );
 
-  const autoPreviewTimeoutHandleRef = useRef<NodeJS.Timeout | null>(null);
-
   useEffect(
     function handleAutoPreview() {
       const shouldTriggerAutoPreview =
@@ -123,14 +121,9 @@ export default function useHandleAutonoumousCanvasState() {
         draft.hasAutoPreviewTriggered = true;
       });
 
-      if (autoPreviewTimeoutHandleRef.current)
-        clearTimeout(autoPreviewTimeoutHandleRef.current);
-
-      autoPreviewTimeoutHandleRef.current = setTimeout(() => {
-        canvasStore.setState((draft) => {
-          draft.state = "preview";
-        });
-      }, 500);
+      canvasStore.setState((draft) => {
+        draft.state = "preview";
+      });
     },
     [
       selectedCodeBlock,

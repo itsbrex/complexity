@@ -5,6 +5,7 @@ export const CplxVersionsApiResponseSchema = z.object({
   latestFirefox: z.string(),
   changelogEntries: z.array(z.string()),
   featureFlagsEntries: z.array(z.string()),
+  canvasInstructionLastUpdated: z.number().optional(),
 });
 
 export type CplxVersionsApiResponse = z.infer<

@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 
@@ -49,6 +50,20 @@ const IMPORT_MAP: Record<SupportedLangs, () => Promise<unknown>> = {
 
 dayjs.extend(utc);
 dayjs.extend(relativeTime);
+dayjs.extend(localizedFormat);
+
+export function unixTimestampToDate({
+  unixTimestamp,
+  includeTime = true,
+}: {
+  unixTimestamp: number;
+  includeTime?: boolean;
+}) {
+  return dayjs
+    .unix(Math.floor(unixTimestamp / 1000))
+    .local()
+    .format(includeTime ? "lll" : "ll");
+}
 
 export function formatHowLongAgo(date: string) {
   return dayjs.utc(date).local().fromNow();

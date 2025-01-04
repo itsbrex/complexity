@@ -51,9 +51,9 @@ export const localLanguageModels = [
     code: "turbo",
     provider: "Perplexity",
   },
-];
+] as const;
 
-export let languageModels: LanguageModel[] = localLanguageModels;
+export let languageModels: LanguageModel[] = [...localLanguageModels];
 export let groupedLanguageModelsByProvider: GroupedLanguageModelsByProvider =
   getGroupedLanguageModelsByProvider();
 
@@ -89,7 +89,7 @@ CsLoaderRegistry.register({
     )();
 
     if (error || !data) {
-      languageModels = localLanguageModels;
+      languageModels = [...localLanguageModels];
     } else {
       languageModels = data;
       groupedLanguageModelsByProvider = getGroupedLanguageModelsByProvider();

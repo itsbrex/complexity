@@ -34,6 +34,7 @@ export class CplxApiService {
       latest: parsedData[latest],
       changelogEntries: parsedData.changelogEntries,
       featureFlagsEntries: parsedData.featureFlagsEntries,
+      canvasInstructionLastUpdated: parsedData.canvasInstructionLastUpdated,
     };
   }
 

@@ -17,15 +17,17 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { toast } from "@/components/ui/use-toast";
+import { cplxApiQueries } from "@/services/cplx-api/query-keys";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { PplxApiService } from "@/services/pplx-api/pplx-api";
-import { fetchResource } from "@/utils/utils";
+import { unixTimestampToDate } from "@/utils/dayjs";
+import { fetchResource, setCookie } from "@/utils/utils";
 
 function CanvasPrePromptInstallationDialog() {
   const navigate = useNavigate();
 
   const {
-    data: canvasInstructionClaudeMd,
+    data: canvasInstruction,
     isError,
     isFetching,
   } = useQuery({
@@ -46,6 +48,12 @@ function CanvasPrePromptInstallationDialog() {
         description: "The Canvas Pre-Prompt has been installed as a Space.",
       });
 
+      setCookie(
+        `pplx.source-selection-v3-space-${data.uuid}`,
+        JSON.stringify([]),
+        365,
+      );
+
       sendMessage(
         "spa-router:push",
         {
@@ -63,6 +71,8 @@ function CanvasPrePromptInstallationDialog() {
       navigate("/");
     },
   });
+
+  const { data: versions } = useQuery(cplxApiQueries.versions);
 
   return (
     <Dialog
@@ -85,36 +95,46 @@ function CanvasPrePromptInstallationDialog() {
           <div className="tw-text-sm tw-text-muted-foreground">
             For reference, here is the prompt:
           </div>
-          {canvasInstructionClaudeMd && (
-            <div className="tw-max-h-[500px] tw-overflow-y-auto tw-whitespace-pre-line tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4 tw-text-sm tw-text-secondary-foreground">
-              <CopyButton
-                className="tw-float-right"
-                content={canvasInstructionClaudeMd}
-              />
-              {canvasInstructionClaudeMd}
-            </div>
-          )}
-          {isFetching && !canvasInstructionClaudeMd && (
-            <div className="tw-flex tw-flex-col tw-gap-2">
-              <p className="tw-text-sm tw-text-muted-foreground">
-                Fetching the Canvas Pre-Prompt, please wait...
-              </p>
-            </div>
-          )}
-          {isError && (
-            <div className="tw-flex tw-flex-col tw-gap-2">
-              <p className="tw-text-sm tw-text-muted-foreground">
-                Failed to fetch the Canvas Pre-Prompt.
-              </p>
-            </div>
-          )}
+          <div className="tw-h-[500px] tw-max-h-[500px] tw-overflow-y-auto tw-whitespace-pre-line tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4 tw-text-sm tw-text-secondary-foreground">
+            {isFetching && !canvasInstruction && (
+              <div className="tw-flex tw-flex-col tw-gap-2">
+                <p className="tw-text-sm tw-text-muted-foreground">
+                  Fetching the Canvas Pre-Prompt, please wait...
+                </p>
+              </div>
+            )}
+            {isError && (
+              <div className="tw-flex tw-flex-col tw-gap-2">
+                <p className="tw-text-sm tw-text-muted-foreground">
+                  Failed to fetch the Canvas Pre-Prompt.
+                </p>
+              </div>
+            )}
+            {canvasInstruction && (
+              <>
+                <CopyButton
+                  className="tw-float-right"
+                  content={canvasInstruction}
+                />
+                {canvasInstruction}
+              </>
+            )}
+          </div>
         </div>
+        {versions?.canvasInstructionLastUpdated != null && (
+          <div className="tw-text-sm tw-text-muted-foreground">
+            Last updated:{" "}
+            {unixTimestampToDate({
+              unixTimestamp: versions.canvasInstructionLastUpdated,
+            })}
+          </div>
+        )}
         <DialogFooter>
-          <DialogClose asChild>
+          <DialogClose asChild tabIndex={-1}>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
           <AsyncButton
-            disabled={isFetching || !canvasInstructionClaudeMd}
+            disabled={isFetching || !canvasInstruction}
             loadingText={
               <div className="tw-flex tw-items-center tw-gap-2">
                 <LuLoaderCircle className="tw-animate-spin" />
@@ -122,7 +142,7 @@ function CanvasPrePromptInstallationDialog() {
               </div>
             }
             onClick={async () => {
-              if (!canvasInstructionClaudeMd) {
+              if (!canvasInstruction) {
                 return;
               }
 
@@ -130,8 +150,8 @@ function CanvasPrePromptInstallationDialog() {
                 title: "CPLX Canvas",
                 description: "",
                 emoji: "1f5bc-fe0f",
-                instructions: canvasInstructionClaudeMd,
-                model_selection: null,
+                instructions: canvasInstruction,
+                model_selection: "claude2",
               });
             }}
           >

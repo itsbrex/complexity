@@ -3,7 +3,7 @@
   display: none;
 }
 
-div.w-full.md\:max-w-\[90vw\] {
+div.w-full.md\:max-w-\[90vw\]:not(.overflow-x-auto) {
   visibility: hidden;
 }
 

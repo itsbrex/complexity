@@ -105,14 +105,12 @@ export const SEARCH_ITEMS: SearchItem[] = [
     code: SEARCH_FILTERS.threads.code,
     label: t("plugin-command-menu:commandMenu.filters.threads.label"),
     keywords: [t("plugin-command-menu:commandMenu.keywords.threads")],
-    shortcut: ["Ctrl", "Alt", "T"],
   },
   {
     icon: PplxSpace,
     code: SEARCH_FILTERS.spaces.code,
     label: t("plugin-command-menu:commandMenu.filters.spaces.label"),
     keywords: [t("plugin-command-menu:commandMenu.keywords.spaces")],
-    shortcut: ["Ctrl", "Alt", "S"],
   },
 ];
 

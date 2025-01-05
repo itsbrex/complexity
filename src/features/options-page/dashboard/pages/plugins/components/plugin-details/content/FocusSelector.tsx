@@ -1,5 +1,6 @@
 import { createListCollection } from "@ark-ui/react";
 
+import { Image } from "@/components/ui/image";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -133,6 +134,13 @@ export default function FocusSelectorPluginDetails() {
           )}
         </div>
       )}
+      <div className="tw-mx-auto tw-w-full tw-max-w-[700px]">
+        <Image
+          src="https://i.imgur.com/qI4hFOA.png"
+          alt="focus-selector"
+          className="tw-w-full"
+        />
+      </div>
     </div>
   );
 }

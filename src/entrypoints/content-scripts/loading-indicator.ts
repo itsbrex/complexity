@@ -1,7 +1,7 @@
-import csUiRootCss from "@/assets/cs.css?inline";
+import { csUiRootCss } from "@/entrypoints/content-scripts";
 import { getCookie } from "@/utils/utils";
 
-export function showInitializingIndicator() {
+export async function showInitializingIndicator() {
   const rawColorScheme = getCookie("colorScheme");
   const colorScheme =
     rawColorScheme === "light" || rawColorScheme === "dark"

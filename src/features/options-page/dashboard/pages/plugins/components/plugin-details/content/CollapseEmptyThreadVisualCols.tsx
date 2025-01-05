@@ -1,3 +1,4 @@
+import { Image } from "@/components/ui/image";
 import { Switch } from "@/components/ui/switch";
 import { P } from "@/components/ui/typography";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
@@ -27,10 +28,14 @@ export default function CollapseEmptyThreadVisualColsPluginDetails() {
           )
         }
       />
-      <img
-        src="https://i.imgur.com/DqXvaZp.png"
-        alt="collapse-empty-thread-visual-cols"
-      />
+
+      <div className="tw-mx-auto tw-w-full">
+        <Image
+          src="https://i.imgur.com/DqXvaZp.png"
+          alt="collapse-empty-thread-visual-cols"
+          className="tw-w-full"
+        />
+      </div>
     </div>
   );
 }

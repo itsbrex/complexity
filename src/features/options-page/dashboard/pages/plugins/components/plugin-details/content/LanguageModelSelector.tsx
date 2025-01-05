@@ -1,3 +1,4 @@
+import { Image } from "@/components/ui/image";
 import { Switch } from "@/components/ui/switch";
 import { P } from "@/components/ui/typography";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
@@ -57,11 +58,13 @@ export default function LanguageModelSelectorPluginDetails() {
           </div>
         </div>
       )}
-      <img
-        src="https://i.imgur.com/IBClpp3.png"
-        alt="language-model-selector"
-        className="tw-mx-auto tw-w-full tw-max-w-[700px]"
-      />
+      <div className="tw-mx-auto tw-w-full tw-max-w-[700px]">
+        <Image
+          src="https://i.imgur.com/IBClpp3.png"
+          alt="language-model-selector"
+          className="tw-w-full"
+        />
+      </div>
     </div>
   );
 }

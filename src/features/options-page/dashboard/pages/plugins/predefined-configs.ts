@@ -1,6 +1,7 @@
 import { produce } from "immer";
 
 import { ExtensionLocalStorage } from "@/services/extension-local-storage/extension-local-storage.types";
+import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { DEFAULT_STORAGE } from "@/services/extension-local-storage/storage-defaults";
 
 export const ESSENTIALS_ONLY: ExtensionLocalStorage["plugins"] = produce(
@@ -42,7 +43,15 @@ export const ALL_PLUGINS: ExtensionLocalStorage["plugins"] = produce(
     Object.keys(draft).forEach((key) => {
       const pluginIdKey = key as keyof typeof draft;
 
-      if (pluginIdKey === "queryBox:submitOnCtrlEnter") return;
+      if (
+        (
+          [
+            "queryBox:submitOnCtrlEnter",
+            "thread:customThreadContainerWidth",
+          ] as PluginId[]
+        ).includes(pluginIdKey)
+      )
+        return;
 
       draft[pluginIdKey].enabled = true;
     });

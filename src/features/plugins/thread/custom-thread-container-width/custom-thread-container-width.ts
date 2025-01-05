@@ -14,7 +14,7 @@ CsLoaderRegistry.register({
         "thread:customThreadContainerWidth"
       ];
 
-    if (value < 768) return;
+    if (value < 1100) return;
 
     $(document.body).css("--thread-width", `${value}px`);
   },

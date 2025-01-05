@@ -7,11 +7,8 @@ import SlashCommandMenuTriggerButton from "@/features/plugins/query-box/prompt-h
 import SlashCommandMenuWrapper from "@/features/plugins/query-box/slash-command-menu/Wrapper";
 import SpaceNavigator from "@/features/plugins/query-box/space-navigator/SpaceNavigator";
 import { findToolbarPortalContainer } from "@/features/plugins/query-box/utils";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
 export default function SpaceQueryBoxWrapper() {
-  const settings = ExtensionLocalStorageService.getCachedSync();
-
   const spaceQueryBox = useGlobalDomObserverStore(
     (state) => state.queryBoxes.spaceQueryBox,
   );
@@ -38,10 +35,11 @@ export default function SpaceQueryBoxWrapper() {
           <CsUiPluginsGuard
             allowedAccountTypes={["pro", "enterprise"]}
             dependentPluginIds={["queryBox:languageModelSelector"]}
+            additionalCheck={({ settings }) =>
+              settings?.plugins["queryBox:languageModelSelector"].main
+            }
           >
-            {settings?.plugins["queryBox:languageModelSelector"].main && (
-              <LanguageModelSelector />
-            )}
+            <LanguageModelSelector />
           </CsUiPluginsGuard>
         </div>
         <CsUiPluginsGuard

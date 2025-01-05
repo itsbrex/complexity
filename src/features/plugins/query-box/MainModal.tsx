@@ -7,11 +7,8 @@ import LanguageModelSelector from "@/features/plugins/query-box/language-model-s
 import SlashCommandMenuTriggerButton from "@/features/plugins/query-box/prompt-history/TriggerButton";
 import SlashCommandMenuWrapper from "@/features/plugins/query-box/slash-command-menu/Wrapper";
 import { findToolbarPortalContainer } from "@/features/plugins/query-box/utils";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
 export default function MainModalQueryBoxWrapper() {
-  const settings = ExtensionLocalStorageService.getCachedSync();
-
   const mainModalQueryBox = useGlobalDomObserverStore(
     (state) => state.queryBoxes.mainModalQueryBox,
   );
@@ -38,10 +35,11 @@ export default function MainModalQueryBoxWrapper() {
           <CsUiPluginsGuard
             allowedAccountTypes={["pro", "enterprise"]}
             dependentPluginIds={["queryBox:languageModelSelector"]}
+            additionalCheck={({ settings }) =>
+              settings?.plugins["queryBox:languageModelSelector"].main
+            }
           >
-            {settings?.plugins["queryBox:languageModelSelector"].main && (
-              <LanguageModelSelector />
-            )}
+            <LanguageModelSelector />
           </CsUiPluginsGuard>
         </div>
         <CsUiPluginsGuard

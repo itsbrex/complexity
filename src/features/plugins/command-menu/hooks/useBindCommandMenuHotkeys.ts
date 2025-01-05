@@ -22,7 +22,7 @@ export default function useBindCommandMenuHotkeys() {
     [],
   );
 
-  const { open, setOpen, filter, setFilter } = state;
+  const { open, setOpen, filter } = state;
 
   const activationHotkey = settings.plugins.commandMenu.hotkey ?? [];
 
@@ -75,46 +75,6 @@ export default function useBindCommandMenuHotkeys() {
     },
     {
       enabled: open,
-      preventDefault: true,
-      enableOnContentEditable: true,
-      enableOnFormTags: true,
-    },
-  );
-
-  useHotkeys(
-    keysToString([
-      getPlatform() === "mac" ? Key.Meta : Key.Control,
-      Key.Alt,
-      "t",
-    ]),
-    () => {
-      if (!open) {
-        setOpen(true);
-        if (filter === "threads") return;
-      }
-      setFilter(filter === "threads" ? null : "threads");
-    },
-    {
-      preventDefault: true,
-      enableOnContentEditable: true,
-      enableOnFormTags: true,
-    },
-  );
-
-  useHotkeys(
-    keysToString([
-      getPlatform() === "mac" ? Key.Meta : Key.Control,
-      Key.Alt,
-      "s",
-    ]),
-    () => {
-      if (!open) {
-        setOpen(true);
-        if (filter === "spaces") return;
-      }
-      setFilter(filter === "spaces" ? null : "spaces");
-    },
-    {
       preventDefault: true,
       enableOnContentEditable: true,
       enableOnFormTags: true,

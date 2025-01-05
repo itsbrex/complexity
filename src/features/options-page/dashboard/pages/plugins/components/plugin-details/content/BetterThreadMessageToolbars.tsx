@@ -1,3 +1,4 @@
+import { Image } from "@/components/ui/image";
 import { Switch } from "@/components/ui/switch";
 import { Plugins } from "@/services/extension-local-storage/plugins.types";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
@@ -15,7 +16,7 @@ export default function BetterThreadMessageToolbarsPluginDetails() {
   );
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-4">
+    <div className="tw-flex tw-flex-col tw-gap-4 tw-overflow-y-auto">
       <div className="tw-flex tw-flex-col tw-gap-2">
         Useful tweaks to make the toolbar more compact and easier to use.
       </div>
@@ -126,6 +127,13 @@ export default function BetterThreadMessageToolbarsPluginDetails() {
           )}
         </div>
       )}
+      <div className="tw-mx-auto tw-w-full tw-max-w-[700px]">
+        <Image
+          src="https://i.imgur.com/xxqkuDn.png"
+          alt="better-thread-message-toolbars"
+          className="tw-w-full"
+        />
+      </div>
     </div>
   );
 }

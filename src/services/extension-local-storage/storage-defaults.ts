@@ -84,7 +84,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     },
     "thread:customThreadContainerWidth": {
       enabled: false,
-      value: 768,
+      value: 1100,
     },
     imageGenModelSelector: {
       enabled: false,

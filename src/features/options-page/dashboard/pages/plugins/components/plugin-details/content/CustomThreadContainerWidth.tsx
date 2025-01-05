@@ -49,7 +49,7 @@ export default function CustomThreadContainerWidthPluginDetails() {
               settings.plugins["thread:customThreadContainerWidth"].value,
             ]}
             className="md:tw-min-w-[500px]"
-            min={768}
+            min={1100}
             max={9999}
             onValueChange={({ value }) => debouncedMutation(value[0] ?? 0)}
           >

@@ -6,11 +6,8 @@ import LanguageModelSelector from "@/features/plugins/query-box/language-model-s
 import SlashCommandMenuTriggerButton from "@/features/plugins/query-box/prompt-history/TriggerButton";
 import SlashCommandMenuWrapper from "@/features/plugins/query-box/slash-command-menu/Wrapper";
 import { findToolbarPortalContainer } from "@/features/plugins/query-box/utils";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
 export default function FollowUpQueryBoxWrapper() {
-  const settings = ExtensionLocalStorageService.getCachedSync();
-
   const followUpQueryBox = useGlobalDomObserverStore(
     (state) => state.queryBoxes.followUpQueryBox,
   );
@@ -31,10 +28,11 @@ export default function FollowUpQueryBoxWrapper() {
           <CsUiPluginsGuard
             allowedAccountTypes={["pro", "enterprise"]}
             dependentPluginIds={["queryBox:languageModelSelector"]}
+            additionalCheck={({ settings }) =>
+              settings?.plugins["queryBox:languageModelSelector"].followUp
+            }
           >
-            {settings?.plugins["queryBox:languageModelSelector"].followUp && (
-              <LanguageModelSelector />
-            )}
+            <LanguageModelSelector />
           </CsUiPluginsGuard>
         </div>
         <CsUiPluginsGuard

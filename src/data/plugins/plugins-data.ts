@@ -127,7 +127,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     routeSegment: "query-box-full-width-follow-up",
     title: "Full Width Follow Up Query Box",
     description: "Make the query box in threads wider",
-    tags: ["ui"],
+    tags: ["desktopOnly", "ui"],
     dependentCorePlugins: ["spaRouter"],
   },
   commandMenu: {

@@ -10,6 +10,8 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Image } from "@/components/ui/image";
+import { toast } from "@/components/ui/use-toast";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
 
 export default function ExtensionUpdateInfoDialogWrapper({
@@ -46,9 +48,23 @@ export default function ExtensionUpdateInfoDialogWrapper({
               <LuInfo className="tw-mr-2 tw-inline-block tw-size-5 tw-text-primary" />
               <span>
                 The upgrade should be happening automatically when you restart
-                the browser, or force it to manually update in the extension
-                management page.
+                the browser, or force it to manually update in the{" "}
+                <ExtensionManagementPageLink />
+                {APP_CONFIG.BROWSER === "firefox" ? (
+                  <span> =&gt; Complexity</span>
+                ) : (
+                  "."
+                )}
               </span>
+              <Image
+                src={
+                  APP_CONFIG.BROWSER !== "chrome"
+                    ? "https://i.imgur.com/IMLecmp.png"
+                    : "https://i.imgur.com/f2x3Mtl.png"
+                }
+                alt="extension-management-page"
+                className="tw-my-4"
+              />
             </div>
             <div className="tw-text-muted-foreground">
               Or click{" "}
@@ -80,5 +96,27 @@ export default function ExtensionUpdateInfoDialogWrapper({
         </div>
       </DialogContent>
     </Dialog>
+  );
+}
+
+function ExtensionManagementPageLink() {
+  return (
+    <div
+      role="link"
+      className="tw-inline-block tw-cursor-pointer tw-text-primary tw-underline"
+      onClick={() => {
+        if (APP_CONFIG.BROWSER === "chrome") {
+          navigator.clipboard.writeText("chrome://extensions");
+        } else {
+          navigator.clipboard.writeText("about:addons");
+        }
+        toast({
+          title: "✅ Link copied to clipboard",
+          description: "Please manually open the copied link.",
+        });
+      }}
+    >
+      {APP_CONFIG.BROWSER === "chrome" ? "chrome://extensions" : "about:addons"}
+    </div>
   );
 }

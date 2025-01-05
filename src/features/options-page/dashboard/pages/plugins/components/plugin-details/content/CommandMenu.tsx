@@ -1,4 +1,5 @@
 import { useHotkeyRecorder } from "@/components/HotkeyRecorder";
+import { Image } from "@/components/ui/image";
 import { Switch } from "@/components/ui/switch";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
@@ -40,6 +41,13 @@ export default function CommandMenuPluginDetails() {
           });
         }}
       />
+      <div className="tw-mx-auto tw-w-full tw-max-w-[700px]">
+        <Image
+          src="https://i.imgur.com/m8x0hm1.png"
+          alt="command-menu"
+          className="tw-w-full"
+        />
+      </div>
     </div>
   );
 }

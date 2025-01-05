@@ -43,6 +43,11 @@ export default function CanvasWrapper() {
   });
 
   useEffect(() => {
+    if (!isCanvasOpen && !isCanvasListOpen) {
+      $(document.body).removeAttr("data-cplx-canvas-active-panel");
+      return;
+    }
+
     $(document.body).attr(
       "data-cplx-canvas-active-panel",
       isCanvasListOpen ? "list" : "canvas",

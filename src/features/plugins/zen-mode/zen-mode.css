@@ -40,12 +40,19 @@ body[data-cplx-zen-mode="true"] {
         display: none;
       }
 
-      [data-cplx-component="message-block-text-col"] {
-        grid-column: span 12 / span 12 !important;
-      }
+      &:not(
+          :has(
+            .col-span-4[data-cplx-component="message-block-visual-col"]
+              svg[data-icon="sources"]
+          )
+        ) {
+        .col-span-8[data-cplx-component="message-block-text-col"] {
+          grid-column: span 12 / span 12;
+        }
 
-      [data-cplx-component="message-block-visual-col"] {
-        display: none !important;
+        .col-span-4[data-cplx-component="message-block-visual-col"] {
+          display: none;
+        }
       }
     }
   }

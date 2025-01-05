@@ -22,6 +22,12 @@ export const localLanguageModels = [
     provider: "Anthropic",
   },
   {
+    label: "O1",
+    shortLabel: "O1",
+    code: "o1",
+    provider: "OpenAI",
+  },
+  {
     label: "GPT-4 Omni",
     shortLabel: "GPT-4o",
     code: "gpt4o",

@@ -42,7 +42,7 @@ import "@/features/plugins/hide-get-mobile-app-cta-btn/hide-get-mobile-app-cta-b
 import "@/features/plugins/zen-mode/zen-mode";
 import "@/features/plugins/block-analytic-events/network-intercept-middlewares";
 
-// Global Store
+// Global Stores
 import "@/data/color-scheme-store";
 
 // Loaders

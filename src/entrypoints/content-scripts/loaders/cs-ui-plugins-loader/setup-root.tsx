@@ -25,6 +25,18 @@ CsLoaderRegistry.register({
     const root = createRoot($root[0]);
     const router = createRouter();
 
+    setTimeout(() => {
+      $("#cplx-initializing-indicator div")
+        .removeClass("tw-animate-in tw-fade-in")
+        .addClass("tw-animate-out tw-fade-out tw-duration-1000");
+
+      $("#cplx-initializing-indicator-style").remove();
+
+      setTimeout(() => {
+        $("#cplx-initializing-indicator").remove();
+      }, 200);
+    }, 500);
+
     root.render(
       <QueryClientProvider client={queryClient}>
         <I18nextProvider i18n={i18n}>

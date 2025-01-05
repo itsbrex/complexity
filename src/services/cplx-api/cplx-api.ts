@@ -15,6 +15,7 @@ import {
   CplxFeatureFlagsSchema,
 } from "@/services/cplx-api/feature-flags/cplx-feature-flags.types";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { queryClient } from "@/utils/ts-query-client";
 import { fetchResource, jsonUtils } from "@/utils/utils";
 
@@ -22,7 +23,9 @@ export class CplxApiService {
   static async fetchVersions(): Promise<CplxVersions> {
     const parsedData = CplxVersionsApiResponseSchema.parse(
       JSON.parse(
-        await fetchResource(`${APP_CONFIG.CPLX_API_URL}/versions.json`),
+        await fetchResource(
+          `${APP_CONFIG.CPLX_CDN_URL}/versions.json?t=${getTParam()}`,
+        ),
       ),
     );
 
@@ -53,7 +56,7 @@ export class CplxApiService {
     return CplxFeatureFlagsSchema.parse(
       JSON.parse(
         await fetchResource(
-          `${APP_CONFIG.CPLX_API_URL}/feature-flags/${versionUrl}.json`,
+          `${APP_CONFIG.CPLX_CDN_URL}/feature-flags/${versionUrl}.json?t=${getTParam()}`,
         ),
       ),
     );
@@ -116,7 +119,7 @@ export class CplxApiService {
       .parse(
         jsonUtils.safeParse(
           await fetchResource(
-            `${APP_CONFIG.CPLX_API_URL}/language-models.json`,
+            `${APP_CONFIG.CPLX_CDN_URL}/language-models.json?t=${getTParam()}`,
           ),
         ),
       );
@@ -137,7 +140,7 @@ export class CplxApiService {
         : versions?.latest);
 
     const resp = await fetch(
-      `${APP_CONFIG.CPLX_API_URL}/changelogs/${versionUrl}.md`,
+      `${APP_CONFIG.CPLX_CDN_URL}/changelogs/${versionUrl}.md?t=${getTParam()}`,
     );
 
     if (resp.status === 404) {
@@ -146,4 +149,21 @@ export class CplxApiService {
 
     return resp.text();
   }
+}
+
+function getTParam() {
+  const extensionLocalStorage = ExtensionLocalStorageService.getCachedSync();
+  const cdnLastUpdated = extensionLocalStorage.cdnLastUpdated;
+
+  const nowInMilliseconds = Date.now();
+  const oneHourInMilliseconds = 1000 * 60 * 60;
+
+  if (nowInMilliseconds - cdnLastUpdated > oneHourInMilliseconds) {
+    ExtensionLocalStorageService.set((draft) => {
+      draft.cdnLastUpdated = nowInMilliseconds;
+    });
+    return nowInMilliseconds;
+  }
+
+  return cdnLastUpdated;
 }

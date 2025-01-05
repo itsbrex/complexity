@@ -20,6 +20,14 @@ export function setupBackgroundListeners() {
     else chrome.runtime.openOptionsPage();
   });
 
+  chrome.runtime.onInstalled.addListener(({ reason }) => {
+    if (reason !== chrome.runtime.OnInstalledReason.UPDATE) return;
+
+    ExtensionLocalStorageService.set((draft) => {
+      draft.cdnLastUpdated = Date.now();
+    });
+  });
+
   chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
     if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
       chrome.tabs.create({

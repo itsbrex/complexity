@@ -116,4 +116,5 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
   theme: "complexity",
   energySavingMode: false,
   extensionIconAction: "perplexity",
+  cdnLastUpdated: 0,
 } as const;

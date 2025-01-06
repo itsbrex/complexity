@@ -55,7 +55,7 @@ export const DOM_SELECTORS = {
     },
     POPPER: {
       MOBILE: ".duration-250.fill-mode-both.fixed.bottom-0.left-0",
-      DESKTOP: "[data-popper-reference-hidden]",
+      DESKTOP: ".duration-250.fill-mode-both",
     },
   },
   HOME: {

@@ -11,6 +11,11 @@ export const jsonUtils = {
       return null;
     }
   },
+  unescape(jsonString: string): string {
+    return jsonString
+      .replace(/\\"/g, '"') // Double quote
+      .replace(/\\\\/g, "\\"); // Backslash
+  },
 };
 
 /**

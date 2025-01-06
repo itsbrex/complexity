@@ -1,5 +1,3 @@
-import throttle from "lodash/throttle";
-
 import type { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import InternalWebSocketManager from "@/features/plugins/_core/web-socket/InternalWebSocketManager";
 import { ENDPOINTS } from "@/services/pplx-api/endpoints";
@@ -112,58 +110,60 @@ export class PplxApiService {
   }
 
   static async fetchThreads({
-    searchValue,
-    limit = 20,
-    offset = 0,
+    searchValue = "",
+    limit,
+    offset,
   }: {
     searchValue?: string;
     limit?: number;
     offset?: number;
   } = {}): Promise<ThreadsSearchApiResponse> {
-    return ThreadsSearchApiResponseSchema.parse(
-      await InternalWebSocketManager.getInstance().sendMessageWithAck<ThreadsSearchApiResponse>(
-        {
-          data: [
-            "list_ask_threads",
-            {
-              version: "2.13",
-              source: "default",
-              limit,
-              offset,
-              search_term: searchValue,
-            },
-          ],
-        },
-      ),
-    );
-  }
+    const parseRawHtml = async () => {
+      const rawHtml = await fetchResource(ENDPOINTS.RAW_LIBRARY);
 
-  private static _debouncedFetchThreads = throttle(
-    function (
-      this: typeof PplxApiService,
-      {
-        searchValue,
-        limit = 20,
-        offset = 0,
-      }: {
-        searchValue?: string;
-        limit?: number;
-        offset?: number;
-      } = {},
-    ) {
-      return this.fetchThreads({ searchValue, limit, offset });
-    },
-    10000,
-    { leading: true },
-  );
+      if (rawHtml == null) return;
 
-  static get debouncedFetchThreads() {
-    return (params: Parameters<typeof this.fetchThreads>[0] = {}) => {
-      if (params.searchValue) {
-        return this.fetchThreads(params);
-      }
-      return this._debouncedFetchThreads.call(this, params);
+      const data = rawHtml.match(/\[\[\{\\"thread_number.*?\}\]\]/gs);
+
+      if (data == null || data.length <= 0) return;
+
+      const parsedData = jsonUtils.safeParse(jsonUtils.unescape(data[0]));
+
+      if (
+        parsedData == null ||
+        !Array.isArray(parsedData) ||
+        parsedData.length <= 0
+      )
+        return;
+
+      const validatedData = ThreadsSearchApiResponseSchema.safeParse(
+        parsedData[0],
+      );
+
+      if (!validatedData.success) return;
+
+      return validatedData.data;
     };
+
+    const fetchViaApi = async () =>
+      ThreadsSearchApiResponseSchema.parse(
+        await InternalWebSocketManager.getInstance().sendMessageWithAck<ThreadsSearchApiResponse>(
+          {
+            data: [
+              "list_ask_threads",
+              {
+                version: "2.13",
+                source: "default",
+                limit,
+                offset,
+                search_term: searchValue,
+              },
+            ],
+          },
+        ),
+      );
+
+    return (await parseRawHtml()) ?? (await fetchViaApi());
   }
 
   static async fetchSpaces(): Promise<Space[]> {

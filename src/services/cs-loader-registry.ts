@@ -49,7 +49,6 @@ export const LOADER_IDS = [
 
   "store:colorScheme",
 
-  "csui:initializing-indicator",
   "csui:root",
 ] as const;
 

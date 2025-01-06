@@ -13,4 +13,5 @@ export const ENDPOINTS = {
   FETCH_SPACE_THREADS: (spaceSlug: Space["slug"]) =>
     `https://www.perplexity.ai/rest/collections/list_collection_threads?collection_slug=${spaceSlug}&limit=50&offset=0&version=2.13&source=default`,
   MAINTENANCE_STATUS: "https://www.perplexity.ai/v0/api/maintenance",
+  RAW_LIBRARY: "https://www.perplexity.ai/library",
 };

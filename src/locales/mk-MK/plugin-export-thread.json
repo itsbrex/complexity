@@ -4,7 +4,8 @@
     "copied": "Копирано",
     "options": {
       "default": "Стандардно",
-      "withoutCitations": "Без цитати"
+      "withoutCitations": "Без цитати",
+      "download": "Преземи како текстуална датотека"
     }
   }
-} 
+}

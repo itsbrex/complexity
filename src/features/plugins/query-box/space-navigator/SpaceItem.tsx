@@ -7,12 +7,10 @@ import { sendMessage } from "webext-bridge/content-script";
 import { CommandItem } from "@/components/ui/command";
 import { PopoverContent } from "@/components/ui/popover";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
-import { NavigateOnDirtyConfirmDialog } from "@/features/plugins/query-box/space-navigator/NavigateOnDirtyConfirmDialog";
 import SpaceItemFile from "@/features/plugins/query-box/space-navigator/SpaceItemFile";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { Space } from "@/services/pplx-api/pplx-api.types";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
-import UiUtils from "@/utils/UiUtils";
 import { emojiCodeToString, parseUrl } from "@/utils/utils";
 
 export default function SpaceItem({ space }: { space: Space }) {
@@ -26,10 +24,6 @@ export default function SpaceItem({ space }: { space: Space }) {
     spaceSlugFromUrl === space.slug || spaceSlugFromUrl === space.uuid;
 
   const [popoverOpen, setPopoverOpen] = useState(false);
-
-  const navigateOnDirtyConfirmDialogRef = useRef<{
-    open: () => void;
-  }>(null);
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -86,14 +80,6 @@ export default function SpaceItem({ space }: { space: Space }) {
           space.instructions?.slice(0, 100),
         ]}
         onSelect={() => {
-          const activeQueryBoxText =
-            UiUtils.getActiveQueryBoxTextarea()[0].value;
-
-          if (activeQueryBoxText) {
-            navigateOnDirtyConfirmDialogRef.current?.open();
-            return;
-          }
-
           sendMessage(
             "spa-router:push",
             {
@@ -191,18 +177,6 @@ export default function SpaceItem({ space }: { space: Space }) {
           </PopoverContent>
         </PopoverRootProvider>
       )}
-      <NavigateOnDirtyConfirmDialog
-        ref={navigateOnDirtyConfirmDialogRef}
-        onConfirm={() => {
-          sendMessage(
-            "spa-router:push",
-            {
-              url: `/collections/${space.slug}`,
-            },
-            "window",
-          );
-        }}
-      />
     </>
   );
 }

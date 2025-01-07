@@ -14,7 +14,11 @@ export default function NeedHelp() {
       </div>
       <div className="tw-flex tw-items-center tw-gap-4">
         <Button asChild className="tw-w-max" size="lg" variant="outline">
-          <a href="https://discord.gg/fxzqdkwmWx" target="_blank" rel="noreferrer">
+          <a
+            href="https://discord.gg/fxzqdkwmWx"
+            target="_blank"
+            rel="noreferrer"
+          >
             <SiDiscord className="tw-mr-2 tw-size-4" />
             <span>Discord</span>
           </a>

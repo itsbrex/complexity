@@ -4,7 +4,8 @@
     "copied": "Kopirano",
     "options": {
       "default": "Zadano",
-      "withoutCitations": "Bez citata"
+      "withoutCitations": "Bez citata",
+      "download": "Preuzmi kao tekstualnu datoteku"
     }
   }
-} 
+}

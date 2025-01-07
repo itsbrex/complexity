@@ -4,7 +4,8 @@
     "copied": "कॉपी किया गया",
     "options": {
       "default": "डिफ़ॉल्ट",
-      "withoutCitations": "उद्धरण के बिना"
+      "withoutCitations": "उद्धरण के बिना",
+      "download": "डेक्स्ट फ़ाइल के रूप में डाउनलोड करें"
     }
   }
-} 
+}

@@ -4,7 +4,8 @@
     "copied": "Копирано",
     "options": {
       "default": "Подразумијевано",
-      "withoutCitations": "Без цитата"
+      "withoutCitations": "Без цитата",
+      "download": "Преузми као текстуалну датотеку"
     }
   }
 } 

@@ -118,7 +118,7 @@ const DropdownMenuSubTrigger = ({
     {...props}
   >
     {children}
-    <ChevronRight className="tw-mr-2 tw-size-4" />
+    <ChevronRight className="tw-ml-2 tw-size-4" />
   </Menu.TriggerItem>
 );
 DropdownMenuSubTrigger.displayName = "DropdownMenuSubTrigger";

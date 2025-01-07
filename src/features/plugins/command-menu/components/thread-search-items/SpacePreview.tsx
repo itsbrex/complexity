@@ -22,6 +22,7 @@ export function SpacePreview({ thread }: { thread: ThreadSearchApi }) {
   const handleChangeFilter = (
     e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>,
   ) => {
+    e.preventDefault();
     e.stopPropagation();
 
     if (!thread.collection) return;

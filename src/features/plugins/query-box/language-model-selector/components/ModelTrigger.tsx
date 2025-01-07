@@ -3,9 +3,14 @@ import { LuCpu } from "react-icons/lu";
 import { SelectValue } from "@/components/ui/select";
 import { languageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
 import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
+import { useScopedQueryBoxContext } from "@/features/plugins/query-box/context/context";
 import { useModelLimits } from "@/features/plugins/query-box/language-model-selector/hooks/useModelLimits";
 
 export function ModelTrigger({ value }: { value: LanguageModel["code"] }) {
+  const {
+    store: { type },
+  } = useScopedQueryBoxContext();
+
   const model = languageModels.find((model) => model.code === value);
 
   const modelsLimits = useModelLimits();
@@ -17,7 +22,11 @@ export function ModelTrigger({ value }: { value: LanguageModel["code"] }) {
   return (
     <div className="tw-flex tw-min-h-8 tw-items-center tw-justify-center tw-gap-1">
       <LuCpu className="tw-size-4" />
-      <div className="tw-hidden tw-gap-1 md:tw-flex">
+      <div
+        className={cn("tw-gap-1", {
+          "tw-hidden md:tw-flex": type !== "follow-up",
+        })}
+      >
         <SelectValue>
           {languageModels.find((model) => model.code === value)?.shortLabel}
         </SelectValue>

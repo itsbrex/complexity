@@ -19,6 +19,11 @@ type CopyMessageParams = {
   onComplete?: () => void;
 };
 
+type GetContentParams = {
+  withCitations: boolean;
+  messageBlockIndex?: number;
+};
+
 export function useCopyMessage() {
   const threadSlug = parseUrl().pathname.split("/").pop() || "";
 
@@ -64,6 +69,21 @@ export function useCopyMessage() {
         await copyThreadWithoutCitations({ fetchFn });
       }
       onComplete?.();
+    },
+    getContent: async function getContent({
+      withCitations,
+      messageBlockIndex,
+    }: GetContentParams) {
+      const threadJson = await fetchFn();
+      if (threadJson == null) {
+        throw new Error("Failed to fetch thread info");
+      }
+
+      return ThreadExport.exportThread({
+        threadJSON: threadJson,
+        includeCitations: withCitations,
+        messageIndex: messageBlockIndex,
+      });
     },
   };
 }

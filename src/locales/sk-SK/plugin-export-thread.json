@@ -4,7 +4,8 @@
     "copied": "Skopírované",
     "options": {
       "default": "Predvolené",
-      "withoutCitations": "Bez citácií"
+      "withoutCitations": "Bez citácií",
+      "download": "Stiahnuť ako textový súbor"
     }
   }
-} 
+}

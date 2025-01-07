@@ -70,7 +70,7 @@ const SliderThumb = ({
   return (
     <ArkSlider.Thumb
       className={cn(
-        "tw-relative -tw-mt-1.5 tw-block tw-h-5 tw-w-5 tw-rounded-full tw-border-2 tw-border-primary tw-bg-background tw-ring-offset-background tw-transition-colors focus-visible:tw-outline-none focus-visible:tw-ring-2 focus-visible:tw-ring-ring focus-visible:tw-ring-offset-2 disabled:tw-pointer-events-none disabled:tw-opacity-50 tw-select-none",
+        "tw-relative -tw-mt-1.5 tw-block tw-h-5 tw-w-5 tw-select-none tw-rounded-full tw-border-2 tw-border-primary tw-bg-background tw-ring-offset-background tw-transition-colors focus-visible:tw-outline-none focus-visible:tw-ring-2 focus-visible:tw-ring-ring focus-visible:tw-ring-offset-2 disabled:tw-pointer-events-none disabled:tw-opacity-50",
         className,
       )}
       {...props}

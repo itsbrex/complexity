@@ -4,7 +4,8 @@
     "copied": "Copiado",
     "options": {
       "default": "Padrão",
-      "withoutCitations": "Sem citações"
+      "withoutCitations": "Sem citações",
+      "download": "Baixar como arquivo de texto"
     }
   }
 } 

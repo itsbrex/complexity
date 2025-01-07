@@ -43,7 +43,8 @@ async function setupQueryBoxesObserver(location: ReturnType<typeof whereAmI>) {
   const shouldObserve =
     settings?.["queryBox:languageModelSelector"] ||
     settings?.["queryBox:spaceNavigator"] ||
-    settings?.["queryBox:noFileCreationOnPaste"];
+    settings?.["queryBox:noFileCreationOnPaste"] ||
+    settings?.["queryBox:slashCommandMenu:promptHistory"];
 
   if (!shouldObserve) return;
 

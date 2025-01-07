@@ -23,6 +23,10 @@ export default function SpaceQueryBoxWrapper() {
           <CsUiPluginsGuard
             desktopOnly
             dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
+            additionalCheck={({ settings }) =>
+              settings?.plugins["queryBox:slashCommandMenu:promptHistory"]
+                .showTriggerButton
+            }
           >
             <SlashCommandMenuTriggerButton />
           </CsUiPluginsGuard>

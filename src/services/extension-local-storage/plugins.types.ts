@@ -28,6 +28,7 @@ export const PluginsSchema = z.object({
       onSubmit: z.boolean(),
       onNavigation: z.boolean(),
     }),
+    showTriggerButton: z.boolean(),
   }),
   "queryBox:noFileCreationOnPaste": PluginSettingsSchema,
   commandMenu: PluginSettingsSchema.extend({

@@ -33,12 +33,18 @@ function useInsertToolbarCss() {
   const shouldInjectMain =
     settings?.plugins["queryBox:languageModelSelector"].main &&
     (pluginsEnableStates?.["queryBox:languageModelSelector"] ||
-      pluginsEnableStates?.["queryBox:spaceNavigator"]);
+      pluginsEnableStates?.["queryBox:spaceNavigator"] ||
+      (pluginsEnableStates?.["queryBox:slashCommandMenu:promptHistory"] &&
+        settings?.plugins["queryBox:slashCommandMenu:promptHistory"]
+          .showTriggerButton));
 
   const shouldInjectFollowUp =
     location === "thread" &&
     settings?.plugins["queryBox:languageModelSelector"].followUp &&
-    pluginsEnableStates?.["queryBox:languageModelSelector"];
+    (pluginsEnableStates?.["queryBox:languageModelSelector"] ||
+      (pluginsEnableStates?.["queryBox:slashCommandMenu:promptHistory"] &&
+        settings?.plugins["queryBox:slashCommandMenu:promptHistory"]
+          .showTriggerButton));
 
   useInsertCss({
     id: "cplx-main-query-box",

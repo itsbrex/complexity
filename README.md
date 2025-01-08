@@ -12,7 +12,7 @@ A powerful browser extension that enhances your PerplexityAI experience with adv
   <div>
     <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fcdn.cplx.app%2Fversions.json&query=latest&logo=google-chrome&label=chrome" alt="Stable chrome version">
     <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fcdn.cplx.app%2Fversions.json&query=latestFirefox&logo=firefox&logoColor=orange&label=firefox" alt="Stable firefox version">
-    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpnd280%2Fcomplexity%2Fnxt%2Fpackage.json&query=%24.version&logo=test&label=beta&color=yellow" alt="beta">
+    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fpnd280%2Fcomplexity%2Fnxt%2Fpackage.json&query=%24.version&logo=test&label=source-code&color=yellow" alt="source-code">
     <a href="https://discord.gg/fxzqdkwmWx" target="_blank"><img src="https://img.shields.io/discord/1245377426331144304?logo=discord&label=discord&link=https%3A%2F%2Fdiscord.gg%2FfxzqdkwmWx" alt="Discord"></a>
   </div>
   <div>
@@ -74,7 +74,7 @@ pnpm dev
 
 ## 💖 Keep the project alive
 
-Maintaining this open-source project demands considerable time and dedication. If you find value in this work, please consider financially supporting me via:
+This polished and feature-rich extension is the result of countless hours of dedicated development and refinement. If you appreciate the attention to detail and ongoing improvements, please consider supporting the development through:
 
 - [Ko-fi](https://ko-fi.com/pnd280)
 - [PayPal](https://paypal.me/pnd280)

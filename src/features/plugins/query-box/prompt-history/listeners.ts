@@ -1,11 +1,11 @@
 import { spaRouterStoreSubscribe } from "@/features/plugins/_core/spa-router/listeners";
 import { handlePromptSave } from "@/features/plugins/query-box/prompt-history/utils";
 import { slashCommandMenuStore } from "@/features/plugins/query-box/slash-command-menu/store";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "plugin:queryBox:promptHistory:listeners",
   dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
   loader: () => {

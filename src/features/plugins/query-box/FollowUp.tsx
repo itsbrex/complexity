@@ -2,6 +2,7 @@ import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 import { Portal } from "@/components/ui/portal";
 import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { ScopedQueryBoxContextProvider } from "@/features/plugins/query-box/context/context";
+import FocusWebRecencySelectorFollowUpWrapper from "@/features/plugins/query-box/focus-web-recency/FollowUpWrapper";
 import LanguageModelSelector from "@/features/plugins/query-box/language-model-selector/LanguageModelSelector";
 import SlashCommandMenuTriggerButton from "@/features/plugins/query-box/prompt-history/TriggerButton";
 import SlashCommandMenuWrapper from "@/features/plugins/query-box/slash-command-menu/Wrapper";
@@ -19,6 +20,13 @@ export default function FollowUpQueryBoxWrapper() {
     <ScopedQueryBoxContextProvider storeValue={{ type: "follow-up" }}>
       <Portal container={followUpQueryBoxToolbarPortalContainer}>
         <div className="tw-flex tw-flex-wrap tw-items-center md:tw-flex-nowrap">
+          <CsUiPluginsGuard
+            desktopOnly
+            allowedAccountTypes={["free", "pro"]}
+            dependentPluginIds={["queryBox:focusSelector:webRecency"]}
+          >
+            <FocusWebRecencySelectorFollowUpWrapper />
+          </CsUiPluginsGuard>
           <CsUiPluginsGuard
             desktopOnly
             dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}

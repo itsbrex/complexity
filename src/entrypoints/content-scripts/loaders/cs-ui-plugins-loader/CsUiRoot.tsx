@@ -1,12 +1,15 @@
 /* eslint-disable import/no-duplicates */
+// must keep this for tailwind to generate and hmr arbitrary classes in dev mode (this will be removed in prod)
+import "@/assets/cs.css";
+
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Fragment } from "react/jsx-runtime";
 
 import { APP_CONFIG } from "@/app.config";
+import csUiRootCss from "@/assets/cs.css?inline";
 import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 // import { SponsorHomeLink } from "@/components/SponsorHomeLink";
 import { Toaster } from "@/components/Toaster";
-import { csUiRootCss } from "@/entrypoints/content-scripts";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import { useInsertCss } from "@/hooks/useInsertCss";
 
@@ -46,7 +49,6 @@ const ThreadTocWrapper = lazy(
 );
 
 export default function CsUiRoot() {
-  // normalize css precedence on build vs dev environment
   useInsertCss({
     id: "cplx-cs-ui-root",
     css: csUiRootCss,
@@ -64,6 +66,8 @@ export default function CsUiRoot() {
           "queryBox:languageModelSelector",
           "queryBox:spaceNavigator",
           "queryBox:slashCommandMenu:promptHistory",
+          "queryBox:focusSelector",
+          "queryBox:focusSelector:webRecency",
         ]}
       >
         <QueryBoxWrapper />
@@ -95,10 +99,7 @@ function ThreadComponent() {
       >
         <ImageGenModelSelectorWrapper />
       </CsUiPluginsGuard>
-      <CsUiPluginsGuard
-        desktopOnly
-        dependentPluginIds={["thread:betterCodeBlocks", "thread:canvas"]}
-      >
+      <CsUiPluginsGuard desktopOnly dependentPluginIds={["thread:canvas"]}>
         <CanvasWrapper />
       </CsUiPluginsGuard>
 
@@ -125,3 +126,5 @@ function ThreadComponent() {
     </>
   );
 }
+
+export { csUiRootCss };

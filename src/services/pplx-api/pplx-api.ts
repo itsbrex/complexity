@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 import type { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import InternalWebSocketManager from "@/features/plugins/_core/web-socket/InternalWebSocketManager";
 import { ENDPOINTS } from "@/services/pplx-api/endpoints";
@@ -13,6 +15,7 @@ import {
   SpaceThreadsApiResponse,
   SpaceThreadsApiResponseSchema,
   ThreadMessageApiResponse,
+  ThreadMessageApiResponseSchema,
   ThreadsSearchApiResponse,
   ThreadsSearchApiResponseSchema,
   UserSettingsApiResponse,
@@ -92,7 +95,9 @@ export class PplxApiService {
     );
   }
 
-  static async fetchThreadInfo(threadSlug: string) {
+  static async fetchThreadInfo(
+    threadSlug: string,
+  ): Promise<ThreadMessageApiResponse[]> {
     if (!threadSlug) throw new Error("Thread slug is required");
 
     const url = `https://www.perplexity.ai/p/api/v1/thread/${threadSlug}?with_parent_info=true&source=web`;
@@ -106,7 +111,7 @@ export class PplxApiService {
     if (data.entries == null || data.entries?.length <= 0)
       throw new Error("Thread not found");
 
-    return data.entries as ThreadMessageApiResponse[];
+    return z.array(ThreadMessageApiResponseSchema).parse(data.entries);
   }
 
   static async fetchThreads({

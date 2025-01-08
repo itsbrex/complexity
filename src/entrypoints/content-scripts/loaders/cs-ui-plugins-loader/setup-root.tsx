@@ -3,13 +3,14 @@ import { createRoot } from "react-dom/client";
 import { I18nextProvider } from "react-i18next";
 import { RouterProvider } from "react-router-dom";
 
+import { removeInitializingIndicator } from "@/components/loading-indicator";
 import CsUiRoot from "@/entrypoints/content-scripts/loaders/cs-ui-plugins-loader/CsUiRoot";
 import { createRouter } from "@/entrypoints/content-scripts/loaders/cs-ui-plugins-loader/router";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { queryClient } from "@/utils/ts-query-client";
 import { waitForElement } from "@/utils/utils";
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "csui:root",
   loader: async () => {
     await waitForElement({
@@ -25,17 +26,7 @@ CsLoaderRegistry.register({
     const root = createRoot($root[0]);
     const router = createRouter();
 
-    setTimeout(() => {
-      $("#cplx-initializing-indicator div")
-        .removeClass("tw-animate-in tw-fade-in")
-        .addClass("tw-animate-out tw-fade-out tw-duration-1000");
-
-      $("#cplx-initializing-indicator-style").remove();
-
-      setTimeout(() => {
-        $("#cplx-initializing-indicator").remove();
-      }, 200);
-    }, 500);
+    removeInitializingIndicator();
 
     root.render(
       <QueryClientProvider client={queryClient}>

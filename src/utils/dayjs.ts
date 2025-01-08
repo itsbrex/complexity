@@ -3,7 +3,7 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { getLanguage, SupportedLangs } from "@/utils/i18next";
 
 const LANGUAGE_CODES: Record<SupportedLangs, string> = {
@@ -80,7 +80,7 @@ export async function initializeDayjsLocale() {
   dayjs.locale(LANGUAGE_CODES[language as SupportedLangs]);
 }
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "lib:dayjs",
   loader: initializeDayjsLocale,
 });

@@ -1,19 +1,19 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
-import { CsLoaderRegistry, LOADER_IDS } from "@/services/cs-loader-registry";
+import { csLoaderRegistry, LOADER_IDS } from "@/services/cs-loader-registry";
 
 type LoaderId = (typeof LOADER_IDS)[number];
 
-describe("CsLoaderRegistry", () => {
+describe("csLoaderRegistry", () => {
   beforeEach(() => {
     // Reset the registry before each test
     vi.restoreAllMocks();
     vi.useFakeTimers();
     // Clear the registry by re-registering all loaders
     // @ts-ignore - accessing private for testing
-    CsLoaderRegistry.loaderMap.clear();
+    csLoaderRegistry.loaderMap.clear();
     // @ts-ignore - accessing private for testing
-    CsLoaderRegistry.loadedLoaders.clear();
+    csLoaderRegistry.loadedLoaders.clear();
   });
 
   afterEach(() => {
@@ -27,10 +27,10 @@ describe("CsLoaderRegistry", () => {
       loader: vi.fn(),
     };
 
-    CsLoaderRegistry.register(mockLoader);
+    csLoaderRegistry.register(mockLoader);
 
     // @ts-ignore - accessing private for testing
-    const loaderMap = CsLoaderRegistry.loaderMap;
+    const loaderMap = csLoaderRegistry.loaderMap;
     const registeredLoader = loaderMap.get(mockLoader.id);
 
     expect(loaderMap.has(mockLoader.id)).toBe(true);
@@ -43,8 +43,8 @@ describe("CsLoaderRegistry", () => {
       loader: vi.fn(),
     };
 
-    CsLoaderRegistry.register(mockLoader);
-    expect(() => CsLoaderRegistry.register(mockLoader)).toThrow(
+    csLoaderRegistry.register(mockLoader);
+    expect(() => csLoaderRegistry.register(mockLoader)).toThrow(
       "Loader `lib:i18next` is already registered",
     );
   });
@@ -55,11 +55,11 @@ describe("CsLoaderRegistry", () => {
       loader: vi.fn().mockResolvedValue(undefined),
     };
 
-    CsLoaderRegistry.register(mockLoader);
-    await CsLoaderRegistry.executeAll();
+    csLoaderRegistry.register(mockLoader);
+    await csLoaderRegistry.executeAll();
 
     expect(mockLoader.loader).toHaveBeenCalledTimes(1);
-    expect(CsLoaderRegistry.isLoaderLoaded(mockLoader.id)).toBe(true);
+    expect(csLoaderRegistry.isLoaderLoaded(mockLoader.id)).toBe(true);
   });
 
   it("should handle dependencies correctly", async () => {
@@ -74,15 +74,15 @@ describe("CsLoaderRegistry", () => {
       dependencies: ["lib:dayjs" as LoaderId],
     };
 
-    CsLoaderRegistry.register(dependencyLoader);
-    CsLoaderRegistry.register(mainLoader);
+    csLoaderRegistry.register(dependencyLoader);
+    csLoaderRegistry.register(mainLoader);
 
-    await CsLoaderRegistry.executeAll();
+    await csLoaderRegistry.executeAll();
 
     expect(dependencyLoader.loader).toHaveBeenCalledTimes(1);
     expect(mainLoader.loader).toHaveBeenCalledTimes(1);
-    expect(CsLoaderRegistry.isLoaderLoaded(dependencyLoader.id)).toBe(true);
-    expect(CsLoaderRegistry.isLoaderLoaded(mainLoader.id)).toBe(true);
+    expect(csLoaderRegistry.isLoaderLoaded(dependencyLoader.id)).toBe(true);
+    expect(csLoaderRegistry.isLoaderLoaded(mainLoader.id)).toBe(true);
   });
 
   it("should throw error when dependency is not registered", async () => {
@@ -92,8 +92,8 @@ describe("CsLoaderRegistry", () => {
       dependencies: ["lib:dayjs" as LoaderId],
     };
 
-    CsLoaderRegistry.register(mainLoader);
-    await expect(CsLoaderRegistry.executeAll()).rejects.toThrow(
+    csLoaderRegistry.register(mainLoader);
+    await expect(csLoaderRegistry.executeAll()).rejects.toThrow(
       "Loader `lib:dayjs` is not registered",
     );
   });
@@ -117,11 +117,11 @@ describe("CsLoaderRegistry", () => {
     };
 
     // Register all loaders
-    CsLoaderRegistry.register(dependencyLoader);
-    CsLoaderRegistry.register(mainLoader1);
-    CsLoaderRegistry.register(mainLoader2);
+    csLoaderRegistry.register(dependencyLoader);
+    csLoaderRegistry.register(mainLoader1);
+    csLoaderRegistry.register(mainLoader2);
 
-    await CsLoaderRegistry.executeAll();
+    await csLoaderRegistry.executeAll();
 
     expect(dependencyLoader.loader).toHaveBeenCalledTimes(1);
     expect(mainLoader1.loader).toHaveBeenCalledTimes(1);
@@ -155,11 +155,11 @@ describe("CsLoaderRegistry", () => {
     };
 
     // Register all loaders in reverse order to test dependency resolution
-    CsLoaderRegistry.register(loader1);
-    CsLoaderRegistry.register(loader2);
-    CsLoaderRegistry.register(loader3);
+    csLoaderRegistry.register(loader1);
+    csLoaderRegistry.register(loader2);
+    csLoaderRegistry.register(loader3);
 
-    await CsLoaderRegistry.executeAll();
+    await csLoaderRegistry.executeAll();
 
     expect(executionOrder).toEqual(["loader3", "loader2", "loader1"]);
     expect(loader3.loader).toHaveBeenCalledTimes(1);

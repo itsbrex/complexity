@@ -5,7 +5,7 @@ import {
   GlobalDomObserverStore,
 } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/query-boxes/observer-ids";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 
 function noFileCreationOnPaste(
@@ -42,7 +42,7 @@ function noFileCreationOnPaste(
   });
 }
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "plugin:queryBox:noFileCreationOnPaste",
   loader: () => {
     globalDomObserverStore.subscribe(

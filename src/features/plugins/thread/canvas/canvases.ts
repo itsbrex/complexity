@@ -16,7 +16,7 @@ import MarkdownRenderer from "@/features/plugins/thread/canvas/components/render
 import MermaidRenderer from "@/features/plugins/thread/canvas/components/renderer/Mermaid";
 import PlantUmlRenderer from "@/features/plugins/thread/canvas/components/renderer/PlantUml";
 import ReactRenderer from "@/features/plugins/thread/canvas/components/renderer/React";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 
 export const CANVAS_LANGUAGES = {
   markdown: "markdown",
@@ -71,7 +71,7 @@ type CanvasPlaceholders = Record<
 
 export let CANVAS_PLACEHOLDERS: CanvasPlaceholders = {} as CanvasPlaceholders;
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "plugin:thread:canvas:codeBlockPlaceholdersData",
   dependencies: ["lib:i18next"],
   loader: () => {

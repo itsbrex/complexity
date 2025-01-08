@@ -1,11 +1,11 @@
 import MiddlewareManager from "@/features/plugins/_core/network-intercept/MiddlewareManager";
 import { parseWebSocketData } from "@/features/plugins/_core/network-intercept/web-socket-message-parser";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import { queryClient } from "@/utils/ts-query-client";
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "networkIntercept:pplxApi",
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();

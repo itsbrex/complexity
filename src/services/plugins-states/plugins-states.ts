@@ -4,7 +4,7 @@ import {
   UserGroup,
 } from "@/services/cplx-api/feature-flags/cplx-feature-flags.types";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { pluginsStatesQueries } from "@/services/plugins-states/query-keys";
@@ -140,7 +140,7 @@ export class PluginsStatesService {
   }
 }
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "cache:pluginsStates",
   dependencies: ["cache:extensionLocalStorage"],
   loader: async () => {

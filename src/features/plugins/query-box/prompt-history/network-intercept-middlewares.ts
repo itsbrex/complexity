@@ -1,13 +1,13 @@
 import MiddlewareManager from "@/features/plugins/_core/network-intercept/MiddlewareManager";
 import { parseWebSocketData } from "@/features/plugins/_core/network-intercept/web-socket-message-parser";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { getPromptHistoryService } from "@/services/indexed-db/prompt-history/prompt-history";
 import { promptHistoryQueries } from "@/services/indexed-db/prompt-history/query-keys";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { queryClient } from "@/utils/ts-query-client";
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "plugin:queryBox:promptHistory:networkInterceptMiddleware",
   dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
   loader: () => {

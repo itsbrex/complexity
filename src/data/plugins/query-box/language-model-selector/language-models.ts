@@ -1,6 +1,6 @@
 import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { GroupedLanguageModelsByProvider } from "@/types/plugins/query-box/language-model-selector.types";
 import { errorWrapper } from "@/utils/error-wrapper";
@@ -79,7 +79,7 @@ export function getGroupedLanguageModelsByProvider() {
   }, [] as GroupedLanguageModelsByProvider);
 }
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "cache:languageModels",
   loader: async () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();

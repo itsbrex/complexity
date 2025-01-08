@@ -16,6 +16,11 @@ import { TEST_ID_SELECTORS } from "@/utils/dom-selectors";
 import UiUtils from "@/utils/UiUtils";
 
 export default function FocusSelectorWrapper() {
+  useInsertCss({
+    id: "hide-native-focus-selector",
+    css: hideNativeFocusSelectorCss,
+  });
+
   const { isMobile } = useIsMobileStore();
 
   const { selectedFocusMode, setSelectedFocusMode } = useSharedQueryBoxStore(
@@ -29,11 +34,6 @@ export default function FocusSelectorWrapper() {
     FOCUS_MODES.find((mode) => mode.code === selectedFocusMode) ??
     FOCUS_MODES[0]!;
 
-  useInsertCss({
-    id: "hide-native-focus-selector",
-    css: hideNativeFocusSelectorCss,
-  });
-
   return (
     <Select
       lazyMount
@@ -45,6 +45,7 @@ export default function FocusSelectorWrapper() {
         itemToValue: (item) => item.code,
       })}
       value={[selectedFocusMode]}
+      className="tw-h-full"
       data-testid={TEST_ID_SELECTORS.QUERY_BOX.FOCUS_SELECTOR}
       onValueChange={({ value }) => {
         setSelectedFocusMode(value[0] as FocusMode["code"]);
@@ -65,11 +66,11 @@ export default function FocusSelectorWrapper() {
       }}
     >
       <Tooltip
-        content={t("plugin-focus-selector:tooltip", {
+        content={t("plugin-focus-selector:focusSelector.tooltip", {
           mode: focusModeData.label,
         })}
       >
-        <SelectTrigger variant="ghost" className="tw-w-fit tw-p-2">
+        <SelectTrigger variant="ghost" className="tw-h-full tw-w-fit tw-px-2">
           <SelectValue>
             <div className="tw-flex tw-items-center tw-gap-2">
               <focusModeData.Icon className="tw-size-4" />

@@ -1,6 +1,6 @@
 import i18n from "i18next";
 
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { whereAmI } from "@/utils/utils";
 
 export type SupportedLangs = (typeof supportedLangs)[number];
@@ -148,7 +148,7 @@ export async function initializeI18next() {
   });
 }
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "lib:i18next",
   loader: initializeI18next,
 });

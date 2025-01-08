@@ -22,6 +22,7 @@ export const PluginsSchema = z.object({
       .transform((val) => val as FocusMode["code"])
       .nullable(),
   }),
+  "queryBox:focusSelector:webRecency": PluginSettingsSchema,
   "queryBox:spaceNavigator": PluginSettingsSchema,
   "queryBox:slashCommandMenu:promptHistory": PluginSettingsSchema.extend({
     trigger: z.object({

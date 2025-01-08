@@ -7,7 +7,7 @@ import {
 } from "zustand/traditional";
 
 import { RouterEvent } from "@/features/plugins/_core/spa-router/spa-router.types";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 
 onlyExtensionGuard();
 
@@ -32,7 +32,7 @@ function setupSpaRouterDispatchListeners() {
   );
 }
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "messaging:spaRouter",
   loader: setupSpaRouterDispatchListeners,
 });

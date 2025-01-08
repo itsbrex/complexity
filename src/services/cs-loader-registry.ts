@@ -10,6 +10,7 @@ export const LOADER_IDS = [
   "cache:pluginsStates",
   "cache:languageModels",
   "cache:focusModes",
+  "cache:focusWebRecency",
   "cache:betterCodeBlocksFineGrainedOptions",
 
   "messaging:namespaceSetup",
@@ -40,6 +41,7 @@ export const LOADER_IDS = [
   "plugin:thread:customThreadContainerWidth",
   "plugin:queryBox:initSharedStore",
   "plugin:queryBox:focusSelector:networkInterceptMiddleware",
+  "plugin:queryBox:focusSelector:webRecency:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:listeners",
   "plugin:queryBox:noFileCreationOnPaste",
@@ -60,34 +62,68 @@ type LoaderDefinition = {
   dependencies?: LoaderId[];
 };
 
-export class CsLoaderRegistry {
-  private static loaderMap = new Map<LoaderId, LoaderDefinition>();
-  private static loadedLoaders = new Set<LoaderId>();
-  private static loadingPromises = new Map<LoaderId, Promise<void>>();
+class CsLoaderRegistry {
+  private static instance: CsLoaderRegistry;
+  private loaderMap = new Map<LoaderId, LoaderDefinition>();
+  private loadedLoaders = new Set<LoaderId>();
+  private loadingPromises = new Map<LoaderId, Promise<void>>();
 
-  static isLoaderLoaded(loaderId: LoaderId): boolean {
-    return CsLoaderRegistry.loadedLoaders.has(loaderId);
+  private constructor() {
+    if (
+      APP_CONFIG.IS_DEV &&
+      isInContentScript() &&
+      (!isMainWorldContext() && process.env.NODE_ENV !== "test")
+    ) {
+      setTimeout(() => {
+        for (const loaderId of LOADER_IDS) {
+          if (!CsLoaderRegistry.getInstance().isLoaderLoaded(loaderId)) {
+            console.warn(
+              `[ContentScriptLoaderRegistry] Loader \`${loaderId}\` hasn't loaded after 5 seconds. Ensure the callback from register() is called or the file has inline registration.`,
+            );
+          }
+        }
+      }, 5000);
+    }
   }
 
-  static register(loaderConfig: LoaderDefinition) {
-    if (!isInContentScript() && process.env.NODE_ENV !== "test") return;
+  static getInstance() {
+    if (CsLoaderRegistry.instance == null) {
+      CsLoaderRegistry.instance = new CsLoaderRegistry();
+    }
+    return CsLoaderRegistry.instance;
+  }
 
-    if (CsLoaderRegistry.loaderMap.has(loaderConfig.id)) {
+  getLoadedLoaders() {
+    return this.loadedLoaders;
+  }
+
+  isLoaderLoaded(loaderId: LoaderId): boolean {
+    return this.loadedLoaders.has(loaderId);
+  }
+
+  register(loaderConfig: LoaderDefinition) {
+    if (
+      (isMainWorldContext() && process.env.NODE_ENV !== "test") ||
+      (!isInContentScript() && process.env.NODE_ENV !== "test")
+    )
+      return;
+
+    if (this.loaderMap.has(loaderConfig.id)) {
       throw new Error(`Loader \`${loaderConfig.id}\` is already registered`);
     }
 
-    CsLoaderRegistry.loaderMap.set(loaderConfig.id, loaderConfig);
+    this.loaderMap.set(loaderConfig.id, loaderConfig);
   }
 
-  private static async loadLoader(loaderId: LoaderId): Promise<void> {
-    if (CsLoaderRegistry.loadedLoaders.has(loaderId)) return;
+  private async loadLoader(loaderId: LoaderId): Promise<void> {
+    if (this.loadedLoaders.has(loaderId)) return;
 
-    const existingPromise = CsLoaderRegistry.loadingPromises.get(loaderId);
+    const existingPromise = this.loadingPromises.get(loaderId);
     if (existingPromise) {
       return existingPromise;
     }
 
-    const loader = CsLoaderRegistry.loaderMap.get(loaderId);
+    const loader = this.loaderMap.get(loaderId);
     if (!loader) {
       throw new Error(`Loader \`${loaderId}\` is not registered`);
     }
@@ -96,37 +132,27 @@ export class CsLoaderRegistry {
       try {
         if (loader.dependencies?.length != null) {
           for (const depId of loader.dependencies) {
-            await CsLoaderRegistry.loadLoader(depId);
+            await this.loadLoader(depId);
           }
         }
 
         await loader.loader();
-        CsLoaderRegistry.loadedLoaders.add(loaderId);
+        this.loadedLoaders.add(loaderId);
       } finally {
-        CsLoaderRegistry.loadingPromises.delete(loaderId);
+        this.loadingPromises.delete(loaderId);
       }
     })();
 
-    CsLoaderRegistry.loadingPromises.set(loaderId, loadingPromise);
+    this.loadingPromises.set(loaderId, loadingPromise);
     return loadingPromise;
   }
 
-  static async executeAll(): Promise<void> {
-    const registeredLoaders = Array.from(CsLoaderRegistry.loaderMap.keys());
+  async executeAll(): Promise<void> {
+    const registeredLoaders = Array.from(this.loaderMap.keys());
     for (const loaderId of registeredLoaders) {
-      await CsLoaderRegistry.loadLoader(loaderId);
+      await this.loadLoader(loaderId);
     }
   }
 }
 
-if (APP_CONFIG.IS_DEV && isInContentScript()) {
-  setTimeout(() => {
-    for (const loaderId of LOADER_IDS) {
-      if (!CsLoaderRegistry.isLoaderLoaded(loaderId)) {
-        console.warn(
-          `[ContentScriptLoaderRegistry] Loader \`${loaderId}\` hasn't loaded after 5 seconds. Ensure the callback from register() is called or the file has inline registration.`,
-        );
-      }
-    }
-  }, 5000);
-}
+export const csLoaderRegistry = CsLoaderRegistry.getInstance();

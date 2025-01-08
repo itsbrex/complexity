@@ -2,7 +2,8 @@ import { Portal, Select as ArkSelect } from "@ark-ui/react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { ComponentProps, createContext, use } from "react";
-import { LuChevronDown as ChevronDown, LuCheck } from "react-icons/lu";
+import { FaCheckCircle } from "react-icons/fa";
+import { LuChevronDown as ChevronDown } from "react-icons/lu";
 
 import { untrapWheel } from "@/utils/utils";
 
@@ -141,10 +142,16 @@ const SelectLabel = ({ className, ...props }: SelectLabelProps) => {
 SelectLabel.displayName = "SelectLabel";
 
 export type SelectItemProps = ArkSelect.ItemProps & {
+  checkboxOnSingleItem?: boolean;
   item: string;
 };
 
-const SelectItem = ({ className, children, ...props }: SelectItemProps) => {
+const SelectItem = ({
+  className,
+  children,
+  checkboxOnSingleItem = false,
+  ...props
+}: SelectItemProps) => {
   return (
     <ArkSelect.Context>
       {({ multiple, value }) => (
@@ -152,8 +159,8 @@ const SelectItem = ({ className, children, ...props }: SelectItemProps) => {
           className={cn(
             "tw-relative tw-flex tw-cursor-pointer tw-select-none tw-items-center tw-rounded-sm tw-px-2 tw-py-1.5 tw-text-sm tw-outline-none",
             "data-[disabled]:tw-cursor-not-allowed data-[disabled]:tw-opacity-50",
-            "data-[highlighted]:tw-bg-primary-foreground",
-            "data-[state=checked]:tw-text-primary",
+            "tw-transition-all data-[highlighted]:tw-bg-primary-foreground",
+            "tw-justify-between tw-text-muted-foreground data-[state=checked]:tw-text-primary",
             {
               "tw-flex tw-justify-between": multiple,
             },
@@ -162,8 +169,8 @@ const SelectItem = ({ className, children, ...props }: SelectItemProps) => {
           {...props}
         >
           {children}
-          {multiple && value.includes(props.item) && (
-            <LuCheck className="tw-size-4" />
+          {(multiple || checkboxOnSingleItem) && value.includes(props.item) && (
+            <FaCheckCircle className="tw-ml-auto tw-size-4 tw-shrink-0" />
           )}
         </ArkSelect.Item>
       )}

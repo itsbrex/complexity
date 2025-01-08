@@ -10,7 +10,7 @@ import {
 } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/thread/observer-ids";
 import { spaRouteChangeCompleteSubscribe } from "@/features/plugins/_core/spa-router/listeners";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import {
   DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
@@ -30,7 +30,7 @@ const cleanup = () => {
   DomObserver.destroy(DOM_OBSERVER_ID.COMMON);
 };
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "coreDomObserver:threadComponents",
   loader: () => {
     setupThreadComponentsObserver(whereAmI());
@@ -53,6 +53,8 @@ async function setupThreadComponentsObserver(
     settings?.["thread:betterCodeBlocks"] ||
     settings?.["thread:betterMessageToolbars"] ||
     settings?.["thread:betterMessageCopyButtons"] ||
+    (settings?.["queryBox:focusSelector"] &&
+      settings["queryBox:focusSelector:webRecency"]) ||
     settings?.["zenMode"];
 
   if (!shouldObserve) return;

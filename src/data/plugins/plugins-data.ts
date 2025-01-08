@@ -89,6 +89,16 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     tags: ["ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
   },
+  "queryBox:focusSelector:webRecency": {
+    id: "queryBox:focusSelector:webRecency",
+    routeSegment: "query-box-focus-selector-web-recency",
+    title: "Web Focus Recency Selector",
+    description:
+      "Select the recency of the web search from homepage and within threads",
+    tags: ["beta", "ui", "ux"],
+    dependentPlugins: ["queryBox:focusSelector"],
+    dependentCorePlugins: ["spaRouter", "domObserver"],
+  },
   "queryBox:spaceNavigator": {
     id: "queryBox:spaceNavigator",
     routeSegment: "query-box-space-navigator",
@@ -103,7 +113,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Prompt History",
     description: "Reuse previous prompts. Usage: type /h in the query box",
     tags: ["new", "experimental", "slashCommand", "desktopOnly", "ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver", "webSocket"],
+    dependentCorePlugins: ["spaRouter", "domObserver", "networkIntercept"],
   },
   "queryBox:noFileCreationOnPaste": {
     id: "queryBox:noFileCreationOnPaste",

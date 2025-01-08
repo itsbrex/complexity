@@ -1,12 +1,12 @@
 import alwaysHideRelatedQuestionsCss from "@/features/plugins/zen-mode/always-hide-related-questions.css?inline";
 import alwaysHideVisualColsCss from "@/features/plugins/zen-mode/always-hide-visual-cols.css?inline";
 import zenModeCss from "@/features/plugins/zen-mode/zen-mode.css?inline";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { insertCss } from "@/utils/utils";
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "plugin:zenMode",
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();

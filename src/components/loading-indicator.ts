@@ -1,4 +1,5 @@
-import { csUiRootCss } from "@/entrypoints/content-scripts";
+// eslint-disable-next-line boundaries/element-types
+import { csUiRootCss } from "@/entrypoints/content-scripts/loaders/cs-ui-plugins-loader/CsUiRoot";
 import { getCookie } from "@/utils/utils";
 
 export async function showInitializingIndicator() {
@@ -42,4 +43,18 @@ export async function showInitializingIndicator() {
 
   $tempStyle.appendTo(document.head);
   $indicator.appendTo(document.body);
+}
+
+export function removeInitializingIndicator() {
+  setTimeout(() => {
+    $("#cplx-initializing-indicator div")
+      .removeClass("tw-animate-in tw-fade-in")
+      .addClass("tw-animate-out tw-fade-out tw-duration-1000");
+
+    $("#cplx-initializing-indicator-style").remove();
+
+    setTimeout(() => {
+      $("#cplx-initializing-indicator").remove();
+    }, 200);
+  }, 500);
 }

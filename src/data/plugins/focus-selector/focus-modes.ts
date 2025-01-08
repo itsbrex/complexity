@@ -8,7 +8,7 @@ import {
   LuYoutube,
 } from "react-icons/lu";
 
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 
 type FocusModeCode =
   | "internet"
@@ -68,45 +68,57 @@ export let FOCUS_MODES: FocusMode[] = [
   },
 ];
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "cache:focusModes",
   dependencies: ["lib:i18next"],
   loader: () => {
     FOCUS_MODES = [
       {
-        label: t("plugin-focus-selector:modes.internet"),
+        label: t("plugin-focus-selector:focusSelector.modes.internet"),
         code: "internet",
-        description: t("plugin-focus-selector:descriptions.internet"),
+        description: t(
+          "plugin-focus-selector:focusSelector.descriptions.internet",
+        ),
         Icon: LuGlobe,
       },
       {
-        label: t("plugin-focus-selector:modes.writing"),
+        label: t("plugin-focus-selector:focusSelector.modes.writing"),
         code: "writing",
-        description: t("plugin-focus-selector:descriptions.writing"),
+        description: t(
+          "plugin-focus-selector:focusSelector.descriptions.writing",
+        ),
         Icon: LuPen,
       },
       {
-        label: t("plugin-focus-selector:modes.scholar"),
+        label: t("plugin-focus-selector:focusSelector.modes.scholar"),
         code: "scholar",
-        description: t("plugin-focus-selector:descriptions.scholar"),
+        description: t(
+          "plugin-focus-selector:focusSelector.descriptions.scholar",
+        ),
         Icon: LuLibrary,
       },
       {
-        label: t("plugin-focus-selector:modes.wolfram"),
+        label: t("plugin-focus-selector:focusSelector.modes.wolfram"),
         code: "wolfram",
-        description: t("plugin-focus-selector:descriptions.wolfram"),
+        description: t(
+          "plugin-focus-selector:focusSelector.descriptions.wolfram",
+        ),
         Icon: LuBadgePercent,
       },
       {
-        label: t("plugin-focus-selector:modes.youtube"),
+        label: t("plugin-focus-selector:focusSelector.modes.youtube"),
         code: "youtube",
-        description: t("plugin-focus-selector:descriptions.youtube"),
+        description: t(
+          "plugin-focus-selector:focusSelector.descriptions.youtube",
+        ),
         Icon: LuYoutube,
       },
       {
-        label: t("plugin-focus-selector:modes.reddit"),
+        label: t("plugin-focus-selector:focusSelector.modes.reddit"),
         code: "reddit",
-        description: t("plugin-focus-selector:descriptions.reddit"),
+        description: t(
+          "plugin-focus-selector:focusSelector.descriptions.reddit",
+        ),
         Icon: BiNetworkChart,
       },
     ];

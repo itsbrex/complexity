@@ -15,7 +15,7 @@ import {
   isAutonomousCanvasLanguageString,
 } from "@/features/plugins/thread/canvas/canvas.types";
 import { CANVAS_PLACEHOLDERS } from "@/features/plugins/thread/canvas/canvases";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
 import { scrollToElement, whereAmI } from "@/utils/utils";
@@ -99,7 +99,7 @@ export const canvasStore = createWithEqualityFn<CanvasStoreType>()(
   ),
 );
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "plugin:thread:canvas:resetOpenStateOnRouteChange",
   dependencies: ["cache:pluginsStates"],
   loader: () => {

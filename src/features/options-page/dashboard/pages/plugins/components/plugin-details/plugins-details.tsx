@@ -12,6 +12,7 @@ import CommandMenuPluginDetails from "@/features/options-page/dashboard/pages/pl
 import CustomThreadContainerWidthPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/CustomThreadContainerWidth";
 import ExportThreadPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/ExportThread";
 import FocusSelectorPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/FocusSelector";
+import FocusWebRecencySelectorPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/FocusWebRecencySelector";
 import FullWidthFollowUpQueryBoxPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/FullWidthFollowUpQueryBox";
 import PromptHistoryPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/PromptHistory";
 import SpaceNavigatorPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/SpaceNavigator";
@@ -25,6 +26,7 @@ export type PluginPluginDetails = Partial<Record<PluginId, React.ReactNode>>;
 export const PLUGIN_DETAILS: PluginPluginDetails = {
   "queryBox:languageModelSelector": <LanguageModelSelectorPluginDetails />,
   "queryBox:focusSelector": <FocusSelectorPluginDetails />,
+  "queryBox:focusSelector:webRecency": <FocusWebRecencySelectorPluginDetails />,
   "queryBox:spaceNavigator": <SpaceNavigatorPluginDetails />,
   "queryBox:slashCommandMenu:promptHistory": <PromptHistoryPluginDetails />,
   "queryBox:fullWidthFollowUp": <FullWidthFollowUpQueryBoxPluginDetails />,

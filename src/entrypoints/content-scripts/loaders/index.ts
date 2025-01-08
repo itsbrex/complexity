@@ -18,8 +18,10 @@ import "@/features/plugins/_core/dom-observer/observers/thread/thread-components
 // Query Box Plugins
 import "@/features/plugins/query-box/language-model-selector/network-intercept-middlewares";
 import "@/features/plugins/query-box/focus-selector/network-intercept-middlewares";
+import "@/features/plugins/query-box/focus-web-recency/network-intercept-middlewares";
 import "@/features/plugins/query-box/shared-store";
 import "@/data/plugins/focus-selector/focus-modes";
+import "@/data/plugins/focus-selector/focus-web-recency";
 import "@/features/plugins/query-box/prompt-history/network-intercept-middlewares";
 import "@/features/plugins/query-box/prompt-history/listeners";
 import "@/features/plugins/query-box/no-file-creation-on-paste";

@@ -4,7 +4,7 @@ import merge from "lodash/merge";
 import { DeepPartial } from "react-hook-form";
 
 import { BetterCodeBlockFineGrainedOptions } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { betterCodeBlocksFineGrainedOptionsQueries } from "@/services/indexed-db/better-code-blocks/query-keys";
 import { db } from "@/services/indexed-db/indexed-db";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
@@ -67,7 +67,7 @@ export const [
   () => new BetterCodeBlocksFineGrainedService(),
 );
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "cache:betterCodeBlocksFineGrainedOptions",
   loader: async () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();

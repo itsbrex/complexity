@@ -3,7 +3,7 @@ import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer"
 import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/query-boxes/observer-ids";
 import { spaRouteChangeCompleteSubscribe } from "@/features/plugins/_core/spa-router/listeners";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import UiUtils from "@/utils/UiUtils";
 import { whereAmI } from "@/utils/utils";
@@ -22,7 +22,7 @@ const cleanup = () => {
   DomObserver.destroy(DOM_OBSERVER_ID.MODAL);
 };
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "coreDomObserver:queryBoxes",
   loader: () => {
     setupQueryBoxesObserver(whereAmI());

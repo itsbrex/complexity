@@ -3,7 +3,7 @@ import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
 
 import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { setCookie, whereAmI } from "@/utils/utils";
 
 export type ColorScheme = "light" | "dark" | "system";
@@ -44,7 +44,7 @@ export const colorSchemeStore = createWithEqualityFn<ColorSchemeStoreType>()(
   ),
 );
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "store:colorScheme",
   loader: () => {
     DomObserver.create("colorScheme", {

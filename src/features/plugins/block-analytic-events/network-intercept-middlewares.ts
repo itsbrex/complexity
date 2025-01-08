@@ -1,9 +1,9 @@
 import MiddlewareManager from "@/features/plugins/_core/network-intercept/MiddlewareManager";
 import { parseWebSocketData } from "@/features/plugins/_core/network-intercept/web-socket-message-parser";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "plugin:blockAnalyticEvents",
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();

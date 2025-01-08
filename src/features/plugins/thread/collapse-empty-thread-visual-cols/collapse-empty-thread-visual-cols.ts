@@ -1,6 +1,6 @@
 import { spaRouteChangeCompleteSubscribe } from "@/features/plugins/_core/spa-router/listeners";
 import styles from "@/features/plugins/thread/collapse-empty-thread-visual-cols/collapse-empty-thread-visual-cols.css?inline";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { insertCss, whereAmI } from "@/utils/utils";
 
@@ -24,7 +24,7 @@ function setupCollapseEmptyThreadVisualCols(
   });
 }
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "plugin:thread:collapseEmptyThreadVisualCols",
   loader: () => {
     setupCollapseEmptyThreadVisualCols(whereAmI());

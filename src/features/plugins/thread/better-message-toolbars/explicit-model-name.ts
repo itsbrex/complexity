@@ -6,7 +6,7 @@ import {
   ExtendedMessageBlock,
   globalDomObserverStore,
 } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import {
@@ -98,7 +98,7 @@ function explicitModelName(messageBlocks: ExtendedMessageBlock[]) {
   });
 }
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "plugin:thread:betterMessageToolbars:explicitModelName",
   loader: () => {
     globalDomObserverStore.subscribe(

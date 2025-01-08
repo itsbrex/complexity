@@ -6,7 +6,7 @@ import {
   XhrEventData,
 } from "@/features/plugins/_core/network-intercept/listeners.types";
 import MiddlewareManager from "@/features/plugins/_core/network-intercept/MiddlewareManager";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 
 onlyExtensionGuard();
 
@@ -63,7 +63,7 @@ function setupInterceptorsListeners() {
   );
 }
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "messaging:networkIntercept",
   loader: setupInterceptorsListeners,
 });

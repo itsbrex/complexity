@@ -29,7 +29,7 @@ export default function SettingsPage() {
       <SettingsSection title="General">
         <SettingsItem title="Extension Permissions">
           <ManagePermissionsDialogWrapper>
-            <Button>Manage Permissions</Button>
+            <Button>Manage</Button>
           </ManagePermissionsDialogWrapper>
         </SettingsItem>
         <SettingsItem title="Extension Icon Action">

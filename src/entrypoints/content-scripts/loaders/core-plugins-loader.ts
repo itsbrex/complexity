@@ -5,7 +5,7 @@ import {
 
 import { CorePluginId, PLUGINS_METADATA } from "@/data/plugins/plugins-data";
 import InternalWebSocketManager from "@/features/plugins/_core/web-socket/InternalWebSocketManager";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
@@ -78,20 +78,20 @@ function shouldEnableCorePlugin(corePluginId: CorePluginId) {
   return shouldInject;
 }
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "plugins:core",
   loader: initCorePlugins,
   dependencies: ["cache:extensionLocalStorage"],
 });
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "messaging:namespaceSetup",
   loader: () => {
     allowWindowMessaging("com.complexity");
   },
 });
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "plugin:pplxThemeLoader",
   loader: async () => {
     const chosenThemeId = ExtensionLocalStorageService.getCachedSync().theme;

@@ -7,11 +7,12 @@ import {
   FocusMode,
   isFocusModeCode,
 } from "@/data/plugins/focus-selector/focus-modes";
+import { FocusWebRecencyValue } from "@/data/plugins/focus-selector/focus-web-recency";
 import {
   isLanguageModelCode,
   LanguageModel,
 } from "@/data/plugins/query-box/language-model-selector/language-models.types";
-import { CsLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PplxApiService } from "@/services/pplx-api/pplx-api";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
@@ -20,6 +21,8 @@ import { queryClient } from "@/utils/ts-query-client";
 type SharedQueryBoxStore = {
   selectedFocusMode: FocusMode["code"];
   setSelectedFocusMode: (focusMode: FocusMode["code"]) => void;
+  selectedRecency: FocusWebRecencyValue;
+  setSelectedRecency: (recency: FocusWebRecencyValue) => void;
   selectedLanguageModel: LanguageModel["code"];
   setSelectedLanguageModel: (
     selectedLanguageModel: LanguageModel["code"],
@@ -45,6 +48,10 @@ const useSharedQueryBoxStore = createWithEqualityFn<SharedQueryBoxStore>()(
             });
           }
         },
+        selectedRecency: "ALL",
+        setSelectedRecency: (recency) => {
+          set({ selectedRecency: recency });
+        },
         selectedLanguageModel: "turbo",
         setSelectedLanguageModel: async (selectedLanguageModel) => {
           set({ selectedLanguageModel });
@@ -60,7 +67,7 @@ const useSharedQueryBoxStore = createWithEqualityFn<SharedQueryBoxStore>()(
 
 const sharedQueryBoxStore = useSharedQueryBoxStore;
 
-CsLoaderRegistry.register({
+csLoaderRegistry.register({
   id: "plugin:queryBox:initSharedStore",
   dependencies: ["cache:extensionLocalStorage"],
   loader: async () => {

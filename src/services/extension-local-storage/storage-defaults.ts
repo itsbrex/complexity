@@ -18,6 +18,9 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       mode: "persistent",
       defaultFocusMode: "internet",
     },
+    "queryBox:focusSelector:webRecency": {
+      enabled: false,
+    },
     "queryBox:spaceNavigator": {
       enabled: false,
     },

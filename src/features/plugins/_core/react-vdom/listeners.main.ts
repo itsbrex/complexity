@@ -1,5 +1,9 @@
 import { onMessage } from "webext-bridge/window";
 
+import {
+  FocusMode,
+  isFocusModeCode,
+} from "@/data/plugins/focus-selector/focus-modes";
 import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
 import { errorWrapper } from "@/utils/error-wrapper";
 import { getReactFiberKey } from "@/utils/utils";
@@ -12,6 +16,9 @@ export type ReactVdomEvents = {
     index: number;
   }) => string | null;
   "reactVdom:getMessageContent": (params: { index: number }) => string | null;
+  "reactVdom:getMessageFocusMode": (params: {
+    index: number;
+  }) => FocusMode["code"] | null;
   "reactVdom:getCodeFromCodeBlock": (params: {
     messageBlockIndex: number;
     codeBlockIndex: number;
@@ -140,6 +147,32 @@ export function setupReactVdomListeners() {
       };
     },
   );
+
+  onMessage("reactVdom:getMessageFocusMode", ({ data: { index } }) => {
+    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${index}"]`;
+
+    const $el = $(selector).prev();
+
+    if (!$el.length) return null;
+
+    const [focusMode, error] = errorWrapper(() =>
+      findReactFiberNodeValue({
+        fiberNode: ($el[0] as any)[getReactFiberKey($el[0])],
+        condition: (node) =>
+          node.return.memoizedProps.result.search_focus != null,
+        select: (node) =>
+          node.return.memoizedProps.result.search_focus as string,
+      }),
+    )();
+
+    if (error) console.warn("[VDOM Plugin] getMessageFocusMode", error);
+
+    if (error || focusMode == null) return null;
+
+    if (!isFocusModeCode(focusMode)) return null;
+
+    return focusMode;
+  });
 }
 
 function findReactFiberNodeValue<T>({

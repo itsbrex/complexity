@@ -88,7 +88,7 @@ export default function PluginsEnableSet() {
           <PresetButton
             label="YOLO"
             LabelIcon={LuRocket}
-            description="Enable all plugins without knowing what they do is not recommended. Please start exploring them first."
+            description="Enable all plugins without knowing what they do is NOT recommended. Please start exploring them first."
             config={ALL_PLUGINS}
             onComplete={() => setOpen(false)}
           />

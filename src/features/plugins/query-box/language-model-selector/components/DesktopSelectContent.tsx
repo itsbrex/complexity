@@ -33,7 +33,11 @@ export function DesktopSelectContent() {
                 disabled={modelsLimits[model.code] == null}
                 positioning={{ placement: "right", gutter: 10 }}
               >
-                <SelectItem key={model.code} item={model.code}>
+                <SelectItem
+                  key={model.code}
+                  item={model.code}
+                  className="tw-text-foreground"
+                >
                   <div className="tw-flex tw-max-w-full tw-items-center tw-justify-around tw-gap-2">
                     {Icon != null ? (
                       <Icon className="tw-size-4" />

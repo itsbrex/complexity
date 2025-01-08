@@ -1,5 +1,6 @@
 import { sendMessage } from "webext-bridge/content-script";
 
+import { removeInitializingIndicator } from "@/components/loading-indicator";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PplxApiService } from "@/services/pplx-api/pplx-api";
 
@@ -11,6 +12,7 @@ export function contentScriptGuard() {
 
   checkForMaintenance().catch(() => {
     removePreloadedTheme();
+    removeInitializingIndicator();
   });
 
   try {
@@ -18,6 +20,7 @@ export function contentScriptGuard() {
     checkForExistingExtensionInstance();
   } catch (error) {
     removePreloadedTheme();
+    removeInitializingIndicator();
     throw error;
   }
 }

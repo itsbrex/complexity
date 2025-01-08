@@ -3,6 +3,7 @@ import { Portal } from "@/components/ui/portal";
 import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { ScopedQueryBoxContextProvider } from "@/features/plugins/query-box/context/context";
 import FocusSelectorWrapper from "@/features/plugins/query-box/focus-selector/Wrapper";
+import FocusWebRecencySelectorMainWrapper from "@/features/plugins/query-box/focus-web-recency/MainWrapper";
 import LanguageModelSelector from "@/features/plugins/query-box/language-model-selector/LanguageModelSelector";
 import SlashCommandMenuTriggerButton from "@/features/plugins/query-box/prompt-history/TriggerButton";
 import SlashCommandMenuWrapper from "@/features/plugins/query-box/slash-command-menu/Wrapper";
@@ -26,6 +27,13 @@ export default function MainModalQueryBoxWrapper() {
           >
             <FocusSelectorWrapper />
           </CsUiPluginsGuard>
+          <CsUiPluginsGuard
+            allowedAccountTypes={["free", "pro"]}
+            dependentPluginIds={["queryBox:focusSelector:webRecency"]}
+          >
+            <FocusWebRecencySelectorMainWrapper />
+          </CsUiPluginsGuard>
+
           <CsUiPluginsGuard
             desktopOnly
             dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}

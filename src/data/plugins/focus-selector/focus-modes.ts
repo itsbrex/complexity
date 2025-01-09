@@ -68,6 +68,15 @@ export let FOCUS_MODES: FocusMode[] = [
   },
 ];
 
+export const FOCUS_MODES_NATIVE_VDOM_MAP: FocusMode["code"][] = [
+  "internet",
+  "scholar",
+  "wolfram",
+  "writing",
+  "youtube",
+  "reddit",
+];
+
 csLoaderRegistry.register({
   id: "cache:focusModes",
   dependencies: ["lib:i18next"],

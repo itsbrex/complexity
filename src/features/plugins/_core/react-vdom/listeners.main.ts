@@ -1,11 +1,13 @@
 import { onMessage } from "webext-bridge/window";
 
 import {
+  FOCUS_MODES_NATIVE_VDOM_MAP,
   FocusMode,
   isFocusModeCode,
 } from "@/data/plugins/focus-selector/focus-modes";
 import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
 import { errorWrapper } from "@/utils/error-wrapper";
+import UiUtils from "@/utils/UiUtils";
 import { getReactFiberKey } from "@/utils/utils";
 
 export type ReactVdomEvents = {
@@ -26,6 +28,7 @@ export type ReactVdomEvents = {
     code: string;
     language: string;
   } | null;
+  "reactVdom:setFocusMode": (params: { focusMode: FocusMode["code"] }) => void;
 };
 
 export function setupReactVdomListeners() {
@@ -172,6 +175,46 @@ export function setupReactVdomListeners() {
     if (!isFocusModeCode(focusMode)) return null;
 
     return focusMode;
+  });
+
+  onMessage("reactVdom:setFocusMode", ({ data: { focusMode } }) => {
+    if (!isFocusModeCode(focusMode)) {
+      return;
+    }
+
+    const $activeQueryBox = UiUtils.getActiveQueryBox();
+
+    if (!$activeQueryBox.length) {
+      return;
+    }
+
+    const $focusSelector = $activeQueryBox.find(
+      `button:has(svg[data-icon="bars-filter"]), button:has(svg[data-icon="chevron-down"])`,
+    );
+
+    if (!$focusSelector.length) {
+      return;
+    }
+
+    const $wrapper = $focusSelector.parent();
+
+    if (!$wrapper.length) {
+      return;
+    }
+
+    const fiberNode = ($wrapper[0] as any)[getReactFiberKey($wrapper[0])];
+
+    if (fiberNode == null) {
+      return;
+    }
+
+    errorWrapper(() => {
+      const index = FOCUS_MODES_NATIVE_VDOM_MAP.indexOf(focusMode);
+
+      if (index === -1) return;
+
+      fiberNode.return.return.memoizedProps.items[index].onClick();
+    })();
   });
 }
 

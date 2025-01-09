@@ -40,7 +40,6 @@ export const LOADER_IDS = [
   "plugin:thread:betterMessageToolbars:wordsAndCharactersCount",
   "plugin:thread:customThreadContainerWidth",
   "plugin:queryBox:initSharedStore",
-  "plugin:queryBox:focusSelector:networkInterceptMiddleware",
   "plugin:queryBox:focusSelector:webRecency:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:listeners",

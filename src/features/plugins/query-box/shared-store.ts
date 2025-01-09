@@ -1,4 +1,5 @@
 import { QueryObserver } from "@tanstack/react-query";
+import { sendMessage } from "webext-bridge/content-script";
 import { subscribeWithSelector } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
@@ -7,13 +8,14 @@ import {
   FocusMode,
   isFocusModeCode,
 } from "@/data/plugins/focus-selector/focus-modes";
-import { FocusWebRecencyValue } from "@/data/plugins/focus-selector/focus-web-recency";
+import { FocusWebRecency } from "@/data/plugins/focus-selector/focus-web-recency";
 import {
   isLanguageModelCode,
   LanguageModel,
 } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { PplxApiService } from "@/services/pplx-api/pplx-api";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import { queryClient } from "@/utils/ts-query-client";
@@ -21,8 +23,8 @@ import { queryClient } from "@/utils/ts-query-client";
 type SharedQueryBoxStore = {
   selectedFocusMode: FocusMode["code"];
   setSelectedFocusMode: (focusMode: FocusMode["code"]) => void;
-  selectedRecency: FocusWebRecencyValue;
-  setSelectedRecency: (recency: FocusWebRecencyValue) => void;
+  selectedRecency: FocusWebRecency["value"];
+  setSelectedRecency: (recency: FocusWebRecency["value"]) => void;
   selectedLanguageModel: LanguageModel["code"];
   setSelectedLanguageModel: (
     selectedLanguageModel: LanguageModel["code"],
@@ -69,7 +71,11 @@ const sharedQueryBoxStore = useSharedQueryBoxStore;
 
 csLoaderRegistry.register({
   id: "plugin:queryBox:initSharedStore",
-  dependencies: ["cache:extensionLocalStorage"],
+  dependencies: [
+    "cache:extensionLocalStorage",
+    "messaging:namespaceSetup",
+    "cache:pluginsStates",
+  ],
   loader: async () => {
     const pplxUserSettingsObserverRemove = new QueryObserver(
       queryClient,
@@ -95,6 +101,36 @@ csLoaderRegistry.register({
 
     if (isFocusModeCode(defaultFocusMode)) {
       sharedQueryBoxStore.setState({ selectedFocusMode: defaultFocusMode });
+    }
+
+    if (
+      PluginsStatesService.getCachedSync().pluginsEnableStates?.[
+        "queryBox:focusSelector"
+      ]
+    ) {
+      sendMessage(
+        "reactVdom:setFocusMode",
+        {
+          focusMode:
+            ExtensionLocalStorageService.getCachedSync()?.plugins[
+              "queryBox:focusSelector"
+            ].defaultFocusMode ?? "internet",
+        },
+        "window",
+      );
+
+      sharedQueryBoxStore.subscribe(
+        (state) => state.selectedFocusMode,
+        (focusMode) => {
+          sendMessage(
+            "reactVdom:setFocusMode",
+            {
+              focusMode,
+            },
+            "window",
+          );
+        },
+      );
     }
   },
 });

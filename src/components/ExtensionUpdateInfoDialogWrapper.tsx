@@ -58,7 +58,7 @@ export default function ExtensionUpdateInfoDialogWrapper({
               </span>
               <Image
                 src={
-                  APP_CONFIG.BROWSER !== "chrome"
+                  APP_CONFIG.BROWSER === "chrome"
                     ? "https://i.imgur.com/IMLecmp.png"
                     : "https://i.imgur.com/f2x3Mtl.png"
                 }

@@ -5,8 +5,8 @@ import { ExtensionLocalStorageService } from "@/services/extension-local-storage
 import { PplxApiService } from "@/services/pplx-api/pplx-api";
 
 export function contentScriptGuard() {
-  const removePreloadedTheme = () => {
-    if (ExtensionLocalStorageService.getCachedSync().preloadTheme)
+  const removePreloadedTheme = async () => {
+    if ((await ExtensionLocalStorageService.get()).preloadTheme)
       sendMessage("bg:removePreloadedTheme", undefined, "background");
   };
 

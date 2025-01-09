@@ -89,7 +89,9 @@ export default function CommandMenuWrapper() {
         <SearchFilterBadge />
         <CommandInput
           ref={ref}
-          className="tw-grow tw-border-none"
+          className={cn("tw-grow tw-border-none", {
+            "tw-font-medium": !searchValue,
+          })}
           placeholder={
             !filter
               ? t("plugin-command-menu:commandMenu.input.placeholder")

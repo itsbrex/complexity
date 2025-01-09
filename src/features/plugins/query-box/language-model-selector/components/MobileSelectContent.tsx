@@ -31,7 +31,7 @@ export function MobileSelectContent({ ...props }: DialogProps) {
                 <SelectItem
                   key={model.code}
                   item={model.code}
-                  className="tw-py-3"
+                  className="tw-py-3 tw-font-medium"
                 >
                   <div className="tw-flex tw-w-full tw-max-w-full tw-items-center tw-justify-between tw-gap-4">
                     <div className="tw-flex tw-items-center tw-gap-3">

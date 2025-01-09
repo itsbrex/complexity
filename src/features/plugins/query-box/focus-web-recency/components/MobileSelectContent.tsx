@@ -12,7 +12,7 @@ export function MobileSelectContent({ ...props }: DialogProps) {
             key={recency.value}
             checkboxOnSingleItem
             item={recency.value}
-            className="tw-flex tw-items-center tw-gap-2 tw-py-3"
+            className="tw-flex tw-items-center tw-gap-2 tw-py-3 tw-font-medium"
           >
             <span className="tw-grow-1">{recency.label}</span>
           </SelectItem>

@@ -28,6 +28,7 @@ export default function Tooltip({
 }: TooltipProps) {
   return (
     <TooltipRoot
+      unmountOnExit
       lazyMount={true}
       openDelay={0}
       closeDelay={0}
@@ -43,7 +44,7 @@ export default function Tooltip({
       </TooltipTrigger>
       {!(typeof content === "string" && content.length === 0) && (
         <TooltipContent asChild portal={portal}>
-          <div>{content}</div>
+          <div className="tw-font-medium">{content}</div>
         </TooltipContent>
       )}
     </TooltipRoot>

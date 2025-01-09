@@ -7,7 +7,7 @@ export default function CanvasPluginDetails() {
   const { settings, mutation } = useExtensionLocalStorage();
 
   return (
-    <div className="tw-flex tw-max-w-screen-lg tw-flex-col tw-gap-4 tw-overflow-auto">
+    <div className="tw-flex tw-max-w-screen-lg tw-flex-col tw-gap-4">
       <Switch
         textLabel="Enable"
         checked={settings?.plugins["thread:canvas"].enabled}
@@ -97,6 +97,17 @@ export default function CanvasPluginDetails() {
                       <InlineCode className="tw-w-max">✅ html</InlineCode>
                       <InlineCode className="tw-w-max">✅ react</InlineCode>
                     </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="tw-border tw-border-border tw-bg-secondary tw-p-2 tw-text-secondary-foreground">
+                    Supported language models
+                  </td>
+                  <td className="tw-border tw-border-border tw-p-2 tw-text-center tw-text-muted-foreground">
+                    any
+                  </td>
+                  <td className="tw-border tw-border-border tw-p-2 tw-text-center">
+                    Claude 3.5 Sonnet, GPT-4o, GPT-o1, Sonar Huge, Grok-2
                   </td>
                 </tr>
                 <tr>

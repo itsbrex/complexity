@@ -1,4 +1,5 @@
 import { createListCollection, SelectContext } from "@ark-ui/react";
+import { sendMessage } from "webext-bridge/content-script";
 
 import Tooltip from "@/components/Tooltip";
 import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -33,6 +34,16 @@ export default function FocusSelectorWrapper() {
   const focusModeData =
     FOCUS_MODES.find((mode) => mode.code === selectedFocusMode) ??
     FOCUS_MODES[0]!;
+
+  useEffect(() => {
+    sendMessage(
+      "reactVdom:setFocusMode",
+      {
+        focusMode: selectedFocusMode,
+      },
+      "window",
+    );
+  }, [selectedFocusMode]);
 
   return (
     <Select

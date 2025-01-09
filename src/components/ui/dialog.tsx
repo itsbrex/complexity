@@ -46,7 +46,7 @@ const DialogContent = ({
       <ArkDialog.Positioner>
         <ArkDialog.Content
           className={cn(
-            "tw-fixed tw-left-[50%] tw-top-[50%] tw-z-50 tw-flex tw-w-full tw-max-w-lg tw-flex-col tw-fill-mode-forwards",
+            "custom-scrollbar tw-fixed tw-left-[50%] tw-top-[50%] tw-z-50 tw-flex tw-max-h-[95vh] tw-w-full tw-max-w-lg tw-flex-col tw-overflow-y-auto tw-fill-mode-forwards",
             "tw-translate-x-[-50%] tw-translate-y-[-50%] tw-gap-4 tw-border tw-border-border/50 tw-bg-background tw-p-6 tw-shadow-lg tw-duration-200",
             "tw-max-h-[95vh] data-[state=closed]:tw-hidden data-[state=closed]:tw-animate-out data-[state=open]:tw-fade-in-0",
             "sm:tw-rounded-lg",

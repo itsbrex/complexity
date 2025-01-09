@@ -25,7 +25,7 @@ const handleInFlightMessage = ($answerHeading: JQuery<Element>) => {
 const createModelBadge = (modelName: string) => {
   return $(`<div>${modelName.toLocaleUpperCase()}</div>`)
     .addClass(
-      "tw-font-mono tw-animate-in tw-fade-in tw-border tw-border-border/50 tw-p-1 tw-px-2 tw-rounded-md tw-text-xs tw-bg-secondary",
+      "tw-font-mono tw-animate-in tw-fade-in tw-border tw-border-border/50 tw-p-1 tw-px-2 tw-rounded-md tw-text-xs tw-bg-secondary tw-font-medium",
     )
     .internalComponentAttr(
       DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD

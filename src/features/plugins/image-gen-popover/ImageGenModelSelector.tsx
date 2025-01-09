@@ -53,7 +53,7 @@ export default function ImageGenModelSelector() {
         <SelectTrigger variant="ghost">
           <div className="tw-flex tw-min-h-8 tw-items-center tw-justify-center tw-gap-1">
             <Image className="tw-size-4" />
-            <SelectValue>
+            <SelectValue className="tw-font-medium">
               {imageGenModels.find((model) => model.code === value)?.shortLabel}
             </SelectValue>
             <span className="tw-self-start tw-text-[.5rem] tw-text-primary">
@@ -77,6 +77,7 @@ export default function ImageGenModelSelector() {
               <SelectItem
                 key={model.code}
                 item={model.code}
+                className="tw-font-medium"
                 onClick={(e) => {
                   e.stopPropagation();
                 }}

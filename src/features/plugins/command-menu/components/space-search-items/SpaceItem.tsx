@@ -46,7 +46,7 @@ export function SpaceItem({ space }: SpaceItemProps) {
       value={space.uuid}
       keywords={[searchKeyword]}
       className={cn(
-        "tw-flex tw-min-h-10 tw-items-center",
+        "tw-flex tw-min-h-10 tw-items-center tw-font-medium",
         isHighlighted && "tw-h-max",
       )}
       onSelect={() => {

@@ -45,7 +45,7 @@ export default function PromptHistoryItem({
       <div className="tw-flex tw-w-full tw-items-start tw-justify-between tw-gap-4">
         <div className="">
           <div className="tw-line-clamp-3 tw-whitespace-pre-wrap">
-            {item.prompt}
+            {item.prompt.trim()}
           </div>
         </div>
         <div className="tw-flex tw-flex-shrink-0 tw-items-center tw-gap-2 tw-text-xs tw-text-muted-foreground">

@@ -54,8 +54,7 @@ export const DOM_SELECTORS = {
       },
     },
     POPPER: {
-      MOBILE: ".duration-250.fill-mode-both.fixed.bottom-0.left-0",
-      DESKTOP: ".duration-250.fill-mode-both",
+      DESKTOP: ".duration-250.fill-mode-both>.absolute.left-0.right-0.top-0",
     },
   },
   HOME: {

@@ -45,7 +45,7 @@ export default function PluginDetailsModal({
             {PLUGINS_METADATA[pluginId].description}
           </DialogDescription>
         </DialogHeader>
-        {PLUGIN_DETAILS[pluginId]}
+        <div className="tw-mt-4">{PLUGIN_DETAILS[pluginId]}</div>
       </DialogContentComp>
     </DialogComp>
   );

@@ -6,6 +6,7 @@ import { sendMessage } from "webext-bridge/content-script";
 
 import { CommandItem } from "@/components/ui/command";
 import { PopoverContent } from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import SpaceItemFile from "@/features/plugins/query-box/space-navigator/SpaceItemFile";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
@@ -23,8 +24,6 @@ export default function SpaceItem({ space }: { space: Space }) {
   const isOnSpacePage =
     spaceSlugFromUrl === space.slug || spaceSlugFromUrl === space.uuid;
 
-  const [popoverOpen, setPopoverOpen] = useState(false);
-
   const ref = useRef<HTMLDivElement>(null);
 
   const isHighlighted: boolean = useCommandState(
@@ -40,8 +39,7 @@ export default function SpaceItem({ space }: { space: Space }) {
   });
 
   const popover = usePopover({
-    open: popoverOpen,
-    onOpenChange: ({ open }) => setPopoverOpen(open),
+    open: isHighlighted,
     positioning: {
       placement: "right-start",
       offset: {
@@ -58,17 +56,13 @@ export default function SpaceItem({ space }: { space: Space }) {
     !!space.instructions ||
     (files?.num_total_files ?? 0) > 0;
 
-  useEffect(() => {
-    setPopoverOpen(isHighlighted);
-  }, [isHighlighted]);
-
   return (
     <>
       <CommandItem
         ref={ref}
         key={space.uuid}
         className={cn(
-          "tw-relative tw-flex tw-min-h-10 tw-items-center tw-justify-between tw-gap-4 tw-text-sm",
+          "tw-relative tw-flex tw-min-h-10 tw-items-center tw-justify-between tw-gap-4 tw-text-sm tw-font-medium",
           {
             "tw-text-primary": isOnSpacePage,
           },
@@ -103,77 +97,86 @@ export default function SpaceItem({ space }: { space: Space }) {
       </CommandItem>
       {shouldShowPopover === true && (
         <PopoverRootProvider unmountOnExit lazyMount value={popover}>
-          <PopoverContent className="tw-hidden tw-max-w-[300px] tw-p-4 md:tw-block xl:tw-max-w-[500px]">
-            <div className="tw-flex tw-flex-col tw-gap-4 tw-overflow-auto">
-              {space.description && (
-                <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
-                  <div className="tw-text-sm tw-text-muted-foreground">
-                    {t(
-                      "plugin-space-navigator:spaceNavigator.spaceItem.details.description",
-                    )}
+          <PopoverContent
+            portal={false}
+            className="tw-hidden tw-p-0 md:tw-block"
+          >
+            <ScrollArea>
+              <div className="tw-flex tw-max-h-[50vh] tw-max-w-[300px] tw-flex-col tw-gap-4 tw-p-4 xl:tw-max-w-[500px]">
+                {space.description && (
+                  <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
+                    <div className="tw-text-sm tw-font-medium tw-text-muted-foreground">
+                      {t(
+                        "plugin-space-navigator:spaceNavigator.spaceItem.details.description",
+                      )}
+                    </div>
+                    <div className="tw-line-clamp-1 tw-whitespace-pre-wrap">
+                      {space.description}
+                    </div>
                   </div>
-                  <div className="tw-line-clamp-1 tw-whitespace-pre-wrap">
-                    {space.description}
-                  </div>
-                </div>
-              )}
-              {space.instructions && (
-                <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
-                  <div className="tw-text-sm tw-text-muted-foreground">
-                    {t(
-                      "plugin-space-navigator:spaceNavigator.spaceItem.details.instructions",
-                    )}
-                  </div>
-                  <div className="tw-max-h-[200px] tw-overflow-auto tw-whitespace-pre-wrap tw-rounded-md tw-bg-secondary tw-p-2">
-                    {space.instructions}
-                  </div>
-                </div>
-              )}
-              {space.focused_web_config?.link_configs.length > 0 && (
-                <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
-                  <div className="tw-truncate tw-text-sm tw-text-muted-foreground">
-                    {t(
-                      "plugin-space-navigator:spaceNavigator.spaceItem.details.focusedWebLinks",
-                      {
-                        count: space.focused_web_config.link_configs.length,
-                      },
-                    )}
-                  </div>
-                  <div className="tw-flex tw-flex-wrap tw-items-center tw-gap-2">
-                    {space.focused_web_config.link_configs.map((link, idx) => (
-                      <div
-                        key={idx}
-                        className="tw-flex tw-items-center tw-gap-2"
-                      >
-                        <LuLink className="tw-size-4" />
-                        <div className="tw-line-clamp-1 tw-underline">
-                          {link.link}
-                        </div>
+                )}
+                {space.instructions && (
+                  <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
+                    <div className="tw-text-sm tw-font-medium tw-text-muted-foreground">
+                      {t(
+                        "plugin-space-navigator:spaceNavigator.spaceItem.details.instructions",
+                      )}
+                    </div>
+                    <ScrollArea className="tw-whitespace-pre-wrap tw-rounded-md tw-bg-secondary">
+                      <div className="tw-max-h-[200px] tw-p-2">
+                        {space.instructions}
                       </div>
+                    </ScrollArea>
+                  </div>
+                )}
+                {space.focused_web_config?.link_configs.length > 0 && (
+                  <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
+                    <div className="tw-truncate tw-text-sm tw-font-medium tw-text-muted-foreground">
+                      {t(
+                        "plugin-space-navigator:spaceNavigator.spaceItem.details.focusedWebLinks",
+                        {
+                          count: space.focused_web_config.link_configs.length,
+                        },
+                      )}
+                    </div>
+                    <div className="tw-flex tw-flex-wrap tw-items-center tw-gap-2">
+                      {space.focused_web_config.link_configs.map(
+                        (link, idx) => (
+                          <div
+                            key={idx}
+                            className="tw-flex tw-items-center tw-gap-2"
+                          >
+                            <LuLink className="tw-size-4" />
+                            <div className="tw-line-clamp-1 tw-underline">
+                              {link.link}
+                            </div>
+                          </div>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                )}
+                {files && files?.num_total_files > 0 && (
+                  <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
+                    <div className="tw-text-sm tw-font-medium tw-text-muted-foreground">
+                      {t(
+                        "plugin-space-navigator:spaceNavigator.spaceItem.details.files",
+                        {
+                          count: files.num_total_files,
+                        },
+                      )}
+                    </div>
+                    {files.files.map((file, index) => (
+                      <SpaceItemFile
+                        key={index}
+                        file={file}
+                        spaceUuid={space.uuid}
+                      />
                     ))}
                   </div>
-                </div>
-              )}
-              {files && files?.num_total_files > 0 && (
-                <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
-                  <div className="tw-text-sm tw-text-muted-foreground">
-                    {t(
-                      "plugin-space-navigator:spaceNavigator.spaceItem.details.files",
-                      {
-                        count: files.num_total_files,
-                      },
-                    )}
-                  </div>
-                  {files.files.map((file) => (
-                    <SpaceItemFile
-                      key={file.file_uuid}
-                      file={file}
-                      spaceUuid={space.uuid}
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            </ScrollArea>
           </PopoverContent>
         </PopoverRootProvider>
       )}

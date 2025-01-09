@@ -168,7 +168,11 @@ export class PplxApiService {
         ),
       );
 
-    return (await parseRawHtml()) ?? (await fetchViaApi());
+    if (searchValue.length > 0) {
+      return await fetchViaApi();
+    } else {
+      return (await parseRawHtml()) ?? (await fetchViaApi());
+    }
   }
 
   static async fetchSpaces(): Promise<Space[]> {

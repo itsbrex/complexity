@@ -27,7 +27,7 @@ export function ModelTrigger({ value }: { value: LanguageModel["code"] }) {
           "tw-hidden md:tw-flex": type !== "follow-up",
         })}
       >
-        <SelectValue>
+        <SelectValue className="tw-font-medium">
           {languageModels.find((model) => model.code === value)?.shortLabel}
         </SelectValue>
         {limit != null && limit <= 100 && (

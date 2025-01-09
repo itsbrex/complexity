@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useDebounce } from "@uidotdev/usehooks";
 import { sendMessage } from "webext-bridge/content-script";
 
 import {
@@ -23,8 +24,9 @@ export default function FocusWebRecencySelectorFollowUpWrapper() {
     }),
   );
 
-  const messageBlocks = useGlobalDomObserverStore(
-    (state) => state.threadComponents.messageBlocks,
+  const messageBlocks = useDebounce(
+    useGlobalDomObserverStore((state) => state.threadComponents.messageBlocks),
+    100,
   );
 
   const { data: searchFocus, refetch: refetchSearchFocus } = useQuery({

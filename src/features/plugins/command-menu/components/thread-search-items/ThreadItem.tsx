@@ -19,7 +19,7 @@ export function ThreadItem({ thread }: ThreadItemProps) {
       key={thread.slug}
       asChild
       value={thread.slug}
-      className="tw-flex tw-h-10 tw-items-center tw-justify-between tw-gap-8"
+      className="tw-flex tw-h-10 tw-items-center tw-justify-between tw-gap-8 tw-font-medium"
       onSelect={() => {
         if (isHotkeyPressed("ctrl"))
           return window.open(`/search/${thread.slug}`, "_blank");

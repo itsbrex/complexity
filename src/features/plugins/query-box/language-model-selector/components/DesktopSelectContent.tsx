@@ -36,7 +36,7 @@ export function DesktopSelectContent() {
                 <SelectItem
                   key={model.code}
                   item={model.code}
-                  className="tw-text-foreground"
+                  className="tw-font-medium tw-text-foreground"
                 >
                   <div className="tw-flex tw-max-w-full tw-items-center tw-justify-around tw-gap-2">
                     {Icon != null ? (

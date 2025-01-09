@@ -15,6 +15,8 @@ import UiUtils from "@/utils/UiUtils";
 export default function SpaceNavigatorContent() {
   const { data: spaces, isLoading } = useQuery(pplxApiQueries.spaces);
 
+  const [searchValue, setSearchValue] = useState("");
+
   return (
     <Command
       filter={(value, search, keywords) => {
@@ -41,7 +43,12 @@ export default function SpaceNavigatorContent() {
         placeholder={t(
           "plugin-space-navigator:spaceNavigator.search.placeholder",
         )}
+        value={searchValue}
+        className={cn({
+          "tw-font-medium": !searchValue,
+        })}
         searchIcon={false}
+        onValueChange={(value) => setSearchValue(value)}
       />
       {!isLoading && (
         <CommandEmpty>

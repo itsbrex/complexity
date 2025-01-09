@@ -60,7 +60,7 @@ const BetterCopyButton = memo(function BetterCopyButton({
         </DropdownMenuTrigger>
       </Tooltip>
       {hasSources && (
-        <DropdownMenuContent>
+        <DropdownMenuContent className="tw-font-medium">
           <DropdownMenuItem
             value={"default" satisfies CopyOptions}
             className="tw-flex tw-items-center tw-gap-2"

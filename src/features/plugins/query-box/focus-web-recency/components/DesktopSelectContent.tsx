@@ -9,7 +9,7 @@ export function DesktopSelectContent() {
           key={recency.value}
           checkboxOnSingleItem
           item={recency.value}
-          className="tw-w-[150px] tw-overflow-hidden tw-p-2"
+          className="tw-w-[150px] tw-overflow-hidden tw-p-2 tw-font-medium"
         >
           <span className="tw-grow-1 tw-line-clamp-1">{recency.label}</span>
         </SelectItem>

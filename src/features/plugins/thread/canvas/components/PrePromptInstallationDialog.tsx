@@ -16,6 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "@/components/ui/use-toast";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
@@ -83,7 +84,7 @@ function CanvasPrePromptInstallationDialog() {
         navigate("/");
       }}
     >
-      <DialogContent>
+      <DialogContent className="tw-max-w-max">
         <DialogHeader>
           <DialogTitle>Install Canvas Pre-Prompt as Space</DialogTitle>
         </DialogHeader>
@@ -91,21 +92,21 @@ function CanvasPrePromptInstallationDialog() {
           You are about to install the Canvas Pre-Prompt as a Perplexity&apos;s
           Space. This will enable advanced features for the Canvas plugin.
         </DialogDescription>
-        <div className="tw-flex tw-max-h-[80%] tw-flex-col tw-gap-2 tw-overflow-y-auto">
+        <div className="tw-flex tw-w-full tw-flex-col tw-gap-2">
           <div className="tw-text-sm tw-text-muted-foreground">
             For reference, here is the prompt:
           </div>
-          <div className="tw-h-[500px] tw-max-h-[500px] tw-overflow-y-auto tw-whitespace-pre-line tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4 tw-text-sm tw-text-secondary-foreground">
+          <ScrollArea className="tw-h-[500px] tw-w-full tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-text-sm tw-text-secondary-foreground">
             {isFetching && !canvasInstruction && (
               <div className="tw-flex tw-flex-col tw-gap-2">
-                <p className="tw-text-sm tw-text-muted-foreground">
+                <p className="tw-p-4 tw-text-sm tw-text-muted-foreground">
                   Fetching the Canvas Pre-Prompt, please wait...
                 </p>
               </div>
             )}
             {isError && (
               <div className="tw-flex tw-flex-col tw-gap-2">
-                <p className="tw-text-sm tw-text-muted-foreground">
+                <p className="tw-p-4 tw-text-sm tw-text-muted-foreground">
                   Failed to fetch the Canvas Pre-Prompt.
                 </p>
               </div>
@@ -113,13 +114,15 @@ function CanvasPrePromptInstallationDialog() {
             {canvasInstruction && (
               <>
                 <CopyButton
-                  className="tw-float-right"
+                  className="tw-float-right tw-mr-4 tw-mt-4"
                   content={canvasInstruction}
                 />
-                {canvasInstruction}
+                <div className="tw-max-w-full tw-whitespace-pre-line tw-break-words tw-p-4">
+                  {canvasInstruction}
+                </div>
               </>
             )}
-          </div>
+          </ScrollArea>
         </div>
         {versions?.canvasInstructionLastUpdated != null && (
           <div className="tw-text-sm tw-text-muted-foreground">

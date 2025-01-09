@@ -71,7 +71,8 @@ class CsLoaderRegistry {
     if (
       APP_CONFIG.IS_DEV &&
       isInContentScript() &&
-      (!isMainWorldContext() && process.env.NODE_ENV !== "test")
+      !isMainWorldContext() &&
+      process.env.NODE_ENV !== "test"
     ) {
       setTimeout(() => {
         for (const loaderId of LOADER_IDS) {

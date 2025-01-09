@@ -1,4 +1,5 @@
-[data-cplx-component="popper"]:has(.group\/item.md\:h-full):has(
+.duration-250.fill-mode-both
+  > .absolute.left-0.right-0.top-0:has(.group\/item.md\:h-full):has(
     svg[data-icon="copilot"]
   ) {
   .mb-xs.-mx-xs.px-xs.border-b {

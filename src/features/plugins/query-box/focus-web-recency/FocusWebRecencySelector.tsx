@@ -6,7 +6,6 @@ import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
   RECENCIES,
   FocusWebRecency,
-  FocusWebRecencyValue,
 } from "@/data/plugins/focus-selector/focus-web-recency";
 import { DesktopSelectContent } from "@/features/plugins/query-box/focus-web-recency/components/DesktopSelectContent";
 import { MobileSelectContent } from "@/features/plugins/query-box/focus-web-recency/components/MobileSelectContent";
@@ -18,8 +17,8 @@ export default function FocusWebRecencySelector({
   setValue,
   recencyData,
 }: {
-  value: FocusWebRecencyValue;
-  setValue: (value: FocusWebRecencyValue) => void;
+  value: FocusWebRecency["value"];
+  setValue: (value: FocusWebRecency["value"]) => void;
   recencyData: FocusWebRecency;
 }) {
   const { isMobile } = useIsMobileStore();
@@ -37,7 +36,7 @@ export default function FocusWebRecencySelector({
       value={[value]}
       className="tw-h-8"
       onValueChange={({ value }) => {
-        setValue(value[0] as FocusWebRecencyValue);
+        setValue(value[0] as FocusWebRecency["value"]);
 
         setTimeout(() => {
           UiUtils.getActiveQueryBoxTextarea().trigger("focus");

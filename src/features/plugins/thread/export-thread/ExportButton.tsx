@@ -106,7 +106,7 @@ const ExportButton = memo(function ExportButton() {
           {isFetching ? defaultIdleText : (copyConfirmText ?? defaultIdleText)}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="tw-font-medium">
         <DropdownMenuItem value="default">
           <BiLogoMarkdown className="tw-mr-2 tw-size-4" />
           <span>{t("plugin-export-thread:exportButton.options.default")}</span>
@@ -128,7 +128,7 @@ const ExportButton = memo(function ExportButton() {
               {t("plugin-export-thread:exportButton.options.download")}
             </span>
           </DropdownMenuSubTrigger>
-          <DropdownMenuContent>
+          <DropdownMenuContent className="tw-font-medium">
             <DropdownMenuItem value="default">
               <BiLogoMarkdown className="tw-mr-2 tw-size-4" />
               <span>

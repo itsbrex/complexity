@@ -1,5 +1,4 @@
 import { QueryObserver } from "@tanstack/react-query";
-import { sendMessage } from "webext-bridge/content-script";
 import { subscribeWithSelector } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
@@ -15,7 +14,6 @@ import {
 } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
-import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { PplxApiService } from "@/services/pplx-api/pplx-api";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import { queryClient } from "@/utils/ts-query-client";
@@ -101,36 +99,6 @@ csLoaderRegistry.register({
 
     if (isFocusModeCode(defaultFocusMode)) {
       sharedQueryBoxStore.setState({ selectedFocusMode: defaultFocusMode });
-    }
-
-    if (
-      PluginsStatesService.getCachedSync().pluginsEnableStates?.[
-        "queryBox:focusSelector"
-      ]
-    ) {
-      sendMessage(
-        "reactVdom:setFocusMode",
-        {
-          focusMode:
-            ExtensionLocalStorageService.getCachedSync()?.plugins[
-              "queryBox:focusSelector"
-            ].defaultFocusMode ?? "internet",
-        },
-        "window",
-      );
-
-      sharedQueryBoxStore.subscribe(
-        (state) => state.selectedFocusMode,
-        (focusMode) => {
-          sendMessage(
-            "reactVdom:setFocusMode",
-            {
-              focusMode,
-            },
-            "window",
-          );
-        },
-      );
     }
   },
 });

@@ -24,7 +24,7 @@ const handleInFlightMessage = ($answerHeading: JQuery<Element>) => {
 const createAnswerHeadingContainer = (content: string) => {
   return $(`<div>${content}</div>`)
     .addClass(
-      "tw-text-muted-foreground tw-italic tw-text-xs tw-ml-4 tw-text-right",
+      "tw-text-muted-foreground tw-italic tw-text-xs tw-ml-4 tw-text-right tw-font-medium",
     )
     .internalComponentAttr(
       DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
@@ -37,7 +37,7 @@ const createQueryHoverContainer = (content: string) => {
     `<div><span>${content}</span><div class="mx-2xs h-4 border-l border-borderMain/50 ring-borderMain/50 divide-borderMain/50 dark:divide-borderMainDark/50  dark:ring-borderMainDark/50 dark:border-borderMainDark/50 bg-transparent"></div></div>`,
   )
     .addClass(
-      "tw-ml-2 tw-text-muted-foreground tw-italic tw-text-xs tw-flex tw-items-center tw-gap-2",
+      "tw-ml-2 tw-text-muted-foreground tw-italic tw-text-xs tw-flex tw-items-center tw-gap-2 tw-font-medium",
     )
     .internalComponentAttr(
       DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD

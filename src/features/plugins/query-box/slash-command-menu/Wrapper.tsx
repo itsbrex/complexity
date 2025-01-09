@@ -77,6 +77,7 @@ const useSlashCommandPopover = ({
     positioning: {
       placement: isSpaceQueryBox ? "bottom-start" : "top-start",
       gutter: isMainQueryBox ? 1 : 5,
+      flip: isSpaceQueryBox ? true : false,
       getAnchorRect: () => anchor?.getBoundingClientRect() ?? null,
     },
     portalled: false,
@@ -109,7 +110,7 @@ const CommandContent = ({
     <PopoverContent
       ref={commandRef}
       className={cn(
-        "tw-overflow-y-auto tw-border-border tw-p-0 tw-shadow-none",
+        "tw-overflow-y-auto tw-border-border tw-p-0 tw-font-medium tw-shadow-none",
         {
           "tw-rounded-b-none tw-border-2 tw-border-b-0": store.type === "main",
         },

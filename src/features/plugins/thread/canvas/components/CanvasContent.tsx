@@ -42,7 +42,7 @@ export default function CanvasContent() {
           ? "code"
           : canvasViewMode
       }
-      className="tw-size-full tw-overflow-auto"
+      className="custom-scrollbar tw-size-full tw-overflow-auto"
     >
       <TabsContent value="code" className="tw-size-full">
         <CanvasCodeView />

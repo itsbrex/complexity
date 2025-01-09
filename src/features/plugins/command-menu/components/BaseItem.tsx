@@ -22,6 +22,7 @@ const BaseMenuItem = memo(function BaseMenuItem({
   keywords,
   onSelect,
   closeOnSelect = true,
+  className,
   ...props
 }: BaseMenuItemProps) {
   const { closeCommandMenu } = useCommandMenuStore();
@@ -29,6 +30,7 @@ const BaseMenuItem = memo(function BaseMenuItem({
   return (
     <CommandItem
       keywords={keywords}
+      className={cn("tw-font-medium", className)}
       onSelect={() => {
         onSelect?.();
         if (closeOnSelect) closeCommandMenu();

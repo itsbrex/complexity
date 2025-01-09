@@ -11,7 +11,7 @@ export function MobileSelectContent({ ...props }: DialogProps) {
           <SelectItem
             key={mode.code}
             item={mode.code}
-            className="tw-flex tw-flex-col tw-items-start tw-gap-2 tw-py-3 tw-text-foreground"
+            className="tw-flex tw-flex-col tw-items-start tw-gap-2 tw-py-3 tw-font-medium tw-text-foreground"
           >
             <div className="tw-flex tw-items-center tw-gap-3">
               <mode.Icon className="tw-size-5" />

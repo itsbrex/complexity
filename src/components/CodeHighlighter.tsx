@@ -1,18 +1,13 @@
 import { ComponentProps } from "react";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import lightStyle from "react-syntax-highlighter/dist/esm/styles/hljs/vs";
-import darkStyle from "react-syntax-highlighter/dist/esm/styles/hljs/vs2015";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import lightStyle from "react-syntax-highlighter/dist/esm/styles/prism/vs";
+import darkStyle from "react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus";
 
 import { useColorSchemeStore } from "@/data/color-scheme-store";
 
 const INTERPRETED_LANGUAGES: Record<string, string> = {
-  html: "xml",
-  react: "javascript",
-  jsx: "javascript",
-  tsx: "typescript",
-  js: "javascript",
-  ts: "typescript",
-  py: "python",
+  html: "markup",
+  react: "jsx",
 };
 
 const CodeHighlighter = memo(function CodeHighlighter({
@@ -35,6 +30,10 @@ const CodeHighlighter = memo(function CodeHighlighter({
   return (
     <SyntaxHighlighter
       style={colorScheme === "dark" ? darkStyle : lightStyle}
+      codeTagProps={{
+        className: "tw-font-mono",
+        style: {},
+      }}
       language={targetLanguage}
       {...props}
     >

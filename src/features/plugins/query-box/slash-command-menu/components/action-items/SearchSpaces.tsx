@@ -21,10 +21,12 @@ export default function SearchSpacesActionItem() {
       className="tw-min-h-10"
       onSelect={() => {
         slashCommandMenuStore.getState().queryBoxAction.deleteTriggerWord();
-        $(
-          `[data-testid=${TEST_ID_SELECTORS.QUERY_BOX.SPACE_NAVIGATOR}]:last`,
-        ).trigger("click");
         slashCommandMenuStore.getState().setIsOpen(false);
+        setTimeout(() => {
+          $(
+            `[data-testid=${TEST_ID_SELECTORS.QUERY_BOX.SPACE_NAVIGATOR}]:last`,
+          ).trigger("click");
+        }, 0);
       }}
     >
       <div className="tw-flex tw-items-center tw-gap-2">

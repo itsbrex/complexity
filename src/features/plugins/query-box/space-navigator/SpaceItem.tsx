@@ -1,11 +1,14 @@
-import { PopoverRootProvider, usePopover } from "@ark-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { useCommandState } from "cmdk";
 import { LuLink } from "react-icons/lu";
 import { sendMessage } from "webext-bridge/content-script";
 
 import { CommandItem } from "@/components/ui/command";
-import { PopoverContent } from "@/components/ui/popover";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import SpaceItemFile from "@/features/plugins/query-box/space-navigator/SpaceItemFile";
@@ -38,68 +41,70 @@ export default function SpaceItem({ space }: { space: Space }) {
     staleTime: 30000,
   });
 
-  const popover = usePopover({
-    open: isHighlighted,
-    positioning: {
-      placement: "right-start",
-      offset: {
-        mainAxis: 20,
-      },
-      getAnchorRect: () => ref.current?.getBoundingClientRect() ?? null,
-    },
-    autoFocus: false,
-    portalled: false,
-  });
+  // hacky fix for flashing hover card on popover open
+  const [shouldEnableHoverCard, setShouldEnableHoverCard] = useState(false);
 
-  const shouldShowPopover =
+  useEffect(() => {
+    setTimeout(() => {
+      setShouldEnableHoverCard(true);
+    }, 100);
+  }, []);
+
+  const shouldShowHoverCard =
     (!isMobile && !!space.description) ||
     !!space.instructions ||
     (files?.num_total_files ?? 0) > 0;
 
   return (
-    <>
-      <CommandItem
-        ref={ref}
-        key={space.uuid}
-        className={cn(
-          "tw-relative tw-flex tw-min-h-10 tw-items-center tw-justify-between tw-gap-4 tw-text-sm tw-font-medium",
+    <CommandItem
+      ref={ref}
+      key={space.uuid}
+      className={cn("tw-relative tw-min-h-10 tw-text-sm tw-font-medium", {
+        "tw-text-primary": isOnSpacePage,
+      })}
+      value={space.uuid}
+      keywords={[
+        space.title,
+        space.description?.slice(0, 100),
+        space.instructions?.slice(0, 100),
+      ]}
+      onSelect={() => {
+        sendMessage(
+          "spa-router:push",
           {
-            "tw-text-primary": isOnSpacePage,
+            url: `/collections/${space.slug}`,
           },
-        )}
-        value={space.uuid}
-        keywords={[
-          space.title,
-          space.description?.slice(0, 100),
-          space.instructions?.slice(0, 100),
-        ]}
-        onSelect={() => {
-          sendMessage(
-            "spa-router:push",
-            {
-              url: `/collections/${space.slug}`,
-            },
-            "window",
-          );
+          "window",
+        );
+      }}
+    >
+      <HoverCard
+        unmountOnExit
+        lazyMount
+        openDelay={0}
+        closeDelay={0}
+        positioning={{
+          placement: "right",
+          gutter: 25,
         }}
       >
-        <div className="tw-flex tw-items-center tw-gap-2">
-          {space.emoji && <div>{emojiCodeToString(space.emoji)}</div>}
-          {space.title}
-        </div>
-        {isOnSpacePage && (
-          <div className="tw-text-xs tw-text-muted-foreground">
-            {t(
-              "plugin-space-navigator:spaceNavigator.spaceItem.currentLocation",
-            )}
+        <HoverCardTrigger className="tw-flex tw-size-full tw-h-8 tw-items-center tw-justify-between tw-gap-4">
+          <div className="tw-flex tw-items-center tw-gap-2">
+            {space.emoji && <div>{emojiCodeToString(space.emoji)}</div>}
+            {space.title}
           </div>
-        )}
-      </CommandItem>
-      {shouldShowPopover === true && (
-        <PopoverRootProvider unmountOnExit lazyMount value={popover}>
-          <PopoverContent
-            portal={false}
-            className="tw-hidden tw-p-0 md:tw-block"
+          {isOnSpacePage && (
+            <div className="tw-text-xs tw-text-muted-foreground">
+              {t(
+                "plugin-space-navigator:spaceNavigator.spaceItem.currentLocation",
+              )}
+            </div>
+          )}
+        </HoverCardTrigger>
+        {shouldEnableHoverCard && shouldShowHoverCard && (
+          <HoverCardContent
+            className="cplx-space-item-hover-card tw-hidden tw-p-0 md:tw-block"
+            onClick={(e) => e.stopPropagation()}
           >
             <ScrollArea>
               <div className="tw-flex tw-max-h-[50vh] tw-max-w-[300px] tw-flex-col tw-gap-4 tw-p-4 xl:tw-max-w-[500px]">
@@ -177,9 +182,9 @@ export default function SpaceItem({ space }: { space: Space }) {
                 )}
               </div>
             </ScrollArea>
-          </PopoverContent>
-        </PopoverRootProvider>
-      )}
-    </>
+          </HoverCardContent>
+        )}
+      </HoverCard>
+    </CommandItem>
   );
 }

@@ -13,18 +13,15 @@ type SpaceNavigatorDesktopWrapperProps = {
 export default function SpaceNavigatorDesktopWrapper({
   children,
 }: SpaceNavigatorDesktopWrapperProps) {
-  const [open, setOpen] = useState(false);
-
   return (
     <Popover
       lazyMount
+      unmountOnExit
       closeOnEscape
       closeOnInteractOutside
       positioning={{
         placement: "bottom-start",
       }}
-      open={open}
-      onOpenChange={({ open }) => setOpen(open)}
     >
       <Tooltip
         content={t("plugin-space-navigator:spaceNavigator.button.label")}

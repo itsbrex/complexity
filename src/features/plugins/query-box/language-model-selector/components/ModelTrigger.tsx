@@ -23,17 +23,22 @@ export function ModelTrigger({ value }: { value: LanguageModel["code"] }) {
     <div className="tw-flex tw-min-h-8 tw-items-center tw-justify-center tw-gap-1">
       <LuCpu className="tw-size-4" />
       <div
-        className={cn("tw-gap-1", {
-          "tw-hidden md:tw-flex": type !== "follow-up",
+        className={cn("tw-relative", {
+          "tw-hidden md:tw-block": type !== "follow-up",
         })}
       >
         <SelectValue className="tw-font-medium">
           {languageModels.find((model) => model.code === value)?.shortLabel}
         </SelectValue>
         {limit != null && limit <= 100 && (
-          <span className="tw-self-start tw-text-[.5rem] tw-text-primary">
-            {limit}
-          </span>
+          <>
+            <span className="tw-invisible tw-text-[.5rem] tw-text-primary">
+              {limit}
+            </span>
+            <span className="tw-absolute -tw-right-1 -tw-top-2 tw-text-[.5rem] tw-text-primary">
+              {limit}
+            </span>
+          </>
         )}
       </div>
     </div>

@@ -18,10 +18,12 @@ export default function ChangeModelActionItem() {
         className="tw-min-h-10"
         onSelect={() => {
           slashCommandMenuStore.getState().queryBoxAction.deleteTriggerWord();
-          $(
-            `[data-testid=${TEST_ID_SELECTORS.QUERY_BOX.LANGUAGE_MODEL_SELECTOR}] button:last`,
-          ).trigger("click");
           slashCommandMenuStore.getState().setIsOpen(false);
+          setTimeout(() => {
+            $(
+              `[data-testid=${TEST_ID_SELECTORS.QUERY_BOX.LANGUAGE_MODEL_SELECTOR}] button:last`,
+            ).trigger("click");
+          }, 0);
         }}
       >
         <div className="tw-flex tw-items-center tw-gap-2">

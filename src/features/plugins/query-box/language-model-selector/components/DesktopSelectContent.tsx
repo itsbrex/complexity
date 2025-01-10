@@ -29,7 +29,11 @@ export function DesktopSelectContent() {
             return (
               <Tooltip
                 key={model.code}
-                content={modelsLimits[model.code]}
+                content={
+                  modelsLimits[model.code] === Infinity
+                    ? "Unlimited"
+                    : modelsLimits[model.code]
+                }
                 disabled={modelsLimits[model.code] == null}
                 positioning={{ placement: "right", gutter: 10 }}
               >

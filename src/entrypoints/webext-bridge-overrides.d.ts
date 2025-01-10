@@ -3,12 +3,6 @@ import type { BridgeMessage } from "webext-bridge";
 import type { AllEventHandlers } from "@/entrypoints/webext-bridge-imports";
 import type { MaybePromise } from "@/types/utils.types";
 
-export type AllEventHandlers = BackgroundEventHandlers &
-  NetworkInterceptInterceptorsEventHandlers &
-  SpaRouterCsUtilEventHandlers &
-  SpaRouterDispatchEventHandlers &
-  ReactVdomEventHandlers;
-
 type MessageFunctions = {
   onMessage<K extends keyof AllEventHandlers>(
     event: K,

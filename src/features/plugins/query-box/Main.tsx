@@ -7,7 +7,7 @@ import FocusWebRecencySelectorMainWrapper from "@/features/plugins/query-box/foc
 import LanguageModelSelector from "@/features/plugins/query-box/language-model-selector/LanguageModelSelector";
 import SlashCommandMenuTriggerButton from "@/features/plugins/query-box/prompt-history/TriggerButton";
 import SlashCommandMenuWrapper from "@/features/plugins/query-box/slash-command-menu/Wrapper";
-import SpaceNavigator from "@/features/plugins/query-box/space-navigator/SpaceNavigator";
+import SpaceNavigatorWrapper from "@/features/plugins/query-box/space-navigator/Wrapper";
 import { findToolbarPortalContainer } from "@/features/plugins/query-box/utils";
 
 export default function MainQueryBoxWrapper() {
@@ -48,7 +48,7 @@ export default function MainQueryBoxWrapper() {
             requiresLoggedIn
             dependentPluginIds={["queryBox:spaceNavigator"]}
           >
-            <SpaceNavigator />
+            <SpaceNavigatorWrapper />
           </CsUiPluginsGuard>
           <CsUiPluginsGuard
             allowedAccountTypes={["pro", "enterprise"]}

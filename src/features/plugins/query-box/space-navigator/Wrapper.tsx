@@ -10,7 +10,7 @@ import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import { TEST_ID_SELECTORS } from "@/utils/dom-selectors";
 import { parseUrl } from "@/utils/utils";
 
-export default function SpaceNavigator() {
+export default function SpaceNavigatorWrapper() {
   const { data: spaces } = useQuery(pplxApiQueries.spaces);
 
   const url = useSpaRouter((state) => state.url);

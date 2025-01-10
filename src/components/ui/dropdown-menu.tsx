@@ -100,6 +100,9 @@ const DropdownMenuSub = ({ ...props }: Menu.RootProps) => (
     lazyMount={true}
     positioning={{
       placement: "right-start",
+      offset: {
+        mainAxis: 8,
+      },
     }}
     {...props}
   />

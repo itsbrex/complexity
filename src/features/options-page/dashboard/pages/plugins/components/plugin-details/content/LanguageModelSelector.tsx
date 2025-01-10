@@ -20,7 +20,7 @@ export default function LanguageModelSelectorPluginDetails() {
       <Switch
         textLabel="Enable"
         checked={
-          settings?.plugins["queryBox:languageModelSelector"].enabled ?? false
+          settings.plugins["queryBox:languageModelSelector"].enabled ?? false
         }
         onCheckedChange={({ checked }) => {
           mutation.mutate((draft) => {
@@ -29,33 +29,52 @@ export default function LanguageModelSelectorPluginDetails() {
         }}
       />
       {settings.plugins["queryBox:languageModelSelector"].enabled && (
-        <div className="tw-ml-8 tw-flex tw-flex-col tw-gap-2">
-          <Switch
-            textLabel="Homepage + Modal + Space"
-            checked={
-              settings.plugins["queryBox:languageModelSelector"].main ?? false
-            }
-            onCheckedChange={({ checked }) => {
-              mutation.mutate((draft) => {
-                draft.plugins["queryBox:languageModelSelector"].main = checked;
-              });
-            }}
-          />
-          <div className="tw-flex tw-flex-col tw-gap-2">
+        <div className="tw-flex tw-flex-col tw-gap-2">
+          <div className="tw-ml-8 tw-flex tw-flex-col tw-gap-2">
             <Switch
-              textLabel="Follow-up (in a thread)"
+              textLabel="Homepage + Modal + Space"
               checked={
-                settings.plugins["queryBox:languageModelSelector"].followUp ??
-                false
+                settings.plugins["queryBox:languageModelSelector"].main ?? false
               }
               onCheckedChange={({ checked }) => {
                 mutation.mutate((draft) => {
-                  draft.plugins["queryBox:languageModelSelector"].followUp =
+                  draft.plugins["queryBox:languageModelSelector"].main =
                     checked;
                 });
               }}
             />
+            <div className="tw-flex tw-flex-col tw-gap-2">
+              <Switch
+                textLabel="Follow-up (in a thread)"
+                checked={
+                  settings.plugins["queryBox:languageModelSelector"].followUp ??
+                  false
+                }
+                onCheckedChange={({ checked }) => {
+                  mutation.mutate((draft) => {
+                    draft.plugins["queryBox:languageModelSelector"].followUp =
+                      checked;
+                  });
+                }}
+              />
+            </div>
           </div>
+          {settings.devMode && (
+            <Switch
+              textLabel="Change timezone"
+              checked={
+                settings.plugins["queryBox:languageModelSelector"]
+                  .changeTimezone ?? false
+              }
+              onCheckedChange={({ checked }) => {
+                mutation.mutate((draft) => {
+                  draft.plugins[
+                    "queryBox:languageModelSelector"
+                  ].changeTimezone = checked;
+                });
+              }}
+            />
+          )}
         </div>
       )}
       <div className="tw-mx-auto tw-w-full tw-max-w-[700px]">

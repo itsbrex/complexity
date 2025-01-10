@@ -6,8 +6,6 @@ import { GroupedLanguageModelsByProvider } from "@/types/plugins/query-box/langu
 import { errorWrapper } from "@/utils/error-wrapper";
 import { queryClient } from "@/utils/ts-query-client";
 
-// TODO: split the initialize logic into separate file
-
 export const localLanguageModels = [
   {
     label: "Claude 3.5 Sonnet",

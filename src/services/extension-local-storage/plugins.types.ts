@@ -13,6 +13,7 @@ export const PluginsSchema = z.object({
   "queryBox:languageModelSelector": PluginSettingsSchema.extend({
     main: z.boolean(),
     followUp: z.boolean(),
+    changeTimezone: z.boolean(),
   }),
   "queryBox:fullWidthFollowUp": PluginSettingsSchema,
   "queryBox:focusSelector": PluginSettingsSchema.extend({

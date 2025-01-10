@@ -5,6 +5,7 @@ import {
 } from "@/features/plugins/_core/network-intercept/web-socket-message-parser";
 import { sharedQueryBoxStore } from "@/features/plugins/query-box/shared-store";
 import { csLoaderRegistry } from "@/services/cs-loader-registry";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 
 csLoaderRegistry.register({
@@ -41,25 +42,31 @@ csLoaderRegistry.register({
 
         const isPerplexityAskMessage = payload[0] === "perplexity_ask";
 
+        if (!isPerplexityAskMessage) return skip();
+
         const isRewriteMessage = payload[2].query_source == "retry";
 
-        if (isPerplexityAskMessage && !isRewriteMessage) {
-          const newPayload = [
-            ...payload.slice(0, 2),
-            {
-              ...payload[2],
-              model_preference:
-                sharedQueryBoxStore.getState().selectedLanguageModel,
-            },
-          ];
+        const settings = ExtensionLocalStorageService.getCachedSync();
 
-          return encodeWebSocketData({
-            type: "message",
-            data: `${wsMessage.messageId}${JSON.stringify(newPayload)}`,
-          });
-        }
+        const newPayload = [
+          ...payload.slice(0, 2),
+          {
+            ...payload[2],
+            model_preference: !isRewriteMessage
+              ? sharedQueryBoxStore.getState().selectedLanguageModel
+              : payload[2].model_preference,
+            timezone:
+              settings.devMode &&
+              settings.plugins["queryBox:languageModelSelector"].changeTimezone
+                ? "America/Los_Angeles"
+                : payload[2].timezone,
+          },
+        ];
 
-        return skip();
+        return encodeWebSocketData({
+          type: "message",
+          data: `${wsMessage.messageId}${JSON.stringify(newPayload)}`,
+        });
       },
     });
   },

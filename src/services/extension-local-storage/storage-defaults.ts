@@ -9,6 +9,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       enabled: false,
       main: true,
       followUp: true,
+      changeTimezone: false,
     },
     "queryBox:fullWidthFollowUp": {
       enabled: false,
@@ -121,4 +122,5 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
   energySavingMode: false,
   extensionIconAction: "perplexity",
   cdnLastUpdated: 0,
+  devMode: false,
 } as const;

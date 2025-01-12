@@ -67,7 +67,7 @@ export function usePanelPosition(): UsePanelPosition | null {
     debouncedUpdate();
 
     DomObserver.create(DOM_OBSERVER_ID, {
-      target: $(DOM_SELECTORS.SIDEBAR)[0],
+      target: $(DOM_SELECTORS.SIDEBAR.WRAPPER)[0],
       config: {
         attributes: true,
         attributeFilter: ["class"],

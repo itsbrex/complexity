@@ -1,7 +1,7 @@
+import type { ZenModeItem as ZenModeItemType } from "@/data/plugins/command-menu/types";
 import BaseMenuItem, {
   BaseCommandMenuItem,
 } from "@/features/plugins/command-menu/components/BaseItem";
-import type { ZenModeItem as ZenModeItemType } from "@/features/plugins/command-menu/types";
 
 type ZenModeItemProps = BaseCommandMenuItem & ZenModeItemType;
 

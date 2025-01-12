@@ -9,6 +9,14 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { InlineCode } from "@/components/ui/typography";
+import {
+  ZENMODE_ITEMS,
+  COLOR_SCHEME_ITEMS,
+  NAVIGATION_ITEMS,
+  SEARCH_FILTERS,
+  SEARCH_ITEMS,
+} from "@/data/plugins/command-menu/items";
+import { useCommandMenuStore } from "@/data/plugins/command-menu/store";
 import ColorSchemeItem from "@/features/plugins/command-menu/components/ColorSchemeItem";
 import NavigationItem from "@/features/plugins/command-menu/components/NavigationItem";
 import SearchFilterBadge from "@/features/plugins/command-menu/components/SearchFilterBadge";
@@ -18,14 +26,6 @@ import SpaceThreadsSearchItems from "@/features/plugins/command-menu/components/
 import ThreadSearchItems from "@/features/plugins/command-menu/components/thread-search-items/ThreadSearchItems";
 import ZenModeItem from "@/features/plugins/command-menu/components/ZenModeItem";
 import useBindCommandMenuHotkeys from "@/features/plugins/command-menu/hooks/useBindCommandMenuHotkeys";
-import {
-  ZENMODE_ITEMS,
-  COLOR_SCHEME_ITEMS,
-  NAVIGATION_ITEMS,
-  SEARCH_FILTERS,
-  SEARCH_ITEMS,
-} from "@/features/plugins/command-menu/items";
-import { useCommandMenuStore } from "@/features/plugins/command-menu/store";
 import usePplxAuth from "@/hooks/usePplxAuth";
 
 export default function CommandMenuWrapper() {

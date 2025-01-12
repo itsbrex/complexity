@@ -67,24 +67,32 @@ module.exports = {
         pattern: ["src/features/plugins/_core/*/**/*"],
       },
       {
+        type: "shared-plugin-components",
+        mode: "full",
+        capture: ["componentName"],
+        pattern: ["src/features/plugins/_common/*/**/*"],
+      },
+      {
         type: "plugin-family",
         mode: "full",
         capture: ["familyName"],
-        pattern: ["src/features/plugins/{home,thread,query-box}/*"],
+        pattern: ["src/features/plugins/{home,thread,query-box,sidebar}/*"],
       },
       {
         type: "nested-plugin-utils",
         mode: "full",
         capture: ["familyName", "utilsName"],
         pattern: [
-          "src/features/plugins/{home,thread,query-box}/{assets,context,utils,types,components,hooks}/**/*",
+          "src/features/plugins/{home,thread,query-box,sidebar}/{assets,context,utils,types,components,hooks}/**/*",
         ],
       },
       {
         type: "nested-plugin",
         mode: "full",
         capture: ["familyName", "nestedPluginName"],
-        pattern: ["src/features/plugins/{home,thread,query-box}/*/**/*"],
+        pattern: [
+          "src/features/plugins/{home,thread,query-box,sidebar}/*/**/*",
+        ],
       },
       {
         type: "plugin",
@@ -92,7 +100,7 @@ module.exports = {
         capture: ["pluginName"],
         pattern: [
           "src/features/plugins/*/**/*",
-          "src/features/plugins/{home,thread,query-box}/*/**/*",
+          "src/features/plugins/{home,thread,query-box,sidebar}/*/**/*",
         ],
       },
       {
@@ -213,7 +221,24 @@ module.exports = {
             allow: [
               "shared",
               "core-plugin",
+              [
+                "shared-plugin-components",
+                { componentName: "${from.pluginName}" },
+              ],
               ["plugin", { pluginName: "${from.pluginName}" }],
+            ],
+          },
+          {
+            from: ["shared-plugin-components"],
+            allow: [
+              "shared",
+              "core-plugin",
+              [
+                "shared-plugin-components",
+                { componentName: "${from.componentName}" },
+              ],
+              ["plugin", { pluginName: "${from.componentName}" }],
+              ["nested-plugin", { nestedPluginName: "${from.componentName}" }],
             ],
           },
           {
@@ -234,6 +259,10 @@ module.exports = {
               ["plugin-family", { familyName: "${from.familyName}" }],
               ["nested-plugin", { familyName: "${from.familyName}" }],
               ["nested-plugin-utils", { familyName: "${from.familyName}" }],
+              [
+                "shared-plugin-components",
+                { componentName: "${from.nestedPluginName}" },
+              ],
             ],
           },
           {

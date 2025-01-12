@@ -11,6 +11,7 @@ import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 // import { SponsorHomeLink } from "@/components/SponsorHomeLink";
 import { Toaster } from "@/components/Toaster";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
+import SpaceNavigatorWrapper from "@/features/plugins/sidebar/space-navigator/Wrapper";
 import { useInsertCss } from "@/hooks/useInsertCss";
 
 const HomepageUpdateAnnouncer = lazy(
@@ -75,8 +76,11 @@ export default function CsUiRoot() {
       <CsUiPluginsGuard desktopOnly dependentPluginIds={["commandMenu"]}>
         <CommandMenuWrapper />
       </CsUiPluginsGuard>
+      <CsUiPluginsGuard>
+        <SidebarComponents />
+      </CsUiPluginsGuard>
       <CsUiPluginsGuard location={["thread"]}>
-        <ThreadComponent />
+        <ThreadComponents />
       </CsUiPluginsGuard>
       <CsUiPluginsGuard dependentPluginIds={["onCloudflareTimeoutAutoReload"]}>
         <OnCloudflareTimeout />
@@ -87,7 +91,7 @@ export default function CsUiRoot() {
   );
 }
 
-function ThreadComponent() {
+function ThreadComponents() {
   const { url } = useSpaRouter();
 
   return (
@@ -124,6 +128,18 @@ function ThreadComponent() {
         </CsUiPluginsGuard>
       </Fragment>
     </>
+  );
+}
+
+function SidebarComponents() {
+  return (
+    <CsUiPluginsGuard
+      desktopOnly
+      requiresLoggedIn
+      dependentPluginIds={["queryBox:spaceNavigator"]}
+    >
+      <SpaceNavigatorWrapper />
+    </CsUiPluginsGuard>
   );
 }
 

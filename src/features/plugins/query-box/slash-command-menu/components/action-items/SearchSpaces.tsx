@@ -1,9 +1,9 @@
 import PplxSpace from "@/components/icons/PplxSpace";
 import { CommandItem } from "@/components/ui/command";
+import { commandMenuStore } from "@/data/plugins/command-menu/store";
 import { QueryBoxType } from "@/data/plugins/query-box/types";
 import { useScopedQueryBoxContext } from "@/features/plugins/query-box/context/context";
 import { slashCommandMenuStore } from "@/features/plugins/query-box/slash-command-menu/store";
-import { TEST_ID_SELECTORS } from "@/utils/dom-selectors";
 
 export default function SearchSpacesActionItem() {
   const { store } = useScopedQueryBoxContext();
@@ -22,11 +22,8 @@ export default function SearchSpacesActionItem() {
       onSelect={() => {
         slashCommandMenuStore.getState().queryBoxAction.deleteTriggerWord();
         slashCommandMenuStore.getState().setIsOpen(false);
-        setTimeout(() => {
-          $(
-            `[data-testid=${TEST_ID_SELECTORS.QUERY_BOX.SPACE_NAVIGATOR}]:last`,
-          ).trigger("click");
-        }, 0);
+        commandMenuStore.getState().setOpen(true);
+        commandMenuStore.getState().setFilter("spaces");
       }}
     >
       <div className="tw-flex tw-items-center tw-gap-2">

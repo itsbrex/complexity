@@ -44,6 +44,13 @@ export type GlobalDomObserverStore = {
   setThreadComponents: (
     newThreadComponents: Partial<GlobalDomObserverStore["threadComponents"]>,
   ) => void;
+  sidebarComponents: {
+    wrapper: HTMLElement | null;
+    spaceButtonWrapper: HTMLElement | null;
+  };
+  setSidebarComponents: (
+    newSidebarComponents: Partial<GlobalDomObserverStore["sidebarComponents"]>,
+  ) => void;
 };
 
 export const globalDomObserverStore =
@@ -120,6 +127,28 @@ export const globalDomObserverStore =
                 set({
                   threadComponents: {
                     ...get().threadComponents,
+                    [currentKey]: value,
+                  },
+                });
+              }
+            });
+          },
+          sidebarComponents: {
+            wrapper: null,
+            spaceButtonWrapper: null,
+          },
+          setSidebarComponents: (newSidebarComponents) => {
+            Object.entries(newSidebarComponents).forEach(([key, value]) => {
+              const currentKey =
+                key as keyof GlobalDomObserverStore["sidebarComponents"];
+
+              if (
+                value !== undefined &&
+                value !== get().sidebarComponents[currentKey]
+              ) {
+                set({
+                  sidebarComponents: {
+                    ...get().sidebarComponents,
                     [currentKey]: value,
                   },
                 });

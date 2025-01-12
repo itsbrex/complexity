@@ -21,6 +21,7 @@ let previousLanguage = "";
 
 csLoaderRegistry.register({
   id: "coreDomObserver:homeComponents",
+  dependencies: ["messaging:spaRouter"],
   loader: () => {
     setupHomeComponentsObserver(whereAmI());
 
@@ -28,7 +29,6 @@ csLoaderRegistry.register({
       setupHomeComponentsObserver(whereAmI(url));
     });
   },
-  dependencies: ["messaging:spaRouter"],
 });
 
 function setupHomeComponentsObserver(location: ReturnType<typeof whereAmI>) {
@@ -56,7 +56,7 @@ function setupHomeComponentsObserver(location: ReturnType<typeof whereAmI>) {
     onMutation: () =>
       CallbackQueue.getInstance().enqueue(
         () => observeLanguageSelector(),
-        `${DOM_OBSERVER_ID.LANGUAGE_SELECTOR}-language-selector`,
+        `${DOM_OBSERVER_ID.LANGUAGE_SELECTOR}`,
       ),
   });
 }
@@ -64,9 +64,10 @@ function setupHomeComponentsObserver(location: ReturnType<typeof whereAmI>) {
 function observeSlogan() {
   const $slogan = $(DOM_SELECTORS.HOME.SLOGAN);
 
-  if (!$slogan.length || $slogan.attr(OBSERVER_ID.SLOGAN)) return;
+  if (!$slogan.length || $slogan.internalComponentAttr() === OBSERVER_ID.SLOGAN)
+    return;
 
-  $slogan.attr(OBSERVER_ID.SLOGAN, "true");
+  $slogan.internalComponentAttr(OBSERVER_ID.SLOGAN);
 
   globalDomObserverStore.getState().setHomeComponents({
     slogan: $slogan[0],
@@ -76,9 +77,13 @@ function observeSlogan() {
 function observeHomeBottomBar() {
   const $bottomBar = $(DOM_SELECTORS.HOME.BOTTOM_BAR);
 
-  if (!$bottomBar.length || $bottomBar.attr(OBSERVER_ID.BOTTOM_BAR)) return;
+  if (
+    !$bottomBar.length ||
+    $bottomBar.internalComponentAttr() === OBSERVER_ID.BOTTOM_BAR
+  )
+    return;
 
-  $bottomBar.attr(OBSERVER_ID.BOTTOM_BAR, "true");
+  $bottomBar.internalComponentAttr(OBSERVER_ID.BOTTOM_BAR);
 
   globalDomObserverStore.getState().setHomeComponents({
     bottomBar: $bottomBar[0],

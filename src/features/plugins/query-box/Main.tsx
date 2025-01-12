@@ -45,6 +45,7 @@ export default function MainQueryBoxWrapper() {
             <SlashCommandMenuTriggerButton />
           </CsUiPluginsGuard>
           <CsUiPluginsGuard
+            mobileOnly
             requiresLoggedIn
             dependentPluginIds={["queryBox:spaceNavigator"]}
           >

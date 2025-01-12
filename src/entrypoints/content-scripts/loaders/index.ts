@@ -14,6 +14,7 @@ import "@/features/plugins/_core/spa-router/listeners";
 import "@/features/plugins/_core/dom-observer/observers/query-boxes/query-boxes";
 import "@/features/plugins/_core/dom-observer/observers/home/home-components";
 import "@/features/plugins/_core/dom-observer/observers/thread/thread-components";
+import "@/features/plugins/_core/dom-observer/observers/sidebar/sidebar-components";
 
 // Query Box Plugins
 import "@/features/plugins/query-box/language-model-selector/network-intercept-middlewares";

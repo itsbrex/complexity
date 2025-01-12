@@ -1,8 +1,8 @@
+import { useCommandMenuStore } from "@/data/plugins/command-menu/store";
+import type { SearchItem as SearchItemType } from "@/data/plugins/command-menu/types";
 import BaseMenuItem, {
   BaseCommandMenuItem,
 } from "@/features/plugins/command-menu/components/BaseItem";
-import { useCommandMenuStore } from "@/features/plugins/command-menu/store";
-import type { SearchItem as SearchItemType } from "@/features/plugins/command-menu/types";
 
 type SearchItemProps = BaseCommandMenuItem & SearchItemType;
 

@@ -1,10 +1,10 @@
 import { useHotkeys } from "react-hotkeys-hook";
 
-import { SearchFilter } from "@/features/plugins/command-menu/items";
+import { SearchFilter } from "@/data/plugins/command-menu/items";
 import {
   commandMenuStore,
   useCommandMenuStore,
-} from "@/features/plugins/command-menu/store";
+} from "@/data/plugins/command-menu/store";
 import { getPlatform } from "@/hooks/usePlatformDetection";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";

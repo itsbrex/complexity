@@ -6,9 +6,9 @@ import { sendMessage } from "webext-bridge/content-script";
 import AtomicSimple from "@/components/icons/AtomicSimple";
 import KeyCombo from "@/components/KeyCombo";
 import { CommandItem } from "@/components/ui/command";
+import { useCommandMenuStore } from "@/data/plugins/command-menu/store";
 import { languageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
 import { AdditionalInfos } from "@/features/plugins/command-menu/components/space-search-items/AdditionalInfos";
-import { useCommandMenuStore } from "@/features/plugins/command-menu/store";
 import { Space } from "@/services/pplx-api/pplx-api.types";
 import { emojiCodeToString } from "@/utils/utils";
 

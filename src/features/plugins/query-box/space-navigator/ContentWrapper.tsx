@@ -1,6 +1,6 @@
 import Tooltip from "@/components/Tooltip";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import SpaceNavigatorContent from "@/features/plugins/query-box/space-navigator/SpaceNavigatorContent";
+import SpaceNavigatorContent from "@/features/plugins/_common/space-navigator/SpaceNavigatorContent";
 
 type SpaceNavigatorMobileContentWrapperProps = {
   children: React.ReactNode;
@@ -9,15 +9,17 @@ type SpaceNavigatorMobileContentWrapperProps = {
 export default function SpaceNavigatorMobileContentWrapper({
   children,
 }: SpaceNavigatorMobileContentWrapperProps) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Sheet lazyMount>
+    <Sheet lazyMount open={open} onOpenChange={({ open }) => setOpen(open)}>
       <Tooltip
         content={t("plugin-space-navigator:spaceNavigator.button.label")}
       >
         <SheetTrigger asChild>{children}</SheetTrigger>
       </Tooltip>
       <SheetContent side="bottom" className="tw-p-0">
-        <SpaceNavigatorContent />
+        <SpaceNavigatorContent setOpen={setOpen} />
       </SheetContent>
     </Sheet>
   );

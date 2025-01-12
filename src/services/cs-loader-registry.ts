@@ -20,6 +20,7 @@ export const LOADER_IDS = [
   "coreDomObserver:queryBoxes",
   "coreDomObserver:homeComponents",
   "coreDomObserver:threadComponents",
+  "coreDomObserver:sidebar",
 
   "networkIntercept:pplxApi",
   "networkIntercept:languageModelSelector",

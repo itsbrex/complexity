@@ -30,6 +30,7 @@ type CsUiPluginsGuardProps = {
   dependentPluginIds?: PluginId[];
   location?: ReturnType<typeof whereAmI>[];
   desktopOnly?: boolean;
+  mobileOnly?: boolean;
   children: React.ReactNode;
   requiresLoggedIn?: boolean;
   allowedAccountTypes?: ("free" | "pro" | "enterprise")[];
@@ -47,6 +48,7 @@ export default function CsUiPluginsGuard({
   location,
   children,
   desktopOnly = false,
+  mobileOnly = false,
   requiresLoggedIn = false,
   allowedAccountTypes = ["free", "pro", "enterprise"],
   additionalCheck,
@@ -60,6 +62,10 @@ export default function CsUiPluginsGuard({
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
   if (desktopOnly && isMobile) {
+    return null;
+  }
+
+  if (mobileOnly && !isMobile) {
     return null;
   }
 

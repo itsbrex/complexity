@@ -1,5 +1,5 @@
 import type { Tooltip as ArkTooltip } from "@ark-ui/react";
-import { ReactNode } from "react";
+import { ReactNode, RefObject } from "react";
 
 import {
   TooltipRoot,
@@ -15,6 +15,7 @@ export type TooltipProps = {
   positioning?: ArkTooltip.RootProps["positioning"];
   defaultOpen?: boolean;
   portal?: boolean;
+  ref?: RefObject<HTMLSpanElement>;
 };
 
 export default function Tooltip({
@@ -25,6 +26,7 @@ export default function Tooltip({
   positioning,
   defaultOpen,
   portal = true,
+  ref,
 }: TooltipProps) {
   return (
     <TooltipRoot
@@ -40,7 +42,9 @@ export default function Tooltip({
       defaultOpen={defaultOpen}
     >
       <TooltipTrigger asChild>
-        <span className={className}>{children}</span>
+        <span ref={ref} className={className}>
+          {children}
+        </span>
       </TooltipTrigger>
       {!(typeof content === "string" && content.length === 0) && (
         <TooltipContent asChild portal={portal}>

@@ -18,7 +18,7 @@ import type {
   ColorSchemeItem,
   NavigationItem,
   SearchItem,
-} from "@/features/plugins/command-menu/types";
+} from "@/data/plugins/command-menu/types";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 
 export const ZENMODE_ITEMS: ZenModeItem[] = [

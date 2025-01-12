@@ -2,8 +2,8 @@ import { isHotkeyPressed } from "react-hotkeys-hook";
 import { sendMessage } from "webext-bridge/content-script";
 
 import { CommandItem } from "@/components/ui/command";
+import { useCommandMenuStore } from "@/data/plugins/command-menu/store";
 import { SpacePreview } from "@/features/plugins/command-menu/components/thread-search-items/SpacePreview";
-import { useCommandMenuStore } from "@/features/plugins/command-menu/store";
 import { ThreadSearchApi } from "@/services/pplx-api/pplx-api.types";
 import { formatHowLongAgo } from "@/utils/dayjs";
 

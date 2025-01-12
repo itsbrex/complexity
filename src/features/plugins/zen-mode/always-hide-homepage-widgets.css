@@ -1,0 +1,4 @@
+body[data-cplx-zen-mode-always-hide-homepage-widgets="true"][location="home"]
+  .relative.w-full:has(.grid.grid-cols-6.grid-rows-2.mt-lg.gap-sm) {
+  display: none;
+}

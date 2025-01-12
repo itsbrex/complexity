@@ -15,6 +15,10 @@ body[data-cplx-zen-mode="true"] {
     .hidden.pb-md.md\:block {
       display: none !important;
     }
+
+    .relative.w-full:has(.grid.grid-cols-6.grid-rows-2.mt-lg.gap-sm) {
+      display: none;
+    }
   }
 
   &[location="thread"] {

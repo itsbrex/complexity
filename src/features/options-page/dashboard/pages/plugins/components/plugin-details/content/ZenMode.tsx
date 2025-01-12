@@ -38,6 +38,17 @@ export default function ZenModePluginDetails() {
             }}
           />
           <Switch
+            textLabel="Always hide homepage widgets"
+            checked={
+              settings?.plugins["zenMode"].alwaysHideHomepageWidgets ?? false
+            }
+            onCheckedChange={({ checked }) => {
+              mutation.mutate((draft) => {
+                draft.plugins["zenMode"].alwaysHideHomepageWidgets = checked;
+              });
+            }}
+          />
+          <Switch
             textLabel="Always hide visual columns"
             checked={settings?.plugins["zenMode"].alwaysHideVisualCols ?? false}
             onCheckedChange={({ checked }) => {

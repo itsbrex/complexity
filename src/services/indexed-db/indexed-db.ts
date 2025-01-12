@@ -3,12 +3,14 @@ import { Dexie } from "dexie";
 import { BetterCodeBlockFineGrainedOptions } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
 import { ExtensionData } from "@/data/dashboard/extension-data.types";
 import { PromptHistory } from "@/data/plugins/prompt-history/prompt-history.type";
+import { PinnedSpace } from "@/data/plugins/space-navigator/pinned-space.types";
 import { Theme } from "@/data/plugins/themes/theme-registry.types";
 
 export class IndexedDbService extends Dexie {
   themes!: Dexie.Table<Theme, string>;
   betterCodeBlocks!: Dexie.Table<BetterCodeBlockFineGrainedOptions, string>;
   promptHistory!: Dexie.Table<PromptHistory, string>;
+  pinnedSpaces!: Dexie.Table<PinnedSpace, string>;
 
   constructor() {
     super("ComplexityDatabase");
@@ -20,6 +22,10 @@ export class IndexedDbService extends Dexie {
     this.version(2).stores({
       promptHistory: "&id, prompt, createdAt",
     });
+
+    this.version(3).stores({
+      pinnedSpaces: "&uuid, title, emoji, slug, createdAt",
+    });
   }
 
   async exportAll(): Promise<ExtensionData["db"]> {
@@ -27,7 +33,13 @@ export class IndexedDbService extends Dexie {
     const betterCodeBlocksFineGrainedOptions =
       await this.betterCodeBlocks.toArray();
     const promptHistory = await this.promptHistory.toArray();
-    return { themes, betterCodeBlocksFineGrainedOptions, promptHistory };
+    const pinnedSpaces = await this.pinnedSpaces.toArray();
+    return {
+      themes,
+      betterCodeBlocksFineGrainedOptions,
+      promptHistory,
+      pinnedSpaces,
+    };
   }
 
   async import(data: ExtensionData["db"]) {
@@ -36,12 +48,14 @@ export class IndexedDbService extends Dexie {
       data.betterCodeBlocksFineGrainedOptions,
     );
     await this.promptHistory.bulkPut(data.promptHistory);
+    await this.pinnedSpaces.bulkPut(data.pinnedSpaces);
   }
 
   async clearAll() {
     await this.themes.clear();
     await this.betterCodeBlocks.clear();
     await this.promptHistory.clear();
+    await this.pinnedSpaces.clear();
   }
 }
 

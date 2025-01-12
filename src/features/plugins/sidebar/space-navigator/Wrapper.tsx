@@ -29,30 +29,30 @@ export default function SpaceNavigatorWrapper() {
     return $target;
   }, [spaceButtonWrapper]);
 
-  // const $pinnedSpacesPortalContainer = useMemo(() => {
-  //   if (spaceButtonWrapper == null) return null;
+  const $pinnedSpacesPortalContainer = useMemo(() => {
+    if (spaceButtonWrapper == null) return null;
 
-  //   const $spaceButtonWrapper = $(spaceButtonWrapper);
+    const $spaceButtonWrapper = $(spaceButtonWrapper);
 
-  //   const $existingPinnedSpacesPortalContainer = $spaceButtonWrapper
-  //     .parent()
-  //     .find(
-  //       `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.SIDEBAR.PINNED_SPACES_PORTAL_CONTAINER}"]`,
-  //     );
+    const $existingPinnedSpacesPortalContainer = $spaceButtonWrapper
+      .parent()
+      .find(
+        `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.SIDEBAR.PINNED_SPACES_PORTAL_CONTAINER}"]`,
+      );
 
-  //   if ($existingPinnedSpacesPortalContainer.length) {
-  //     return $existingPinnedSpacesPortalContainer;
-  //   }
+    if ($existingPinnedSpacesPortalContainer.length) {
+      return $existingPinnedSpacesPortalContainer;
+    }
 
-  //   const $portalContainer = $("<div>")
-  //     .internalComponentAttr(
-  //       DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.SIDEBAR
-  //         .PINNED_SPACES_PORTAL_CONTAINER,
-  //     )
-  //     .insertAfter($spaceButtonWrapper);
+    const $portalContainer = $("<div>")
+      .internalComponentAttr(
+        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.SIDEBAR
+          .PINNED_SPACES_PORTAL_CONTAINER,
+      )
+      .insertAfter($spaceButtonWrapper);
 
-  //   return $portalContainer;
-  // }, [spaceButtonWrapper]);
+    return $portalContainer;
+  }, [spaceButtonWrapper]);
 
   if (isIncognito) return null;
 
@@ -62,17 +62,17 @@ export default function SpaceNavigatorWrapper() {
         $triggerButtonsPortalContainer.length && (
           <Portal container={$triggerButtonsPortalContainer[0]}>
             <div className="-tw-mr-2 tw-flex tw-w-full tw-flex-1 tw-items-center tw-justify-end tw-gap-1">
-              {/* <SidebarPinnedSpacesVisToggle /> */}
+              <SidebarPinnedSpacesVisToggle />
               <SpaceNavigator />
             </div>
           </Portal>
         )}
-      {/* {$pinnedSpacesPortalContainer != null &&
+      {$pinnedSpacesPortalContainer != null &&
         $pinnedSpacesPortalContainer.length && (
           <Portal container={$pinnedSpacesPortalContainer[0]}>
             <SidebarPinnedSpaces />
           </Portal>
-        )} */}
+        )}
     </>
   );
 }

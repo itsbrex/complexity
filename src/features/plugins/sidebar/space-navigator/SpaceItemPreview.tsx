@@ -1,9 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { useCommandState } from "cmdk";
-import { LuLink } from "react-icons/lu";
+import { LuLink, LuPin, LuPinOff } from "react-icons/lu";
 
+import Tooltip from "@/components/Tooltip";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import SpaceItemFile from "@/features/plugins/query-box/space-navigator/SpaceItemFile";
+import SpaceItemFile from "@/features/plugins/sidebar/space-navigator/SpaceItemFile";
+import {
+  usePinSpaceMutation,
+  useUnpinSpaceMutation,
+} from "@/features/plugins/sidebar/space-navigator/use-pinned-spaces-mutations";
+import { pinnedSpacesQueries } from "@/services/indexed-db/pinned-spaces/query-keys";
 import { Space } from "@/services/pplx-api/pplx-api.types";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 
@@ -34,13 +40,16 @@ export default function SpaceItemPreview({ spaces }: { spaces: Space[] }) {
 
   if (isEmptyView)
     return (
-      <div className="tw-flex tw-size-full tw-items-center tw-justify-center tw-text-muted-foreground">
-        No preview data available
+      <div className="tw-relative tw-flex tw-size-full tw-items-center tw-justify-center tw-text-muted-foreground">
+        <PinSpaceButton space={space} />
+        <div>No preview data available</div>
       </div>
     );
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-4 tw-p-4">
+    <div className="tw-relative tw-flex tw-flex-col tw-gap-4 tw-p-4">
+      <PinSpaceButton space={space} />
+
       {space.description && (
         <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
           <div className="tw-text-sm tw-font-medium tw-text-muted-foreground">
@@ -100,6 +109,40 @@ export default function SpaceItemPreview({ spaces }: { spaces: Space[] }) {
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+function PinSpaceButton({ space }: { space: Space }) {
+  const { data: pinnedSpaces } = useQuery(pinnedSpacesQueries.list);
+
+  const isPinned = pinnedSpaces?.some(
+    (pinnedSpace) => pinnedSpace.uuid === space.uuid,
+  );
+
+  const { mutate: pinSpaceOnSidebar } = usePinSpaceMutation();
+  const { mutate: unpinSpace } = useUnpinSpaceMutation();
+
+  return (
+    <div className="tw-absolute tw-right-2 tw-top-2">
+      <Tooltip content={isPinned ? "Unpin" : "Pin"}>
+        <div
+          className="tw-cursor-pointer tw-rounded-md tw-p-2 tw-text-muted-foreground tw-transition-all hover:tw-bg-secondary hover:tw-text-foreground active:tw-scale-95"
+          onClick={() => {
+            if (isPinned) {
+              unpinSpace({ uuid: space.uuid });
+            } else {
+              pinSpaceOnSidebar({ space });
+            }
+          }}
+        >
+          {isPinned ? (
+            <LuPinOff className="tw-size-4" />
+          ) : (
+            <LuPin className="tw-size-4" />
+          )}
+        </div>
+      </Tooltip>
     </div>
   );
 }

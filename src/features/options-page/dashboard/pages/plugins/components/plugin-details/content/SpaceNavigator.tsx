@@ -22,7 +22,7 @@ export default function SpaceNavigatorPluginDetails() {
 
       <div className="tw-mx-auto tw-w-full tw-max-w-[700px]">
         <Image
-          src="https://i.imgur.com/wJU783K.png"
+          src="https://i.imgur.com/r0Y1atO.png"
           alt="space-navigator"
           className="tw-w-full"
         />

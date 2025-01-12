@@ -9,7 +9,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import SpaceItem from "@/features/plugins/query-box/space-navigator/SpaceItem";
-import SpaceItemPreview from "@/features/plugins/query-box/space-navigator/SpaceItemPreview";
+import SpaceItemPreview from "@/features/plugins/sidebar/space-navigator/SpaceItemPreview";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import UiUtils from "@/utils/UiUtils";

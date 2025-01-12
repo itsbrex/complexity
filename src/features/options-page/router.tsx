@@ -17,7 +17,6 @@ const Playground = lazy(
 const Dashboard = lazy(
   () => import("@/features/options-page/dashboard/Dashboard"),
 );
-
 const PluginsPage = lazy(
   () => import("@/features/options-page/dashboard/pages/plugins/PluginsPage"),
 );
@@ -28,6 +27,14 @@ const ReleaseNotesPage = lazy(
       "@/features/options-page/dashboard/pages/release-notes/ReleaseNotesPage"
     ),
 );
+
+const DirectReleaseNotesPage = lazy(
+  () =>
+    import(
+      "@/features/options-page/dashboard/pages/release-notes/DirectReleaseNotesPage"
+    ),
+);
+
 const SettingsPage = lazy(
   () => import("@/features/options-page/dashboard/pages/settings/SettingsPage"),
 );
@@ -71,6 +78,18 @@ export const router: ReturnType<typeof createHashRouter> = createHashRouter([
             loader: () => redirect("/plugins"),
           },
         ],
+      },
+      {
+        path: "direct-release-notes",
+        element: <Page title="Release Notes" page={DirectReleaseNotesPage} />,
+        loader: ({ request }) => {
+          const url = new URL(request.url);
+          const version = url.searchParams.get("version");
+
+          if (!version) return redirect("/");
+
+          return { version };
+        },
       },
       {
         path: "onboarding",

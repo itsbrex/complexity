@@ -9,6 +9,7 @@ import { APP_CONFIG } from "@/app.config";
 import csUiRootCss from "@/assets/cs.css?inline";
 import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 // import { SponsorHomeLink } from "@/components/SponsorHomeLink";
+import { PostUpdateReleaseNotesDialog } from "@/components/PostUpdateReleaseNotesDialog";
 import { Toaster } from "@/components/Toaster";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import SpaceNavigatorWrapper from "@/features/plugins/sidebar/space-navigator/Wrapper";
@@ -58,6 +59,7 @@ export default function CsUiRoot() {
 
   return (
     <>
+      <PostUpdateReleaseNotesDialog />
       <CsUiPluginsGuard location={["home"]}>
         <HomepageUpdateAnnouncer />
         {/* <SponsorHomeLink /> */}

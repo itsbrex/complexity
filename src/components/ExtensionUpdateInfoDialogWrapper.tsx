@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { LuInfo, LuLoaderCircle } from "react-icons/lu";
+import { LuArrowRight, LuInfo } from "react-icons/lu";
+import { sendMessage } from "webext-bridge/content-script";
 
 import { APP_CONFIG } from "@/app.config";
-import ChangelogRenderer from "@/components/ChangelogRenderer";
 import {
   Dialog,
   DialogContent,
@@ -13,6 +13,7 @@ import {
 import { Image } from "@/components/ui/image";
 import { toast } from "@/components/ui/use-toast";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
+import packageJson from "~/package.json";
 
 export default function ExtensionUpdateInfoDialogWrapper({
   children,
@@ -25,13 +26,6 @@ export default function ExtensionUpdateInfoDialogWrapper({
 
   const latestVersion = versions?.latest;
 
-  const { data: changelog, isLoading } = useQuery({
-    ...cplxApiQueries.changelog({
-      version: latestVersion,
-    }),
-    enabled: !!latestVersion,
-  });
-
   return (
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
@@ -42,7 +36,33 @@ export default function ExtensionUpdateInfoDialogWrapper({
         <DialogDescription>
           Please update to receive enhancements and bug fixes.
         </DialogDescription>
-        <div className="tw-flex tw-flex-col tw-gap-2 tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4">
+        <div className="tw-flex tw-flex-col tw-gap-2">
+          <div className="tw-mx-auto tw-my-0 tw-flex tw-items-center tw-gap-2 tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4">
+            <div className="">{packageJson.version}</div>
+            <LuArrowRight className="tw-size-4 tw-text-muted-foreground" />
+            <div className="tw-text-xl tw-font-semibold tw-text-primary">
+              {latestVersion}
+            </div>
+          </div>
+
+          <div
+            className="tw-mx-auto tw-cursor-pointer tw-text-muted-foreground hover:tw-text-foreground hover:tw-underline"
+            role="link"
+            onClick={() => {
+              if (!latestVersion) return;
+
+              sendMessage(
+                "bg:openDirectReleaseNotes",
+                {
+                  version: latestVersion,
+                },
+                "background",
+              );
+            }}
+          >
+            Release Notes
+          </div>
+
           <div className="tw-space-y-2">
             <div>
               <LuInfo className="tw-mr-2 tw-inline-block tw-size-5 tw-text-primary" />
@@ -56,15 +76,17 @@ export default function ExtensionUpdateInfoDialogWrapper({
                   "."
                 )}
               </span>
-              <Image
-                src={
-                  APP_CONFIG.BROWSER === "chrome"
-                    ? "https://i.imgur.com/IMLecmp.png"
-                    : "https://i.imgur.com/f2x3Mtl.png"
-                }
-                alt="extension-management-page"
-                className="tw-my-4"
-              />
+              <div className="tw-w-full">
+                <Image
+                  src={
+                    APP_CONFIG.BROWSER === "chrome"
+                      ? "https://i.imgur.com/IMLecmp.png"
+                      : "https://i.imgur.com/f2x3Mtl.png"
+                  }
+                  alt="extension-management-page"
+                  className="tw-my-4 tw-object-cover"
+                />
+              </div>
             </div>
             <div className="tw-text-muted-foreground">
               Or click{" "}
@@ -84,15 +106,6 @@ export default function ExtensionUpdateInfoDialogWrapper({
               of the above works (remember to export your settings!).
             </div>
           </div>
-        </div>
-        <div className="tw-flex tw-flex-col tw-gap-2">
-          {isLoading && (
-            <div className="tw-flex tw-items-center tw-gap-2">
-              <LuLoaderCircle className="tw-size-4 tw-animate-spin" />
-              <span>Fetching changelog...</span>
-            </div>
-          )}
-          {changelog && <ChangelogRenderer changelog={changelog} />}
         </div>
       </DialogContent>
     </Dialog>

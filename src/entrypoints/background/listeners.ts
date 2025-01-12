@@ -7,6 +7,7 @@ import { compareVersions, getOptionsPageUrl } from "@/utils/utils";
 export type BackgroundEvents = {
   "bg:getTabId": () => number;
   "bg:removePreloadedTheme": () => void;
+  "bg:openDirectReleaseNotes": ({ version }: { version: string }) => void;
 };
 
 export function setupBackgroundListeners() {
@@ -67,6 +68,14 @@ function contentScriptListeners() {
     chrome.scripting.removeCSS({
       target: { tabId: sender.tabId },
       css,
+    });
+  });
+
+  onMessage("bg:openDirectReleaseNotes", ({ data: { version } }) => {
+    const optionsPageUrl = getOptionsPageUrl();
+
+    chrome.tabs.create({
+      url: `${optionsPageUrl}#/direct-release-notes?version=${version}`,
     });
   });
 }

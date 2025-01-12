@@ -144,7 +144,7 @@ export class CplxApiService {
     );
 
     if (resp.status === 404) {
-      return "Failed to fetch changelog for this version.";
+      throw new Error(`Failed to fetch changelog for version ${versionUrl}.`);
     }
 
     return resp.text();

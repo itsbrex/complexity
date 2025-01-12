@@ -1,7 +1,7 @@
 import isEqual from "lodash/isEqual";
 import { ComponentProps, ComponentType, SVGProps } from "react";
 import { LuArrowRight, LuCheck, LuRocket, LuZap } from "react-icons/lu";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -37,6 +37,8 @@ export default function PluginsEnableSet() {
   const [open, setOpen] = useState(
     searchParams.get("from") === "onboarding" && isDefaultSettings,
   );
+
+  const navigate = useNavigate();
 
   return (
     <Dialog
@@ -98,6 +100,14 @@ export default function PluginsEnableSet() {
           There are many plugins that depend on personal preferences. Feel free
           to test and enable them as you see fit.
         </div>
+
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button onClick={() => navigate("/")}>
+              I&apos;ll look around by myself
+            </Button>
+          </DialogClose>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

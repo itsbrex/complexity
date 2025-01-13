@@ -31,8 +31,10 @@
       "refresh": "更新",
       "openList": "Canvasリストを開く",
       "openInCodeSandbox": "CodeSandboxで開く",
-      "openInMermaid": "Mermaidライブエディタで開く",
-      "downloadSvg": "SVGをダウンロード"
+      "openInMermaid": "Mermaid Live Editorで開く",
+      "downloadSvg": "SVGをダウンロード",
+      "downloadAsInteractiveHtml": "インタラクティブHTMLとしてダウンロード",
+      "viewAsInteractiveHtml": "インタラクティブHTMLとして表示"
     },
     "error": {
       "noSvg": "SVGが見つかりません",

@@ -8,6 +8,7 @@ import { useColorSchemeStore } from "@/data/color-scheme-store";
 const INTERPRETED_LANGUAGES: Record<string, string> = {
   html: "markup",
   react: "jsx",
+  markmap: "markdown",
 };
 
 const CodeHighlighter = memo(function CodeHighlighter({

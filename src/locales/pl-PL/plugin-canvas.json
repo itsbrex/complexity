@@ -32,7 +32,9 @@
       "openList": "Otwórz listę Canvas",
       "openInCodeSandbox": "Otwórz w CodeSandbox",
       "openInMermaid": "Otwórz w Mermaid Live Editor",
-      "downloadSvg": "Pobierz SVG"
+      "downloadSvg": "Pobierz SVG",
+      "downloadAsInteractiveHtml": "Pobierz jako interaktywny HTML",
+      "viewAsInteractiveHtml": "Wyświetl jako interaktywny HTML"
     },
     "error": {
       "noSvg": "Nie znaleziono SVG",

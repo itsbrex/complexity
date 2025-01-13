@@ -12,6 +12,9 @@
       },
       "react": {
         "description": "Click to view web page"
+      },
+      "markmap": {
+        "description": "Click to view mindmap"
       }
     },
     "version": "Version {{number}}",
@@ -32,7 +35,9 @@
       "openList": "Open Canvas List",
       "openInCodeSandbox": "Open in CodeSandbox",
       "openInMermaid": "Open in Mermaid Live Editor",
-      "downloadSvg": "Download SVG"
+      "downloadSvg": "Download SVG",
+      "downloadAsInteractiveHtml": "Download as interactive HTML",
+      "viewAsInteractiveHtml": "View as interactive HTML"
     },
     "error": {
       "noSvg": "No SVG found",

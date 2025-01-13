@@ -1,3 +1,4 @@
+import { fromUint8Array } from "js-base64";
 import type { MermaidConfig } from "mermaid";
 import pako from "pako";
 import svgPanZoom from "svg-pan-zoom";
@@ -26,14 +27,10 @@ export class MermaidRenderer {
   }
 
   private async importMermaid(): Promise<void> {
-    if (window.mermaid) return;
-
     if (!this.importPromise) {
       const scriptContent = `
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@${packageJson.devDependencies["mermaid"]}/dist/mermaid.esm.min.mjs';
-        import * as jsBase64 from 'https://cdn.jsdelivr.net/npm/js-base64@${packageJson.devDependencies["js-base64"]}/+esm';
 
-        window.jsBase64 = jsBase64;
         window.mermaid = mermaid;
       `;
 
@@ -49,8 +46,8 @@ export class MermaidRenderer {
     return this.importPromise;
   }
 
-  static isInitialized() {
-    return !!window.mermaid;
+  isInitialized() {
+    return this.importPromise?.then(() => true).catch(() => false);
   }
 
   async handleRenderRequest(
@@ -59,10 +56,10 @@ export class MermaidRenderer {
     const $target = $(selector);
 
     if ($target.length === 0) {
-      console.warn("No elements found for rendering Mermaid canvas");
+      console.warn("No elements found for rendering Mermaid");
       return {
         success: false,
-        error: "No elements found for rendering Mermaid canvas",
+        error: "No elements found for rendering Mermaid",
       };
     }
 
@@ -75,7 +72,7 @@ export class MermaidRenderer {
     }
 
     try {
-      await this.importMermaid();
+      await MermaidRenderer.waitForInitialization();
 
       const isDarkTheme = UiUtils.isDarkTheme();
 
@@ -130,7 +127,7 @@ export class MermaidRenderer {
 
   async handleGetPlaygroundUrlRequest(code: string) {
     try {
-      await this.importMermaid();
+      await MermaidRenderer.waitForInitialization();
 
       const json = JSON.stringify({
         code,
@@ -138,7 +135,7 @@ export class MermaidRenderer {
 
       const data = new TextEncoder().encode(json);
       const compressed = pako.deflate(data, { level: 9 });
-      const encoded = window.jsBase64!.fromUint8Array(compressed, true);
+      const encoded = fromUint8Array(compressed, true);
 
       return `https://mermaidchart.com/play#pako:${encoded}`;
     } catch (e) {
@@ -148,7 +145,7 @@ export class MermaidRenderer {
   }
 
   static async waitForInitialization() {
-    while (!this.isInitialized()) {
+    while (!MermaidRenderer.getInstance().isInitialized()) {
       await sleep(100);
     }
   }

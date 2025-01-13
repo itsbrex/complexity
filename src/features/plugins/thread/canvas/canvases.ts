@@ -3,16 +3,19 @@ import { BiLogoReact } from "react-icons/bi";
 import { LiaProjectDiagramSolid } from "react-icons/lia";
 import { LuCodeXml } from "react-icons/lu";
 import { PiArticleDuotone } from "react-icons/pi";
+import { RiMindMap } from "react-icons/ri";
 
 import {
   CanvasLanguage,
   CanvasState,
 } from "@/features/plugins/thread/canvas/canvas.types";
+import MarkmapCanvasActionButtonsWrapper from "@/features/plugins/thread/canvas/components/action-buttons/Markmap/Wrapper";
 import MermaidCanvasActionButtonsWrapper from "@/features/plugins/thread/canvas/components/action-buttons/Mermaid/Wrapper";
 import PlantUmlCanvasActionButtonsWrapper from "@/features/plugins/thread/canvas/components/action-buttons/PlantUml/Wrapper";
 import SandpackCanvasActionButtonsWrapper from "@/features/plugins/thread/canvas/components/action-buttons/Sandpack/Wrapper";
 import HtmlRenderer from "@/features/plugins/thread/canvas/components/renderer/Html";
 import MarkdownRenderer from "@/features/plugins/thread/canvas/components/renderer/Markdown";
+import MarkmapRenderer from "@/features/plugins/thread/canvas/components/renderer/Markmap";
 import MermaidRenderer from "@/features/plugins/thread/canvas/components/renderer/Mermaid";
 import PlantUmlRenderer from "@/features/plugins/thread/canvas/components/renderer/PlantUml";
 import ReactRenderer from "@/features/plugins/thread/canvas/components/renderer/React";
@@ -21,6 +24,7 @@ import { csLoaderRegistry } from "@/services/cs-loader-registry";
 export const CANVAS_LANGUAGES = {
   markdown: "markdown",
   mermaid: "mermaid",
+  markmap: "markmap",
   html: "html",
   react: "react",
   plantuml: "plantuml",
@@ -31,6 +35,7 @@ export const CANVAS_INTERPRETED_LANGUAGES: Record<string, CanvasLanguage> = {
   md: "markdown",
   mmd: "mermaid",
   plantuml: "plantuml",
+  markmap: "markmap",
 };
 
 export const CANVAS_LANGUAGE_PREVIEW_TOGGLE_TEXT: Record<
@@ -42,6 +47,7 @@ export const CANVAS_LANGUAGE_PREVIEW_TOGGLE_TEXT: Record<
   html: t("plugin-canvas:canvas.toggle.preview"),
   react: t("plugin-canvas:canvas.toggle.preview"),
   plantuml: t("plugin-canvas:canvas.toggle.preview"),
+  markmap: t("plugin-canvas:canvas.toggle.preview"),
 };
 
 export const CANVAS_LANGUAGE_RAW_TOGGLE_TEXT: Record<CanvasLanguage, string> = {
@@ -50,6 +56,7 @@ export const CANVAS_LANGUAGE_RAW_TOGGLE_TEXT: Record<CanvasLanguage, string> = {
   html: t("plugin-canvas:canvas.toggle.code"),
   react: t("plugin-canvas:canvas.toggle.code"),
   plantuml: t("plugin-canvas:canvas.toggle.code"),
+  markmap: t("plugin-canvas:canvas.toggle.code"),
 };
 
 export const CANVAS_INITIAL_STATE: Record<CanvasLanguage, CanvasState> = {
@@ -58,6 +65,7 @@ export const CANVAS_INITIAL_STATE: Record<CanvasLanguage, CanvasState> = {
   html: "code",
   react: "code",
   plantuml: "code",
+  markmap: "preview",
 };
 
 type CanvasPlaceholders = Record<
@@ -101,6 +109,11 @@ csLoaderRegistry.register({
         defaultTitle: "PlantUML",
         description: t("plugin-canvas:canvas.placeholder.mermaid.description"),
       },
+      markmap: {
+        icon: RiMindMap,
+        defaultTitle: "Mindmap",
+        description: t("plugin-canvas:canvas.placeholder.markmap.description"),
+      },
     };
   },
 });
@@ -111,6 +124,7 @@ export const CANVAS_RENDERER: Record<CanvasLanguage, ComponentType> = {
   html: HtmlRenderer,
   react: ReactRenderer,
   plantuml: PlantUmlRenderer,
+  markmap: MarkmapRenderer,
 };
 
 export const CANVAS_LANGUAGE_ACTION_BUTTONS: Record<
@@ -122,4 +136,5 @@ export const CANVAS_LANGUAGE_ACTION_BUTTONS: Record<
   react: null,
   markdown: null,
   plantuml: PlantUmlCanvasActionButtonsWrapper,
+  markmap: MarkmapCanvasActionButtonsWrapper,
 };

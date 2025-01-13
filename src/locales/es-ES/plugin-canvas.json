@@ -31,8 +31,10 @@
       "refresh": "Actualizar",
       "openList": "Abrir lista de Canvas",
       "openInCodeSandbox": "Abrir en CodeSandbox",
-      "openInMermaid": "Abrir en el Editor en vivo de Mermaid",
-      "downloadSvg": "Descargar SVG"
+      "openInMermaid": "Abrir en Mermaid Live Editor",
+      "downloadSvg": "Descargar SVG",
+      "downloadAsInteractiveHtml": "Descargar como HTML interactivo",
+      "viewAsInteractiveHtml": "Ver como HTML interactivo"
     },
     "error": {
       "noSvg": "No se encontró SVG",

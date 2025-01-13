@@ -28,15 +28,17 @@
       "versions": "{{count}} verzió"
     },
     "tooltip": {
-      "refresh": "Frissítés",
-      "openList": "Canvas lista megnyitása",
+      "downloadAsInteractiveHtml": "Letöltés interaktív HTML-ként",
+      "downloadSvg": "SVG letöltése",
       "openInCodeSandbox": "Megnyitás CodeSandbox-ban",
       "openInMermaid": "Megnyitás a Mermaid Live Editorban",
-      "downloadSvg": "SVG letöltése"
+      "openList": "Canvas lista megnyitása",
+      "refresh": "Frissítés",
+      "viewAsInteractiveHtml": "Megtekintés interaktív HTML-ként"
     },
     "error": {
       "noSvg": "Nem található SVG",
       "previewUrl": "Az előnézeti URL generálása sikertelen"
     }
   }
-} 
+}

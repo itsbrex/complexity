@@ -32,7 +32,9 @@
       "openList": "Otvoriť zoznam Canvas",
       "openInCodeSandbox": "Otvoriť v CodeSandbox",
       "openInMermaid": "Otvoriť v Mermaid Live Editore",
-      "downloadSvg": "Stiahnuť SVG"
+      "downloadSvg": "Stiahnuť SVG",
+      "downloadAsInteractiveHtml": "Stiahnuť ako interaktívne HTML",
+      "viewAsInteractiveHtml": "Zobraziť ako interaktívne HTML"
     },
     "error": {
       "noSvg": "SVG nenájdené",

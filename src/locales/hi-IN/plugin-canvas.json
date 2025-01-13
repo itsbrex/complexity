@@ -31,8 +31,10 @@
       "refresh": "रीफ्रेश करें",
       "openList": "Canvas सूची खोलें",
       "openInCodeSandbox": "CodeSandbox में खोलें",
-      "openInMermaid": "Mermaid लाइव एडिटर में खोलें",
-      "downloadSvg": "SVG डाउनलोड करें"
+      "openInMermaid": "Mermaid Live Editor में खोलें",
+      "downloadSvg": "SVG डाउनलोड करें",
+      "downloadAsInteractiveHtml": "इंटरैक्टिव HTML के रूप में डाउनलोड करें",
+      "viewAsInteractiveHtml": "इंटरैक्टिव HTML के रूप में देखें"
     },
     "error": {
       "noSvg": "कोई SVG नहीं मिला",

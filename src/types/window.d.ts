@@ -1,4 +1,7 @@
-import * as jsBase64 from "js-base64";
+import * as markmapLib from "markmap-lib";
+import type { Transformer } from "markmap-lib";
+import * as markmapRender from "markmap-render";
+import * as markmapView from "markmap-view";
 import type { Mermaid } from "mermaid";
 
 declare global {
@@ -17,7 +20,10 @@ declare global {
     };
 
     mermaid?: Mermaid;
-    jsBase64?: typeof jsBase64;
+    markmapLib?: typeof markmapLib;
+    markmapView?: typeof markmapView;
+    markmapRender?: typeof markmapRender;
+    markmapTransformer?: Transformer;
   }
 }
 

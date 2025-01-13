@@ -12,8 +12,9 @@ export type MermaidRendererEvents = {
 };
 
 export function setupMermaidRendererListeners() {
-  onMessage("mermaidRenderer:isInitialized", () =>
-    MermaidRenderer.isInitialized(),
+  onMessage(
+    "mermaidRenderer:isInitialized",
+    () => MermaidRenderer.getInstance()?.isInitialized() ?? false,
   );
 
   onMessage("mermaidRenderer:render", ({ data: { selector } }) => {

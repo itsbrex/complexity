@@ -28,11 +28,13 @@
       "versions": "{{count}} верзии"
     },
     "tooltip": {
-      "refresh": "Освежи",
-      "openList": "Отвори Canvas листа",
+      "downloadAsInteractiveHtml": "Преземи како интерактивен HTML",
+      "downloadSvg": "Преземи SVG",
       "openInCodeSandbox": "Отвори во CodeSandbox",
       "openInMermaid": "Отвори во Mermaid Live Editor",
-      "downloadSvg": "Преземи SVG"
+      "openList": "Отвори Canvas листа",
+      "refresh": "Освежи",
+      "viewAsInteractiveHtml": "Прикажи како интерактивен HTML"
     },
     "error": {
       "noSvg": "Не е пронајден SVG",

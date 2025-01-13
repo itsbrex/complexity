@@ -31,8 +31,10 @@
       "refresh": "Освјежи",
       "openList": "Отвори Canvas листу",
       "openInCodeSandbox": "Отвори у CodeSandbox",
-      "openInMermaid": "Отвори у Mermaid Live Editor",
-      "downloadSvg": "Преузми SVG"
+      "openInMermaid": "Отвори у Mermaid Live Editor-у",
+      "downloadSvg": "Преузми SVG",
+      "downloadAsInteractiveHtml": "Преузми као интерактивни HTML",
+      "viewAsInteractiveHtml": "Прикажи као интерактивни HTML"
     },
     "error": {
       "noSvg": "SVG није пронађен",

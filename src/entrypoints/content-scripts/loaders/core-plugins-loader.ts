@@ -12,6 +12,7 @@ import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
 import { injectMainWorldScript, insertCss } from "@/utils/utils";
 
+import markmapRendererPlugin from "@/features/plugins/_core/markmap-renderer/index.main?script&module";
 import mermaidRendererPlugin from "@/features/plugins/_core/mermaid-renderer/index.main?script&module";
 import networkInterceptPlugin from "@/features/plugins/_core/network-intercept/index.main?script&module";
 import reactVdomPlugin from "@/features/plugins/_core/react-vdom/index.main?script&module";
@@ -52,6 +53,12 @@ export async function initCorePlugins() {
     url: chrome.runtime.getURL(mermaidRendererPlugin),
     head: true,
     inject: shouldEnableCorePlugin("mermaidRenderer"),
+  });
+
+  injectMainWorldScript({
+    url: chrome.runtime.getURL(markmapRendererPlugin),
+    head: true,
+    inject: shouldEnableCorePlugin("markmapRenderer"),
   });
 
   if (shouldEnableCorePlugin("webSocket")) {

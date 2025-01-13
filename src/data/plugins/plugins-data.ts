@@ -8,6 +8,7 @@ const CORE_PLUGINS = [
   "domObserver",
   "reactVdom",
   "mermaidRenderer",
+  "markmapRenderer",
 ] as const;
 
 export type CorePluginId = (typeof CORE_PLUGINS)[number];
@@ -181,7 +182,12 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
       "Visualize and interact with generated content side by side. Similar to claude.ai's artifacts. Very experimental",
     tags: ["new", "experimental", "desktopOnly", "ui"],
     dependentPlugins: ["thread:betterCodeBlocks"],
-    dependentCorePlugins: ["spaRouter", "domObserver", "mermaidRenderer"],
+    dependentCorePlugins: [
+      "spaRouter",
+      "domObserver",
+      "mermaidRenderer",
+      "markmapRenderer",
+    ],
   },
   "thread:exportThread": {
     id: "thread:exportThread",

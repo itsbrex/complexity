@@ -16,6 +16,18 @@
         "instructions": "Instrukcje",
         "files": "Pliki ({{count}})",
         "focusedWebLinks": "Wyróżnione linki internetowe ({{count}})"
+      },
+      "noPreviewData": "Brak dostępnych danych podglądu",
+      "pinActions": {
+        "pin": "Przypnij",
+        "unpin": "Odepnij"
+      }
+    },
+    "pinnedSpaces": {
+      "unpin": "Odepnij",
+      "toggleVisibility": {
+        "collapse": "Zwiń przypięte przestrzenie",
+        "expand": "Rozwiń przypięte przestrzenie"
       }
     }
   }

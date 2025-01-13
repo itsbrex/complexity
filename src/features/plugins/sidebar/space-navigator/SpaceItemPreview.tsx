@@ -42,7 +42,9 @@ export default function SpaceItemPreview({ spaces }: { spaces: Space[] }) {
     return (
       <div className="tw-relative tw-flex tw-size-full tw-items-center tw-justify-center tw-text-muted-foreground">
         <PinSpaceButton space={space} />
-        <div>No preview data available</div>
+        <div>
+          {t("plugin-space-navigator:spaceNavigator.spaceItem.noPreviewData")}
+        </div>
       </div>
     );
 
@@ -125,7 +127,11 @@ function PinSpaceButton({ space }: { space: Space }) {
 
   return (
     <div className="tw-absolute tw-right-2 tw-top-2">
-      <Tooltip content={isPinned ? "Unpin" : "Pin"}>
+      <Tooltip
+        content={t(
+          `plugin-space-navigator:spaceNavigator.spaceItem.pinActions.${isPinned ? "unpin" : "pin"}`,
+        )}
+      >
         <div
           className="tw-cursor-pointer tw-rounded-md tw-p-2 tw-text-muted-foreground tw-transition-all hover:tw-bg-secondary hover:tw-text-foreground active:tw-scale-95"
           onClick={() => {

@@ -9,6 +9,7 @@ export const PinnedSpaceSchema = SpaceSchema.pick({
   slug: true,
 }).extend({
   createdAt: z.number(),
+  order: z.number(),
 });
 
 export type PinnedSpace = z.infer<typeof PinnedSpaceSchema>;

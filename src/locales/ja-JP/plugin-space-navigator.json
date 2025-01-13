@@ -1,7 +1,7 @@
 {
   "spaceNavigator": {
     "button": {
-      "label": "スペースを検索＆移動",
+      "label": "スペースを検索して移動",
       "defaultText": "スペース"
     },
     "search": {
@@ -16,6 +16,18 @@
         "instructions": "手順",
         "files": "ファイル ({{count}})",
         "focusedWebLinks": "フォーカスされたWebリンク ({{count}})"
+      },
+      "noPreviewData": "プレビューデータがありません",
+      "pinActions": {
+        "pin": "ピン留め",
+        "unpin": "ピン留めを解除"
+      }
+    },
+    "pinnedSpaces": {
+      "unpin": "ピン留めを解除",
+      "toggleVisibility": {
+        "collapse": "ピン留めされたスペースを折りたたむ",
+        "expand": "ピン留めされたスペースを展開"
       }
     }
   }

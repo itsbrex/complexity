@@ -16,6 +16,18 @@
         "instructions": "Instructions",
         "files": "Fichiers ({{count}})",
         "focusedWebLinks": "Liens Web ciblés ({{count}})"
+      },
+      "noPreviewData": "Aucune donnée d'aperçu disponible",
+      "pinActions": {
+        "pin": "Épingler",
+        "unpin": "Désépingler"
+      }
+    },
+    "pinnedSpaces": {
+      "unpin": "Désépingler",
+      "toggleVisibility": {
+        "collapse": "Réduire les espaces épinglés",
+        "expand": "Développer les espaces épinglés"
       }
     }
   }

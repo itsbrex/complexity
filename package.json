@@ -1,7 +1,7 @@
 {
   "name": "complexity",
   "displayName": "Complexity - Perplexity AI Supercharged",
-  "version": "1.3.0.0",
+  "version": "1.3.1.0",
   "author": "pnd280",
   "description": "⚡ Supercharge your Perplexity AI",
   "type": "module",
@@ -32,6 +32,10 @@
   "dependencies": {
     "@ark-ui/react": "^4.8.0",
     "@codesandbox/sandpack-react": "^2.19.10",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/modifiers": "^9.0.0",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@dotenvx/dotenvx": "^1.32.1",
     "@hookform/resolvers": "^3.10.0",
     "@lukemorales/query-key-factory": "^1.3.4",

@@ -6,7 +6,7 @@
     },
     "search": {
       "placeholder": "Претрага...",
-      "noResults": "Нису пронађени резултати."
+      "noResults": "Нема пронађених резултата."
     },
     "loading": "Учитавање...",
     "spaceItem": {
@@ -15,8 +15,20 @@
         "description": "Опис",
         "instructions": "Упутства",
         "files": "Датотеке ({{count}})",
-        "focusedWebLinks": "Фокусирани веб линкови ({{count}})"
+        "focusedWebLinks": "Фокусиране веб везе ({{count}})"
+      },
+      "noPreviewData": "Нема доступних података за преглед",
+      "pinActions": {
+        "pin": "Закачи",
+        "unpin": "Откачи"
+      }
+    },
+    "pinnedSpaces": {
+      "unpin": "Откачи",
+      "toggleVisibility": {
+        "collapse": "Скупи закачене просторе",
+        "expand": "Прошири закачене просторе"
       }
     }
   }
-} 
+}

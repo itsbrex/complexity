@@ -15,7 +15,19 @@
         "description": "विवरण",
         "instructions": "निर्देश",
         "files": "फ़ाइलें ({{count}})",
-        "focusedWebLinks": "केंद्रित वेब लिंक ({{count}})"
+        "focusedWebLinks": "फोकस किए गए वेब लिंक ({{count}})"
+      },
+      "noPreviewData": "कोई पूर्वावलोकन डेटा उपलब्ध नहीं है",
+      "pinActions": {
+        "pin": "पिन करें",
+        "unpin": "अनपिन करें"
+      }
+    },
+    "pinnedSpaces": {
+      "unpin": "अनपिन करें",
+      "toggleVisibility": {
+        "collapse": "पिन किए गए स्पेस को संकुचित करें",
+        "expand": "पिन किए गए स्पेस को विस्तृत करें"
       }
     }
   }

@@ -15,8 +15,20 @@
         "description": "Опис",
         "instructions": "Инструкции",
         "files": "Датотеки ({{count}})",
-        "focusedWebLinks": "Фокусирани веб-линкови ({{count}})"
+        "focusedWebLinks": "Фокусирани веб врски ({{count}})"
+      },
+      "noPreviewData": "Нема достапни податоци за преглед",
+      "pinActions": {
+        "pin": "Прикачи",
+        "unpin": "Откачи"
+      }
+    },
+    "pinnedSpaces": {
+      "unpin": "Откачи",
+      "toggleVisibility": {
+        "collapse": "Собери прикачени простори",
+        "expand": "Прошири прикачени простори"
       }
     }
   }
-} 
+}

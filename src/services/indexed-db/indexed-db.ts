@@ -26,6 +26,21 @@ export class IndexedDbService extends Dexie {
     this.version(3).stores({
       pinnedSpaces: "&uuid, title, emoji, slug, createdAt",
     });
+
+    this.version(4)
+      .stores({
+        pinnedSpaces: "&uuid, title, emoji, slug, [order+createdAt]",
+      })
+      .upgrade((tx) => {
+        return tx
+          .table("pinnedSpaces")
+          .toCollection()
+          .modify((space) => {
+            if (space.order === undefined) {
+              space.order = 0;
+            }
+          });
+      });
   }
 
   async exportAll(): Promise<ExtensionData["db"]> {

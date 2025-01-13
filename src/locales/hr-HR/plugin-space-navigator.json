@@ -16,6 +16,18 @@
         "instructions": "Upute",
         "files": "Datoteke ({{count}})",
         "focusedWebLinks": "Fokusirane web poveznice ({{count}})"
+      },
+      "noPreviewData": "Nema dostupnih podataka za pregled",
+      "pinActions": {
+        "pin": "Prikvači",
+        "unpin": "Otkvači"
+      }
+    },
+    "pinnedSpaces": {
+      "unpin": "Otkvači",
+      "toggleVisibility": {
+        "collapse": "Sažmi prikvačene prostore",
+        "expand": "Proširi prikvačene prostore"
       }
     }
   }

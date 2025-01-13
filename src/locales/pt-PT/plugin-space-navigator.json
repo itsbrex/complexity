@@ -15,7 +15,19 @@
         "description": "Descrição",
         "instructions": "Instruções",
         "files": "Ficheiros ({{count}})",
-        "focusedWebLinks": "Ligações web em destaque ({{count}})"
+        "focusedWebLinks": "Ligações Web em foco ({{count}})"
+      },
+      "noPreviewData": "Nenhuma pré-visualização disponível",
+      "pinActions": {
+        "pin": "Fixar",
+        "unpin": "Desafixar"
+      }
+    },
+    "pinnedSpaces": {
+      "unpin": "Desafixar",
+      "toggleVisibility": {
+        "collapse": "Recolher espaços fixados",
+        "expand": "Expandir espaços fixados"
       }
     }
   }

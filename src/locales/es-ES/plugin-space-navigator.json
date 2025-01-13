@@ -16,6 +16,18 @@
         "instructions": "Instrucciones",
         "files": "Archivos ({{count}})",
         "focusedWebLinks": "Enlaces web destacados ({{count}})"
+      },
+      "noPreviewData": "No hay datos de vista previa disponibles",
+      "pinActions": {
+        "pin": "Fijar",
+        "unpin": "Desfijar"
+      }
+    },
+    "pinnedSpaces": {
+      "unpin": "Desfijar",
+      "toggleVisibility": {
+        "collapse": "Contraer espacios fijados",
+        "expand": "Expandir espacios fijados"
       }
     }
   }

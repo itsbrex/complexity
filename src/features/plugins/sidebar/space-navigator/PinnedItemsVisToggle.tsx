@@ -17,7 +17,15 @@ export default function SidebarPinnedSpacesVisToggle() {
 
   return (
     <Tooltip
-      content={isShown ? "Collapse pinned Spaces" : "Expand pinned Spaces"}
+      content={
+        isShown
+          ? t(
+              "plugin-space-navigator:spaceNavigator.pinnedSpaces.toggleVisibility.collapse",
+            )
+          : t(
+              "plugin-space-navigator:spaceNavigator.pinnedSpaces.toggleVisibility.expand",
+            )
+      }
     >
       <div
         className="tw-invisible tw-flex tw-size-6 tw-items-center tw-justify-center tw-text-muted-foreground tw-opacity-0 tw-transition-all hover:tw-bg-white/5 hover:tw-text-foreground group-hover:tw-visible group-hover:tw-opacity-100"

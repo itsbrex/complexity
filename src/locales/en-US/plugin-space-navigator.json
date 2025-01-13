@@ -16,6 +16,18 @@
         "instructions": "Instructions",
         "files": "Files ({{count}})",
         "focusedWebLinks": "Focused Web Links ({{count}})"
+      },
+      "noPreviewData": "No preview data available",
+      "pinActions": {
+        "pin": "Pin",
+        "unpin": "Unpin"
+      }
+    },
+    "pinnedSpaces": {
+      "unpin": "Unpin",
+      "toggleVisibility": {
+        "collapse": "Collapse pinned Spaces",
+        "expand": "Expand pinned Spaces"
       }
     }
   }

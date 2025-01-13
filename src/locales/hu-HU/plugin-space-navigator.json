@@ -16,6 +16,18 @@
         "instructions": "Utasítások",
         "files": "Fájlok ({{count}})",
         "focusedWebLinks": "Kiemelt webes hivatkozások ({{count}})"
+      },
+      "noPreviewData": "Nincs elérhető előnézeti adat",
+      "pinActions": {
+        "pin": "Rögzítés",
+        "unpin": "Rögzítés feloldása"
+      }
+    },
+    "pinnedSpaces": {
+      "unpin": "Rögzítés feloldása",
+      "toggleVisibility": {
+        "collapse": "Rögzített terek összecsukása",
+        "expand": "Rögzített terek kibontása"
       }
     }
   }

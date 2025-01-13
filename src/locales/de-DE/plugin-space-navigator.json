@@ -1,7 +1,7 @@
 {
   "spaceNavigator": {
     "button": {
-      "label": "Suchen & zum Space navigieren",
+      "label": "Suchen & zu Space navigieren",
       "defaultText": "Spaces"
     },
     "search": {
@@ -16,6 +16,18 @@
         "instructions": "Anweisungen",
         "files": "Dateien ({{count}})",
         "focusedWebLinks": "Fokussierte Weblinks ({{count}})"
+      },
+      "noPreviewData": "Keine Vorschaudaten verfügbar",
+      "pinActions": {
+        "pin": "Anheften",
+        "unpin": "Loslösen"
+      }
+    },
+    "pinnedSpaces": {
+      "unpin": "Loslösen",
+      "toggleVisibility": {
+        "collapse": "Angeheftete Spaces einklappen",
+        "expand": "Angeheftete Spaces ausklappen"
       }
     }
   }

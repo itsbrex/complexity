@@ -16,7 +16,19 @@
         "instructions": "Pokyny",
         "files": "Súbory ({{count}})",
         "focusedWebLinks": "Zamerané webové odkazy ({{count}})"
+      },
+      "noPreviewData": "Žiadne údaje náhľadu nie sú k dispozícii",
+      "pinActions": {
+        "pin": "Pripnúť",
+        "unpin": "Odopnúť"
+      }
+    },
+    "pinnedSpaces": {
+      "unpin": "Odopnúť",
+      "toggleVisibility": {
+        "collapse": "Zbaliť pripnuté priestory",
+        "expand": "Rozbaliť pripnuté priestory"
       }
     }
   }
-} 
+}

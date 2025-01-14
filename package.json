@@ -3,7 +3,7 @@
   "displayName": "Complexity - Perplexity AI Supercharged",
   "version": "1.3.1.0",
   "author": "pnd280",
-  "description": "⚡ Supercharge your Perplexity AI",
+  "description": "Supercharge your Perplexity AI",
   "type": "module",
   "engines": {
     "node": ">=14.18.0"

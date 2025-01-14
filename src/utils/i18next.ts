@@ -26,6 +26,27 @@ export const supportedLangs = [
   "sr-Cyrl-ME",
 ] as const;
 
+export const webStoreLangsMap = {
+  "en-US": "en",
+  "fr-FR": "fr",
+  "de-DE": "de",
+  "ja-JP": "ja",
+  "ko-KR": "ko",
+  "zh-CN": "zh_CN",
+  "es-ES": "es",
+  "hi-IN": "hi",
+  "it-IT": "it",
+  "pt-BR": "pt_BR",
+  "cs-CZ": "cs",
+  "hr-HR": "hr",
+  "hu-HU": "hu",
+  "pl-PL": "pl",
+  "pt-PT": "pt_PT",
+  "sk-SK": "sk",
+  "mk-MK": "mk",
+  "sr-Cyrl-ME": "sr",
+};
+
 type Resources = {
   [key: string]: {
     common: any;
@@ -44,40 +65,43 @@ type Resources = {
 };
 
 async function loadLanguageResources(language: string) {
+  const langFolderName =
+    webStoreLangsMap[language as keyof typeof webStoreLangsMap];
+
   return {
-    common: await import(`~/src/locales/${language}/common.json`),
+    common: await import(`~/_locales/${langFolderName}/common.json`),
     "plugin-focus-selector": await import(
-      `~/src/locales/${language}/plugin-focus-selector.json`
+      `~/_locales/${langFolderName}/plugin-focus-selector.json`
     ),
     "plugin-model-selectors": await import(
-      `~/src/locales/${language}/plugin-model-selectors.json`
+      `~/_locales/${langFolderName}/plugin-model-selectors.json`
     ),
     "plugin-drag-n-drop-file-to-upload-in-thread": await import(
-      `~/src/locales/${language}/plugin-drag-n-drop-file-to-upload-in-thread.json`
+      `~/_locales/${langFolderName}/plugin-drag-n-drop-file-to-upload-in-thread.json`
     ),
     "plugin-export-thread": await import(
-      `~/src/locales/${language}/plugin-export-thread.json`
+      `~/_locales/${langFolderName}/plugin-export-thread.json`
     ),
     "plugin-better-copy-buttons": await import(
-      `~/src/locales/${language}/plugin-better-copy-buttons.json`
+      `~/_locales/${langFolderName}/plugin-better-copy-buttons.json`
     ),
     "plugin-canvas": await import(
-      `~/src/locales/${language}/plugin-canvas.json`
+      `~/_locales/${langFolderName}/plugin-canvas.json`
     ),
     "plugin-better-code-blocks": await import(
-      `~/src/locales/${language}/plugin-better-code-blocks.json`
+      `~/_locales/${langFolderName}/plugin-better-code-blocks.json`
     ),
     "plugin-on-cloudflare-timeout-reload": await import(
-      `~/src/locales/${language}/plugin-on-cloudflare-timeout-reload.json`
+      `~/_locales/${langFolderName}/plugin-on-cloudflare-timeout-reload.json`
     ),
     "plugin-command-menu": await import(
-      `~/src/locales/${language}/plugin-command-menu.json`
+      `~/_locales/${langFolderName}/plugin-command-menu.json`
     ),
     "plugin-slash-command-menu": await import(
-      `~/src/locales/${language}/plugin-slash-command-menu.json`
+      `~/_locales/${langFolderName}/plugin-slash-command-menu.json`
     ),
     "plugin-space-navigator": await import(
-      `~/src/locales/${language}/plugin-space-navigator.json`
+      `~/_locales/${langFolderName}/plugin-space-navigator.json`
     ),
   };
 }

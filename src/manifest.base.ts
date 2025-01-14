@@ -9,12 +9,11 @@ export type ExtendedManifestV3Export = ManifestV3Export & {
 
 export const baseManifest: ExtendedManifestV3Export = {
   manifest_version: 3,
-  name: `${APP_CONFIG.IS_DEV ? "[🟡 Dev] " : ""}${
-    packageData.displayName || packageData.name
-  }`,
-  description: packageData.description,
+  name: "__MSG_appName__",
+  description: "__MSG_appDesc__",
   version: packageData.version,
   homepage_url: "https://cplx.app",
+  default_locale: "en",
 
   icons: {
     16: "public/img/logo-16.png",

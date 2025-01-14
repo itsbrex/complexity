@@ -32,7 +32,7 @@ function setupCustomSlogan({
 
   removeCss = insertCss({
     css: styles,
-    id: "cplx-custom-slogan",
+    id: "custom-slogan",
   });
 
   const $slogan = $(slogan);

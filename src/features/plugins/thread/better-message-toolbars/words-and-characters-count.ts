@@ -1,9 +1,6 @@
 import { sendMessage } from "webext-bridge/content-script";
 
-import {
-  ExtendedMessageBlock,
-  globalDomObserverStore,
-} from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
+import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
@@ -45,104 +42,90 @@ const createQueryHoverContainer = (content: string) => {
     );
 };
 
-const displayWordsAndCharactersCount = async ({
-  $wrapper,
-  $answerHeading,
-  $query,
-  isInFlight,
-  messageIndex,
-}: {
-  $wrapper: JQuery<Element>;
-  $answerHeading: JQuery<Element>;
-  $query: JQuery<Element>;
-  isInFlight: boolean;
-  messageIndex: number;
-}) => {
-  if (isInFlight) {
-    handleInFlightMessage($answerHeading);
-    return;
-  }
-
-  const $buttonBar = $wrapper.find(DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR);
-  if (!$buttonBar.length || $buttonBar.attr(OBSERVER_ID)) return;
-
-  $buttonBar.attr(OBSERVER_ID, "true");
-  await sleep(200);
-
-  const query = $query
-    .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
-    .text();
-
-  const queryWordsCount = query.split(" ").length;
-  const queryCharactersCount = query.length;
-  const queryTokensCount = Math.ceil(query.length / 4);
-
-  const shouldDisplayTokensCount =
-    ExtensionLocalStorageService.getCachedSync().plugins[
-      "thread:betterMessageToolbars"
-    ].tokensCount;
-
-  const queryWordsAndCharactersCountContainer = createQueryHoverContainer(
-    `${t("common:misc.words")}: ${queryWordsCount}, ${t("common:misc.characters")}: ${queryCharactersCount}${shouldDisplayTokensCount ? `, tokens: ~${queryTokensCount}` : ""}`,
-  );
-
-  $query
-    .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_HOVER_CONTAINER)
-    .prepend(queryWordsAndCharactersCountContainer);
-
-  const answer = await sendMessage(
-    "reactVdom:getMessageContent",
-    { index: messageIndex },
-    "window",
-  );
-
-  if (answer == null) return;
-
-  const answerWordsCount = answer.split(" ").length;
-  const answerCharactersCount = answer.length;
-  const answerTokensCount = Math.ceil(answer.length / 4);
-
-  const answerWordsAndCharactersCountContainer = createAnswerHeadingContainer(
-    `${t("common:misc.words")}: ${answerWordsCount}, ${t("common:misc.characters")}: ${answerCharactersCount}${shouldDisplayTokensCount ? `, tokens: ~${answerTokensCount}` : ""}`,
-  );
-  $answerHeading.append(answerWordsAndCharactersCountContainer);
-};
-
-function wordsAndCharactersCount(messageBlocks: ExtendedMessageBlock[]) {
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
-  const settings =
-    ExtensionLocalStorageService.getCachedSync().plugins[
-      "thread:betterMessageToolbars"
-    ];
-
-  if (
-    !pluginsEnableStates?.["thread:betterMessageToolbars"] ||
-    !settings.wordsAndCharactersCount
-  )
-    return;
-
-  messageBlocks.forEach(
-    ({ $wrapper, $answerHeading, $query, isInFlight }, index) => {
-      displayWordsAndCharactersCount({
-        $wrapper,
-        $query,
-        $answerHeading,
-        isInFlight,
-        messageIndex: index,
-      });
-    },
-  );
-}
-
 csLoaderRegistry.register({
   id: "plugin:thread:betterMessageToolbars:wordsAndCharactersCount",
+  dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
   loader: () => {
+    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const settings =
+      ExtensionLocalStorageService.getCachedSync().plugins[
+        "thread:betterMessageToolbars"
+      ];
+
+    if (
+      !pluginsEnableStates?.["thread:betterMessageToolbars"] ||
+      !settings.wordsAndCharactersCount
+    )
+      return;
+
+    const shouldDisplayTokensCount =
+      ExtensionLocalStorageService.getCachedSync().plugins[
+        "thread:betterMessageToolbars"
+      ].tokensCount;
+
     globalDomObserverStore.subscribe(
-      (state) => state.threadComponents.messageBlocks,
-      (messageBlocks) => {
-        wordsAndCharactersCount(messageBlocks ?? []);
+      (state) => ({
+        messageBlocks: state.threadComponents.messageBlocks,
+        queryHoverContainers: state.threadComponents.queryHoverContainers,
+      }),
+      ({ messageBlocks, queryHoverContainers }) => {
+        messageBlocks?.forEach(
+          async ({ isInFlight, $answerHeading, $wrapper, $query }, index) => {
+            if (isInFlight) {
+              handleInFlightMessage($answerHeading);
+              return;
+            }
+
+            const $buttonBar = $wrapper.find(
+              DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR,
+            );
+            if (!$buttonBar.length || $buttonBar.attr(OBSERVER_ID)) return;
+
+            $buttonBar.attr(OBSERVER_ID, "true");
+            await sleep(200);
+
+            const answer = await sendMessage(
+              "reactVdom:getMessageContent",
+              { index },
+              "window",
+            );
+
+            if (answer == null) return;
+
+            const answerWordsCount = answer.split(" ").length;
+            const answerCharactersCount = answer.length;
+            const answerTokensCount = Math.ceil(answer.length / 4);
+
+            const answerWordsAndCharactersCountContainer =
+              createAnswerHeadingContainer(
+                `${t("common:misc.words")}: ${answerWordsCount}, ${t("common:misc.characters")}: ${answerCharactersCount}${shouldDisplayTokensCount ? `, tokens: ~${answerTokensCount}` : ""}`,
+              );
+            $answerHeading.append(answerWordsAndCharactersCountContainer);
+
+            const query = $query
+              .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
+              .text();
+            const queryWordsCount = query.split(" ").length;
+            const queryCharactersCount = query.length;
+            const queryTokensCount = Math.ceil(query.length / 4);
+
+            const $queryWordsAndCharactersCountContainer =
+              createQueryHoverContainer(
+                `${t("common:misc.words")}: ${queryWordsCount}, ${t("common:misc.characters")}: ${queryCharactersCount}${shouldDisplayTokensCount ? `, tokens: ~${queryTokensCount}` : ""}`,
+              );
+
+            if (
+              queryHoverContainers == null ||
+              queryHoverContainers[index] == null
+            )
+              return;
+
+            $(queryHoverContainers[index]).prepend(
+              $queryWordsAndCharactersCountContainer,
+            );
+          },
+        );
       },
     );
   },
-  dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
 });

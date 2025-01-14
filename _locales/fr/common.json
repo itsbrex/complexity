@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "mots",
-    "characters": "caractères"
+    "characters": "caractères",
+    "expand": "Développer",
+    "collapse": "Réduire"
   }
 }

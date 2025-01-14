@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "palavras",
-    "characters": "caracteres"
+    "characters": "caracteres",
+    "expand": "Expandir",
+    "collapse": "Recolher"
   }
 }

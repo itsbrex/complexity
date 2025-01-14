@@ -12,6 +12,9 @@
       },
       "react": {
         "description": "点击查看网页"
+      },
+      "markmap": {
+        "description": "点击查看思维导图"
       }
     },
     "version": "版本 {{number}}",

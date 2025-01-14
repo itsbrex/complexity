@@ -1,0 +1,29 @@
+[data-cplx-component="message-block"]
+  [data-cplx-component="message-block-query"] {
+  .group\/query {
+    @apply tw-transition-all;
+  }
+
+  &[data-cplx-query-collapsed="true"] .group\/query {
+    isolation: isolate;
+    max-height: 300px;
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 200px;
+      left: 0;
+      right: 0;
+      height: 100px;
+      @apply tw-bg-gradient-to-b tw-from-transparent tw-from-5% tw-via-background/80 tw-via-30% tw-to-background;
+      pointer-events: none;
+      z-index: 1;
+    }
+  }
+
+  &[data-cplx-query-collapsed="false"] .group\/query {
+    max-height: 9999px;
+  }
+}

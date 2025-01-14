@@ -12,6 +12,9 @@
       },
       "react": {
         "description": "クリックしてウェブページを表示"
+      },
+      "markmap": {
+        "description": "クリックしてマインドマップを表示"
       }
     },
     "version": "バージョン {{number}}",

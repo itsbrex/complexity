@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "slov",
-    "characters": "znakov"
+    "characters": "znakov",
+    "expand": "Rozbaliť",
+    "collapse": "Zbaliť"
   }
 }

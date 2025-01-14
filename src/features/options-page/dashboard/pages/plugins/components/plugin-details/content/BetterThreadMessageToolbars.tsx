@@ -125,6 +125,21 @@ export default function BetterThreadMessageToolbarsPluginDetails() {
               onCheckedChange={handleCheckedChange("tokensCount")}
             />
           )}
+          <Switch
+            className="tw-items-start"
+            textLabel={
+              <div>
+                <div>Collapsible Query</div>
+                <div className="tw-text-sm tw-text-muted-foreground">
+                  Limit the maximum height of the query container
+                </div>
+              </div>
+            }
+            checked={
+              settings?.plugins["thread:betterMessageToolbars"].collapsibleQuery
+            }
+            onCheckedChange={handleCheckedChange("collapsibleQuery")}
+          />
         </div>
       )}
       <div className="tw-mx-auto tw-w-full tw-max-w-[700px]">

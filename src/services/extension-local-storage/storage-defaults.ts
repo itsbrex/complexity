@@ -57,6 +57,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       hideUnnecessaryButtons: true,
       wordsAndCharactersCount: true,
       tokensCount: false,
+      collapsibleQuery: false,
     },
     "thread:betterCodeBlocks": {
       enabled: false,

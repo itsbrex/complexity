@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "単語",
-    "characters": "文字"
+    "characters": "文字",
+    "expand": "展開",
+    "collapse": "折りたたむ"
   }
 }

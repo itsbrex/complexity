@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "szó",
-    "characters": "karakter"
+    "characters": "karakter",
+    "expand": "Kibontás",
+    "collapse": "Összecsukás"
   }
 }

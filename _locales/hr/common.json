@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "riječi",
-    "characters": "znakovi"
+    "characters": "znakovi",
+    "expand": "Proširi",
+    "collapse": "Sažmi"
   }
 }

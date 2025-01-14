@@ -12,6 +12,9 @@
       },
       "react": {
         "description": "Klicken Sie zum Anzeigen der Webseite"
+      },
+      "markmap": {
+        "description": "Klicken Sie, um die Mindmap anzuzeigen"
       }
     },
     "version": "Version {{number}}",

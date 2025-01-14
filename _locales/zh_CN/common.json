@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "字数",
-    "characters": "字符"
+    "characters": "字符",
+    "expand": "展开",
+    "collapse": "收起"
   }
 }

@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "단어",
-    "characters": "글자"
+    "characters": "글자",
+    "expand": "펼치기",
+    "collapse": "접기"
   }
 }

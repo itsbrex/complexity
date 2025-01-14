@@ -12,6 +12,9 @@
       },
       "react": {
         "description": "Klikněte pro zobrazení webové stránky"
+      },
+      "markmap": {
+        "description": "Kliknutím zobrazíte myšlenkovou mapu"
       }
     },
     "version": "Verze {{number}}",

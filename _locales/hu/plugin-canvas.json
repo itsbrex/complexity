@@ -12,6 +12,9 @@
       },
       "react": {
         "description": "Kattintson a weboldal megtekintéséhez"
+      },
+      "markmap": {
+        "description": "Kattintson a gondolattérkép megtekintéséhez"
       }
     },
     "version": "{{number}}. verzió",

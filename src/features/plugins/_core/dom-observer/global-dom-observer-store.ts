@@ -40,6 +40,7 @@ export type GlobalDomObserverStore = {
     messageBlockBottomBarHeight: number;
     messageBlockBottomBars: (HTMLElement | null)[] | null;
     codeBlocks: ExtendedCodeBlock[][] | null;
+    queryHoverContainers: (HTMLElement | null)[] | null;
   };
   setThreadComponents: (
     newThreadComponents: Partial<GlobalDomObserverStore["threadComponents"]>,
@@ -114,6 +115,7 @@ export const globalDomObserverStore =
             messageBlockBottomBarHeight: 0,
             messageBlockBottomBars: null,
             codeBlocks: null,
+            queryHoverContainers: null,
           },
           setThreadComponents: (newThreadComponents) => {
             Object.entries(newThreadComponents).forEach(([key, value]) => {

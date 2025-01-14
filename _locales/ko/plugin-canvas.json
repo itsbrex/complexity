@@ -12,6 +12,9 @@
       },
       "react": {
         "description": "클릭하여 웹페이지 보기"
+      },
+      "markmap": {
+        "description": "마인드맵을 보려면 클릭하세요"
       }
     },
     "version": "버전 {{number}}",

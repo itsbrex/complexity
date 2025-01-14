@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "зборови",
-    "characters": "карактери"
+    "characters": "карактери",
+    "expand": "Прошири",
+    "collapse": "Собери"
   }
 }

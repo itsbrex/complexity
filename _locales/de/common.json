@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "Wörter",
-    "characters": "Zeichen"
+    "characters": "Zeichen",
+    "expand": "Erweitern",
+    "collapse": "Einklappen"
   }
 }

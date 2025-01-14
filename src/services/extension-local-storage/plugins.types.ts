@@ -45,6 +45,7 @@ export const PluginsSchema = z.object({
     hideUnnecessaryButtons: z.boolean(),
     wordsAndCharactersCount: z.boolean(),
     tokensCount: z.boolean(),
+    collapsibleQuery: z.boolean(),
   }),
   "thread:betterCodeBlocks": PluginSettingsSchema.merge(
     BetterCodeBlockGlobalOptionsSchema,

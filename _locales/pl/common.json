@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "słowa",
-    "characters": "znaki"
+    "characters": "znaki",
+    "expand": "Rozwiń",
+    "collapse": "Zwiń"
   }
 }

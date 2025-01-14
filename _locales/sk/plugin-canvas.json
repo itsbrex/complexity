@@ -12,6 +12,9 @@
       },
       "react": {
         "description": "Kliknite pre zobrazenie webovej stránky"
+      },
+      "markmap": {
+        "description": "Kliknite pre zobrazenie myšlienkovej mapy"
       }
     },
     "version": "Verzia {{number}}",

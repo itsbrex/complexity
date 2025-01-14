@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "शब्द",
-    "characters": "वर्ण"
+    "characters": "वर्ण",
+    "expand": "विस्तार करें",
+    "collapse": "संक्षिप्त करें"
   }
 }

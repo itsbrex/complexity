@@ -12,6 +12,9 @@
       },
       "react": {
         "description": "Kliknite za prikaz web stranice"
+      },
+      "markmap": {
+        "description": "Kliknite za prikaz mentalne mape"
       }
     },
     "version": "Verzija {{number}}",

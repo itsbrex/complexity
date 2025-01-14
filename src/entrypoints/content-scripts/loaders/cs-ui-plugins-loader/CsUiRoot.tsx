@@ -13,6 +13,7 @@ import { PostUpdateReleaseNotesDialog } from "@/components/PostUpdateReleaseNote
 import { Toaster } from "@/components/Toaster";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
 import SpaceNavigatorWrapper from "@/features/plugins/sidebar/space-navigator/Wrapper";
+import CollapsibleQueryWrapper from "@/features/plugins/thread/better-message-toolbars/collapsible-query/Wrapper";
 import { useInsertCss } from "@/hooks/useInsertCss";
 
 const HomepageUpdateAnnouncer = lazy(
@@ -111,6 +112,7 @@ function ThreadComponents() {
 
       <CsUiPluginsGuard dependentPluginIds={["thread:betterMessageToolbars"]}>
         <BetterMessageToolbarsWrapper />
+        <CollapsibleQueryWrapper />
       </CsUiPluginsGuard>
 
       <CsUiPluginsGuard dependentPluginIds={["thread:betterCodeBlocks"]}>

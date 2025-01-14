@@ -133,10 +133,16 @@ function monitorThreadWrapperExistence({
 async function observeMessageBlocks() {
   const messageBlocks = UiUtils.getMessageBlocks();
 
-  CallbackQueue.getInstance().enqueue(
-    observerMessageBlockBottomBar.bind(null, { messageBlocks }),
-    `${DOM_OBSERVER_ID.MESSAGE_BLOCKS}-observe-message-block-bottom-bar`,
-  );
+  CallbackQueue.getInstance().enqueueArray([
+    {
+      callback: observerMessageBlockBottomBar.bind(null, { messageBlocks }),
+      id: `${DOM_OBSERVER_ID.MESSAGE_BLOCKS}-observe-message-block-bottom-bar`,
+    },
+    {
+      callback: observeQueryHoverContainers.bind(null, { messageBlocks }),
+      id: `${DOM_OBSERVER_ID.MESSAGE_BLOCKS}-observe-query-hover-containers`,
+    },
+  ]);
 
   const extendedMessageBlocks: ExtendedMessageBlock[] = await Promise.all(
     messageBlocks.map(
@@ -276,5 +282,30 @@ function observePopper() {
 
   globalDomObserverStore.getState().setThreadComponents({
     popper: $wrapper[0],
+  });
+}
+
+function observeQueryHoverContainers({
+  messageBlocks,
+}: {
+  messageBlocks: MessageBlock[];
+}) {
+  if (messageBlocks[0] == null) return;
+
+  globalDomObserverStore.getState().setThreadComponents({
+    queryHoverContainers: messageBlocks.map(({ $wrapper }) => {
+      const $queryHoverContainer = $wrapper.find(
+        DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_HOVER_CONTAINER,
+      );
+
+      if (!$queryHoverContainer.length) return null;
+
+      $queryHoverContainer.internalComponentAttr(
+        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
+          .QUERY_HOVER_CONTAINER,
+      );
+
+      return $queryHoverContainer[0];
+    }),
   });
 }

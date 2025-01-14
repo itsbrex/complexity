@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "ријечи",
-    "characters": "знакови"
+    "characters": "знакови",
+    "expand": "Прошири",
+    "collapse": "Скупи"
   }
 }

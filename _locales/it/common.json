@@ -16,6 +16,8 @@
   },
   "misc": {
     "words": "parole",
-    "characters": "caratteri"
+    "characters": "caratteri",
+    "expand": "Espandi",
+    "collapse": "Comprimi"
   }
 }

@@ -29,17 +29,18 @@ export class IndexedDbService extends Dexie {
 
     this.version(4)
       .stores({
-        pinnedSpaces: "&uuid, title, emoji, slug, [order+createdAt]",
+        pinnedSpaces: "&uuid, [order+createdAt]",
       })
-      .upgrade((tx) => {
-        return tx
-          .table("pinnedSpaces")
-          .toCollection()
-          .modify((space) => {
-            if (space.order === undefined) {
-              space.order = 0;
-            }
+      .upgrade(async (tx) => {
+        const spaces = await tx.table("pinnedSpaces").toArray();
+        spaces.sort((a, b) => b.createdAt - a.createdAt);
+
+        for (let i = 0; i < spaces.length; i++) {
+          const space = spaces[i];
+          await tx.table("pinnedSpaces").update(space.uuid, {
+            order: i,
           });
+        }
       });
   }
 

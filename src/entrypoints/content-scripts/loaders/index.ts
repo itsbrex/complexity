@@ -44,6 +44,7 @@ import "@/features/plugins/home/custom-slogan/custom-slogan";
 import "@/features/plugins/hide-get-mobile-app-cta-btn/hide-get-mobile-app-cta-btn";
 import "@/features/plugins/zen-mode/zen-mode";
 import "@/features/plugins/block-analytic-events/network-intercept-middlewares";
+import "@/features/plugins/sidebar/space-navigator/network-intercept-middlewares";
 
 // Global Stores
 import "@/data/color-scheme-store";

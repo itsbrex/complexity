@@ -43,6 +43,7 @@ export const LOADER_IDS = [
   "plugin:thread:customThreadContainerWidth",
   "plugin:queryBox:initSharedStore",
   "plugin:queryBox:focusSelector:webRecency:networkInterceptMiddleware",
+  "plugin:queryBox:spaceNavigator:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:listeners",
   "plugin:queryBox:noFileCreationOnPaste",

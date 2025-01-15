@@ -11,25 +11,28 @@ import { useSpaceNavigatorSidebarStore } from "@/features/plugins/sidebar/space-
 import { useUnpinSpaceMutation } from "@/features/plugins/sidebar/space-navigator/use-pinned-spaces-mutations";
 import { getPinnedSpacesService } from "@/services/indexed-db/pinned-spaces/pinned-spaces";
 import { pinnedSpacesQueries } from "@/services/indexed-db/pinned-spaces/query-keys";
+import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import { queryClient } from "@/utils/ts-query-client";
 import { emojiCodeToString } from "@/utils/utils";
 
 type PinnedSpaceContentProps = {
-  emoji: string | null | undefined;
-  title: string;
   uuid: string;
   isDragging: boolean;
   isAnyDragging: boolean;
 };
 
 function PinnedSpaceContent({
-  emoji,
-  title,
   uuid,
   isDragging,
   isAnyDragging,
 }: PinnedSpaceContentProps) {
+  const { data: spaces } = useQuery(pplxApiQueries.spaces);
+
+  const space = spaces?.find((space) => space.uuid === uuid);
+
   const { mutate: unpinSpace } = useUnpinSpaceMutation();
+
+  if (space == null) return null;
 
   return (
     <div
@@ -48,9 +51,11 @@ function PinnedSpaceContent({
         );
       }}
     >
-      <div className="tw-line-clamp-1 tw-flex tw-flex-1 tw-items-center tw-gap-1">
-        {emoji && <span>{emojiCodeToString(emoji)}</span>}
-        <span>{title}</span>
+      <div className="tw-line-clamp-1">
+        {space.emoji && (
+          <span className="tw-mr-1">{emojiCodeToString(space.emoji)}</span>
+        )}
+        <span>{space.title}</span>
       </div>
       <Tooltip
         content={t("plugin-space-navigator:spaceNavigator.pinnedSpaces.unpin")}
@@ -140,10 +145,10 @@ export default function SidebarPinnedSpaces() {
 
     if (over && active.id !== over.id) {
       const activeSpace = localPinnedSpaces.find(
-        (space) => space.slug === active.id,
+        (space) => space.uuid === active.id,
       );
       const overSpace = localPinnedSpaces.find(
-        (space) => space.slug === over.id,
+        (space) => space.uuid === over.id,
       );
 
       if (!activeSpace || !overSpace) return;
@@ -167,15 +172,13 @@ export default function SidebarPinnedSpaces() {
         )}
       >
         <SwappableDndProvider
-          items={localPinnedSpaces.map((item) => item.slug)}
+          items={localPinnedSpaces.map((item) => item.uuid)}
           onDragEnd={handleDragEnd}
         >
-          {localPinnedSpaces.map((space) => (
-            <SwappableSortableItem key={space.slug} id={space.slug}>
+          {localPinnedSpaces.map((space, index) => (
+            <SwappableSortableItem key={index} id={space.uuid}>
               {({ isDragging, isAnyDragging }) => (
                 <PinnedSpaceContent
-                  emoji={space.emoji}
-                  title={space.title}
                   uuid={space.uuid}
                   isDragging={isDragging}
                   isAnyDragging={isAnyDragging}

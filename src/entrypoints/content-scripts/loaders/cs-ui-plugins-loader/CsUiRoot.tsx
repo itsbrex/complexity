@@ -12,8 +12,6 @@ import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 import { PostUpdateReleaseNotesDialog } from "@/components/PostUpdateReleaseNotesDialog";
 import { Toaster } from "@/components/Toaster";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
-import SpaceNavigatorWrapper from "@/features/plugins/sidebar/space-navigator/Wrapper";
-import CollapsibleQueryWrapper from "@/features/plugins/thread/better-message-toolbars/collapsible-query/Wrapper";
 import { useInsertCss } from "@/hooks/useInsertCss";
 
 const HomepageUpdateAnnouncer = lazy(
@@ -43,6 +41,15 @@ const BetterMessageCopyButtons = lazy(
 );
 const BetterMessageToolbarsWrapper = lazy(
   () => import("@/features/plugins/thread/better-message-toolbars/Wrapper"),
+);
+const SpaceNavigatorWrapper = lazy(
+  () => import("@/features/plugins/sidebar/space-navigator/Wrapper"),
+);
+const CollapsibleQueryWrapper = lazy(
+  () =>
+    import(
+      "@/features/plugins/thread/better-message-toolbars/collapsible-query/Wrapper"
+    ),
 );
 const ExportThreadWrapper = lazy(
   () => import("@/features/plugins/thread/export-thread/Wrapper"),
@@ -112,7 +119,13 @@ function ThreadComponents() {
 
       <CsUiPluginsGuard dependentPluginIds={["thread:betterMessageToolbars"]}>
         <BetterMessageToolbarsWrapper />
-        <CollapsibleQueryWrapper />
+        <CsUiPluginsGuard
+          additionalCheck={({ settings }) =>
+            settings.plugins["thread:betterMessageToolbars"].collapsibleQuery
+          }
+        >
+          <CollapsibleQueryWrapper />
+        </CsUiPluginsGuard>
       </CsUiPluginsGuard>
 
       <CsUiPluginsGuard dependentPluginIds={["thread:betterCodeBlocks"]}>

@@ -20,7 +20,7 @@
     "esl": "eslint ./src/",
     "eslq": "eslint ./src/ --quiet",
     "eslf": "eslint ./src/ --fix",
-    "fmt": "prettier --write '**/*.{tsx,ts,css}'",
+    "fmt": "prettier --write '**/*.{tsx,ts,css,json}'",
     "test": "pnpm dx vitest run",
     "test:ui": "pnpm dx vitest --ui",
     "e2e": "pnpm dx playwright test",

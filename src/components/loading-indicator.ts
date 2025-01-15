@@ -1,5 +1,3 @@
-// eslint-disable-next-line boundaries/element-types
-import { csUiRootCss } from "@/entrypoints/content-scripts/loaders/cs-ui-plugins-loader/CsUiRoot";
 import { getCookie } from "@/utils/utils";
 
 export async function showInitializingIndicator() {
@@ -21,10 +19,6 @@ export async function showInitializingIndicator() {
     $("html").attr("data-color-scheme", colorScheme);
   }
 
-  const $tempStyle = $("<style>")
-    .attr("id", "cplx-initializing-indicator-style")
-    .text(csUiRootCss);
-
   const $indicator = $("<div>")
     .attr("id", "cplx-initializing-indicator")
     .addClass("tw-fixed tw-left-1/2 tw-top-8 -tw-translate-x-1/2")
@@ -41,7 +35,6 @@ export async function showInitializingIndicator() {
         .append("Initializing..."),
     );
 
-  $tempStyle.appendTo(document.head);
   $indicator.appendTo(document.body);
 }
 
@@ -50,8 +43,6 @@ export function removeInitializingIndicator() {
     $("#cplx-initializing-indicator div")
       .removeClass("tw-animate-in tw-fade-in")
       .addClass("tw-animate-out tw-fade-out tw-duration-1000");
-
-    $("#cplx-initializing-indicator-style").remove();
 
     setTimeout(() => {
       $("#cplx-initializing-indicator").remove();

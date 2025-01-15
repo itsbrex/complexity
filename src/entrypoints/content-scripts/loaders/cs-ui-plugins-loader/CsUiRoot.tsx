@@ -5,14 +5,12 @@ import "@/assets/cs.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Fragment } from "react/jsx-runtime";
 
-import { APP_CONFIG } from "@/app.config";
 import csUiRootCss from "@/assets/cs.css?inline";
 import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 // import { SponsorHomeLink } from "@/components/SponsorHomeLink";
 import { PostUpdateReleaseNotesDialog } from "@/components/PostUpdateReleaseNotesDialog";
 import { Toaster } from "@/components/Toaster";
 import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
-import { useInsertCss } from "@/hooks/useInsertCss";
 
 const HomepageUpdateAnnouncer = lazy(
   () => import("@/components/HomepageUpdateAnnouncer"),
@@ -59,12 +57,6 @@ const ThreadTocWrapper = lazy(
 );
 
 export default function CsUiRoot() {
-  useInsertCss({
-    id: "cplx-cs-ui-root",
-    css: csUiRootCss,
-    inject: !APP_CONFIG.IS_DEV,
-  });
-
   return (
     <>
       <PostUpdateReleaseNotesDialog />

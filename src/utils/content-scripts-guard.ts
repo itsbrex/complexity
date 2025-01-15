@@ -2,18 +2,12 @@ import { sendMessage } from "webext-bridge/content-script";
 
 import { removeInitializingIndicator } from "@/components/loading-indicator";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
-import { PplxApiService } from "@/services/pplx-api/pplx-api";
 
 export function contentScriptGuard() {
   const removePreloadedTheme = async () => {
     if ((await ExtensionLocalStorageService.get()).preloadTheme)
       sendMessage("bg:removePreloadedTheme", undefined, "background");
   };
-
-  checkForMaintenance().catch(() => {
-    removePreloadedTheme();
-    removeInitializingIndicator();
-  });
 
   try {
     ignoreInvalidPages();
@@ -23,11 +17,6 @@ export function contentScriptGuard() {
     removeInitializingIndicator();
     throw error;
   }
-}
-
-async function checkForMaintenance() {
-  if ((await PplxApiService.fetchMaintenanceStatus()) != "null")
-    throw new Error("Perplexity maintenance state detected, will not inject");
 }
 
 function ignoreInvalidPages() {

@@ -64,7 +64,7 @@ export default {
           DEFAULT: "oklch(var(--card) / <alpha-value>)",
           foreground: "oklch(var(--card-foreground) / <alpha-value>)",
         },
-        "button-background": "oklch(var(--button-background) / <alpha-value>)",
+        buttonBackground: "oklch(var(--button-background) / <alpha-value>)",
       },
       borderRadius: {
         lg: `var(--radius)`,

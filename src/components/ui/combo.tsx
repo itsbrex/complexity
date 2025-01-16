@@ -47,7 +47,7 @@ const comboboxTriggerVariants = cva(
     variants: {
       variant: {
         default:
-          "active:scale-95 tw-bg-button-background hover:tw-text-muted-foreground focus:tw-outline-none",
+          "active:scale-95 tw-bg-buttonBackground hover:tw-text-muted-foreground focus:tw-outline-none",
         ghost:
           "text-center tw-text-muted-foreground hover:tw-bg-primary-foreground hover:tw-text-foreground active:tw-scale-95",
       },

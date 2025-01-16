@@ -36,7 +36,7 @@ export default function SpaceNavigator({ ...props }: SpaceNavigator) {
           }}
         >
           <PopoverTrigger asChild>
-            <div className="tw-flex tw-size-6 tw-items-center tw-justify-center tw-text-muted-foreground tw-transition-all hover:tw-bg-white/5 hover:tw-text-foreground">
+            <div className="tw-flex tw-size-6 tw-items-center tw-justify-center tw-text-muted-foreground tw-transition-all hover:tw-bg-black/5 hover:tw-text-foreground dark:hover:tw-bg-white/5">
               <LuSearch />
             </div>
           </PopoverTrigger>

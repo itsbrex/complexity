@@ -63,5 +63,9 @@
     --ring: 71.56% 0.1183 209.17;
 
     --button-background: 30.26% 0.0026 197.03;
+
+    body#__next {
+      --offset-plus: var(--pale-cyan-200);
+    }
   }
 }

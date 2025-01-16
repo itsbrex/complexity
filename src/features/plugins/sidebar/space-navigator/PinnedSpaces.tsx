@@ -39,7 +39,9 @@ function PinnedSpaceContent({
       className={cn(
         "tw-group tw-flex tw-cursor-pointer tw-items-center tw-justify-between tw-rounded-md tw-px-1 tw-py-1 tw-transition-all tw-duration-300",
         isDragging && "tw-opacity-75",
-        !isDragging && !isAnyDragging && "hover:tw-bg-white/5",
+        !isDragging &&
+          !isAnyDragging &&
+          "hover:tw-bg-black/5 dark:hover:tw-bg-white/5",
       )}
       onClick={() => {
         sendMessage(
@@ -138,6 +140,8 @@ export default function SidebarPinnedSpaces() {
     },
   });
 
+  const { isLoading: isSpacesLoading } = useQuery(pplxApiQueries.spaces);
+
   if (!isShown || localPinnedSpaces.length === 0) return null;
 
   function handleDragEnd(event: DragEndEvent) {
@@ -166,27 +170,35 @@ export default function SidebarPinnedSpaces() {
         className={cn(
           "tw-mt-1 tw-flex tw-flex-col tw-gap-1 tw-px-2 tw-text-xs tw-font-medium tw-text-muted-foreground",
           {
-            "tw-ml-[29px] tw-border-l tw-border-border":
+            "tw-ml-[29px] tw-border-l tw-border-border/50 dark:tw-border-border":
               localPinnedSpaces.length > 0,
           },
         )}
       >
-        <SwappableDndProvider
-          items={localPinnedSpaces.map((item) => item.uuid)}
-          onDragEnd={handleDragEnd}
-        >
-          {localPinnedSpaces.map((space, index) => (
-            <SwappableSortableItem key={index} id={space.uuid}>
-              {({ isDragging, isAnyDragging }) => (
-                <PinnedSpaceContent
-                  uuid={space.uuid}
-                  isDragging={isDragging}
-                  isAnyDragging={isAnyDragging}
-                />
-              )}
-            </SwappableSortableItem>
-          ))}
-        </SwappableDndProvider>
+        {isSpacesLoading ? (
+          <>
+            <div className="tw-my-2 tw-h-[6px] tw-w-4/5 tw-animate-pulse tw-rounded-full tw-bg-black/5 dark:tw-bg-white/5" />
+            <div className="tw-my-2 tw-h-[6px] tw-w-1/3 tw-animate-pulse tw-rounded-full tw-bg-black/5 dark:tw-bg-white/5" />
+            <div className="tw-my-2 tw-h-[6px] tw-w-1/2 tw-animate-pulse tw-rounded-full tw-bg-black/5 dark:tw-bg-white/5" />
+          </>
+        ) : (
+          <SwappableDndProvider
+            items={localPinnedSpaces.map((item) => item.uuid)}
+            onDragEnd={handleDragEnd}
+          >
+            {localPinnedSpaces.map((space, index) => (
+              <SwappableSortableItem key={index} id={space.uuid}>
+                {({ isDragging, isAnyDragging }) => (
+                  <PinnedSpaceContent
+                    uuid={space.uuid}
+                    isDragging={isDragging}
+                    isAnyDragging={isAnyDragging}
+                  />
+                )}
+              </SwappableSortableItem>
+            ))}
+          </SwappableDndProvider>
+        )}
       </div>
     </div>
   );

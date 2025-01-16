@@ -335,4 +335,25 @@ export default class UiUtils {
       }, IDLE_TIMEOUT);
     });
   }
+
+  static scrollToCaret(textarea: HTMLTextAreaElement) {
+    const computedStyle = window.getComputedStyle(textarea);
+    console.log(computedStyle.lineHeight);
+
+    const singleLineHeight = parseInt(computedStyle.lineHeight || "20px");
+
+    const textBeforeCaret = textarea.value.substring(
+      0,
+      textarea.selectionStart,
+    );
+    const numberOfLinesBeforeCaret = textBeforeCaret.split("\n").length;
+    const visibleLinesAboveCaret = 1;
+
+    const scrollPositionToShowCaret = Math.max(
+      0,
+      (numberOfLinesBeforeCaret - visibleLinesAboveCaret) * singleLineHeight,
+    );
+
+    textarea.scrollTop = scrollPositionToShowCaret;
+  }
 }

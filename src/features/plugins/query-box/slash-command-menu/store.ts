@@ -66,8 +66,14 @@ export const useSlashCommandMenuStore =
               get().queryBoxAction.deleteTriggerWord();
 
               queueMicrotask(() => {
-                UiUtils.getActiveQueryBoxTextarea().trigger("focus");
+                const $textarea = UiUtils.getActiveQueryBoxTextarea();
+
+                if (!$textarea.length) return;
+
+                $textarea.trigger("focus");
                 document.execCommand("insertText", false, text);
+
+                UiUtils.scrollToCaret($textarea[0]);
               });
             },
             deleteTriggerWord: () => {

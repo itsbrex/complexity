@@ -11,6 +11,7 @@ import { useSpaceNavigatorSidebarStore } from "@/features/plugins/sidebar/space-
 import { useUnpinSpaceMutation } from "@/features/plugins/sidebar/space-navigator/use-pinned-spaces-mutations";
 import { getPinnedSpacesService } from "@/services/indexed-db/pinned-spaces/pinned-spaces";
 import { pinnedSpacesQueries } from "@/services/indexed-db/pinned-spaces/query-keys";
+import { Space } from "@/services/pplx-api/pplx-api.types";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import { queryClient } from "@/utils/ts-query-client";
 import { emojiCodeToString } from "@/utils/utils";
@@ -19,15 +20,15 @@ type PinnedSpaceContentProps = {
   uuid: string;
   isDragging: boolean;
   isAnyDragging: boolean;
+  spaces: Space[];
 };
 
 function PinnedSpaceContent({
   uuid,
   isDragging,
   isAnyDragging,
+  spaces,
 }: PinnedSpaceContentProps) {
-  const { data: spaces } = useQuery(pplxApiQueries.spaces);
-
   const space = spaces?.find((space) => space.uuid === uuid);
 
   const { mutate: unpinSpace } = useUnpinSpaceMutation();
@@ -82,6 +83,10 @@ function PinnedSpaceContent({
 export default function SidebarPinnedSpaces() {
   const { isShown } = useSpaceNavigatorSidebarStore();
   const [localPinnedSpaces, setLocalPinnedSpaces] = useState<PinnedSpace[]>([]);
+
+  const { data: spaces, isLoading: isSpacesLoading } = useQuery(
+    pplxApiQueries.spaces,
+  );
 
   const { data: pinnedSpaces = [] } = useQuery({
     ...pinnedSpacesQueries.list,
@@ -140,8 +145,6 @@ export default function SidebarPinnedSpaces() {
     },
   });
 
-  const { isLoading: isSpacesLoading } = useQuery(pplxApiQueries.spaces);
-
   if (!isShown || localPinnedSpaces.length === 0) return null;
 
   function handleDragEnd(event: DragEndEvent) {
@@ -190,6 +193,7 @@ export default function SidebarPinnedSpaces() {
               <SwappableSortableItem key={index} id={space.uuid}>
                 {({ isDragging, isAnyDragging }) => (
                   <PinnedSpaceContent
+                    spaces={spaces ?? []}
                     uuid={space.uuid}
                     isDragging={isDragging}
                     isAnyDragging={isAnyDragging}

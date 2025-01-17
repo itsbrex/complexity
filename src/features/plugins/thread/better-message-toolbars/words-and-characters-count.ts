@@ -90,7 +90,7 @@ csLoaderRegistry.register({
               "window",
             );
 
-            if (answer == null) return;
+            if (answer == null) return $buttonBar.removeAttr(OBSERVER_ID);
 
             const answerWordsCount = answer.split(" ").length;
             const answerCharactersCount = answer.length;
@@ -118,7 +118,7 @@ csLoaderRegistry.register({
               queryHoverContainers == null ||
               queryHoverContainers[index] == null
             )
-              return;
+              return $buttonBar.removeAttr(OBSERVER_ID);
 
             $(queryHoverContainers[index]).prepend(
               $queryWordsAndCharactersCountContainer,

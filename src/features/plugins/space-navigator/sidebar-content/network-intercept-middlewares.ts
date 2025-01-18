@@ -6,12 +6,12 @@ import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import { queryClient } from "@/utils/ts-query-client";
 
 csLoaderRegistry.register({
-  id: "plugin:queryBox:spaceNavigator:networkInterceptMiddleware",
+  id: "plugin:spaceNavigator:networkInterceptMiddleware",
   dependencies: ["cache:pluginsStates"],
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-    if (!pluginsEnableStates?.["queryBox:spaceNavigator"]) return;
+    if (!pluginsEnableStates?.["spaceNavigator"]) return;
 
     MiddlewareManager.updateMiddleware({
       id: "invalidate-spaces",

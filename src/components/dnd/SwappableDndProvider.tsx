@@ -18,7 +18,7 @@ import {
   sortableKeyboardCoordinates,
   rectSwappingStrategy,
 } from "@dnd-kit/sortable";
-import { ReactNode } from "react";
+import { ReactNode, useRef, useState } from "react";
 
 type SwappableDndProviderProps = {
   items: string[];
@@ -38,7 +38,7 @@ export default function SwappableDndProvider({
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        delay: 100,
+        delay: 300,
         tolerance: 5,
       },
     }),
@@ -48,6 +48,7 @@ export default function SwappableDndProvider({
   );
 
   const [isDragging, setIsDragging] = useState(false);
+  const justFinishedDragging = useRef(false);
 
   const handleDragStart = (event: DragStartEvent) => {
     setIsDragging(true);
@@ -56,6 +57,23 @@ export default function SwappableDndProvider({
 
   const handleDragEnd = (event: DragEndEvent) => {
     setIsDragging(false);
+    justFinishedDragging.current = true;
+    
+    // Reset the flag after the current event loop
+    setTimeout(() => {
+      justFinishedDragging.current = false;
+    }, 0);
+
+    // Prevent the click that follows dragEnd
+    const preventClickAfterDrag = (e: Event) => {
+      if (justFinishedDragging.current) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+
+    document.addEventListener('click', preventClickAfterDrag, { capture: true, once: true });
+    
     onDragEnd(event);
   };
 

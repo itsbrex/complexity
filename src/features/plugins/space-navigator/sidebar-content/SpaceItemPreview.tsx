@@ -4,11 +4,11 @@ import { LuLink, LuPin, LuPinOff } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import SpaceItemFile from "@/features/plugins/sidebar/space-navigator/SpaceItemFile";
+import SpaceItemFile from "@/features/plugins/space-navigator/sidebar-content/SpaceItemFile";
 import {
   usePinSpaceMutation,
   useUnpinSpaceMutation,
-} from "@/features/plugins/sidebar/space-navigator/use-pinned-spaces-mutations";
+} from "@/features/plugins/space-navigator/sidebar-content/use-pinned-spaces-mutations";
 import { pinnedSpacesQueries } from "@/services/indexed-db/pinned-spaces/query-keys";
 import { Space } from "@/services/pplx-api/pplx-api.types";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
@@ -138,7 +138,7 @@ function PinSpaceButton({ space }: { space: Space }) {
             if (isPinned) {
               unpinSpace({ uuid: space.uuid });
             } else {
-              pinSpaceOnSidebar({ space });
+              pinSpaceOnSidebar({ uuid: space.uuid });
             }
           }}
         >

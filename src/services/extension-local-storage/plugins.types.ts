@@ -24,7 +24,6 @@ export const PluginsSchema = z.object({
       .nullable(),
   }),
   "queryBox:focusSelector:webRecency": PluginSettingsSchema,
-  "queryBox:spaceNavigator": PluginSettingsSchema,
   "queryBox:slashCommandMenu:promptHistory": PluginSettingsSchema.extend({
     trigger: z.object({
       onSubmit: z.boolean(),
@@ -37,6 +36,7 @@ export const PluginsSchema = z.object({
     hotkey: z.array(z.string()),
   }),
   "queryBox:submitOnCtrlEnter": PluginSettingsSchema,
+  spaceNavigator: PluginSettingsSchema,
   "thread:toc": PluginSettingsSchema,
   "thread:betterMessageToolbars": PluginSettingsSchema.extend({
     sticky: z.boolean(),

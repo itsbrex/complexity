@@ -22,9 +22,6 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "queryBox:focusSelector:webRecency": {
       enabled: false,
     },
-    "queryBox:spaceNavigator": {
-      enabled: false,
-    },
     "queryBox:slashCommandMenu:promptHistory": {
       enabled: false,
       trigger: {
@@ -38,6 +35,9 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     },
     "queryBox:submitOnCtrlEnter": {
       enabled: false,
+    },
+    spaceNavigator: {
+      enabled: true,
     },
     commandMenu: {
       hotkey: [

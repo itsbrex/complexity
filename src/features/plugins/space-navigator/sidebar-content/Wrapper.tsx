@@ -1,8 +1,8 @@
 import { Portal } from "@/components/ui/portal";
 import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
-import SidebarPinnedSpacesVisToggle from "@/features/plugins/sidebar/space-navigator/PinnedItemsVisToggle";
-import SidebarPinnedSpaces from "@/features/plugins/sidebar/space-navigator/PinnedSpaces";
-import SpaceNavigator from "@/features/plugins/sidebar/space-navigator/SpaceNavigator";
+import SidebarPinnedSpacesVisToggle from "@/features/plugins/space-navigator/sidebar-content/PinnedItemsVisToggle";
+import SidebarPinnedSpaces from "@/features/plugins/space-navigator/sidebar-content/PinnedSpaces";
+import SpaceNavigator from "@/features/plugins/space-navigator/sidebar-content/SpaceNavigator";
 import { useCookies } from "@/hooks/useCookies";
 import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
 

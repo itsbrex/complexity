@@ -84,6 +84,9 @@ export const DOM_SELECTORS = {
     PRO_SEARCH_TOGGLE: "button#copilot-toggle",
     INCOGNITO_TOGGLE: ".mr-xs.flex.shrink-0.items-center",
   },
+  SPACES_PAGE: {
+    SPACE_CARD: `.contents a[data-testid="collection-preview"]`,
+  },
   STICKY_NAVBAR: ".sticky.left-0.right-0.top-0.border-b",
   SICKY_NAVBAR_CHILD: {
     THREAD_TITLE_WRAPPER:

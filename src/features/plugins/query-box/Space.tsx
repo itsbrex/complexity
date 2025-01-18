@@ -33,7 +33,7 @@ export default function SpaceQueryBoxWrapper() {
           <CsUiPluginsGuard
             mobileOnly
             requiresLoggedIn
-            dependentPluginIds={["queryBox:spaceNavigator"]}
+            dependentPluginIds={["spaceNavigator"]}
           >
             <SpaceNavigatorWrapper />
           </CsUiPluginsGuard>

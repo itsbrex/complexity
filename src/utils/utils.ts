@@ -217,8 +217,10 @@ export function whereAmI(providedUrl?: string) {
     switch (true) {
       case pathname.startsWith("/discover"):
         return "discover";
-      case pathname.startsWith("/spaces"):
-      case pathname.startsWith("/collections"):
+      case pathname === "/spaces":
+        return "collections_page";
+      case pathname.startsWith("/spaces/"):
+      case pathname.startsWith("/collections/"):
         return "collection";
       case pathname.startsWith("/library"):
         return "library";

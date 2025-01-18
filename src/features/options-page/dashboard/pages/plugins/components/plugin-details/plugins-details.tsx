@@ -27,7 +27,7 @@ export const PLUGIN_DETAILS: PluginPluginDetails = {
   "queryBox:languageModelSelector": <LanguageModelSelectorPluginDetails />,
   "queryBox:focusSelector": <FocusSelectorPluginDetails />,
   "queryBox:focusSelector:webRecency": <FocusWebRecencySelectorPluginDetails />,
-  "queryBox:spaceNavigator": <SpaceNavigatorPluginDetails />,
+  spaceNavigator: <SpaceNavigatorPluginDetails />,
   "queryBox:slashCommandMenu:promptHistory": <PromptHistoryPluginDetails />,
   "queryBox:fullWidthFollowUp": <FullWidthFollowUpQueryBoxPluginDetails />,
   "queryBox:noFileCreationOnPaste": <NoFileCreationOnPastePluginDetails />,

@@ -100,14 +100,6 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     dependentPlugins: ["queryBox:focusSelector"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
   },
-  "queryBox:spaceNavigator": {
-    id: "queryBox:spaceNavigator",
-    routeSegment: "query-box-space-navigator",
-    title: "Space Navigator",
-    description: "Search & navigate between spaces",
-    tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver"],
-  },
   "queryBox:slashCommandMenu:promptHistory": {
     id: "queryBox:slashCommandMenu:promptHistory",
     routeSegment: "query-box-slash-command-menu-prompt-history",
@@ -115,6 +107,14 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description: "Reuse previous prompts. Usage: type /h in the query box",
     tags: ["new", "experimental", "slashCommand", "desktopOnly", "ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver", "networkIntercept"],
+  },
+  spaceNavigator: {
+    id: "spaceNavigator",
+    routeSegment: "space-navigator",
+    title: "Space Navigator",
+    description: "Search & navigate between spaces",
+    tags: ["ui", "ux"],
+    dependentCorePlugins: ["spaRouter", "domObserver"],
   },
   "queryBox:noFileCreationOnPaste": {
     id: "queryBox:noFileCreationOnPaste",

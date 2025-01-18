@@ -45,9 +45,7 @@ export class ExtensionLocalStorageService {
   }
 
   public static getCachedSync(): ExtensionLocalStorage {
-    const settings = queryClient.getQueryData<ExtensionLocalStorage>(
-      extensionLocalStorageQueries.data.queryKey,
-    );
+    const settings = ExtensionLocalStorageService.safeGetCachedSync();
 
     if (!settings) {
       throw new Error("Extension local storage is not initialized");
@@ -56,10 +54,20 @@ export class ExtensionLocalStorageService {
     return settings;
   }
 
+  public static safeGetCachedSync(): ExtensionLocalStorage | null {
+    return (
+      queryClient.getQueryData<ExtensionLocalStorage>(
+        extensionLocalStorageQueries.data.queryKey,
+      ) ?? null
+    );
+  }
+
   public static async set(
     updater: (draft: ExtensionLocalStorage) => void,
   ): Promise<ExtensionLocalStorage> {
-    const currentSettings = ExtensionLocalStorageService.getCachedSync();
+    const currentSettings =
+      ExtensionLocalStorageService.safeGetCachedSync() ??
+      (await ExtensionLocalStorageService.get());
 
     const newSettings = produce(currentSettings, (draft) => {
       updater(draft);
@@ -106,7 +114,7 @@ async function mergeData(
       return DEFAULT_STORAGE;
     }
 
-    console.log("[Cplx] Settings schema mismatch, merging...");
+    console.log("[Cplx] Settings schema mismatch, merging with defaults...");
 
     let cleanSettings = rawSettings;
 

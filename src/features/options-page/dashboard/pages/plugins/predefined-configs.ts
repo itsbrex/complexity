@@ -8,7 +8,7 @@ export const ESSENTIALS_ONLY: ExtensionLocalStorage["plugins"] = produce(
   DEFAULT_STORAGE.plugins,
   (draft) => {
     draft["queryBox:languageModelSelector"].enabled = true;
-    draft["queryBox:spaceNavigator"].enabled = true;
+    draft["spaceNavigator"].enabled = true;
     draft["thread:toc"].enabled = true;
     draft["thread:betterMessageToolbars"].enabled = true;
     draft["thread:exportThread"].enabled = true;
@@ -22,7 +22,7 @@ export const POWER_USER: ExtensionLocalStorage["plugins"] = produce(
   (draft) => {
     draft["queryBox:languageModelSelector"].enabled = true;
     draft["queryBox:focusSelector"].enabled = true;
-    draft["queryBox:spaceNavigator"].enabled = true;
+    draft["spaceNavigator"].enabled = true;
     draft["queryBox:slashCommandMenu:promptHistory"].enabled = true;
     draft["queryBox:noFileCreationOnPaste"].enabled = true;
     draft["queryBox:fullWidthFollowUp"].enabled = true;

@@ -4,7 +4,7 @@ import useExtensionLocalStorage from "@/services/extension-local-storage/useExte
 
 export default function SpaceNavigatorPluginDetails() {
   const { settings, mutation } = useExtensionLocalStorage();
-  const pluginSettings = settings?.plugins["queryBox:spaceNavigator"];
+  const pluginSettings = settings?.plugins["spaceNavigator"];
 
   if (!settings) return null;
 
@@ -15,7 +15,7 @@ export default function SpaceNavigatorPluginDetails() {
         checked={pluginSettings?.enabled ?? false}
         onCheckedChange={({ checked }) => {
           mutation.mutate((draft) => {
-            draft.plugins["queryBox:spaceNavigator"].enabled = checked;
+            draft.plugins["spaceNavigator"].enabled = checked;
           });
         }}
       />

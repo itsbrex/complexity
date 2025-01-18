@@ -20,7 +20,6 @@ export default function SwappableSortableItem({
   id,
   children,
   className,
-  onClick,
 }: SwappableSortableItemProps) {
   const isAnyDragging = useContext(DraggingContext);
   const {
@@ -41,12 +40,6 @@ export default function SwappableSortableItem({
     zIndex: isDragging ? 1 : undefined,
   };
 
-  const handleClick = () => {
-    if (!isDragging && onClick) {
-      onClick();
-    }
-  };
-
   const draggingStates = { isDragging, isAnyDragging };
 
   return (
@@ -58,7 +51,6 @@ export default function SwappableSortableItem({
       className={cn(
         typeof className === "function" ? className(draggingStates) : className,
       )}
-      onClick={handleClick}
     >
       {typeof children === "function" ? children(draggingStates) : children}
     </div>

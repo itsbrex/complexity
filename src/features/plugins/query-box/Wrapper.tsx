@@ -33,7 +33,7 @@ function useInsertToolbarCss() {
   const shouldInjectMain =
     settings?.plugins["queryBox:languageModelSelector"].main &&
     (pluginsEnableStates?.["queryBox:languageModelSelector"] ||
-      pluginsEnableStates?.["queryBox:spaceNavigator"] ||
+      pluginsEnableStates?.["spaceNavigator"] ||
       (pluginsEnableStates?.["queryBox:slashCommandMenu:promptHistory"] &&
         settings?.plugins["queryBox:slashCommandMenu:promptHistory"]
           .showTriggerButton));

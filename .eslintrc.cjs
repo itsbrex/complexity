@@ -76,14 +76,14 @@ module.exports = {
         type: "plugin-family",
         mode: "full",
         capture: ["familyName"],
-        pattern: ["src/features/plugins/{home,thread,query-box,sidebar}/*"],
+        pattern: ["src/features/plugins/{home,thread,query-box}/*"],
       },
       {
         type: "nested-plugin-utils",
         mode: "full",
         capture: ["familyName", "utilsName"],
         pattern: [
-          "src/features/plugins/{home,thread,query-box,sidebar}/{assets,context,utils,types,components,hooks}/**/*",
+          "src/features/plugins/{home,thread,query-box}/{assets,context,utils,types,components,hooks}/**/*",
         ],
       },
       {
@@ -91,7 +91,7 @@ module.exports = {
         mode: "full",
         capture: ["familyName", "nestedPluginName"],
         pattern: [
-          "src/features/plugins/{home,thread,query-box,sidebar}/*/**/*",
+          "src/features/plugins/{home,thread,query-box}/*/**/*",
         ],
       },
       {
@@ -100,7 +100,7 @@ module.exports = {
         capture: ["pluginName"],
         pattern: [
           "src/features/plugins/*/**/*",
-          "src/features/plugins/{home,thread,query-box,sidebar}/*/**/*",
+          "src/features/plugins/{home,thread,query-box}/*/**/*",
         ],
       },
       {

@@ -3,14 +3,13 @@
 import "@/assets/cs.css";
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Fragment } from "react/jsx-runtime";
 
 import csUiRootCss from "@/assets/cs.css?inline";
 import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 // import { SponsorHomeLink } from "@/components/SponsorHomeLink";
 import { PostUpdateReleaseNotesDialog } from "@/components/PostUpdateReleaseNotesDialog";
 import { Toaster } from "@/components/Toaster";
-import { useSpaRouter } from "@/features/plugins/_core/spa-router/listeners";
+import SpaceCardsWrapper from "@/features/plugins/space-navigator/spaces-page/Wrapper";
 
 const HomepageUpdateAnnouncer = lazy(
   () => import("@/components/HomepageUpdateAnnouncer"),
@@ -41,7 +40,7 @@ const BetterMessageToolbarsWrapper = lazy(
   () => import("@/features/plugins/thread/better-message-toolbars/Wrapper"),
 );
 const SpaceNavigatorWrapper = lazy(
-  () => import("@/features/plugins/sidebar/space-navigator/Wrapper"),
+  () => import("@/features/plugins/space-navigator/sidebar-content/Wrapper"),
 );
 const CollapsibleQueryWrapper = lazy(
   () =>
@@ -67,7 +66,7 @@ export default function CsUiRoot() {
       <CsUiPluginsGuard
         dependentPluginIds={[
           "queryBox:languageModelSelector",
-          "queryBox:spaceNavigator",
+          "spaceNavigator",
           "queryBox:slashCommandMenu:promptHistory",
           "queryBox:focusSelector",
           "queryBox:focusSelector:webRecency",
@@ -83,6 +82,13 @@ export default function CsUiRoot() {
       </CsUiPluginsGuard>
       <CsUiPluginsGuard location={["thread"]}>
         <ThreadComponents />
+      </CsUiPluginsGuard>
+      <CsUiPluginsGuard
+        desktopOnly
+        requiresLoggedIn
+        location={["collections_page"]}
+      >
+        <SpaceCardsWrapper />
       </CsUiPluginsGuard>
       <CsUiPluginsGuard dependentPluginIds={["onCloudflareTimeoutAutoReload"]}>
         <OnCloudflareTimeout />
@@ -141,7 +147,7 @@ function SidebarComponents() {
     <CsUiPluginsGuard
       desktopOnly
       requiresLoggedIn
-      dependentPluginIds={["queryBox:spaceNavigator"]}
+      dependentPluginIds={["spaceNavigator"]}
     >
       <SpaceNavigatorWrapper />
     </CsUiPluginsGuard>

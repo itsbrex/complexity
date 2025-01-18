@@ -1,7 +1,9 @@
 import { onMessage } from "webext-bridge/background";
 
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { ExtensionLocalStorageApi } from "@/services/extension-local-storage/extension-local-storage-api";
 import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
+import { EXT_UPDATE_MIGRATIONS } from "@/utils/update-migrations";
 import { compareVersions, getOptionsPageUrl } from "@/utils/utils";
 
 export type BackgroundEvents = {
@@ -14,6 +16,8 @@ export function setupBackgroundListeners() {
   extensionIconActionListener();
 
   onboardingFlowTrigger();
+
+  updateMigrations();
 
   invalidateCdnCache();
 
@@ -99,4 +103,27 @@ function extensionIconActionListener() {
       chrome.tabs.create({ url: "https://perplexity.ai/" });
     else chrome.runtime.openOptionsPage();
   });
+}
+
+function updateMigrations() {
+  chrome.runtime.onInstalled.addListener(
+    async ({ reason, previousVersion }) => {
+      if (reason !== chrome.runtime.OnInstalledReason.UPDATE) return;
+
+      if (!previousVersion || !(previousVersion in EXT_UPDATE_MIGRATIONS))
+        return;
+
+      const migrationFn =
+        EXT_UPDATE_MIGRATIONS[
+          previousVersion as keyof typeof EXT_UPDATE_MIGRATIONS
+        ];
+
+      if (!migrationFn) return;
+
+      migrationFn({
+        oldRawSettings: await ExtensionLocalStorageApi.get(),
+        previousVersion,
+      });
+    },
+  );
 }

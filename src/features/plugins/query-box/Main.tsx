@@ -47,7 +47,7 @@ export default function MainQueryBoxWrapper() {
           <CsUiPluginsGuard
             mobileOnly
             requiresLoggedIn
-            dependentPluginIds={["queryBox:spaceNavigator"]}
+            dependentPluginIds={["spaceNavigator"]}
           >
             <SpaceNavigatorWrapper />
           </CsUiPluginsGuard>

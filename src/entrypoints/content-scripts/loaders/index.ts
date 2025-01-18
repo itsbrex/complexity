@@ -15,6 +15,7 @@ import "@/features/plugins/_core/dom-observer/observers/query-boxes/query-boxes"
 import "@/features/plugins/_core/dom-observer/observers/home/home-components";
 import "@/features/plugins/_core/dom-observer/observers/thread/thread-components";
 import "@/features/plugins/_core/dom-observer/observers/sidebar/sidebar-components";
+import "@/features/plugins/_core/dom-observer/observers/spaces-page/spaces-page-components";
 
 // Query Box Plugins
 import "@/features/plugins/query-box/language-model-selector/network-intercept-middlewares";
@@ -44,7 +45,7 @@ import "@/features/plugins/home/custom-slogan/custom-slogan";
 import "@/features/plugins/hide-get-mobile-app-cta-btn/hide-get-mobile-app-cta-btn";
 import "@/features/plugins/zen-mode/zen-mode";
 import "@/features/plugins/block-analytic-events/network-intercept-middlewares";
-import "@/features/plugins/sidebar/space-navigator/network-intercept-middlewares";
+import "@/features/plugins/space-navigator/sidebar-content/network-intercept-middlewares";
 
 // Global Stores
 import "@/data/color-scheme-store";

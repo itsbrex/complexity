@@ -7,8 +7,8 @@ import SwappableDndProvider from "@/components/dnd/SwappableDndProvider";
 import SwappableSortableItem from "@/components/dnd/SwappableSortableItem";
 import Tooltip from "@/components/Tooltip";
 import { PinnedSpace } from "@/data/plugins/space-navigator/pinned-space.types";
-import { useSpaceNavigatorSidebarStore } from "@/features/plugins/sidebar/space-navigator/store";
-import { useUnpinSpaceMutation } from "@/features/plugins/sidebar/space-navigator/use-pinned-spaces-mutations";
+import { useSpaceNavigatorSidebarStore } from "@/features/plugins/space-navigator/sidebar-content/store";
+import { useUnpinSpaceMutation } from "@/features/plugins/space-navigator/sidebar-content/use-pinned-spaces-mutations";
 import { getPinnedSpacesService } from "@/services/indexed-db/pinned-spaces/pinned-spaces";
 import { pinnedSpacesQueries } from "@/services/indexed-db/pinned-spaces/query-keys";
 import { Space } from "@/services/pplx-api/pplx-api.types";
@@ -36,15 +36,19 @@ function PinnedSpaceContent({
   if (space == null) return null;
 
   return (
-    <div
+    <a
+      href={`/collections/${uuid}`}
       className={cn(
-        "tw-group tw-flex tw-cursor-pointer tw-items-center tw-justify-between tw-rounded-md tw-px-1 tw-py-1 tw-transition-all tw-duration-300",
+        "tw-group tw-flex tw-cursor-pointer tw-select-none tw-items-center tw-justify-between tw-rounded-md tw-px-1 tw-py-1 tw-transition-colors tw-duration-300",
         isDragging && "tw-opacity-75",
         !isDragging &&
           !isAnyDragging &&
           "hover:tw-bg-black/5 dark:hover:tw-bg-white/5",
       )}
-      onClick={() => {
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
         sendMessage(
           "spa-router:push",
           {
@@ -64,11 +68,12 @@ function PinnedSpaceContent({
         content={t("plugin-space-navigator:spaceNavigator.pinnedSpaces.unpin")}
       >
         <div
-          className={cn("tw-hidden tw-transition-all active:tw-scale-95", {
-            "tw-animate-in tw-fade-in hover:tw-text-foreground group-hover:tw-block":
+          className={cn("tw-hidden active:tw-scale-95", {
+            "hover:tw-text-foreground group-hover:tw-block":
               !isDragging && !isAnyDragging,
           })}
           onClick={(e) => {
+            e.preventDefault();
             e.stopPropagation();
             unpinSpace({ uuid });
           }}
@@ -76,7 +81,7 @@ function PinnedSpaceContent({
           <LuPinOff />
         </div>
       </Tooltip>
-    </div>
+    </a>
   );
 }
 

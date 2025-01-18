@@ -36,8 +36,6 @@ export default function ThreadTocWrapper() {
     [top, left, isFloating],
   ) as React.CSSProperties;
 
-  // useScrollToActiveItem(containerRef, tocItems);
-
   const shouldShowToc = tocItems.length > 1 && !!position;
 
   useEffect(() => {
@@ -143,34 +141,4 @@ function CloseButton({ onClick }: { onClick: () => void }) {
       <LuX className="tw-size-4" />
     </div>
   );
-}
-
-function useScrollToActiveItem(
-  containerRef: React.RefObject<HTMLDivElement>,
-  tocItems: ReturnType<typeof useThreadTocItems>,
-) {
-  useEffect(() => {
-    const activeItem = tocItems.findIndex((item) => item.isActive);
-    if (activeItem === -1) return;
-
-    const container = containerRef.current;
-    const activeElement = container?.children[0]?.children[
-      activeItem
-    ] as HTMLElement;
-
-    if (container && activeElement != null) {
-      const containerRect = container.getBoundingClientRect();
-      const activeRect = activeElement.getBoundingClientRect();
-
-      if (
-        activeRect.top < containerRect.top ||
-        activeRect.bottom > containerRect.bottom
-      ) {
-        activeElement.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-        });
-      }
-    }
-  }, [tocItems, containerRef]);
 }

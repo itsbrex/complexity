@@ -94,8 +94,6 @@ export default function CsUiRoot() {
 }
 
 function ThreadComponents() {
-  const { url } = useSpaRouter();
-
   return (
     <>
       <CsUiPluginsGuard
@@ -128,14 +126,12 @@ function ThreadComponents() {
       >
         <BetterMessageCopyButtons />
       </CsUiPluginsGuard>
-      <Fragment key={url}>
-        <CsUiPluginsGuard dependentPluginIds={["thread:toc"]}>
-          <ThreadTocWrapper />
-        </CsUiPluginsGuard>
-        <CsUiPluginsGuard dependentPluginIds={["thread:exportThread"]}>
-          <ExportThreadWrapper />
-        </CsUiPluginsGuard>
-      </Fragment>
+      <CsUiPluginsGuard dependentPluginIds={["thread:toc"]}>
+        <ThreadTocWrapper />
+      </CsUiPluginsGuard>
+      <CsUiPluginsGuard dependentPluginIds={["thread:exportThread"]}>
+        <ExportThreadWrapper />
+      </CsUiPluginsGuard>
     </>
   );
 }

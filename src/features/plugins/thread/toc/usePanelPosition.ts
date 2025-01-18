@@ -41,9 +41,16 @@ export function usePanelPosition(): UsePanelPosition | null {
     const threadWrapperWidth = $threadWrapper.width();
     const threadWrapperOffset = $threadWrapper.offset();
 
-    if (threadWrapperWidth == null || threadWrapperOffset == null) return null;
+    if (
+      threadWrapperWidth == null ||
+      threadWrapperOffset == null ||
+      threadWrapperOffset.left === 0 ||
+      threadWrapperOffset.top === 0
+    )
+      return null;
 
     const { top, left } = threadWrapperOffset;
+
     const panelRightEdge = left + threadWrapperWidth + PANEL_WIDTH + 75;
     const isFloating = panelRightEdge > window.innerWidth;
 

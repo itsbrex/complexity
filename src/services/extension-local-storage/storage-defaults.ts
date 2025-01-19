@@ -23,13 +23,16 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "queryBox:focusSelector:webRecency": {
       enabled: false,
     },
+    "queryBox:slashCommandMenu": {
+      enabled: false,
+      showTriggerButton: true,
+    },
     "queryBox:slashCommandMenu:promptHistory": {
       enabled: false,
       trigger: {
         onSubmit: true,
         onNavigation: true,
       },
-      showTriggerButton: true,
     },
     "queryBox:noFileCreationOnPaste": {
       enabled: false,

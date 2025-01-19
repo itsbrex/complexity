@@ -2,9 +2,10 @@ import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 import { Portal } from "@/components/ui/portal";
 import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { ScopedQueryBoxContextProvider } from "@/features/plugins/query-box/context/context";
+import SourcesToggle from "@/features/plugins/query-box/focus-selector/SourcesToggle";
 import FocusWebRecencySelectorFollowUpWrapper from "@/features/plugins/query-box/focus-web-recency/FollowUpWrapper";
 import LanguageModelSelector from "@/features/plugins/query-box/language-model-selector/LanguageModelSelector";
-import SlashCommandMenuTriggerButton from "@/features/plugins/query-box/prompt-history/TriggerButton";
+import SlashCommandMenuTriggerButton from "@/features/plugins/query-box/slash-command-menu/TriggerButton";
 import SlashCommandMenuWrapper from "@/features/plugins/query-box/slash-command-menu/Wrapper";
 import { findToolbarPortalContainer } from "@/features/plugins/query-box/utils";
 
@@ -21,6 +22,12 @@ export default function FollowUpQueryBoxWrapper() {
       <Portal container={followUpQueryBoxToolbarPortalContainer}>
         <div className="tw-flex tw-flex-wrap tw-items-center md:tw-flex-nowrap">
           <CsUiPluginsGuard
+            allowedAccountTypes={["free", "pro"]}
+            dependentPluginIds={["queryBox:focusSelector"]}
+          >
+            <SourcesToggle />
+          </CsUiPluginsGuard>
+          <CsUiPluginsGuard
             desktopOnly
             allowedAccountTypes={["free", "pro"]}
             dependentPluginIds={["queryBox:focusSelector:webRecency"]}
@@ -29,10 +36,9 @@ export default function FollowUpQueryBoxWrapper() {
           </CsUiPluginsGuard>
           <CsUiPluginsGuard
             desktopOnly
-            dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
+            dependentPluginIds={["queryBox:slashCommandMenu"]}
             additionalCheck={({ settings }) =>
-              settings?.plugins["queryBox:slashCommandMenu:promptHistory"]
-                .showTriggerButton
+              settings?.plugins["queryBox:slashCommandMenu"].showTriggerButton
             }
           >
             <SlashCommandMenuTriggerButton />

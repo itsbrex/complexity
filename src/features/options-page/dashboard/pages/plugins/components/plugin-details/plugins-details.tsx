@@ -15,6 +15,7 @@ import FocusSelectorPluginDetails from "@/features/options-page/dashboard/pages/
 import FocusWebRecencySelectorPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/FocusWebRecencySelector";
 import FullWidthFollowUpQueryBoxPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/FullWidthFollowUpQueryBox";
 import PromptHistoryPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/PromptHistory";
+import SlashCommandMenuPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/SlashCommandMenu";
 import SpaceNavigatorPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/SpaceNavigator";
 import SubmitOnCtrlEnterPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/SubmitOnCtrlEnterPluginDetails";
 import ThreadToCPluginDetails from "@/features/options-page/dashboard/pages/plugins/components/plugin-details/content/ThreadToC";
@@ -28,6 +29,7 @@ export const PLUGIN_DETAILS: PluginPluginDetails = {
   "queryBox:focusSelector": <FocusSelectorPluginDetails />,
   "queryBox:focusSelector:webRecency": <FocusWebRecencySelectorPluginDetails />,
   spaceNavigator: <SpaceNavigatorPluginDetails />,
+  "queryBox:slashCommandMenu": <SlashCommandMenuPluginDetails />,
   "queryBox:slashCommandMenu:promptHistory": <PromptHistoryPluginDetails />,
   "queryBox:fullWidthFollowUp": <FullWidthFollowUpQueryBoxPluginDetails />,
   "queryBox:noFileCreationOnPaste": <NoFileCreationOnPastePluginDetails />,

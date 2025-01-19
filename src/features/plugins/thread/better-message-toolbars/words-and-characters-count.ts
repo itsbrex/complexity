@@ -79,10 +79,21 @@ csLoaderRegistry.register({
             const $buttonBar = $wrapper.find(
               DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR,
             );
-            if (!$buttonBar.length || $buttonBar.attr(OBSERVER_ID)) return;
+
+            if (
+              !$buttonBar.length ||
+              !$buttonBar.is(":visible") ||
+              $buttonBar.attr(OBSERVER_ID)
+            ) {
+              return;
+            }
 
             $buttonBar.attr(OBSERVER_ID, "true");
-            await sleep(200);
+
+            if ($answerHeading.find(MODEL_NAME_COMPONENT_SELECTOR).length > 0) {
+              $buttonBar.removeAttr(OBSERVER_ID);
+              return;
+            }
 
             const answer = await sendMessage(
               "reactVdom:getMessageContent",
@@ -90,7 +101,15 @@ csLoaderRegistry.register({
               "window",
             );
 
-            if (answer == null) return $buttonBar.removeAttr(OBSERVER_ID);
+            if (!$buttonBar.length || !$buttonBar.is(":visible")) {
+              $buttonBar.removeAttr(OBSERVER_ID);
+              return;
+            }
+
+            if (answer == null) {
+              $buttonBar.removeAttr(OBSERVER_ID);
+              return;
+            }
 
             const answerWordsCount = answer.split(" ").length;
             const answerCharactersCount = answer.length;

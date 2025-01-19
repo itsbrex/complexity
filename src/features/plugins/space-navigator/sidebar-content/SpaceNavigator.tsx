@@ -16,7 +16,7 @@ export default function SpaceNavigator({ ...props }: SpaceNavigator) {
 
   return (
     <Popover
-      lazyMount
+      lazyMount={false}
       unmountOnExit={false}
       positioning={{
         placement: "right-start",

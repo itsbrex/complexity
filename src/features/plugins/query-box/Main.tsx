@@ -5,7 +5,7 @@ import { ScopedQueryBoxContextProvider } from "@/features/plugins/query-box/cont
 import FocusSelectorWrapper from "@/features/plugins/query-box/focus-selector/Wrapper";
 import FocusWebRecencySelectorMainWrapper from "@/features/plugins/query-box/focus-web-recency/MainWrapper";
 import LanguageModelSelector from "@/features/plugins/query-box/language-model-selector/LanguageModelSelector";
-import SlashCommandMenuTriggerButton from "@/features/plugins/query-box/prompt-history/TriggerButton";
+import SlashCommandMenuTriggerButton from "@/features/plugins/query-box/slash-command-menu/TriggerButton";
 import SlashCommandMenuWrapper from "@/features/plugins/query-box/slash-command-menu/Wrapper";
 import SpaceNavigatorWrapper from "@/features/plugins/query-box/space-navigator/Wrapper";
 import { findToolbarPortalContainer } from "@/features/plugins/query-box/utils";
@@ -36,10 +36,9 @@ export default function MainQueryBoxWrapper() {
           </CsUiPluginsGuard>
           <CsUiPluginsGuard
             desktopOnly
-            dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
+            dependentPluginIds={["queryBox:slashCommandMenu"]}
             additionalCheck={({ settings }) =>
-              settings?.plugins["queryBox:slashCommandMenu:promptHistory"]
-                .showTriggerButton
+              settings?.plugins["queryBox:slashCommandMenu"].showTriggerButton
             }
           >
             <SlashCommandMenuTriggerButton />

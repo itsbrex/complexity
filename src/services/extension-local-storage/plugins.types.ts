@@ -24,12 +24,14 @@ export const PluginsSchema = z.object({
       .nullable(),
   }),
   "queryBox:focusSelector:webRecency": PluginSettingsSchema,
+  "queryBox:slashCommandMenu": PluginSettingsSchema.extend({
+    showTriggerButton: z.boolean(),
+  }),
   "queryBox:slashCommandMenu:promptHistory": PluginSettingsSchema.extend({
     trigger: z.object({
       onSubmit: z.boolean(),
       onNavigation: z.boolean(),
     }),
-    showTriggerButton: z.boolean(),
   }),
   "queryBox:noFileCreationOnPaste": PluginSettingsSchema,
   commandMenu: PluginSettingsSchema.extend({

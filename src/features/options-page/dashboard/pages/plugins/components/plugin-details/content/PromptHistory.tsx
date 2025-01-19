@@ -1,3 +1,4 @@
+import { Image } from "@/components/ui/image";
 import { Switch } from "@/components/ui/switch";
 import { P } from "@/components/ui/typography";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
@@ -29,64 +30,55 @@ export default function PromptHistoryPluginDetails() {
       />
 
       {pluginSettings?.enabled && (
-        <>
-          <div className="tw-ml-8 tw-flex tw-flex-col tw-gap-2">
-            <Switch
-              className="tw-items-start"
-              textLabel={
-                <div>
-                  <div>Save on submit</div>
-                  <div className="tw-text-sm tw-text-muted-foreground">
-                    When you submit a new prompt
-                  </div>
+        <div className="tw-ml-8 tw-flex tw-flex-col tw-gap-2">
+          <Switch
+            className="tw-items-start"
+            textLabel={
+              <div>
+                <div>Save on submit</div>
+                <div className="tw-text-sm tw-text-muted-foreground">
+                  When you submit a new prompt
                 </div>
-              }
-              checked={pluginSettings?.trigger.onSubmit ?? false}
-              onCheckedChange={({ checked }) => {
-                mutation.mutate((draft) => {
-                  draft.plugins[
-                    "queryBox:slashCommandMenu:promptHistory"
-                  ].trigger.onSubmit = checked;
-                });
-              }}
-            />
-            <Switch
-              className="tw-items-start"
-              textLabel={
-                <div>
-                  <div>Save on navigation</div>
-                  <div className="tw-text-sm tw-text-muted-foreground">
-                    When you (accidentally) navigate away from the page (or when
-                    Perplexity forces the page to reload)
-                  </div>
+              </div>
+            }
+            checked={pluginSettings?.trigger.onSubmit ?? false}
+            onCheckedChange={({ checked }) => {
+              mutation.mutate((draft) => {
+                draft.plugins[
+                  "queryBox:slashCommandMenu:promptHistory"
+                ].trigger.onSubmit = checked;
+              });
+            }}
+          />
+          <Switch
+            className="tw-items-start"
+            textLabel={
+              <div>
+                <div>Save on navigation</div>
+                <div className="tw-text-sm tw-text-muted-foreground">
+                  When you (accidentally) navigate away from the page (or when
+                  Perplexity forces the page to reload)
                 </div>
-              }
-              checked={pluginSettings?.trigger.onNavigation ?? false}
-              onCheckedChange={({ checked }) => {
-                mutation.mutate((draft) => {
-                  draft.plugins[
-                    "queryBox:slashCommandMenu:promptHistory"
-                  ].trigger.onNavigation = checked;
-                });
-              }}
-            />
-          </div>
-          <div className="tw-flex tw-flex-col tw-gap-2">
-            <Switch
-              className="tw-items-start"
-              textLabel="Show trigger button on the query box"
-              checked={pluginSettings?.showTriggerButton ?? false}
-              onCheckedChange={({ checked }) => {
-                mutation.mutate((draft) => {
-                  draft.plugins[
-                    "queryBox:slashCommandMenu:promptHistory"
-                  ].showTriggerButton = checked;
-                });
-              }}
-            />
-          </div>
-        </>
+              </div>
+            }
+            checked={pluginSettings?.trigger.onNavigation ?? false}
+            onCheckedChange={({ checked }) => {
+              mutation.mutate((draft) => {
+                draft.plugins[
+                  "queryBox:slashCommandMenu:promptHistory"
+                ].trigger.onNavigation = checked;
+              });
+            }}
+          />
+        </div>
       )}
+      <div className="tw-mx-auto tw-w-full tw-max-w-[700px]">
+        <Image
+          src="https://i.imgur.com/3miAzlF.png"
+          alt="prompt-history"
+          className="tw-w-full"
+        />
+      </div>
     </div>
   );
 }

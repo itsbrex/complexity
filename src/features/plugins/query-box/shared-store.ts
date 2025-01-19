@@ -12,6 +12,7 @@ import {
   isLanguageModelCode,
   LanguageModel,
 } from "@/data/plugins/query-box/language-model-selector/language-models.types";
+import { spaRouteChangeCompleteSubscribe } from "@/features/plugins/_core/spa-router/listeners";
 import { csLoaderRegistry } from "@/services/cs-loader-registry";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { PplxApiService } from "@/services/pplx-api/pplx-api";
@@ -27,6 +28,8 @@ type SharedQueryBoxStore = {
   setSelectedLanguageModel: (
     selectedLanguageModel: LanguageModel["code"],
   ) => void;
+  forceExternalSourcesOff: boolean;
+  setForceExternalSourcesOff: (forceExternalSourcesOff: boolean) => void;
 };
 
 const useSharedQueryBoxStore = createWithEqualityFn<SharedQueryBoxStore>()(
@@ -59,6 +62,10 @@ const useSharedQueryBoxStore = createWithEqualityFn<SharedQueryBoxStore>()(
           queryClient.invalidateQueries({
             queryKey: pplxApiQueries.userSettings.queryKey,
           });
+        },
+        forceExternalSourcesOff: false,
+        setForceExternalSourcesOff: (forceExternalSourcesOff) => {
+          set({ forceExternalSourcesOff });
         },
       }),
     ),
@@ -100,6 +107,12 @@ csLoaderRegistry.register({
     if (isFocusModeCode(defaultFocusMode)) {
       sharedQueryBoxStore.setState({ selectedFocusMode: defaultFocusMode });
     }
+
+    spaRouteChangeCompleteSubscribe(() => {
+      sharedQueryBoxStore.setState({
+        forceExternalSourcesOff: false,
+      });
+    });
   },
 });
 

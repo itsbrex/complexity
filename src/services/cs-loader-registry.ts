@@ -50,6 +50,7 @@ export const LOADER_IDS = [
   "plugin:queryBox:noFileCreationOnPaste",
   "plugin:queryBox:submitOnCtrlEnter",
   "plugin:queryBox:fullWidthFollowUp",
+  "plugin:queryBox:focusSelector:forceDisableExternalSources:networkInterceptMiddleware",
   "plugin:home:customSlogan",
 
   "store:colorScheme",

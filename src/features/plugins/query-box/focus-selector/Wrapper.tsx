@@ -56,7 +56,7 @@ export default function FocusSelectorWrapper() {
         itemToValue: (item) => item.code,
       })}
       value={[selectedFocusMode]}
-      className="tw-h-full"
+      className="tw-h-8"
       data-testid={TEST_ID_SELECTORS.QUERY_BOX.FOCUS_SELECTOR}
       onValueChange={({ value }) => {
         setSelectedFocusMode(value[0] as FocusMode["code"]);

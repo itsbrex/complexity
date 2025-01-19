@@ -17,16 +17,16 @@ export default function FocusWebRecencySelectorFollowUpWrapper() {
 
   const threadSlug = parseUrl(url).pathname.split("/").pop() || "";
 
-  const { selectedRecency, setSelectedRecency } = useSharedQueryBoxStore(
-    (state) => ({
+  const { selectedRecency, setSelectedRecency, forceExternalSourcesOff } =
+    useSharedQueryBoxStore((state) => ({
       selectedRecency: state.selectedRecency,
       setSelectedRecency: state.setSelectedRecency,
-    }),
-  );
+      forceExternalSourcesOff: state.forceExternalSourcesOff,
+    }));
 
   const messageBlocks = useDebounce(
     useGlobalDomObserverStore((state) => state.threadComponents.messageBlocks),
-    100,
+    200,
   );
 
   const { data: searchFocus, refetch: refetchSearchFocus } = useQuery({
@@ -52,7 +52,12 @@ export default function FocusWebRecencySelectorFollowUpWrapper() {
     refetchSearchFocus();
   }, [messageBlocks, url, refetchSearchFocus]);
 
-  if (!searchFocus || !allowFocusModes.includes(searchFocus)) return null;
+  if (
+    !searchFocus ||
+    !allowFocusModes.includes(searchFocus) ||
+    forceExternalSourcesOff
+  )
+    return null;
 
   const recencyData = RECENCIES.find(
     (recency) => recency.value === selectedRecency,

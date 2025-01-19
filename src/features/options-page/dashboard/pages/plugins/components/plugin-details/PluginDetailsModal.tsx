@@ -41,7 +41,7 @@ export default function PluginDetailsModal({
       >
         <DialogHeader>
           <DialogTitle>{PLUGINS_METADATA[pluginId].title}</DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="tw-whitespace-pre-line">
             {PLUGINS_METADATA[pluginId].description}
           </DialogDescription>
         </DialogHeader>

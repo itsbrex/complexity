@@ -3,7 +3,7 @@ import { Portal } from "@/components/ui/portal";
 import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import { ScopedQueryBoxContextProvider } from "@/features/plugins/query-box/context/context";
 import LanguageModelSelector from "@/features/plugins/query-box/language-model-selector/LanguageModelSelector";
-import SlashCommandMenuTriggerButton from "@/features/plugins/query-box/prompt-history/TriggerButton";
+import SlashCommandMenuTriggerButton from "@/features/plugins/query-box/slash-command-menu/TriggerButton";
 import SlashCommandMenuWrapper from "@/features/plugins/query-box/slash-command-menu/Wrapper";
 import SpaceNavigatorWrapper from "@/features/plugins/query-box/space-navigator/Wrapper";
 import { findToolbarPortalContainer } from "@/features/plugins/query-box/utils";
@@ -24,8 +24,7 @@ export default function SpaceQueryBoxWrapper() {
             desktopOnly
             dependentPluginIds={["queryBox:slashCommandMenu:promptHistory"]}
             additionalCheck={({ settings }) =>
-              settings?.plugins["queryBox:slashCommandMenu:promptHistory"]
-                .showTriggerButton
+              settings?.plugins["queryBox:slashCommandMenu"].showTriggerButton
             }
           >
             <SlashCommandMenuTriggerButton />

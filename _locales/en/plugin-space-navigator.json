@@ -20,7 +20,9 @@
       "noPreviewData": "No preview data available",
       "pinActions": {
         "pin": "Pin",
-        "unpin": "Unpin"
+        "unpin": "Unpin",
+        "pinToSidebar": "Pin to sidebar",
+        "unpinFromSidebar": "Unpin from sidebar"
       }
     },
     "pinnedSpaces": {

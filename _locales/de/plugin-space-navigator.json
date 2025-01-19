@@ -8,7 +8,7 @@
       "placeholder": "Suchen...",
       "noResults": "Keine Ergebnisse gefunden."
     },
-    "loading": "Laden...",
+    "loading": "Wird geladen...",
     "spaceItem": {
       "currentLocation": "Sie sind hier",
       "details": {
@@ -20,11 +20,13 @@
       "noPreviewData": "Keine Vorschaudaten verfügbar",
       "pinActions": {
         "pin": "Anheften",
-        "unpin": "Loslösen"
+        "unpin": "Losheften",
+        "pinToSidebar": "An Seitenleiste anheften",
+        "unpinFromSidebar": "Von Seitenleiste lösen"
       }
     },
     "pinnedSpaces": {
-      "unpin": "Loslösen",
+      "unpin": "Losheften",
       "toggleVisibility": {
         "collapse": "Angeheftete Spaces einklappen",
         "expand": "Angeheftete Spaces ausklappen"

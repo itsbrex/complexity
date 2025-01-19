@@ -17,10 +17,12 @@
         "files": "Datoteke ({{count}})",
         "focusedWebLinks": "Fokusirane web poveznice ({{count}})"
       },
-      "noPreviewData": "Nema dostupnih podataka za pregled",
+      "noPreviewData": "Nema podataka za pregled",
       "pinActions": {
         "pin": "Prikvači",
-        "unpin": "Otkvači"
+        "unpin": "Otkvači",
+        "pinToSidebar": "Prikvači na bočnu traku",
+        "unpinFromSidebar": "Otkvači s bočne trake"
       }
     },
     "pinnedSpaces": {

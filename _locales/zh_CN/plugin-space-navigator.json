@@ -20,13 +20,15 @@
       "noPreviewData": "无预览数据",
       "pinActions": {
         "pin": "固定",
-        "unpin": "取消固定"
+        "unpin": "取消固定",
+        "pinToSidebar": "固定到侧边栏",
+        "unpinFromSidebar": "从侧边栏取消固定"
       }
     },
     "pinnedSpaces": {
       "unpin": "取消固定",
       "toggleVisibility": {
-        "collapse": "收起固定空间",
+        "collapse": "折叠固定空间",
         "expand": "展开固定空间"
       }
     }

@@ -20,7 +20,9 @@
       "noPreviewData": "Aucune donnée d'aperçu disponible",
       "pinActions": {
         "pin": "Épingler",
-        "unpin": "Désépingler"
+        "unpin": "Désépingler",
+        "pinToSidebar": "Épingler à la barre latérale",
+        "unpinFromSidebar": "Désépingler de la barre latérale"
       }
     },
     "pinnedSpaces": {

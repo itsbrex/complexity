@@ -6,7 +6,7 @@
     },
     "search": {
       "placeholder": "Vyhľadávanie...",
-      "noResults": "Neboli nájdené žiadne výsledky."
+      "noResults": "Nenašli sa žiadne výsledky."
     },
     "loading": "Načítava sa...",
     "spaceItem": {
@@ -17,10 +17,12 @@
         "files": "Súbory ({{count}})",
         "focusedWebLinks": "Zamerané webové odkazy ({{count}})"
       },
-      "noPreviewData": "Žiadne údaje náhľadu nie sú k dispozícii",
+      "noPreviewData": "Žiadne údaje náhľadu",
       "pinActions": {
         "pin": "Pripnúť",
-        "unpin": "Odopnúť"
+        "unpin": "Odopnúť",
+        "pinToSidebar": "Pripnúť k bočnému panelu",
+        "unpinFromSidebar": "Odopnúť z bočného panela"
       }
     },
     "pinnedSpaces": {

@@ -15,12 +15,14 @@
         "description": "Descripción",
         "instructions": "Instrucciones",
         "files": "Archivos ({{count}})",
-        "focusedWebLinks": "Enlaces web destacados ({{count}})"
+        "focusedWebLinks": "Enlaces web enfocados ({{count}})"
       },
-      "noPreviewData": "No hay datos de vista previa disponibles",
+      "noPreviewData": "No hay datos de vista previa",
       "pinActions": {
         "pin": "Fijar",
-        "unpin": "Desfijar"
+        "unpin": "Desfijar",
+        "pinToSidebar": "Fijar a la barra lateral",
+        "unpinFromSidebar": "Desfijar de la barra lateral"
       }
     },
     "pinnedSpaces": {

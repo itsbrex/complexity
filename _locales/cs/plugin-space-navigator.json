@@ -17,10 +17,12 @@
         "files": "Soubory ({{count}})",
         "focusedWebLinks": "Zaměřené webové odkazy ({{count}})"
       },
-      "noPreviewData": "Žádná data náhledu k dispozici",
+      "noPreviewData": "Žádná data náhledu",
       "pinActions": {
         "pin": "Připnout",
-        "unpin": "Odepnout"
+        "unpin": "Odepnout",
+        "pinToSidebar": "Připnout k postrannímu panelu",
+        "unpinFromSidebar": "Odepnout z postranního panelu"
       }
     },
     "pinnedSpaces": {

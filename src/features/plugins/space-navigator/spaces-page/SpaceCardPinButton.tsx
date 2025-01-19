@@ -48,7 +48,17 @@ export default function SpaceCardPinButton({
         }
       }}
     >
-      <Tooltip content={isPinned ? "Unpin from sidebar" : "Pin to sidebar"}>
+      <Tooltip
+        content={
+          isPinned
+            ? t(
+                "plugin-space-navigator:spaceNavigator.spaceItem.pinActions.unpinFromSidebar",
+              )
+            : t(
+                "plugin-space-navigator:spaceNavigator.spaceItem.pinActions.pinToSidebar",
+              )
+        }
+      >
         <div className="tw-m-1 tw-rounded-md tw-p-1 tw-text-muted-foreground tw-transition-all hover:tw-bg-muted hover:tw-text-foreground active:tw-scale-95">
           {isPinned ? <LuPinOff /> : <LuPin />}
         </div>

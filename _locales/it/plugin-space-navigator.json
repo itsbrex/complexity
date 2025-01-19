@@ -20,7 +20,9 @@
       "noPreviewData": "Nessun dato di anteprima disponibile",
       "pinActions": {
         "pin": "Fissa",
-        "unpin": "Rimuovi"
+        "unpin": "Rimuovi",
+        "pinToSidebar": "Fissa alla barra laterale",
+        "unpinFromSidebar": "Rimuovi dalla barra laterale"
       }
     },
     "pinnedSpaces": {

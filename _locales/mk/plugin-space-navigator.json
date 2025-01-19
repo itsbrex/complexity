@@ -15,12 +15,14 @@
         "description": "Опис",
         "instructions": "Инструкции",
         "files": "Датотеки ({{count}})",
-        "focusedWebLinks": "Фокусирани веб врски ({{count}})"
+        "focusedWebLinks": "Фокусирани веб-линкови ({{count}})"
       },
-      "noPreviewData": "Нема достапни податоци за преглед",
+      "noPreviewData": "Нема податоци за преглед",
       "pinActions": {
         "pin": "Прикачи",
-        "unpin": "Откачи"
+        "unpin": "Откачи",
+        "pinToSidebar": "Прикачи на страничната лента",
+        "unpinFromSidebar": "Откачи од страничната лента"
       }
     },
     "pinnedSpaces": {

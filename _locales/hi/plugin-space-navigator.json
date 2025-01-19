@@ -17,10 +17,12 @@
         "files": "फ़ाइलें ({{count}})",
         "focusedWebLinks": "फोकस किए गए वेब लिंक ({{count}})"
       },
-      "noPreviewData": "कोई पूर्वावलोकन डेटा उपलब्ध नहीं है",
+      "noPreviewData": "कोई पूर्वावलोकन डेटा उपलब्ध नहीं",
       "pinActions": {
         "pin": "पिन करें",
-        "unpin": "अनपिन करें"
+        "unpin": "अनपिन करें",
+        "pinToSidebar": "साइडबार में पिन करें",
+        "unpinFromSidebar": "साइडबार से अनपिन करें"
       }
     },
     "pinnedSpaces": {

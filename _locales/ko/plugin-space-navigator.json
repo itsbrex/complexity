@@ -13,14 +13,16 @@
       "currentLocation": "현재 위치",
       "details": {
         "description": "설명",
-        "instructions": "안내",
+        "instructions": "지침",
         "files": "파일 ({{count}})",
-        "focusedWebLinks": "중점 웹 링크 ({{count}})"
+        "focusedWebLinks": "포커스된 웹 링크 ({{count}})"
       },
       "noPreviewData": "미리보기 데이터 없음",
       "pinActions": {
         "pin": "고정",
-        "unpin": "고정 해제"
+        "unpin": "고정 해제",
+        "pinToSidebar": "사이드바에 고정",
+        "unpinFromSidebar": "사이드바에서 고정 해제"
       }
     },
     "pinnedSpaces": {

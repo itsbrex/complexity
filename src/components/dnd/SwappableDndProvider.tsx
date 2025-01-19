@@ -58,7 +58,7 @@ export default function SwappableDndProvider({
   const handleDragEnd = (event: DragEndEvent) => {
     setIsDragging(false);
     justFinishedDragging.current = true;
-    
+
     // Reset the flag after the current event loop
     setTimeout(() => {
       justFinishedDragging.current = false;
@@ -72,8 +72,11 @@ export default function SwappableDndProvider({
       }
     };
 
-    document.addEventListener('click', preventClickAfterDrag, { capture: true, once: true });
-    
+    document.addEventListener("click", preventClickAfterDrag, {
+      capture: true,
+      once: true,
+    });
+
     onDragEnd(event);
   };
 

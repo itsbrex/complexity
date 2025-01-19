@@ -20,7 +20,9 @@
       "noPreviewData": "プレビューデータがありません",
       "pinActions": {
         "pin": "ピン留め",
-        "unpin": "ピン留めを解除"
+        "unpin": "ピン留めを解除",
+        "pinToSidebar": "サイドバーにピン留め",
+        "unpinFromSidebar": "サイドバーのピン留めを解除"
       }
     },
     "pinnedSpaces": {

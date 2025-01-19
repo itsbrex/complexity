@@ -1,7 +1,7 @@
 {
   "spaceNavigator": {
     "button": {
-      "label": "Keresés és navigálás a térbe",
+      "label": "Tér keresése és navigálás",
       "defaultText": "Terek"
     },
     "search": {
@@ -17,10 +17,12 @@
         "files": "Fájlok ({{count}})",
         "focusedWebLinks": "Kiemelt webes hivatkozások ({{count}})"
       },
-      "noPreviewData": "Nincs elérhető előnézeti adat",
+      "noPreviewData": "Nincs előnézeti adat",
       "pinActions": {
         "pin": "Rögzítés",
-        "unpin": "Rögzítés feloldása"
+        "unpin": "Rögzítés feloldása",
+        "pinToSidebar": "Rögzítés az oldalsávhoz",
+        "unpinFromSidebar": "Rögzítés feloldása az oldalsávról"
       }
     },
     "pinnedSpaces": {

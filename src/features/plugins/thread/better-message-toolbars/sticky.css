@@ -1,7 +1,7 @@
 [data-cplx-component="message-block"][data-index] {
   [data-cplx-component="message-block-query"]
     + div
-    > div.border-borderMain\/50 {
+    > div.border-borderMain\/50:last-of-type {
     isolation: isolate;
     display: flex;
     flex-direction: column;

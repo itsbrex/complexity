@@ -5,6 +5,7 @@ import { ExtensionLocalStorageApi } from "@/services/extension-local-storage/ext
 import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
 import { EXT_UPDATE_MIGRATIONS } from "@/utils/update-migrations";
 import { compareVersions, getOptionsPageUrl } from "@/utils/utils";
+import { APP_CONFIG } from "@/app.config";
 
 export type BackgroundEvents = {
   "bg:getTabId": () => number;
@@ -85,12 +86,21 @@ function contentScriptListeners() {
 }
 
 function invalidateCdnCache() {
-  chrome.runtime.onInstalled.addListener(({ reason }) => {
+  chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
     if (reason !== chrome.runtime.OnInstalledReason.UPDATE) return;
 
     ExtensionLocalStorageService.set((draft) => {
       draft.cdnLastUpdated = Date.now();
     });
+
+    if (
+      previousVersion &&
+      compareVersions(previousVersion, APP_CONFIG.VERSION) === -1
+    ) {
+      ExtensionLocalStorageService.set((draft) => {
+        draft.shouldShowPostUpdateReleaseNotes = true;
+      });
+    }
   });
 }
 

@@ -4,6 +4,7 @@ import packageJson from "~/package.json";
 
 export const DEFAULT_STORAGE: ExtensionLocalStorage = {
   schemaVersion: packageJson.version,
+  shouldShowPostUpdateReleaseNotes: false,
   plugins: {
     "queryBox:languageModelSelector": {
       enabled: false,

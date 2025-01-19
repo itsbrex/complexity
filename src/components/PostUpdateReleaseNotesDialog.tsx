@@ -17,9 +17,7 @@ import { ExtensionLocalStorageService } from "@/services/extension-local-storage
 export function PostUpdateReleaseNotesDialog() {
   const settings = ExtensionLocalStorageService.getCachedSync();
 
-  const shouldFetchChangelog =
-    settings.previousVersion != null &&
-    settings.previousVersion !== APP_CONFIG.VERSION;
+  const shouldFetchChangelog = settings.shouldShowPostUpdateReleaseNotes;
 
   const {
     data: changelog,
@@ -33,17 +31,14 @@ export function PostUpdateReleaseNotesDialog() {
   });
 
   useEffect(() => {
-    if (settings.previousVersion == null || isError) {
+    if (!settings.shouldShowPostUpdateReleaseNotes || isError) {
       ExtensionLocalStorageService.set((draft) => {
-        draft.previousVersion = APP_CONFIG.VERSION;
+        draft.shouldShowPostUpdateReleaseNotes = false;
       });
     }
-  }, [settings.previousVersion, isError]);
+  }, [settings.shouldShowPostUpdateReleaseNotes, isError]);
 
-  if (
-    settings.previousVersion == null ||
-    settings.previousVersion === APP_CONFIG.VERSION
-  ) {
+  if (!settings.shouldShowPostUpdateReleaseNotes) {
     return null;
   }
 
@@ -54,7 +49,7 @@ export function PostUpdateReleaseNotesDialog() {
       defaultOpen
       onExitComplete={() => {
         ExtensionLocalStorageService.set((draft) => {
-          draft.previousVersion = APP_CONFIG.VERSION;
+          draft.shouldShowPostUpdateReleaseNotes = false;
         });
       }}
     >

@@ -9,7 +9,7 @@ import packageJson from "~/package.json";
 
 export const ExtensionLocalStorageSchema = z.object({
   schemaVersion: z.literal(packageJson.version),
-  previousVersion: z.string().optional(),
+  shouldShowPostUpdateReleaseNotes: z.boolean(),
   plugins: PluginsSchema,
   favoritePluginIds: z.array(z.string() as z.ZodType<PluginId>),
   theme: z.string(),

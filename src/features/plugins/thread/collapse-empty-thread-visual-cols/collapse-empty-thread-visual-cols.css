@@ -1,4 +1,4 @@
-[data-cplx-component="message-block"] {
+[data-cplx-component="message-block"][data-inflight="false"] {
   .col-span-8[data-cplx-component="message-block-text-col"] {
     grid-column: span 12 / span 12;
   }

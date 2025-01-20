@@ -1,3 +1,4 @@
+import debounce from "lodash/debounce";
 import throttle from "lodash/throttle";
 import { sendMessage } from "webext-bridge/content-script";
 
@@ -20,6 +21,11 @@ import UiUtils from "@/utils/UiUtils";
 import { MessageBlock } from "@/utils/UiUtils.types";
 import { waitForElement, whereAmI } from "@/utils/utils";
 
+const resizeEvent = debounce(
+  () => window.dispatchEvent(new Event("resize")),
+  200,
+);
+
 const DOM_OBSERVER_ID = {
   COMMON: "thread-common",
   MESSAGE_BLOCKS: "thread-message-blocks",
@@ -38,6 +44,15 @@ csLoaderRegistry.register({
     spaRouteChangeCompleteSubscribe((url) => {
       setupThreadComponentsObserver(whereAmI(url));
     });
+
+    globalDomObserverStore.subscribe(
+      (store) => store.threadComponents.messageBlocks,
+      (messageBlocks, prevMessageBlocks) => {
+        if (messageBlocks?.length !== prevMessageBlocks?.length) {
+          resizeEvent();
+        }
+      },
+    );
   },
   dependencies: ["cache:pluginsStates", "messaging:spaRouter"],
 });
@@ -145,22 +160,28 @@ async function observeMessageBlocks() {
   ]);
 
   const extendedMessageBlocks: ExtendedMessageBlock[] = await Promise.all(
-    messageBlocks.map(
-      async (block, index): Promise<ExtendedMessageBlock> => ({
+    messageBlocks.map(async (block, index): Promise<ExtendedMessageBlock> => {
+      const isInFlight =
+        (await sendMessage(
+          "reactVdom:isMessageBlockInFlight",
+          {
+            index,
+          },
+          "window",
+        )) ?? false;
+
+      block.$wrapper.attr("data-inflight", isInFlight ? "true" : "false");
+
+      return {
         ...block,
+
         title: block.$query
           .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
           .text(),
-        isInFlight:
-          (await sendMessage(
-            "reactVdom:isMessageBlockInFlight",
-            {
-              index,
-            },
-            "window",
-          )) ?? false,
-      }),
-    ),
+
+        isInFlight,
+      };
+    }),
   );
 
   CallbackQueue.getInstance().enqueue(

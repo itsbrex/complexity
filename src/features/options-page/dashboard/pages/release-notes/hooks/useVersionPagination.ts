@@ -1,14 +1,14 @@
 import { APP_CONFIG } from "@/app.config";
 import { CplxVersions } from "@/services/cplx-api/cplx-api.types";
-import { compareVersions } from "@/utils/utils";
+import { ExtensionVersion } from "@/utils/ext-version";
 
 export function useVersionPagination(versions: CplxVersions | undefined) {
   const [currentVersionIndex, setCurrentVersionIndex] = useState(0);
 
   const availableVersions = useMemo(() => {
     if (!versions?.changelogEntries) return [];
-    return versions.changelogEntries.filter(
-      (version) => compareVersions(APP_CONFIG.VERSION, version) >= 0,
+    return versions.changelogEntries.filter((version) =>
+      new ExtensionVersion(APP_CONFIG.VERSION).isNewerThanOrEqualTo(version),
     );
   }, [versions?.changelogEntries]);
 

@@ -6,8 +6,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import csUiRootCss from "@/assets/cs.css?inline";
 import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
-// import { SponsorHomeLink } from "@/components/SponsorHomeLink";
 import { PostUpdateReleaseNotesDialog } from "@/components/PostUpdateReleaseNotesDialog";
+// import { SponsorHomeLink } from "@/components/SponsorHomeLink";
 import { Toaster } from "@/components/Toaster";
 import SpaceCardsWrapper from "@/features/plugins/space-navigator/spaces-page/Wrapper";
 
@@ -58,7 +58,14 @@ const ThreadTocWrapper = lazy(
 export default function CsUiRoot() {
   return (
     <>
-      <PostUpdateReleaseNotesDialog />
+      <CsUiPluginsGuard
+        additionalCheck={({ settings }) =>
+          !settings.doNotShowPostUpdateReleaseNotesPopup &&
+          settings.shouldShowPostUpdateReleaseNotes
+        }
+      >
+        <PostUpdateReleaseNotesDialog />
+      </CsUiPluginsGuard>
       <CsUiPluginsGuard location={["home"]}>
         <HomepageUpdateAnnouncer />
         {/* <SponsorHomeLink /> */}

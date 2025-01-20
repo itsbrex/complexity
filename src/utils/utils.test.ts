@@ -1,11 +1,7 @@
 import { describe, it, expect } from "vitest";
 
-import {
-  compareVersions,
-  escapeHtmlTags,
-  isValidVersionString,
-  whereAmI,
-} from "@/utils/utils";
+import { ExtensionVersion } from "@/utils/ext-version";
+import { escapeHtmlTags, isValidVersionString, whereAmI } from "@/utils/utils";
 
 describe("isValidVersionString", () => {
   it("should return true for valid version strings", () => {
@@ -20,19 +16,51 @@ describe("isValidVersionString", () => {
   });
 });
 
-describe("compareVersions", () => {
-  it("should handle various comparison scenarios", () => {
-    expect(compareVersions("1.2.3", "1.2.3")).toBe(0);
-    expect(compareVersions("0.0.2", "0.0.1")).toBe(1);
-    expect(compareVersions("0.9.9", "1.0.0")).toBe(-1);
-    expect(compareVersions("1.0", "1.0.0")).toBe(0);
-    expect(compareVersions("0.1", "0.1.1")).toBe(-1);
-    expect(compareVersions("1.2.3.4", "1.2.3.5")).toBe(-1);
-    expect(compareVersions("0.0.0.0.1", "0.0.0.0.0")).toBe(1);
+describe("ExtensionVersion", () => {
+  it("should handle equal versions", () => {
+    const version = new ExtensionVersion("1.2.3");
+    expect(version.isEqualTo("1.2.3")).toBe(true);
+    expect(version.isEqualTo("1.2.4")).toBe(false);
+  });
+
+  it("should handle newer versions", () => {
+    const version = new ExtensionVersion("1.2.3");
+    expect(version.isNewerThan("1.2.2")).toBe(true);
+    expect(version.isNewerThan("1.2.3")).toBe(false);
+    expect(version.isNewerThan("1.2.4")).toBe(false);
+  });
+
+  it("should handle older versions", () => {
+    const version = new ExtensionVersion("1.2.3");
+    expect(version.isOlderThan("1.2.4")).toBe(true);
+    expect(version.isOlderThan("1.2.3")).toBe(false);
+    expect(version.isOlderThan("1.2.2")).toBe(false);
+  });
+
+  it("should handle newer than or equal versions", () => {
+    const version = new ExtensionVersion("1.2.3");
+    expect(version.isNewerThanOrEqualTo("1.2.2")).toBe(true);
+    expect(version.isNewerThanOrEqualTo("1.2.3")).toBe(true);
+    expect(version.isNewerThanOrEqualTo("1.2.4")).toBe(false);
+  });
+
+  it("should handle older than or equal versions", () => {
+    const version = new ExtensionVersion("1.2.3");
+    expect(version.isOlderThanOrEqualTo("1.2.4")).toBe(true);
+    expect(version.isOlderThanOrEqualTo("1.2.3")).toBe(true);
+    expect(version.isOlderThanOrEqualTo("1.2.2")).toBe(false);
+  });
+
+  it("should handle version strings of different lengths", () => {
+    const version = new ExtensionVersion("1.2.3");
+    expect(version.isEqualTo("1.2.3.0")).toBe(true);
+    expect(version.isOlderThan("1.2.3.1")).toBe(true);
+    expect(version.isNewerThan("1.2.3.0")).toBe(false);
   });
 
   it("should throw an error for invalid version strings", () => {
-    expect(() => compareVersions("1.a.0", "0.1.0")).toThrow(
+    const version = new ExtensionVersion("1.2.3");
+    expect(() => version.isNewerThan("1.a.0")).toThrow(
       "Invalid version string",
     );
   });

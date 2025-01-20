@@ -1,11 +1,14 @@
+import { produce } from "immer";
 import { onMessage } from "webext-bridge/background";
 
+import { APP_CONFIG } from "@/app.config";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { ExtensionLocalStorageApi } from "@/services/extension-local-storage/extension-local-storage-api";
+import { ExtensionLocalStorage } from "@/services/extension-local-storage/extension-local-storage.types";
+import { ExtensionVersion } from "@/utils/ext-version";
 import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
 import { EXT_UPDATE_MIGRATIONS } from "@/utils/update-migrations";
-import { compareVersions, getOptionsPageUrl } from "@/utils/utils";
-import { APP_CONFIG } from "@/app.config";
+import { getOptionsPageUrl } from "@/utils/utils";
 
 export type BackgroundEvents = {
   "bg:getTabId": () => number;
@@ -52,7 +55,7 @@ function onboardingFlowTrigger() {
     } else if (
       reason === chrome.runtime.OnInstalledReason.UPDATE &&
       previousVersion &&
-      compareVersions("1.0.0.0", previousVersion) > 0
+      new ExtensionVersion("1.0.0.0").isNewerThan(previousVersion)
     ) {
       chrome.tabs.create({
         url: `${getOptionsPageUrl()}#/onboarding?fromAlpha=true`,
@@ -86,22 +89,30 @@ function contentScriptListeners() {
 }
 
 function invalidateCdnCache() {
-  chrome.runtime.onInstalled.addListener(({ reason, previousVersion }) => {
-    if (reason !== chrome.runtime.OnInstalledReason.UPDATE) return;
+  chrome.runtime.onInstalled.addListener(
+    async ({ reason, previousVersion }) => {
+      if (reason !== chrome.runtime.OnInstalledReason.UPDATE) return;
 
-    ExtensionLocalStorageService.set((draft) => {
-      draft.cdnLastUpdated = Date.now();
-    });
+      const oldRawSettings = await ExtensionLocalStorageApi.get();
 
-    if (
-      previousVersion &&
-      compareVersions(previousVersion, APP_CONFIG.VERSION) === -1
-    ) {
-      ExtensionLocalStorageService.set((draft) => {
-        draft.shouldShowPostUpdateReleaseNotes = true;
-      });
-    }
-  });
+      ExtensionLocalStorageApi.set(
+        produce(oldRawSettings, (draft) => {
+          draft.cdnLastUpdated = Date.now();
+        }),
+      );
+
+      if (
+        previousVersion &&
+        new ExtensionVersion(APP_CONFIG.VERSION).isNewerThan(previousVersion)
+      ) {
+        ExtensionLocalStorageApi.set(
+          produce(oldRawSettings, (draft) => {
+            draft.shouldShowPostUpdateReleaseNotes = true;
+          }),
+        );
+      }
+    },
+  );
 }
 
 function extensionIconActionListener() {
@@ -120,20 +131,28 @@ function updateMigrations() {
     async ({ reason, previousVersion }) => {
       if (reason !== chrome.runtime.OnInstalledReason.UPDATE) return;
 
-      if (!previousVersion || !(previousVersion in EXT_UPDATE_MIGRATIONS))
-        return;
+      if (!previousVersion) return;
 
-      const migrationFn =
-        EXT_UPDATE_MIGRATIONS[
-          previousVersion as keyof typeof EXT_UPDATE_MIGRATIONS
-        ];
+      const migrations = Object.entries(EXT_UPDATE_MIGRATIONS);
 
-      if (!migrationFn) return;
+      let finalSettings: ExtensionLocalStorage | null = null;
 
-      migrationFn({
-        oldRawSettings: await ExtensionLocalStorageApi.get(),
-        previousVersion,
-      });
+      for (const [version, migrationFn] of migrations) {
+        if (new ExtensionVersion(version).isNewerThan(previousVersion)) {
+          const oldRawSettings =
+            finalSettings ?? (await ExtensionLocalStorageApi.get());
+
+          const newSettings = await migrationFn({
+            oldRawSettings,
+          });
+
+          finalSettings = newSettings;
+        }
+      }
+
+      if (finalSettings) {
+        ExtensionLocalStorageApi.set(finalSettings);
+      }
     },
   );
 }

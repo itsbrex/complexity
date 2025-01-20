@@ -129,4 +129,5 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
   extensionIconAction: "perplexity",
   cdnLastUpdated: 0,
   devMode: false,
+  doNotShowPostUpdateReleaseNotesPopup: false,
 } as const;

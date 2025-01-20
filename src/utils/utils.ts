@@ -18,31 +18,6 @@ export const jsonUtils = {
   },
 };
 
-/**
- * Compares two version strings.
- * @param {string} v1 - The first version string.
- * @param {string} v2 - The second version string.
- * @returns {number} Returns `1` if `v1` is greater, `-1` if `v2` is greater, or `0` if they are equal.
- */
-export function compareVersions(v1: string, v2: string): number {
-  if (!isValidVersionString(v1) || !isValidVersionString(v2))
-    throw new Error("Invalid version string");
-
-  const v1Parts = v1.split(".").map(Number);
-  const v2Parts = v2.split(".").map(Number);
-
-  for (let i = 0; i < Math.max(v1Parts.length, v2Parts.length); i++) {
-    const part1 = v1Parts[i] || 0;
-    const part2 = v2Parts[i] || 0;
-
-    if (part1 !== part2) {
-      return part1 > part2 ? 1 : -1;
-    }
-  }
-
-  return 0;
-}
-
 export function isValidVersionString(version: string) {
   return /^\d+(\.\d+){1,}$/.test(version);
 }

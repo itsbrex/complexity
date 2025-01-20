@@ -18,6 +18,7 @@ export const ExtensionLocalStorageSchema = z.object({
   extensionIconAction: z.enum(EXTENSION_ICON_ACTIONS),
   cdnLastUpdated: z.number(),
   devMode: z.boolean(),
+  doNotShowPostUpdateReleaseNotesPopup: z.boolean(),
 });
 
 export type ExtensionLocalStorage = z.infer<typeof ExtensionLocalStorageSchema>;

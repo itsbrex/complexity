@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { APP_CONFIG } from "@/app.config";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
-import { compareVersions } from "@/utils/utils";
+import { ExtensionVersion } from "@/utils/ext-version";
 
 export default function useExtensionUpdate() {
   const { data: versions } = useQuery({
@@ -16,7 +16,7 @@ export default function useExtensionUpdate() {
     const currentVersion = APP_CONFIG.VERSION;
     const latestVersion = versions.latest;
 
-    return compareVersions(latestVersion, currentVersion) > 0;
+    return new ExtensionVersion(latestVersion).isNewerThan(currentVersion);
   }, [versions]);
 
   return {

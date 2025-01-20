@@ -35,6 +35,17 @@ export default function SettingsPage() {
         <SettingsItem title="Extension Icon Action">
           <ExtensionIconActionSelect />
         </SettingsItem>
+        <SettingsItem title="Do not show post-update release notes popup">
+          <Switch
+            checked={settings?.doNotShowPostUpdateReleaseNotesPopup}
+            onCheckedChange={({ checked }) =>
+              mutation.mutate(
+                (state) =>
+                  (state.doNotShowPostUpdateReleaseNotesPopup = checked),
+              )
+            }
+          />
+        </SettingsItem>
         <SettingsItem
           title={
             <div className="tw-flex tw-items-center tw-gap-2">

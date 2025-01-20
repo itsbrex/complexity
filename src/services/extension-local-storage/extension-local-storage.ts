@@ -17,7 +17,7 @@ import {
 } from "@/services/extension-local-storage/utils";
 import { isZodError } from "@/types/utils.types";
 import { queryClient } from "@/utils/ts-query-client";
-import { whereAmI } from "@/utils/utils";
+import { isInContentScript, whereAmI } from "@/utils/utils";
 import packageJson from "~/package.json";
 
 export class ExtensionLocalStorageService {
@@ -38,7 +38,7 @@ export class ExtensionLocalStorageService {
   public static async get(): Promise<ExtensionLocalStorage> {
     const settings = await queryClient.fetchQuery({
       ...extensionLocalStorageQueries.data,
-      gcTime: whereAmI() === "unknown" ? undefined : Infinity, // always keep the data in memory in content scripts
+      gcTime: isInContentScript() ? Infinity : undefined,
     });
 
     return settings;
@@ -65,9 +65,12 @@ export class ExtensionLocalStorageService {
   public static async set(
     updater: (draft: ExtensionLocalStorage) => void,
   ): Promise<ExtensionLocalStorage> {
-    const currentSettings =
-      ExtensionLocalStorageService.safeGetCachedSync() ??
-      (await ExtensionLocalStorageService.get());
+    const isContentScript = isInContentScript();
+
+    const currentSettings = isContentScript
+      ? await ExtensionLocalStorageService.get()
+      : (ExtensionLocalStorageService.safeGetCachedSync() ??
+        (await ExtensionLocalStorageService.get()));
 
     const newSettings = produce(currentSettings, (draft) => {
       updater(draft);
@@ -75,7 +78,7 @@ export class ExtensionLocalStorageService {
 
     await ExtensionLocalStorageApi.set(newSettings);
 
-    // invalidateExtensionLocalStorageDataQuery();
+    // dont need to invalidate the query cache here because we've already listening to changes in initializeReactiveStore()
 
     return newSettings;
   }
@@ -106,8 +109,9 @@ async function mergeData(
   rawSettings: ExtensionLocalStorage,
   defaultSettings: ExtensionLocalStorage,
 ): Promise<ExtensionLocalStorage> {
-  const { data: validatedSettings, error } =
-    ExtensionLocalStorageSchema.safeParse(rawSettings);
+  // we dont return the validated settings because we want to keep the unspecified keys on the new schema
+
+  const { error } = ExtensionLocalStorageSchema.safeParse(rawSettings);
 
   if (error) {
     if (!isZodError(error)) {
@@ -132,15 +136,14 @@ async function mergeData(
 
     updatedSettings.schemaVersion = packageJson.version;
 
-    const validatedSettings =
-      ExtensionLocalStorageSchema.parse(updatedSettings);
+    ExtensionLocalStorageSchema.parse(updatedSettings);
 
-    await ExtensionLocalStorageApi.set(validatedSettings);
+    await ExtensionLocalStorageApi.set(updatedSettings);
 
-    return validatedSettings;
+    return updatedSettings;
   }
 
-  return validatedSettings;
+  return rawSettings;
 }
 
 export async function fetchExtensionLocalStorageData(): Promise<ExtensionLocalStorage> {

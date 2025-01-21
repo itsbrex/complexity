@@ -43,6 +43,31 @@ export default function LanguageModelSelectorPluginDetails() {
                 });
               }}
             />
+            <Switch
+              className="tw-ml-8 tw-items-start"
+              textLabel={
+                <div>
+                  <div className="tw-text-sm">
+                    Respect default Space&apos;s model
+                  </div>
+                  <div className="tw-text-sm tw-text-muted-foreground">
+                    Automatically switch to the default model when entering a
+                    Space
+                  </div>
+                </div>
+              }
+              checked={
+                settings.plugins["queryBox:languageModelSelector"]
+                  .respectDefaultSpaceModel ?? false
+              }
+              onCheckedChange={({ checked }) => {
+                mutation.mutate((draft) => {
+                  draft.plugins[
+                    "queryBox:languageModelSelector"
+                  ].respectDefaultSpaceModel = checked;
+                });
+              }}
+            />
             <div className="tw-flex tw-flex-col tw-gap-2">
               <Switch
                 textLabel="Follow-up (in a thread)"

@@ -12,10 +12,9 @@ export default function SpaceNavigatorWrapper() {
   const { data: spaces } = useQuery(pplxApiQueries.spaces);
 
   const url = useSpaRouter((state) => state.url);
-  const spaceSlugFromUrl = parseUrl(url).pathname.split("/").pop();
-  const spaceNameFromUrl = spaces?.find(
-    (space) =>
-      space.slug === spaceSlugFromUrl || space.uuid === spaceSlugFromUrl,
+  const spaceSlug = parseUrl(url).pathname.split("/").pop();
+  const spaceName = spaces?.find(
+    (space) => space.slug === spaceSlug || space.uuid === spaceSlug,
   )?.title;
 
   const isIncognito =
@@ -31,9 +30,7 @@ export default function SpaceNavigatorWrapper() {
         data-testid={TEST_ID_SELECTORS.QUERY_BOX.SPACE_NAVIGATOR}
       >
         <PplxSpace className="tw-size-4" />
-        {spaceNameFromUrl && (
-          <div className="tw-hidden md:tw-block">{spaceNameFromUrl}</div>
-        )}
+        {spaceName && <div className="tw-hidden md:tw-block">{spaceName}</div>}
       </button>
     </SpaceNavigatorMobileContentWrapper>
   );

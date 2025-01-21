@@ -9,6 +9,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "queryBox:languageModelSelector": {
       enabled: false,
       main: true,
+      respectDefaultSpaceModel: false,
       followUp: true,
       changeTimezone: false,
     },

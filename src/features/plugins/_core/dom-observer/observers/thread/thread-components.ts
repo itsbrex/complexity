@@ -70,7 +70,8 @@ async function setupThreadComponentsObserver(
     settings?.["thread:betterMessageCopyButtons"] ||
     (settings?.["queryBox:focusSelector"] &&
       settings["queryBox:focusSelector:webRecency"]) ||
-    settings?.["zenMode"];
+    settings?.["zenMode"] ||
+    settings?.["thread:collapseEmptyThreadVisualCols"];
 
   if (!shouldObserve) return;
 

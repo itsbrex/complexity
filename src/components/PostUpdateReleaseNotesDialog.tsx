@@ -43,11 +43,9 @@ export function PostUpdateReleaseNotesDialog() {
       open={open}
       onOpenChange={({ open }) => setOpen(open)}
       onExitComplete={() => {
-        setTimeout(() => {
-          ExtensionLocalStorageService.set((draft) => {
-            draft.shouldShowPostUpdateReleaseNotes = false;
-          });
-        }, 0);
+        ExtensionLocalStorageService.set((draft) => {
+          draft.shouldShowPostUpdateReleaseNotes = false;
+        });
       }}
     >
       <DialogContent className="tw-w-max tw-max-w-[90vw]">

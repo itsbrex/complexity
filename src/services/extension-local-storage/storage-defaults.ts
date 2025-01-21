@@ -42,7 +42,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       enabled: false,
     },
     spaceNavigator: {
-      enabled: true,
+      enabled: false,
     },
     commandMenu: {
       hotkey: [

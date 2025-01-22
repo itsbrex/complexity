@@ -107,7 +107,7 @@ function invalidateCdnCache() {
       ) {
         ExtensionLocalStorageApi.set(
           produce(oldRawSettings, (draft) => {
-            draft.shouldShowPostUpdateReleaseNotes = true;
+            draft.showPostUpdateReleaseNotesPopup = true;
           }),
         );
       }

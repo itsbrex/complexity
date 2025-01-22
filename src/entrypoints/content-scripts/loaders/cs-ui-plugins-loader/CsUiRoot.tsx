@@ -60,8 +60,7 @@ export default function CsUiRoot() {
     <>
       <CsUiPluginsGuard
         additionalCheck={({ settings }) =>
-          !settings.doNotShowPostUpdateReleaseNotesPopup &&
-          settings.shouldShowPostUpdateReleaseNotes
+          settings.showPostUpdateReleaseNotesPopup
         }
       >
         <PostUpdateReleaseNotesDialog />

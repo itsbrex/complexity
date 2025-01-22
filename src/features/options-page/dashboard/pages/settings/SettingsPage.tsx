@@ -35,13 +35,12 @@ export default function SettingsPage() {
         <SettingsItem title="Extension Icon Action">
           <ExtensionIconActionSelect />
         </SettingsItem>
-        <SettingsItem title="Do not show post-update release notes popup">
+        <SettingsItem title="Show post-update release notes popup">
           <Switch
-            checked={settings?.doNotShowPostUpdateReleaseNotesPopup}
+            checked={settings?.showPostUpdateReleaseNotesPopup}
             onCheckedChange={({ checked }) =>
               mutation.mutate(
-                (state) =>
-                  (state.doNotShowPostUpdateReleaseNotesPopup = checked),
+                (state) => (state.showPostUpdateReleaseNotesPopup = checked),
               )
             }
           />

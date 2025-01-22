@@ -5,7 +5,7 @@
   },
   "sponsorDialog": {
     "title": "Complexityはあなたの助けを必要としています！",
-    "description": "Complexityの維持には多大な時間と労力が必要です。開発をサポートし、コミュニティ全体に完全に無料でオープンソースを提供し続けるためにご支援ください。",
+    "description": "この洗練された機能豊富な拡張機能は、数え切れない時間の開発と改良の結果です。細部へのこだわりと継続的な改善を評価していただけるなら、開発のサポートをご検討ください",
     "donation": {
       "title": "💖 寄付をする"
     },
@@ -19,5 +19,16 @@
     "characters": "文字",
     "expand": "展開",
     "collapse": "折りたたむ"
+  },
+  "releaseNotes": {
+    "title": "v{{version}}に更新されました",
+    "dontShowAgain": "今後の更新で表示しない",
+    "confirmDialog": {
+      "title": "確認",
+      "message": "今後の更新でこのポップアップを表示しないようにしますか？設定ページでいつでも再有効化できます。",
+      "cancel": "キャンセル",
+      "confirm": "了解しました"
+    },
+    "dismiss": "閉じる"
   }
 }

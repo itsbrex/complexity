@@ -109,41 +109,40 @@ async function mergeData(
   rawSettings: ExtensionLocalStorage,
   defaultSettings: ExtensionLocalStorage,
 ): Promise<ExtensionLocalStorage> {
-  // we dont return the validated settings because we want to keep the unspecified keys on the new schema
-
   const { error } = ExtensionLocalStorageSchema.safeParse(rawSettings);
 
-  if (error) {
-    if (!isZodError(error)) {
-      return DEFAULT_STORAGE;
-    }
-
-    console.log("[Cplx] Settings schema mismatch, merging with defaults...");
-
-    let cleanSettings = rawSettings;
-
-    error.issues.forEach((issue) => {
-      cleanSettings = setPathToUndefined({
-        paths: issue.path as string[],
-        obj: cleanSettings,
-      }) as ExtensionLocalStorage;
-    });
-
-    const updatedSettings = mergeUndefined({
-      target: cleanSettings,
-      source: defaultSettings,
-    });
-
-    updatedSettings.schemaVersion = packageJson.version;
-
-    ExtensionLocalStorageSchema.parse(updatedSettings);
-
-    await ExtensionLocalStorageApi.set(updatedSettings);
-
-    return updatedSettings;
+  if (!error) {
+    return rawSettings;
   }
 
-  return rawSettings;
+  if (!isZodError(error)) {
+    return DEFAULT_STORAGE;
+  }
+
+  console.log("[Cplx] Settings schema mismatch, merging with defaults...");
+
+  const cleanSettings = error.issues.reduce(
+    (settings, issue) =>
+      setPathToUndefined({
+        paths: issue.path as string[],
+        obj: settings,
+      }) as ExtensionLocalStorage,
+    rawSettings,
+  );
+
+  const updatedSettings = {
+    ...mergeUndefined({
+      target: cleanSettings,
+      source: defaultSettings,
+    }),
+    schemaVersion: packageJson.version,
+  };
+
+  ExtensionLocalStorageSchema.parse(updatedSettings);
+
+  await ExtensionLocalStorageApi.set(updatedSettings);
+
+  return updatedSettings;
 }
 
 export async function fetchExtensionLocalStorageData(): Promise<ExtensionLocalStorage> {

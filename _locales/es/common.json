@@ -1,16 +1,16 @@
 {
   "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "¡Por favor, considere convertirse en <emphasis>Patrocinador</emphasis> para mantener vivo el proyecto!"
+    "supporterMessage": "¡Por favor, considera convertirte en un <emphasis>Patrocinador</emphasis> para mantener vivo el proyecto!"
   },
   "sponsorDialog": {
     "title": "¡Complexity necesita tu ayuda!",
-    "description": "Mantener Complexity requiere una cantidad significativa de tiempo y esfuerzo. ¡Muestra tu aprecio apoyando su desarrollo y ayudando a mantenerlo completamente gratuito y de código abierto para toda la comunidad!",
+    "description": "Esta extensión pulida y rica en funciones es el resultado de incontables horas de desarrollo y refinamiento. Si aprecias la atención al detalle y las mejoras continuas, por favor considera apoyar el desarrollo",
     "donation": {
       "title": "💖 Hacer una donación"
     },
     "sponsorship": {
-      "title": "🌟 ¿Tienes una oferta para un patrocinio a largo plazo?",
+      "title": "🌟 ¿Tienes una oferta de patrocinio a largo plazo?",
       "contactEmail": "Contactar por correo electrónico"
     }
   },
@@ -19,5 +19,16 @@
     "characters": "caracteres",
     "expand": "Expandir",
     "collapse": "Contraer"
+  },
+  "releaseNotes": {
+    "title": "Actualizado a v{{version}}",
+    "dontShowAgain": "Cerrar y no mostrar para futuras actualizaciones",
+    "confirmDialog": {
+      "title": "Confirmar",
+      "message": "¿Estás seguro de que quieres cerrar y no mostrar para futuras actualizaciones? Siempre puedes reactivar esta ventana emergente en la página de configuración.",
+      "cancel": "Cancelar",
+      "confirm": "Entiendo"
+    },
+    "dismiss": "Cerrar"
   }
 }

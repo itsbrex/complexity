@@ -22,16 +22,16 @@ export function PostUpdateReleaseNotesDialog() {
     data: changelog,
     isLoading,
     isError,
-  } = useQuery({
-    ...cplxApiQueries.changelog({
+  } = useQuery(
+    cplxApiQueries.changelog({
       version: APP_CONFIG.VERSION,
     }),
-  });
+  );
 
   useEffect(() => {
     if (isError) {
       ExtensionLocalStorageService.set((draft) => {
-        draft.shouldShowPostUpdateReleaseNotes = false;
+        draft.showPostUpdateReleaseNotesPopup = false;
       });
     }
   }, [isError]);
@@ -44,30 +44,32 @@ export function PostUpdateReleaseNotesDialog() {
       onOpenChange={({ open }) => setOpen(open)}
       onExitComplete={() => {
         ExtensionLocalStorageService.set((draft) => {
-          draft.shouldShowPostUpdateReleaseNotes = false;
+          draft.showPostUpdateReleaseNotesPopup = false;
         });
       }}
     >
       <DialogContent className="tw-w-max tw-max-w-[90vw]">
         <DialogHeader>
-          <DialogTitle>Updated to v{APP_CONFIG.VERSION}</DialogTitle>
+          <DialogTitle>
+            {t("common:releaseNotes.title", { version: APP_CONFIG.VERSION })}
+          </DialogTitle>
         </DialogHeader>
         <ChangelogRenderer changelog={changelog} />
         <DialogFooter>
           <DontShowAgainForFutureUpdatesConfirmDialog
             onConfirm={() => {
               ExtensionLocalStorageService.set((draft) => {
-                draft.doNotShowPostUpdateReleaseNotesPopup = true;
+                draft.showPostUpdateReleaseNotesPopup = false;
               });
               setOpen(false);
             }}
           >
             <Button variant="outline">
-              Dismiss and don&apos;t show again for future updates
+              {t("common:releaseNotes.dontShowAgain")}
             </Button>
           </DontShowAgainForFutureUpdatesConfirmDialog>
           <DialogClose asChild>
-            <Button>Dismiss</Button>
+            <Button>{t("common:releaseNotes.dismiss")}</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
@@ -87,20 +89,25 @@ function DontShowAgainForFutureUpdatesConfirmDialog({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent portal={false}>
         <DialogHeader>
-          <DialogTitle>Confirm</DialogTitle>
+          <DialogTitle>
+            {t("common:releaseNotes.confirmDialog.title")}
+          </DialogTitle>
         </DialogHeader>
 
         <div className="tw-text-sm tw-text-muted-foreground">
-          Are you sure you want to dismiss and not show again for future
-          updates? You can always re-enable this popup in the settings page.
+          {t("common:releaseNotes.confirmDialog.message")}
         </div>
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline">
+              {t("common:releaseNotes.confirmDialog.cancel")}
+            </Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button onClick={onConfirm}>I understand</Button>
+            <Button onClick={onConfirm}>
+              {t("common:releaseNotes.confirmDialog.confirm")}
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

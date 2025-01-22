@@ -4,7 +4,7 @@ import packageJson from "~/package.json";
 
 export const DEFAULT_STORAGE: ExtensionLocalStorage = {
   schemaVersion: packageJson.version,
-  shouldShowPostUpdateReleaseNotes: false,
+  showPostUpdateReleaseNotesPopup: false,
   plugins: {
     "queryBox:languageModelSelector": {
       enabled: false,
@@ -130,5 +130,4 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
   extensionIconAction: "perplexity",
   cdnLastUpdated: 0,
   devMode: false,
-  doNotShowPostUpdateReleaseNotesPopup: false,
 } as const;

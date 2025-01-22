@@ -9,6 +9,15 @@ type MigrationFn = ({
   oldRawSettings: ExtensionLocalStorage;
 }) => MaybePromise<ExtensionLocalStorage>;
 
+export const migrateShowPostUpdateReleaseNotesPopup: MigrationFn = ({
+  oldRawSettings,
+}) => {
+  return produce(oldRawSettings, (draft) => {
+    draft.showPostUpdateReleaseNotesPopup =
+      (oldRawSettings as any).doNotShowPostUpdateReleaseNotesPopup === false;
+  });
+};
+
 export const migrateSlashCommandMenuKey: MigrationFn = ({ oldRawSettings }) => {
   console.log("[ExtUpdateMigrations] Migrating slash command menu key");
 
@@ -54,4 +63,5 @@ export const EXT_UPDATE_MIGRATIONS: Record<string, MigrationFn> = {
   "1.0.2.0": enableThemePreloader,
   "1.3.2.0": migrateSpaceNavigatorKey,
   "1.3.3.0": migrateSlashCommandMenuKey,
+  "1.3.5.0": migrateShowPostUpdateReleaseNotesPopup,
 };

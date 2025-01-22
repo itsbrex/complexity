@@ -7,7 +7,40 @@ import {
   enableThemePreloader,
   migrateSlashCommandMenuKey,
   migrateSpaceNavigatorKey,
+  migrateShowPostUpdateReleaseNotesPopup,
 } from "@/utils/update-migrations";
+
+describe("migrateShowPostUpdateReleaseNotesPopup", () => {
+  it("should migrate doNotShowPostUpdateReleaseNotesPopup=false to showPostUpdateReleaseNotesPopup=true", async () => {
+    const oldRawSettings: ExtensionLocalStorage = produce(
+      DEFAULT_STORAGE,
+      (draft) => {
+        (draft as any).doNotShowPostUpdateReleaseNotesPopup = false;
+      },
+    );
+
+    const newSettings = await migrateShowPostUpdateReleaseNotesPopup({
+      oldRawSettings,
+    });
+
+    expect(newSettings.showPostUpdateReleaseNotesPopup).toBe(true);
+  });
+
+  it("should migrate doNotShowPostUpdateReleaseNotesPopup=true to showPostUpdateReleaseNotesPopup=false", async () => {
+    const oldRawSettings: ExtensionLocalStorage = produce(
+      DEFAULT_STORAGE,
+      (draft) => {
+        (draft as any).doNotShowPostUpdateReleaseNotesPopup = true;
+      },
+    );
+
+    const newSettings = await migrateShowPostUpdateReleaseNotesPopup({
+      oldRawSettings,
+    });
+
+    expect(newSettings.showPostUpdateReleaseNotesPopup).toBe(false);
+  });
+});
 
 describe("migrateSlashCommandMenuKey", () => {
   it("should migrate slash command menu key", async () => {

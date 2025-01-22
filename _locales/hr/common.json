@@ -5,19 +5,30 @@
   },
   "sponsorDialog": {
     "title": "Complexity treba vašu pomoć!",
-    "description": "Održavanje Complexityja zahtijeva značajno vrijeme i trud. Pokažite svoju zahvalnost podržavanjem njegovog razvoja i pomozite da ostane potpuno besplatan i otvorenog koda za cijelu zajednicu.",
+    "description": "Ovo uglađeno i bogato proširenje rezultat je nebrojenih sati razvoja i usavršavanja. Ako cijenite pažnju posvećenu detaljima i kontinuirana poboljšanja, molimo razmislite o podršci razvoju",
     "donation": {
       "title": "💖 Donirajte"
     },
     "sponsorship": {
       "title": "🌟 Imate ponudu za dugoročno sponzorstvo?",
-      "contactEmail": "Kontaktirajte putem e-maila"
+      "contactEmail": "Kontaktirajte putem e-pošte"
     }
   },
   "misc": {
     "words": "riječi",
-    "characters": "znakovi",
+    "characters": "znakova",
     "expand": "Proširi",
     "collapse": "Sažmi"
+  },
+  "releaseNotes": {
+    "title": "Ažurirano na v{{version}}",
+    "dontShowAgain": "Zatvori i ne prikazuj za buduća ažuriranja",
+    "confirmDialog": {
+      "title": "Potvrdi",
+      "message": "Jeste li sigurni da želite zatvoriti i ne prikazivati za buduća ažuriranja? Uvijek možete ponovno omogućiti ovaj skočni prozor na stranici postavki.",
+      "cancel": "Odustani",
+      "confirm": "Razumijem"
+    },
+    "dismiss": "Zatvori"
   }
 }

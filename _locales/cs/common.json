@@ -1,17 +1,17 @@
 {
   "extensionDescription": "Complexity - Perplexity AI Supercharged",
   "sidebar": {
-    "supporterMessage": "Zvažte prosím, že se stanete <emphasis>Podporovatelem</emphasis>, abyste udrželi projekt naživu!"
+    "supporterMessage": "Prosím, zvažte stát se <emphasis>Podporovatelem</emphasis> pro udržení projektu při životě!"
   },
   "sponsorDialog": {
     "title": "Complexity potřebuje vaši pomoc!",
-    "description": "Údržba Complexity vyžaduje značné množství času a úsilí. Projevte svou podporu tím, že podpoříte jeho vývoj a pomůžete udržet jej zcela zdarma a open-source pro celou komunitu.",
+    "description": "Toto vybroušené a funkcemi nabité rozšíření je výsledkem nesčetných hodin vývoje a zdokonalování. Pokud oceňujete pozornost k detailům a neustálá vylepšení, prosím zvažte podporu vývoje",
     "donation": {
       "title": "💖 Přispět darem"
     },
     "sponsorship": {
       "title": "🌟 Máte nabídku dlouhodobého sponzorství?",
-      "contactEmail": "Kontaktujte nás e-mailem"
+      "contactEmail": "Kontaktujte e-mailem"
     }
   },
   "misc": {
@@ -19,5 +19,16 @@
     "characters": "znaků",
     "expand": "Rozbalit",
     "collapse": "Sbalit"
+  },
+  "releaseNotes": {
+    "title": "Aktualizováno na v{{version}}",
+    "dontShowAgain": "Zavřít a nezobrazovat pro budoucí aktualizace",
+    "confirmDialog": {
+      "title": "Potvrdit",
+      "message": "Opravdu chcete zavřít a nezobrazovat pro budoucí aktualizace? Toto vyskakovací okno můžete kdykoliv znovu povolit na stránce nastavení.",
+      "cancel": "Zrušit",
+      "confirm": "Rozumím"
+    },
+    "dismiss": "Zavřít"
   }
 }

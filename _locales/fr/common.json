@@ -5,7 +5,7 @@
   },
   "sponsorDialog": {
     "title": "Complexity a besoin de votre aide !",
-    "description": "Maintenir Complexity nécessite beaucoup de temps et d'efforts. Montrez votre appréciation en soutenant son développement et en aidant à le maintenir totalement gratuit et open-source pour toute la communauté.",
+    "description": "Cette extension sophistiquée et riche en fonctionnalités est le résultat d'innombrables heures de développement et d'amélioration. Si vous appréciez l'attention portée aux détails et les améliorations continues, veuillez envisager de soutenir le développement",
     "donation": {
       "title": "💖 Faire un don"
     },
@@ -19,5 +19,16 @@
     "characters": "caractères",
     "expand": "Développer",
     "collapse": "Réduire"
+  },
+  "releaseNotes": {
+    "title": "Mis à jour vers v{{version}}",
+    "dontShowAgain": "Fermer et ne plus afficher pour les futures mises à jour",
+    "confirmDialog": {
+      "title": "Confirmer",
+      "message": "Êtes-vous sûr de vouloir fermer et ne plus afficher pour les futures mises à jour ? Vous pourrez toujours réactiver cette fenêtre dans les paramètres.",
+      "cancel": "Annuler",
+      "confirm": "Je comprends"
+    },
+    "dismiss": "Fermer"
   }
 }

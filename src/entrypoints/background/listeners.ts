@@ -4,7 +4,10 @@ import { onMessage } from "webext-bridge/background";
 import { APP_CONFIG } from "@/app.config";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
 import { ExtensionLocalStorageApi } from "@/services/extension-local-storage/extension-local-storage-api";
-import { ExtensionLocalStorage } from "@/services/extension-local-storage/extension-local-storage.types";
+import {
+  ExtensionLocalStorage,
+  ExtensionLocalStorageSchema,
+} from "@/services/extension-local-storage/extension-local-storage.types";
 import { ExtensionVersion } from "@/utils/ext-version";
 import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
 import { EXT_UPDATE_MIGRATIONS } from "@/utils/update-migrations";
@@ -135,23 +138,25 @@ function updateMigrations() {
 
       const migrations = Object.entries(EXT_UPDATE_MIGRATIONS);
 
-      let finalSettings: ExtensionLocalStorage | null = null;
+      let migratedSettings: ExtensionLocalStorage | null = null;
 
       for (const [version, migrationFn] of migrations) {
         if (new ExtensionVersion(version).isNewerThan(previousVersion)) {
           const oldRawSettings =
-            finalSettings ?? (await ExtensionLocalStorageApi.get());
+            migratedSettings ?? (await ExtensionLocalStorageApi.get());
 
           const newSettings = await migrationFn({
             oldRawSettings,
           });
 
-          finalSettings = newSettings;
+          migratedSettings = newSettings;
         }
       }
 
-      if (finalSettings) {
-        ExtensionLocalStorageApi.set(finalSettings);
+      if (migratedSettings) {
+        ExtensionLocalStorageApi.set(
+          ExtensionLocalStorageSchema.parse(migratedSettings),
+        );
       }
     },
   );

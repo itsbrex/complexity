@@ -31,7 +31,7 @@ export function PostUpdateReleaseNotesDialog() {
   useEffect(() => {
     if (isError) {
       ExtensionLocalStorageService.set((draft) => {
-        draft.showPostUpdateReleaseNotesPopup = false;
+        draft.isPostUpdateReleaseNotesPopupDismissed = true;
       });
     }
   }, [isError]);
@@ -44,7 +44,7 @@ export function PostUpdateReleaseNotesDialog() {
       onOpenChange={({ open }) => setOpen(open)}
       onExitComplete={() => {
         ExtensionLocalStorageService.set((draft) => {
-          draft.showPostUpdateReleaseNotesPopup = false;
+          draft.isPostUpdateReleaseNotesPopupDismissed = true;
         });
       }}
     >
@@ -60,6 +60,7 @@ export function PostUpdateReleaseNotesDialog() {
             onConfirm={() => {
               ExtensionLocalStorageService.set((draft) => {
                 draft.showPostUpdateReleaseNotesPopup = false;
+                draft.isPostUpdateReleaseNotesPopupDismissed = true;
               });
               setOpen(false);
             }}

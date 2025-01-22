@@ -59,8 +59,10 @@ export default function CsUiRoot() {
   return (
     <>
       <CsUiPluginsGuard
+        desktopOnly
         additionalCheck={({ settings }) =>
-          settings.showPostUpdateReleaseNotesPopup
+          settings.showPostUpdateReleaseNotesPopup &&
+          !settings.isPostUpdateReleaseNotesPopupDismissed
         }
       >
         <PostUpdateReleaseNotesDialog />

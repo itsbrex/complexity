@@ -11,28 +11,8 @@ import {
 } from "@/utils/update-migrations";
 
 describe("migrateShowPostUpdateReleaseNotesPopup", () => {
-  it("should migrate doNotShowPostUpdateReleaseNotesPopup=false to showPostUpdateReleaseNotesPopup=true", async () => {
-    const oldRawSettings: ExtensionLocalStorage = produce(
-      DEFAULT_STORAGE,
-      (draft) => {
-        (draft as any).doNotShowPostUpdateReleaseNotesPopup = false;
-      },
-    );
-
-    const newSettings = await migrateShowPostUpdateReleaseNotesPopup({
-      oldRawSettings,
-    });
-
-    expect(newSettings.showPostUpdateReleaseNotesPopup).toBe(true);
-  });
-
-  it("should migrate doNotShowPostUpdateReleaseNotesPopup=true to showPostUpdateReleaseNotesPopup=false", async () => {
-    const oldRawSettings: ExtensionLocalStorage = produce(
-      DEFAULT_STORAGE,
-      (draft) => {
-        (draft as any).doNotShowPostUpdateReleaseNotesPopup = true;
-      },
-    );
+  it("should migrate doNotShowPostUpdateReleaseNotesPopup to false", async () => {
+    const oldRawSettings: ExtensionLocalStorage = DEFAULT_STORAGE;
 
     const newSettings = await migrateShowPostUpdateReleaseNotesPopup({
       oldRawSettings,

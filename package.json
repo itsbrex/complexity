@@ -25,9 +25,9 @@
     "test:ui": "pnpm dx vitest --ui",
     "e2e": "pnpm dx playwright test",
     "e2e:ui": "pnpm dx playwright test --ui",
-    "zip": "pnpm test && pnpm build && pnpm dx gulp createPackage",
-    "zip:firefox": "pnpm test && pnpm build:firefox && pnpm dx:firefox gulp createPackage",
-    "zip:both": "pnpm zip:firefox && pnpm zip"
+    "zip": "tsc && pnpm test && pnpm build && pnpm dx gulp createPackage",
+    "zip:firefox": "tsc && pnpm test && pnpm build:firefox && pnpm dx:firefox gulp createPackage",
+    "zip:both": "tsc && pnpm test && pnpm build:firefox && pnpm dx:firefox gulp createPackage && pnpm build && pnpm dx gulp createPackage"
   },
   "dependencies": {
     "@ark-ui/react": "^4.8.1",

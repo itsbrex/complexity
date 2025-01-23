@@ -12,8 +12,10 @@ type MigrationFn = ({
 export const migrateShowPostUpdateReleaseNotesPopup: MigrationFn = ({
   oldRawSettings,
 }) => {
-  console.log("[ExtUpdateMigrations] Disabling post update release notes popup");
-  
+  console.log(
+    "[ExtUpdateMigrations] Disabling post update release notes popup",
+  );
+
   return produce(oldRawSettings, (draft) => {
     draft.showPostUpdateReleaseNotesPopup = false;
   });

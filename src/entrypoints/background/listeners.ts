@@ -17,6 +17,7 @@ export type BackgroundEvents = {
   "bg:getTabId": () => number;
   "bg:removePreloadedTheme": () => void;
   "bg:openDirectReleaseNotes": ({ version }: { version: string }) => void;
+  "bg:openOptionsPage": () => void;
 };
 
 export function setupBackgroundListeners() {
@@ -70,6 +71,10 @@ function onboardingFlowTrigger() {
 function contentScriptListeners() {
   onMessage("bg:getTabId", ({ sender }) => sender.tabId);
 
+  onMessage("bg:openOptionsPage", () => {
+    chrome.runtime.openOptionsPage();
+  });
+
   onMessage("bg:removePreloadedTheme", async ({ sender }) => {
     const chosenThemeId = (await ExtensionLocalStorageService.get()).theme;
     const css = await getThemeCss(chosenThemeId);
@@ -110,7 +115,7 @@ function invalidateCdnCache() {
       ) {
         ExtensionLocalStorageApi.set(
           produce(oldRawSettings, (draft) => {
-            draft.showPostUpdateReleaseNotesPopup = true;
+            draft.isPostUpdateReleaseNotesPopupDismissed = false;
           }),
         );
       }

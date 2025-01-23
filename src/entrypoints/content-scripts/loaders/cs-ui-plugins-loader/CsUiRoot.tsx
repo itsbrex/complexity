@@ -9,7 +9,6 @@ import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
 import { PostUpdateReleaseNotesDialog } from "@/components/PostUpdateReleaseNotesDialog";
 // import { SponsorHomeLink } from "@/components/SponsorHomeLink";
 import { Toaster } from "@/components/Toaster";
-import SpaceCardsWrapper from "@/features/plugins/space-navigator/spaces-page/Wrapper";
 
 const HomepageUpdateAnnouncer = lazy(
   () => import("@/components/HomepageUpdateAnnouncer"),
@@ -53,6 +52,12 @@ const ExportThreadWrapper = lazy(
 );
 const ThreadTocWrapper = lazy(
   () => import("@/features/plugins/thread/toc/Wrapper"),
+);
+const SettingsDashboardLink = lazy(
+  () => import("@/components/SettingsDashboardLink"),
+);
+const SpaceCardsWrapper = lazy(
+  () => import("@/features/plugins/space-navigator/spaces-page/Wrapper"),
 );
 
 export default function CsUiRoot() {
@@ -101,6 +106,11 @@ export default function CsUiRoot() {
       <CsUiPluginsGuard dependentPluginIds={["onCloudflareTimeoutAutoReload"]}>
         <OnCloudflareTimeout />
       </CsUiPluginsGuard>
+
+      <CsUiPluginsGuard location={["settings"]}>
+        <SettingsDashboardLink />
+      </CsUiPluginsGuard>
+
       <Toaster />
       <ReactQueryDevtools />
     </>

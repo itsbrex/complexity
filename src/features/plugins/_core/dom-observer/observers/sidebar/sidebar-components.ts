@@ -4,6 +4,7 @@ import { globalDomObserverStore } from "@/features/plugins/_core/dom-observer/gl
 import { OBSERVER_ID } from "@/features/plugins/_core/dom-observer/observers/sidebar/observer-ids";
 import { isMobileStore } from "@/hooks/use-is-mobile-store";
 import { csLoaderRegistry } from "@/services/cs-loader-registry";
+import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 import { waitForElement } from "@/utils/utils";
 
@@ -28,7 +29,9 @@ csLoaderRegistry.register({
 });
 
 async function setupSidebarComponentsObserver() {
-  const shouldObserver = true;
+  const settings = PluginsStatesService.getCachedSync();
+
+  const shouldObserver = settings.pluginsEnableStates?.spaceNavigator;
 
   if (!shouldObserver) return;
 

@@ -22,6 +22,7 @@ export const LOADER_IDS = [
   "coreDomObserver:threadComponents",
   "coreDomObserver:sidebar",
   "coreDomObserver:spacesPage",
+  "coreDomObserver:settingsPage",
 
   "networkIntercept:pplxApi",
   "networkIntercept:languageModelSelector",

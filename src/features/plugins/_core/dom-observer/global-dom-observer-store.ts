@@ -48,12 +48,17 @@ type SpacesPageComponents = {
   spaceCards: HTMLElement[] | null;
 };
 
+type SettingsPageComponents = {
+  topNavWrapper: HTMLElement | null;
+};
+
 type ComponentTypes = {
   queryBoxes: QueryBoxes;
   homeComponents: HomeComponents;
   threadComponents: ThreadComponents;
   sidebarComponents: SidebarComponents;
   spacesPageComponents: SpacesPageComponents;
+  settingsPageComponents: SettingsPageComponents;
 };
 
 export type GlobalDomObserverStore = {
@@ -67,6 +72,9 @@ export type GlobalDomObserverStore = {
   ) => void;
   setSpacesPageComponents: (
     newSpacesPageComponents: Partial<SpacesPageComponents>,
+  ) => void;
+  setSettingsPageComponents: (
+    newSettingsPageComponents: Partial<SettingsPageComponents>,
   ) => void;
 };
 
@@ -157,6 +165,16 @@ export const globalDomObserverStore =
             get,
             "spacesPageComponents",
           ),
+
+          settingsPageComponents: {
+            topNavWrapper: null,
+          },
+          setSettingsPageComponents:
+            createSectionSetter<SettingsPageComponents>(
+              set,
+              get,
+              "settingsPageComponents",
+            ),
         }),
       ),
     ),

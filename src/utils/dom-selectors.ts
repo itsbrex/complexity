@@ -87,6 +87,13 @@ export const DOM_SELECTORS = {
   SPACES_PAGE: {
     SPACE_CARD: `.contents a[data-testid="collection-preview"]`,
   },
+  SETTINGS_PAGE: {
+    TOP_NAV_WRAPPER: ".sticky.-top-12.z-20.flex",
+    TOP_NAV_CHILD: {
+      NAV_LINKS_WRAPPER:
+        ".items-center.relative.flex-1.gap-x-md.flex.h-14.flex.px-md.w-auto",
+    },
+  },
   STICKY_NAVBAR: ".sticky.left-0.right-0.top-0.border-b",
   SICKY_NAVBAR_CHILD: {
     THREAD_TITLE_WRAPPER:

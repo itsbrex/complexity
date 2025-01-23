@@ -16,6 +16,7 @@ import "@/features/plugins/_core/dom-observer/observers/home/home-components";
 import "@/features/plugins/_core/dom-observer/observers/thread/thread-components";
 import "@/features/plugins/_core/dom-observer/observers/sidebar/sidebar-components";
 import "@/features/plugins/_core/dom-observer/observers/spaces-page/spaces-page-components";
+import "@/features/plugins/_core/dom-observer/observers/settings-page/settings-page-components";
 
 // Query Box Plugins
 import "@/features/plugins/query-box/language-model-selector/network-intercept-middlewares";

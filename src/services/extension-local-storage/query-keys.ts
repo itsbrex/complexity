@@ -1,7 +1,7 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 import debounce from "lodash/debounce";
 
-import { fetchExtensionLocalStorageData } from "@/services/extension-local-storage/extension-local-storage";
+import { fetchExtensionLocalStorageData } from "@/services/extension-local-storage";
 import { queryClient } from "@/utils/ts-query-client";
 
 export const extensionLocalStorageQueries = createQueryKeys(

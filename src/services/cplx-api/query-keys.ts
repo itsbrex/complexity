@@ -1,6 +1,6 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 
-import { CplxApiService } from "@/services/cplx-api/cplx-api";
+import { CplxApiService } from "@/services/cplx-api";
 
 export const cplxApiQueries = createQueryKeys("cplxApi", {
   versions: {

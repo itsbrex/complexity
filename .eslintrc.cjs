@@ -1,15 +1,12 @@
 module.exports = {
-  // Root and environment configuration
   root: true,
   env: { browser: true, es2020: true },
 
-  // Parser configuration
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: "./tsconfig.json",
   },
 
-  // Extension configurations
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -18,7 +15,6 @@ module.exports = {
     "plugin:react-hooks/recommended",
   ],
 
-  // Plugins
   plugins: [
     "react",
     "react-refresh",
@@ -27,10 +23,8 @@ module.exports = {
     "boundaries",
   ],
 
-  // Files to ignore
   ignorePatterns: ["dist", ".eslintrc.cjs"],
 
-  // Settings configuration
   settings: {
     react: { version: "detect" },
     "import/resolver": {
@@ -61,58 +55,19 @@ module.exports = {
         pattern: ["src/entrypoints/**/*"],
       },
       {
-        type: "core-plugin",
+        type: "plugin-core",
         mode: "full",
-        capture: ["corePluginName"],
-        pattern: ["src/features/plugins/_core/*/**/*"],
-      },
-      {
-        type: "shared-plugin-components",
-        mode: "full",
-        capture: ["componentName"],
-        pattern: ["src/features/plugins/_common/*/**/*"],
-      },
-      {
-        type: "plugin-family",
-        mode: "full",
-        capture: ["familyName"],
-        pattern: ["src/features/plugins/{home,thread,query-box}/*"],
-      },
-      {
-        type: "nested-plugin-utils",
-        mode: "full",
-        capture: ["familyName", "utilsName"],
-        pattern: [
-          "src/features/plugins/{home,thread,query-box}/{assets,context,utils,types,components,hooks}/**/*",
-        ],
-      },
-      {
-        type: "nested-plugin",
-        mode: "full",
-        capture: ["familyName", "nestedPluginName"],
-        pattern: [
-          "src/features/plugins/{home,thread,query-box}/*/**/*",
-        ],
+        pattern: ["src/plugins/_api/**/*", "src/plugins/_core/**/*"],
       },
       {
         type: "plugin",
         mode: "full",
         capture: ["pluginName"],
-        pattern: [
-          "src/features/plugins/*/**/*",
-          "src/features/plugins/{home,thread,query-box}/*/**/*",
-        ],
-      },
-      {
-        type: "feature",
-        mode: "full",
-        capture: ["featureName"],
-        pattern: ["src/features/*/**/*"],
+        pattern: ["src/plugins/*/**/*"],
       },
     ],
   },
 
-  // Rules configuration
   rules: {
     // TypeScript rules
     "@typescript-eslint/ban-types": [
@@ -201,90 +156,24 @@ module.exports = {
         default: "disallow",
         rules: [
           {
-            from: ["shared"],
-            allow: ["shared", "core-plugin"],
+            from: "shared",
+            allow: ["shared", "plugin-core"],
           },
           {
-            from: ["feature"],
+            from: "entrypoint",
+            allow: ["entrypoint", "shared", "plugin-core", "plugin"],
+          },
+          {
+            from: "plugin-core",
+            allow: ["shared", "plugin-core", "plugin"],
+          },
+          {
+            from: "plugin",
             allow: [
               "shared",
-              "core-plugin",
-              ["feature", { featureName: "${from.featureName}" }],
-            ],
-          },
-          {
-            from: ["core-plugin"],
-            allow: ["shared", "core-plugin", "entrypoint"],
-          },
-          {
-            from: ["plugin"],
-            allow: [
-              "shared",
-              "core-plugin",
-              [
-                "shared-plugin-components",
-                { componentName: "${from.pluginName}" },
-              ],
-              ["plugin", { pluginName: "${from.pluginName}" }],
-            ],
-          },
-          {
-            from: ["shared-plugin-components"],
-            allow: [
-              "shared",
-              "core-plugin",
-              [
-                "shared-plugin-components",
-                { componentName: "${from.componentName}" },
-              ],
-              ["plugin", { pluginName: "${from.componentName}" }],
-              ["nested-plugin", { nestedPluginName: "${from.componentName}" }],
-            ],
-          },
-          {
-            from: ["plugin-family"],
-            allow: [
-              "shared",
-              "core-plugin",
-              ["plugin-family", { familyName: "${from.familyName}" }],
-              ["nested-plugin", { familyName: "${from.familyName}" }],
-              ["nested-plugin-utils", { familyName: "${from.familyName}" }],
-            ],
-          },
-          {
-            from: ["nested-plugin"],
-            allow: [
-              "shared",
-              "core-plugin",
-              ["plugin-family", { familyName: "${from.familyName}" }],
-              ["nested-plugin", { familyName: "${from.familyName}" }],
-              ["nested-plugin-utils", { familyName: "${from.familyName}" }],
-              [
-                "shared-plugin-components",
-                { componentName: "${from.nestedPluginName}" },
-              ],
-            ],
-          },
-          {
-            from: ["nested-plugin-utils"],
-            allow: [
-              "shared",
-              "core-plugin",
-              ["plugin-family", { familyName: "${from.familyName}" }],
-              ["nested-plugin", { familyName: "${from.familyName}" }],
-              ["nested-plugin-utils", { familyName: "${from.familyName}" }],
-            ],
-          },
-          {
-            from: ["entrypoint"],
-            allow: [
-              "entrypoint",
-              "shared",
-              "feature",
-              "core-plugin",
               "plugin",
-              "plugin-family",
-              "nested-plugin",
+              "plugin-core",
+              ["plugin", { pluginName: "${from.pluginName}" }],
             ],
           },
         ],
@@ -306,7 +195,6 @@ module.exports = {
     ],
   },
 
-  // File-specific overrides
   overrides: [
     {
       files: ["src/**/*.{ts,tsx}"],

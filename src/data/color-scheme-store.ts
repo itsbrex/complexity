@@ -2,8 +2,8 @@ import { subscribeWithSelector } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
 
-import { DomObserver } from "@/features/plugins/_core/dom-observer/dom-observer";
-import { csLoaderRegistry } from "@/services/cs-loader-registry";
+import { DomObserver } from "@/plugins/_api/dom-observer/dom-observer";
+import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { setCookie, whereAmI } from "@/utils/utils";
 
 export type ColorScheme = "light" | "dark" | "system";

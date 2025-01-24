@@ -1,8 +1,8 @@
+import { GroupedLanguageModelsByProvider } from "@/data/plugins/query-box/language-model-selector/language-model-selector.types";
 import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
-import { csLoaderRegistry } from "@/services/cs-loader-registry";
-import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
-import { GroupedLanguageModelsByProvider } from "@/types/plugins/query-box/language-model-selector.types";
+import { PluginsStatesService } from "@/services/plugins-states";
+import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { errorWrapper } from "@/utils/error-wrapper";
 import { queryClient } from "@/utils/ts-query-client";
 

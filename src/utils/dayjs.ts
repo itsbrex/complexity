@@ -3,7 +3,7 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
 
-import { csLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { getLanguage, SupportedLangs } from "@/utils/i18next";
 
 const LANGUAGE_CODES: Record<SupportedLangs, string> = {

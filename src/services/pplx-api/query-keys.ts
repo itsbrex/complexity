@@ -1,6 +1,6 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 
-import { PplxApiService } from "@/services/pplx-api/pplx-api";
+import { PplxApiService } from "@/services/pplx-api";
 import { Space } from "@/services/pplx-api/pplx-api.types";
 
 export const pplxApiQueries = createQueryKeys("pplxApi", {

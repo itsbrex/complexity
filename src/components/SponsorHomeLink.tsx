@@ -1,6 +1,6 @@
 import SponsorDialogWrapper from "@/components/SponsorDialogWrapper";
 import { Portal } from "@/components/ui/portal";
-import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
+import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
 
 export function SponsorHomeLink() {
   const bottomBar = useGlobalDomObserverStore(

@@ -1,6 +1,6 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 
-import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
+import { PluginsStatesService } from "@/services/plugins-states";
 
 export const pluginsStatesQueries = createQueryKeys("pluginsStates", {
   computed: {

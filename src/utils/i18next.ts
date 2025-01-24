@@ -1,6 +1,6 @@
 import i18n from "i18next";
 
-import { csLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { whereAmI } from "@/utils/utils";
 
 export type SupportedLangs = (typeof supportedLangs)[number];

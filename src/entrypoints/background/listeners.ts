@@ -2,7 +2,7 @@ import { produce } from "immer";
 import { onMessage } from "webext-bridge/background";
 
 import { APP_CONFIG } from "@/app.config";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { ExtensionLocalStorageApi } from "@/services/extension-local-storage/extension-local-storage-api";
 import {
   ExtensionLocalStorage,

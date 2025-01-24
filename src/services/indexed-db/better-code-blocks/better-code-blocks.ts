@@ -4,10 +4,10 @@ import merge from "lodash/merge";
 import { DeepPartial } from "react-hook-form";
 
 import { BetterCodeBlockFineGrainedOptions } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
-import { csLoaderRegistry } from "@/services/cs-loader-registry";
+import { db } from "@/services/indexed-db";
 import { betterCodeBlocksFineGrainedOptionsQueries } from "@/services/indexed-db/better-code-blocks/query-keys";
-import { db } from "@/services/indexed-db/indexed-db";
-import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
+import { PluginsStatesService } from "@/services/plugins-states";
+import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { queryClient } from "@/utils/ts-query-client";
 
 class BetterCodeBlocksFineGrainedService {

@@ -6,7 +6,7 @@ import { RouterProvider } from "react-router-dom";
 import { removeInitializingIndicator } from "@/components/loading-indicator";
 import CsUiRoot from "@/entrypoints/content-scripts/loaders/cs-ui-plugins-loader/CsUiRoot";
 import { createRouter } from "@/entrypoints/content-scripts/loaders/cs-ui-plugins-loader/router";
-import { csLoaderRegistry } from "@/services/cs-loader-registry";
+import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { queryClient } from "@/utils/ts-query-client";
 import { waitForElement } from "@/utils/utils";
 

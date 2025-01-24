@@ -1,7 +1,7 @@
 import { defineProxyService } from "@webext-core/proxy-service";
 
 import { PinnedSpace } from "@/data/plugins/space-navigator/pinned-space.types";
-import { db } from "@/services/indexed-db/indexed-db";
+import { db } from "@/services/indexed-db";
 
 class PinnedSpacesService {
   async add(theme: Omit<PinnedSpace, "createdAt" | "order">): Promise<string> {

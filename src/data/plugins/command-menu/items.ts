@@ -19,7 +19,7 @@ import type {
   NavigationItem,
   SearchItem,
 } from "@/data/plugins/command-menu/types";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 
 export const ZENMODE_ITEMS: ZenModeItem[] = [
   {

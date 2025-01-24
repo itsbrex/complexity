@@ -3,7 +3,7 @@ import { AiOutlineOpenAI } from "react-icons/ai";
 import BlackForestLabs from "@/components/icons/BlackForestLabsIcon";
 import PlaygroundAiIcon from "@/components/icons/PlaygroundAiIcon";
 import StabilityAiIcon from "@/components/icons/StabilityAiIcon";
-import { ImageGenModel } from "@/types/plugins/image-gen-model-seletor.types";
+import { ImageGenModel } from "@/data/plugins/image-gen-model-selector/image-gen-model-seletor.types";
 
 export const imageGenModelIcons: Record<
   ImageGenModel["code"],

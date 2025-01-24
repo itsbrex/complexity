@@ -1,8 +1,8 @@
-import MiddlewareManager from "@/features/plugins/_core/network-intercept/MiddlewareManager";
-import { parseWebSocketData } from "@/features/plugins/_core/network-intercept/web-socket-message-parser";
-import { csLoaderRegistry } from "@/services/cs-loader-registry";
-import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
+import { middlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
+import { parseWebSocketData } from "@/plugins/_core/network-intercept/web-socket-message-parser";
+import { PluginsStatesService } from "@/services/plugins-states";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
+import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { queryClient } from "@/utils/ts-query-client";
 
 csLoaderRegistry.register({
@@ -15,7 +15,7 @@ csLoaderRegistry.register({
       pluginsEnableStates?.imageGenModelSelector === true;
 
     if (shouldInvalidatePplxUserSettings) {
-      MiddlewareManager.addMiddleware({
+      middlewareManager.addMiddleware({
         id: "invalidate-pplx-user-settings",
         middlewareFn({ data, skip }) {
           if (data.type === "network-intercept:fetchEvent") {

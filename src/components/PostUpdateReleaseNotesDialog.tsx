@@ -13,7 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 
 export function PostUpdateReleaseNotesDialog() {
   const [open, setOpen] = useState(true);

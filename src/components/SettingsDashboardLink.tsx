@@ -2,7 +2,7 @@ import { sendMessage } from "webext-bridge/content-script";
 
 import FaArrowUpRight from "@/components/icons/FaArrowUpRight";
 import { Portal } from "@/components/ui/portal";
-import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
+import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 
 export default function SettingsDashboardLink() {

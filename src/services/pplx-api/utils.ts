@@ -1,4 +1,4 @@
-import InternalWebSocketManager from "@/features/plugins/_core/web-socket/InternalWebSocketManager";
+import { InternalWebSocketManager } from "@/plugins/_api/web-socket/internal-web-socket-manager";
 import { ENDPOINTS } from "@/services/pplx-api/endpoints";
 
 export async function saveSettingViaFetch(settings: Record<string, unknown>) {

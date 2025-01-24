@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { BetterCodeBlockGlobalOptionsSchema } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
-import { FocusMode } from "@/data/plugins/focus-selector/focus-modes";
+import { FocusMode } from "@/data/plugins/better-focus-selector/focus-modes";
 
 export const PluginSettingsSchema = z.object({
   enabled: z.boolean(),

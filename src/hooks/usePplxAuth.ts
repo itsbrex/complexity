@@ -9,7 +9,7 @@ export default function usePplxAuth() {
     ...pplxApiQueries.auth._ctx.orgStatus,
     enabled: isLoggedIn,
   });
-  const isOrgMember = orgStatusQuery.data?.is_in_organization;
+  const isOrgMember = orgStatusQuery.data?.is_in_organization ?? false;
 
   return {
     ...query,

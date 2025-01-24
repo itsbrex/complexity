@@ -1,7 +1,7 @@
 import ExtensionUpdateInfoDialogWrapper from "@/components/ExtensionUpdateInfoDialogWrapper";
 import { Portal } from "@/components/ui/portal";
-import { useGlobalDomObserverStore } from "@/features/plugins/_core/dom-observer/global-dom-observer-store";
 import useExtensionUpdate from "@/hooks/useExtensionUpdate";
+import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
 
 export default function HomepageUpdateAnnouncer() {
   const { isUpdateAvailable } = useExtensionUpdate();

@@ -67,11 +67,11 @@ export const DOM_SELECTORS = {
   },
   QUERY_BOX: {
     TEXTAREA: {
-      MAIN: '[location="home"] textarea[placeholder][autocomplete][style*="height: 48px !important;"]:not([data-testid="quick-search-modal"] textarea)',
+      MAIN: '[location="home"] textarea[placeholder][autocomplete][style*="height"]:not([data-testid="quick-search-modal"] textarea)',
       MAIN_MODAL:
-        '[data-testid="quick-search-modal"] textarea[placeholder][autocomplete][style*="height: 48px !important;"]',
+        '[data-testid="quick-search-modal"] textarea[placeholder][autocomplete][style*="height"]',
       SPACE:
-        '[location="collection"] textarea[placeholder][autocomplete][style*="height: 48px !important;"]:not([data-testid="quick-search-modal"] textarea)',
+        '[location="collection"] textarea[placeholder][autocomplete][style*="height"]:not([data-testid="quick-search-modal"] textarea)',
       FOLLOW_UP:
         '[location="thread"] .pointer-events-none.fixed.bottom-mobileNavHeight textarea[placeholder][autocomplete]',
       ARBITRARY: "textarea[placeholder][autocomplete]",

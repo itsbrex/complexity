@@ -2,7 +2,7 @@ import { defineProxyService } from "@webext-core/proxy-service";
 import { nanoid } from "nanoid";
 
 import { PromptHistory } from "@/data/plugins/prompt-history/prompt-history.type";
-import { db } from "@/services/indexed-db/indexed-db";
+import { db } from "@/services/indexed-db";
 
 class PromptHistoryService {
   async add(prompt: string): Promise<string> {

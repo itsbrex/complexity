@@ -1,7 +1,7 @@
 import { Key } from "ts-key-enum";
 
 import { APP_CONFIG } from "@/app.config";
-import UiUtils from "@/utils/UiUtils";
+import { UiUtils } from "@/utils/ui-utils";
 
 export const jsonUtils = {
   safeParse(json: string) {

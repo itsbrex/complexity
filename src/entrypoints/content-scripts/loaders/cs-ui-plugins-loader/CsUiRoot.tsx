@@ -5,60 +5,48 @@ import "@/assets/cs.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import csUiRootCss from "@/assets/cs.css?inline";
-import CsUiPluginsGuard from "@/components/CsUiPluginsGuard";
+import CsUiPluginsGuard from "@/components/plugins-guard/CsUiPluginsGuard";
 import { PostUpdateReleaseNotesDialog } from "@/components/PostUpdateReleaseNotesDialog";
 // import { SponsorHomeLink } from "@/components/SponsorHomeLink";
 import { Toaster } from "@/components/Toaster";
 
+const BetterCodeBlocksWrapper = lazy(
+  () => import("@/plugins/thread-better-code-blocks"),
+);
+const BetterMessageCopyButtons = lazy(
+  () => import("@/plugins/thread-better-message-copy-buttons"),
+);
+const BetterMessageToolbarsWrapper = lazy(
+  () => import("@/plugins/thread-better-message-toolbars"),
+);
+const CanvasWrapper = lazy(() => import("@/plugins/canvas"));
+const CollapsibleQueryWrapper = lazy(
+  () => import("@/plugins/thread-better-message-toolbars/collapsible-query"),
+);
+const CommandMenuWrapper = lazy(() => import("@/plugins/command-menu"));
+const ExportThreadWrapper = lazy(() => import("@/plugins/export-thread"));
 const HomepageUpdateAnnouncer = lazy(
   () => import("@/components/HomepageUpdateAnnouncer"),
 );
-const QueryBoxWrapper = lazy(
-  () => import("@/features/plugins/query-box/Wrapper"),
-);
-const CommandMenuWrapper = lazy(
-  () => import("@/features/plugins/command-menu/Wrapper"),
-);
 const ImageGenModelSelectorWrapper = lazy(
-  () => import("@/features/plugins/image-gen-popover/Wrapper"),
+  () => import("@/plugins/image-gen-popover"),
 );
 const OnCloudflareTimeout = lazy(
-  () =>
-    import("@/features/plugins/on-cf-timeout-auto-reload/OnCloudflareTimeout"),
+  () => import("@/plugins/on-cf-timeout-auto-reload"),
 );
-const BetterCodeBlocksWrapper = lazy(
-  () => import("@/features/plugins/thread/better-code-blocks/Wrapper"),
-);
-const CanvasWrapper = lazy(
-  () => import("@/features/plugins/thread/canvas/Wrapper"),
-);
-const BetterMessageCopyButtons = lazy(
-  () => import("@/features/plugins/thread/better-message-copy-buttons/Wrapper"),
-);
-const BetterMessageToolbarsWrapper = lazy(
-  () => import("@/features/plugins/thread/better-message-toolbars/Wrapper"),
-);
-const SpaceNavigatorWrapper = lazy(
-  () => import("@/features/plugins/space-navigator/sidebar-content/Wrapper"),
-);
-const CollapsibleQueryWrapper = lazy(
-  () =>
-    import(
-      "@/features/plugins/thread/better-message-toolbars/collapsible-query/Wrapper"
-    ),
-);
-const ExportThreadWrapper = lazy(
-  () => import("@/features/plugins/thread/export-thread/Wrapper"),
-);
-const ThreadTocWrapper = lazy(
-  () => import("@/features/plugins/thread/toc/Wrapper"),
+const QueryBoxWrapper = lazy(
+  () => import("@/plugins/_core/ui-groups/query-box"),
 );
 const SettingsDashboardLink = lazy(
   () => import("@/components/SettingsDashboardLink"),
 );
 const SpaceCardsWrapper = lazy(
-  () => import("@/features/plugins/space-navigator/spaces-page/Wrapper"),
+  () => import("@/plugins/space-navigator/spaces-page"),
 );
+const SpaceNavigatorWrapper = lazy(
+  () => import("@/plugins/space-navigator/sidebar-content"),
+);
+const ThreadTocWrapper = lazy(() => import("@/plugins/thread-toc"));
 
 export default function CsUiRoot() {
   return (
@@ -76,17 +64,7 @@ export default function CsUiRoot() {
         <HomepageUpdateAnnouncer />
         {/* <SponsorHomeLink /> */}
       </CsUiPluginsGuard>
-      <CsUiPluginsGuard
-        dependentPluginIds={[
-          "queryBox:languageModelSelector",
-          "spaceNavigator",
-          "queryBox:slashCommandMenu:promptHistory",
-          "queryBox:focusSelector",
-          "queryBox:focusSelector:webRecency",
-        ]}
-      >
-        <QueryBoxWrapper />
-      </CsUiPluginsGuard>
+      <QueryBoxWrapper />
       <CsUiPluginsGuard desktopOnly dependentPluginIds={["commandMenu"]}>
         <CommandMenuWrapper />
       </CsUiPluginsGuard>
@@ -122,7 +100,7 @@ function ThreadComponents() {
     <>
       <CsUiPluginsGuard
         desktopOnly
-        allowedAccountTypes={["pro", "enterprise"]}
+        allowedAccountTypes={[["pro"], ["pro", "enterprise"]]}
         dependentPluginIds={["imageGenModelSelector"]}
       >
         <ImageGenModelSelectorWrapper />
@@ -165,6 +143,7 @@ function SidebarComponents() {
     <CsUiPluginsGuard
       desktopOnly
       requiresLoggedIn
+      allowIncognito={false}
       dependentPluginIds={["spaceNavigator"]}
     >
       <SpaceNavigatorWrapper />

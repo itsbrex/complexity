@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { FocusMode } from "@/data/plugins/focus-selector/focus-modes";
-import { FocusWebRecency } from "@/data/plugins/focus-selector/focus-web-recency";
+import { FocusMode } from "@/data/plugins/better-focus-selector/focus-modes";
+import { FocusWebRecency } from "@/data/plugins/better-focus-selector/focus-web-recency";
 import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 
 export const UserSettingsApiResponseSchema = z.object({

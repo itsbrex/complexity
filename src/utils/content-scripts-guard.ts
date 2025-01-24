@@ -1,7 +1,7 @@
 import { sendMessage } from "webext-bridge/content-script";
 
 import { removeInitializingIndicator } from "@/components/loading-indicator";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 
 export function contentScriptGuard() {
   const removePreloadedTheme = async () => {

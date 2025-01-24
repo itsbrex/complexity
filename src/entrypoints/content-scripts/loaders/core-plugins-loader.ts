@@ -4,19 +4,19 @@ import {
 } from "webext-bridge/content-script";
 
 import { CorePluginId, PLUGINS_METADATA } from "@/data/plugins/plugins-data";
-import InternalWebSocketManager from "@/features/plugins/_core/web-socket/InternalWebSocketManager";
-import { csLoaderRegistry } from "@/services/cs-loader-registry";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage/extension-local-storage";
+import { InternalWebSocketManager } from "@/plugins/_api/web-socket/internal-web-socket-manager";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
-import { PluginsStatesService } from "@/services/plugins-states/plugins-states";
+import { PluginsStatesService } from "@/services/plugins-states";
+import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
 import { injectMainWorldScript, insertCss } from "@/utils/utils";
 
-import markmapRendererPlugin from "@/features/plugins/_core/markmap-renderer/index.main?script&module";
-import mermaidRendererPlugin from "@/features/plugins/_core/mermaid-renderer/index.main?script&module";
-import networkInterceptPlugin from "@/features/plugins/_core/network-intercept/index.main?script&module";
-import reactVdomPlugin from "@/features/plugins/_core/react-vdom/index.main?script&module";
-import spaRouterPlugin from "@/features/plugins/_core/spa-router/index.main?script&module";
+import spaRouterPlugin from "@/plugins/_api/spa-router/index?script&module";
+import markmapRendererPlugin from "@/plugins/_core/markmap-renderer/index?script&module";
+import mermaidRendererPlugin from "@/plugins/_core/mermaid-renderer/index?script&module";
+import networkInterceptPlugin from "@/plugins/_core/network-intercept/index?script&module";
+import reactVdomPlugin from "@/plugins/_core/react-vdom/index?script&module";
 import jqueryExtensions from "@/utils/jquery.extensions?script&module";
 import webextBridgeSetNamespace from "@/utils/webext-bridge?script&module";
 

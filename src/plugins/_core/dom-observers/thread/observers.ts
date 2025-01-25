@@ -175,12 +175,11 @@ async function observeMessageBlocks() {
 
       return {
         ...block,
-
         title: block.$query
           .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
           .text(),
-
         isInFlight,
+        isEditingQuery: block.$query.find("textarea").length > 0,
       };
     }),
   );

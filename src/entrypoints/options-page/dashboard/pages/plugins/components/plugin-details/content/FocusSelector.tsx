@@ -117,7 +117,7 @@ export default function FocusSelectorPluginDetails() {
                   <SelectItem
                     key={mode.code}
                     item={mode.code}
-                    className="x-flex x-items-center x-gap-2"
+                    className="x-flex x-items-center x-justify-start x-gap-2"
                   >
                     <mode.Icon className="x-size-4" />
                     <div>{mode.label}</div>

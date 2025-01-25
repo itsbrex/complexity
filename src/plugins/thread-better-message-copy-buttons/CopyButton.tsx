@@ -11,19 +11,19 @@ import {
 import { useCopyPplxThread } from "@/hooks/useCopyPplxThread";
 import useToggleButtonText from "@/hooks/useToggleButtonText";
 
-type BetterCopyButtonProps = {
+type CopyButtonProps = {
   messageBlockIndex: number;
   hasSources: boolean;
 };
 
 type CopyOptions = "default" | "without-citations";
 
-const BetterCopyButton = memo(function BetterCopyButton({
+const CopyButton = memo(function CopyButton({
   messageBlockIndex,
   hasSources,
-}: BetterCopyButtonProps) {
+}: CopyButtonProps) {
   const [triggerIcon, setTriggerIcon] = useToggleButtonText({
-    defaultText: <LuCopy className="x-size-4" />,
+    defaultText: <LuCopy />,
   });
 
   const { copyMessage, isFetching } = useCopyPplxThread();
@@ -35,7 +35,7 @@ const BetterCopyButton = memo(function BetterCopyButton({
       await copyMessage({
         messageBlockIndex,
         withCitations,
-        onComplete: () => setTriggerIcon(<LuCheck className="x-size-4" />),
+        onComplete: () => setTriggerIcon(<LuCheck />),
       });
     },
     [copyMessage, isFetching, messageBlockIndex, setTriggerIcon],
@@ -120,4 +120,4 @@ const CopyButtonTrigger = memo(
   ),
 );
 
-export default BetterCopyButton;
+export default CopyButton;

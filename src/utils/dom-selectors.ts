@@ -26,6 +26,9 @@ export const DOM_SELECTORS = {
         QUERY: ".my-md.md\\:my-lg",
         QUERY_TITLE: ".group\\/query",
         QUERY_HOVER_CONTAINER: ".pointer-events-none.absolute.bottom-0.right-0",
+        QUERY_HOVER_CONTAINER_CHILD: {
+          EDIT_QUERY_BUTTON: "button:has(svg[data-icon='pen-to-square'])",
+        },
         EDIT_TEXT_AREA: "textarea[placeholder]",
         /** The answer heading */
         ANSWER_HEADING:

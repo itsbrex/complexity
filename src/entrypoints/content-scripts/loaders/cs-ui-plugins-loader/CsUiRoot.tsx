@@ -13,8 +13,9 @@ import { Toaster } from "@/components/Toaster";
 const BetterCodeBlocksWrapper = lazy(
   () => import("@/plugins/thread-better-code-blocks"),
 );
-const BetterMessageCopyButtons = lazy(
-  () => import("@/plugins/thread-better-message-copy-buttons"),
+const ThreadMessageToolbarExtraButtonsWrapper = lazy(
+  () =>
+    import("@/plugins/_core/ui-groups/thread-message-toolbar-extra-buttons"),
 );
 const BetterMessageToolbarsWrapper = lazy(
   () => import("@/plugins/thread-better-message-toolbars"),
@@ -123,11 +124,9 @@ function ThreadComponents() {
       <CsUiPluginsGuard dependentPluginIds={["thread:betterCodeBlocks"]}>
         <BetterCodeBlocksWrapper />
       </CsUiPluginsGuard>
-      <CsUiPluginsGuard
-        dependentPluginIds={["thread:betterMessageCopyButtons"]}
-      >
-        <BetterMessageCopyButtons />
-      </CsUiPluginsGuard>
+
+      <ThreadMessageToolbarExtraButtonsWrapper />
+
       <CsUiPluginsGuard dependentPluginIds={["thread:toc"]}>
         <ThreadTocWrapper />
       </CsUiPluginsGuard>

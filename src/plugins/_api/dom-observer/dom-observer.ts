@@ -79,8 +79,6 @@ export class DomObserver {
     config: DomObserverConfig,
   ): Result<void> {
     if (this.instances.has(id)) {
-      console.log("update", id);
-
       return this.handleUpdate(id, config);
     }
 

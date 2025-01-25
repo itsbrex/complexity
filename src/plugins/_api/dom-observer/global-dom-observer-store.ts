@@ -8,6 +8,7 @@ import { CodeBlock, MessageBlock } from "@/utils/ui-utils.types";
 export type ExtendedMessageBlock = MessageBlock & {
   title: string;
   isInFlight: boolean;
+  isEditingQuery: boolean;
 };
 
 export type ExtendedCodeBlock = CodeBlock & {

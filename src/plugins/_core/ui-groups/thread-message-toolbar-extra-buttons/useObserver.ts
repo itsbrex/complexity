@@ -1,11 +1,9 @@
 import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 
-const OBSERVER_ID = "cplx-better-message-copy-buttons";
+const OBSERVER_ID = "cplx-thread-message-toolbar-extra-buttons-wrapper";
 
-type UseObserverReturn = (Element | null)[];
-
-export function useObserver(): UseObserverReturn {
+export function useObserver(): (Element | null)[] {
   const messageBlockBottomBars = useGlobalDomObserverStore(
     (state) => state.threadComponents.messageBlockBottomBars,
   );

@@ -62,6 +62,21 @@ export default function BetterThreadMessageToolbarsPluginDetails() {
             className="x-items-start"
             textLabel={
               <div>
+                <div>Edit Query Button</div>
+                <div className="x-text-sm x-text-muted-foreground">
+                  Add a button to edit the query
+                </div>
+              </div>
+            }
+            checked={
+              settings?.plugins["thread:betterMessageToolbars"].editQueryButton
+            }
+            onCheckedChange={handleCheckedChange("editQueryButton")}
+          />
+          <Switch
+            className="x-items-start"
+            textLabel={
+              <div>
                 <div>Hide Unnecessary Buttons</div>
                 <div className="x-text-sm x-text-muted-foreground">
                   Hide Share, Thumbs Up/Down buttons

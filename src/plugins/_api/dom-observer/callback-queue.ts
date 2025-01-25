@@ -1,6 +1,6 @@
 import { MaybePromise } from "@/types/utils.types";
 
-const FRAME_BUDGET = 16; // ~60fps
+const FRAME_BUDGET_MS = 16; // ~60fps
 const MIN_CHUNK_SIZE = 1;
 const MAX_CHUNK_SIZE = 20;
 const INITIAL_CHUNK_SIZE = 5;
@@ -58,7 +58,7 @@ export class CallbackQueue {
       const chunk = this.queue.dequeueChunk(this.chunkSize);
 
       for (const item of chunk) {
-        if (performance.now() - this.frameStartTime > FRAME_BUDGET) {
+        if (performance.now() - this.frameStartTime > FRAME_BUDGET_MS) {
           // If we're exceeding frame budget, push remaining callbacks back to queue
           this.queue.pushFront(chunk.slice(chunk.indexOf(item)));
           break;
@@ -79,13 +79,13 @@ export class CallbackQueue {
   }
 
   private adjustChunkSize(processingTime: number): void {
-    if (processingTime > FRAME_BUDGET * (1 + TOLERANCE)) {
+    if (processingTime > FRAME_BUDGET_MS * (1 + TOLERANCE)) {
       this.chunkSize = Math.max(
         MIN_CHUNK_SIZE,
-        Math.floor(this.chunkSize * (FRAME_BUDGET / processingTime)),
+        Math.floor(this.chunkSize * (FRAME_BUDGET_MS / processingTime)),
       );
     } else if (
-      processingTime < FRAME_BUDGET * (1 - TOLERANCE) &&
+      processingTime < FRAME_BUDGET_MS * (1 - TOLERANCE) &&
       this.queue.length > 0
     ) {
       this.chunkSize = Math.min(

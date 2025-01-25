@@ -6,6 +6,6 @@
   }
 
   span {
-    @apply tw-animate-in tw-fade-in-0;
+    @apply x-animate-in x-fade-in-0;
   }
 }

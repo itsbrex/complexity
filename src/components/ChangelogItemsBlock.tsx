@@ -3,15 +3,15 @@ import { HTMLAttributes } from "react";
 import { LuArrowLeftRight, LuRocket, LuSparkles } from "react-icons/lu";
 import { TbBugOff } from "react-icons/tb";
 
-const blockVariants = cva("tw-my-2 tw-rounded-md tw-p-4", {
+const blockVariants = cva("x-my-2 x-rounded-md x-p-4", {
   variants: {
     variant: {
-      new: "tw-bg-primary/10 [&_[data-releasenote-part='header']]:tw-text-primary [&_strong]:tw-text-foreground",
+      new: "x-bg-primary/10 [&_[data-releasenote-part='header']]:x-text-primary [&_strong]:x-text-foreground",
       "bug-fix":
-        "tw-bg-destructive/10 [&_[data-releasenote-part='header']]:tw-text-destructive [&_strong]:tw-text-foreground",
+        "x-bg-destructive/10 [&_[data-releasenote-part='header']]:x-text-destructive [&_strong]:x-text-foreground",
       improvement:
-        "tw-bg-success/10 [&_[data-releasenote-part='header']]:tw-text-success [&_strong]:tw-text-success-foreground",
-      change: "tw-bg-secondary tw-text-foreground",
+        "x-bg-success/10 [&_[data-releasenote-part='header']]:x-text-success [&_strong]:x-text-success-foreground",
+      change: "x-bg-secondary x-text-foreground",
     },
   },
   defaultVariants: {
@@ -55,18 +55,18 @@ export default function NewItems({
       )}
       {...props}
     >
-      <div className="tw-flex tw-flex-col tw-gap-2">
+      <div className="x-flex x-flex-col x-gap-2">
         <div
-          className="tw-flex tw-items-center tw-gap-2"
+          className="x-flex x-items-center x-gap-2"
           data-releasenote-part="header"
         >
-          {Icon && <Icon className="tw-size-8" />}
-          <span className="tw-text-2xl tw-font-semibold tw-uppercase">
+          {Icon && <Icon className="x-size-8" />}
+          <span className="x-text-2xl x-font-semibold x-uppercase">
             {headerText}
           </span>
         </div>
         {props["data-description"] && (
-          <span className="tw-ml-8 tw-text-sm tw-text-muted-foreground">
+          <span className="x-ml-8 x-text-sm x-text-muted-foreground">
             {props["data-description"]}
           </span>
         )}

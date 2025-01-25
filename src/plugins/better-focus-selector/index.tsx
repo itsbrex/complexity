@@ -56,7 +56,7 @@ export default function FocusSelectorWrapper() {
         itemToValue: (item) => item.code,
       })}
       value={[selectedFocusMode]}
-      className="tw-h-8"
+      className="x-h-8"
       data-testid={TEST_ID_SELECTORS.QUERY_BOX.FOCUS_SELECTOR}
       onValueChange={({ value }) => {
         setSelectedFocusMode(value[0] as FocusMode["code"]);
@@ -81,10 +81,10 @@ export default function FocusSelectorWrapper() {
           mode: focusModeData.label,
         })}
       >
-        <SelectTrigger variant="ghost" className="tw-h-full tw-w-fit tw-px-2">
+        <SelectTrigger variant="ghost" className="x-h-full x-w-fit x-px-2">
           <SelectValue>
-            <div className="tw-flex tw-items-center tw-gap-2">
-              <focusModeData.Icon className="tw-size-4" />
+            <div className="x-flex x-items-center x-gap-2">
+              <focusModeData.Icon className="x-size-4" />
             </div>
           </SelectValue>
         </SelectTrigger>

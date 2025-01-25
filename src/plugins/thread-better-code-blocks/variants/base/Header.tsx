@@ -63,39 +63,37 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
   return (
     <div
       className={cn(
-        "tw-flex tw-items-center tw-justify-between tw-rounded-t-md tw-border-b tw-border-border/50 tw-bg-secondary tw-p-2 tw-px-4 tw-pb-2 tw-text-muted-foreground",
+        "x-flex x-items-center x-justify-between x-rounded-t-md x-border-b x-border-border/50 x-bg-secondary x-p-2 x-px-4 x-pb-2 x-text-muted-foreground",
         {
-          "tw-sticky": isSticky,
-          "tw-top-[calc(var(--navbar-height))]":
+          "x-sticky": isSticky,
+          "x-top-[calc(var(--navbar-height))]":
             isSticky && (isMessageBlockInFlight || !isBottomBarSticky),
-          "tw-top-[calc(var(--navbar-height)+var(--message-block-bottom-bar-height))]":
+          "x-top-[calc(var(--navbar-height)+var(--message-block-bottom-bar-height))]":
             isSticky && !isMessageBlockInFlight && isBottomBarSticky,
         },
       )}
     >
-      <div className="tw-flex tw-items-center tw-gap-2">
-        <div className="tw-line-clamp-1 tw-font-mono tw-text-sm">
+      <div className="x-flex x-items-center x-gap-2">
+        <div className="x-line-clamp-1 x-font-mono x-text-sm">
           {placeholderText?.title || language}
         </div>
         {!isInFlight && placeholderText?.idle && (
-          <div className="tw-flex tw-items-center tw-gap-2">
-            <Separator orientation="vertical" className="tw-h-4 tw-w-[2px]" />
-            <div className="tw-font-sans tw-text-sm">
-              {placeholderText.idle}
-            </div>
+          <div className="x-flex x-items-center x-gap-2">
+            <Separator orientation="vertical" className="x-h-4 x-w-[2px]" />
+            <div className="x-font-sans x-text-sm">{placeholderText.idle}</div>
           </div>
         )}
       </div>
 
-      <div className="tw-flex tw-items-center tw-gap-4">
+      <div className="x-flex x-items-center x-gap-4">
         {isInFlight && (
-          <span className="tw-flex tw-items-center tw-gap-2">
+          <span className="x-flex x-items-center x-gap-2">
             {placeholderText?.loading && (
-              <span className="tw-animate-pulse tw-font-sans">
+              <span className="x-animate-pulse x-font-sans">
                 {placeholderText.loading}
               </span>
             )}
-            <LuLoaderCircle className="tw-animate-spin" />
+            <LuLoaderCircle className="x-animate-spin" />
           </span>
         )}
         {!isInFlight && (

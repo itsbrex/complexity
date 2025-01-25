@@ -30,6 +30,7 @@ dummy-non-existing-folder
 tsconfig.tsbuildinfo
 .cursorignore
 .cursorrules
+/.cursor
 .ai-prompts
 cdn-template
 

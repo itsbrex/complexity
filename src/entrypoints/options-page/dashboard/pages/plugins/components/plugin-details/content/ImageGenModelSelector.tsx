@@ -8,7 +8,7 @@ export default function ImageGenModelSelectorPluginDetails() {
   if (!settings) return null;
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-4">
+    <div className="x-flex x-flex-col x-gap-4">
       <P>
         Allow you to change your preferred image generation model. The selector
         can be found on the image generation popover in any thread.
@@ -25,7 +25,7 @@ export default function ImageGenModelSelectorPluginDetails() {
       <img
         src="https://i.imgur.com/qf6cb9i.png"
         alt="image-gen-model-selector"
-        className="tw-mx-auto tw-w-full tw-max-w-[700px]"
+        className="x-mx-auto x-w-full x-max-w-[700px]"
       />
     </div>
   );

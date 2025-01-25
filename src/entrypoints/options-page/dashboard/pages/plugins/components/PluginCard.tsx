@@ -63,28 +63,28 @@ export function PluginCard({ pluginId, isForceDisabled }: PluginCardProps) {
   if (!settings) return null;
 
   return (
-    <Card className="tw-flex tw-h-full tw-flex-col tw-bg-secondary">
-      <CardHeader className="tw-flex tw-flex-row tw-items-start tw-justify-between tw-space-y-0">
+    <Card className="x-flex x-h-full x-flex-col x-bg-secondary">
+      <CardHeader className="x-flex x-flex-row x-items-start x-justify-between x-space-y-0">
         <div>
           <CardTitle>
-            <span className="tw-text-lg">{title}</span>
+            <span className="x-text-lg">{title}</span>
           </CardTitle>
           <CardDescription>{description}</CardDescription>
         </div>
       </CardHeader>
       {tags != null && tags.length > 0 && (
         <CardContent>
-          <div className="tw-flex tw-flex-wrap tw-gap-2">
+          <div className="x-flex x-flex-wrap x-gap-2">
             {tags.map((tag) => (
               <Tooltip key={tag} content={PLUGIN_TAGS[tag].description}>
                 <Badge
                   variant="secondary"
                   className={cn(
-                    "tw-border tw-border-border/50 hover:tw-bg-background",
+                    "x-border x-border-border/50 hover:x-bg-background",
                     {
-                      "tw-bg-destructive tw-text-destructive-foreground hover:tw-bg-destructive/80":
+                      "x-bg-destructive x-text-destructive-foreground hover:x-bg-destructive/80":
                         tag === "experimental",
-                      "tw-bg-primary tw-text-primary-foreground hover:tw-bg-primary/80":
+                      "x-bg-primary x-text-primary-foreground hover:x-bg-primary/80":
                         tag === "new",
                     },
                   )}
@@ -96,8 +96,8 @@ export function PluginCard({ pluginId, isForceDisabled }: PluginCardProps) {
           </div>
         </CardContent>
       )}
-      <CardFooter className="tw-mt-auto tw-flex tw-justify-between">
-        <div className="tw-flex tw-gap-2">
+      <CardFooter className="x-mt-auto x-flex x-justify-between">
+        <div className="x-flex x-gap-2">
           {dialogContent != null && (
             <Button
               onClick={() =>
@@ -114,7 +114,7 @@ export function PluginCard({ pluginId, isForceDisabled }: PluginCardProps) {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon">
-                <GoKebabHorizontal className="tw-size-4" />
+                <GoKebabHorizontal className="x-size-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -137,15 +137,15 @@ export function PluginCard({ pluginId, isForceDisabled }: PluginCardProps) {
                   });
                 }}
               >
-                <span className="tw-flex tw-items-center">
+                <span className="x-flex x-items-center">
                   {settings?.favoritePluginIds?.includes(pluginId) ? (
                     <>
-                      <GoStarFill className="tw-mr-2 tw-h-4 tw-w-4 tw-text-yellow-500" />
+                      <GoStarFill className="x-mr-2 x-h-4 x-w-4 x-text-yellow-500" />
                       Remove from favorites
                     </>
                   ) : (
                     <>
-                      <GoStar className="tw-mr-2 tw-h-4 tw-w-4" />
+                      <GoStar className="x-mr-2 x-h-4 x-w-4" />
                       Add to favorites
                     </>
                   )}
@@ -176,7 +176,7 @@ export function PluginCard({ pluginId, isForceDisabled }: PluginCardProps) {
                 </div>
               }
             >
-              <LuTriangleAlert className="tw-size-4 tw-text-yellow-300 dark:tw-text-yellow-500" />
+              <LuTriangleAlert className="x-size-4 x-text-yellow-300 dark:x-text-yellow-500" />
             </Tooltip>
           )}
 
@@ -189,7 +189,7 @@ export function PluginCard({ pluginId, isForceDisabled }: PluginCardProps) {
               </div>
             }
           >
-            <LuTriangleAlert className="tw-size-4 tw-text-destructive" />
+            <LuTriangleAlert className="x-size-4 x-text-destructive" />
           </Tooltip>
         )}
 

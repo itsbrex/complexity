@@ -40,25 +40,25 @@ export default function PromptHistoryItem({
         }
       }}
     >
-      <div className="tw-flex tw-w-full tw-items-start tw-justify-between tw-gap-4">
-        <div className="tw-min-w-0 tw-flex-1">
-          <div className="tw-line-clamp-3 tw-whitespace-pre-wrap tw-break-words">
+      <div className="x-flex x-w-full x-items-start x-justify-between x-gap-4">
+        <div className="x-min-w-0 x-flex-1">
+          <div className="x-line-clamp-3 x-whitespace-pre-wrap x-break-words">
             {item.prompt.trim()}
           </div>
         </div>
-        <div className="tw-flex tw-shrink-0 tw-items-center tw-gap-2 tw-text-xs tw-text-muted-foreground">
+        <div className="x-flex x-shrink-0 x-items-center x-gap-2 x-text-xs x-text-muted-foreground">
           {isHighlighted && (
             <>
               <CopyButton
                 ref={copyButtonRef}
                 content={item.prompt}
-                iconProps={{ className: "tw-size-3" }}
+                iconProps={{ className: "x-size-3" }}
                 onClick={(e) => {
                   e.stopPropagation();
                 }}
               />
               <div
-                className="tw-text-muted-foreground tw-transition-colors hover:tw-text-foreground"
+                className="x-text-muted-foreground x-transition-colors hover:x-text-foreground"
                 onClick={(e) => {
                   e.stopPropagation();
                   onDelete(item.id);

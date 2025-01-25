@@ -48,7 +48,7 @@ export default function Tooltip({
       </TooltipTrigger>
       {!(typeof content === "string" && content.length === 0) && (
         <TooltipContent asChild portal={portal}>
-          <div className="tw-font-medium">{content}</div>
+          <div className="x-font-medium">{content}</div>
         </TooltipContent>
       )}
     </TooltipRoot>

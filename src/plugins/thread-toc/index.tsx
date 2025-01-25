@@ -68,24 +68,24 @@ export default function ThreadTocWrapper() {
       <div
         ref={containerRef}
         className={cn(
-          "tw-custom-scrollbar tw-fixed tw-top-[--panel-top]",
-          "tw-w-[--panel-width] tw-overflow-y-auto",
+          "x-custom-scrollbar x-fixed x-top-[--panel-top]",
+          "x-w-[--panel-width] x-overflow-y-auto",
           {
-            "tw-max-h-[60vh]": isFloating,
-            "tw-max-h-[80vh]": !isFloating,
+            "x-max-h-[60vh]": isFloating,
+            "x-max-h-[80vh]": !isFloating,
           },
-          "tw-transition-all tw-animate-in tw-fade-in",
+          "x-transition-all x-animate-in x-fade-in",
           {
-            "tw-left-[--panel-left]": !isFloating,
-            "tw-right-3 tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4 tw-shadow-lg md:tw-right-8":
+            "x-left-[--panel-left]": !isFloating,
+            "x-right-3 x-rounded-md x-border x-border-border/50 x-bg-secondary x-p-4 x-shadow-lg md:x-right-8":
               isFloating,
-            "tw-hidden": isFloating && !isOpen,
+            "x-hidden": isFloating && !isOpen,
           },
         )}
         style={panelStyles}
       >
         {isFloating && <CloseButton onClick={handleToggleClose} />}
-        <div className="tw-flex tw-flex-col tw-gap-2">
+        <div className="x-flex x-flex-col x-gap-2">
           {tocItems.map((item, idx) => (
             <TocItem
               key={idx}
@@ -111,19 +111,19 @@ const TocItem = memo(function TocItem({
 }) {
   return (
     <div
-      className="tw-flex tw-cursor-pointer tw-items-center tw-gap-3"
+      className="x-flex x-cursor-pointer x-items-center x-gap-3"
       onClick={onClick}
     >
       <div
-        className={cn("tw-h-5", {
-          "tw-min-w-[3px] tw-bg-primary": item.isActive,
-          "tw-min-w-[2px] tw-bg-muted-foreground": !item.isActive,
+        className={cn("x-h-5", {
+          "x-min-w-[3px] x-bg-primary": item.isActive,
+          "x-min-w-[2px] x-bg-muted-foreground": !item.isActive,
         })}
       />
       <div
-        className={cn("tw-block tw-truncate tw-transition-colors", {
-          "tw-font-medium tw-text-primary": item.isActive,
-          "tw-text-muted-foreground hover:tw-text-foreground": !item.isActive,
+        className={cn("x-block x-truncate x-transition-colors", {
+          "x-font-medium x-text-primary": item.isActive,
+          "x-text-muted-foreground hover:x-text-foreground": !item.isActive,
         })}
       >
         {item.title}
@@ -135,10 +135,10 @@ const TocItem = memo(function TocItem({
 function CloseButton({ onClick }: { onClick: () => void }) {
   return (
     <div
-      className="tw-absolute tw-right-2 tw-top-2 tw-cursor-pointer tw-rounded-full tw-p-1 tw-text-muted-foreground tw-transition-colors hover:tw-text-foreground"
+      className="x-absolute x-right-2 x-top-2 x-cursor-pointer x-rounded-full x-p-1 x-text-muted-foreground x-transition-colors hover:x-text-foreground"
       onClick={onClick}
     >
-      <LuX className="tw-size-4" />
+      <LuX className="x-size-4" />
     </div>
   );
 }

@@ -161,11 +161,11 @@ function useErrorTraces({
   );
 
   return (
-    <div className="tw-flex tw-flex-col">
+    <div className="x-flex x-flex-col">
       <div>Please provide these details to the maintainer:</div>
-      <div className="tw-relative tw-my-4 tw-max-h-[300px] tw-overflow-auto tw-rounded-md tw-bg-secondary tw-p-2 tw-font-mono">
+      <div className="x-relative x-my-4 x-max-h-[300px] x-overflow-auto x-rounded-md x-bg-secondary x-p-2 x-font-mono">
         <CopyButton
-          className="tw-sticky tw-right-2 tw-top-2 tw-float-right"
+          className="x-sticky x-right-2 x-top-2 x-float-right"
           content={tracesAsString}
         />
         <DebugInfoList traces={JSON.parse(tracesAsString)} />
@@ -182,7 +182,7 @@ function usePluginsError(
       Error occurred in dependent plugins:
       <Ul>
         {dependentPluginIds.map((pluginId) => (
-          <li key={pluginId} className="tw-text-foreground">
+          <li key={pluginId} className="x-text-foreground">
             {PLUGINS_METADATA[pluginId]?.title || pluginId}
           </li>
         ))}

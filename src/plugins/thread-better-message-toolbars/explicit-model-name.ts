@@ -19,13 +19,13 @@ const MODEL_NAME_COMPONENT_SELECTOR = `[data-cplx-component="${DOM_INTERNAL_DATA
 
 const handleInFlightMessage = ($answerHeading: JQuery<Element>) => {
   $answerHeading.find(MODEL_NAME_COMPONENT_SELECTOR).remove();
-  $answerHeading.find(":nth-child(2)").removeClass("tw-hidden");
+  $answerHeading.find(":nth-child(2)").removeClass("x-hidden");
 };
 
 const createModelBadge = (modelName: string) => {
   return $(`<div>${modelName.toLocaleUpperCase()}</div>`)
     .addClass(
-      "tw-font-mono tw-animate-in tw-fade-in tw-border tw-border-border/50 tw-p-1 tw-px-2 tw-rounded-md tw-text-xs tw-bg-secondary tw-font-medium",
+      "x-font-mono x-animate-in x-fade-in x-border x-border-border/50 x-p-1 x-px-2 x-rounded-md x-text-xs x-bg-secondary x-font-medium",
     )
     .internalComponentAttr(
       DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
@@ -76,8 +76,8 @@ const displayModelBadge = async ({
   $buttonBar
     .find('div:has(>svg[data-icon="microchip"])')
     .parent()
-    .addClass("tw-hidden");
-  $target.find(":nth-child(2)").addClass("tw-hidden");
+    .addClass("x-hidden");
+  $target.find(":nth-child(2)").addClass("x-hidden");
 
   const modelNameElement = createModelBadge(model.label);
   $target.append(modelNameElement);

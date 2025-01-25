@@ -32,7 +32,7 @@ export default function SidebarPinnedSpacesVisToggle() {
       }
     >
       <div
-        className="tw-invisible tw-flex tw-size-6 tw-items-center tw-justify-center tw-text-muted-foreground tw-opacity-0 tw-transition-all hover:tw-bg-black/5 hover:tw-text-foreground group-hover:tw-visible group-hover:tw-opacity-100 dark:hover:tw-bg-white/5"
+        className="x-invisible x-flex x-size-6 x-items-center x-justify-center x-text-muted-foreground x-opacity-0 x-transition-all hover:x-bg-black/5 hover:x-text-foreground group-hover:x-visible group-hover:x-opacity-100 dark:hover:x-bg-white/5"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();

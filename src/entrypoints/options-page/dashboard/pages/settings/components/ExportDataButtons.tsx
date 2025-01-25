@@ -29,7 +29,7 @@ export default function ExportDataButtons() {
     const settings = await getExportData();
     await navigator.clipboard.writeText(settings);
     toggleCopyButtonText(
-      <div className="tw-flex tw-items-center tw-gap-2">
+      <div className="x-flex x-items-center x-gap-2">
         <LuCheck />
         <span>Copied</span>
       </div>,
@@ -60,12 +60,12 @@ export default function ExportDataButtons() {
   }, [getExportData]);
 
   return (
-    <div className="tw-flex tw-gap-4">
+    <div className="x-flex x-gap-4">
       <AsyncButton
         variant="outline"
         loadingText={
-          <div className="tw-flex tw-items-center tw-gap-2">
-            <LuLoaderCircle className="tw-animate-spin" />
+          <div className="x-flex x-items-center x-gap-2">
+            <LuLoaderCircle className="x-animate-spin" />
             <span>Exporting</span>
           </div>
         }

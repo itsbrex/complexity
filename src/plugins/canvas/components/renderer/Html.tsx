@@ -59,7 +59,7 @@ const MemoizedPreviewContainer = memo(function MemoizedPreviewContainer({
   }, []);
 
   return (
-    <div id="sandpack-container" className="tw-relative tw-size-full">
+    <div id="sandpack-container" className="x-relative x-size-full">
       <SandpackProvider
         template="static"
         files={{

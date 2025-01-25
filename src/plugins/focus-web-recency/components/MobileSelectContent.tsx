@@ -6,15 +6,15 @@ import { RECENCIES } from "@/data/plugins/better-focus-selector/focus-web-recenc
 export function MobileSelectContent({ ...props }: DialogProps) {
   return (
     <Sheet lazyMount unmountOnExit {...props}>
-      <SheetContent side="bottom" className="tw-flex tw-flex-col tw-gap-2">
+      <SheetContent side="bottom" className="x-flex x-flex-col x-gap-2">
         {RECENCIES.map((recency) => (
           <SelectItem
             key={recency.value}
             checkboxOnSingleItem
             item={recency.value}
-            className="tw-flex tw-items-center tw-gap-2 tw-py-3 tw-font-medium"
+            className="x-flex x-items-center x-gap-2 x-py-3 x-font-medium"
           >
-            <span className="tw-grow-1">{recency.label}</span>
+            <span className="x-grow-1">{recency.label}</span>
           </SelectItem>
         ))}
       </SheetContent>

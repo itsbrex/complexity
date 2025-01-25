@@ -98,18 +98,18 @@ export function useHotkeyRecorder({
     recordedKeys != null ? isValidKeyCombination(recordedKeys) : true;
 
   const HotkeyRecorderUI = () => (
-    <div className="tw-flex tw-flex-col tw-gap-3">
-      <div className="tw-flex tw-items-center tw-gap-3">
+    <div className="x-flex x-flex-col x-gap-3">
+      <div className="x-flex x-items-center x-gap-3">
         <div
           className={cn(
-            "tw-flex tw-items-center tw-rounded-md",
+            "x-flex x-items-center x-rounded-md",
             isRecording &&
-              "tw-border tw-border-border/50 tw-bg-secondary tw-px-3 tw-py-1.5",
+              "x-border x-border-border/50 x-bg-secondary x-px-3 x-py-1.5",
           )}
         >
           {isRecording && !recordedKeys?.size ? (
-            <div className="tw-flex tw-items-center tw-gap-2 tw-text-sm tw-text-muted-foreground">
-              <div className="tw-h-1.5 tw-w-1.5 tw-animate-pulse tw-rounded-full tw-bg-primary" />
+            <div className="x-flex x-items-center x-gap-2 x-text-sm x-text-muted-foreground">
+              <div className="x-h-1.5 x-w-1.5 x-animate-pulse x-rounded-full x-bg-primary" />
               Recording...
             </div>
           ) : (
@@ -121,7 +121,7 @@ export function useHotkeyRecorder({
             <Button
               variant="outline"
               size="sm"
-              className="tw-min-w-[80px]"
+              className="x-min-w-[80px]"
               onClick={handleStopRecording}
             >
               Save
@@ -131,7 +131,7 @@ export function useHotkeyRecorder({
           <Button
             variant="outline"
             size="sm"
-            className="tw-min-w-[80px]"
+            className="x-min-w-[80px]"
             onClick={handleStartRecording}
           >
             Record
@@ -139,8 +139,8 @@ export function useHotkeyRecorder({
         )}
       </div>
       {isRecording && !isValidCombination && recordedKeys?.size > 0 && (
-        <div className="tw-flex tw-items-center tw-gap-2 tw-text-sm tw-text-destructive">
-          <div className="tw-i-lucide-alert-circle tw-h-4 tw-w-4" />
+        <div className="x-flex x-items-center x-gap-2 x-text-sm x-text-destructive">
+          <div className="x-i-lucide-alert-circle x-h-4 x-w-4" />
           Invalid combination. Use one modifier key ({isMac
             ? "⌘"
             : "Ctrl"}, {isMac ? "Option" : "Alt"}, {isMac ? "Shift" : "Shift"})

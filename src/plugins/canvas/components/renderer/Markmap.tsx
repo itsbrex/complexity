@@ -65,13 +65,13 @@ export default function MarkmapRenderer() {
   }, [mutate, code, colorScheme]);
 
   return (
-    <div className="tw-relative tw-size-full">
+    <div className="x-relative x-size-full">
       {!isPending &&
         markmapRendererResponded &&
         !isSuccess &&
         !result?.error && (
-          <div className="tw-absolute tw-inset-1/2 tw-w-max -tw-translate-x-1/2 -tw-translate-y-1/2">
-            <span className="tw-animate-in tw-fade-in">
+          <div className="x-absolute x-inset-1/2 x-w-max -x-translate-x-1/2 -x-translate-y-1/2">
+            <span className="x-animate-in x-fade-in">
               Failed to render provided markmap code. Try to reload the Canvas.
             </span>
           </div>
@@ -80,15 +80,15 @@ export default function MarkmapRenderer() {
         markmapRendererResponded &&
         !isSuccess &&
         result?.error && (
-          <div className="tw-flex tw-flex-col tw-gap-4 tw-p-4 tw-font-mono">
-            <div className="tw-text-lg tw-font-bold tw-text-destructive">
+          <div className="x-flex x-flex-col x-gap-4 x-p-4 x-font-mono">
+            <div className="x-text-lg x-font-bold x-text-destructive">
               An error occurred while rendering:
             </div>
-            <div className="tw-whitespace-pre tw-animate-in tw-fade-in">
+            <div className="x-whitespace-pre x-animate-in x-fade-in">
               {result.error}
             </div>
             <Button
-              className="tw-w-max"
+              className="x-w-max"
               variant="destructive"
               onClick={() => {
                 const $textarea = UiUtils.getActiveQueryBoxTextarea();
@@ -107,15 +107,15 @@ export default function MarkmapRenderer() {
       <svg
         id={`canvas-markmap-container-${selectedCodeBlockLocation?.messageBlockIndex}-${selectedCodeBlockLocation?.codeBlockIndex}`}
         className={cn(
-          "tw-size-full !tw-font-sans !tw-text-foreground tw-transition-opacity",
+          "x-size-full !x-font-sans !x-text-foreground x-transition-opacity",
           {
-            "tw-opacity-0": !markmapRendererResponded || !isSuccess,
+            "x-opacity-0": !markmapRendererResponded || !isSuccess,
           },
         )}
       />
       {(isPending || isSuccess == null) && (
-        <div className="tw-absolute tw-inset-1/2 -tw-translate-x-1/2 -tw-translate-y-1/2 tw-animate-in tw-fade-in">
-          <LuLoaderCircle className="tw-size-10 tw-animate-spin tw-text-muted-foreground" />
+        <div className="x-absolute x-inset-1/2 -x-translate-x-1/2 -x-translate-y-1/2 x-animate-in x-fade-in">
+          <LuLoaderCircle className="x-size-10 x-animate-spin x-text-muted-foreground" />
         </div>
       )}
     </div>

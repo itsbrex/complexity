@@ -37,7 +37,7 @@ export default function OpenAsInteractiveHtml() {
           );
         }}
       >
-        <LuExternalLink className="tw-size-4" />
+        <LuExternalLink className="x-size-4" />
       </Button>
     </Tooltip>
   );

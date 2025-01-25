@@ -28,13 +28,13 @@ const DropdownMenuContent = ({
       <Menu.Positioner>
         <Menu.Content
           className={cn(
-            "tw-z-50 tw-min-w-[8rem] tw-overflow-hidden tw-rounded-md tw-border tw-border-border/50 tw-bg-popover tw-p-1 tw-text-popover-foreground tw-shadow-md focus-visible:tw-outline-none",
-            "data-[state=open]:tw-animate-in data-[state=open]:tw-fade-in data-[state=open]:tw-zoom-in-95",
-            "data-[state=closed]:tw-animate-out data-[state=closed]:tw-fade-out data-[state=closed]:tw-zoom-out-95",
-            "data-[placement^=top]:tw-slide-in-from-bottom-2",
-            "data-[placement^=bottom]:tw-slide-in-from-top-2",
-            "data-[placement^=left]:tw-slide-in-from-right-2",
-            "data-[placement^=right]:tw-slide-in-from-left-2",
+            "x-z-50 x-min-w-[8rem] x-overflow-hidden x-rounded-md x-border x-border-border/50 x-bg-popover x-p-1 x-text-popover-foreground x-shadow-md focus-visible:x-outline-none",
+            "data-[state=open]:x-animate-in data-[state=open]:x-fade-in data-[state=open]:x-zoom-in-95",
+            "data-[state=closed]:x-animate-out data-[state=closed]:x-fade-out data-[state=closed]:x-zoom-out-95",
+            "data-[placement^=top]:x-slide-in-from-bottom-2",
+            "data-[placement^=bottom]:x-slide-in-from-top-2",
+            "data-[placement^=left]:x-slide-in-from-right-2",
+            "data-[placement^=right]:x-slide-in-from-left-2",
             className,
           )}
           {...props}
@@ -53,8 +53,8 @@ const DropdownMenuItem = ({
 }: Menu.ItemProps & { inset?: boolean }) => (
   <Menu.Item
     className={cn(
-      "tw-relative tw-flex tw-cursor-default tw-select-none tw-items-center tw-rounded-sm tw-px-2 tw-py-1.5 tw-text-sm tw-outline-none tw-transition-colors focus:tw-bg-primary-foreground focus:tw-text-primary data-[disabled]:tw-pointer-events-none data-[highlighted]:tw-bg-primary-foreground data-[highlighted]:tw-text-primary data-[disabled]:tw-opacity-50",
-      inset && "tw-pl-8",
+      "x-relative x-flex x-cursor-default x-select-none x-items-center x-rounded-sm x-px-2 x-py-1.5 x-text-sm x-outline-none x-transition-colors focus:x-bg-primary-foreground focus:x-text-primary data-[disabled]:x-pointer-events-none data-[highlighted]:x-bg-primary-foreground data-[highlighted]:x-text-primary data-[disabled]:x-opacity-50",
+      inset && "x-pl-8",
       className,
     )}
     {...props}
@@ -72,8 +72,8 @@ const DropdownMenuLabel = ({
 }: Menu.ItemGroupLabelProps & { inset?: boolean }) => (
   <Menu.ItemGroupLabel
     className={cn(
-      "tw-px-2 tw-py-1.5 tw-text-sm tw-text-muted-foreground",
-      inset && "tw-pl-8",
+      "x-px-2 x-py-1.5 x-text-sm x-text-muted-foreground",
+      inset && "x-pl-8",
       className,
     )}
     {...props}
@@ -87,7 +87,7 @@ const DropdownMenuSeparator = ({
   ...props
 }: Menu.SeparatorProps) => (
   <Menu.Separator
-    className={cn("-tw-mx-1 tw-my-1 tw-h-px tw-bg-muted", className)}
+    className={cn("-x-mx-1 x-my-1 x-h-px x-bg-muted", className)}
     {...props}
   />
 );
@@ -115,13 +115,13 @@ const DropdownMenuSubTrigger = ({
 }: Menu.TriggerItemProps) => (
   <Menu.TriggerItem
     className={cn(
-      "tw-relative tw-flex tw-cursor-default tw-select-none tw-items-center tw-justify-between tw-rounded-sm tw-text-sm tw-outline-none tw-transition-colors focus:tw-bg-primary-foreground focus:tw-text-primary data-[disabled]:tw-pointer-events-none data-[highlighted]:tw-bg-primary-foreground data-[highlighted]:tw-text-primary data-[disabled]:tw-opacity-50",
+      "x-relative x-flex x-cursor-default x-select-none x-items-center x-justify-between x-rounded-sm x-text-sm x-outline-none x-transition-colors focus:x-bg-primary-foreground focus:x-text-primary data-[disabled]:x-pointer-events-none data-[highlighted]:x-bg-primary-foreground data-[highlighted]:x-text-primary data-[disabled]:x-opacity-50",
       className,
     )}
     {...props}
   >
     {children}
-    <ChevronRight className="tw-ml-2 tw-size-4" />
+    <ChevronRight className="x-ml-2 x-size-4" />
   </Menu.TriggerItem>
 );
 DropdownMenuSubTrigger.displayName = "DropdownMenuSubTrigger";
@@ -137,7 +137,7 @@ const DropdownMenuShortcut = ({
     <div
       ref={ref}
       className={cn(
-        "tw-ml-auto tw-inline tw-text-xs tw-tracking-widest tw-opacity-60",
+        "x-ml-auto x-inline x-text-xs x-tracking-widest x-opacity-60",
         className,
       )}
       {...props}

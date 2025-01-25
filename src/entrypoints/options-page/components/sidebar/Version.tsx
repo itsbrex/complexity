@@ -46,7 +46,7 @@ export default function Version() {
 
   return (
     <div
-      className="tw-mx-auto tw-mb-4 tw-w-fit tw-text-xs tw-text-muted-foreground"
+      className="x-mx-auto x-mb-4 x-w-fit x-text-xs x-text-muted-foreground"
       onClick={() => setClicks((prev) => prev + 1)}
     >
       v{packageJson.version}

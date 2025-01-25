@@ -35,9 +35,9 @@ const CanvasPlaceholderWrapper = memo(function CanvasPlaceholderWrapper() {
   return (
     <div
       className={cn(
-        "tw-group tw-my-4 tw-flex tw-w-max tw-cursor-pointer tw-select-none tw-items-center tw-divide-x-2 tw-divide-border/50 tw-overflow-hidden tw-rounded-lg tw-border tw-border-border/50 tw-bg-secondary tw-transition-all hover:tw-border-primary",
+        "x-group x-my-4 x-flex x-w-max x-cursor-pointer x-select-none x-items-center x-divide-x-2 x-divide-border/50 x-overflow-hidden x-rounded-lg x-border x-border-border/50 x-bg-secondary x-transition-all hover:x-border-primary",
         {
-          "tw-border-primary": isSelected,
+          "x-border-primary": isSelected,
         },
       )}
       onClick={() => {
@@ -53,32 +53,32 @@ const CanvasPlaceholderWrapper = memo(function CanvasPlaceholderWrapper() {
     >
       <div
         className={cn(
-          "tw-group-hover:tw-bg-primary/10 tw-flex tw-size-16 tw-items-center tw-justify-center",
+          "x-group-hover:x-bg-primary/10 x-flex x-size-16 x-items-center x-justify-center",
           {
-            "tw-bg-primary/10": isSelected,
+            "x-bg-primary/10": isSelected,
           },
         )}
       >
         {isInFlight ? (
-          <LuLoaderCircle className="tw-size-4 tw-animate-spin tw-text-muted-foreground" />
+          <LuLoaderCircle className="x-size-4 x-animate-spin x-text-muted-foreground" />
         ) : (
-          <placeholderElements.icon className="tw-size-8" />
+          <placeholderElements.icon className="x-size-8" />
         )}
       </div>
-      <div className="tw-flex tw-max-w-[300px] tw-flex-col tw-border-l tw-bg-background tw-px-4 tw-py-2">
+      <div className="x-flex x-max-w-[300px] x-flex-col x-border-l x-bg-background x-px-4 x-py-2">
         <div
           className={cn(
-            "tw-line-clamp-1 tw-text-base tw-text-foreground tw-transition-all group-hover:tw-text-primary",
+            "x-line-clamp-1 x-text-base x-text-foreground x-transition-all group-hover:x-text-primary",
             {
-              "tw-text-primary": isSelected,
+              "x-text-primary": isSelected,
             },
           )}
         >
           {title.length > 0 ? title : placeholderElements.defaultTitle}
         </div>
-        <div className="tw-w-max tw-text-sm tw-text-muted-foreground">
+        <div className="x-w-max x-text-sm x-text-muted-foreground">
           {isInFlight ? (
-            <span className="tw-animate-pulse">Generating...</span>
+            <span className="x-animate-pulse">Generating...</span>
           ) : (
             placeholderElements.description
           )}

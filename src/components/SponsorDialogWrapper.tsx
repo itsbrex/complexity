@@ -20,57 +20,57 @@ export default function SponsorDialogWrapper({
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
-        <div className="tw-absolute tw-inset-0 -tw-z-10 tw-bg-gradient-to-b tw-from-primary/20 tw-to-transparent" />
+        <div className="x-absolute x-inset-0 -x-z-10 x-bg-gradient-to-b x-from-primary/20 x-to-transparent" />
 
         <DialogHeader>
           <DialogTitle>{t("common:sponsorDialog.title")}</DialogTitle>
-          <DialogDescription className="tw-text-foreground">
+          <DialogDescription className="x-text-foreground">
             {t("common:sponsorDialog.description")}
           </DialogDescription>
         </DialogHeader>
 
-        <div className="tw-w-full tw-space-y-2">
-          <div className="tw-text-muted-foreground">
+        <div className="x-w-full x-space-y-2">
+          <div className="x-text-muted-foreground">
             {t("common:sponsorDialog.donation.title")}
           </div>
-          <div className="tw-flex tw-flex-col tw-gap-2">
-            <Button asChild className="tw-space-x-2">
+          <div className="x-flex x-flex-col x-gap-2">
+            <Button asChild className="x-space-x-2">
               <a
                 href="https://paypal.me/pnd280"
                 target="_blank"
                 rel="noreferrer"
-                className="tw-flex tw-items-center tw-gap-2"
+                className="x-flex x-items-center x-gap-2"
               >
-                <SiPaypal className="tw-size-6" />
+                <SiPaypal className="x-size-6" />
                 <span>PayPal</span>
               </a>
             </Button>
-            <Button asChild className="tw-space-x-2">
+            <Button asChild className="x-space-x-2">
               <a
                 href="https://ko-fi.com/pnd280"
                 target="_blank"
                 rel="noreferrer"
-                className="tw-flex tw-items-center tw-gap-2"
+                className="x-flex x-items-center x-gap-2"
               >
-                <SiKofi className="tw-size-6" />
+                <SiKofi className="x-size-6" />
                 <span>Ko-fi</span>
               </a>
             </Button>
           </div>
         </div>
-        <div className="tw-mt-4 tw-w-full tw-space-y-2">
-          <div className="tw-text-muted-foreground">
+        <div className="x-mt-4 x-w-full x-space-y-2">
+          <div className="x-text-muted-foreground">
             {t("common:sponsorDialog.sponsorship.title")}
           </div>
-          <Button asChild className="tw-group tw-w-full tw-space-x-2">
+          <Button asChild className="x-group x-w-full x-space-x-2">
             <a href="mailto:pnd280@gmail.com" target="_blank" rel="noreferrer">
-              <span className="tw-flex tw-items-center tw-gap-2 group-hover:tw-hidden">
-                <LuMail className="tw-size-6" />
+              <span className="x-flex x-items-center x-gap-2 group-hover:x-hidden">
+                <LuMail className="x-size-6" />
                 <span>
                   {t("common:sponsorDialog.sponsorship.contactEmail")}
                 </span>
               </span>
-              <span className="tw-hidden tw-animate-in tw-fade-in-0 group-hover:tw-block group-hover:tw-text-primary">
+              <span className="x-hidden x-animate-in x-fade-in-0 group-hover:x-block group-hover:x-text-primary">
                 pnd280@gmail.com
               </span>
             </a>

@@ -11,7 +11,7 @@ const ToastViewport = ({
 }: ToastPrimitives.ToastViewportProps) => (
   <ToastPrimitives.Viewport
     className={cn(
-      "tw-fixed tw-left-1/2 tw-top-[var(--navbar-height,0)] tw-z-[100] tw-flex tw-max-h-screen tw-w-screen -tw-translate-x-1/2 tw-flex-col-reverse tw-items-center tw-justify-end tw-p-4 md:tw-left-[unset] md:tw-right-8 md:tw-w-auto md:tw-max-w-[420px] md:tw-translate-x-[unset]",
+      "x-fixed x-left-1/2 x-top-[var(--navbar-height,0)] x-z-[100] x-flex x-max-h-screen x-w-screen -x-translate-x-1/2 x-flex-col-reverse x-items-center x-justify-end x-p-4 md:x-left-[unset] md:x-right-8 md:x-w-auto md:x-max-w-[420px] md:x-translate-x-[unset]",
       className,
     )}
     {...props}
@@ -20,14 +20,14 @@ const ToastViewport = ({
 ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
 
 const toastVariants = cva(
-  "tw-group tw-pointer-events-auto tw-relative tw-flex !tw-w-full tw-items-center tw-justify-between tw-space-x-4 tw-overflow-hidden tw-rounded-md tw-border tw-p-6 tw-pr-8 tw-shadow-lg tw-transition-all data-[swipe=cancel]:tw-translate-x-0 data-[swipe=end]:tw-translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:tw-translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:tw-transition-none data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out data-[swipe=end]:tw-animate-out data-[state=closed]:tw-fade-out-80 data-[state=closed]:tw-slide-out-to-right-full data-[state=open]:tw-slide-in-from-top-full data-[state=open]:sm:tw-slide-in-from-top-full",
+  "x-group x-pointer-events-auto x-relative x-flex !x-w-full x-items-center x-justify-between x-space-x-4 x-overflow-hidden x-rounded-md x-border x-p-6 x-pr-8 x-shadow-lg x-transition-all data-[swipe=cancel]:x-translate-x-0 data-[swipe=end]:x-translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:x-translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:x-transition-none data-[state=open]:x-animate-in data-[state=closed]:x-animate-out data-[swipe=end]:x-animate-out data-[state=closed]:x-fade-out-80 data-[state=closed]:x-slide-out-to-right-full data-[state=open]:x-slide-in-from-top-full data-[state=open]:sm:x-slide-in-from-top-full",
   {
     variants: {
       variant: {
         default:
-          "tw-border-border/50 tw-bg-secondary tw-text-secondary-foreground",
+          "x-border-border/50 x-bg-secondary x-text-secondary-foreground",
         destructive:
-          "tw-destructive tw-group tw-border-destructive tw-bg-destructive tw-text-destructive-foreground",
+          "x-destructive x-group x-border-destructive x-bg-destructive x-text-destructive-foreground",
       },
     },
     defaultVariants: {
@@ -58,7 +58,7 @@ const ToastAction = ({
 }: ToastPrimitives.ToastActionProps) => (
   <ToastPrimitives.Action
     className={cn(
-      "tw-inline-flex tw-h-8 tw-shrink-0 tw-items-center tw-justify-center tw-rounded-md tw-border tw-border-border/50 tw-bg-transparent tw-px-3 tw-text-sm tw-font-medium tw-ring-offset-background tw-transition-colors hover:tw-bg-secondary focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-ring focus:tw-ring-offset-2 disabled:tw-pointer-events-none disabled:tw-opacity-50 group-[.destructive]:tw-border-muted/40 group-[.destructive]:hover:tw-border-destructive/30 group-[.destructive]:hover:tw-bg-destructive group-[.destructive]:hover:tw-text-destructive-foreground group-[.destructive]:focus:tw-ring-destructive",
+      "x-inline-flex x-h-8 x-shrink-0 x-items-center x-justify-center x-rounded-md x-border x-border-border/50 x-bg-transparent x-px-3 x-text-sm x-font-medium x-ring-offset-background x-transition-colors hover:x-bg-secondary focus:x-outline-none focus:x-ring-2 focus:x-ring-ring focus:x-ring-offset-2 disabled:x-pointer-events-none disabled:x-opacity-50 group-[.destructive]:x-border-muted/40 group-[.destructive]:hover:x-border-destructive/30 group-[.destructive]:hover:x-bg-destructive group-[.destructive]:hover:x-text-destructive-foreground group-[.destructive]:focus:x-ring-destructive",
       className,
     )}
     {...props}
@@ -72,13 +72,13 @@ const ToastClose = ({
 }: ToastPrimitives.ToastCloseProps) => (
   <ToastPrimitives.Close
     className={cn(
-      "tw-absolute tw-right-2 tw-top-2 tw-rounded-md tw-p-1 tw-text-foreground/50 tw-opacity-0 tw-transition-opacity hover:tw-text-foreground focus:tw-opacity-100 focus:tw-outline-none focus:tw-ring-2 group-hover:tw-opacity-100 group-[.destructive]:tw-text-red-300 group-[.destructive]:hover:tw-text-red-50 group-[.destructive]:focus:tw-ring-red-400 group-[.destructive]:focus:tw-ring-offset-red-600",
+      "x-absolute x-right-2 x-top-2 x-rounded-md x-p-1 x-text-foreground/50 x-opacity-0 x-transition-opacity hover:x-text-foreground focus:x-opacity-100 focus:x-outline-none focus:x-ring-2 group-hover:x-opacity-100 group-[.destructive]:x-text-red-300 group-[.destructive]:hover:x-text-red-50 group-[.destructive]:focus:x-ring-red-400 group-[.destructive]:focus:x-ring-offset-red-600",
       className,
     )}
     toast-close=""
     {...props}
   >
-    <X className="tw-h-4 tw-w-4" />
+    <X className="x-h-4 x-w-4" />
   </ToastPrimitives.Close>
 );
 ToastClose.displayName = ToastPrimitives.Close.displayName;
@@ -88,7 +88,7 @@ const ToastTitle = ({
   ...props
 }: ToastPrimitives.ToastTitleProps) => (
   <ToastPrimitives.Title
-    className={cn("tw-text-sm tw-font-semibold", className)}
+    className={cn("x-text-sm x-font-semibold", className)}
     {...props}
   />
 );
@@ -99,7 +99,7 @@ const ToastDescription = ({
   ...props
 }: ToastPrimitives.ToastDescriptionProps) => (
   <ToastPrimitives.Description
-    className={cn("tw-text-sm tw-opacity-90", className)}
+    className={cn("x-text-sm x-opacity-90", className)}
     {...props}
   />
 );

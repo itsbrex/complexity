@@ -18,12 +18,9 @@ export const getPopoverPositionConfig = (
 };
 
 export const getPopoverContentClasses = (storeType: QueryBoxType) =>
-  cn(
-    "tw-overflow-y-auto tw-border-border tw-p-0 tw-font-medium tw-shadow-none",
-    {
-      "tw-rounded-b-none tw-border-2 tw-border-b-0": storeType === "main",
-    },
-  );
+  cn("x-overflow-y-auto x-border-border x-p-0 x-font-medium x-shadow-none", {
+    "x-rounded-b-none x-border-2 x-border-b-0": storeType === "main",
+  });
 
 export const handleCommandInputKeyDown =
   (commandRef: React.RefObject<HTMLDivElement | null>) =>

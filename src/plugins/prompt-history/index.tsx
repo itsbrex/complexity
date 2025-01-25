@@ -79,7 +79,7 @@ export default function PromptHistorySlashMenuItemsWrapper() {
   return (
     <CommandGroup
       heading={
-        <div className="tw-flex tw-items-center tw-gap-1 tw-text-muted-foreground">
+        <div className="x-flex x-items-center x-gap-1 x-text-muted-foreground">
           <LuHistory />
           <span>auto-saved prompts</span>
           <ClearAllButton />
@@ -94,7 +94,7 @@ export default function PromptHistorySlashMenuItemsWrapper() {
           onDelete={deleteItem}
         />
       ))}
-      <div ref={loadMoreRef} className="tw-h-1" />
+      <div ref={loadMoreRef} className="x-h-1" />
     </CommandGroup>
   );
 }

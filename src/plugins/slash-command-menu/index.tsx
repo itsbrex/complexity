@@ -46,7 +46,7 @@ export default function SlashCommandMenuWrapper({
   if (!anchor || !document.contains(anchor) || !isActive) return null;
 
   if (isMainQueryBox) {
-    $(anchor).find(">div").toggleClass("[&>div]:!tw-rounded-t-none", isOpen);
+    $(anchor).find(">div").toggleClass("[&>div]:!x-rounded-t-none", isOpen);
   }
 
   return (
@@ -100,7 +100,7 @@ const CommandInputHandler = ({
     <CommandInput
       ref={commandInputRef}
       value={searchValue}
-      className="tw-hidden"
+      className="x-hidden"
       onKeyDown={handleCommandInputKeyDown(commandRef)}
     />
   );
@@ -135,13 +135,13 @@ const CommandContent = (props: CommandContentProps) => {
         }}
         shouldFilter={shouldFilterItems(filter)}
         value={selectedValue}
-        className={cn("tw-bg-background dark:tw-bg-secondary", {
-          "tw-rounded-b-none": storeType === "main",
+        className={cn("x-bg-background dark:x-bg-secondary", {
+          "x-rounded-b-none": storeType === "main",
         })}
         onValueChange={setSelectedValue}
       >
         <CommandInputHandler {...props} />
-        <CommandList className="tw-max-h-[200px]">
+        <CommandList className="x-max-h-[200px]">
           <CommandEmpty>No results found</CommandEmpty>
           {!filter && <DefaultCommandGroup />}
           {filter === "promptHistory" && <PromptHistorySlashMenuItemsWrapper />}

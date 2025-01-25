@@ -34,7 +34,7 @@ export default function CodeView() {
 
   const preTag = useMemo(() => {
     const PreComponent = ({ children }: { children: ReactNode }) => (
-      <pre className="tw-px-4 tw-py-2">{children}</pre>
+      <pre className="x-px-4 x-py-2">{children}</pre>
     );
     PreComponent.displayName = "PreTag";
     return PreComponent;
@@ -44,9 +44,9 @@ export default function CodeView() {
     <div
       id="canvas-code-view"
       className={cn(
-        "tw-h-full tw-w-max tw-min-w-full tw-text-xs [&>pre]:tw-m-0 [&>pre]:tw-size-full [&>pre]:tw-rounded-t-none [&_span.linenumber]:!tw-text-muted-foreground",
+        "x-h-full x-w-max x-min-w-full x-text-xs [&>pre]:x-m-0 [&>pre]:x-size-full [&>pre]:x-rounded-t-none [&_span.linenumber]:!x-text-muted-foreground",
         {
-          "[&_span]:tw-duration-300 [&_span]:tw-animate-in [&_span]:tw-fade-in":
+          "[&_span]:x-duration-300 [&_span]:x-animate-in [&_span]:x-fade-in":
             isInFlight,
         },
       )}

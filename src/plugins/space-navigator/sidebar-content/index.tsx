@@ -15,7 +15,7 @@ export default function SpaceNavigatorWrapper() {
 
     const $spaceButtonWrapper = $(spaceButtonWrapper);
 
-    $spaceButtonWrapper.addClass("tw-group");
+    $spaceButtonWrapper.addClass("x-group");
 
     const $target = $spaceButtonWrapper.find(
       `.flex.items-center.min-w-0.justify-left.w-full.gap-xs`,
@@ -54,7 +54,7 @@ export default function SpaceNavigatorWrapper() {
       {$triggerButtonsPortalContainer != null &&
         $triggerButtonsPortalContainer.length && (
           <Portal container={$triggerButtonsPortalContainer[0]}>
-            <div className="-tw-mr-2 tw-flex tw-w-full tw-flex-1 tw-items-center tw-justify-end tw-gap-1">
+            <div className="-x-mr-2 x-flex x-w-full x-flex-1 x-items-center x-justify-end x-gap-1">
               <SidebarPinnedSpacesVisToggle />
               <SpaceNavigator />
             </div>

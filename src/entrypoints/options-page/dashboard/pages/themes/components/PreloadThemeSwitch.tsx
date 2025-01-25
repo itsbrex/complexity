@@ -30,9 +30,9 @@ export default function PreloadThemeSwitch() {
   if (!settings) return null;
 
   return (
-    <div className="tw-flex tw-items-center tw-gap-2 md:tw-ml-auto">
+    <div className="x-flex x-items-center x-gap-2 md:x-ml-auto">
       <Switch
-        className="tw-flex-col tw-gap-2 md:tw-flex-row md:tw-gap-0"
+        className="x-flex-col x-gap-2 md:x-flex-row md:x-gap-0"
         textLabel="Preload theme for a better experience"
         disabled={!hasPermissions}
         checked={settings.preloadTheme}
@@ -40,23 +40,23 @@ export default function PreloadThemeSwitch() {
           mutation.mutate((draft) => (draft.preloadTheme = checked));
         }}
       />
-      <div className="tw-text-sm tw-text-muted-foreground">
+      <div className="x-text-sm x-text-muted-foreground">
         <Tooltip
           content={
-            <div className="tw-text-balance tw-p-2">
+            <div className="x-text-balance x-p-2">
               Instead of inserting <InlineCode>&lt;style&gt;</InlineCode> tags,
               Complexity uses <InlineCode>scripting</InlineCode> and{" "}
               <InlineCode>webNavigation</InlineCode> permissions to inject
               styles before the page loads. This results in a smooth,
               flicker-free experience. Complexity{" "}
-              <span className="tw-font-semibold tw-underline">ONLY</span> uses
+              <span className="x-font-semibold x-underline">ONLY</span> uses
               these permissions for theme injection - it never tracks your
               browsing history or collects any personal data. Please review the
               source code if you have further questions.
             </div>
           }
         >
-          <LuCircleHelp className="tw-size-4" />
+          <LuCircleHelp className="x-size-4" />
         </Tooltip>
       </div>
       {!hasPermissions && (
@@ -74,7 +74,7 @@ export default function PreloadThemeSwitch() {
               <InlineCode>webNavigation</InlineCode> permissions. While the
               permission prompt mentions access to browsing history, we want to
               assure you that we{" "}
-              <span className="tw-font-semibold tw-text-primary tw-underline">
+              <span className="x-font-semibold x-text-primary x-underline">
                 NEVER
               </span>{" "}
               read or store any of your history data - these permissions are

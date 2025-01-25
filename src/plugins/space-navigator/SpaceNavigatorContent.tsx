@@ -53,7 +53,7 @@ export default function SpaceNavigatorContent({
         )}
         value={searchValue}
         className={cn({
-          "tw-font-medium": !searchValue,
+          "x-font-medium": !searchValue,
         })}
         searchIcon={false}
         onValueChange={(value) => setSearchValue(value)}
@@ -63,11 +63,11 @@ export default function SpaceNavigatorContent({
           {t("plugin-space-navigator:spaceNavigator.search.noResults")}
         </CommandEmpty>
       )}
-      <div className="tw-flex tw-items-start tw-divide-x tw-divide-border/50">
-        <CommandList className="tw-flex-1">
+      <div className="x-flex x-items-start x-divide-x x-divide-border/50">
+        <CommandList className="x-flex-1">
           {isLoading ? (
-            <div className="tw-my-10 tw-w-full tw-space-x-2 tw-text-center">
-              <LuLoaderCircle className="tw-inline-block tw-size-4 tw-animate-spin" />
+            <div className="x-my-10 x-w-full x-space-x-2 x-text-center">
+              <LuLoaderCircle className="x-inline-block x-size-4 x-animate-spin" />
               <span>{t("plugin-space-navigator:spaceNavigator.loading")}</span>
             </div>
           ) : (
@@ -79,7 +79,7 @@ export default function SpaceNavigatorContent({
           )}
         </CommandList>
         {!isMobile && !isLoading && spaces && (
-          <div className="custom-scrollbar tw-h-[300px] tw-overflow-auto sm:tw-w-[300px] lg:tw-w-[400px] xl:tw-w-[500px]">
+          <div className="custom-scrollbar x-h-[300px] x-overflow-auto sm:x-w-[300px] lg:x-w-[400px] xl:x-w-[500px]">
             <SpaceItemPreview spaces={spaces} />
           </div>
         )}

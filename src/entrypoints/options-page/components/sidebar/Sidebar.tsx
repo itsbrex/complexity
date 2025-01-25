@@ -12,8 +12,8 @@ export default function Sidebar() {
   const { setIsOpen } = use(MobileSidebarContext);
 
   return (
-    <div className="tw-sticky tw-top-0 tw-flex tw-h-full tw-flex-col tw-justify-between md:tw-h-screen">
-      <div className="tw-overflow-y-auto tw-p-4 tw-px-2">
+    <div className="x-sticky x-top-0 x-flex x-h-full x-flex-col x-justify-between md:x-h-screen">
+      <div className="x-overflow-y-auto x-p-4 x-px-2">
         <Version />
         {navItems.map(({ icon: Icon, label, path }) => (
           <NavLink
@@ -21,27 +21,26 @@ export default function Sidebar() {
             to={path}
             className={({ isActive }) =>
               cn(
-                "tw-mb-1 tw-flex tw-items-center tw-rounded-md tw-p-2 tw-px-4 tw-text-sm tw-font-medium tw-transition-all",
+                "x-mb-1 x-flex x-items-center x-rounded-md x-p-2 x-px-4 x-text-sm x-font-medium x-transition-all",
                 {
-                  "tw-bg-primary-foreground tw-text-primary": isActive,
-                  "tw-text-muted-foreground hover:tw-text-foreground":
-                    !isActive,
+                  "x-bg-primary-foreground x-text-primary": isActive,
+                  "x-text-muted-foreground hover:x-text-foreground": !isActive,
                 },
               )
             }
           >
-            <Icon className="tw-mr-2 tw-size-4" />
+            <Icon className="x-mr-2 x-size-4" />
             <span>{label}</span>
           </NavLink>
         ))}
       </div>
 
-      <div className="tw-sticky tw-bottom-0 tw-z-10 tw-flex tw-shrink-0 tw-flex-col tw-gap-4 tw-bg-background tw-p-4">
+      <div className="x-sticky x-bottom-0 x-z-10 x-flex x-shrink-0 x-flex-col x-gap-4 x-bg-background x-p-4">
         <SidebarUpdateAnnouncer />
 
         <SponsorDialogWrapper>
           <div
-            className="tw-group tw-relative tw-w-full tw-cursor-pointer tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4 tw-text-sm tw-font-medium tw-shadow-lg tw-transition-all hover:tw-scale-105 hover:tw-border-primary hover:tw-bg-primary/10"
+            className="x-group x-relative x-w-full x-cursor-pointer x-rounded-md x-border x-border-border/50 x-bg-secondary x-p-4 x-text-sm x-font-medium x-shadow-lg x-transition-all hover:x-scale-105 hover:x-border-primary hover:x-bg-primary/10"
             onClick={() => {
               setIsOpen(false);
             }}
@@ -52,12 +51,12 @@ export default function Sidebar() {
                 emphasis: (
                   <span
                     key="sidebar.supporterMessage"
-                    className="tw-font-medium tw-text-primary"
+                    className="x-font-medium x-text-primary"
                   />
                 ),
               }}
             />
-            <LuExternalLink className="tw-absolute tw-right-2 tw-top-2 tw-size-3.5 tw-text-muted group-hover:tw-text-primary" />
+            <LuExternalLink className="x-absolute x-right-2 x-top-2 x-size-3.5 x-text-muted group-hover:x-text-primary" />
           </div>
         </SponsorDialogWrapper>
       </div>

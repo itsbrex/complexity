@@ -9,7 +9,7 @@ export default function FocusWebRecencySelectorPluginDetails() {
   if (!settings) return null;
 
   return (
-    <div className="tw-flex tw-max-w-lg tw-flex-col tw-gap-4">
+    <div className="x-flex x-max-w-lg x-flex-col x-gap-4">
       <Switch
         textLabel="Enable"
         checked={pluginSettings?.enabled ?? false}
@@ -21,11 +21,11 @@ export default function FocusWebRecencySelectorPluginDetails() {
         }}
       />
 
-      <div className="tw-mx-auto tw-w-full tw-max-w-[700px]">
+      <div className="x-mx-auto x-w-full x-max-w-[700px]">
         <Image
           src="https://i.imgur.com/bcLTwkG.png"
           alt="focus-web-recency"
-          className="tw-w-full"
+          className="x-w-full"
         />
       </div>
     </div>

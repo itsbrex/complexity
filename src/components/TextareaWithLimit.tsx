@@ -22,11 +22,11 @@ export default forwardRef<HTMLTextAreaElement, TextareaProps>(
     };
 
     return (
-      <div className="tw-relative tw-h-full tw-w-full">
+      <div className="x-relative x-h-full x-w-full">
         <textarea
           ref={ref}
           className={cn(
-            "tw-flex tw-min-h-[80px] tw-w-full tw-rounded-md tw-border tw-border-input tw-bg-background tw-px-3 tw-py-2 tw-text-sm tw-ring-offset-background placeholder:tw-text-muted-foreground focus-visible:tw-outline-none focus-visible:tw-ring-2 focus-visible:tw-ring-ring focus-visible:tw-ring-offset-2 disabled:tw-cursor-not-allowed disabled:tw-opacity-50",
+            "x-flex x-min-h-[80px] x-w-full x-rounded-md x-border x-border-input x-bg-background x-px-3 x-py-2 x-text-sm x-ring-offset-background placeholder:x-text-muted-foreground focus-visible:x-outline-none focus-visible:x-ring-2 focus-visible:x-ring-ring focus-visible:x-ring-offset-2 disabled:x-cursor-not-allowed disabled:x-opacity-50",
             className,
           )}
           {...props}
@@ -38,14 +38,14 @@ export default forwardRef<HTMLTextAreaElement, TextareaProps>(
         {limit != null && value.length > limit - triggerCounterLimitOffset && (
           <div
             className={cn(
-              "tw-gap-sm tw-pb-xs tw-mb-xs tw-absolute tw-bottom-0 tw-right-1 tw-flex tw-items-center tw-rounded-full tw-bg-background",
+              "x-gap-sm x-pb-xs x-mb-xs x-absolute x-bottom-0 x-right-1 x-flex x-items-center x-rounded-full x-bg-background",
               {
-                "tw-text-red-500":
+                "x-text-red-500":
                   value.length > limit - triggerCounterLimitOffset,
               },
             )}
           >
-            <div className="tw-font-sans tw-text-xs tw-font-medium">
+            <div className="x-font-sans x-text-xs x-font-medium">
               {limit - value.length}
             </div>
           </div>

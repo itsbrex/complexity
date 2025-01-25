@@ -21,7 +21,7 @@ export default function MainQueryBoxWrapper() {
   return (
     <ScopedQueryBoxContextProvider storeValue={{ type: "main" }}>
       <Portal container={mainQueryBoxToolbarPortalContainer}>
-        <div className="tw-flex tw-flex-wrap tw-items-center md:tw-flex-nowrap">
+        <div className="x-flex x-flex-wrap x-items-center md:x-flex-nowrap">
           <CsUiPluginsGuard
             allowedAccountTypes={[["free"], ["pro"]]}
             dependentPluginIds={["queryBox:focusSelector"]}

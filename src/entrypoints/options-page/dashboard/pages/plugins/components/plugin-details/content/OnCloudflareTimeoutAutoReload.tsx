@@ -43,7 +43,7 @@ export default function OnCloudflareTimeoutAutoReloadPluginDetails() {
   if (!settings) return null;
 
   return (
-    <div className="tw-flex tw-max-w-lg tw-flex-col tw-gap-4">
+    <div className="x-flex x-max-w-lg x-flex-col x-gap-4">
       <P>
         Helpful when you are using VPNs, or when Perplexity/Cloudflare has
         issues with your ISP. Turn this on if you want to automatically reload
@@ -56,7 +56,7 @@ export default function OnCloudflareTimeoutAutoReloadPluginDetails() {
       />
 
       <div>
-        <Label className="tw-text-muted-foreground">Behavior</Label>
+        <Label className="x-text-muted-foreground">Behavior</Label>
         <Select
           portal={false}
           collection={createListCollection<BehaviorType>({
@@ -67,7 +67,7 @@ export default function OnCloudflareTimeoutAutoReloadPluginDetails() {
           positioning={{ sameWidth: true }}
           onValueChange={({ value }) => handleBehaviorChange(value)}
         >
-          <SelectTrigger variant="default" className="tw-w-fit tw-p-4 tw-py-2">
+          <SelectTrigger variant="default" className="x-w-fit x-p-4 x-py-2">
             <SelectValue placeholder="Behavior" />
           </SelectTrigger>
           <SelectContent>

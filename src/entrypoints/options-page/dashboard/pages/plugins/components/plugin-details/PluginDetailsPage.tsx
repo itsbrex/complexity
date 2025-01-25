@@ -20,17 +20,17 @@ export default function PluginDetailsPage({
   if (!plugin) return null;
 
   return (
-    <div className="tw-space-y-6">
+    <div className="x-space-y-6">
       <Link
         to="/plugins"
-        className="tw-mb-4 tw-flex tw-items-center tw-gap-2 tw-text-muted-foreground tw-transition hover:tw-text-foreground"
+        className="x-mb-4 x-flex x-items-center x-gap-2 x-text-muted-foreground x-transition hover:x-text-foreground"
       >
         <LuChevronLeft />
         Back to plugins
       </Link>
       <div>
-        <h1 className="tw-text-2xl tw-font-bold">{plugin.title}</h1>
-        <p className="tw-mt-2 tw-text-muted-foreground">{plugin.description}</p>
+        <h1 className="x-text-2xl x-font-bold">{plugin.title}</h1>
+        <p className="x-mt-2 x-text-muted-foreground">{plugin.description}</p>
       </div>
       {dialogContent}
     </div>

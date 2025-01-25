@@ -19,7 +19,7 @@ const HighlightedCodeWrapper = memo(() => {
 
   const preTag = useMemo(() => {
     const PreComponent = ({ children }: { children: ReactNode }) => (
-      <pre className="tw-px-4 tw-py-2">{children}</pre>
+      <pre className="x-px-4 x-py-2">{children}</pre>
     );
     PreComponent.displayName = "PreTag";
     return PreComponent;
@@ -30,14 +30,14 @@ const HighlightedCodeWrapper = memo(() => {
       style={{
         maxHeight,
       }}
-      className="tw-overflow-auto tw-rounded-b-md"
+      className="x-overflow-auto x-rounded-b-md"
     >
       <div
         className={cn(
-          "[&>pre]:tw-m-0 [&>pre]:tw-rounded-t-none [&>pre]:!tw-p-2 [&>pre]:!tw-px-4",
+          "[&>pre]:x-m-0 [&>pre]:x-rounded-t-none [&>pre]:!x-p-2 [&>pre]:!x-px-4",
           {
-            "[&_code]:!tw-whitespace-pre-wrap": isWrapped,
-            "[&_span]:tw-duration-300 [&_span]:tw-animate-in [&_span]:tw-fade-in":
+            "[&_code]:!x-whitespace-pre-wrap": isWrapped,
+            "[&_span]:x-duration-300 [&_span]:x-animate-in [&_span]:x-fade-in":
               isInFlight,
           },
         )}

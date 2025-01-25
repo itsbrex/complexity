@@ -29,7 +29,7 @@ const basePermissionsDetails: Record<
             or other data.
           </div>
         </div>
-        <div className="tw-mt-2">
+        <div className="x-mt-2">
           This permission is automatically granted when installing the
           extension.
         </div>
@@ -53,12 +53,12 @@ export default function BasePermissions() {
   if (!permissions) return null;
 
   return (
-    <div className="tw-mx-auto tw-flex tw-max-w-2xl tw-flex-col tw-gap-4 tw-px-2 md:tw-gap-8 md:tw-px-4">
-      <H1 className="tw-text-balance tw-text-center">
+    <div className="x-mx-auto x-flex x-max-w-2xl x-flex-col x-gap-4 x-px-2 md:x-gap-8 md:x-px-4">
+      <H1 className="x-text-balance x-text-center">
         Complexity needs your permissions to work
       </H1>
 
-      <div className="tw-space-y-3 md:tw-space-y-4">
+      <div className="x-space-y-3 md:x-space-y-4">
         {Object.entries(basePermissionsDetails).map(
           ([
             key,
@@ -72,26 +72,26 @@ export default function BasePermissions() {
                 key={key}
                 data-granted={isGranted ? true : undefined}
                 className={cn(
-                  "tw-group tw-border-border/50 tw-transition-all tw-duration-500 tw-ease-in-out data-[granted]:tw-bg-primary/10 data-[granted]:tw-shadow-lg",
+                  "x-group x-border-border/50 x-transition-all x-duration-500 x-ease-in-out data-[granted]:x-bg-primary/10 data-[granted]:x-shadow-lg",
                 )}
               >
-                <CardContent className="tw-flex tw-items-start tw-gap-3 tw-p-3 md:tw-items-center md:tw-gap-4 md:tw-p-4">
-                  <div className="tw-flex tw-h-8 tw-w-8 tw-shrink-0 tw-items-center tw-justify-center tw-self-start tw-rounded-md tw-bg-primary-foreground tw-text-primary md:tw-h-9 md:tw-w-9">
-                    <Icon className="tw-size-4 md:tw-size-5" />
+                <CardContent className="x-flex x-items-start x-gap-3 x-p-3 md:x-items-center md:x-gap-4 md:x-p-4">
+                  <div className="x-flex x-h-8 x-w-8 x-shrink-0 x-items-center x-justify-center x-self-start x-rounded-md x-bg-primary-foreground x-text-primary md:x-h-9 md:x-w-9">
+                    <Icon className="x-size-4 md:x-size-5" />
                   </div>
-                  <div className="tw-flex-grow tw-space-y-1.5 md:tw-space-y-2">
-                    <H3 className="tw-text-sm tw-font-medium tw-text-primary md:tw-text-base">
+                  <div className="x-flex-grow x-space-y-1.5 md:x-space-y-2">
+                    <H3 className="x-text-sm x-font-medium x-text-primary md:x-text-base">
                       {title}
                     </H3>
-                    <div className="tw-text-xs tw-text-foreground md:tw-text-sm">
+                    <div className="x-text-xs x-text-foreground md:x-text-sm">
                       {description}
                     </div>
-                    <div className="tw-mt-2 tw-flex tw-items-center tw-justify-end">
+                    <div className="x-mt-2 x-flex x-items-center x-justify-end">
                       <Button
                         size="sm"
                         variant={isGranted ? "outline" : "default"}
                         disabled={isGranted}
-                        className="tw-text-xs group-data-[granted]:tw-text-success group-data-[granted]:!tw-opacity-100 md:tw-text-sm"
+                        className="x-text-xs group-data-[granted]:x-text-success group-data-[granted]:!x-opacity-100 md:x-text-sm"
                         onClick={() =>
                           handleGrantPermission({
                             permissions: permissions ?? [],
@@ -100,8 +100,8 @@ export default function BasePermissions() {
                         }
                       >
                         {isGranted ? (
-                          <span className="tw-flex tw-items-center tw-gap-1.5 md:tw-gap-2">
-                            <HiCheckCircle className="tw-h-3.5 tw-w-3.5 md:tw-h-4 md:tw-w-4" />
+                          <span className="x-flex x-items-center x-gap-1.5 md:x-gap-2">
+                            <HiCheckCircle className="x-h-3.5 x-w-3.5 md:x-h-4 md:x-w-4" />
                             Granted
                           </span>
                         ) : (
@@ -115,7 +115,7 @@ export default function BasePermissions() {
             );
           },
         )}
-        <P className="tw-text-balance tw-text-center tw-text-xs tw-text-muted-foreground md:tw-text-sm">
+        <P className="x-text-balance x-text-center x-text-xs x-text-muted-foreground md:x-text-sm">
           You may be asked to grant additional permissions for certain features.
           Rest assured that you&apos;ll always be prompted for consent before
           any action.

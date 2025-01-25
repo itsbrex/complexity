@@ -16,7 +16,7 @@ export default function SlashCommandMenuPluginDetails() {
   if (!settings) return null;
 
   return (
-    <div className="tw-flex tw-max-w-lg tw-flex-col tw-gap-4">
+    <div className="x-flex x-max-w-lg x-flex-col x-gap-4">
       <P>
         This plugin allows you to use various slash commands to quickly access
         advanced features.
@@ -28,9 +28,9 @@ export default function SlashCommandMenuPluginDetails() {
       />
 
       {pluginSettings?.enabled && (
-        <div className="tw-flex tw-flex-col tw-gap-2">
+        <div className="x-flex x-flex-col x-gap-2">
           <Switch
-            className="tw-items-start"
+            className="x-items-start"
             textLabel="Show trigger button on the query box"
             checked={pluginSettings?.showTriggerButton ?? false}
             onCheckedChange={({ checked }) => {
@@ -43,11 +43,11 @@ export default function SlashCommandMenuPluginDetails() {
         </div>
       )}
 
-      <div className="tw-mx-auto tw-w-full tw-max-w-[700px]">
+      <div className="x-mx-auto x-w-full x-max-w-[700px]">
         <Image
           src="https://i.imgur.com/9B9us0C.png"
           alt="slash-command-menu"
-          className="tw-w-full"
+          className="x-w-full"
         />
       </div>
     </div>

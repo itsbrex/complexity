@@ -19,7 +19,7 @@ export default function ChangelogRenderer({
   return (
     <div
       className={cn(
-        "tw-prose tw-flex tw-max-w-max tw-flex-col dark:tw-prose-invert",
+        "x-prose x-flex x-max-w-max x-flex-col dark:x-prose-invert",
         className,
       )}
       {...props}
@@ -35,7 +35,7 @@ export default function ChangelogRenderer({
               <img
                 src={src}
                 alt={alt}
-                className="tw-max-w-[1000px] tw-rounded-md tw-border tw-border-border/50"
+                className="x-max-w-[1000px] x-rounded-md x-border x-border-border/50"
               />
             ),
           } as ChangelogComponents

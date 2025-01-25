@@ -53,12 +53,12 @@ export default function ImportDataButtons() {
   };
 
   return (
-    <div className="tw-flex tw-gap-4">
+    <div className="x-flex x-gap-4">
       <input
         ref={fileInputRef}
         type="file"
         accept=".json"
-        className="tw-hidden"
+        className="x-hidden"
         onChange={handleFileChange}
       />
       <ImportDataPasteDialogWrapper onSubmit={handleImportData}>

@@ -58,12 +58,12 @@ const TooltipContent = ({
       <ArkTooltip.Positioner>
         <ArkTooltip.Content
           className={cn(
-            "tw-z-50 tw-max-w-[400px] tw-overflow-hidden tw-whitespace-pre-line tw-rounded-md tw-bg-foreground tw-px-2 tw-py-1 tw-font-sans tw-text-xs tw-text-popover tw-shadow-md tw-duration-150 dark:tw-bg-primary-foreground dark:tw-text-popover-foreground",
-            "data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out",
-            "data-[state=closed]:tw-fade-out-0 data-[state=open]:tw-fade-in-0",
-            "data-[state=closed]:tw-zoom-out-95 data-[state=open]:tw-zoom-in-95",
-            "data-[side=bottom]:tw-slide-in-from-top-1 data-[side=left]:tw-slide-in-from-right-1",
-            "data-[side=right]:tw-slide-in-from-left-1 data-[side=top]:tw-slide-in-from-bottom-1",
+            "x-z-50 x-max-w-[400px] x-overflow-hidden x-whitespace-pre-line x-rounded-md x-bg-foreground x-px-2 x-py-1 x-font-sans x-text-xs x-text-popover x-shadow-md x-duration-150 dark:x-bg-primary-foreground dark:x-text-popover-foreground",
+            "data-[state=open]:x-animate-in data-[state=closed]:x-animate-out",
+            "data-[state=closed]:x-fade-out-0 data-[state=open]:x-fade-in-0",
+            "data-[state=closed]:x-zoom-out-95 data-[state=open]:x-zoom-in-95",
+            "data-[side=bottom]:x-slide-in-from-top-1 data-[side=left]:x-slide-in-from-right-1",
+            "data-[side=right]:x-slide-in-from-left-1 data-[side=top]:x-slide-in-from-bottom-1",
             className,
           )}
           data-side={positioning.placement}

@@ -10,13 +10,11 @@ export default function SettingsItem({
   children,
 }: SettingsItemProps) {
   return (
-    <div className="tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-4 tw-py-4">
+    <div className="x-flex x-flex-wrap x-items-center x-justify-between x-gap-4 x-py-4">
       <div>
-        <div className="tw-font-medium">{title}</div>
+        <div className="x-font-medium">{title}</div>
         {description != null && (
-          <div className="tw-text-sm tw-text-muted-foreground">
-            {description}
-          </div>
+          <div className="x-text-sm x-text-muted-foreground">{description}</div>
         )}
       </div>
       {children}

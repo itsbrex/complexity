@@ -15,10 +15,10 @@ export default function SpaceItemFiles({
   spaceUuid: Space["uuid"];
 }) {
   return (
-    <div className="tw-flex tw-items-center tw-space-x-2">
-      <FaFile className="tw-inline-block tw-size-4" />
+    <div className="x-flex x-items-center x-space-x-2">
+      <FaFile className="x-inline-block x-size-4" />
       <span
-        className="tw-line-clamp-1 tw-cursor-pointer hover:tw-underline"
+        className="x-line-clamp-1 x-cursor-pointer hover:x-underline"
         onClick={async () => {
           const fileDownloadUrl = await queryClient.fetchQuery(
             pplxApiQueries.spaces._ctx

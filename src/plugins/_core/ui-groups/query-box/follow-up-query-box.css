@@ -1,14 +1,14 @@
 [cplx-follow-up-query-box] {
-  @apply tw-rounded-md;
+  @apply x-rounded-md;
   border: 1px solid var(--border-darker) !important;
   background: var(--secondary);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2) !important;
 
   > div {
-    @apply tw-rounded-md;
+    @apply x-rounded-md;
 
     > div {
-      @apply tw-rounded-md;
+      @apply x-rounded-md;
       transition: none !important;
       animation: none !important;
       transform: none !important;
@@ -39,14 +39,14 @@
   }
 
   button:has(svg[data-icon="circle-plus"]) {
-    @apply tw-size-8 tw-rounded-md;
+    @apply x-size-8 x-rounded-md;
 
     svg {
-      @apply tw-size-4;
+      @apply x-size-4;
     }
   }
 }
 
 .pointer-events-none.fixed.bottom-mobileNavHeight {
-  @apply md:tw-bottom-0 md:tw-mt-0;
+  @apply md:x-bottom-0 md:x-mt-0;
 }

@@ -13,26 +13,26 @@ export default function DashboardAccess() {
 
   return (
     <>
-      <div className="tw-mx-auto tw-flex tw-max-w-2xl tw-flex-col tw-items-center tw-gap-4 tw-px-2 md:tw-gap-8 md:tw-px-4">
-        <H1 className="tw-text-balance tw-text-center">Dashboard</H1>
-        <div className="tw-w-full tw-text-balance tw-text-center">
+      <div className="x-mx-auto x-flex x-max-w-2xl x-flex-col x-items-center x-gap-4 x-px-2 md:x-gap-8 md:x-px-4">
+        <H1 className="x-text-balance x-text-center">Dashboard</H1>
+        <div className="x-w-full x-text-balance x-text-center">
           The Settings Dashboard is a new way to manage all of your Complexity
           settings and data. You can always access it via{" "}
-          <span className="tw-underline">right-clicking</span> the
+          <span className="x-underline">right-clicking</span> the
           extension&apos;s icon.
         </div>
-        <div className="tw-max-w-[500px] tw-rounded-md tw-border tw-border-border/50">
+        <div className="x-max-w-[500px] x-rounded-md x-border x-border-border/50">
           <img
             src="https://i.imgur.com/zgT1Wlz.png"
             alt="Dashboard Shortcut"
-            className="tw-relative tw-w-full tw-rounded-md tw-shadow-lg"
+            className="x-relative x-w-full x-rounded-md x-shadow-lg"
           />
         </div>
       </div>
 
       {!isPinnedOnToolbar && !isDismissed && (
         <div
-          className="tw-fixed tw-right-4 tw-top-4 tw-hidden tw-w-[500px] tw-flex-col tw-items-center tw-justify-center tw-gap-4 tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4 tw-duration-300 tw-animate-in tw-fade-in tw-slide-in-from-top-4 md:tw-flex"
+          className="x-fixed x-right-4 x-top-4 x-hidden x-w-[500px] x-flex-col x-items-center x-justify-center x-gap-4 x-rounded-md x-border x-border-border/50 x-bg-secondary x-p-4 x-duration-300 x-animate-in x-fade-in x-slide-in-from-top-4 md:x-flex"
           onClick={() => setIsDismissed(true)}
         >
           <img
@@ -41,7 +41,7 @@ export default function DashboardAccess() {
           />
           <div>
             Pin the extension to your toolbar to always have access to the
-            Dashboard. And <span className="tw-underline">left-click</span> the
+            Dashboard. And <span className="x-underline">left-click</span> the
             extension icon to open a new tab of Perplexity.ai.
           </div>
           <Button variant="default">Dismiss</Button>

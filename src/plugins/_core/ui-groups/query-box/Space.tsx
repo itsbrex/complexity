@@ -19,7 +19,7 @@ export default function SpaceQueryBoxWrapper() {
   return (
     <ScopedQueryBoxContextProvider storeValue={{ type: "space" }}>
       <Portal container={spaceQueryBoxToolbarPortalContainer}>
-        <div className="tw-flex tw-flex-wrap tw-items-center md:tw-flex-nowrap">
+        <div className="x-flex x-flex-wrap x-items-center md:x-flex-nowrap">
           <CsUiPluginsGuard
             desktopOnly
             dependentPluginIds={["queryBox:slashCommandMenu"]}

@@ -16,11 +16,11 @@
   }
 
   * {
-    @apply tw-border-border/50 tw-text-base;
+    @apply x-border-border/50 x-text-base;
   }
 
   body {
-    @apply tw-bg-background tw-font-sans tw-text-foreground;
+    @apply x-bg-background x-font-sans x-text-foreground;
     font-feature-settings:
       "rlig" 1,
       "calt" 1;

@@ -30,7 +30,7 @@ export default function CustomThreadContainerWidthPluginDetails() {
   if (!settings) return null;
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-4">
+    <div className="x-flex x-flex-col x-gap-4">
       <Switch
         textLabel="Enable"
         checked={settings?.plugins["thread:customThreadContainerWidth"].enabled}
@@ -43,21 +43,21 @@ export default function CustomThreadContainerWidthPluginDetails() {
         }
       />
       {settings?.plugins["thread:customThreadContainerWidth"].enabled && (
-        <div className="tw-flex tw-flex-col tw-gap-2">
+        <div className="x-flex x-flex-col x-gap-2">
           <Slider
             defaultValue={[
               settings.plugins["thread:customThreadContainerWidth"].value,
             ]}
-            className="md:tw-min-w-[500px]"
+            className="md:x-min-w-[500px]"
             min={1100}
             max={9999}
             onValueChange={({ value }) => debouncedMutation(value[0] ?? 0)}
           >
             <SliderContext>
               {({ value }) => (
-                <SliderLabel className="tw-mb-4 tw-block tw-text-muted-foreground">
+                <SliderLabel className="x-mb-4 x-block x-text-muted-foreground">
                   Desired Max-Width:{" "}
-                  <span className="tw-text-primary">{value}px</span>
+                  <span className="x-text-primary">{value}px</span>
                 </SliderLabel>
               )}
             </SliderContext>

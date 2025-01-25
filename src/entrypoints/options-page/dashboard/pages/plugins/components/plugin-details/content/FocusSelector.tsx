@@ -48,7 +48,7 @@ export default function FocusSelectorPluginDetails() {
   if (!settings) return null;
 
   return (
-    <div className="tw-flex tw-max-w-lg tw-flex-col tw-gap-4">
+    <div className="x-flex x-max-w-lg x-flex-col x-gap-4">
       <P>Please note that this plugin does not work on Enterprise accounts</P>
       <Switch
         textLabel="Enable"
@@ -57,9 +57,9 @@ export default function FocusSelectorPluginDetails() {
       />
 
       {settings.plugins["queryBox:focusSelector"].enabled && (
-        <div className="tw-flex tw-items-end tw-gap-4">
+        <div className="x-flex x-items-end x-gap-4">
           <div>
-            <Label className="tw-text-muted-foreground">Mode</Label>
+            <Label className="x-text-muted-foreground">Mode</Label>
             <Select
               portal={false}
               collection={createListCollection<ModeType>({
@@ -70,10 +70,7 @@ export default function FocusSelectorPluginDetails() {
               positioning={{ sameWidth: true }}
               onValueChange={({ value }) => handleModeChange(value)}
             >
-              <SelectTrigger
-                variant="default"
-                className="tw-w-fit tw-p-4 tw-py-2"
-              >
+              <SelectTrigger variant="default" className="x-w-fit x-p-4 x-py-2">
                 <SelectValue placeholder="Mode" />
               </SelectTrigger>
               <SelectContent>
@@ -99,10 +96,7 @@ export default function FocusSelectorPluginDetails() {
                 });
               }}
             >
-              <SelectTrigger
-                variant="default"
-                className="tw-w-fit tw-p-4 tw-py-2"
-              >
+              <SelectTrigger variant="default" className="x-w-fit x-p-4 x-py-2">
                 <SelectValue placeholder="Default Focus Mode">
                   {(() => {
                     const mode = FOCUS_MODES.find(
@@ -110,8 +104,8 @@ export default function FocusSelectorPluginDetails() {
                     );
                     if (!mode) return null;
                     return (
-                      <div className="tw-flex tw-items-center tw-gap-2">
-                        <mode.Icon className="tw-size-4" />
+                      <div className="x-flex x-items-center x-gap-2">
+                        <mode.Icon className="x-size-4" />
                         <div>{mode.label}</div>
                       </div>
                     );
@@ -123,9 +117,9 @@ export default function FocusSelectorPluginDetails() {
                   <SelectItem
                     key={mode.code}
                     item={mode.code}
-                    className="tw-flex tw-items-center tw-gap-2"
+                    className="x-flex x-items-center x-gap-2"
                   >
-                    <mode.Icon className="tw-size-4" />
+                    <mode.Icon className="x-size-4" />
                     <div>{mode.label}</div>
                   </SelectItem>
                 ))}
@@ -134,11 +128,11 @@ export default function FocusSelectorPluginDetails() {
           )}
         </div>
       )}
-      <div className="tw-mx-auto tw-w-full tw-max-w-[700px]">
+      <div className="x-mx-auto x-w-full x-max-w-[700px]">
         <Image
           src="https://i.imgur.com/qI4hFOA.png"
           alt="focus-selector"
-          className="tw-w-full"
+          className="x-w-full"
         />
       </div>
     </div>

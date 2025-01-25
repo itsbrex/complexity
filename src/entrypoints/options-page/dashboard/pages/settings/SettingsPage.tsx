@@ -25,7 +25,7 @@ export default function SettingsPage() {
   const { settings, mutation } = useExtensionLocalStorage();
 
   return (
-    <div className="tw-mx-auto tw-max-w-3xl tw-space-y-8">
+    <div className="x-mx-auto x-max-w-3xl x-space-y-8">
       <SettingsSection title="General">
         <SettingsItem title="Extension Permissions">
           <ManagePermissionsDialogWrapper>
@@ -47,15 +47,15 @@ export default function SettingsPage() {
         </SettingsItem>
         <SettingsItem
           title={
-            <div className="tw-flex tw-items-center tw-gap-2">
-              <LuLeafyGreen className="tw-text-success" />
+            <div className="x-flex x-items-center x-gap-2">
+              <LuLeafyGreen className="x-text-success" />
               <span>Energy Saving Mode</span>
             </div>
           }
           description={
             <div>
               <div>Reduce the extension sensitivity to changes on the page</div>
-              <div className="tw-text-sm tw-italic tw-text-muted-foreground">
+              <div className="x-text-sm x-italic x-text-muted-foreground">
                 (Existing tabs require a refresh to apply)
               </div>
             </div>
@@ -93,14 +93,14 @@ export default function SettingsPage() {
           title="Need assistance?"
           description="Get help from the community or email support"
         >
-          <div className="tw-flex tw-items-center tw-gap-4">
-            <Button asChild className="tw-w-max">
+          <div className="x-flex x-items-center x-gap-4">
+            <Button asChild className="x-w-max">
               <a
                 href="https://discord.gg/fxzqdkwmWx"
                 target="_blank"
                 rel="noreferrer"
               >
-                <SiDiscord className="tw-mr-2 tw-size-4" />
+                <SiDiscord className="x-mr-2 x-size-4" />
                 <span>Discord</span>
               </a>
             </Button>
@@ -118,7 +118,7 @@ export default function SettingsPage() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <LuGithub className="tw-mr-2 tw-size-4" />
+                    <LuGithub className="x-mr-2 x-size-4" />
                     <span>GitHub Issues</span>
                   </a>
                 </DropdownMenuItem>
@@ -128,7 +128,7 @@ export default function SettingsPage() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <LuMail className="tw-mr-2 tw-size-4" />
+                    <LuMail className="x-mr-2 x-size-4" />
                     <span>pnd280@gmail.com</span>
                   </a>
                 </DropdownMenuItem>

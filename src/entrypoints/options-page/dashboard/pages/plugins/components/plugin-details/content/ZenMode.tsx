@@ -5,7 +5,7 @@ export default function ZenModePluginDetails() {
   const { settings, mutation } = useExtensionLocalStorage();
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-4">
+    <div className="x-flex x-flex-col x-gap-4">
       <Switch
         textLabel="Enable"
         checked={settings?.plugins["zenMode"].enabled ?? false}

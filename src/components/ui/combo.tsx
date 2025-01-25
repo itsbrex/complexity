@@ -42,14 +42,14 @@ function Combobox({
 Combobox.displayName = "Combobox";
 
 const comboboxTriggerVariants = cva(
-  "tw-flex tw-w-full tw-items-center tw-justify-between tw-rounded-md tw-px-2 tw-text-sm tw-font-medium tw-outline-none tw-transition-all tw-duration-150 placeholder:tw-text-muted-foreground disabled:tw-cursor-not-allowed disabled:tw-opacity-50",
+  "x-flex x-w-full x-items-center x-justify-between x-rounded-md x-px-2 x-text-sm x-font-medium x-outline-none x-transition-all x-duration-150 placeholder:x-text-muted-foreground disabled:x-cursor-not-allowed disabled:x-opacity-50",
   {
     variants: {
       variant: {
         default:
-          "active:scale-95 tw-bg-buttonBackground hover:tw-text-muted-foreground focus:tw-outline-none",
+          "active:scale-95 x-bg-buttonBackground hover:x-text-muted-foreground focus:x-outline-none",
         ghost:
-          "text-center tw-text-muted-foreground hover:tw-bg-primary-foreground hover:tw-text-foreground active:tw-scale-95",
+          "text-center x-text-muted-foreground hover:x-bg-primary-foreground hover:x-text-foreground active:x-scale-95",
       },
     },
     defaultVariants: {
@@ -72,7 +72,7 @@ const ComboboxTrigger = ({
       {...props}
     >
       {children}
-      <ChevronDown className="tw-ml-2 tw-size-4 tw-text-muted-foreground" />
+      <ChevronDown className="x-ml-2 x-size-4 x-text-muted-foreground" />
     </ArkCombobox.Trigger>
   );
 };
@@ -81,14 +81,14 @@ ComboboxTrigger.displayName = "ComboboxTrigger";
 
 const ComboboxInput = ({ className, ...props }: ArkCombobox.InputProps) => {
   return (
-    <div className="tw-relative tw-w-full">
+    <div className="x-relative x-w-full">
       <ArkCombobox.Control>
         <ArkCombobox.Input
           className={cn(
-            "tw-flex tw-h-9 tw-w-full tw-rounded-md tw-border tw-border-input tw-bg-transparent tw-px-3 tw-py-1 tw-text-sm tw-shadow-sm tw-transition-colors",
-            "placeholder:tw-text-muted-foreground",
-            "focus:tw-outline-none focus:tw-ring-1 focus:tw-ring-ring",
-            "disabled:tw-cursor-not-allowed disabled:tw-opacity-50",
+            "x-flex x-h-9 x-w-full x-rounded-md x-border x-border-input x-bg-transparent x-px-3 x-py-1 x-text-sm x-shadow-sm x-transition-colors",
+            "placeholder:x-text-muted-foreground",
+            "focus:x-outline-none focus:x-ring-1 focus:x-ring-ring",
+            "disabled:x-cursor-not-allowed disabled:x-opacity-50",
             className,
           )}
           {...props}
@@ -104,27 +104,27 @@ const ComboboxInputMultipleValues = ({
   ...props
 }: ArkCombobox.InputProps) => {
   return (
-    <div className="tw-relative tw-w-full">
+    <div className="x-relative x-w-full">
       <ArkCombobox.Control>
-        <div className="tw-flex tw-h-auto tw-min-h-[36px] tw-w-full tw-flex-wrap tw-gap-1.5 tw-rounded-md tw-border tw-border-input tw-bg-transparent tw-px-3 tw-py-1.5 tw-text-sm tw-shadow-sm tw-transition-colors focus-within:tw-ring-1 focus-within:tw-ring-ring">
+        <div className="x-flex x-h-auto x-min-h-[36px] x-w-full x-flex-wrap x-gap-1.5 x-rounded-md x-border x-border-input x-bg-transparent x-px-3 x-py-1.5 x-text-sm x-shadow-sm x-transition-colors focus-within:x-ring-1 focus-within:x-ring-ring">
           <ArkCombobox.Label asChild>
-            <div className="tw-flex tw-flex-wrap tw-gap-1.5">
+            <div className="x-flex x-flex-wrap x-gap-1.5">
               <ArkCombobox.Context>
                 {({ value, setValue }) =>
                   value.map((item) => (
                     <span
                       key={item}
-                      className="tw-flex tw-items-center tw-gap-1 tw-rounded-md tw-bg-secondary tw-px-2 tw-py-0.5 tw-text-sm"
+                      className="x-flex x-items-center x-gap-1 x-rounded-md x-bg-secondary x-px-2 x-py-0.5 x-text-sm"
                     >
                       {item}
                       <button
-                        className="tw-ml-1 tw-rounded-sm tw-text-muted-foreground hover:tw-text-foreground focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-ring"
+                        className="x-ml-1 x-rounded-sm x-text-muted-foreground hover:x-text-foreground focus:x-outline-none focus:x-ring-2 focus:x-ring-ring"
                         onClick={(e) => {
                           e.preventDefault();
                           setValue(value.filter((v) => v !== item));
                         }}
                       >
-                        <LuX className="tw-size-3" />
+                        <LuX className="x-size-3" />
                       </button>
                     </span>
                   ))
@@ -135,7 +135,7 @@ const ComboboxInputMultipleValues = ({
           <ArkCombobox.Input
             placeholder={placeholder}
             className={cn(
-              "tw-flex-1 tw-bg-transparent tw-outline-none placeholder:tw-text-muted-foreground disabled:tw-cursor-not-allowed disabled:tw-opacity-50",
+              "x-flex-1 x-bg-transparent x-outline-none placeholder:x-text-muted-foreground disabled:x-cursor-not-allowed disabled:x-opacity-50",
               className,
             )}
             {...props}
@@ -158,15 +158,15 @@ const ComboboxClearTrigger = ({
   return (
     <ArkCombobox.ClearTrigger
       className={cn(
-        "tw-absolute tw-right-2 tw-top-2 tw-rounded-sm tw-opacity-70 tw-ring-offset-background tw-transition-opacity",
-        "hover:tw-opacity-100",
-        "focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-ring focus:tw-ring-offset-2",
-        "disabled:tw-pointer-events-none",
+        "x-absolute x-right-2 x-top-2 x-rounded-sm x-opacity-70 x-ring-offset-background x-transition-opacity",
+        "hover:x-opacity-100",
+        "focus:x-outline-none focus:x-ring-2 focus:x-ring-ring focus:x-ring-offset-2",
+        "disabled:x-pointer-events-none",
         className,
       )}
       {...props}
     >
-      {children ?? <ClearIcon className="tw-size-4" />}
+      {children ?? <ClearIcon className="x-size-4" />}
     </ArkCombobox.ClearTrigger>
   );
 };
@@ -187,9 +187,9 @@ const ComboboxContent = ({ className, ...props }: ArkCombobox.ContentProps) => {
       <ArkCombobox.Positioner>
         <ArkCombobox.Content
           className={cn(
-            "custom-scrollbar tw-z-50 tw-max-h-[300px] tw-min-w-[8rem] tw-overflow-auto tw-rounded-md tw-border tw-border-border/50 tw-bg-popover tw-p-1 tw-text-popover-foreground tw-shadow-md",
-            "data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out",
-            "data-[state=closed]:tw-fade-out-0 data-[state=open]:tw-fade-in-0",
+            "custom-scrollbar x-z-50 x-max-h-[300px] x-min-w-[8rem] x-overflow-auto x-rounded-md x-border x-border-border/50 x-bg-popover x-p-1 x-text-popover-foreground x-shadow-md",
+            "data-[state=open]:x-animate-in data-[state=closed]:x-animate-out",
+            "data-[state=closed]:x-fade-out-0 data-[state=open]:x-fade-in-0",
             className,
           )}
           onWheel={untrapWheel}
@@ -210,21 +210,19 @@ const ComboboxItem = ({
   return (
     <ArkCombobox.Item
       className={cn(
-        "tw-relative tw-flex tw-w-full tw-cursor-pointer tw-select-none tw-items-center tw-rounded-sm tw-px-2 tw-py-1.5 tw-text-sm tw-outline-none",
-        "data-[disabled]:tw-pointer-events-none data-[disabled]:tw-opacity-50",
-        "data-[highlighted]:tw-bg-primary-foreground data-[highlighted]:tw-text-primary",
+        "x-relative x-flex x-w-full x-cursor-pointer x-select-none x-items-center x-rounded-sm x-px-2 x-py-1.5 x-text-sm x-outline-none",
+        "data-[disabled]:x-pointer-events-none data-[disabled]:x-opacity-50",
+        "data-[highlighted]:x-bg-primary-foreground data-[highlighted]:x-text-primary",
         className,
       )}
       {...props}
     >
-      <span className="tw-absolute tw-left-2 tw-flex tw-size-3.5 tw-items-center tw-justify-center">
+      <span className="x-absolute x-left-2 x-flex x-size-3.5 x-items-center x-justify-center">
         <ArkCombobox.ItemIndicator>
-          <LuCheck className="tw-size-3.5" />
+          <LuCheck className="x-size-3.5" />
         </ArkCombobox.ItemIndicator>
       </span>
-      <ArkCombobox.ItemText className="tw-ml-6">
-        {children}
-      </ArkCombobox.ItemText>
+      <ArkCombobox.ItemText className="x-ml-6">{children}</ArkCombobox.ItemText>
     </ArkCombobox.Item>
   );
 };
@@ -237,7 +235,7 @@ const ComboboxLabel = ({ className, ...props }: ArkCombobox.LabelProps) => {
   return (
     <ArkCombobox.Label
       className={cn(
-        "tw-mb-2 tw-block tw-text-xs tw-font-medium tw-text-muted-foreground",
+        "x-mb-2 x-block x-text-xs x-font-medium x-text-muted-foreground",
         className,
       )}
       {...props}
@@ -254,7 +252,7 @@ const ComboboxItemGroupLabel = ({
   return (
     <ArkCombobox.ItemGroupLabel
       className={cn(
-        "tw-py-1.5 tw-pl-2 tw-pr-2 tw-text-xs tw-text-muted-foreground",
+        "x-py-1.5 x-pl-2 x-pr-2 x-text-xs x-text-muted-foreground",
         className,
       )}
       {...props}

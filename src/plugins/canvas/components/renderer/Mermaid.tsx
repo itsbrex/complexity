@@ -70,13 +70,13 @@ export default function MermaidRenderer() {
   }, [mutate, code, colorScheme, isInFlight]);
 
   return (
-    <div key={refreshKey} className="tw-relative tw-size-full">
+    <div key={refreshKey} className="x-relative x-size-full">
       {!isPending &&
         mermaidRendererResponded &&
         !isSuccess &&
         !result?.error && (
-          <div className="tw-absolute tw-inset-1/2 tw-w-max -tw-translate-x-1/2 -tw-translate-y-1/2">
-            <span className="tw-animate-in tw-fade-in">
+          <div className="x-absolute x-inset-1/2 x-w-max -x-translate-x-1/2 -x-translate-y-1/2">
+            <span className="x-animate-in x-fade-in">
               Failed to render provided mermaid code. Try to reload the Canvas.
             </span>
           </div>
@@ -85,15 +85,15 @@ export default function MermaidRenderer() {
         mermaidRendererResponded &&
         !isSuccess &&
         result?.error && (
-          <div className="tw-flex tw-flex-col tw-gap-4 tw-p-4 tw-font-mono">
-            <div className="tw-text-lg tw-font-bold tw-text-destructive">
+          <div className="x-flex x-flex-col x-gap-4 x-p-4 x-font-mono">
+            <div className="x-text-lg x-font-bold x-text-destructive">
               An error occurred while rendering:
             </div>
-            <div className="tw-whitespace-pre tw-animate-in tw-fade-in">
+            <div className="x-whitespace-pre x-animate-in x-fade-in">
               {result.error}
             </div>
             <Button
-              className="tw-w-max"
+              className="x-w-max"
               variant="destructive"
               onClick={() => {
                 const $textarea = UiUtils.getActiveQueryBoxTextarea();
@@ -111,15 +111,15 @@ export default function MermaidRenderer() {
         )}
       <div
         id={`canvas-mermaid-container-${selectedCodeBlockLocation?.messageBlockIndex}-${selectedCodeBlockLocation?.codeBlockIndex}`}
-        className={cn("tw-size-full tw-text-secondary tw-transition-opacity", {
-          "tw-opacity-0": !mermaidRendererResponded || !isSuccess,
+        className={cn("x-size-full x-text-secondary x-transition-opacity", {
+          "x-opacity-0": !mermaidRendererResponded || !isSuccess,
         })}
       >
         {code}
       </div>
       {(isPending || isSuccess == null) && (
-        <div className="tw-absolute tw-inset-1/2 -tw-translate-x-1/2 -tw-translate-y-1/2 tw-animate-in tw-fade-in">
-          <LuLoaderCircle className="tw-size-10 tw-animate-spin tw-text-muted-foreground" />
+        <div className="x-absolute x-inset-1/2 -x-translate-x-1/2 -x-translate-y-1/2 x-animate-in x-fade-in">
+          <LuLoaderCircle className="x-size-10 x-animate-spin x-text-muted-foreground" />
         </div>
       )}
     </div>

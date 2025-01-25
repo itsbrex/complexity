@@ -34,7 +34,7 @@ export default function FocusWebRecencySelector({
         itemToValue: (item) => item.value,
       })}
       value={[value]}
-      className="tw-h-8"
+      className="x-h-8"
       onValueChange={({ value }) => {
         setValue(value[0] as FocusWebRecency["value"]);
 
@@ -58,13 +58,11 @@ export default function FocusWebRecencySelector({
           mode: recencyData.label,
         })}
       >
-        <SelectTrigger variant="ghost" className="tw-h-full tw-w-fit tw-px-2">
-          <SelectValue className="tw-flex tw-items-center tw-gap-1">
-            <LuClock className="tw-size-4" />
+        <SelectTrigger variant="ghost" className="x-h-full x-w-fit x-px-2">
+          <SelectValue className="x-flex x-items-center x-gap-1">
+            <LuClock className="x-size-4" />
             {recencyData.value !== "ALL" && (
-              <span className="tw-hidden md:tw-inline">
-                {recencyData.label}
-              </span>
+              <span className="x-hidden md:x-inline">{recencyData.label}</span>
             )}
           </SelectValue>
         </SelectTrigger>

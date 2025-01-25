@@ -13,11 +13,11 @@ export function Result({
   icon: Icon = BiQuestionMark,
 }: ResultProps) {
   return (
-    <div className="tw-my-4 tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-4 tw-p-4">
-      <div className="tw-flex tw-flex-col tw-items-center tw-gap-2 tw-text-center">
-        <Icon className="tw-size-12 tw-text-muted-foreground" />
-        <h1 className="tw-text-2xl tw-font-semibold">{title}</h1>
-        <div className="tw-text-muted-foreground">{description}</div>
+    <div className="x-my-4 x-flex x-flex-col x-items-center x-justify-center x-gap-4 x-p-4">
+      <div className="x-flex x-flex-col x-items-center x-gap-2 x-text-center">
+        <Icon className="x-size-12 x-text-muted-foreground" />
+        <h1 className="x-text-2xl x-font-semibold">{title}</h1>
+        <div className="x-text-muted-foreground">{description}</div>
       </div>
     </div>
   );

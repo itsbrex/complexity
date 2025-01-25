@@ -9,10 +9,10 @@ const TabsTrigger = ({ value, className, ...props }: ArkTabs.TriggerProps) => {
     <ArkTabs.Trigger
       value={value}
       className={cn(
-        "tw-inline-flex tw-items-center tw-whitespace-nowrap tw-rounded-md tw-px-3 tw-py-1.5 tw-text-sm tw-font-medium tw-ring-offset-background tw-transition-all hover:tw-text-foreground focus-visible:tw-outline-none focus-visible:tw-ring-2 focus-visible:tw-ring-ring focus-visible:tw-ring-offset-2 disabled:tw-pointer-events-none disabled:tw-opacity-50",
-        "data-[state=active]:tw-bg-primary/10 data-[state=active]:tw-text-primary data-[state=active]:tw-shadow-sm",
-        "data-[orientation=horizontal]:tw-justify-center",
-        "data-[orientation=vertical]:tw-w-full",
+        "x-inline-flex x-items-center x-whitespace-nowrap x-rounded-md x-px-3 x-py-1.5 x-text-sm x-font-medium x-ring-offset-background x-transition-all hover:x-text-foreground focus-visible:x-outline-none focus-visible:x-ring-2 focus-visible:x-ring-ring focus-visible:x-ring-offset-2 disabled:x-pointer-events-none disabled:x-opacity-50",
+        "data-[state=active]:x-bg-primary/10 data-[state=active]:x-text-primary data-[state=active]:x-shadow-sm",
+        "data-[orientation=horizontal]:x-justify-center",
+        "data-[orientation=vertical]:x-w-full",
         className,
       )}
       data-state={selectedValue === value ? "active" : undefined}
@@ -26,9 +26,9 @@ TabsTrigger.displayName = "TabsTrigger";
 const TabsList = ({ className, ...props }: ArkTabs.ListProps) => (
   <ArkTabs.List
     className={cn(
-      "tw-inline-flex tw-items-center tw-justify-center tw-rounded-md tw-p-1 tw-text-muted-foreground",
-      "data-[orientation=horizontal]:tw-flex-wrap data-[orientation=horizontal]:tw-gap-2",
-      "data-[orientation=vertical]:tw-h-max data-[orientation=vertical]:tw-flex-col data-[orientation=vertical]:tw-gap-1",
+      "x-inline-flex x-items-center x-justify-center x-rounded-md x-p-1 x-text-muted-foreground",
+      "data-[orientation=horizontal]:x-flex-wrap data-[orientation=horizontal]:x-gap-2",
+      "data-[orientation=vertical]:x-h-max data-[orientation=vertical]:x-flex-col data-[orientation=vertical]:x-gap-1",
       className,
     )}
     {...props}
@@ -40,7 +40,7 @@ TabsList.displayName = "TabsList";
 const TabsContent = ({ className, ...props }: ArkTabs.ContentProps) => (
   <ArkTabs.Content
     className={cn(
-      "tw-ring-offset-background focus-visible:tw-outline-none focus-visible:tw-ring-2 focus-visible:tw-ring-ring focus-visible:tw-ring-offset-2",
+      "x-ring-offset-background focus-visible:x-outline-none focus-visible:x-ring-2 focus-visible:x-ring-ring focus-visible:x-ring-offset-2",
       className,
     )}
     {...props}

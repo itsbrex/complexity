@@ -1,17 +1,17 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 const badgeVariants = cva(
-  "tw-inline-flex tw-cursor-default tw-items-center tw-rounded-md tw-border tw-px-2.5 tw-py-0.5 tw-text-xs tw-font-semibold tw-transition-colors focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-ring focus:tw-ring-offset-2",
+  "x-inline-flex x-cursor-default x-items-center x-rounded-md x-border x-px-2.5 x-py-0.5 x-text-xs x-font-semibold x-transition-colors focus:x-outline-none focus:x-ring-2 focus:x-ring-ring focus:x-ring-offset-2",
   {
     variants: {
       variant: {
         default:
-          "tw-border-transparent tw-bg-primary tw-text-primary-foreground hover:tw-bg-primary/80",
+          "x-border-transparent x-bg-primary x-text-primary-foreground hover:x-bg-primary/80",
         secondary:
-          "tw-border-transparent tw-bg-secondary tw-text-secondary-foreground hover:tw-bg-secondary/80",
+          "x-border-transparent x-bg-secondary x-text-secondary-foreground hover:x-bg-secondary/80",
         destructive:
-          "tw-border-transparent tw-bg-destructive tw-text-destructive-foreground hover:tw-bg-destructive/80",
-        outline: "tw-text-foreground",
+          "x-border-transparent x-bg-destructive x-text-destructive-foreground hover:x-bg-destructive/80",
+        outline: "x-text-foreground",
       },
     },
     defaultVariants: {

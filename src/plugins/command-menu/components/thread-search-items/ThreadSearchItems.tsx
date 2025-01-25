@@ -31,8 +31,8 @@ export default function ThreadSearchItems() {
 
   return (
     <div
-      className={cn("tw-transition-opacity", {
-        "tw-opacity-50": isFetchingThreads || isLoadingThreads,
+      className={cn("x-transition-opacity", {
+        "x-opacity-50": isFetchingThreads || isLoadingThreads,
       })}
     >
       {!isErrorThreads && !isLoadingThreads && (

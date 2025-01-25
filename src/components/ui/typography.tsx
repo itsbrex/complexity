@@ -5,7 +5,7 @@ export function H1({
   return (
     <h1
       className={cn(
-        "tw-scroll-m-20 tw-text-3xl tw-font-extrabold tw-tracking-tight md:tw-text-4xl lg:tw-text-5xl",
+        "x-scroll-m-20 x-text-3xl x-font-extrabold x-tracking-tight md:x-text-4xl lg:x-text-5xl",
         className,
       )}
       {...props}
@@ -20,7 +20,7 @@ export function H2({
   return (
     <h2
       className={cn(
-        "tw-scroll-m-20 tw-pb-2 tw-text-2xl tw-font-semibold tw-tracking-tight first:tw-mt-0 md:tw-text-3xl lg:tw-text-4xl",
+        "x-scroll-m-20 x-pb-2 x-text-2xl x-font-semibold x-tracking-tight first:x-mt-0 md:x-text-3xl lg:x-text-4xl",
         className,
       )}
       {...props}
@@ -35,7 +35,7 @@ export function H3({
   return (
     <h3
       className={cn(
-        "tw-scroll-m-20 tw-text-xl tw-font-semibold tw-tracking-tight md:tw-text-2xl lg:tw-text-3xl",
+        "x-scroll-m-20 x-text-xl x-font-semibold x-tracking-tight md:x-text-2xl lg:x-text-3xl",
         className,
       )}
       {...props}
@@ -50,7 +50,7 @@ export function H4({
   return (
     <h4
       className={cn(
-        "tw-scroll-m-20 tw-text-lg tw-font-semibold tw-tracking-tight md:tw-text-xl lg:tw-text-2xl",
+        "x-scroll-m-20 x-text-lg x-font-semibold x-tracking-tight md:x-text-xl lg:x-text-2xl",
         className,
       )}
       {...props}
@@ -63,7 +63,7 @@ export function P({
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p className={cn("[&:not(:first-child)]:tw-mt-6", className)} {...props} />
+    <p className={cn("[&:not(:first-child)]:x-mt-6", className)} {...props} />
   );
 }
 
@@ -73,7 +73,7 @@ export function Blockquote({
 }: React.HTMLAttributes<HTMLQuoteElement>) {
   return (
     <blockquote
-      className={cn("tw-mt-6 tw-border-l-2 tw-pl-6 tw-italic", className)}
+      className={cn("x-mt-6 x-border-l-2 x-pl-6 x-italic", className)}
       {...props}
     />
   );
@@ -86,7 +86,7 @@ export function InlineCode({
   return (
     <code
       className={cn(
-        "tw-relative tw-inline-block tw-rounded tw-bg-muted tw-px-[0.3rem] tw-py-[0.2rem] tw-font-mono tw-text-sm tw-font-semibold",
+        "x-relative x-inline-block x-rounded x-bg-muted x-px-[0.3rem] x-py-[0.2rem] x-font-mono x-text-sm x-font-semibold",
         className,
       )}
       {...props}
@@ -100,7 +100,7 @@ export function Ul({
 }: React.HTMLAttributes<HTMLUListElement>) {
   return (
     <ul
-      className={cn("tw-my-6 tw-ml-6 tw-list-disc [&>li]:tw-mt-2", className)}
+      className={cn("x-my-6 x-ml-6 x-list-disc [&>li]:x-mt-2", className)}
       {...props}
     />
   );

@@ -19,11 +19,11 @@ export default function SpaceNavigatorWrapper() {
   return (
     <SpaceNavigatorMobileContentWrapper>
       <button
-        className="tw-flex tw-min-h-8 tw-w-max tw-cursor-pointer tw-items-center tw-justify-between tw-gap-1 tw-rounded-md tw-px-2 tw-text-center tw-text-sm tw-font-medium tw-text-muted-foreground tw-outline-none tw-transition-all tw-duration-150 placeholder:tw-text-muted-foreground hover:tw-bg-primary-foreground hover:tw-text-foreground focus-visible:tw-bg-primary-foreground focus-visible:tw-outline-none active:tw-scale-95 disabled:tw-cursor-not-allowed disabled:tw-opacity-50 [&>span]:!tw-truncate"
+        className="x-flex x-min-h-8 x-w-max x-cursor-pointer x-items-center x-justify-between x-gap-1 x-rounded-md x-px-2 x-text-center x-text-sm x-font-medium x-text-muted-foreground x-outline-none x-transition-all x-duration-150 placeholder:x-text-muted-foreground hover:x-bg-primary-foreground hover:x-text-foreground focus-visible:x-bg-primary-foreground focus-visible:x-outline-none active:x-scale-95 disabled:x-cursor-not-allowed disabled:x-opacity-50 [&>span]:!x-truncate"
         data-testid={TEST_ID_SELECTORS.QUERY_BOX.SPACE_NAVIGATOR}
       >
-        <PplxSpace className="tw-size-4" />
-        {spaceName && <div className="tw-hidden md:tw-block">{spaceName}</div>}
+        <PplxSpace className="x-size-4" />
+        {spaceName && <div className="x-hidden md:x-block">{spaceName}</div>}
       </button>
     </SpaceNavigatorMobileContentWrapper>
   );

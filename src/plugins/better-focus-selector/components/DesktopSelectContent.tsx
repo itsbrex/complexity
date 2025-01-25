@@ -3,18 +3,18 @@ import { FOCUS_MODES } from "@/data/plugins/better-focus-selector/focus-modes";
 
 export function DesktopSelectContent() {
   return (
-    <SelectContent className="tw-max-h-[45dvh]">
+    <SelectContent className="x-max-h-[45dvh]">
       {FOCUS_MODES.map((mode) => (
         <SelectItem
           key={mode.code}
           item={mode.code}
-          className="tw-flex tw-flex-col tw-items-start tw-gap-1 tw-font-medium tw-text-foreground"
+          className="x-flex x-flex-col x-items-start x-gap-1 x-font-medium x-text-foreground"
         >
-          <div className="tw-flex tw-items-center tw-gap-2">
-            <mode.Icon className="tw-size-4" />
+          <div className="x-flex x-items-center x-gap-2">
+            <mode.Icon className="x-size-4" />
             <div>{mode.label}</div>
           </div>
-          <div className="tw-text-xs tw-text-muted-foreground">
+          <div className="x-text-xs x-text-muted-foreground">
             {mode.description}
           </div>
         </SelectItem>

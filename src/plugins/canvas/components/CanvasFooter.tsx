@@ -30,9 +30,9 @@ export default function CanvasFooter() {
   const codeString = selectedCodeBlock?.codeString;
 
   return (
-    <div className="tw-flex tw-w-full tw-items-center tw-justify-between tw-border-t tw-border-border/50 tw-bg-background tw-p-2 tw-px-4">
+    <div className="x-flex x-w-full x-items-center x-justify-between x-border-t x-border-border/50 x-bg-background x-p-2 x-px-4">
       <AutonomousCanvasVersionsNavigator />
-      <div className="tw-ml-auto tw-flex tw-items-center tw-gap-1">
+      <div className="x-ml-auto x-flex x-items-center x-gap-1">
         {CANVAS_LANGUAGE_ACTION_BUTTONS[language] &&
           (() => {
             const ActionButtons = CANVAS_LANGUAGE_ACTION_BUTTONS[language];
@@ -40,13 +40,13 @@ export default function CanvasFooter() {
           })()}
         <Button
           asChild
-          className="tw-group tw-animate-in tw-fade-in"
+          className="x-group x-animate-in x-fade-in"
           variant="ghost"
           size="iconSm"
         >
           <CopyButton
             content={codeString ?? ""}
-            className="group-hover:tw-text-primary"
+            className="group-hover:x-text-primary"
           />
         </Button>
       </div>

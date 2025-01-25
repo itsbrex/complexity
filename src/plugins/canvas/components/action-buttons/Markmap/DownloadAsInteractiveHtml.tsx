@@ -49,7 +49,7 @@ export default function DownloadAsInteractiveHtml() {
           );
         }}
       >
-        <LuDownload className="tw-size-4" />
+        <LuDownload className="x-size-4" />
       </Button>
     </Tooltip>
   );

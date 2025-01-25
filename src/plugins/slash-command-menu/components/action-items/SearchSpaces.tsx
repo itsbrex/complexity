@@ -12,7 +12,7 @@ export default function SearchSpacesActionItem() {
     <CommandItem
       value="s"
       keywords={label.split(" ")}
-      className="tw-min-h-10"
+      className="x-min-h-10"
       onSelect={() => {
         slashCommandMenuStore.getState().actions.deleteTriggerWord();
         slashCommandMenuStore.getState().actions.setIsOpen(false);
@@ -20,9 +20,9 @@ export default function SearchSpacesActionItem() {
         commandMenuStore.getState().setFilter("spaces");
       }}
     >
-      <div className="tw-flex tw-items-center tw-gap-2">
-        <div className="tw-flex tw-items-center tw-gap-2">
-          <PplxSpace className="tw-size-4" />
+      <div className="x-flex x-items-center x-gap-2">
+        <div className="x-flex x-items-center x-gap-2">
+          <PplxSpace className="x-size-4" />
           <div>{label}</div>
         </div>
       </div>

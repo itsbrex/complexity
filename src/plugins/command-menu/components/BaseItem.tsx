@@ -30,14 +30,14 @@ const BaseMenuItem = memo(function BaseMenuItem({
   return (
     <CommandItem
       keywords={keywords}
-      className={cn("tw-font-medium", className)}
+      className={cn("x-font-medium", className)}
       onSelect={() => {
         onSelect?.();
         if (closeOnSelect) closeCommandMenu();
       }}
       {...props}
     >
-      <Icon className="tw-mr-2 tw-size-4" />
+      <Icon className="x-mr-2 x-size-4" />
       {label}
       {shortcut && (
         <CommandShortcut>

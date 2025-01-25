@@ -41,7 +41,7 @@ export default function CollapsibleQueryToggleButton({
       >
         <div
           role="button"
-          className="tw-cursor-pointer tw-rounded-md tw-bg-primary tw-p-1 tw-text-primary-foreground tw-transition-all hover:tw-opacity-80 active:tw-scale-95"
+          className="x-cursor-pointer x-rounded-md x-bg-primary x-p-1 x-text-primary-foreground x-transition-all hover:x-opacity-80 active:x-scale-95"
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
           {isCollapsed ? <LuChevronDown /> : <LuChevronUp />}

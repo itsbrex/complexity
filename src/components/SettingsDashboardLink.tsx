@@ -29,12 +29,12 @@ export default function SettingsDashboardLink() {
   return (
     <Portal container={portalContainer}>
       <div
-        className="tw-flex tw-cursor-pointer tw-items-center tw-gap-1 tw-text-sm tw-font-medium tw-text-muted-foreground tw-transition-all hover:tw-text-foreground"
+        className="x-flex x-cursor-pointer x-items-center x-gap-1 x-text-sm x-font-medium x-text-muted-foreground x-transition-all hover:x-text-foreground"
         onClick={() => {
           sendMessage("bg:openOptionsPage", undefined, "background");
         }}
       >
-        <FaArrowUpRight className="tw-size-[14px]" />
+        <FaArrowUpRight className="x-size-[14px]" />
         <div>Complexity</div>
       </div>
     </Portal>

@@ -9,8 +9,8 @@ export default function SettingsSection({
 }: SettingsSectionProps) {
   return (
     <section>
-      <h2 className="tw-mb-4 tw-text-base tw-font-medium">{title}</h2>
-      <div className="tw-divide-y tw-divide-muted tw-overflow-hidden tw-rounded-md tw-bg-secondary tw-px-4">
+      <h2 className="x-mb-4 x-text-base x-font-medium">{title}</h2>
+      <div className="x-divide-y x-divide-muted x-overflow-hidden x-rounded-md x-bg-secondary x-px-4">
         {children}
       </div>
     </section>

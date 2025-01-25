@@ -7,7 +7,7 @@ body[data-cplx-zen-mode="true"] {
 
     /* Padding compensation */
     > div:last-child {
-      @apply tw-pl-2;
+      @apply x-pl-2;
     }
   }
 

@@ -39,21 +39,21 @@ function MobilePluginSections({
   otherPluginIds,
 }: PluginSectionsProps) {
   return (
-    <div className="tw-flex tw-flex-col">
+    <div className="x-flex x-flex-col">
       <PluginsEnableSet />
       <Tabs defaultValue="all">
-        <TabsList className="tw-w-full">
+        <TabsList className="x-w-full">
           {favoritePluginIds.length > 0 && (
             <TabsTrigger value="favorites">Favourite Plugins</TabsTrigger>
           )}
           <TabsTrigger value="all">All Plugins</TabsTrigger>
         </TabsList>
         {favoritePluginIds.length > 0 && (
-          <TabsContent value="favorites" className="tw-mt-4">
+          <TabsContent value="favorites" className="x-mt-4">
             <PluginsGrid pluginIds={favoritePluginIds} />
           </TabsContent>
         )}
-        <TabsContent value="all" className="tw-mt-4">
+        <TabsContent value="all" className="x-mt-4">
           <PluginsGrid pluginIds={otherPluginIds} />
         </TabsContent>
       </Tabs>
@@ -66,10 +66,10 @@ function DesktopPluginSections({
   otherPluginIds,
 }: PluginSectionsProps) {
   return (
-    <div className="tw-flex tw-flex-col tw-gap-8">
+    <div className="x-flex x-flex-col x-gap-8">
       {favoritePluginIds.length > 0 && (
         <section>
-          <H2 className="tw-mb-4 !tw-text-lg tw-font-semibold">
+          <H2 className="x-mb-4 !x-text-lg x-font-semibold">
             Favourite Plugins
           </H2>
           <PluginsGrid pluginIds={favoritePluginIds} />
@@ -78,10 +78,8 @@ function DesktopPluginSections({
 
       {otherPluginIds.length > 0 && (
         <section>
-          <div className="tw-flex tw-items-center tw-justify-between tw-gap-4">
-            <H2 className="tw-mb-4 !tw-text-lg tw-font-semibold">
-              All Plugins
-            </H2>
+          <div className="x-flex x-items-center x-justify-between x-gap-4">
+            <H2 className="x-mb-4 !x-text-lg x-font-semibold">All Plugins</H2>
             <PluginsEnableSet />
           </div>
           <PluginsGrid pluginIds={otherPluginIds} />

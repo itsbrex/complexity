@@ -8,19 +8,17 @@ export default function CreateThemePage() {
   const { form, onSubmit, isPending } = useThemeForm();
 
   return (
-    <div className="tw-max-w-3xl tw-space-y-6">
+    <div className="x-max-w-3xl x-space-y-6">
       <Link
         to="/themes"
-        className="tw-mb-4 tw-flex tw-items-center tw-gap-2 tw-text-muted-foreground tw-transition hover:tw-text-foreground"
+        className="x-mb-4 x-flex x-items-center x-gap-2 x-text-muted-foreground x-transition hover:x-text-foreground"
       >
         <LuChevronLeft />
         Back to themes
       </Link>
       <div>
-        <h1 className="tw-mb-2 tw-text-2xl tw-font-bold">
-          Create Custom Theme
-        </h1>
-        <p className="tw-text-muted-foreground">
+        <h1 className="x-mb-2 x-text-2xl x-font-bold">Create Custom Theme</h1>
+        <p className="x-text-muted-foreground">
           Create a custom theme with CSS and predefined options. Leave blank to
           use default values.
         </p>

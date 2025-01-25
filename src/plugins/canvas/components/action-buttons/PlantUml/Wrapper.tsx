@@ -6,7 +6,7 @@ import {
   useMirroredCodeBlocksStore,
   getMirroredCodeBlockByLocation,
 } from "@/plugins/thread-better-code-blocks/store";
-import { generatePlantUMLUrl } from "@/utils/plantUml";
+import { generatePlantUMLUrl } from "@/utils/plant-uml";
 
 export default function PlantUmlCanvasActionButtonsWrapper() {
   const { selectedCodeBlockLocation } = useCanvasStore();
@@ -31,7 +31,7 @@ export default function PlantUmlCanvasActionButtonsWrapper() {
         window.open(url, "_blank");
       }}
     >
-      <LuExternalLink className="tw-size-4" />
+      <LuExternalLink className="x-size-4" />
     </Button>
   );
 }

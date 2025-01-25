@@ -9,10 +9,10 @@ export default function LanguageModelSelectorPluginDetails() {
   if (!settings) return null;
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-4 tw-overflow-y-auto">
+    <div className="x-flex x-flex-col x-gap-4 x-overflow-y-auto">
       <P>
         Allow you to change your preferred language model{" "}
-        <span className="tw-font-medium tw-text-primary tw-underline">
+        <span className="x-font-medium x-text-primary x-underline">
           anywhere
         </span>
         . The selector can be found on all query boxes.
@@ -29,8 +29,8 @@ export default function LanguageModelSelectorPluginDetails() {
         }}
       />
       {settings.plugins["queryBox:languageModelSelector"].enabled && (
-        <div className="tw-flex tw-flex-col tw-gap-2">
-          <div className="tw-ml-8 tw-flex tw-flex-col tw-gap-2">
+        <div className="x-flex x-flex-col x-gap-2">
+          <div className="x-ml-8 x-flex x-flex-col x-gap-2">
             <Switch
               textLabel="Homepage + Modal + Space"
               checked={
@@ -44,13 +44,13 @@ export default function LanguageModelSelectorPluginDetails() {
               }}
             />
             <Switch
-              className="tw-ml-8 tw-items-start"
+              className="x-ml-8 x-items-start"
               textLabel={
                 <div>
-                  <div className="tw-text-sm">
+                  <div className="x-text-sm">
                     Respect default Space&apos;s model
                   </div>
-                  <div className="tw-text-sm tw-text-muted-foreground">
+                  <div className="x-text-sm x-text-muted-foreground">
                     Automatically switch to the default model when entering a
                     Space
                   </div>
@@ -68,7 +68,7 @@ export default function LanguageModelSelectorPluginDetails() {
                 });
               }}
             />
-            <div className="tw-flex tw-flex-col tw-gap-2">
+            <div className="x-flex x-flex-col x-gap-2">
               <Switch
                 textLabel="Follow-up (in a thread)"
                 checked={
@@ -102,11 +102,11 @@ export default function LanguageModelSelectorPluginDetails() {
           )}
         </div>
       )}
-      <div className="tw-mx-auto tw-w-full tw-max-w-[700px]">
+      <div className="x-mx-auto x-w-full x-max-w-[700px]">
         <Image
           src="https://i.imgur.com/IBClpp3.png"
           alt="language-model-selector"
-          className="tw-w-full"
+          className="x-w-full"
         />
       </div>
     </div>

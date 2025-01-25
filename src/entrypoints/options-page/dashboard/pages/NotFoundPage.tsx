@@ -16,12 +16,12 @@ export default function NotFoundPage() {
   }, [navigate]);
 
   return (
-    <div className="tw-flex tw-h-full tw-min-h-screen tw-items-center tw-justify-center">
+    <div className="x-flex x-h-full x-min-h-screen x-items-center x-justify-center">
       <Result
         icon={TbError404}
         title="Page not found"
         description={
-          <div className="tw-text-balance">
+          <div className="x-text-balance">
             You will be redirected to the home page in 5 seconds...
           </div>
         }

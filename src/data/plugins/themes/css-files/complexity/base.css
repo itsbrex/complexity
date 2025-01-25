@@ -7,12 +7,12 @@ body#__next {
     h4,
     h5,
     h6 {
-      @apply tw-text-primary;
+      @apply x-text-primary;
     }
 
     /* Message Block Dividers */
     [data-cplx-component="message-block"]:not(:last-of-type) {
-      @apply tw-border-b-ring/50;
+      @apply x-border-b-ring/50;
     }
   }
 
@@ -23,12 +23,12 @@ body#__next {
       content: "";
     }
 
-    @apply tw-rounded-md tw-bg-secondary tw-px-1 tw-py-0.5 tw-text-primary;
+    @apply x-rounded-md x-bg-secondary x-px-1 x-py-0.5 x-text-primary;
   }
 
   font-variant-ligatures: none;
 
   a[aria-label="Perplexity"] svg path {
-    @apply !tw-stroke-primary;
+    @apply !x-stroke-primary;
   }
 }

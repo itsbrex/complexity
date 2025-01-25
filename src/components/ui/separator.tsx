@@ -14,10 +14,10 @@ const Separator = ({
       role="separator"
       aria-orientation={orientation}
       className={cn(
-        "tw-shrink-0 tw-bg-border",
+        "x-shrink-0 x-bg-border",
         orientation === "horizontal"
-          ? "tw-h-[1px] tw-w-full"
-          : "tw-h-full tw-w-[1px]",
+          ? "x-h-[1px] x-w-full"
+          : "x-h-full x-w-[1px]",
         className,
       )}
       {...props}

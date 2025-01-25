@@ -18,7 +18,7 @@ export default function PromptHistoryPluginDetails() {
   if (!settings) return null;
 
   return (
-    <div className="tw-flex tw-max-w-lg tw-flex-col tw-gap-4">
+    <div className="x-flex x-max-w-lg x-flex-col x-gap-4">
       <P>
         Frustrated when losing your prompt? This plugin will save your prompt to
         history and allow you to easily access it.
@@ -30,13 +30,13 @@ export default function PromptHistoryPluginDetails() {
       />
 
       {pluginSettings?.enabled && (
-        <div className="tw-ml-8 tw-flex tw-flex-col tw-gap-2">
+        <div className="x-ml-8 x-flex x-flex-col x-gap-2">
           <Switch
-            className="tw-items-start"
+            className="x-items-start"
             textLabel={
               <div>
                 <div>Save on submit</div>
-                <div className="tw-text-sm tw-text-muted-foreground">
+                <div className="x-text-sm x-text-muted-foreground">
                   When you submit a new prompt
                 </div>
               </div>
@@ -51,11 +51,11 @@ export default function PromptHistoryPluginDetails() {
             }}
           />
           <Switch
-            className="tw-items-start"
+            className="x-items-start"
             textLabel={
               <div>
                 <div>Save on navigation</div>
-                <div className="tw-text-sm tw-text-muted-foreground">
+                <div className="x-text-sm x-text-muted-foreground">
                   When you (accidentally) navigate away from the page (or when
                   Perplexity forces the page to reload)
                 </div>
@@ -72,11 +72,11 @@ export default function PromptHistoryPluginDetails() {
           />
         </div>
       )}
-      <div className="tw-mx-auto tw-w-full tw-max-w-[700px]">
+      <div className="x-mx-auto x-w-full x-max-w-[700px]">
         <Image
           src="https://i.imgur.com/3miAzlF.png"
           alt="prompt-history"
-          className="tw-w-full"
+          className="x-w-full"
         />
       </div>
     </div>

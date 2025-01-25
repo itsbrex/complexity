@@ -57,7 +57,7 @@ export function TagsFilter() {
     filters.tags.length + filters.excludeTags.length;
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-2">
+    <div className="x-flex x-flex-col x-gap-2">
       <Popover
         open={open}
         positioning={{
@@ -66,20 +66,20 @@ export function TagsFilter() {
         onOpenChange={handleOpenChange}
       >
         <PopoverTrigger asChild>
-          <Button variant="ghost" className="tw-py-2">
-            <div className="tw-flex tw-items-center tw-gap-2">
+          <Button variant="ghost" className="x-py-2">
+            <div className="x-flex x-items-center x-gap-2">
               <span>Tags</span>
               {getActiveFiltersCount() > 0 && (
-                <div className="tw-flex tw-h-4 tw-w-4 tw-items-center tw-justify-center tw-rounded-full tw-bg-primary/10 tw-text-[10px] tw-font-medium tw-text-primary">
+                <div className="x-flex x-h-4 x-w-4 x-items-center x-justify-center x-rounded-full x-bg-primary/10 x-text-[10px] x-font-medium x-text-primary">
                   {getActiveFiltersCount()}
                 </div>
               )}
             </div>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="tw-w-[230px] tw-p-0">
+        <PopoverContent className="x-w-[230px] x-p-0">
           <Command>
-            <CommandList className="tw-p-3 tw-shadow-lg [&_[cmdk-list-sizer]]:tw-flex [&_[cmdk-list-sizer]]:tw-flex-row [&_[cmdk-list-sizer]]:tw-flex-wrap">
+            <CommandList className="x-p-3 x-shadow-lg [&_[cmdk-list-sizer]]:x-flex [&_[cmdk-list-sizer]]:x-flex-row [&_[cmdk-list-sizer]]:x-flex-wrap">
               {Object.entries(PLUGIN_TAGS).map(
                 ([key, { label, description }]) => {
                   const tagState = getTagState(key as PluginTagValues);
@@ -87,24 +87,24 @@ export function TagsFilter() {
                     <Tooltip key={key} content={description}>
                       <CommandItem
                         className={cn({
-                          "tw-m-1 tw-w-max tw-cursor-pointer tw-rounded-md tw-px-2 tw-py-0.5 tw-text-sm tw-transition-colors hover:tw-bg-primary/10 aria-selected:tw-bg-secondary aria-selected:tw-text-muted-foreground":
+                          "x-m-1 x-w-max x-cursor-pointer x-rounded-md x-px-2 x-py-0.5 x-text-sm x-transition-colors hover:x-bg-primary/10 aria-selected:x-bg-secondary aria-selected:x-text-muted-foreground":
                             true,
-                          "tw-bg-primary tw-text-primary-foreground aria-selected:tw-bg-primary aria-selected:tw-text-primary-foreground":
+                          "x-bg-primary x-text-primary-foreground aria-selected:x-bg-primary aria-selected:x-text-primary-foreground":
                             tagState === "include",
-                          "tw-bg-destructive tw-text-destructive-foreground aria-selected:tw-bg-destructive aria-selected:tw-text-destructive-foreground":
+                          "x-bg-destructive x-text-destructive-foreground aria-selected:x-bg-destructive aria-selected:x-text-destructive-foreground":
                             tagState === "exclude",
-                          "tw-bg-secondary": tagState === "none",
+                          "x-bg-secondary": tagState === "none",
                         })}
                         onSelect={() => handleSelect(key as PluginTagValues)}
                       >
                         {tagState === "include" ? (
-                          <span className="tw-flex tw-items-center tw-gap-1">
-                            <LuPlus className="tw-h-3 tw-w-3" />
+                          <span className="x-flex x-items-center x-gap-1">
+                            <LuPlus className="x-h-3 x-w-3" />
                             {label}
                           </span>
                         ) : tagState === "exclude" ? (
-                          <span className="tw-flex tw-items-center tw-gap-1">
-                            <LuMinus className="tw-h-3 tw-w-3" />
+                          <span className="x-flex x-items-center x-gap-1">
+                            <LuMinus className="x-h-3 x-w-3" />
                             {label}
                           </span>
                         ) : (

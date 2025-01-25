@@ -83,12 +83,12 @@ export default function CommandMenuWrapper() {
       }}
       onOpenChange={({ open }) => setOpen(open)}
     >
-      <div className="tw-flex tw-items-center tw-border-b tw-border-border/50">
+      <div className="x-flex x-items-center x-border-b x-border-border/50">
         <SearchFilterBadge />
         <CommandInput
           ref={ref}
-          className={cn("tw-grow tw-border-none", {
-            "tw-font-medium": !searchValue,
+          className={cn("x-grow x-border-none", {
+            "x-font-medium": !searchValue,
           })}
           placeholder={
             !filter

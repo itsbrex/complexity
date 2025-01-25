@@ -17,10 +17,10 @@ export function MobileSelectContent({ ...props }: DialogProps) {
 
   return (
     <Sheet lazyMount unmountOnExit {...props}>
-      <SheetContent side="bottom" className="tw-space-y-6">
+      <SheetContent side="bottom" className="x-space-y-6">
         {groupedLanguageModelsByProvider.map(({ provider, models }) => (
-          <SelectGroup key={provider} className="tw-space-y-3">
-            <SelectLabel className="tw-text-lg">{provider}</SelectLabel>
+          <SelectGroup key={provider} className="x-space-y-3">
+            <SelectLabel className="x-text-lg">{provider}</SelectLabel>
 
             {models.map((model) => {
               const Icon = languageModelProviderIcons[provider];
@@ -31,19 +31,19 @@ export function MobileSelectContent({ ...props }: DialogProps) {
                 <SelectItem
                   key={model.code}
                   item={model.code}
-                  className="tw-py-3 tw-font-medium"
+                  className="x-py-3 x-font-medium"
                 >
-                  <div className="tw-flex tw-w-full tw-max-w-full tw-items-center tw-justify-between tw-gap-4">
-                    <div className="tw-flex tw-items-center tw-gap-3">
+                  <div className="x-flex x-w-full x-max-w-full x-items-center x-justify-between x-gap-4">
+                    <div className="x-flex x-items-center x-gap-3">
                       {isReactNode(<Icon />) ? (
-                        <Icon className="tw-size-5" />
+                        <Icon className="x-size-5" />
                       ) : (
-                        <LuCpu className="tw-size-5" />
+                        <LuCpu className="x-size-5" />
                       )}
-                      <span className="tw-truncate">{model.label}</span>
+                      <span className="x-truncate">{model.label}</span>
                     </div>
 
-                    <div className="tw-text-sm tw-text-muted-foreground">
+                    <div className="x-text-sm x-text-muted-foreground">
                       {modelsLimits[model.code]}
                     </div>
                   </div>

@@ -13,8 +13,8 @@ const StepsList = ({
 }: ComponentProps<typeof ArkSteps.List>) => (
   <ArkSteps.List
     className={cn(
-      "tw-flex tw-w-full tw-items-center tw-gap-2",
-      "data-[orientation=vertical]:tw-flex-col",
+      "x-flex x-w-full x-items-center x-gap-2",
+      "data-[orientation=vertical]:x-flex-col",
       className,
     )}
     {...props}
@@ -26,8 +26,8 @@ StepsList.displayName = "StepsList";
 const StepsItem = ({ className, ...props }: ArkSteps.ItemProps) => (
   <ArkSteps.Item
     className={cn(
-      "tw-flex tw-flex-1 tw-items-center tw-gap-2",
-      "data-[orientation=vertical]:tw-w-full",
+      "x-flex x-flex-1 x-items-center x-gap-2",
+      "data-[orientation=vertical]:x-w-full",
       className,
     )}
     {...props}
@@ -39,10 +39,10 @@ StepsItem.displayName = "StepsItem";
 const StepsTrigger = ({ className, ...props }: ArkSteps.TriggerProps) => (
   <ArkSteps.Trigger
     className={cn(
-      "tw-group tw-flex tw-w-full tw-items-center tw-gap-2 tw-text-sm tw-font-medium",
-      "tw-transition-colors hover:tw-text-foreground/80",
-      "disabled:tw-cursor-not-allowed disabled:tw-opacity-50",
-      "focus-visible:tw-outline-none focus-visible:tw-ring-2 focus-visible:tw-ring-ring focus-visible:tw-ring-offset-2",
+      "x-group x-flex x-w-full x-items-center x-gap-2 x-text-sm x-font-medium",
+      "x-transition-colors hover:x-text-foreground/80",
+      "disabled:x-cursor-not-allowed disabled:x-opacity-50",
+      "focus-visible:x-outline-none focus-visible:x-ring-2 focus-visible:x-ring-ring focus-visible:x-ring-offset-2",
       className,
     )}
     {...props}
@@ -54,11 +54,11 @@ StepsTrigger.displayName = "StepsTrigger";
 const StepsIndicator = ({ className, ...props }: ArkSteps.IndicatorProps) => (
   <ArkSteps.Indicator
     className={cn(
-      "tw-flex tw-h-8 tw-w-8 tw-items-center tw-justify-center tw-rounded-full tw-border-2 tw-bg-background tw-text-sm tw-font-medium",
-      "tw-self-start tw-transition-colors",
-      "group-data-[state=complete]:tw-border-primary group-data-[state=complete]:tw-text-primary",
-      "group-data-[state=current]:tw-border-primary group-data-[state=current]:tw-text-primary",
-      "group-data-[state=upcoming]:tw-border-muted-foreground group-data-[state=upcoming]:tw-text-muted-foreground",
+      "x-flex x-h-8 x-w-8 x-items-center x-justify-center x-rounded-full x-border-2 x-bg-background x-text-sm x-font-medium",
+      "x-self-start x-transition-colors",
+      "group-data-[state=complete]:x-border-primary group-data-[state=complete]:x-text-primary",
+      "group-data-[state=current]:x-border-primary group-data-[state=current]:x-text-primary",
+      "group-data-[state=upcoming]:x-border-muted-foreground group-data-[state=upcoming]:x-text-muted-foreground",
       className,
     )}
     {...props}
@@ -70,9 +70,9 @@ StepsIndicator.displayName = "StepsIndicator";
 const StepsSeparator = ({ className, ...props }: ArkSteps.SeparatorProps) => (
   <ArkSteps.Separator
     className={cn(
-      "tw-h-[2px] tw-flex-1 tw-bg-border",
-      "data-[orientation=vertical]:tw-h-8 data-[orientation=vertical]:tw-w-[2px]",
-      "group-data-[state=complete]:tw-bg-primary",
+      "x-h-[2px] x-flex-1 x-bg-border",
+      "data-[orientation=vertical]:x-h-8 data-[orientation=vertical]:x-w-[2px]",
+      "group-data-[state=complete]:x-bg-primary",
       className,
     )}
     {...props}
@@ -82,10 +82,7 @@ const StepsSeparator = ({ className, ...props }: ArkSteps.SeparatorProps) => (
 StepsSeparator.displayName = "StepsSeparator";
 
 const StepsContent = ({ className, ...props }: ArkSteps.ContentProps) => (
-  <ArkSteps.Content
-    className={cn("tw-mt-4 tw-text-sm", className)}
-    {...props}
-  />
+  <ArkSteps.Content className={cn("x-mt-4 x-text-sm", className)} {...props} />
 );
 
 StepsContent.displayName = "StepsContent";
@@ -95,7 +92,7 @@ const StepsCompletedContent = ({
   ...props
 }: ArkSteps.CompletedContentProps) => (
   <ArkSteps.CompletedContent
-    className={cn("tw-mt-4 tw-text-sm", className)}
+    className={cn("x-mt-4 x-text-sm", className)}
     {...props}
   />
 );

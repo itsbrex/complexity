@@ -23,7 +23,7 @@ const BetterCopyButton = memo(function BetterCopyButton({
   hasSources,
 }: BetterCopyButtonProps) {
   const [triggerIcon, setTriggerIcon] = useToggleButtonText({
-    defaultText: <LuCopy className="tw-size-4" />,
+    defaultText: <LuCopy className="x-size-4" />,
   });
 
   const { copyMessage, isFetching } = useCopyPplxThread();
@@ -35,7 +35,7 @@ const BetterCopyButton = memo(function BetterCopyButton({
       await copyMessage({
         messageBlockIndex,
         withCitations,
-        onComplete: () => setTriggerIcon(<LuCheck className="tw-size-4" />),
+        onComplete: () => setTriggerIcon(<LuCheck className="x-size-4" />),
       });
     },
     [copyMessage, isFetching, messageBlockIndex, setTriggerIcon],
@@ -60,21 +60,21 @@ const BetterCopyButton = memo(function BetterCopyButton({
         </DropdownMenuTrigger>
       </Tooltip>
       {hasSources && (
-        <DropdownMenuContent className="tw-font-medium">
+        <DropdownMenuContent className="x-font-medium">
           <DropdownMenuItem
             value={"default" satisfies CopyOptions}
-            className="tw-flex tw-items-center tw-gap-2"
+            className="x-flex x-items-center x-gap-2"
           >
-            <BiLogoMarkdown className="tw-size-4" />
+            <BiLogoMarkdown className="x-size-4" />
             <span>
               {t("plugin-better-copy-buttons:copyButton.options.default")}
             </span>
           </DropdownMenuItem>
           <DropdownMenuItem
             value={"without-citations" satisfies CopyOptions}
-            className="tw-flex tw-items-center tw-gap-2"
+            className="x-flex x-items-center x-gap-2"
           >
-            <LuLink2Off className="tw-size-4" />
+            <LuLink2Off className="x-size-4" />
             <span>
               {t(
                 "plugin-better-copy-buttons:copyButton.options.withoutCitations",
@@ -102,15 +102,15 @@ const CopyButtonTrigger = memo(
           ref={ref}
           tabIndex={0}
           className={cn(
-            "tw-cursor-pointer tw-rounded-md tw-p-2 tw-text-muted-foreground tw-transition-all hover:tw-bg-secondary hover:tw-text-foreground active:tw-scale-95",
+            "x-cursor-pointer x-rounded-md x-p-2 x-text-muted-foreground x-transition-all hover:x-bg-secondary hover:x-text-foreground active:x-scale-95",
             {
-              "tw-cursor-not-allowed tw-opacity-50": isFetching,
+              "x-cursor-not-allowed x-opacity-50": isFetching,
             },
           )}
           onClick={onClick}
         >
           {isFetching ? (
-            <LuLoaderCircle className="tw-size-4 tw-animate-spin" />
+            <LuLoaderCircle className="x-size-4 x-animate-spin" />
           ) : (
             icon
           )}

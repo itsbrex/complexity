@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["selector", "[data-color-scheme='dark']"],
-  prefix: "tw-",
+  prefix: "x-",
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
 
   theme: {
@@ -26,9 +26,9 @@ export default {
         },
       },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-radial": "radial-gradient(var(--x-gradient-stops))",
         "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+          "conic-gradient(from 180deg at 50% 50%, var(--x-gradient-stops))",
       },
       colors: {
         border: "oklch(var(--border) / <alpha-value>)",

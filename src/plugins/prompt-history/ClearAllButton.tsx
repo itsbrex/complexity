@@ -31,7 +31,7 @@ export default function ClearAllButton() {
       onOpenChange={({ open }) => setIsOpen(open)}
     >
       <DialogTrigger asChild>
-        <div className="tw-ml-auto tw-cursor-pointer tw-text-xs tw-text-muted-foreground tw-transition-colors hover:tw-text-foreground hover:tw-underline">
+        <div className="x-ml-auto x-cursor-pointer x-text-xs x-text-muted-foreground x-transition-colors hover:x-text-foreground hover:x-underline">
           {t(
             "plugin-slash-command-menu:slashCommandMenu.filterItems.promptHistory.clearButton.label",
           )}

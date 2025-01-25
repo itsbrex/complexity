@@ -11,10 +11,10 @@
       top: var(--navbar-height);
       order: -1;
       z-index: 1;
-      @apply tw-mb-8 tw-mt-0 tw-border-b tw-border-dashed tw-border-border/50 tw-bg-background tw-p-2;
+      @apply x-mb-8 x-mt-0 x-border-b x-border-dashed x-border-border/50 x-bg-background x-p-2;
 
       button {
-        @apply tw-rounded-md;
+        @apply x-rounded-md;
       }
 
       &.stuck {

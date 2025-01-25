@@ -14,13 +14,13 @@ export default function Dashboard() {
     : DesktopSidebarWrapper;
 
   return (
-    <div className="tw-flex tw-min-h-screen tw-bg-background">
+    <div className="x-flex x-min-h-screen x-bg-background">
       <SidebarWrapper>
         <Sidebar />
       </SidebarWrapper>
 
-      <div className="tw-flex tw-flex-1 tw-flex-col tw-gap-4">
-        <main className="tw-mx-auto tw-mt-11 tw-min-h-[100dvh] tw-w-full tw-max-w-[1800px] tw-p-4 md:tw-mt-0">
+      <div className="x-flex x-flex-1 x-flex-col x-gap-4">
+        <main className="x-mx-auto x-mt-11 x-min-h-[100dvh] x-w-full x-max-w-[1800px] x-p-4 md:x-mt-0">
           <Suspense fallback={<LoadingOverlay />}>
             <Outlet />
           </Suspense>

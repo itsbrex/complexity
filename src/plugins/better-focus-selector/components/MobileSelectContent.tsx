@@ -6,18 +6,18 @@ import { FOCUS_MODES } from "@/data/plugins/better-focus-selector/focus-modes";
 export function MobileSelectContent({ ...props }: DialogProps) {
   return (
     <Sheet lazyMount unmountOnExit {...props}>
-      <SheetContent side="bottom" className="tw-flex tw-flex-col tw-gap-2">
+      <SheetContent side="bottom" className="x-flex x-flex-col x-gap-2">
         {FOCUS_MODES.map((mode) => (
           <SelectItem
             key={mode.code}
             item={mode.code}
-            className="tw-flex tw-flex-col tw-items-start tw-gap-2 tw-py-3 tw-font-medium tw-text-foreground"
+            className="x-flex x-flex-col x-items-start x-gap-2 x-py-3 x-font-medium x-text-foreground"
           >
-            <div className="tw-flex tw-items-center tw-gap-3">
-              <mode.Icon className="tw-size-5" />
+            <div className="x-flex x-items-center x-gap-3">
+              <mode.Icon className="x-size-5" />
               <div>{mode.label}</div>
             </div>
-            <div className="tw-text-sm tw-text-muted-foreground">
+            <div className="x-text-sm x-text-muted-foreground">
               {mode.description}
             </div>
           </SelectItem>

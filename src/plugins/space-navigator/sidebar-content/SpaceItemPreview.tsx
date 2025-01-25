@@ -40,7 +40,7 @@ export default function SpaceItemPreview({ spaces }: { spaces: Space[] }) {
 
   if (isEmptyView)
     return (
-      <div className="tw-relative tw-flex tw-size-full tw-items-center tw-justify-center tw-text-muted-foreground">
+      <div className="x-relative x-flex x-size-full x-items-center x-justify-center x-text-muted-foreground">
         <PinSpaceButton space={space} />
         <div>
           {t("plugin-space-navigator:spaceNavigator.spaceItem.noPreviewData")}
@@ -49,36 +49,36 @@ export default function SpaceItemPreview({ spaces }: { spaces: Space[] }) {
     );
 
   return (
-    <div className="tw-relative tw-flex tw-flex-col tw-gap-4 tw-p-4">
+    <div className="x-relative x-flex x-flex-col x-gap-4 x-p-4">
       <PinSpaceButton space={space} />
 
       {space.description && (
-        <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
-          <div className="tw-text-sm tw-font-medium tw-text-muted-foreground">
+        <div className="x-flex x-flex-col x-justify-between x-gap-2">
+          <div className="x-text-sm x-font-medium x-text-muted-foreground">
             {t(
               "plugin-space-navigator:spaceNavigator.spaceItem.details.description",
             )}
           </div>
-          <div className="tw-line-clamp-1 tw-whitespace-pre-wrap">
+          <div className="x-line-clamp-1 x-whitespace-pre-wrap">
             {space.description}
           </div>
         </div>
       )}
       {space.instructions && (
-        <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
-          <div className="tw-text-sm tw-font-medium tw-text-muted-foreground">
+        <div className="x-flex x-flex-col x-justify-between x-gap-2">
+          <div className="x-text-sm x-font-medium x-text-muted-foreground">
             {t(
               "plugin-space-navigator:spaceNavigator.spaceItem.details.instructions",
             )}
           </div>
-          <ScrollArea className="tw-whitespace-pre-wrap tw-rounded-md tw-bg-secondary">
-            <div className="tw-max-h-[200px] tw-p-2">{space.instructions}</div>
+          <ScrollArea className="x-whitespace-pre-wrap x-rounded-md x-bg-secondary">
+            <div className="x-max-h-[200px] x-p-2">{space.instructions}</div>
           </ScrollArea>
         </div>
       )}
       {space.focused_web_config?.link_configs.length > 0 && (
-        <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
-          <div className="tw-truncate tw-text-sm tw-font-medium tw-text-muted-foreground">
+        <div className="x-flex x-flex-col x-justify-between x-gap-2">
+          <div className="x-truncate x-text-sm x-font-medium x-text-muted-foreground">
             {t(
               "plugin-space-navigator:spaceNavigator.spaceItem.details.focusedWebLinks",
               {
@@ -86,19 +86,19 @@ export default function SpaceItemPreview({ spaces }: { spaces: Space[] }) {
               },
             )}
           </div>
-          <div className="tw-flex tw-flex-wrap tw-items-center tw-gap-2">
+          <div className="x-flex x-flex-wrap x-items-center x-gap-2">
             {space.focused_web_config.link_configs.map((link, idx) => (
-              <div key={idx} className="tw-flex tw-items-center tw-gap-2">
-                <LuLink className="tw-size-4" />
-                <div className="tw-line-clamp-1 tw-underline">{link.link}</div>
+              <div key={idx} className="x-flex x-items-center x-gap-2">
+                <LuLink className="x-size-4" />
+                <div className="x-line-clamp-1 x-underline">{link.link}</div>
               </div>
             ))}
           </div>
         </div>
       )}
       {files && files?.num_total_files > 0 && (
-        <div className="tw-flex tw-flex-col tw-justify-between tw-gap-2">
-          <div className="tw-text-sm tw-font-medium tw-text-muted-foreground">
+        <div className="x-flex x-flex-col x-justify-between x-gap-2">
+          <div className="x-text-sm x-font-medium x-text-muted-foreground">
             {t(
               "plugin-space-navigator:spaceNavigator.spaceItem.details.files",
               {
@@ -126,14 +126,14 @@ function PinSpaceButton({ space }: { space: Space }) {
   const { mutate: unpinSpace } = useUnpinSpaceMutation();
 
   return (
-    <div className="tw-absolute tw-right-2 tw-top-2">
+    <div className="x-absolute x-right-2 x-top-2">
       <Tooltip
         content={t(
           `plugin-space-navigator:spaceNavigator.spaceItem.pinActions.${isPinned ? "unpin" : "pin"}`,
         )}
       >
         <div
-          className="tw-cursor-pointer tw-rounded-md tw-p-2 tw-text-muted-foreground tw-transition-all hover:tw-bg-secondary hover:tw-text-foreground active:tw-scale-95"
+          className="x-cursor-pointer x-rounded-md x-p-2 x-text-muted-foreground x-transition-all hover:x-bg-secondary hover:x-text-foreground active:x-scale-95"
           onClick={() => {
             if (isPinned) {
               unpinSpace({ uuid: space.uuid });
@@ -143,9 +143,9 @@ function PinSpaceButton({ space }: { space: Space }) {
           }}
         >
           {isPinned ? (
-            <LuPinOff className="tw-size-4" />
+            <LuPinOff className="x-size-4" />
           ) : (
-            <LuPin className="tw-size-4" />
+            <LuPin className="x-size-4" />
           )}
         </div>
       </Tooltip>

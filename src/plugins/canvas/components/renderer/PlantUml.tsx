@@ -14,7 +14,7 @@ import {
   getMirroredCodeBlockByLocation,
   useMirroredCodeBlocksStore,
 } from "@/plugins/thread-better-code-blocks/store";
-import { generatePlantUMLUrl, generateTextPlantUMLUrl } from "@/utils/plantUml";
+import { generatePlantUMLUrl, generateTextPlantUMLUrl } from "@/utils/plant-uml";
 import { UiUtils } from "@/utils/ui-utils";
 
 const SVGContent = memo(function SVGContent({ svg }: { svg: string }) {
@@ -31,7 +31,7 @@ const SVGContent = memo(function SVGContent({ svg }: { svg: string }) {
   return (
     <div
       id="canvas-plantuml-container"
-      className="tw-flex tw-size-full tw-items-center tw-justify-center tw-animate-in tw-fade-in [&>svg]:!tw-size-full"
+      className="x-flex x-size-full x-items-center x-justify-center x-animate-in x-fade-in [&>svg]:!x-size-full"
       dangerouslySetInnerHTML={{
         __html: svg,
       }}
@@ -105,22 +105,22 @@ export default function PlantUmlRenderer() {
   }, [code, mutate, isInFlight, colorScheme]);
 
   return (
-    <div className="tw-relative tw-size-full">
+    <div className="x-relative x-size-full">
       {isPending && (
-        <div className="tw-absolute tw-inset-1/2 -tw-translate-x-1/2 -tw-translate-y-1/2 tw-animate-in tw-fade-in">
-          <LuLoaderCircle className="tw-size-10 tw-animate-spin tw-text-muted-foreground" />
+        <div className="x-absolute x-inset-1/2 -x-translate-x-1/2 -x-translate-y-1/2 x-animate-in x-fade-in">
+          <LuLoaderCircle className="x-size-10 x-animate-spin x-text-muted-foreground" />
         </div>
       )}
       {!isPending && error && (
-        <div className="tw-flex tw-flex-col tw-gap-4 tw-p-4">
-          <div className="tw-whitespace-pre tw-font-mono tw-text-red-500 tw-animate-in tw-fade-in">
-            <div className="tw-text-lg tw-font-bold">
+        <div className="x-flex x-flex-col x-gap-4 x-p-4">
+          <div className="x-whitespace-pre x-font-mono x-text-red-500 x-animate-in x-fade-in">
+            <div className="x-text-lg x-font-bold">
               An error occurred while rendering the PlantUML code:
             </div>
             <div>{error.message}</div>
           </div>
           <Button
-            className="tw-w-max"
+            className="x-w-max"
             variant="destructive"
             onClick={() => {
               if (!error.message) return;

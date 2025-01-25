@@ -34,8 +34,8 @@ export default function BetterCodeBlockFineGrainedOptions({
   if (!settings) return null;
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-4">
-      <div className="tw-flex tw-flex-col tw-gap-4">
+    <div className="x-flex x-flex-col x-gap-4">
+      <div className="x-flex x-flex-col x-gap-4">
         <Switch
           textLabel="Sticky header"
           checked={settings?.stickyHeader}
@@ -48,7 +48,7 @@ export default function BetterCodeBlockFineGrainedOptions({
             });
           }}
         />
-        <div className="tw-flex tw-flex-col tw-gap-2">
+        <div className="x-flex x-flex-col x-gap-2">
           <Switch
             textLabel="Unwrap lines by default"
             checked={settings?.unwrap.enabled}
@@ -65,7 +65,7 @@ export default function BetterCodeBlockFineGrainedOptions({
           />
           <Switch
             textLabel="Show toggle button"
-            className="tw-ml-8"
+            className="x-ml-8"
             checked={settings?.unwrap.showToggleButton}
             onCheckedChange={({ checked }) => {
               mutation.mutate({
@@ -79,8 +79,8 @@ export default function BetterCodeBlockFineGrainedOptions({
             }}
           />
         </div>
-        <div className="tw-flex tw-flex-col tw-gap-2">
-          <div className="tw-flex tw-gap-2">
+        <div className="x-flex x-flex-col x-gap-2">
+          <div className="x-flex x-gap-2">
             <Switch
               textLabel="Max height"
               checked={settings?.maxHeight.enabled}
@@ -95,12 +95,12 @@ export default function BetterCodeBlockFineGrainedOptions({
                 });
               }}
             />
-            <div className="tw-flex tw-items-center tw-gap-2">
+            <div className="x-flex x-items-center x-gap-2">
               <Input
                 type="number"
                 min={0}
                 defaultValue={settings?.maxHeight.value}
-                className="tw-w-[100px]"
+                className="x-w-[100px]"
                 disabled={!settings?.maxHeight.enabled}
                 onChange={(e) => {
                   if (Number(e.target.value) < 0) {
@@ -113,7 +113,7 @@ export default function BetterCodeBlockFineGrainedOptions({
                   });
                 }}
               />
-              <div className="tw-text-muted-foreground">
+              <div className="x-text-muted-foreground">
                 px (0px = entirely collapsed)
               </div>
             </div>
@@ -122,7 +122,7 @@ export default function BetterCodeBlockFineGrainedOptions({
             <>
               <Switch
                 textLabel="Collapse by default"
-                className="tw-ml-8"
+                className="x-ml-8"
                 checked={settings?.maxHeight.collapseByDefault}
                 onCheckedChange={({ checked }) => {
                   mutation.mutate({
@@ -137,7 +137,7 @@ export default function BetterCodeBlockFineGrainedOptions({
               />
               <Switch
                 textLabel="Show toggle button"
-                className="tw-ml-8"
+                className="x-ml-8"
                 checked={settings?.maxHeight.showToggleButton}
                 onCheckedChange={({ checked }) => {
                   mutation.mutate({
@@ -152,7 +152,7 @@ export default function BetterCodeBlockFineGrainedOptions({
               />
             </>
           )}
-          <div className="tw-flex tw-flex-col tw-gap-2">
+          <div className="x-flex x-flex-col x-gap-2">
             <Switch
               textLabel="Custom placeholder text"
               checked={settings?.placeholderText.enabled}
@@ -168,14 +168,14 @@ export default function BetterCodeBlockFineGrainedOptions({
               }}
             />
             {settings?.placeholderText.enabled && (
-              <div className="tw-ml-8 tw-flex tw-flex-col tw-gap-2">
+              <div className="x-ml-8 x-flex x-flex-col x-gap-2">
                 <div>
-                  <Label className="tw-text-muted-foreground">Title</Label>
+                  <Label className="x-text-muted-foreground">Title</Label>
                   <Input
                     type="text"
                     maxLength={30}
                     defaultValue={settings?.placeholderText.title}
-                    className="tw-w-[300px]"
+                    className="x-w-[300px]"
                     onChange={(e) => {
                       debouncedMutate({
                         placeholderText: { title: e.target.value },
@@ -184,14 +184,14 @@ export default function BetterCodeBlockFineGrainedOptions({
                   />
                 </div>
                 <div>
-                  <Label className="tw-text-muted-foreground">
+                  <Label className="x-text-muted-foreground">
                     Loading text
                   </Label>
                   <Input
                     type="text"
                     maxLength={30}
                     defaultValue={settings?.placeholderText.loading}
-                    className="tw-w-[300px]"
+                    className="x-w-[300px]"
                     onChange={(e) => {
                       debouncedMutate({
                         placeholderText: { loading: e.target.value },
@@ -200,12 +200,12 @@ export default function BetterCodeBlockFineGrainedOptions({
                   />
                 </div>
                 <div>
-                  <Label className="tw-text-muted-foreground">Idle text</Label>
+                  <Label className="x-text-muted-foreground">Idle text</Label>
                   <Input
                     type="text"
                     maxLength={30}
                     defaultValue={settings?.placeholderText.idle}
-                    className="tw-w-[300px]"
+                    className="x-w-[300px]"
                     onChange={(e) => {
                       debouncedMutate({
                         placeholderText: { idle: e.target.value },
@@ -217,7 +217,7 @@ export default function BetterCodeBlockFineGrainedOptions({
             )}
           </div>
         </div>
-        <div className="tw-ml-auto tw-flex tw-flex-col tw-gap-2">
+        <div className="x-ml-auto x-flex x-flex-col x-gap-2">
           <DeleteLanguageOptionButton deleteMutation={deleteMutation.mutate} />
         </div>
       </div>

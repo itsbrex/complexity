@@ -94,7 +94,7 @@ export default function CreateNewLanguageOptionButton() {
         <DialogHeader>Fine-tune specific block</DialogHeader>
         <Input
           value={language}
-          className="tw-font-mono"
+          className="x-font-mono"
           placeholder="Language/Block name"
           onChange={({ target }) => setLanguage(target.value)}
           onKeyDown={(e) => {

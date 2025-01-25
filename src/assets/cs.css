@@ -8,5 +8,5 @@
 @tailwind utilities;
 
 body#__next {
-  @apply tw-font-sans;
+  @apply x-font-sans;
 }

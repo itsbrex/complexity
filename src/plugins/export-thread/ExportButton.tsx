@@ -29,15 +29,15 @@ const ExportButton = memo(function ExportButton() {
   const defaultIdleText = useMemo(
     () =>
       isFetching ? (
-        <div className="tw-flex tw-items-center tw-gap-2">
-          <LuLoaderCircle className="tw-size-4 tw-animate-spin" />
+        <div className="x-flex x-items-center x-gap-2">
+          <LuLoaderCircle className="x-size-4 x-animate-spin" />
           {!isMobile && (
             <span>{t("plugin-export-thread:exportButton.action")}</span>
           )}
         </div>
       ) : (
-        <div className="tw-flex tw-items-center tw-gap-2">
-          <LuDownload className="tw-size-4" />
+        <div className="x-flex x-items-center x-gap-2">
+          <LuDownload className="x-size-4" />
           {!isMobile && (
             <span>{t("plugin-export-thread:exportButton.action")}</span>
           )}
@@ -87,8 +87,8 @@ const ExportButton = memo(function ExportButton() {
           withCitations: value !== "without-citations",
           onComplete: () =>
             setCopyConfirmText(
-              <div className="tw-flex tw-items-center tw-gap-2">
-                <LuCheck className="tw-size-4" />
+              <div className="x-flex x-items-center x-gap-2">
+                <LuCheck className="x-size-4" />
                 {!isMobile && (
                   <span>{t("plugin-export-thread:exportButton.copied")}</span>
                 )}
@@ -101,18 +101,18 @@ const ExportButton = memo(function ExportButton() {
         <Button
           variant={isMobile ? "default" : "outline"}
           size="sm"
-          className="tw-h-8 tw-px-2"
+          className="x-h-8 x-px-2"
         >
           {isFetching ? defaultIdleText : (copyConfirmText ?? defaultIdleText)}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="tw-font-medium">
+      <DropdownMenuContent className="x-font-medium">
         <DropdownMenuItem value="default">
-          <BiLogoMarkdown className="tw-mr-2 tw-size-4" />
+          <BiLogoMarkdown className="x-mr-2 x-size-4" />
           <span>{t("plugin-export-thread:exportButton.options.default")}</span>
         </DropdownMenuItem>
         <DropdownMenuItem value="without-citations">
-          <LuLink2Off className="tw-mr-2 tw-size-4" />
+          <LuLink2Off className="x-mr-2 x-size-4" />
           <span>
             {t("plugin-export-thread:exportButton.options.withoutCitations")}
           </span>
@@ -122,21 +122,21 @@ const ExportButton = memo(function ExportButton() {
             handleDownload(value === "default");
           }}
         >
-          <DropdownMenuSubTrigger className="tw-p-2">
-            <LuFile className="tw-mr-2 tw-size-4" />
+          <DropdownMenuSubTrigger className="x-p-2">
+            <LuFile className="x-mr-2 x-size-4" />
             <span>
               {t("plugin-export-thread:exportButton.options.download")}
             </span>
           </DropdownMenuSubTrigger>
-          <DropdownMenuContent className="tw-font-medium">
+          <DropdownMenuContent className="x-font-medium">
             <DropdownMenuItem value="default">
-              <BiLogoMarkdown className="tw-mr-2 tw-size-4" />
+              <BiLogoMarkdown className="x-mr-2 x-size-4" />
               <span>
                 {t("plugin-export-thread:exportButton.options.default")}
               </span>
             </DropdownMenuItem>
             <DropdownMenuItem value="without-citations">
-              <LuLink2Off className="tw-mr-2 tw-size-4" />
+              <LuLink2Off className="x-mr-2 x-size-4" />
               <span>
                 {t(
                   "plugin-export-thread:exportButton.options.withoutCitations",

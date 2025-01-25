@@ -63,9 +63,9 @@ export default function Onboarding() {
   const navigate = useNavigate();
 
   return (
-    <div className="tw-flex tw-min-h-screen tw-bg-background">
-      <div className="tw-m-auto tw-w-full tw-max-w-3xl tw-px-4 md:tw-px-8">
-        <div className="tw-flex tw-justify-center tw-rounded-lg tw-py-4 md:tw-py-8">
+    <div className="x-flex x-min-h-screen x-bg-background">
+      <div className="x-m-auto x-w-full x-max-w-3xl x-px-4 md:x-px-8">
+        <div className="x-flex x-justify-center x-rounded-lg x-py-4 md:x-py-8">
           <Steps
             count={steps.length}
             onStepChange={() => window.scrollTo(0, 0)}
@@ -77,22 +77,22 @@ export default function Onboarding() {
             ))}
 
             <StepsCompletedContent>
-              <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-space-y-8 tw-animate-in tw-fade-in md:tw-space-y-12">
-                <div className="tw-rounded-full tw-bg-primary/10 tw-p-6 md:tw-p-8">
-                  <div className="tw-rounded-full tw-bg-foreground tw-p-4 md:tw-p-5">
-                    <LuCheck className="tw-h-8 tw-w-8 tw-text-primary-foreground md:tw-h-10 md:tw-w-10" />
+              <div className="x-flex x-flex-col x-items-center x-justify-center x-space-y-8 x-animate-in x-fade-in md:x-space-y-12">
+                <div className="x-rounded-full x-bg-primary/10 x-p-6 md:x-p-8">
+                  <div className="x-rounded-full x-bg-foreground x-p-4 md:x-p-5">
+                    <LuCheck className="x-h-8 x-w-8 x-text-primary-foreground md:x-h-10 md:x-w-10" />
                   </div>
                 </div>
-                <H3 className="tw-text-xl tw-font-semibold md:tw-text-2xl">
+                <H3 className="x-text-xl x-font-semibold md:x-text-2xl">
                   Setup Complete! 🎉
                 </H3>
-                <P className="tw-text-center tw-leading-relaxed tw-text-muted-foreground">
+                <P className="x-text-center x-leading-relaxed x-text-muted-foreground">
                   You&apos;re all set to start using the extension.
                 </P>
               </div>
             </StepsCompletedContent>
 
-            <div className="tw-mx-auto tw-mt-6 tw-flex tw-max-w-max tw-justify-between tw-gap-3 md:tw-mt-8 md:tw-gap-4">
+            <div className="x-mx-auto x-mt-6 x-flex x-max-w-max x-justify-between x-gap-3 md:x-mt-8 md:x-gap-4">
               <StepsContext>
                 {({ hasPrevStep, hasNextStep }) => (
                   <>
@@ -123,29 +123,29 @@ function FirstStep() {
   const fromAlpha = useIsFromAlpha();
 
   return (
-    <div className="tw-my-8 tw-flex tw-flex-col tw-items-center tw-justify-center tw-space-y-8 md:tw-my-16 md:tw-space-y-12">
-      <H1 className="tw-text-balance tw-text-center">
+    <div className="x-my-8 x-flex x-flex-col x-items-center x-justify-center x-space-y-8 md:x-my-16 md:x-space-y-12">
+      <H1 className="x-text-balance x-text-center">
         Make the most of your Perplexity AI
       </H1>
-      <div className="tw-space-y-8 tw-text-center md:tw-space-y-12">
-        <div className="tw-relative">
-          <div className="tw-group tw-relative tw-z-0 tw-mt-8 tw-flex tw-flex-col tw-place-items-center tw-transition-all before:tw-absolute before:tw-h-[300px] before:tw-w-full before:-tw-translate-x-1/2 before:tw-rounded-full before:tw-bg-gradient-to-br before:tw-from-transparent before:tw-to-primary before:tw-opacity-10 before:tw-blur-2xl before:tw-duration-1000 before:tw-ease-in-out before:tw-content-[''] before:tw-animate-in before:tw-fade-in before:tw-zoom-in-0 after:tw-absolute after:-tw-z-20 after:tw-h-[180px] after:tw-w-[240px] after:tw-translate-x-1/3 after:tw-bg-gradient-conic after:tw-from-primary after:tw-via-primary after:tw-opacity-40 after:tw-blur-2xl after:tw-duration-1000 after:tw-ease-in-out after:tw-content-[''] after:tw-animate-in after:tw-fade-in after:tw-zoom-in-0 sm:before:tw-w-[560px] md:tw-mt-12 md:before:tw-h-[400px] md:after:tw-h-[240px] md:after:tw-w-[320px] lg:tw-mb-0 lg:tw-mt-0 before:lg:tw-h-[480px]">
-            <Cplx className="tw-mx-auto tw-size-32 tw-fill-foreground tw-text-primary md:tw-size-48" />
+      <div className="x-space-y-8 x-text-center md:x-space-y-12">
+        <div className="x-relative">
+          <div className="x-group x-relative x-z-0 x-mt-8 x-flex x-flex-col x-place-items-center x-transition-all before:x-absolute before:x-h-[300px] before:x-w-full before:-x-translate-x-1/2 before:x-rounded-full before:x-bg-gradient-to-br before:x-from-transparent before:x-to-primary before:x-opacity-10 before:x-blur-2xl before:x-duration-1000 before:x-ease-in-out before:x-content-[''] before:x-animate-in before:x-fade-in before:x-zoom-in-0 after:x-absolute after:-x-z-20 after:x-h-[180px] after:x-w-[240px] after:x-translate-x-1/3 after:x-bg-gradient-conic after:x-from-primary after:x-via-primary after:x-opacity-40 after:x-blur-2xl after:x-duration-1000 after:x-ease-in-out after:x-content-[''] after:x-animate-in after:x-fade-in after:x-zoom-in-0 sm:before:x-w-[560px] md:x-mt-12 md:before:x-h-[400px] md:after:x-h-[240px] md:after:x-w-[320px] lg:x-mb-0 lg:x-mt-0 before:lg:x-h-[480px]">
+            <Cplx className="x-mx-auto x-size-32 x-fill-foreground x-text-primary md:x-size-48" />
           </div>
         </div>
-        <div className="tw-relative tw-z-10">
+        <div className="x-relative x-z-10">
           {fromAlpha ? (
-            <H2 className="tw-text-lg tw-text-muted-foreground md:tw-text-xl">
+            <H2 className="x-text-lg x-text-muted-foreground md:x-text-xl">
               A brand new version of Complexity is here!
             </H2>
           ) : (
             <>
-              <H2 className="tw-text-lg tw-text-muted-foreground md:tw-text-xl">
+              <H2 className="x-text-lg x-text-muted-foreground md:x-text-xl">
                 Let&apos;s get started with a quick setup
               </H2>
               <Link
                 to="/"
-                className="tw-cursor-pointer tw-text-center tw-text-base tw-leading-relaxed tw-text-muted-foreground tw-underline md:tw-text-lg"
+                className="x-cursor-pointer x-text-center x-text-base x-leading-relaxed x-text-muted-foreground x-underline md:x-text-lg"
               >
                 or skip and take me to the dashboard
               </Link>

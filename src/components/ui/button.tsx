@@ -3,28 +3,28 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { type ButtonHTMLAttributes } from "react";
 
 const buttonVariants = cva(
-  "tw-inline-flex tw-items-center tw-justify-center tw-whitespace-nowrap tw-rounded-md tw-font-sans tw-text-sm tw-font-medium tw-ring-offset-background tw-transition-all tw-duration-300 tw-ease-in-out focus-visible:tw-outline-none focus-visible:tw-ring-2 focus-visible:tw-ring-ring focus-visible:tw-ring-offset-2 active:tw-scale-95 disabled:tw-pointer-events-none disabled:tw-opacity-50",
+  "x-inline-flex x-items-center x-justify-center x-whitespace-nowrap x-rounded-md x-font-sans x-text-sm x-font-medium x-ring-offset-background x-transition-all x-duration-300 x-ease-in-out focus-visible:x-outline-none focus-visible:x-ring-2 focus-visible:x-ring-ring focus-visible:x-ring-offset-2 active:x-scale-95 disabled:x-pointer-events-none disabled:x-opacity-50",
   {
     variants: {
       variant: {
         default:
-          "tw-bg-buttonBackground tw-text-foreground hover:tw-text-muted-foreground",
+          "x-bg-buttonBackground x-text-foreground hover:x-text-muted-foreground",
         destructive:
-          "tw-bg-destructive tw-text-destructive-foreground hover:tw-bg-destructive/90",
+          "x-bg-destructive x-text-destructive-foreground hover:x-bg-destructive/90",
         outline:
-          "tw-border tw-border-border/50 tw-bg-transparent tw-text-muted-foreground hover:tw-text-foreground",
+          "x-border x-border-border/50 x-bg-transparent x-text-muted-foreground hover:x-text-foreground",
         secondary:
-          "tw-bg-secondary tw-text-secondary-foreground hover:tw-bg-secondary/80",
+          "x-bg-secondary x-text-secondary-foreground hover:x-bg-secondary/80",
         ghost:
-          "tw-text-muted-foreground hover:tw-bg-primary-foreground hover:tw-text-primary",
-        link: "tw-text-primary tw-underline-offset-4 hover:tw-underline",
+          "x-text-muted-foreground hover:x-bg-primary-foreground hover:x-text-primary",
+        link: "x-text-primary x-underline-offset-4 hover:x-underline",
       },
       size: {
-        default: "tw-h-10 tw-px-4 tw-py-2",
-        sm: "tw-h-9 tw-rounded-md tw-px-3",
-        lg: "tw-h-11 tw-rounded-md tw-px-8",
-        icon: "tw-h-10 tw-w-10",
-        iconSm: "tw-h-8 tw-w-8",
+        default: "x-h-10 x-px-4 x-py-2",
+        sm: "x-h-9 x-rounded-md x-px-3",
+        lg: "x-h-11 x-rounded-md x-px-8",
+        icon: "x-h-10 x-w-10",
+        iconSm: "x-h-8 x-w-8",
       },
     },
     defaultVariants: {

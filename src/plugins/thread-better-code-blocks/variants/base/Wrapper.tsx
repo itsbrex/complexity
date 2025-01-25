@@ -26,10 +26,10 @@ const BaseCodeBlockWrapper = memo(function BaseCodeBlockWrapper() {
   return (
     <div
       className={cn(
-        "tw-relative tw-my-4 tw-flex tw-flex-col tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-font-mono tw-transition-all",
+        "x-relative x-my-4 x-flex x-flex-col x-rounded-md x-border x-border-border/50 x-bg-secondary x-font-mono x-transition-all",
         {
-          "tw-overflow-hidden": maxHeight === 0,
-          "tw-border-primary": isCanvasEnabled && isSelectedCanvasCodeBlock,
+          "x-overflow-hidden": maxHeight === 0,
+          "x-border-primary": isCanvasEnabled && isSelectedCanvasCodeBlock,
         },
       )}
     >

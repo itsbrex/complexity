@@ -48,7 +48,7 @@ export function PostUpdateReleaseNotesDialog() {
         });
       }}
     >
-      <DialogContent className="tw-w-max tw-max-w-[90vw]">
+      <DialogContent className="x-w-max x-max-w-[90vw]">
         <DialogHeader>
           <DialogTitle>
             {t("common:releaseNotes.title", { version: APP_CONFIG.VERSION })}
@@ -95,7 +95,7 @@ function DontShowAgainForFutureUpdatesConfirmDialog({
           </DialogTitle>
         </DialogHeader>
 
-        <div className="tw-text-sm tw-text-muted-foreground">
+        <div className="x-text-sm x-text-muted-foreground">
           {t("common:releaseNotes.confirmDialog.message")}
         </div>
 

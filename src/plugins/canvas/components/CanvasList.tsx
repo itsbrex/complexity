@@ -7,9 +7,9 @@ export default function CanvasList() {
   const canvasBlocks = useCanvasStore((state) => state.canvasBlocks);
 
   return (
-    <div className="tw-flex tw-size-full tw-flex-col tw-gap-4">
-      <div className="tw-flex tw-items-center tw-justify-between tw-border-b tw-border-border/50 tw-bg-background tw-p-2 tw-px-4">
-        <div className="tw-text-muted-foreground">
+    <div className="x-flex x-size-full x-flex-col x-gap-4">
+      <div className="x-flex x-items-center x-justify-between x-border-b x-border-border/50 x-bg-background x-p-2 x-px-4">
+        <div className="x-text-muted-foreground">
           {t("plugin-canvas:canvas.list.title")}
         </div>
         <Button
@@ -19,49 +19,49 @@ export default function CanvasList() {
             canvasStore.getState().closeCanvasList();
           }}
         >
-          <LuX className="tw-size-4 tw-text-muted-foreground" />
+          <LuX className="x-size-4 x-text-muted-foreground" />
         </Button>
       </div>
-      <div className="tw-flex tw-flex-col tw-gap-4 tw-overflow-y-auto tw-px-4">
+      <div className="x-flex x-flex-col x-gap-4 x-overflow-y-auto x-px-4">
         {Object.values(canvasBlocks).map(
           ({ Icon, count, title, description, isInFlight, onClick }, index) => {
             return (
               <div
                 key={index}
                 className={cn(
-                  "tw-group tw-flex tw-w-full tw-cursor-pointer tw-select-none tw-items-center tw-divide-x-2 tw-divide-border/50 tw-overflow-hidden tw-rounded-lg tw-border tw-border-border/50 tw-bg-secondary tw-transition-all hover:tw-border-primary",
+                  "x-group x-flex x-w-full x-cursor-pointer x-select-none x-items-center x-divide-x-2 x-divide-border/50 x-overflow-hidden x-rounded-lg x-border x-border-border/50 x-bg-secondary x-transition-all hover:x-border-primary",
                 )}
                 onClick={onClick}
               >
                 <div
                   className={cn(
-                    "tw-group-hover:tw-bg-primary/10 tw-flex tw-aspect-square tw-size-16 tw-items-center tw-justify-center",
+                    "x-group-hover:x-bg-primary/10 x-flex x-aspect-square x-size-16 x-items-center x-justify-center",
                   )}
                 >
                   {isInFlight ? (
-                    <LuLoaderCircle className="tw-size-4 tw-animate-spin tw-text-muted-foreground" />
+                    <LuLoaderCircle className="x-size-4 x-animate-spin x-text-muted-foreground" />
                   ) : (
-                    <Icon className="tw-size-8" />
+                    <Icon className="x-size-8" />
                   )}
                 </div>
-                <div className="tw-flex tw-w-full tw-flex-col tw-border-l tw-bg-background tw-px-4 tw-py-2">
-                  <div className="tw-line-clamp-1 tw-text-base tw-text-foreground tw-transition-all group-hover:tw-text-primary">
+                <div className="x-flex x-w-full x-flex-col x-border-l x-bg-background x-px-4 x-py-2">
+                  <div className="x-line-clamp-1 x-text-base x-text-foreground x-transition-all group-hover:x-text-primary">
                     {title}
                   </div>
 
-                  <div className="tw-flex tw-w-max tw-items-center tw-gap-1">
+                  <div className="x-flex x-w-max x-items-center x-gap-1">
                     {isInFlight ? (
-                      <span className="tw-animate-pulse">
+                      <span className="x-animate-pulse">
                         {t("plugin-canvas:canvas.list.generating")}
                       </span>
                     ) : (
                       <>
-                        <span className="tw-hidden tw-text-sm tw-text-muted-foreground lg:tw-block">
+                        <span className="x-hidden x-text-sm x-text-muted-foreground lg:x-block">
                           {description}
                         </span>
                         {count > 1 && (
-                          <span className="tw-flex tw-items-center tw-gap-1 tw-text-sm tw-text-muted-foreground">
-                            <span className="tw-hidden lg:tw-block">•</span>
+                          <span className="x-flex x-items-center x-gap-1 x-text-sm x-text-muted-foreground">
+                            <span className="x-hidden lg:x-block">•</span>
                             {t("plugin-canvas:canvas.list.versions", { count })}
                           </span>
                         )}

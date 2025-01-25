@@ -14,12 +14,12 @@ export default function PreviewToggle({
 
   return (
     <div
-      className="tw-flex tw-cursor-pointer tw-select-none tw-items-center tw-overflow-hidden tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-animate-in tw-fade-in"
+      className="x-flex x-cursor-pointer x-select-none x-items-center x-overflow-hidden x-rounded-md x-border x-border-border/50 x-bg-secondary x-animate-in x-fade-in"
       onClick={() => setState(state === "code" ? "preview" : "code")}
     >
       <div
-        className={cn("tw-p-1 tw-px-4 tw-text-muted-foreground", {
-          "tw-rounded-md tw-bg-primary tw-text-primary-foreground tw-transition-all":
+        className={cn("x-p-1 x-px-4 x-text-muted-foreground", {
+          "x-rounded-md x-bg-primary x-text-primary-foreground x-transition-all":
             state === "preview",
         })}
       >
@@ -27,8 +27,8 @@ export default function PreviewToggle({
           t("plugin-canvas:canvas.toggle.preview")}
       </div>
       <div
-        className={cn("tw-p-1 tw-px-4 tw-text-muted-foreground", {
-          "tw-rounded-md tw-bg-primary tw-text-primary-foreground tw-transition-all":
+        className={cn("x-p-1 x-px-4 x-text-muted-foreground", {
+          "x-rounded-md x-bg-primary x-text-primary-foreground x-transition-all":
             state === "code",
         })}
       >

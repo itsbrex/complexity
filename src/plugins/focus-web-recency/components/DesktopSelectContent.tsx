@@ -9,9 +9,9 @@ export function DesktopSelectContent() {
           key={recency.value}
           checkboxOnSingleItem
           item={recency.value}
-          className="tw-w-[150px] tw-overflow-hidden tw-p-2 tw-font-medium"
+          className="x-w-[150px] x-overflow-hidden x-p-2 x-font-medium"
         >
-          <span className="tw-grow-1 tw-line-clamp-1">{recency.label}</span>
+          <span className="x-grow-1 x-line-clamp-1">{recency.label}</span>
         </SelectItem>
       ))}
     </SelectContent>

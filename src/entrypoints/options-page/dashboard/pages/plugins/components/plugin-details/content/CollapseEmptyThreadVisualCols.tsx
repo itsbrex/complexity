@@ -9,7 +9,7 @@ export default function CollapseEmptyThreadVisualColsPluginDetails() {
   if (!settings) return null;
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-4">
+    <div className="x-flex x-flex-col x-gap-4">
       <P>
         Remove the empty space on the right side of each message in a thread.
         Only for messages that explicitly don&apos;t have &quot;Search images,
@@ -29,11 +29,11 @@ export default function CollapseEmptyThreadVisualColsPluginDetails() {
         }
       />
 
-      <div className="tw-mx-auto tw-w-full">
+      <div className="x-mx-auto x-w-full">
         <Image
           src="https://i.imgur.com/DqXvaZp.png"
           alt="collapse-empty-thread-visual-cols"
-          className="tw-w-full"
+          className="x-w-full"
         />
       </div>
     </div>

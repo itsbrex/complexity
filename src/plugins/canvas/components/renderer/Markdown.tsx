@@ -23,7 +23,7 @@ export default function MarkdownRenderer() {
   const code = selectedCodeBlock?.codeString;
 
   return (
-    <div className="tw-prose tw-mx-auto tw-p-4 tw-py-8 dark:tw-prose-invert">
+    <div className="x-prose x-mx-auto x-p-4 x-py-8 dark:x-prose-invert">
       <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
         {code}
       </ReactMarkdown>

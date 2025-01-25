@@ -29,24 +29,24 @@ export default function ExtensionUpdateInfoDialogWrapper({
   return (
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
-      <DialogContent className="tw-max-h-[80vh] tw-overflow-y-auto">
-        <DialogHeader className="tw-text-lg tw-font-semibold">
+      <DialogContent className="x-max-h-[80vh] x-overflow-y-auto">
+        <DialogHeader className="x-text-lg x-font-semibold">
           A new version of the extension is available!
         </DialogHeader>
         <DialogDescription>
           Please update to receive enhancements and bug fixes.
         </DialogDescription>
-        <div className="tw-flex tw-flex-col tw-gap-2">
-          <div className="tw-mx-auto tw-my-0 tw-flex tw-items-center tw-gap-2 tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-p-4">
+        <div className="x-flex x-flex-col x-gap-2">
+          <div className="x-mx-auto x-my-0 x-flex x-items-center x-gap-2 x-rounded-md x-border x-border-border/50 x-bg-secondary x-p-4">
             <div className="">{packageJson.version}</div>
-            <LuArrowRight className="tw-size-4 tw-text-muted-foreground" />
-            <div className="tw-text-xl tw-font-semibold tw-text-primary">
+            <LuArrowRight className="x-size-4 x-text-muted-foreground" />
+            <div className="x-text-xl x-font-semibold x-text-primary">
               {latestVersion}
             </div>
           </div>
 
           <div
-            className="tw-mx-auto tw-cursor-pointer tw-text-muted-foreground hover:tw-text-foreground hover:tw-underline"
+            className="x-mx-auto x-cursor-pointer x-text-muted-foreground hover:x-text-foreground hover:x-underline"
             role="link"
             onClick={() => {
               if (!latestVersion) return;
@@ -63,9 +63,9 @@ export default function ExtensionUpdateInfoDialogWrapper({
             Release Notes
           </div>
 
-          <div className="tw-space-y-2">
+          <div className="x-space-y-2">
             <div>
-              <LuInfo className="tw-mr-2 tw-inline-block tw-size-5 tw-text-primary" />
+              <LuInfo className="x-mr-2 x-inline-block x-size-5 x-text-primary" />
               <span>
                 The upgrade should be happening automatically when you restart
                 the browser, or force it to manually update in the{" "}
@@ -76,7 +76,7 @@ export default function ExtensionUpdateInfoDialogWrapper({
                   "."
                 )}
               </span>
-              <div className="tw-w-full">
+              <div className="x-w-full">
                 <Image
                   src={
                     APP_CONFIG.BROWSER === "chrome"
@@ -84,14 +84,14 @@ export default function ExtensionUpdateInfoDialogWrapper({
                       : "https://i.imgur.com/f2x3Mtl.png"
                   }
                   alt="extension-management-page"
-                  className="tw-my-4 tw-object-cover"
+                  className="x-my-4 x-object-cover"
                 />
               </div>
             </div>
-            <div className="tw-text-muted-foreground">
+            <div className="x-text-muted-foreground">
               Or click{" "}
               <a
-                className="tw-underline"
+                className="x-underline"
                 href={
                   APP_CONFIG.BROWSER === "chrome"
                     ? "https://chromewebstore.google.com/detail/complexity-perplexity-ai/ffppmilmeaekegkpckebkeahjgmhggpj"
@@ -116,7 +116,7 @@ function ExtensionManagementPageLink() {
   return (
     <div
       role="link"
-      className="tw-inline-block tw-cursor-pointer tw-text-primary tw-underline"
+      className="x-inline-block x-cursor-pointer x-text-primary x-underline"
       onClick={() => {
         if (APP_CONFIG.BROWSER === "chrome") {
           navigator.clipboard.writeText("chrome://extensions");

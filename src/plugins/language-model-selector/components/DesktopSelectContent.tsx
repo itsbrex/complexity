@@ -19,7 +19,7 @@ export function DesktopSelectContent() {
   }, []);
 
   return (
-    <SelectContent className="custom-scrollbar tw-max-h-[40svh] tw-max-w-[200px] tw-overflow-auto tw-font-sans">
+    <SelectContent className="custom-scrollbar x-max-h-[40svh] x-max-w-[200px] x-overflow-auto x-font-sans">
       {groupedLanguageModelsByProvider.map(({ provider, models }) => (
         <SelectGroup key={provider}>
           <SelectLabel>{provider}</SelectLabel>
@@ -40,15 +40,15 @@ export function DesktopSelectContent() {
                 <SelectItem
                   key={model.code}
                   item={model.code}
-                  className="tw-font-medium tw-text-foreground"
+                  className="x-font-medium x-text-foreground"
                 >
-                  <div className="tw-flex tw-max-w-full tw-items-center tw-justify-around tw-gap-2">
+                  <div className="x-flex x-max-w-full x-items-center x-justify-around x-gap-2">
                     {Icon != null ? (
-                      <Icon className="tw-size-4" />
+                      <Icon className="x-size-4" />
                     ) : (
-                      <LuCpu className="tw-size-4" />
+                      <LuCpu className="x-size-4" />
                     )}
-                    <span className="tw-truncate">{model.label}</span>
+                    <span className="x-truncate">{model.label}</span>
                   </div>
                 </SelectItem>
               </Tooltip>

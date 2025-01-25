@@ -1,6 +1,6 @@
-body#__next .tw-prose,
-.tw-prose {
+body#__next .x-prose,
+.x-prose {
   code:not(pre code) {
-    @apply tw-relative tw-inline-block tw-rounded tw-bg-muted tw-px-[0.3rem] tw-py-[0.2rem] tw-font-mono tw-text-sm tw-font-semibold;
+    @apply x-relative x-inline-block x-rounded x-bg-muted x-px-[0.3rem] x-py-[0.2rem] x-font-mono x-text-sm x-font-semibold;
   }
 }

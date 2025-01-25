@@ -42,15 +42,15 @@ export default function CanvasContent() {
           ? "code"
           : canvasViewMode
       }
-      className="custom-scrollbar tw-size-full tw-overflow-auto"
+      className="custom-scrollbar x-size-full x-overflow-auto"
     >
-      <TabsContent value="code" className="tw-size-full">
+      <TabsContent value="code" className="x-size-full">
         <CanvasCodeView />
       </TabsContent>
       <TabsContent
         value="preview"
-        className={cn("tw-size-full", {
-          "tw-hidden":
+        className={cn("x-size-full", {
+          "x-hidden":
             isInFlight && CANVAS_INITIAL_STATE[language] !== "preview",
         })}
       >

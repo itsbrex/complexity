@@ -68,7 +68,7 @@ export default function TagsInput() {
   };
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-2">
+    <div className="x-flex x-flex-col x-gap-2">
       <Popover open={open} onOpenChange={handleOpenChange}>
         <PopoverTrigger asChild>
           <Button>
@@ -79,30 +79,30 @@ export default function TagsInput() {
             )}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="tw-w-[300px] tw-p-0">
+        <PopoverContent className="x-w-[300px] x-p-0">
           <Command>
             <CommandInput placeholder="Search tags..." />
             <CommandEmpty>No results found.</CommandEmpty>
-            <CommandList className="tw-p-1 [&_[cmdk-list-sizer]]:tw-flex [&_[cmdk-list-sizer]]:tw-flex-row [&_[cmdk-list-sizer]]:tw-flex-wrap">
+            <CommandList className="x-p-1 [&_[cmdk-list-sizer]]:x-flex [&_[cmdk-list-sizer]]:x-flex-row [&_[cmdk-list-sizer]]:x-flex-wrap">
               {tags.map((tag) => {
                 const isSelected = selectedTags.some((t) => t.id === tag.id);
                 return (
                   <CommandItem
                     key={tag.id}
                     className={cn({
-                      "tw-m-1 tw-w-max tw-cursor-pointer tw-rounded-md tw-px-2 tw-py-0.5 tw-text-sm tw-transition-colors":
+                      "x-m-1 x-w-max x-cursor-pointer x-rounded-md x-px-2 x-py-0.5 x-text-sm x-transition-colors":
                         true,
-                      "tw-bg-primary tw-text-primary-foreground": isSelected,
-                      "tw-bg-secondary": !isSelected,
+                      "x-bg-primary x-text-primary-foreground": isSelected,
+                      "x-bg-secondary": !isSelected,
                     })}
                     onSelect={() =>
                       isSelected ? removeTag(tag.id) : handleSelect(tag)
                     }
                   >
                     {isSelected ? (
-                      <span className="tw-flex tw-items-center tw-gap-1">
+                      <span className="x-flex x-items-center x-gap-1">
                         {tag.name}
-                        <LuX className="tw-h-3 tw-w-3" />
+                        <LuX className="x-h-3 x-w-3" />
                       </span>
                     ) : (
                       tag.name

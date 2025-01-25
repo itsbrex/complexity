@@ -18,9 +18,9 @@ export function AdditionalInfos({ space }: AdditionalInfosProps) {
   return (
     <>
       {files && files.num_total_files > 0 && (
-        <div className="tw-flex tw-flex-shrink-0 tw-items-center tw-gap-1 tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-px-2 tw-py-1 tw-text-xs tw-text-muted-foreground tw-animate-in tw-fade-in">
+        <div className="x-flex x-flex-shrink-0 x-items-center x-gap-1 x-rounded-md x-border x-border-border/50 x-bg-secondary x-px-2 x-py-1 x-text-xs x-text-muted-foreground x-animate-in x-fade-in">
           <span>{files.num_total_files}</span>
-          <LuFile className="!tw-size-3" />
+          <LuFile className="!x-size-3" />
         </div>
       )}
     </>

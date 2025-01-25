@@ -39,11 +39,11 @@ function PinnedSpaceContent({
     <a
       href={`/collections/${uuid}`}
       className={cn(
-        "tw-group tw-flex tw-cursor-pointer tw-select-none tw-items-center tw-justify-between tw-rounded-md tw-px-1 tw-py-1 tw-transition-colors tw-duration-300",
-        isDragging && "tw-opacity-75",
+        "x-group x-flex x-cursor-pointer x-select-none x-items-center x-justify-between x-rounded-md x-px-1 x-py-1 x-transition-colors x-duration-300",
+        isDragging && "x-opacity-75",
         !isDragging &&
           !isAnyDragging &&
-          "hover:tw-bg-black/5 dark:hover:tw-bg-white/5",
+          "hover:x-bg-black/5 dark:hover:x-bg-white/5",
       )}
       onClick={(e) => {
         e.preventDefault();
@@ -58,9 +58,9 @@ function PinnedSpaceContent({
         );
       }}
     >
-      <div className="tw-line-clamp-1">
+      <div className="x-line-clamp-1">
         {space.emoji && (
-          <span className="tw-mr-1">{emojiCodeToString(space.emoji)}</span>
+          <span className="x-mr-1">{emojiCodeToString(space.emoji)}</span>
         )}
         <span>{space.title}</span>
       </div>
@@ -68,8 +68,8 @@ function PinnedSpaceContent({
         content={t("plugin-space-navigator:spaceNavigator.pinnedSpaces.unpin")}
       >
         <div
-          className={cn("tw-hidden active:tw-scale-95", {
-            "hover:tw-text-foreground group-hover:tw-block":
+          className={cn("x-hidden active:x-scale-95", {
+            "hover:x-text-foreground group-hover:x-block":
               !isDragging && !isAnyDragging,
           })}
           onClick={(e) => {
@@ -173,21 +173,21 @@ export default function SidebarPinnedSpaces() {
   }
 
   return (
-    <div className="custom-scrollbar tw-max-h-[200px] tw-overflow-y-auto">
+    <div className="custom-scrollbar x-max-h-[200px] x-overflow-y-auto">
       <div
         className={cn(
-          "tw-mt-1 tw-flex tw-flex-col tw-gap-1 tw-px-2 tw-text-xs tw-font-medium tw-text-muted-foreground",
+          "x-mt-1 x-flex x-flex-col x-gap-1 x-px-2 x-text-xs x-font-medium x-text-muted-foreground",
           {
-            "tw-ml-[29px] tw-border-l tw-border-border/50 dark:tw-border-border":
+            "x-ml-[29px] x-border-l x-border-border/50 dark:x-border-border":
               localPinnedSpaces.length > 0,
           },
         )}
       >
         {isSpacesLoading ? (
           <>
-            <div className="tw-my-2 tw-h-[6px] tw-w-4/5 tw-animate-pulse tw-rounded-full tw-bg-black/5 dark:tw-bg-white/5" />
-            <div className="tw-my-2 tw-h-[6px] tw-w-1/3 tw-animate-pulse tw-rounded-full tw-bg-black/5 dark:tw-bg-white/5" />
-            <div className="tw-my-2 tw-h-[6px] tw-w-1/2 tw-animate-pulse tw-rounded-full tw-bg-black/5 dark:tw-bg-white/5" />
+            <div className="x-my-2 x-h-[6px] x-w-4/5 x-animate-pulse x-rounded-full x-bg-black/5 dark:x-bg-white/5" />
+            <div className="x-my-2 x-h-[6px] x-w-1/3 x-animate-pulse x-rounded-full x-bg-black/5 dark:x-bg-white/5" />
+            <div className="x-my-2 x-h-[6px] x-w-1/2 x-animate-pulse x-rounded-full x-bg-black/5 dark:x-bg-white/5" />
           </>
         ) : (
           <SwappableDndProvider

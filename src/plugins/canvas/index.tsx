@@ -60,16 +60,16 @@ export default function CanvasWrapper() {
     <Portal container={threadWrapperElement}>
       <div
         className={cn(
-          "tw-fixed tw-right-8 tw-my-8 tw-h-[calc(100dvh-var(--navbar-height)-11rem)] tw-overflow-hidden tw-rounded-md tw-border tw-border-border/50 tw-bg-secondary tw-text-sm tw-transition-all tw-animate-in tw-fade-in tw-slide-in-from-right xl:tw-sticky xl:tw-top-[calc(var(--navbar-height)+2rem)] xl:tw-my-0 xl:tw-h-[calc(100dvh-var(--navbar-height)-4rem)]",
+          "x-fixed x-right-8 x-my-8 x-h-[calc(100dvh-var(--navbar-height)-11rem)] x-overflow-hidden x-rounded-md x-border x-border-border/50 x-bg-secondary x-text-sm x-transition-all x-animate-in x-fade-in x-slide-in-from-right xl:x-sticky xl:x-top-[calc(var(--navbar-height)+2rem)] xl:x-my-0 xl:x-h-[calc(100dvh-var(--navbar-height)-4rem)]",
           {
-            "tw-w-[80vw] xl:tw-w-[200%]": isCanvasOpen,
-            "tw-w-[30vw] xl:tw-w-[20%] xl:tw-min-w-[400px]": isCanvasListOpen,
+            "x-w-[80vw] xl:x-w-[200%]": isCanvasOpen,
+            "x-w-[30vw] xl:x-w-[20%] xl:x-min-w-[400px]": isCanvasListOpen,
           },
         )}
       >
         {isCanvasListOpen && <CanvasList />}
         {isCanvasOpen && selectedCodeBlock != null && (
-          <div className="tw-flex tw-size-full tw-flex-col">
+          <div className="x-flex x-size-full x-flex-col">
             <CanvasHeader />
             <CanvasContent />
             <CanvasFooter />

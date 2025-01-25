@@ -4,7 +4,7 @@
   height: 100%;
   width: 100%;
 
-  @apply tw-bg-background/50 tw-backdrop-blur;
+  @apply x-bg-background/50 x-backdrop-blur;
 
   z-index: 9999;
   display: flex;
@@ -13,7 +13,7 @@
   pointer-events: none;
   opacity: 0;
 
-  @apply tw-transition-opacity tw-duration-200 tw-ease-in-out;
+  @apply x-transition-opacity x-duration-200 x-ease-in-out;
 }
 
 .cplx-file-upload-overlay.active {
@@ -21,9 +21,9 @@
 }
 
 .cplx-file-upload-overlay__content {
-  @apply tw-bg-background tw-text-foreground;
-  @apply tw-rounded-md tw-border-2 tw-border-dashed tw-border-primary;
-  @apply tw-p-8;
+  @apply x-bg-background x-text-foreground;
+  @apply x-rounded-md x-border-2 x-border-dashed x-border-primary;
+  @apply x-p-8;
 
   text-align: center;
 }

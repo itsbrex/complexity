@@ -12,28 +12,28 @@ function Switch({
 }) {
   return (
     <ArkSwitch.Root
-      className={cn("tw-flex tw-items-center tw-space-x-2", className)}
+      className={cn("x-flex x-items-center x-space-x-2", className)}
       {...props}
     >
       <ArkSwitch.Context>
         {({ checked }) => (
           <>
-            <ArkSwitch.Control className="tw-inline-flex tw-h-6 tw-w-11 tw-shrink-0 tw-cursor-pointer tw-items-center tw-space-x-2 tw-rounded-full tw-border tw-border-border tw-bg-transparent tw-transition-all focus-visible:tw-outline-none focus-visible:tw-ring-1 focus-visible:tw-ring-ring focus-visible:tw-ring-offset-2 focus-visible:tw-ring-offset-background data-[disabled]:tw-cursor-not-allowed data-[disabled]:tw-opacity-50 [&>span]:tw-transition-all [&>span]:tw-duration-150 [&>span]:hover:tw-scale-95">
+            <ArkSwitch.Control className="x-inline-flex x-h-6 x-w-11 x-shrink-0 x-cursor-pointer x-items-center x-space-x-2 x-rounded-full x-border x-border-border x-bg-transparent x-transition-all focus-visible:x-outline-none focus-visible:x-ring-1 focus-visible:x-ring-ring focus-visible:x-ring-offset-2 focus-visible:x-ring-offset-background data-[disabled]:x-cursor-not-allowed data-[disabled]:x-opacity-50 [&>span]:x-transition-all [&>span]:x-duration-150 [&>span]:hover:x-scale-95">
               <ArkSwitch.Thumb
                 className={cn(
-                  "tw-pointer-events-none tw-block tw-h-4 tw-w-4 tw-rounded-full tw-bg-muted-foreground tw-shadow-lg tw-ring-0",
-                  "data-[state=checked]:tw-translate-x-6 data-[state=checked]:tw-bg-primary data-[state=checked]:tw-text-primary",
-                  "data-[state=unchecked]:tw-translate-x-1",
+                  "x-pointer-events-none x-block x-h-4 x-w-4 x-rounded-full x-bg-muted-foreground x-shadow-lg x-ring-0",
+                  "data-[state=checked]:x-translate-x-6 data-[state=checked]:x-bg-primary data-[state=checked]:x-text-primary",
+                  "data-[state=unchecked]:x-translate-x-1",
                 )}
               />
             </ArkSwitch.Control>
             {textLabel != null && textLabel !== "" && (
               <ArkSwitch.Label
                 className={cn(
-                  "tw-duration-15 tw-text-sm tw-transition-colors",
-                  "tw-cursor-pointer data-[disabled]:tw-cursor-not-allowed data-[state=unchecked]:tw-text-muted-foreground data-[disabled]:tw-opacity-50 hover:data-[state=unchecked]:tw-text-foreground",
+                  "x-duration-15 x-text-sm x-transition-colors",
+                  "x-cursor-pointer data-[disabled]:x-cursor-not-allowed data-[state=unchecked]:x-text-muted-foreground data-[disabled]:x-opacity-50 hover:data-[state=unchecked]:x-text-foreground",
                   {
-                    "tw-text-primary": checked,
+                    "x-text-primary": checked,
                   },
                   labelClassName,
                 )}

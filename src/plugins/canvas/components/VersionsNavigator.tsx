@@ -41,8 +41,8 @@ export default function AutonomousCanvasVersionsNavigator() {
 
   return (
     <div
-      className={cn("tw-flex tw-items-center tw-gap-1", {
-        "tw-invisible tw-opacity-0": !hasNextVersion && !hasPreviousVersion,
+      className={cn("x-flex x-items-center x-gap-1", {
+        "x-invisible x-opacity-0": !hasNextVersion && !hasPreviousVersion,
       })}
     >
       <Button
@@ -58,10 +58,10 @@ export default function AutonomousCanvasVersionsNavigator() {
           });
         }}
       >
-        <LuArrowLeft className="tw-size-4" />
+        <LuArrowLeft className="x-size-4" />
       </Button>
       <div
-        className="tw-line-clamp-1 tw-cursor-pointer tw-text-sm tw-text-muted-foreground"
+        className="x-line-clamp-1 x-cursor-pointer x-text-sm x-text-muted-foreground"
         onClick={() => {
           const selectedCodeBlockLocation =
             canvasStore.getState().selectedCodeBlockLocation;
@@ -89,7 +89,7 @@ export default function AutonomousCanvasVersionsNavigator() {
           });
         }}
       >
-        <LuArrowRight className="tw-size-4" />
+        <LuArrowRight className="x-size-4" />
       </Button>
     </div>
   );

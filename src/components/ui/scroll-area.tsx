@@ -9,10 +9,10 @@ const ScrollArea = ({
 }: ComponentProps<typeof ScrollAreaPrimitive.Root>) => (
   <ScrollAreaPrimitive.Root
     type={type}
-    className={cn("tw-relative tw-overflow-hidden", className)}
+    className={cn("x-relative x-overflow-hidden", className)}
     {...props}
   >
-    <ScrollAreaPrimitive.Viewport className="tw-h-full tw-w-full tw-rounded-[inherit]">
+    <ScrollAreaPrimitive.Viewport className="x-h-full x-w-full x-rounded-[inherit]">
       {children}
     </ScrollAreaPrimitive.Viewport>
     <ScrollBar />
@@ -31,16 +31,16 @@ const ScrollBar = ({
   <ScrollAreaPrimitive.ScrollAreaScrollbar
     orientation={orientation}
     className={cn(
-      "tw-flex tw-touch-none tw-select-none tw-transition-colors",
+      "x-flex x-touch-none x-select-none x-transition-colors",
       orientation === "vertical" &&
-        "tw-h-full tw-w-2.5 tw-border-l tw-border-l-transparent tw-p-[1px]",
+        "x-h-full x-w-2.5 x-border-l x-border-l-transparent x-p-[1px]",
       orientation === "horizontal" &&
-        "tw-h-2.5 tw-flex-col tw-border-t tw-border-t-transparent tw-p-[1px]",
+        "x-h-2.5 x-flex-col x-border-t x-border-t-transparent x-p-[1px]",
       className,
     )}
     {...props}
   >
-    <ScrollAreaPrimitive.ScrollAreaThumb className="tw-relative tw-flex-1 tw-rounded-full tw-bg-border" />
+    <ScrollAreaPrimitive.ScrollAreaThumb className="x-relative x-flex-1 x-rounded-full x-bg-border" />
   </ScrollAreaPrimitive.ScrollAreaScrollbar>
 );
 

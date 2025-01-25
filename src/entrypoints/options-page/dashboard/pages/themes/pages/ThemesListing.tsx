@@ -16,19 +16,19 @@ export default function ThemesListing() {
   const { data: localThemes } = useLocalThemes();
 
   return (
-    <div className="tw-space-y-6">
-      <div className="tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-4">
+    <div className="x-space-y-6">
+      <div className="x-flex x-flex-wrap x-items-center x-justify-between x-gap-4">
         <div>
-          <h1 className="tw-mb-2 tw-text-2xl tw-font-bold">Custom Themes</h1>
-          <p className="tw-text-muted-foreground">
+          <h1 className="x-mb-2 x-text-2xl x-font-bold">Custom Themes</h1>
+          <p className="x-text-muted-foreground">
             Customize your Perplexity interface with curated themes
           </p>
         </div>
         <Button
-          className="tw-mx-auto md:tw-mx-0 md:tw-mt-auto"
+          className="x-mx-auto md:x-mx-0 md:x-mt-auto"
           onClick={() => navigate("new")}
         >
-          <LuPlus className="tw-mr-2 tw-size-5" />
+          <LuPlus className="x-mr-2 x-size-5" />
           Create New Theme
         </Button>
       </div>

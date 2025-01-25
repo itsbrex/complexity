@@ -20,22 +20,22 @@ export function ModelTrigger({ value }: { value: LanguageModel["code"] }) {
   const limit = modelsLimits[model.code];
 
   return (
-    <div className="tw-flex tw-min-h-8 tw-items-center tw-justify-center tw-gap-1">
-      <LuCpu className="tw-size-4" />
+    <div className="x-flex x-min-h-8 x-items-center x-justify-center x-gap-1">
+      <LuCpu className="x-size-4" />
       <div
-        className={cn("tw-relative", {
-          "tw-hidden md:tw-block": type !== "follow-up",
+        className={cn("x-relative", {
+          "x-hidden md:x-block": type !== "follow-up",
         })}
       >
-        <SelectValue className="tw-font-medium">
+        <SelectValue className="x-font-medium">
           {languageModels.find((model) => model.code === value)?.shortLabel}
         </SelectValue>
         {limit != null && limit <= 100 && (
           <>
-            <span className="tw-invisible tw-text-[.5rem] tw-text-primary">
+            <span className="x-invisible x-text-[.5rem] x-text-primary">
               {limit}
             </span>
-            <span className="tw-absolute -tw-right-1 -tw-top-2 tw-text-[.5rem] tw-text-primary">
+            <span className="x-absolute -x-right-1 -x-top-2 x-text-[.5rem] x-text-primary">
               {limit}
             </span>
           </>

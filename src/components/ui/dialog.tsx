@@ -19,9 +19,9 @@ const DialogOverlay = ({ className, ...props }: ArkDialog.BackdropProps) => {
   return (
     <ArkDialog.Backdrop
       className={cn(
-        "tw-fixed tw-inset-0 tw-z-50 tw-bg-black/80",
-        "data-[state=open]:tw-animate-in data-[state=closed]:tw-animate-out",
-        "data-[state=closed]:tw-fade-out-0 data-[state=open]:tw-fade-in-0",
+        "x-fixed x-inset-0 x-z-50 x-bg-black/80",
+        "data-[state=open]:x-animate-in data-[state=closed]:x-animate-out",
+        "data-[state=closed]:x-fade-out-0 data-[state=open]:x-fade-in-0",
         className,
       )}
       {...props}
@@ -46,19 +46,19 @@ const DialogContent = ({
       <ArkDialog.Positioner>
         <ArkDialog.Content
           className={cn(
-            "custom-scrollbar tw-fixed tw-left-[50%] tw-top-[50%] tw-z-50 tw-flex tw-max-h-[95vh] tw-w-full tw-max-w-lg tw-flex-col tw-overflow-y-auto tw-fill-mode-forwards",
-            "tw-translate-x-[-50%] tw-translate-y-[-50%] tw-gap-4 tw-border tw-border-border/50 tw-bg-background tw-p-6 tw-shadow-lg tw-duration-200",
-            "tw-max-h-[95vh] data-[state=closed]:tw-hidden data-[state=closed]:tw-animate-out data-[state=open]:tw-fade-in-0",
-            "sm:tw-rounded-lg",
+            "custom-scrollbar x-fixed x-left-[50%] x-top-[50%] x-z-50 x-flex x-max-h-[95vh] x-w-full x-max-w-lg x-flex-col x-overflow-y-auto x-fill-mode-forwards",
+            "x-translate-x-[-50%] x-translate-y-[-50%] x-gap-4 x-border x-border-border/50 x-bg-background x-p-6 x-shadow-lg x-duration-200",
+            "x-max-h-[95vh] data-[state=closed]:x-hidden data-[state=closed]:x-animate-out data-[state=open]:x-fade-in-0",
+            "sm:x-rounded-lg",
             className,
           )}
           {...props}
         >
           {children}
           {closeButton && (
-            <DialogClose className="tw-absolute tw-right-4 tw-top-4 tw-rounded-sm tw-opacity-70 tw-ring-offset-background tw-transition-opacity hover:tw-opacity-100 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-ring focus:tw-ring-offset-2 disabled:tw-pointer-events-none data-[state=open]:tw-bg-primary-foreground data-[state=open]:tw-text-muted-foreground">
-              <X className="tw-h-4 tw-w-4" />
-              <span className="tw-sr-only">Close</span>
+            <DialogClose className="x-absolute x-right-4 x-top-4 x-rounded-sm x-opacity-70 x-ring-offset-background x-transition-opacity hover:x-opacity-100 focus:x-outline-none focus:x-ring-2 focus:x-ring-ring focus:x-ring-offset-2 disabled:x-pointer-events-none data-[state=open]:x-bg-primary-foreground data-[state=open]:x-text-muted-foreground">
+              <X className="x-h-4 x-w-4" />
+              <span className="x-sr-only">Close</span>
             </DialogClose>
           )}
         </ArkDialog.Content>
@@ -72,7 +72,7 @@ DialogContent.displayName = ArkDialog.Content.displayName;
 function DialogHeader({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn("tw-flex tw-flex-col tw-space-y-1.5", className)}
+      className={cn("x-flex x-flex-col x-space-y-1.5", className)}
       {...props}
     />
   );
@@ -84,7 +84,7 @@ function DialogFooter({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       className={cn(
-        "tw-flex tw-flex-col-reverse tw-gap-2 sm:tw-flex-row sm:tw-justify-end",
+        "x-flex x-flex-col-reverse x-gap-2 sm:x-flex-row sm:x-justify-end",
         className,
       )}
       {...props}
@@ -98,7 +98,7 @@ const DialogTitle = ({ className, ...props }: ArkDialog.TitleProps) => {
   return (
     <ArkDialog.Title
       className={cn(
-        "tw-text-lg tw-font-semibold tw-leading-none tw-tracking-tight",
+        "x-text-lg x-font-semibold x-leading-none x-tracking-tight",
         className,
       )}
       {...props}
@@ -114,7 +114,7 @@ const DialogDescription = ({
 }: ArkDialog.DescriptionProps) => {
   return (
     <ArkDialog.Description
-      className={cn("tw-text-sm tw-text-muted-foreground", className)}
+      className={cn("x-text-sm x-text-muted-foreground", className)}
       {...props}
     />
   );

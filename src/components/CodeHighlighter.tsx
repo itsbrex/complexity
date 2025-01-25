@@ -32,7 +32,7 @@ const CodeHighlighter = memo(function CodeHighlighter({
     <SyntaxHighlighter
       style={colorScheme === "dark" ? darkStyle : lightStyle}
       codeTagProps={{
-        className: "tw-font-mono",
+        className: "x-font-mono",
         style: {},
       }}
       language={targetLanguage}

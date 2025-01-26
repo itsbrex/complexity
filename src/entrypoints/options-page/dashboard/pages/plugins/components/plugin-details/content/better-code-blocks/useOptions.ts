@@ -2,7 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { toast } from "@/components/ui/use-toast";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
-import { getBetterCodeBlocksFineGrainedOptionsService } from "@/services/indexed-db/better-code-blocks/better-code-blocks";
+import { getBetterCodeBlocksFineGrainedOptionsService } from "@/services/indexed-db/better-code-blocks";
 import { betterCodeBlocksFineGrainedOptionsQueries } from "@/services/indexed-db/better-code-blocks/query-keys";
 import { queryClient } from "@/utils/ts-query-client";
 

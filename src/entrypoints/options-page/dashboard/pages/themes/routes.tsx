@@ -2,7 +2,7 @@ import { LoaderFunctionArgs, RouteObject, redirect } from "react-router-dom";
 
 import { BUILTIN_THEME_REGISTRY } from "@/data/plugins/themes/theme-registry";
 import Page from "@/entrypoints/options-page/components/Page";
-import { getLocalThemesService } from "@/services/indexed-db/themes/themes";
+import { getLocalThemesService } from "@/services/indexed-db/themes";
 
 const CreateThemePage = lazy(
   () =>

@@ -3,7 +3,7 @@ import { LuChevronDown, LuChevronUp } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
 import { useSpaceNavigatorSidebarStore } from "@/plugins/space-navigator/sidebar-content/store";
-import { getPinnedSpacesService } from "@/services/indexed-db/pinned-spaces/pinned-spaces";
+import { getPinnedSpacesService } from "@/services/indexed-db/pinned-spaces";
 import { pinnedSpacesQueries } from "@/services/indexed-db/pinned-spaces/query-keys";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 

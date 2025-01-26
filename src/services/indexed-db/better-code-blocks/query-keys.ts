@@ -1,6 +1,6 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 
-import { getBetterCodeBlocksFineGrainedOptionsService } from "@/services/indexed-db/better-code-blocks/better-code-blocks";
+import { getBetterCodeBlocksFineGrainedOptionsService } from "@/services/indexed-db/better-code-blocks";
 
 export const betterCodeBlocksFineGrainedOptionsQueries = createQueryKeys(
   "betterCodeBlocksFineGrainedOptions",

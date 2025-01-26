@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { getPromptHistoryService } from "@/services/indexed-db/prompt-history/prompt-history";
+import { getPromptHistoryService } from "@/services/indexed-db/prompt-history";
 import { promptHistoryQueries } from "@/services/indexed-db/prompt-history/query-keys";
 import { queryClient } from "@/utils/ts-query-client";
 

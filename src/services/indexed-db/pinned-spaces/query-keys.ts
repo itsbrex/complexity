@@ -1,7 +1,7 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 
 import { PinnedSpace } from "@/data/plugins/space-navigator/pinned-space.types";
-import { getPinnedSpacesService } from "@/services/indexed-db/pinned-spaces/pinned-spaces";
+import { getPinnedSpacesService } from "@/services/indexed-db/pinned-spaces";
 
 export const pinnedSpacesQueries = createQueryKeys("sidebarPinnedSpaces", {
   list: {

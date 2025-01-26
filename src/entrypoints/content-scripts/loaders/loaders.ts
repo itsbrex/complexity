@@ -4,7 +4,7 @@ import "@/utils/i18next";
 // Cache
 import "@/services/extension-local-storage";
 import "@/services/plugins-states";
-import "@/services/indexed-db/better-code-blocks/better-code-blocks";
+import "@/services/indexed-db/better-code-blocks";
 import "@/services/pplx-api/network-intercept-middlewares";
 import "@/data/plugins/query-box/language-model-selector/language-models";
 

@@ -9,7 +9,7 @@ import Tooltip from "@/components/Tooltip";
 import { PinnedSpace } from "@/data/plugins/space-navigator/pinned-space.types";
 import { useSpaceNavigatorSidebarStore } from "@/plugins/space-navigator/sidebar-content/store";
 import { useUnpinSpaceMutation } from "@/plugins/space-navigator/sidebar-content/use-pinned-spaces-mutations";
-import { getPinnedSpacesService } from "@/services/indexed-db/pinned-spaces/pinned-spaces";
+import { getPinnedSpacesService } from "@/services/indexed-db/pinned-spaces";
 import { pinnedSpacesQueries } from "@/services/indexed-db/pinned-spaces/query-keys";
 import { Space } from "@/services/pplx-api/pplx-api.types";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";

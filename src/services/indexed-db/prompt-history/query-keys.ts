@@ -1,6 +1,6 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 
-import { getPromptHistoryService } from "@/services/indexed-db/prompt-history/prompt-history";
+import { getPromptHistoryService } from "@/services/indexed-db/prompt-history";
 
 export const ITEMS_PER_PAGE = 5;
 

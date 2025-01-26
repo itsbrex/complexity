@@ -1,7 +1,7 @@
 import { middlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
 import { parseWebSocketData } from "@/plugins/_core/network-intercept/web-socket-message-parser";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
-import { getPromptHistoryService } from "@/services/indexed-db/prompt-history/prompt-history";
+import { getPromptHistoryService } from "@/services/indexed-db/prompt-history";
 import { promptHistoryQueries } from "@/services/indexed-db/prompt-history/query-keys";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";

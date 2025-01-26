@@ -1,4 +1,4 @@
-import { getPromptHistoryService } from "@/services/indexed-db/prompt-history/prompt-history";
+import { getPromptHistoryService } from "@/services/indexed-db/prompt-history";
 import { UiUtils } from "@/utils/ui-utils";
 
 let lastUrl = window.location.pathname;

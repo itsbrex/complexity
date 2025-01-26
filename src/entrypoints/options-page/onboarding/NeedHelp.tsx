@@ -15,7 +15,7 @@ export default function NeedHelp() {
       <div className="x-flex x-items-center x-gap-4">
         <Button asChild className="x-w-max" size="lg" variant="outline">
           <a
-            href="https://discord.gg/fxzqdkwmWx"
+            href="https://discord.cplx.app"
             target="_blank"
             rel="noreferrer"
           >

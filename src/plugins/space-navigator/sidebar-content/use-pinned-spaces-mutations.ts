@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 
 import { PinnedSpace } from "@/data/plugins/space-navigator/pinned-space.types";
-import { getPinnedSpacesService } from "@/services/indexed-db/pinned-spaces/pinned-spaces";
+import { getPinnedSpacesService } from "@/services/indexed-db/pinned-spaces";
 import { pinnedSpacesQueries } from "@/services/indexed-db/pinned-spaces/query-keys";
 import { queryClient } from "@/utils/ts-query-client";
 

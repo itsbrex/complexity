@@ -70,7 +70,7 @@ You have complete control over your data:
 ## Contact
 
 If you have questions about this privacy policy or our privacy practices:
-- Join our [Discord community](https://discord.gg/fxzqdkwmWx)
+- Join our [Discord community](https://discord.cplx.app)
 - Create an issue on our GitHub repository
 - Contact the developer directly through Ko-fi or PayPal
 

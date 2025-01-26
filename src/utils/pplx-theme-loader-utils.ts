@@ -1,6 +1,6 @@
 import { BUILTIN_THEME_REGISTRY } from "@/data/plugins/themes/theme-registry";
 import { Theme } from "@/data/plugins/themes/theme-registry.types";
-import { getLocalThemesService } from "@/services/indexed-db/themes/themes";
+import { getLocalThemesService } from "@/services/indexed-db/themes";
 
 export async function getThemeCss(themeId: Theme["id"]) {
   return getBuiltInThemeCss(themeId) || (await getLocalThemeCss(themeId)) || "";

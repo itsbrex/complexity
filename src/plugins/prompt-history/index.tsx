@@ -7,7 +7,7 @@ import ClearAllButton from "@/plugins/prompt-history/ClearAllButton";
 import PromptHistoryItem from "@/plugins/prompt-history/PromptHistoryItem";
 import { usePromptHistory } from "@/plugins/prompt-history/usePromptHistory";
 import { useSlashCommandMenuStore } from "@/plugins/slash-command-menu/store";
-import { getPromptHistoryService } from "@/services/indexed-db/prompt-history/prompt-history";
+import { getPromptHistoryService } from "@/services/indexed-db/prompt-history";
 import { promptHistoryQueries } from "@/services/indexed-db/prompt-history/query-keys";
 import { queryClient } from "@/utils/ts-query-client";
 

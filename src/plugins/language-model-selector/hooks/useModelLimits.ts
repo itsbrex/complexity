@@ -18,6 +18,8 @@ export function useModelLimits() {
           return data?.opus_limit ?? 0;
         case "o1":
           return data?.o1_limit ?? 0;
+        case "r1":
+          return data?.pro_reasoning_limit ?? 0;
         case "turbo":
           return Infinity;
         default:

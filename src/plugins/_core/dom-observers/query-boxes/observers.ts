@@ -1,3 +1,6 @@
+import debounce from "lodash/debounce";
+import { sendMessage } from "webext-bridge/content-script";
+
 import { CallbackQueue } from "@/plugins/_api/dom-observer/callback-queue";
 import { DomObserver } from "@/plugins/_api/dom-observer/dom-observer";
 import { globalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
@@ -13,6 +16,7 @@ const DOM_OBSERVER_ID = {
   COLLECTION: "query-boxes-collection",
   FOLLOW_UP: "query-boxes-follow-up",
   MODAL: "query-boxes-modal",
+  REASONING_MODE_PREFERENCE: "query-boxes-reasoning-mode-preference",
 };
 
 const cleanup = () => {
@@ -20,6 +24,7 @@ const cleanup = () => {
   DomObserver.destroy(DOM_OBSERVER_ID.COLLECTION);
   DomObserver.destroy(DOM_OBSERVER_ID.FOLLOW_UP);
   DomObserver.destroy(DOM_OBSERVER_ID.MODAL);
+  DomObserver.destroy(DOM_OBSERVER_ID.REASONING_MODE_PREFERENCE);
 };
 
 csLoaderRegistry.register({
@@ -50,6 +55,16 @@ async function setupQueryBoxesObserver(location: ReturnType<typeof whereAmI>) {
   if (!shouldObserve) return;
 
   cleanup();
+
+  DomObserver.create(DOM_OBSERVER_ID.REASONING_MODE_PREFERENCE, {
+    target: document.body,
+    config: { childList: true, subtree: true },
+    onMutation: () =>
+      CallbackQueue.getInstance().enqueue(
+        observeReasoningModePreference,
+        DOM_OBSERVER_ID.REASONING_MODE_PREFERENCE,
+      ),
+  });
 
   if (location === "home") {
     globalDomObserverStore.getState().setQueryBoxes({
@@ -182,3 +197,13 @@ async function observeFollowUpQueryBox() {
     followUpQueryBox: $followUpQueryBox[0],
   });
 }
+
+const observeReasoningModePreference = debounce(async () => {
+  globalDomObserverStore.getState().setQueryBoxes({
+    reasoningModePreferenceModelCode: await sendMessage(
+      "reactVdom:getCopilotReasoningModeModelCode",
+      undefined,
+      "window",
+    ),
+  });
+}, 300);

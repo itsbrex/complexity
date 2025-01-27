@@ -20,10 +20,18 @@ export const localLanguageModels = [
     provider: "Anthropic",
   },
   {
+    label: "DeepSeek R1",
+    shortLabel: "R1",
+    code: "r1",
+    provider: "DeepSeek",
+    hideInDropdown: true,
+  },
+  {
     label: "O1",
     shortLabel: "O1",
     code: "o1",
     provider: "OpenAI",
+    hideInDropdown: true,
   },
   {
     label: "GPT-4 Omni",

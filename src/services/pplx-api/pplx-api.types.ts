@@ -13,6 +13,7 @@ export const UserSettingsApiResponseSchema = z.object({
   gpt4_limit: z.number(),
   opus_limit: z.number(),
   o1_limit: z.number(),
+  pro_reasoning_limit: z.number(),
   create_limit: z.number(),
   query_count: z.number(),
 });

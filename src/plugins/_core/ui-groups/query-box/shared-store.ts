@@ -1,4 +1,5 @@
 import { QueryObserver } from "@tanstack/react-query";
+import { sendMessage } from "webext-bridge/content-script";
 import { subscribeWithSelector } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
@@ -8,10 +9,13 @@ import {
   isFocusModeCode,
 } from "@/data/plugins/better-focus-selector/focus-modes";
 import { FocusWebRecency } from "@/data/plugins/better-focus-selector/focus-web-recency";
+import { languageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
 import {
   isLanguageModelCode,
   LanguageModel,
+  LanguageModelCode,
 } from "@/data/plugins/query-box/language-model-selector/language-models.types";
+import { globalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
 import { spaRouteChangeCompleteSubscribe } from "@/plugins/_api/spa-router/listeners";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { PplxApiService } from "@/services/pplx-api";
@@ -113,6 +117,62 @@ csLoaderRegistry.register({
         forceExternalSourcesOff: false,
       });
     });
+
+    sharedQueryBoxStore.subscribe(
+      (store) => store.selectedLanguageModel,
+      (selectedLanguageModel) => {
+        if (
+          (["o1", "r1"] as LanguageModelCode[]).includes(selectedLanguageModel)
+        ) {
+          sendMessage(
+            "reactVdom:toggleCopilotState",
+            { checked: true },
+            "window",
+          );
+          sendMessage(
+            "reactVdom:setCopilotReasoningModeModelCode",
+            {
+              modelCode: selectedLanguageModel,
+            },
+            "window",
+          );
+        } else {
+          sendMessage(
+            "reactVdom:setCopilotReasoningModeModelCode",
+            {
+              modelCode: null,
+            },
+            "window",
+          );
+        }
+      },
+    );
+
+    globalDomObserverStore.subscribe(
+      (store) => store.queryBoxes.reasoningModePreferenceModelCode,
+      (reasoningModePreferenceModelCode) => {
+        if (
+          reasoningModePreferenceModelCode != null &&
+          ["o1", "r1"].includes(reasoningModePreferenceModelCode)
+        ) {
+          sharedQueryBoxStore.setState({
+            selectedLanguageModel: reasoningModePreferenceModelCode,
+          });
+        }
+
+        if (reasoningModePreferenceModelCode == null) {
+          const filteredLanguageModels = languageModels.filter(
+            (model) => !["o1", "r1"].includes(model.code),
+          );
+
+          if (filteredLanguageModels.length === 0) return;
+
+          sharedQueryBoxStore.setState({
+            selectedLanguageModel: filteredLanguageModels[0]!.code,
+          });
+        }
+      },
+    );
   },
 });
 

@@ -18,7 +18,8 @@
     "words": "речи",
     "characters": "знакова",
     "expand": "Прошири",
-    "collapse": "Скупи"
+    "collapse": "Скупи",
+    "instantRewrite": "Препиши истим моделом"
   },
   "releaseNotes": {
     "title": "Ажурирано на v{{version}}",

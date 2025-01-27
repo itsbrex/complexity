@@ -5,7 +5,10 @@ import {
   FocusMode,
   isFocusModeCode,
 } from "@/data/plugins/better-focus-selector/focus-modes";
-import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
+import {
+  DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
+  DOM_SELECTORS,
+} from "@/utils/dom-selectors";
 import { errorWrapper } from "@/utils/error-wrapper";
 import { UiUtils } from "@/utils/ui-utils";
 import { getReactFiberKey } from "@/utils/utils";
@@ -29,6 +32,10 @@ export type ReactVdomEvents = {
     language: string;
   } | null;
   "reactVdom:setFocusMode": (params: { focusMode: FocusMode["code"] }) => void;
+  "reactVdom:triggerRewriteOption": (params: {
+    messageBlockIndex: number;
+    optionIndex: number;
+  }) => boolean;
 };
 
 export function setupReactVdomListeners() {
@@ -216,6 +223,41 @@ export function setupReactVdomListeners() {
       fiberNode.return.return.memoizedProps.items[index].onClick();
     })();
   });
+
+  onMessage(
+    "reactVdom:triggerRewriteOption",
+    ({ data: { messageBlockIndex, optionIndex } }) => {
+      const selector = `div[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR}"] ${DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR_CHILD.REWRITE_BUTTON}`;
+
+      const $rewriteButtonWrapper = $(selector).parent().parent();
+
+      if (!$rewriteButtonWrapper.length) return false;
+
+      const fiberNode = ($rewriteButtonWrapper[0] as any)[
+        getReactFiberKey($rewriteButtonWrapper[0])
+      ];
+
+      if (fiberNode == null) return false;
+
+      const [triggerRewriteOptionHandler, error] = errorWrapper(() =>
+        findReactFiberNodeValue({
+          fiberNode,
+          condition: (node) =>
+            node.memoizedProps.children.props.items[optionIndex].onClick !=
+            null,
+          select: (node) =>
+            node.memoizedProps.children.props.items[optionIndex]
+              .onClick as () => void,
+        }),
+      )();
+
+      if (error || triggerRewriteOptionHandler == null) return false;
+
+      triggerRewriteOptionHandler();
+
+      return true;
+    },
+  );
 }
 
 function findReactFiberNodeValue<T>({

@@ -20,7 +20,7 @@ export default function EditQueryButton({
   return (
     <div
       role="button"
-      className="x-cursor-pointer x-rounded-md x-p-2 x-text-muted-foreground x-transition-all x-animate-in x-fade-in hover:x-bg-secondary hover:x-text-foreground active:x-scale-95"
+      className="x-cursor-pointer x-rounded-md x-p-2 x-text-base x-text-muted-foreground x-transition-all x-animate-in x-fade-in hover:x-bg-secondary hover:x-text-foreground active:x-scale-95"
       onClick={() => {
         const $editQueryButton = $(
           `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"]`,

@@ -18,7 +18,8 @@
     "words": "зборови",
     "characters": "знаци",
     "expand": "Прошири",
-    "collapse": "Собери"
+    "collapse": "Собери",
+    "instantRewrite": "Препиши со истиот модел"
   },
   "releaseNotes": {
     "title": "Ажурирано на v{{version}}",

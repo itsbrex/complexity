@@ -4,17 +4,18 @@ import {
   MiddlewareNameBasedPriority,
 } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager.types";
 
-class MiddlewareManager {
-  private static instance: MiddlewareManager;
+class NetworkInterceptMiddlewareManager {
+  private static instance: NetworkInterceptMiddlewareManager;
   private middlewares: Middleware[] = [];
 
   private constructor() {}
 
-  static getInstance(): MiddlewareManager {
-    if (MiddlewareManager.instance == null) {
-      MiddlewareManager.instance = new MiddlewareManager();
+  static getInstance(): NetworkInterceptMiddlewareManager {
+    if (NetworkInterceptMiddlewareManager.instance == null) {
+      NetworkInterceptMiddlewareManager.instance =
+        new NetworkInterceptMiddlewareManager();
     }
-    return MiddlewareManager.instance;
+    return NetworkInterceptMiddlewareManager.instance;
   }
 
   addMiddleware(middleware: Middleware): void {
@@ -110,4 +111,5 @@ class MiddlewareManager {
   }
 }
 
-export const middlewareManager = MiddlewareManager.getInstance();
+export const networkInterceptMiddlewareManager =
+  NetworkInterceptMiddlewareManager.getInstance();

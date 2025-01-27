@@ -18,7 +18,8 @@
     "words": "słów",
     "characters": "znaków",
     "expand": "Rozwiń",
-    "collapse": "Zwiń"
+    "collapse": "Zwiń",
+    "instantRewrite": "Przepisz tym samym modelem"
   },
   "releaseNotes": {
     "title": "Zaktualizowano do v{{version}}",

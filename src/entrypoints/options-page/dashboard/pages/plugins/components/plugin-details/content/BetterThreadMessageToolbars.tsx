@@ -1,5 +1,7 @@
+import KeyCombo from "@/components/KeyCombo";
 import { Image } from "@/components/ui/image";
 import { Switch } from "@/components/ui/switch";
+import { getPlatform } from "@/hooks/usePlatformDetection";
 import { Plugins } from "@/services/extension-local-storage/plugins.types";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
@@ -72,6 +74,29 @@ export default function BetterThreadMessageToolbarsPluginDetails() {
               settings?.plugins["thread:betterMessageToolbars"].editQueryButton
             }
             onCheckedChange={handleCheckedChange("editQueryButton")}
+          />
+          <Switch
+            className="x-items-start"
+            textLabel={
+              <div>
+                <div>Instant Rewrite Button</div>
+                <div className="x-text-sm x-text-muted-foreground">
+                  Add a button to rewrite the query with the same model (or{" "}
+                  <KeyCombo
+                    keys={[
+                      getPlatform() === "mac" ? Key.Meta : Key.Control,
+                      "Left Click",
+                    ]}
+                  />{" "}
+                  on the original Rewrite button)
+                </div>
+              </div>
+            }
+            checked={
+              settings?.plugins["thread:betterMessageToolbars"]
+                .instantRewriteButton
+            }
+            onCheckedChange={handleCheckedChange("instantRewriteButton")}
           />
           <Switch
             className="x-items-start"

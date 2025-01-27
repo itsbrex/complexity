@@ -1,5 +1,5 @@
 import { pluginGuardsStore } from "@/components/plugins-guard/store";
-import { middlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
+import { networkInterceptMiddlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
 import {
   encodeWebSocketData,
   parseWebSocketData,
@@ -22,7 +22,7 @@ csLoaderRegistry.register({
 
       unsub();
 
-      middlewareManager.updateMiddleware({
+      networkInterceptMiddlewareManager.updateMiddleware({
         id: "force-change-language-model",
         middlewareFn({ data, skip }) {
           if (data.type === "network-intercept:fetchEvent") {

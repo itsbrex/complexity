@@ -18,7 +18,8 @@
     "words": "parole",
     "characters": "caratteri",
     "expand": "Espandi",
-    "collapse": "Comprimi"
+    "collapse": "Comprimi",
+    "instantRewrite": "Riscrivere con lo stesso modello"
   },
   "releaseNotes": {
     "title": "Aggiornato alla v{{version}}",

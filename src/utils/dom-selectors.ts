@@ -54,6 +54,7 @@ export const DOM_SELECTORS = {
       /** The bottom toolbar of the message (share, rewrite, model name, etc.) */
       BOTTOM_BAR: ".mt-sm.flex.items-center.justify-between",
       BOTTOM_BAR_CHILD: {
+        REWRITE_BUTTON: 'button:has(svg[data-icon="repeat"])',
         COPY_BUTTON: 'button[aria-label="Copy"]',
         THUMBS_DOWN_BUTTON: 'button:has([data-icon="thumbs-down"]',
         MISC_BUTTON: 'button:has([data-icon="ellipsis"])',

@@ -1,4 +1,4 @@
-import { middlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
+import { networkInterceptMiddlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
 import { parseWebSocketData } from "@/plugins/_core/network-intercept/web-socket-message-parser";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
@@ -13,7 +13,7 @@ csLoaderRegistry.register({
 
     if (!pluginsEnableStates?.["spaceNavigator"]) return;
 
-    middlewareManager.updateMiddleware({
+    networkInterceptMiddlewareManager.updateMiddleware({
       id: "invalidate-spaces",
       middlewareFn({ data, skip }) {
         if (data.type !== "network-intercept:fetchEvent") {

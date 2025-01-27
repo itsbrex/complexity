@@ -29,21 +29,8 @@ const createAnswerHeadingContainer = (content: string) => {
     );
 };
 
-const createQueryHoverContainer = (content: string) => {
-  return $(
-    `<div><span>${content}</span><div class="mx-2xs h-4 border-l border-borderMain/50 ring-borderMain/50 divide-borderMain/50 dark:divide-borderMainDark/50  dark:ring-borderMainDark/50 dark:border-borderMainDark/50 bg-transparent"></div></div>`,
-  )
-    .addClass(
-      "x-ml-2 x-text-muted-foreground x-italic x-text-xs x-flex x-items-center x-gap-2 x-font-medium",
-    )
-    .internalComponentAttr(
-      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
-        .QUERY_HOVER_CONTAINER,
-    );
-};
-
 csLoaderRegistry.register({
-  id: "plugin:thread:betterMessageToolbars:wordsAndCharactersCount",
+  id: "plugin:thread:betterMessageToolbars:messageWordsAndCharactersCount",
   dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
@@ -68,9 +55,9 @@ csLoaderRegistry.register({
         messageBlocks: state.threadComponents.messageBlocks,
         queryHoverContainers: state.threadComponents.queryHoverContainers,
       }),
-      ({ messageBlocks, queryHoverContainers }) => {
+      ({ messageBlocks }) => {
         messageBlocks?.forEach(
-          async ({ isInFlight, $answerHeading, $wrapper, $query }, index) => {
+          async ({ isInFlight, $answerHeading, $wrapper }, index) => {
             if (isInFlight) {
               handleInFlightMessage($answerHeading);
               return;
@@ -120,28 +107,6 @@ csLoaderRegistry.register({
                 `${t("common:misc.words")}: ${answerWordsCount}, ${t("common:misc.characters")}: ${answerCharactersCount}${shouldDisplayTokensCount ? `, tokens: ~${answerTokensCount}` : ""}`,
               );
             $answerHeading.append(answerWordsAndCharactersCountContainer);
-
-            const query = $query
-              .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
-              .text();
-            const queryWordsCount = query.split(" ").length;
-            const queryCharactersCount = query.length;
-            const queryTokensCount = Math.ceil(query.length / 4);
-
-            const $queryWordsAndCharactersCountContainer =
-              createQueryHoverContainer(
-                `${t("common:misc.words")}: ${queryWordsCount}, ${t("common:misc.characters")}: ${queryCharactersCount}${shouldDisplayTokensCount ? `, tokens: ~${queryTokensCount}` : ""}`,
-              );
-
-            if (
-              queryHoverContainers == null ||
-              queryHoverContainers[index] == null
-            )
-              return $buttonBar.removeAttr(OBSERVER_ID);
-
-            $(queryHoverContainers[index]).prepend(
-              $queryWordsAndCharactersCountContainer,
-            );
           },
         );
       },

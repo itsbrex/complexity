@@ -1,4 +1,4 @@
-import { middlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
+import { networkInterceptMiddlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
 import { parseWebSocketData } from "@/plugins/_core/network-intercept/web-socket-message-parser";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
@@ -9,7 +9,7 @@ csLoaderRegistry.register({
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
     if (pluginsEnableStates?.blockAnalyticEvents === true)
-      middlewareManager.addMiddleware({
+      networkInterceptMiddlewareManager.addMiddleware({
         id: "block-analytic-events",
         priority: { position: "first" },
         middlewareFn({ data, stopPropagation, skip }) {

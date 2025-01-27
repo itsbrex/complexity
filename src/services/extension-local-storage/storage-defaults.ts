@@ -61,6 +61,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       simplifyRewriteDropdown: true,
       editQueryButton: false,
       explicitModelName: true,
+      instantRewriteButton: false,
       hideUnnecessaryButtons: true,
       wordsAndCharactersCount: true,
       tokensCount: false,

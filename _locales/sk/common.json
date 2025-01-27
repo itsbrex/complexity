@@ -18,7 +18,8 @@
     "words": "slov",
     "characters": "znakov",
     "expand": "Rozbaliť",
-    "collapse": "Zbaliť"
+    "collapse": "Zbaliť",
+    "instantRewrite": "Prepísať rovnakým modelom"
   },
   "releaseNotes": {
     "title": "Aktualizované na v{{version}}",

@@ -1,7 +1,7 @@
 import CsUiPluginsGuard from "@/components/plugins-guard/CsUiPluginsGuard";
 import { Portal } from "@/components/ui/portal";
 import { useInsertCss } from "@/hooks/useInsertCss";
-import { useObserver } from "@/plugins/_core/ui-groups/thread-message-toolbar-extra-buttons/useObserver";
+import { useObserver } from "@/plugins/_core/ui-groups/thread-message-toolbar/useObserver";
 import BetterMessageCopyButton from "@/plugins/thread-better-message-copy-buttons";
 import hideNativeButtonsCss from "@/plugins/thread-better-message-copy-buttons/hide-native-buttons.css?inline";
 import EditQueryButton from "@/plugins/thread-better-message-toolbars/edit-query-button";

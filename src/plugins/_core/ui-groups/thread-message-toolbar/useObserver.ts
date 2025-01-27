@@ -13,10 +13,6 @@ export function useObserver(): (Element | null)[] {
   return messageBlockBottomBars.map((bottomBar) => {
     if (bottomBar == null) return null;
 
-    const $anchor = $(bottomBar).find(
-      DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR_CHILD.COPY_BUTTON,
-    );
-
     const $existingPortalContainer = $(bottomBar).find(
       `div[data-cplx-component="${OBSERVER_ID}"]`,
     );
@@ -25,7 +21,9 @@ export function useObserver(): (Element | null)[] {
 
     const $portalContainer = $("<div>").internalComponentAttr(OBSERVER_ID);
 
-    $anchor.before($portalContainer);
+    $(bottomBar)
+      .find(DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR_CHILD.COPY_BUTTON)
+      .before($portalContainer);
 
     return $portalContainer[0];
   });

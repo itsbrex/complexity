@@ -18,7 +18,8 @@
     "words": "単語",
     "characters": "文字",
     "expand": "展開",
-    "collapse": "折りたたむ"
+    "collapse": "折りたたむ",
+    "instantRewrite": "同じモデルで書き直す"
   },
   "releaseNotes": {
     "title": "v{{version}}に更新されました",

@@ -1,6 +1,6 @@
 import { onMessage } from "webext-bridge/content-script";
 
-import { middlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
+import { networkInterceptMiddlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
 import {
   FetchEventData,
   WebSocketEventData,
@@ -28,7 +28,7 @@ function setupInterceptorsListeners() {
     async ({ data: { event, payload } }) => {
       // console.log("%cwebSocketEvent", "color: blue", { event, payload });
 
-      const newPayload = await middlewareManager.executeMiddlewares({
+      const newPayload = await networkInterceptMiddlewareManager.executeMiddlewares({
         data: { type: "network-intercept:webSocketEvent", event, payload },
       });
 
@@ -41,7 +41,7 @@ function setupInterceptorsListeners() {
     async ({ data: { event, payload } }) => {
       // console.log("%cxhrEvent", "color: green", { event, payload });
 
-      const newPayload = await middlewareManager.executeMiddlewares({
+      const newPayload = await networkInterceptMiddlewareManager.executeMiddlewares({
         data: { type: "network-intercept:xhrEvent", event, payload },
       });
 
@@ -54,7 +54,7 @@ function setupInterceptorsListeners() {
     async ({ data: { event, payload } }) => {
       // console.log("%cfetchEvent", "color: red", { event, payload });
 
-      const newPayload = await middlewareManager.executeMiddlewares({
+      const newPayload = await networkInterceptMiddlewareManager.executeMiddlewares({
         data: { type: "network-intercept:fetchEvent", event, payload },
       });
 

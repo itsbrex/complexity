@@ -45,6 +45,7 @@ export const PluginsSchema = z.object({
     sticky: z.boolean(),
     simplifyRewriteDropdown: z.boolean(),
     editQueryButton: z.boolean(),
+    instantRewriteButton: z.boolean(),
     explicitModelName: z.boolean(),
     hideUnnecessaryButtons: z.boolean(),
     wordsAndCharactersCount: z.boolean(),

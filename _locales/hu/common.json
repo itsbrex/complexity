@@ -18,7 +18,8 @@
     "words": "szó",
     "characters": "karakter",
     "expand": "Kibontás",
-    "collapse": "Összecsukás"
+    "collapse": "Összecsukás",
+    "instantRewrite": "Újraírás ugyanazzal a modellel"
   },
   "releaseNotes": {
     "title": "Frissítve v{{version}} verzióra",

@@ -1,6 +1,6 @@
 import { pluginGuardsStore } from "@/components/plugins-guard/store";
 import { allowFocusModes } from "@/data/plugins/better-focus-selector/focus-web-recency";
-import { middlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
+import { networkInterceptMiddlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
 import {
   encodeWebSocketData,
   parseWebSocketData,
@@ -23,12 +23,12 @@ csLoaderRegistry.register({
 
     const unsub = pluginGuardsStore.subscribe(({ isOrgMember }) => {
       if (isOrgMember === true) {
-        middlewareManager.removeMiddleware("force-change-focus-web-recency");
+        networkInterceptMiddlewareManager.removeMiddleware("force-change-focus-web-recency");
         unsub();
         return;
       }
 
-      middlewareManager.updateMiddleware({
+      networkInterceptMiddlewareManager.updateMiddleware({
         id: "force-change-focus-web-recency",
         middlewareFn({ data, skip }) {
           if (data.type === "network-intercept:fetchEvent") {

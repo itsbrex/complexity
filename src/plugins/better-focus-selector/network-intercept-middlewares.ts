@@ -1,5 +1,5 @@
 import { pluginGuardsStore } from "@/components/plugins-guard/store";
-import { middlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
+import { networkInterceptMiddlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
 import {
   encodeWebSocketData,
   parseWebSocketData,
@@ -18,12 +18,12 @@ csLoaderRegistry.register({
 
     const unsub = pluginGuardsStore.subscribe(({ isOrgMember }) => {
       if (isOrgMember === true) {
-        middlewareManager.removeMiddleware("force-disable-external-sources");
+        networkInterceptMiddlewareManager.removeMiddleware("force-disable-external-sources");
         unsub();
         return;
       }
 
-      middlewareManager.updateMiddleware({
+      networkInterceptMiddlewareManager.updateMiddleware({
         id: "force-disable-external-sources",
         middlewareFn({ data, skip }) {
           if (data.type === "network-intercept:fetchEvent") {

@@ -18,7 +18,8 @@
     "words": "riječi",
     "characters": "znakova",
     "expand": "Proširi",
-    "collapse": "Sažmi"
+    "collapse": "Sažmi",
+    "instantRewrite": "Prepiši istim modelom"
   },
   "releaseNotes": {
     "title": "Ažurirano na v{{version}}",

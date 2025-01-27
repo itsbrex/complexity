@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 
-import { middlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
+import { networkInterceptMiddlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
 import type {
   Middleware,
   MiddlewareData,
@@ -9,14 +9,14 @@ import type {
 describe("middlewareManager", () => {
   beforeEach(() => {
     // Clear all middlewares before each test
-    middlewareManager.getMiddlewares().forEach((middleware) => {
-      middlewareManager.removeMiddleware(middleware.id);
+    networkInterceptMiddlewareManager.getMiddlewares().forEach((middleware) => {
+      networkInterceptMiddlewareManager.removeMiddleware(middleware.id);
     });
   });
 
   it("should be a singleton", () => {
-    const instance1 = middlewareManager;
-    const instance2 = middlewareManager;
+    const instance1 = networkInterceptMiddlewareManager;
+    const instance2 = networkInterceptMiddlewareManager;
     expect(instance1).toBe(instance2);
   });
 
@@ -27,8 +27,8 @@ describe("middlewareManager", () => {
         middlewareFn: vi.fn(),
       };
 
-      middlewareManager.addMiddleware(middleware);
-      expect(middlewareManager.getMiddlewares()).toContain(middleware);
+      networkInterceptMiddlewareManager.addMiddleware(middleware);
+      expect(networkInterceptMiddlewareManager.getMiddlewares()).toContain(middleware);
     });
 
     it("should throw error when adding middleware with duplicate id", () => {
@@ -37,8 +37,8 @@ describe("middlewareManager", () => {
         middlewareFn: vi.fn(),
       };
 
-      middlewareManager.addMiddleware(middleware);
-      expect(() => middlewareManager.addMiddleware(middleware)).toThrow(
+      networkInterceptMiddlewareManager.addMiddleware(middleware);
+      expect(() => networkInterceptMiddlewareManager.addMiddleware(middleware)).toThrow(
         "Middleware with id test already exists",
       );
     });
@@ -54,10 +54,10 @@ describe("middlewareManager", () => {
         middlewareFn: vi.fn(),
       };
 
-      middlewareManager.addMiddleware(middleware2);
-      middlewareManager.addMiddleware(middleware1);
+      networkInterceptMiddlewareManager.addMiddleware(middleware2);
+      networkInterceptMiddlewareManager.addMiddleware(middleware1);
 
-      expect(middlewareManager.getMiddlewares()[0]).toBe(middleware1);
+      expect(networkInterceptMiddlewareManager.getMiddlewares()[0]).toBe(middleware1);
     });
 
     it("should respect 'beforeId' priority", () => {
@@ -71,10 +71,10 @@ describe("middlewareManager", () => {
         priority: { position: "beforeId", id: "target" },
       };
 
-      middlewareManager.addMiddleware(middleware1);
-      middlewareManager.addMiddleware(middleware2);
+      networkInterceptMiddlewareManager.addMiddleware(middleware1);
+      networkInterceptMiddlewareManager.addMiddleware(middleware2);
 
-      expect(middlewareManager.getMiddlewares()[0]).toBe(middleware2);
+      expect(networkInterceptMiddlewareManager.getMiddlewares()[0]).toBe(middleware2);
     });
   });
 
@@ -89,11 +89,11 @@ describe("middlewareManager", () => {
         middlewareFn: vi.fn(),
       };
 
-      middlewareManager.addMiddleware(originalMiddleware);
-      middlewareManager.updateMiddleware(updatedMiddleware);
+      networkInterceptMiddlewareManager.addMiddleware(originalMiddleware);
+      networkInterceptMiddlewareManager.updateMiddleware(updatedMiddleware);
 
-      expect(middlewareManager.getMiddlewares()).toContain(updatedMiddleware);
-      expect(middlewareManager.getMiddlewares()).not.toContain(
+      expect(networkInterceptMiddlewareManager.getMiddlewares()).toContain(updatedMiddleware);
+      expect(networkInterceptMiddlewareManager.getMiddlewares()).not.toContain(
         originalMiddleware,
       );
     });
@@ -106,10 +106,10 @@ describe("middlewareManager", () => {
         middlewareFn: vi.fn(),
       };
 
-      middlewareManager.addMiddleware(middleware);
-      middlewareManager.removeMiddleware("test");
+      networkInterceptMiddlewareManager.addMiddleware(middleware);
+      networkInterceptMiddlewareManager.removeMiddleware("test");
 
-      expect(middlewareManager.getMiddlewares()).not.toContain(middleware);
+      expect(networkInterceptMiddlewareManager.getMiddlewares()).not.toContain(middleware);
     });
   });
 
@@ -131,8 +131,8 @@ describe("middlewareManager", () => {
         },
       };
 
-      middlewareManager.addMiddleware(middleware1);
-      middlewareManager.addMiddleware(middleware2);
+      networkInterceptMiddlewareManager.addMiddleware(middleware1);
+      networkInterceptMiddlewareManager.addMiddleware(middleware2);
 
       const testData: MiddlewareData = {
         type: "network-intercept:fetchEvent",
@@ -143,7 +143,7 @@ describe("middlewareManager", () => {
         },
       };
 
-      await middlewareManager.executeMiddlewares({ data: testData });
+      await networkInterceptMiddlewareManager.executeMiddlewares({ data: testData });
       expect(order).toEqual([1, 2]);
     });
 
@@ -165,8 +165,8 @@ describe("middlewareManager", () => {
         },
       };
 
-      middlewareManager.addMiddleware(middleware1);
-      middlewareManager.addMiddleware(middleware2);
+      networkInterceptMiddlewareManager.addMiddleware(middleware1);
+      networkInterceptMiddlewareManager.addMiddleware(middleware2);
 
       const testData: MiddlewareData = {
         type: "network-intercept:fetchEvent",
@@ -177,7 +177,7 @@ describe("middlewareManager", () => {
         },
       };
 
-      await middlewareManager.executeMiddlewares({ data: testData });
+      await networkInterceptMiddlewareManager.executeMiddlewares({ data: testData });
       expect(order).toEqual([1]);
     });
 
@@ -189,7 +189,7 @@ describe("middlewareManager", () => {
         },
       };
 
-      middlewareManager.addMiddleware(middleware);
+      networkInterceptMiddlewareManager.addMiddleware(middleware);
 
       const testData: MiddlewareData = {
         type: "network-intercept:fetchEvent",
@@ -200,7 +200,7 @@ describe("middlewareManager", () => {
         },
       };
 
-      const result = await middlewareManager.executeMiddlewares({
+      const result = await networkInterceptMiddlewareManager.executeMiddlewares({
         data: testData,
       });
       expect(result.payload.data).toBe("test");
@@ -215,7 +215,7 @@ describe("middlewareManager", () => {
         },
       };
 
-      middlewareManager.addMiddleware(middleware);
+      networkInterceptMiddlewareManager.addMiddleware(middleware);
 
       const testData: MiddlewareData = {
         type: "network-intercept:fetchEvent",
@@ -226,8 +226,8 @@ describe("middlewareManager", () => {
         },
       };
 
-      await middlewareManager.executeMiddlewares({ data: testData });
-      expect(middlewareManager.getMiddlewares()).not.toContain(middleware);
+      await networkInterceptMiddlewareManager.executeMiddlewares({ data: testData });
+      expect(networkInterceptMiddlewareManager.getMiddlewares()).not.toContain(middleware);
     });
 
     it("should propagate errors that are not STOP_PROPAGATION", async () => {
@@ -239,7 +239,7 @@ describe("middlewareManager", () => {
         },
       };
 
-      middlewareManager.addMiddleware(middleware);
+      networkInterceptMiddlewareManager.addMiddleware(middleware);
 
       const testData: MiddlewareData = {
         type: "network-intercept:fetchEvent",
@@ -251,7 +251,7 @@ describe("middlewareManager", () => {
       };
 
       await expect(
-        middlewareManager.executeMiddlewares({ data: testData }),
+        networkInterceptMiddlewareManager.executeMiddlewares({ data: testData }),
       ).rejects.toThrow(error);
     });
   });

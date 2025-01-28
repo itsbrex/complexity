@@ -29,25 +29,15 @@ export function PostUpdateReleaseNotesDialog() {
   );
 
   useEffect(() => {
-    if (isError) {
-      ExtensionLocalStorageService.set((draft) => {
-        draft.isPostUpdateReleaseNotesPopupDismissed = true;
-      });
-    }
-  }, [isError]);
+    ExtensionLocalStorageService.set((draft) => {
+      draft.isPostUpdateReleaseNotesPopupDismissed = true;
+    });
+  }, []);
 
   if (isLoading || isError || !changelog) return null;
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={({ open }) => setOpen(open)}
-      onExitComplete={() => {
-        ExtensionLocalStorageService.set((draft) => {
-          draft.isPostUpdateReleaseNotesPopupDismissed = true;
-        });
-      }}
-    >
+    <Dialog open={open} onOpenChange={({ open }) => setOpen(open)}>
       <DialogContent className="x-w-max x-max-w-[90vw]">
         <DialogHeader>
           <DialogTitle>

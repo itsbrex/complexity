@@ -48,22 +48,6 @@ export default function BetterThreadMessageToolbarsPluginDetails() {
             className="x-items-start"
             textLabel={
               <div>
-                <div>Simplify Rewrite Dropdown Menu</div>
-                <div className="x-text-sm x-text-muted-foreground">
-                  Hide model&apos;s description (only for desktop)
-                </div>
-              </div>
-            }
-            checked={
-              settings?.plugins["thread:betterMessageToolbars"]
-                .simplifyRewriteDropdown
-            }
-            onCheckedChange={handleCheckedChange("simplifyRewriteDropdown")}
-          />
-          <Switch
-            className="x-items-start"
-            textLabel={
-              <div>
                 <div>Edit Query Button</div>
                 <div className="x-text-sm x-text-muted-foreground">
                   Add a button to edit the query

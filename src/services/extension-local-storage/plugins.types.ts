@@ -43,7 +43,6 @@ export const PluginsSchema = z.object({
   "thread:toc": PluginSettingsSchema,
   "thread:betterMessageToolbars": PluginSettingsSchema.extend({
     sticky: z.boolean(),
-    simplifyRewriteDropdown: z.boolean(),
     editQueryButton: z.boolean(),
     instantRewriteButton: z.boolean(),
     explicitModelName: z.boolean(),

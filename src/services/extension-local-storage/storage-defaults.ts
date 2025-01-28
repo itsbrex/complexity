@@ -58,7 +58,6 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "thread:betterMessageToolbars": {
       enabled: false,
       sticky: true,
-      simplifyRewriteDropdown: true,
       editQueryButton: false,
       explicitModelName: true,
       instantRewriteButton: false,

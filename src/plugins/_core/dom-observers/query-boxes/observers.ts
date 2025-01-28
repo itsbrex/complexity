@@ -1,4 +1,4 @@
-import debounce from "lodash/debounce";
+import throttle from "lodash/throttle";
 import { sendMessage } from "webext-bridge/content-script";
 
 import { CallbackQueue } from "@/plugins/_api/dom-observer/callback-queue";
@@ -198,12 +198,19 @@ async function observeFollowUpQueryBox() {
   });
 }
 
-const observeReasoningModePreference = debounce(async () => {
-  globalDomObserverStore.getState().setQueryBoxes({
-    reasoningModePreferenceModelCode: await sendMessage(
-      "reactVdom:getCopilotReasoningModeModelCode",
-      undefined,
-      "window",
-    ),
-  });
-}, 300);
+const observeReasoningModePreference = throttle(
+  async () => {
+    globalDomObserverStore.getState().setQueryBoxes({
+      reasoningModePreferenceModelCode: await sendMessage(
+        "reactVdom:getCopilotReasoningModeModelCode",
+        undefined,
+        "window",
+      ),
+    });
+  },
+  300,
+  {
+    leading: true,
+    trailing: true,
+  },
+);

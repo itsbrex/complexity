@@ -11,15 +11,15 @@ export async function handleInstantRewrite({
 }: {
   messageBlockIndex: number;
 }) {
-  const currentModel = await sendMessage(
-    "reactVdom:getMessageDisplayModelCode",
+  const currentModelPreferences = await sendMessage(
+    "reactVdom:getMessageModelPreferences",
     {
       index: messageBlockIndex,
     },
     "window",
   );
 
-  if (currentModel == null) return;
+  if (currentModelPreferences == null) return;
 
   networkInterceptMiddlewareManager.addMiddleware({
     id: "instant-rewrite-model-change",
@@ -54,11 +54,19 @@ export async function handleInstantRewrite({
         "instant-rewrite-model-change",
       );
 
+      const modelPreferenceKey = currentModelPreferences.isProReasoningMode
+        ? "reasoning_model_preference"
+        : "model_preference";
+
       const newPayload = [
         ...payload.slice(0, 2),
         {
           ...payload[2],
-          model_preference: currentModel,
+          mode: currentModelPreferences.isProReasoningMode
+            ? currentModelPreferences.mode.toLowerCase()
+            : payload[2].mode,
+          is_pro_reasoning_mode: currentModelPreferences.isProReasoningMode,
+          [modelPreferenceKey]: currentModelPreferences.displayModel,
         },
       ];
 
@@ -73,7 +81,6 @@ export async function handleInstantRewrite({
     "reactVdom:triggerRewriteOption",
     {
       messageBlockIndex,
-      optionIndex: 1,
     },
     "window",
   );

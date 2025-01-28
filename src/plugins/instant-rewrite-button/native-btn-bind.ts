@@ -1,8 +1,7 @@
 import { isHotkeyPressed } from "react-hotkeys-hook";
 
 import { globalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
-import { handleInstantRewrite } from "@/plugins/thread-better-message-toolbars/instant-rewrite-button/handle-instant-rewrite";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
+import { handleInstantRewrite } from "@/plugins/instant-rewrite-button/handle-instant-rewrite";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
@@ -10,16 +9,11 @@ import { DOM_SELECTORS } from "@/utils/dom-selectors";
 const OBSERVER_ID = "instant-rewrite-button-native-btn-bind";
 
 csLoaderRegistry.register({
-  id: "plugin:thread:betterMessageToolbars:instantRewriteButton:nativeBtnBind",
+  id: "plugin:thread:instantRewriteButton:nativeBtnBind",
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
-    const settings = ExtensionLocalStorageService.getCachedSync();
 
-    if (
-      !pluginsEnableStates?.["thread:betterMessageToolbars"] ||
-      !settings.plugins["thread:betterMessageToolbars"].instantRewriteButton
-    )
-      return;
+    if (!pluginsEnableStates?.["thread:instantRewriteButton"]) return;
 
     globalDomObserverStore.subscribe(
       (store) => store.threadComponents.messageBlockBottomBars,

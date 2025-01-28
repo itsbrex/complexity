@@ -14,6 +14,7 @@ import ExportThreadPluginDetails from "@/entrypoints/options-page/dashboard/page
 import FocusSelectorPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/FocusSelector";
 import FocusWebRecencySelectorPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/FocusWebRecencySelector";
 import FullWidthFollowUpQueryBoxPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/FullWidthFollowUpQueryBox";
+import InstantThreadMessageRewriteButtonsPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/InstantThreadMessageRewriteButtons";
 import PromptHistoryPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/PromptHistory";
 import SlashCommandMenuPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/SlashCommandMenu";
 import SpaceNavigatorPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/SpaceNavigator";
@@ -40,6 +41,9 @@ export const PLUGIN_DETAILS: PluginPluginDetails = {
   "thread:toc": <ThreadToCPluginDetails />,
   "thread:canvas": <CanvasPluginDetails />,
   "thread:exportThread": <ExportThreadPluginDetails />,
+  "thread:instantRewriteButton": (
+    <InstantThreadMessageRewriteButtonsPluginDetails />
+  ),
   "thread:betterMessageCopyButtons": (
     <BetterThreadMessageCopyButtonsPluginDetails />
   ),

@@ -38,7 +38,7 @@ import "@/plugins/collapse-empty-thread-visual-cols";
 import "@/plugins/thread-better-message-toolbars/explicit-model-name";
 import "@/plugins/thread-better-message-toolbars/message-words-and-characters-count";
 import "@/plugins/thread-better-message-toolbars/collapsible-query/populate-original-height";
-import "@/plugins/thread-better-message-toolbars/instant-rewrite-button/native-btn-bind";
+import "@/plugins/instant-rewrite-button/native-btn-bind";
 import "@/plugins/custom-thread-container-width";
 
 // Home Plugins

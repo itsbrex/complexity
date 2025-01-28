@@ -42,7 +42,7 @@ export const LOADER_IDS = [
   "plugin:thread:betterMessageToolbars:explicitModelName",
   "plugin:thread:betterMessageToolbars:messageWordsAndCharactersCount",
   "plugin:thread:betterMessageToolbars:collapsibleQuery",
-  "plugin:thread:betterMessageToolbars:instantRewriteButton:nativeBtnBind",
+  "plugin:thread:instantRewriteButton:nativeBtnBind",
   "plugin:thread:customThreadContainerWidth",
   "plugin:queryBox:initSharedStore",
   "plugin:queryBox:focusSelector:webRecency:networkInterceptMiddleware",

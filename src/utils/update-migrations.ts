@@ -1,15 +1,25 @@
 import { produce } from "immer";
 
 import { ExtensionLocalStorage } from "@/services/extension-local-storage/extension-local-storage.types";
-import { MaybePromise } from "@/types/utils.types";
 
 type MigrationFn = ({
   oldRawSettings,
 }: {
   oldRawSettings: ExtensionLocalStorage;
-}) => MaybePromise<ExtensionLocalStorage>;
+}) => Promise<ExtensionLocalStorage>;
 
-export const migrateShowPostUpdateReleaseNotesPopup: MigrationFn = ({
+export const migrateinstantRewriteButton: MigrationFn = async ({
+  oldRawSettings,
+}) => {
+  return produce(oldRawSettings, (draft) => {
+    draft.plugins["thread:instantRewriteButton"] = {
+      enabled: (oldRawSettings.plugins["thread:betterMessageToolbars"] as any)
+        .instantRewriteButton,
+    };
+  });
+};
+
+export const migrateShowPostUpdateReleaseNotesPopup: MigrationFn = async ({
   oldRawSettings,
 }) => {
   console.log(
@@ -21,7 +31,9 @@ export const migrateShowPostUpdateReleaseNotesPopup: MigrationFn = ({
   });
 };
 
-export const migrateSlashCommandMenuKey: MigrationFn = ({ oldRawSettings }) => {
+export const migrateSlashCommandMenuKey: MigrationFn = async ({
+  oldRawSettings,
+}) => {
   console.log("[ExtUpdateMigrations] Migrating slash command menu key");
 
   return produce(oldRawSettings, (draft) => {
@@ -37,7 +49,9 @@ export const migrateSlashCommandMenuKey: MigrationFn = ({ oldRawSettings }) => {
   });
 };
 
-export const migrateSpaceNavigatorKey: MigrationFn = ({ oldRawSettings }) => {
+export const migrateSpaceNavigatorKey: MigrationFn = async ({
+  oldRawSettings,
+}) => {
   console.log("[ExtUpdateMigrations] Migrating space navigator key");
 
   return produce(oldRawSettings, (draft) => {
@@ -67,4 +81,5 @@ export const EXT_UPDATE_MIGRATIONS: Record<string, MigrationFn> = {
   "1.3.2.0": migrateSpaceNavigatorKey,
   "1.3.3.0": migrateSlashCommandMenuKey,
   "1.3.5.0": migrateShowPostUpdateReleaseNotesPopup,
+  "1.4.1.0": migrateinstantRewriteButton,
 };

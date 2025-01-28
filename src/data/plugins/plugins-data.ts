@@ -175,6 +175,15 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     tags: ["ui", "ux"],
     dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
   },
+  "thread:instantRewriteButton": {
+    id: "thread:instantRewriteButton",
+    routeSegment: "thread-instant-rewrite-button",
+    title: "Instant Thread Message Rewrite Buttons",
+    description:
+      "Rewrite messages with the same model without opening the original Rewrite dropdown menu",
+    tags: ["new", "ui", "ux"],
+    dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
+  },
   "thread:betterCodeBlocks": {
     id: "thread:betterCodeBlocks",
     routeSegment: "thread-better-code-blocks",

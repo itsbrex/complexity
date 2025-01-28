@@ -18,6 +18,11 @@ export type ReactVdomEvents = {
   "reactVdom:isMessageBlockInFlight": (params: {
     index: number;
   }) => boolean | null;
+  "reactVdom:getMessageModelPreferences": (params: { index: number }) => {
+    mode: string;
+    isProReasoningMode: boolean;
+    displayModel: LanguageModelCode;
+  } | null;
   "reactVdom:getMessageDisplayModelCode": (params: {
     index: number;
   }) => string | null;
@@ -35,7 +40,7 @@ export type ReactVdomEvents = {
   "reactVdom:setFocusMode": (params: { focusMode: FocusMode["code"] }) => void;
   "reactVdom:triggerRewriteOption": (params: {
     messageBlockIndex: number;
-    optionIndex: number;
+    optionIndex?: number;
   }) => boolean;
   "reactVdom:getCopilotReasoningModeModelCode": () => LanguageModelCode | null;
   "reactVdom:setCopilotReasoningModeModelCode": (params: {
@@ -67,6 +72,41 @@ export function setupReactVdomListeners() {
     if (error || status == null) return null;
 
     return status.toLowerCase() !== "completed";
+  });
+
+  onMessage("reactVdom:getMessageModelPreferences", ({ data: { index } }) => {
+    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${index}"]`;
+
+    const $el = $(selector).prev();
+
+    if (!$el.length) return null;
+
+    const [preferences, error] = errorWrapper(() =>
+      findReactFiberNodeValue({
+        fiberNode: ($el[0] as any)[getReactFiberKey($el[0])],
+        condition: (node) =>
+          node.return.memoizedProps.result != null &&
+          node.return.memoizedProps.result.mode != null &&
+          node.return.memoizedProps.result.is_pro_reasoning_mode != null &&
+          node.return.memoizedProps.result.display_model != null,
+        select: (node) =>
+          node.return.memoizedProps.result as {
+            mode: string;
+            is_pro_reasoning_mode: boolean;
+            display_model: LanguageModelCode;
+          },
+      }),
+    )();
+
+    if (error) console.warn("[VDOM Plugin] getMessageModelPreferences", error);
+
+    if (error || preferences == null) return null;
+
+    return {
+      mode: preferences.mode,
+      isProReasoningMode: preferences.is_pro_reasoning_mode,
+      displayModel: preferences.display_model,
+    };
   });
 
   onMessage("reactVdom:getMessageDisplayModelCode", ({ data: { index } }) => {
@@ -248,12 +288,16 @@ export function setupReactVdomListeners() {
       const [triggerRewriteOptionHandler, error] = errorWrapper(() =>
         findReactFiberNodeValue({
           fiberNode,
-          condition: (node) =>
-            node.memoizedProps.children.props.items[optionIndex].onClick !=
-            null,
-          select: (node) =>
-            node.memoizedProps.children.props.items[optionIndex]
-              .onClick as () => void,
+          condition: (node) => {
+            const items = node.memoizedProps.children.props.items;
+            const index = optionIndex ?? items.length - 1;
+            return items[index].onClick != null;
+          },
+          select: (node) => {
+            const items = node.memoizedProps.children.props.items;
+            const index = optionIndex ?? items.length - 1;
+            return items[index].onClick as () => void;
+          },
         }),
       )();
 

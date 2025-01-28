@@ -44,13 +44,13 @@ export const PluginsSchema = z.object({
   "thread:betterMessageToolbars": PluginSettingsSchema.extend({
     sticky: z.boolean(),
     editQueryButton: z.boolean(),
-    instantRewriteButton: z.boolean(),
     explicitModelName: z.boolean(),
     hideUnnecessaryButtons: z.boolean(),
     wordsAndCharactersCount: z.boolean(),
     tokensCount: z.boolean(),
     collapsibleQuery: z.boolean(),
   }),
+  "thread:instantRewriteButton": PluginSettingsSchema,
   "thread:betterCodeBlocks": PluginSettingsSchema.merge(
     BetterCodeBlockGlobalOptionsSchema,
   ),

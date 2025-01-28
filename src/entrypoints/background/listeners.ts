@@ -8,6 +8,7 @@ import {
   ExtensionLocalStorage,
   ExtensionLocalStorageSchema,
 } from "@/services/extension-local-storage/extension-local-storage.types";
+import { errorWrapper } from "@/utils/error-wrapper";
 import { ExtensionVersion } from "@/utils/ext-version";
 import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
 import { EXT_UPDATE_MIGRATIONS } from "@/utils/update-migrations";
@@ -150,9 +151,14 @@ function updateMigrations() {
           const oldRawSettings =
             migratedSettings ?? (await ExtensionLocalStorageApi.get());
 
-          const newSettings = await migrationFn({
-            oldRawSettings,
-          });
+          const [newSettings, error] = await errorWrapper(
+            (): Promise<ExtensionLocalStorage> =>
+              migrationFn({
+                oldRawSettings,
+              }),
+          )();
+
+          if (error) continue;
 
           migratedSettings = newSettings;
         }

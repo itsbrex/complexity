@@ -62,10 +62,13 @@ const useSharedQueryBoxStore = createWithEqualityFn<SharedQueryBoxStore>()(
         selectedLanguageModel: "turbo",
         setSelectedLanguageModel: async (selectedLanguageModel) => {
           set({ selectedLanguageModel });
-          await PplxApiService.setDefaultLanguageModel(selectedLanguageModel);
-          queryClient.invalidateQueries({
-            queryKey: pplxApiQueries.userSettings.queryKey,
-          });
+
+          if (!["o1", "r1"].includes(selectedLanguageModel)) {
+            await PplxApiService.setDefaultLanguageModel(selectedLanguageModel);
+            queryClient.invalidateQueries({
+              queryKey: pplxApiQueries.userSettings.queryKey,
+            });
+          }
         },
         forceExternalSourcesOff: false,
         setForceExternalSourcesOff: (forceExternalSourcesOff) => {

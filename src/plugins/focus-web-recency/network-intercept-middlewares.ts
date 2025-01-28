@@ -23,7 +23,9 @@ csLoaderRegistry.register({
 
     const unsub = pluginGuardsStore.subscribe(({ isOrgMember }) => {
       if (isOrgMember === true) {
-        networkInterceptMiddlewareManager.removeMiddleware("force-change-focus-web-recency");
+        networkInterceptMiddlewareManager.removeMiddleware(
+          "force-change-focus-web-recency",
+        );
         unsub();
         return;
       }

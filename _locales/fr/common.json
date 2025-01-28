@@ -19,6 +19,7 @@
     "characters": "caractères",
     "expand": "Développer",
     "collapse": "Réduire",
+    "instantRewriteShort": "Réécrire",
     "instantRewrite": "Réécrire avec le même modèle"
   },
   "releaseNotes": {

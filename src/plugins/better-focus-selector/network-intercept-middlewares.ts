@@ -18,7 +18,9 @@ csLoaderRegistry.register({
 
     const unsub = pluginGuardsStore.subscribe(({ isOrgMember }) => {
       if (isOrgMember === true) {
-        networkInterceptMiddlewareManager.removeMiddleware("force-disable-external-sources");
+        networkInterceptMiddlewareManager.removeMiddleware(
+          "force-disable-external-sources",
+        );
         unsub();
         return;
       }

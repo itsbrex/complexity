@@ -28,9 +28,10 @@ function setupInterceptorsListeners() {
     async ({ data: { event, payload } }) => {
       // console.log("%cwebSocketEvent", "color: blue", { event, payload });
 
-      const newPayload = await networkInterceptMiddlewareManager.executeMiddlewares({
-        data: { type: "network-intercept:webSocketEvent", event, payload },
-      });
+      const newPayload =
+        await networkInterceptMiddlewareManager.executeMiddlewares({
+          data: { type: "network-intercept:webSocketEvent", event, payload },
+        });
 
       return newPayload.payload;
     },
@@ -41,9 +42,10 @@ function setupInterceptorsListeners() {
     async ({ data: { event, payload } }) => {
       // console.log("%cxhrEvent", "color: green", { event, payload });
 
-      const newPayload = await networkInterceptMiddlewareManager.executeMiddlewares({
-        data: { type: "network-intercept:xhrEvent", event, payload },
-      });
+      const newPayload =
+        await networkInterceptMiddlewareManager.executeMiddlewares({
+          data: { type: "network-intercept:xhrEvent", event, payload },
+        });
 
       return newPayload.payload;
     },
@@ -54,9 +56,10 @@ function setupInterceptorsListeners() {
     async ({ data: { event, payload } }) => {
       // console.log("%cfetchEvent", "color: red", { event, payload });
 
-      const newPayload = await networkInterceptMiddlewareManager.executeMiddlewares({
-        data: { type: "network-intercept:fetchEvent", event, payload },
-      });
+      const newPayload =
+        await networkInterceptMiddlewareManager.executeMiddlewares({
+          data: { type: "network-intercept:fetchEvent", event, payload },
+        });
 
       return newPayload.payload;
     },

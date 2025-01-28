@@ -19,7 +19,8 @@
     "characters": "Zeichen",
     "expand": "Erweitern",
     "collapse": "Einklappen",
-    "instantRewrite": "Mit demselben Modell neu schreiben"
+    "instantRewriteShort": "Umschreiben",
+    "instantRewrite": "Mit demselben Modell umschreiben"
   },
   "releaseNotes": {
     "title": "Aktualisiert auf v{{version}}",

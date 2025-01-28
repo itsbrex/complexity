@@ -19,7 +19,8 @@
     "characters": "karakter",
     "expand": "Kibontás",
     "collapse": "Összecsukás",
-    "instantRewrite": "Újraírás ugyanazzal a modellel"
+    "instantRewriteShort": "Átírás",
+    "instantRewrite": "Átírás ugyanazzal a modellel"
   },
   "releaseNotes": {
     "title": "Frissítve v{{version}} verzióra",

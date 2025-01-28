@@ -18,7 +18,8 @@
     "words": "词",
     "characters": "字符",
     "expand": "展开",
-    "collapse": "折叠",
+    "collapse": "收起",
+    "instantRewriteShort": "重写",
     "instantRewrite": "使用相同模型重写"
   },
   "releaseNotes": {

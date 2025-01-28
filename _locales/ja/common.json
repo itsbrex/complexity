@@ -19,6 +19,7 @@
     "characters": "文字",
     "expand": "展開",
     "collapse": "折りたたむ",
+    "instantRewriteShort": "書き直し",
     "instantRewrite": "同じモデルで書き直す"
   },
   "releaseNotes": {

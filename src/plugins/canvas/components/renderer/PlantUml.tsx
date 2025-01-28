@@ -14,7 +14,10 @@ import {
   getMirroredCodeBlockByLocation,
   useMirroredCodeBlocksStore,
 } from "@/plugins/thread-better-code-blocks/store";
-import { generatePlantUMLUrl, generateTextPlantUMLUrl } from "@/utils/plant-uml";
+import {
+  generatePlantUMLUrl,
+  generateTextPlantUMLUrl,
+} from "@/utils/plant-uml";
 import { UiUtils } from "@/utils/ui-utils";
 
 const SVGContent = memo(function SVGContent({ svg }: { svg: string }) {

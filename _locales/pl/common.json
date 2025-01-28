@@ -19,6 +19,7 @@
     "characters": "znaków",
     "expand": "Rozwiń",
     "collapse": "Zwiń",
+    "instantRewriteShort": "Przepisz",
     "instantRewrite": "Przepisz tym samym modelem"
   },
   "releaseNotes": {

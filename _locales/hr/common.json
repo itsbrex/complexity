@@ -19,6 +19,7 @@
     "characters": "znakova",
     "expand": "Proširi",
     "collapse": "Sažmi",
+    "instantRewriteShort": "Prepiši",
     "instantRewrite": "Prepiši istim modelom"
   },
   "releaseNotes": {

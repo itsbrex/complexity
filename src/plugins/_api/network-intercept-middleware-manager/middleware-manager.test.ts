@@ -28,7 +28,9 @@ describe("middlewareManager", () => {
       };
 
       networkInterceptMiddlewareManager.addMiddleware(middleware);
-      expect(networkInterceptMiddlewareManager.getMiddlewares()).toContain(middleware);
+      expect(networkInterceptMiddlewareManager.getMiddlewares()).toContain(
+        middleware,
+      );
     });
 
     it("should throw error when adding middleware with duplicate id", () => {
@@ -38,9 +40,9 @@ describe("middlewareManager", () => {
       };
 
       networkInterceptMiddlewareManager.addMiddleware(middleware);
-      expect(() => networkInterceptMiddlewareManager.addMiddleware(middleware)).toThrow(
-        "Middleware with id test already exists",
-      );
+      expect(() =>
+        networkInterceptMiddlewareManager.addMiddleware(middleware),
+      ).toThrow("Middleware with id test already exists");
     });
 
     it("should respect 'first' priority", () => {
@@ -57,7 +59,9 @@ describe("middlewareManager", () => {
       networkInterceptMiddlewareManager.addMiddleware(middleware2);
       networkInterceptMiddlewareManager.addMiddleware(middleware1);
 
-      expect(networkInterceptMiddlewareManager.getMiddlewares()[0]).toBe(middleware1);
+      expect(networkInterceptMiddlewareManager.getMiddlewares()[0]).toBe(
+        middleware1,
+      );
     });
 
     it("should respect 'beforeId' priority", () => {
@@ -74,7 +78,9 @@ describe("middlewareManager", () => {
       networkInterceptMiddlewareManager.addMiddleware(middleware1);
       networkInterceptMiddlewareManager.addMiddleware(middleware2);
 
-      expect(networkInterceptMiddlewareManager.getMiddlewares()[0]).toBe(middleware2);
+      expect(networkInterceptMiddlewareManager.getMiddlewares()[0]).toBe(
+        middleware2,
+      );
     });
   });
 
@@ -92,7 +98,9 @@ describe("middlewareManager", () => {
       networkInterceptMiddlewareManager.addMiddleware(originalMiddleware);
       networkInterceptMiddlewareManager.updateMiddleware(updatedMiddleware);
 
-      expect(networkInterceptMiddlewareManager.getMiddlewares()).toContain(updatedMiddleware);
+      expect(networkInterceptMiddlewareManager.getMiddlewares()).toContain(
+        updatedMiddleware,
+      );
       expect(networkInterceptMiddlewareManager.getMiddlewares()).not.toContain(
         originalMiddleware,
       );
@@ -109,7 +117,9 @@ describe("middlewareManager", () => {
       networkInterceptMiddlewareManager.addMiddleware(middleware);
       networkInterceptMiddlewareManager.removeMiddleware("test");
 
-      expect(networkInterceptMiddlewareManager.getMiddlewares()).not.toContain(middleware);
+      expect(networkInterceptMiddlewareManager.getMiddlewares()).not.toContain(
+        middleware,
+      );
     });
   });
 
@@ -143,7 +153,9 @@ describe("middlewareManager", () => {
         },
       };
 
-      await networkInterceptMiddlewareManager.executeMiddlewares({ data: testData });
+      await networkInterceptMiddlewareManager.executeMiddlewares({
+        data: testData,
+      });
       expect(order).toEqual([1, 2]);
     });
 
@@ -177,7 +189,9 @@ describe("middlewareManager", () => {
         },
       };
 
-      await networkInterceptMiddlewareManager.executeMiddlewares({ data: testData });
+      await networkInterceptMiddlewareManager.executeMiddlewares({
+        data: testData,
+      });
       expect(order).toEqual([1]);
     });
 
@@ -200,9 +214,11 @@ describe("middlewareManager", () => {
         },
       };
 
-      const result = await networkInterceptMiddlewareManager.executeMiddlewares({
-        data: testData,
-      });
+      const result = await networkInterceptMiddlewareManager.executeMiddlewares(
+        {
+          data: testData,
+        },
+      );
       expect(result.payload.data).toBe("test");
     });
 
@@ -226,8 +242,12 @@ describe("middlewareManager", () => {
         },
       };
 
-      await networkInterceptMiddlewareManager.executeMiddlewares({ data: testData });
-      expect(networkInterceptMiddlewareManager.getMiddlewares()).not.toContain(middleware);
+      await networkInterceptMiddlewareManager.executeMiddlewares({
+        data: testData,
+      });
+      expect(networkInterceptMiddlewareManager.getMiddlewares()).not.toContain(
+        middleware,
+      );
     });
 
     it("should propagate errors that are not STOP_PROPAGATION", async () => {
@@ -251,7 +271,9 @@ describe("middlewareManager", () => {
       };
 
       await expect(
-        networkInterceptMiddlewareManager.executeMiddlewares({ data: testData }),
+        networkInterceptMiddlewareManager.executeMiddlewares({
+          data: testData,
+        }),
       ).rejects.toThrow(error);
     });
   });

@@ -19,6 +19,7 @@
     "characters": "знаци",
     "expand": "Прошири",
     "collapse": "Собери",
+    "instantRewriteShort": "Препиши",
     "instantRewrite": "Препиши со истиот модел"
   },
   "releaseNotes": {

@@ -47,6 +47,4 @@ export const baseManifest: ExtendedManifestV3Export = {
       matches: ["*://*/*"],
     },
   ],
-
-  permissions: ["https://codesandbox.io/*"],
 };

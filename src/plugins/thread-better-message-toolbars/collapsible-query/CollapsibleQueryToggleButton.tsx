@@ -8,13 +8,16 @@ export default function CollapsibleQueryToggleButton({
 }: {
   messageIndex: number;
 }) {
-  const [isCollapsed, setIsCollapsed] = useState(true);
-
   const messageBlock = useGlobalDomObserverStore(
     (state) => state.threadComponents.messageBlocks?.[messageIndex],
   );
 
   const $queryElement = messageBlock?.$query;
+
+  const [isCollapsed, setIsCollapsed] = useState(() => {
+    const previousState = $queryElement?.attr("data-cplx-query-collapsed");
+    return previousState === "true";
+  });
 
   useEffect(() => {
     $queryElement?.attr(

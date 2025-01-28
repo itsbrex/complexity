@@ -173,6 +173,19 @@ async function observeMessageBlocks() {
 
       block.$wrapper.attr("data-inflight", isInFlight ? "true" : "false");
 
+      const isQueryHoverContainerPresent =
+        block.$query.find(
+          DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_HOVER_CONTAINER,
+        ).length > 0;
+      const existingReadOnlyAttr = block.$wrapper.attr("data-read-only");
+
+      if (existingReadOnlyAttr == null || existingReadOnlyAttr === "true") {
+        block.$wrapper.attr(
+          "data-read-only",
+          !isQueryHoverContainerPresent ? "true" : "false",
+        );
+      }
+
       return {
         ...block,
         title: block.$query
@@ -180,6 +193,10 @@ async function observeMessageBlocks() {
           .text(),
         isInFlight,
         isEditingQuery: block.$query.find("textarea").length > 0,
+        isReadOnly:
+          existingReadOnlyAttr !== "false"
+            ? !isQueryHoverContainerPresent
+            : false,
       };
     }),
   );

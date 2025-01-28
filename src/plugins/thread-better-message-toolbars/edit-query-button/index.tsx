@@ -15,7 +15,16 @@ export default function EditQueryButton({
       store.threadComponents.messageBlocks?.[messageBlockIndex]?.isEditingQuery,
   );
 
-  if (isEditingQuery) return null;
+  const isReadOnly = useGlobalDomObserverStore(
+    (store) =>
+      store.threadComponents.messageBlocks?.[messageBlockIndex]?.isReadOnly,
+  );
+
+  const isAnyMessageBlockInFlight = useGlobalDomObserverStore((store) =>
+    store.threadComponents.messageBlocks?.some((block) => block.isInFlight),
+  );
+
+  if (isReadOnly || isEditingQuery || isAnyMessageBlockInFlight) return null;
 
   return (
     <div

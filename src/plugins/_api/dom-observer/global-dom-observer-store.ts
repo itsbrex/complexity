@@ -10,6 +10,7 @@ export type ExtendedMessageBlock = MessageBlock & {
   title: string;
   isInFlight: boolean;
   isEditingQuery: boolean;
+  isReadOnly: boolean;
 };
 
 export type ExtendedCodeBlock = CodeBlock & {

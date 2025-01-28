@@ -139,7 +139,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     routeSegment: "query-box-submit-on-ctrl-enter",
     title: `Query Box: Submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
     description: `Insert new line on Enter, submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
-    tags: ["new", "ux"],
+    tags: ["ux"],
     dependentCorePlugins: ["spaRouter", "domObserver"],
   },
   "queryBox:fullWidthFollowUp": {
@@ -238,7 +238,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     routeSegment: "thread-custom-thread-container-width",
     title: "Custom Thread Container Width",
     description: "Customize the maximum width of the thread container",
-    tags: ["new", "ui", "desktopOnly"],
+    tags: ["ui", "desktopOnly"],
     dependentCorePlugins: ["spaRouter"],
   },
   imageGenModelSelector: {

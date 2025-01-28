@@ -15,10 +15,10 @@ function noFileCreationOnPaste(
 
   if (!pluginsEnableStates?.["queryBox:noFileCreationOnPaste"]) return;
 
-  Object.values(queryBoxes).forEach((queryBox) => {
-    if (!queryBox) return;
+  Object.values(queryBoxes).forEach((component) => {
+    if (component == null || !(component instanceof HTMLElement)) return;
 
-    const $textarea = $(queryBox).find("textarea");
+    const $textarea = $(component).find("textarea");
 
     if (!$textarea.length) return;
 

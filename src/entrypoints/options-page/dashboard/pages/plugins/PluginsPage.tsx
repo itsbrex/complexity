@@ -6,10 +6,7 @@ import PluginDetailsWrapper from "@/entrypoints/options-page/dashboard/pages/plu
 import { PluginSections } from "@/entrypoints/options-page/dashboard/pages/plugins/components/PluginSections";
 import { TagsFilter } from "@/entrypoints/options-page/dashboard/pages/plugins/components/TagsFilter";
 import { useFilteredPlugins } from "@/entrypoints/options-page/dashboard/pages/plugins/hooks/useFilteredPlugins";
-import {
-  usePluginContext,
-  type PluginFilters,
-} from "@/entrypoints/options-page/dashboard/pages/plugins/PluginContext";
+import { usePluginFiltersStore } from "@/entrypoints/options-page/dashboard/pages/plugins/store";
 import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatureFlags";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
@@ -17,7 +14,8 @@ import useExtensionLocalStorage from "@/services/extension-local-storage/useExte
 function PluginsListing() {
   const { settings } = useExtensionLocalStorage();
   const { isFetching: isFetchingFeatureFlags } = useCplxFeatureFlags();
-  const [filters, setFilters] = usePluginContext();
+  const filters = usePluginFiltersStore((state) => state.filters);
+  const setFilters = usePluginFiltersStore((state) => state.setFilters);
 
   const filteredPluginIds = useFilteredPlugins({
     searchTerm: filters.searchTerm,
@@ -30,7 +28,15 @@ function PluginsListing() {
     favoritePluginIds: settings?.favoritePluginIds,
   });
 
-  const handleSearchChange = usePluginSearch(setFilters);
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFilters({
+        ...filters,
+        searchTerm: e.target.value,
+      });
+    },
+    [filters, setFilters],
+  );
 
   return (
     <div className="x-size-full">
@@ -84,22 +90,6 @@ function usePluginCategories({
     );
     return { favoritePluginIds: favorites, otherPluginIds: others };
   }, [filteredPluginIds, favoritePluginIds]);
-}
-
-type SetFiltersFunction = (
-  updater: (prev: PluginFilters) => PluginFilters,
-) => void;
-
-function usePluginSearch(setFilters: SetFiltersFunction) {
-  return useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setFilters((prev: PluginFilters) => ({
-        ...prev,
-        searchTerm: e.target.value,
-      }));
-    },
-    [setFilters],
-  );
 }
 
 export default function PluginsPage() {

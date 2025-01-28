@@ -11,10 +11,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { PLUGIN_TAGS, type PluginTagValues } from "@/data/plugins/plugins-data";
-import { usePluginContext } from "@/entrypoints/options-page/dashboard/pages/plugins/PluginContext";
+import { usePluginFiltersStore } from "@/entrypoints/options-page/dashboard/pages/plugins/store";
 
 export function TagsFilter() {
-  const [filters, setFilters] = usePluginContext();
+  const filters = usePluginFiltersStore((state) => state.filters);
+  const setFilters = usePluginFiltersStore((state) => state.setFilters);
   const [open, setOpen] = useState(false);
 
   const handleSelect = (tag: PluginTagValues) => {

@@ -191,7 +191,8 @@ export class UiUtils {
 
     const isInFlight =
       !!messageBlocks[messageBlockIndex]?.isInFlight &&
-      $(selector).next().length === 0;
+      document.querySelector(selector)?.parentElement?.nextElementSibling ==
+        null;
 
     return isInFlight;
   }
@@ -203,7 +204,6 @@ export class UiUtils {
   } = {}): JQuery<HTMLTextAreaElement> {
     if (!type) return $(`${DOM_SELECTORS.QUERY_BOX.TEXTAREA.ARBITRARY}:last`);
 
-    // Cache the parents lookup since it's used multiple times
     const $parents = $(
       `${DOM_SELECTORS.QUERY_BOX.SUBMIT_BUTTON}:last`,
     ).parents();
@@ -225,7 +225,6 @@ export class UiUtils {
         break;
     }
 
-    // Single DOM traversal instead of multiple .find() calls
     return $parents.find(selector);
   }
 

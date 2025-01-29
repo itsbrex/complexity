@@ -191,8 +191,7 @@ export class UiUtils {
 
     const isInFlight =
       !!messageBlocks[messageBlockIndex]?.isInFlight &&
-      document.querySelector(selector)?.parentElement?.nextElementSibling ==
-        null;
+      document.querySelector(selector)?.nextElementSibling == null;
 
     return isInFlight;
   }

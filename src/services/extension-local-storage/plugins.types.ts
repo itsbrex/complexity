@@ -70,12 +70,12 @@ export const PluginsSchema = z.object({
   "home:customSlogan": PluginSettingsSchema.extend({
     slogan: z.string(),
   }),
+  "home:hideHomepageWidgets": PluginSettingsSchema,
   "hide-get-mobile-app-cta-btn": PluginSettingsSchema,
   zenMode: PluginSettingsSchema.extend({
     persistent: z.boolean(),
     lastState: z.boolean(),
     alwaysHideRelatedQuestions: z.boolean(),
-    alwaysHideHomepageWidgets: z.boolean(),
     alwaysHideVisualCols: z.boolean(),
   }),
 });

@@ -43,6 +43,7 @@ import "@/plugins/custom-thread-container-width";
 
 // Home Plugins
 import "@/plugins/home-custom-slogan";
+import "@/plugins/hide-homepage-widgets";
 
 // General Plugins
 import "@/plugins/hide-get-mobile-app-cta-btn";

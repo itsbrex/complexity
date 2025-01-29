@@ -142,25 +142,26 @@ function updateMigrations() {
 
       if (!previousVersion) return;
 
+      console.log("Upgraded from", previousVersion, "to", APP_CONFIG.VERSION);
+
       const migrations = Object.entries(EXT_UPDATE_MIGRATIONS);
 
       let migratedSettings: ExtensionLocalStorage | null = null;
 
-      for (const [version, migrationFn] of migrations) {
+      for (const [version, migrationFns] of migrations) {
         if (new ExtensionVersion(version).isNewerThan(previousVersion)) {
-          const oldRawSettings =
-            migratedSettings ?? (await ExtensionLocalStorageApi.get());
+          for (const migrationFn of migrationFns) {
+            const oldRawSettings =
+              migratedSettings ?? (await ExtensionLocalStorageApi.get());
+            const [newSettings, error] = await errorWrapper(
+              (): Promise<ExtensionLocalStorage> =>
+                migrationFn({ oldRawSettings }),
+            )();
 
-          const [newSettings, error] = await errorWrapper(
-            (): Promise<ExtensionLocalStorage> =>
-              migrationFn({
-                oldRawSettings,
-              }),
-          )();
+            if (error) continue;
 
-          if (error) continue;
-
-          migratedSettings = newSettings;
+            migratedSettings = newSettings;
+          }
         }
       }
 

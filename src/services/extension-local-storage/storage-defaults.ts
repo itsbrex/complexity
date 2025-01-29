@@ -123,8 +123,10 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       persistent: false,
       lastState: false,
       alwaysHideRelatedQuestions: false,
-      alwaysHideHomepageWidgets: false,
       alwaysHideVisualCols: false,
+    },
+    "home:hideHomepageWidgets": {
+      enabled: false,
     },
   },
   favoritePluginIds: [],

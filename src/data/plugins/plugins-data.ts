@@ -314,6 +314,15 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     tags: ["ui", "forFun"],
     dependentCorePlugins: ["domObserver:home"],
   },
+  "home:hideHomepageWidgets": {
+    id: "home:hideHomepageWidgets",
+    routeSegment: "home-hide-homepage-widgets",
+    title: "Hide Homepage Widgets",
+    description:
+      "Hide all finance, sports, weather, and other widgets on the home page",
+    tags: ["ui"],
+    dependentCorePlugins: ["spaRouter"],
+  },
   "hide-get-mobile-app-cta-btn": {
     id: "hide-get-mobile-app-cta-btn",
     routeSegment: "hide-get-mobile-app-cta-btn",

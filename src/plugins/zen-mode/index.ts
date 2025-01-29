@@ -1,4 +1,3 @@
-import alwaysHideHomepageWidgetsCss from "@/plugins/zen-mode/always-hide-homepage-widgets.css?inline";
 import alwaysHideRelatedQuestionsCss from "@/plugins/zen-mode/always-hide-related-questions.css?inline";
 import alwaysHideVisualColsCss from "@/plugins/zen-mode/always-hide-visual-cols.css?inline";
 import zenModeCss from "@/plugins/zen-mode/zen-mode.css?inline";
@@ -36,18 +35,6 @@ csLoaderRegistry.register({
 
       $(document.body).attr(
         "data-cplx-zen-mode-always-hide-related-questions",
-        "true",
-      );
-    }
-
-    if (settings?.plugins["zenMode"].alwaysHideHomepageWidgets) {
-      insertCss({
-        css: alwaysHideHomepageWidgetsCss,
-        id: "always-hide-homepage-widgets",
-      });
-
-      $(document.body).attr(
-        "data-cplx-zen-mode-always-hide-homepage-widgets",
         "true",
       );
     }

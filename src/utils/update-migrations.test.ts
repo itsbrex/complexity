@@ -4,17 +4,19 @@ import { describe, it, expect, vi } from "vitest";
 import { ExtensionLocalStorage } from "@/services/extension-local-storage/extension-local-storage.types";
 import { DEFAULT_STORAGE } from "@/services/extension-local-storage/storage-defaults";
 import {
-  enableThemePreloader,
+  migrateThemePreloaderKey,
   migrateSlashCommandMenuKey,
   migrateSpaceNavigatorKey,
-  migrateShowPostUpdateReleaseNotesPopup,
+  migrateShowPostUpdateReleaseNotesPopupKey,
+  migrateInstantRewriteButtonKey,
+  migrateHideHomepageWidgetsKey,
 } from "@/utils/update-migrations";
 
 describe("migrateShowPostUpdateReleaseNotesPopup", () => {
   it("should migrate doNotShowPostUpdateReleaseNotesPopup to false", async () => {
     const oldRawSettings: ExtensionLocalStorage = DEFAULT_STORAGE;
 
-    const newSettings = await migrateShowPostUpdateReleaseNotesPopup({
+    const newSettings = await migrateShowPostUpdateReleaseNotesPopupKey({
       oldRawSettings,
     });
 
@@ -84,7 +86,7 @@ describe("enableThemePreloader", () => {
 
     const oldRawSettings: ExtensionLocalStorage = DEFAULT_STORAGE;
 
-    const newSettings = await enableThemePreloader({
+    const newSettings = await migrateThemePreloaderKey({
       oldRawSettings,
     });
 
@@ -101,10 +103,54 @@ describe("enableThemePreloader", () => {
 
     const oldRawSettings: ExtensionLocalStorage = DEFAULT_STORAGE;
 
-    const newSettings = await enableThemePreloader({
+    const newSettings = await migrateThemePreloaderKey({
       oldRawSettings,
     });
 
     expect(newSettings.preloadTheme).toBe(false);
+  });
+});
+
+describe("migrateInstantRewriteButton", () => {
+  it("should migrate instant rewrite button settings from betterMessageToolbars", async () => {
+    const oldRawSettings: ExtensionLocalStorage = produce(
+      DEFAULT_STORAGE,
+      (draft) => {
+        (draft.plugins["thread:betterMessageToolbars"] as any) = {
+          ...draft.plugins["thread:betterMessageToolbars"],
+          instantRewriteButton: true,
+        };
+      },
+    );
+
+    const newSettings = await migrateInstantRewriteButtonKey({
+      oldRawSettings,
+    });
+
+    expect(newSettings.plugins["thread:instantRewriteButton"]).toEqual({
+      enabled: true,
+    });
+  });
+});
+
+describe("migrateHomepageWidgets", () => {
+  it("should migrate homepage widgets settings from zenMode", async () => {
+    const oldRawSettings: ExtensionLocalStorage = produce(
+      DEFAULT_STORAGE,
+      (draft) => {
+        (draft.plugins["zenMode"] as any) = {
+          ...draft.plugins["zenMode"],
+          alwaysHideHomepageWidgets: true,
+        };
+      },
+    );
+
+    const newSettings = await migrateHideHomepageWidgetsKey({
+      oldRawSettings,
+    });
+
+    expect(newSettings.plugins["home:hideHomepageWidgets"]).toEqual({
+      enabled: true,
+    });
   });
 });

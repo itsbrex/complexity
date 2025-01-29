@@ -8,9 +8,24 @@ type MigrationFn = ({
   oldRawSettings: ExtensionLocalStorage;
 }) => Promise<ExtensionLocalStorage>;
 
-export const migrateinstantRewriteButton: MigrationFn = async ({
+export const migrateHideHomepageWidgetsKey: MigrationFn = async ({
   oldRawSettings,
 }) => {
+  console.log("[ExtUpdateMigrations] Migrate Hide HomepageWidgets Key")
+  
+  return produce(oldRawSettings, (draft) => {
+    draft.plugins["home:hideHomepageWidgets"] = {
+      enabled: (oldRawSettings.plugins["zenMode"] as any)
+        .alwaysHideHomepageWidgets,
+    };
+  });
+};
+
+export const migrateInstantRewriteButtonKey: MigrationFn = async ({
+  oldRawSettings,
+}) => {
+  console.log("[ExtUpdateMigrations] Migrate Instant Rewrite Button key")
+  
   return produce(oldRawSettings, (draft) => {
     draft.plugins["thread:instantRewriteButton"] = {
       enabled: (oldRawSettings.plugins["thread:betterMessageToolbars"] as any)
@@ -19,7 +34,7 @@ export const migrateinstantRewriteButton: MigrationFn = async ({
   });
 };
 
-export const migrateShowPostUpdateReleaseNotesPopup: MigrationFn = async ({
+export const migrateShowPostUpdateReleaseNotesPopupKey: MigrationFn = async ({
   oldRawSettings,
 }) => {
   console.log(
@@ -62,7 +77,9 @@ export const migrateSpaceNavigatorKey: MigrationFn = async ({
   });
 };
 
-export const enableThemePreloader: MigrationFn = async ({ oldRawSettings }) => {
+export const migrateThemePreloaderKey: MigrationFn = async ({
+  oldRawSettings,
+}) => {
   console.log("[ExtUpdateMigrations] Theme preloader migration");
 
   const hasPermissions = await chrome.permissions.contains({
@@ -76,10 +93,10 @@ export const enableThemePreloader: MigrationFn = async ({ oldRawSettings }) => {
   });
 };
 
-export const EXT_UPDATE_MIGRATIONS: Record<string, MigrationFn> = {
-  "1.0.2.0": enableThemePreloader,
-  "1.3.2.0": migrateSpaceNavigatorKey,
-  "1.3.3.0": migrateSlashCommandMenuKey,
-  "1.3.5.0": migrateShowPostUpdateReleaseNotesPopup,
-  "1.4.1.0": migrateinstantRewriteButton,
+export const EXT_UPDATE_MIGRATIONS: Record<string, MigrationFn[]> = {
+  "1.0.2.0": [migrateThemePreloaderKey],
+  "1.3.2.0": [migrateSpaceNavigatorKey],
+  "1.3.3.0": [migrateSlashCommandMenuKey],
+  "1.3.5.0": [migrateShowPostUpdateReleaseNotesPopupKey],
+  "1.4.2.0": [migrateInstantRewriteButtonKey, migrateHideHomepageWidgetsKey],
 };

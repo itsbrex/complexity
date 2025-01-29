@@ -54,6 +54,7 @@ export const LOADER_IDS = [
   "plugin:queryBox:fullWidthFollowUp",
   "plugin:queryBox:focusSelector:forceDisableExternalSources:networkInterceptMiddleware",
   "plugin:home:customSlogan",
+  "plugin:home:hideHomepageWidgets",
 
   "store:colorScheme",
   "store:pplxCookies",

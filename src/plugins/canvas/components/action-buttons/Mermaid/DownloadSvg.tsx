@@ -11,7 +11,7 @@ export default function MermaidDownloadSvg() {
         variant="ghost"
         size="iconSm"
         onClick={() => {
-          const selector = `#canvas-mermaid-container[data-processed="true"] svg`;
+          const selector = `div[id^="canvas-mermaid-container"][data-processed="true"] svg`;
 
           const $svg = $(selector);
 

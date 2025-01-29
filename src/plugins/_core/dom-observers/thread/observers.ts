@@ -11,6 +11,7 @@ import {
 } from "@/plugins/_api/dom-observer/global-dom-observer-store";
 import { spaRouteChangeCompleteSubscribe } from "@/plugins/_api/spa-router/listeners";
 import { OBSERVER_ID } from "@/plugins/_core/dom-observers/thread/observer-ids";
+import { shouldEnableCoreObserver } from "@/plugins/_core/dom-observers/utils";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import {
@@ -60,20 +61,12 @@ csLoaderRegistry.register({
 async function setupThreadComponentsObserver(
   location: ReturnType<typeof whereAmI>,
 ) {
-  const settings = PluginsStatesService.getCachedSync()?.pluginsEnableStates;
-
-  const shouldObserve =
-    settings?.imageGenModelSelector ||
-    settings?.["thread:toc"] ||
-    settings?.["thread:betterCodeBlocks"] ||
-    settings?.["thread:betterMessageToolbars"] ||
-    settings?.["thread:betterMessageCopyButtons"] ||
-    (settings?.["queryBox:focusSelector"] &&
-      settings["queryBox:focusSelector:webRecency"]) ||
-    settings?.["zenMode"] ||
-    settings?.["thread:collapseEmptyThreadVisualCols"];
-
-  if (!shouldObserve) return;
+  if (
+    !shouldEnableCoreObserver({
+      coreObserverName: "domObserver:thread",
+    })
+  )
+    return;
 
   cleanup();
 

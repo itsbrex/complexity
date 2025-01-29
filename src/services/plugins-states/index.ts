@@ -12,7 +12,7 @@ import { errorWrapper } from "@/utils/error-wrapper";
 import { queryClient } from "@/utils/ts-query-client";
 
 export type PluginsStates = {
-  pluginsEnableStates: Partial<Record<PluginId, boolean>> | null;
+  pluginsEnableStates: Partial<Record<PluginId, boolean>>;
   pluginsHideFromDashboardStates: Partial<Record<PluginId, boolean>> | null;
 };
 

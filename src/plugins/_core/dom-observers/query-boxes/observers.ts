@@ -6,7 +6,7 @@ import { DomObserver } from "@/plugins/_api/dom-observer/dom-observer";
 import { globalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
 import { spaRouteChangeCompleteSubscribe } from "@/plugins/_api/spa-router/listeners";
 import { OBSERVER_ID } from "@/plugins/_core/dom-observers/query-boxes/observer-ids";
-import { PluginsStatesService } from "@/services/plugins-states";
+import { shouldEnableCoreObserver } from "@/plugins/_core/dom-observers/utils";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { UiUtils } from "@/utils/ui-utils";
 import { whereAmI } from "@/utils/utils";
@@ -43,16 +43,12 @@ csLoaderRegistry.register({
 });
 
 async function setupQueryBoxesObserver(location: ReturnType<typeof whereAmI>) {
-  const settings = PluginsStatesService.getCachedSync()?.pluginsEnableStates;
-
-  const shouldObserve =
-    settings?.["queryBox:languageModelSelector"] ||
-    settings?.["spaceNavigator"] ||
-    settings?.["queryBox:noFileCreationOnPaste"] ||
-    settings?.["queryBox:slashCommandMenu"] ||
-    settings?.["queryBox:slashCommandMenu:promptHistory"];
-
-  if (!shouldObserve) return;
+  if (
+    !shouldEnableCoreObserver({
+      coreObserverName: "domObserver:queryBoxes",
+    })
+  )
+    return;
 
   cleanup();
 

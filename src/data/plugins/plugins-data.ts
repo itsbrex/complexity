@@ -1,14 +1,25 @@
 import { getPlatform } from "@/hooks/usePlatformDetection";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 
+const CORE_OBSERVERS = [
+  "domObserver:home",
+  "domObserver:queryBoxes",
+  "domObserver:thread",
+  "domObserver:sidebar",
+  "domObserver:spacesPage",
+  "domObserver:settingsPage",
+] as const;
+
+export type CoreObserverId = (typeof CORE_OBSERVERS)[number];
+
 const CORE_PLUGINS = [
   "networkIntercept",
   "spaRouter",
   "webSocket",
-  "domObserver",
   "reactVdom",
   "mermaidRenderer",
   "markmapRenderer",
+  ...CORE_OBSERVERS,
 ] as const;
 
 export type CorePluginId = (typeof CORE_PLUGINS)[number];
@@ -79,7 +90,11 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Language Model Selector",
     description: "Enable selection of different language models",
     tags: ["ui", "ux", "pplxPro"],
-    dependentCorePlugins: ["networkIntercept", "spaRouter", "domObserver"],
+    dependentCorePlugins: [
+      "networkIntercept",
+      "spaRouter",
+      "domObserver:queryBoxes",
+    ],
   },
   "queryBox:focusSelector": {
     id: "queryBox:focusSelector",
@@ -88,7 +103,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description:
       "Replace the default Perplexity's focus selector with a more customizable one. \nAlso allows you to temporarily switch to writing mode while in web modes",
     tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver"],
+    dependentCorePlugins: ["spaRouter", "domObserver:queryBoxes"],
   },
   "queryBox:focusSelector:webRecency": {
     id: "queryBox:focusSelector:webRecency",
@@ -98,7 +113,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
       "Select the recency of the web search from homepage and within threads",
     tags: ["beta", "ui", "ux"],
     dependentPlugins: ["queryBox:focusSelector"],
-    dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
+    dependentCorePlugins: ["spaRouter", "domObserver:queryBoxes", "reactVdom"],
   },
   "queryBox:slashCommandMenu": {
     id: "queryBox:slashCommandMenu",
@@ -106,7 +121,11 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Slash Command Menu",
     description: "Invoke actions via slash commands",
     tags: ["desktopOnly", "ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver", "networkIntercept"],
+    dependentCorePlugins: [
+      "spaRouter",
+      "domObserver:queryBoxes",
+      "networkIntercept",
+    ],
   },
   "queryBox:slashCommandMenu:promptHistory": {
     id: "queryBox:slashCommandMenu:promptHistory",
@@ -115,7 +134,11 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description: "Reuse previous prompts",
     tags: ["experimental", "slashCommand", "desktopOnly", "ui", "ux"],
     dependentPlugins: ["queryBox:slashCommandMenu"],
-    dependentCorePlugins: ["spaRouter", "domObserver", "networkIntercept"],
+    dependentCorePlugins: [
+      "spaRouter",
+      "domObserver:queryBoxes",
+      "networkIntercept",
+    ],
   },
   spaceNavigator: {
     id: "spaceNavigator",
@@ -123,7 +146,12 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Space Navigator",
     description: "Search & navigate between spaces",
     tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver"],
+    dependentCorePlugins: [
+      "spaRouter",
+      "domObserver:queryBoxes",
+      "domObserver:sidebar",
+      "domObserver:spacesPage",
+    ],
   },
   "queryBox:noFileCreationOnPaste": {
     id: "queryBox:noFileCreationOnPaste",
@@ -132,7 +160,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description:
       "Prevent automatic file creation when pasting (very) long text into the query box",
     tags: ["ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver"],
+    dependentCorePlugins: ["spaRouter", "domObserver:queryBoxes"],
   },
   "queryBox:submitOnCtrlEnter": {
     id: "queryBox:submitOnCtrlEnter",
@@ -140,7 +168,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: `Query Box: Submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
     description: `Insert new line on Enter, submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
     tags: ["ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver"],
+    dependentCorePlugins: ["spaRouter", "domObserver:queryBoxes"],
   },
   "queryBox:fullWidthFollowUp": {
     id: "queryBox:fullWidthFollowUp",
@@ -165,7 +193,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description:
       "Quickly navigate between messages in a thread. Only shows up when there are more than 2 messages",
     tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver"],
+    dependentCorePlugins: ["spaRouter", "domObserver:thread"],
   },
   "thread:betterMessageToolbars": {
     id: "thread:betterMessageToolbars",
@@ -173,7 +201,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Better Thread Message Toolbars",
     description: "Enhance message toolbars (in threads)",
     tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
+    dependentCorePlugins: ["spaRouter", "domObserver:thread", "reactVdom"],
   },
   "thread:instantRewriteButton": {
     id: "thread:instantRewriteButton",
@@ -182,7 +210,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description:
       "Rewrite messages with the same model without opening the original Rewrite dropdown menu",
     tags: ["new", "ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
+    dependentCorePlugins: ["spaRouter", "domObserver:thread", "reactVdom"],
   },
   "thread:betterCodeBlocks": {
     id: "thread:betterCodeBlocks",
@@ -190,7 +218,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Better Code Blocks",
     description: "Enhance code blocks (in threads)",
     tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver", "reactVdom"],
+    dependentCorePlugins: ["spaRouter", "domObserver:thread", "reactVdom"],
   },
   "thread:canvas": {
     id: "thread:canvas",
@@ -202,7 +230,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     dependentPlugins: ["thread:betterCodeBlocks"],
     dependentCorePlugins: [
       "spaRouter",
-      "domObserver",
+      "domObserver:thread",
       "mermaidRenderer",
       "markmapRenderer",
     ],
@@ -214,7 +242,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description:
       "Export the current thread in markdown format (with optional citations). More formatting options coming soon",
     tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter"],
+    dependentCorePlugins: ["spaRouter", "domObserver:thread"],
   },
   "thread:betterMessageCopyButtons": {
     id: "thread:betterMessageCopyButtons",
@@ -223,7 +251,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description:
       "Copy message content without citations. More formatting options coming soon",
     tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver"],
+    dependentCorePlugins: ["spaRouter", "domObserver:thread"],
   },
   "thread:dragAndDropFileToUploadInThread": {
     id: "thread:dragAndDropFileToUploadInThread",
@@ -256,7 +284,11 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Image Generation Model Selector",
     description: "Enable selection of different image generation models",
     tags: ["ui", "ux", "desktopOnly", "pplxPro"],
-    dependentCorePlugins: ["networkIntercept", "spaRouter", "domObserver"],
+    dependentCorePlugins: [
+      "networkIntercept",
+      "spaRouter",
+      "domObserver:thread",
+    ],
   },
   onCloudflareTimeoutAutoReload: {
     id: "onCloudflareTimeoutAutoReload",
@@ -280,6 +312,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Custom Home Slogan",
     description: "Customize the slogan on the home page",
     tags: ["ui", "forFun"],
+    dependentCorePlugins: ["domObserver:home"],
   },
   "hide-get-mobile-app-cta-btn": {
     id: "hide-get-mobile-app-cta-btn",
@@ -295,7 +328,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description:
       "Hide elements on the page to focus on the content (toggleable). Enable via the Command Menu plugin.",
     tags: ["ui", "desktopOnly"],
-    dependentCorePlugins: ["spaRouter", "domObserver"],
+    dependentCorePlugins: ["spaRouter"],
     dependentPlugins: ["commandMenu"],
   },
 };

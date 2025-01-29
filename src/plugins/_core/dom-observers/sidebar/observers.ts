@@ -3,7 +3,7 @@ import { CallbackQueue } from "@/plugins/_api/dom-observer/callback-queue";
 import { DomObserver } from "@/plugins/_api/dom-observer/dom-observer";
 import { globalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
 import { OBSERVER_ID } from "@/plugins/_core/dom-observers/sidebar/observer-ids";
-import { PluginsStatesService } from "@/services/plugins-states";
+import { shouldEnableCoreObserver } from "@/plugins/_core/dom-observers/utils";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 import { waitForElement } from "@/utils/utils";
@@ -29,11 +29,12 @@ csLoaderRegistry.register({
 });
 
 async function setupSidebarComponentsObserver() {
-  const settings = PluginsStatesService.getCachedSync();
-
-  const shouldObserver = settings.pluginsEnableStates?.spaceNavigator;
-
-  if (!shouldObserver) return;
+  if (
+    !shouldEnableCoreObserver({
+      coreObserverName: "domObserver:sidebar",
+    })
+  )
+    return;
 
   cleanup();
 

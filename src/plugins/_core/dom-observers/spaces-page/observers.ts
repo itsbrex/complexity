@@ -3,7 +3,7 @@ import { DomObserver } from "@/plugins/_api/dom-observer/dom-observer";
 import { globalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
 import { spaRouteChangeCompleteSubscribe } from "@/plugins/_api/spa-router/listeners";
 import { OBSERVER_ID } from "@/plugins/_core/dom-observers/spaces-page/observer-ids";
-import { PluginsStatesService } from "@/services/plugins-states";
+import { shouldEnableCoreObserver } from "@/plugins/_core/dom-observers/utils";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 import { whereAmI } from "@/utils/utils";
@@ -33,15 +33,16 @@ csLoaderRegistry.register({
 function setupSpacesPageComponentsObserver(
   location: ReturnType<typeof whereAmI>,
 ) {
+  if (
+    !shouldEnableCoreObserver({
+      coreObserverName: "domObserver:spacesPage",
+    })
+  )
+    return;
+
   cleanup();
 
   if (location !== "collections_page") return;
-
-  const pluginsStates = PluginsStatesService.getCachedSync();
-
-  const shouldObserve = pluginsStates.pluginsEnableStates?.spaceNavigator;
-
-  if (!shouldObserve) return;
 
   DomObserver.create(DOM_OBSERVER_ID.COMMON, {
     target: document.body,

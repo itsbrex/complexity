@@ -1,8 +1,13 @@
-export const TOGGLEABLE_PERMISSIONS: chrome.runtime.ManifestPermissions[] = [
-  // "cookies",
-  "scripting",
-  "webNavigation",
-];
+import { APP_CONFIG } from "@/app.config";
+
+export const TOGGLEABLE_PERMISSIONS: chrome.runtime.ManifestPermissions[] =
+  APP_CONFIG.BROWSER === "chrome"
+    ? [
+        // "cookies",
+        "scripting",
+        "webNavigation",
+      ]
+    : [];
 
 export const TOGGLEABLE_PERMISSIONS_DETAILS: Partial<
   Record<

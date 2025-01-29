@@ -13,7 +13,7 @@ csLoaderRegistry.register({
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-    if (!pluginsEnableStates?.["thread:instantRewriteButton"]) return;
+    if (!pluginsEnableStates["thread:instantRewriteButton"]) return;
 
     globalDomObserverStore.subscribe(
       (store) => store.threadComponents.messageBlockBottomBars,

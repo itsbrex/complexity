@@ -71,7 +71,7 @@ export default function ManagePermissionsDialogWrapper({
               </div>
             ))
           ) : (
-            <div className="x-mx-auto x-py-16 x-block x-italic x-text-muted-foreground">
+            <div className="x-mx-auto x-block x-py-16 x-italic x-text-muted-foreground">
               You&apos;re all set!
             </div>
           )}

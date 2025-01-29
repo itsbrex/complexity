@@ -69,8 +69,6 @@ export async function initCorePlugins() {
 function shouldEnableCorePlugin(corePluginId: CorePluginId) {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-  if (!pluginsEnableStates) return false;
-
   const shouldInject = Object.entries(pluginsEnableStates).some(
     ([pluginId, enabled]) => {
       if (!enabled) return false;

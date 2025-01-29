@@ -246,7 +246,7 @@ const observeCodeBlocks = throttle(
     const pluginsStates = PluginsStatesService.getCachedSync();
 
     const shouldObserve =
-      pluginsStates.pluginsEnableStates?.["thread:betterCodeBlocks"];
+      pluginsStates.pluginsEnableStates["thread:betterCodeBlocks"];
 
     if (!shouldObserve) return;
 

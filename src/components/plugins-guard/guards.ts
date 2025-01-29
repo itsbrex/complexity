@@ -68,7 +68,7 @@ export function checkPluginDependencies(
 ): boolean {
   if (!dependentPluginIds || !dependentPluginIds?.length) return true;
 
-  return dependentPluginIds.some((pluginId) => pluginsEnableStates?.[pluginId]);
+  return dependentPluginIds.some((pluginId) => pluginsEnableStates[pluginId]);
 }
 
 export function checkLocation(

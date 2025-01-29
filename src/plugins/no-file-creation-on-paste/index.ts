@@ -13,7 +13,7 @@ function noFileCreationOnPaste(
 ) {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-  if (!pluginsEnableStates?.["queryBox:noFileCreationOnPaste"]) return;
+  if (!pluginsEnableStates["queryBox:noFileCreationOnPaste"]) return;
 
   Object.values(queryBoxes).forEach((component) => {
     if (component == null || !(component instanceof HTMLElement)) return;

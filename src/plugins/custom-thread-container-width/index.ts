@@ -7,7 +7,7 @@ csLoaderRegistry.register({
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-    if (!pluginsEnableStates?.["thread:customThreadContainerWidth"]) return;
+    if (!pluginsEnableStates["thread:customThreadContainerWidth"]) return;
 
     const { value } =
       ExtensionLocalStorageService.getCachedSync().plugins[

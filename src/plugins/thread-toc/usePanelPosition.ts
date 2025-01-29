@@ -19,7 +19,7 @@ type UsePanelPosition = {
 
 export function usePanelPosition(): UsePanelPosition | null {
   const isCanvasEnabled =
-    PluginsStatesService.getCachedSync().pluginsEnableStates?.["thread:canvas"];
+    PluginsStatesService.getCachedSync().pluginsEnableStates["thread:canvas"];
   const isCanvasOpen = useCanvasStore(
     (state) => state.selectedCodeBlockLocation != null,
   );

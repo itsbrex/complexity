@@ -14,8 +14,8 @@ csLoaderRegistry.register({
     const settings = ExtensionLocalStorageService.getCachedSync();
 
     if (
-      !pluginsEnableStates?.["queryBox:slashCommandMenu"] ||
-      !pluginsEnableStates?.["queryBox:slashCommandMenu:promptHistory"] ||
+      !pluginsEnableStates["queryBox:slashCommandMenu"] ||
+      !pluginsEnableStates["queryBox:slashCommandMenu:promptHistory"] ||
       !settings.plugins["queryBox:slashCommandMenu:promptHistory"].trigger
         .onNavigation
     )

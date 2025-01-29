@@ -171,7 +171,7 @@ export const canvasPrePromptInstallationDialogRouterRoute: RouteObject = {
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-    if (!pluginsEnableStates?.["thread:canvas"]) {
+    if (!pluginsEnableStates["thread:canvas"]) {
       return redirect("/");
     }
 

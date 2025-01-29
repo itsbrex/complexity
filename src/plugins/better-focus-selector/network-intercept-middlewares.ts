@@ -14,7 +14,7 @@ csLoaderRegistry.register({
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-    if (!pluginsEnableStates?.["queryBox:focusSelector"]) return;
+    if (!pluginsEnableStates["queryBox:focusSelector"]) return;
 
     const unsub = pluginGuardsStore.subscribe(({ isOrgMember }) => {
       if (isOrgMember === true) {

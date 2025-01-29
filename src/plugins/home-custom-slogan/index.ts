@@ -16,7 +16,7 @@ function setupCustomSlogan({
   slogan: HTMLElement | null;
 }) {
   if (
-    !PluginsStatesService.getCachedSync()?.pluginsEnableStates?.[
+    !PluginsStatesService.getCachedSync()?.pluginsEnableStates[
       "home:customSlogan"
     ]
   )

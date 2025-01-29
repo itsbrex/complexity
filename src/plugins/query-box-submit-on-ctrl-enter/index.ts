@@ -9,7 +9,7 @@ import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 function submitOnCtrlEnter(queryBoxes: GlobalDomObserverStore["queryBoxes"]) {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-  if (!pluginsEnableStates?.["queryBox:submitOnCtrlEnter"]) return;
+  if (!pluginsEnableStates["queryBox:submitOnCtrlEnter"]) return;
 
   Object.values(queryBoxes).forEach((component) => {
     if (component == null || !(component instanceof HTMLElement)) return;

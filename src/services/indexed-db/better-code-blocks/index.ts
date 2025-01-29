@@ -72,7 +72,7 @@ csLoaderRegistry.register({
   loader: async () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-    if (!pluginsEnableStates?.["thread:betterCodeBlocks"]) return;
+    if (!pluginsEnableStates["thread:betterCodeBlocks"]) return;
 
     await queryClient.prefetchQuery({
       ...betterCodeBlocksFineGrainedOptionsQueries.list,

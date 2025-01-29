@@ -86,7 +86,7 @@ const displayModelBadge = async ({
 function explicitModelName(messageBlocks: ExtendedMessageBlock[]) {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
   if (
-    !pluginsEnableStates?.["thread:betterMessageToolbars"] ||
+    !pluginsEnableStates["thread:betterMessageToolbars"] ||
     !ExtensionLocalStorageService.getCachedSync().plugins[
       "thread:betterMessageToolbars"
     ].explicitModelName

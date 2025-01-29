@@ -8,7 +8,7 @@ let removeCss: (() => void) | null = null;
 
 function setupFullWidthFollowUp(location: ReturnType<typeof whereAmI>) {
   if (
-    !PluginsStatesService.getCachedSync()?.pluginsEnableStates?.[
+    !PluginsStatesService.getCachedSync()?.pluginsEnableStates[
       "queryBox:fullWidthFollowUp"
     ]
   )

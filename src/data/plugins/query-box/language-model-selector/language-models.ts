@@ -90,7 +90,7 @@ csLoaderRegistry.register({
   loader: async () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-    if (!pluginsEnableStates?.["queryBox:languageModelSelector"])
+    if (!pluginsEnableStates["queryBox:languageModelSelector"])
       return undefined;
 
     const [data, error] = await errorWrapper(() =>

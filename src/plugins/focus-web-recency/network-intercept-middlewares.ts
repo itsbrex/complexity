@@ -16,8 +16,8 @@ csLoaderRegistry.register({
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
     if (
-      !pluginsEnableStates?.["queryBox:focusSelector"] ||
-      !pluginsEnableStates?.["queryBox:focusSelector:webRecency"]
+      !pluginsEnableStates["queryBox:focusSelector"] ||
+      !pluginsEnableStates["queryBox:focusSelector:webRecency"]
     )
       return;
 

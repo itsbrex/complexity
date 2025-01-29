@@ -11,7 +11,7 @@ csLoaderRegistry.register({
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-    if (!pluginsEnableStates?.["spaceNavigator"]) return;
+    if (!pluginsEnableStates["spaceNavigator"]) return;
 
     networkInterceptMiddlewareManager.updateMiddleware({
       id: "invalidate-spaces",

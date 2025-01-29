@@ -12,7 +12,7 @@ csLoaderRegistry.register({
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-    if (!pluginsEnableStates?.["zenMode"]) return;
+    if (!pluginsEnableStates["zenMode"]) return;
 
     insertCss({
       css: zenModeCss,

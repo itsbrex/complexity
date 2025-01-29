@@ -8,7 +8,7 @@ csLoaderRegistry.register({
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-    if (!pluginsEnableStates?.["hide-get-mobile-app-cta-btn"]) return;
+    if (!pluginsEnableStates["hide-get-mobile-app-cta-btn"]) return;
 
     insertCss({
       css: hideGetMobileAppCtaBtnCss,

@@ -15,7 +15,7 @@ csLoaderRegistry.register({
   loader: () => {
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
-    if (!pluginsEnableStates?.["queryBox:languageModelSelector"]) return;
+    if (!pluginsEnableStates["queryBox:languageModelSelector"]) return;
 
     const unsub = pluginGuardsStore.subscribe(({ hasActiveSub }) => {
       if (!hasActiveSub) return;

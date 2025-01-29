@@ -14,7 +14,7 @@ export default function ThreadMessageToolbarExtraButtonsWrapper() {
   useInsertCss({
     id: "cplx-thread-message-toolbar-extra-buttons",
     css: hideNativeButtonsCss,
-    inject: pluginsEnableStates?.["thread:betterMessageCopyButtons"],
+    inject: pluginsEnableStates["thread:betterMessageCopyButtons"],
   });
 
   return portalContainers.map((portalContainer, index) => (

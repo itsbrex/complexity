@@ -40,7 +40,7 @@ csLoaderRegistry.register({
       ];
 
     if (
-      !pluginsEnableStates?.["thread:betterMessageToolbars"] ||
+      !pluginsEnableStates["thread:betterMessageToolbars"] ||
       !settings.wordsAndCharactersCount
     )
       return;

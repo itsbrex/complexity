@@ -31,7 +31,7 @@ csLoaderRegistry.register({
     const settings = ExtensionLocalStorageService.getCachedSync();
 
     if (
-      !pluginsEnableStates?.["thread:betterMessageToolbars"] ||
+      !pluginsEnableStates["thread:betterMessageToolbars"] ||
       !settings.plugins["thread:betterMessageToolbars"].collapsibleQuery
     )
       return;

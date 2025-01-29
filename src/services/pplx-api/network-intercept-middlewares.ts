@@ -11,7 +11,7 @@ csLoaderRegistry.register({
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
     const shouldInvalidatePplxUserSettings =
-      pluginsEnableStates?.["queryBox:languageModelSelector"] === true ||
+      pluginsEnableStates["queryBox:languageModelSelector"] === true ||
       pluginsEnableStates?.imageGenModelSelector === true;
 
     if (shouldInvalidatePplxUserSettings) {

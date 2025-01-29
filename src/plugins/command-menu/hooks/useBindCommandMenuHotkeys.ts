@@ -102,7 +102,7 @@ export default function useBindCommandMenuHotkeys() {
       setOpen(false);
     },
     {
-      enabled: pluginsEnableStates?.["zenMode"],
+      enabled: pluginsEnableStates["zenMode"],
       preventDefault: true,
       enableOnContentEditable: true,
       enableOnFormTags: true,

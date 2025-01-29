@@ -32,16 +32,16 @@ function useInsertToolbarCss() {
 
   const shouldInjectMain =
     settings?.plugins["queryBox:languageModelSelector"].main &&
-    (pluginsEnableStates?.["queryBox:languageModelSelector"] ||
-      pluginsEnableStates?.["spaceNavigator"] ||
-      (pluginsEnableStates?.["queryBox:slashCommandMenu"] &&
+    (pluginsEnableStates["queryBox:languageModelSelector"] ||
+      pluginsEnableStates["spaceNavigator"] ||
+      (pluginsEnableStates["queryBox:slashCommandMenu"] &&
         settings?.plugins["queryBox:slashCommandMenu"].showTriggerButton));
 
   const shouldInjectFollowUp =
     location === "thread" &&
     settings?.plugins["queryBox:languageModelSelector"].followUp &&
-    (pluginsEnableStates?.["queryBox:languageModelSelector"] ||
-      (pluginsEnableStates?.["queryBox:slashCommandMenu"] &&
+    (pluginsEnableStates["queryBox:languageModelSelector"] ||
+      (pluginsEnableStates["queryBox:slashCommandMenu"] &&
         settings?.plugins["queryBox:slashCommandMenu"].showTriggerButton));
 
   useInsertCss({

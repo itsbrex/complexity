@@ -1,5 +1,4 @@
 import debounce from "lodash/debounce";
-import throttle from "lodash/throttle";
 
 import {
   DomObserverConfig,
@@ -10,10 +9,28 @@ import {
   Result,
 } from "@/plugins/_api/dom-observer/dom-observer.types";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
+import { getReactFiberKey } from "@/utils/utils";
 
 export class DomObserver {
+  private static instance: DomObserver;
+  private DEFAULT_DEBOUNCE_TIME: number;
+
   private static instances = new Map<ObserverId, DomObserverInstance>();
   private static isLogging = false;
+
+  private constructor() {
+    const isEnergySavingMode =
+      ExtensionLocalStorageService.getCachedSync().energySavingMode;
+
+    this.DEFAULT_DEBOUNCE_TIME = isEnergySavingMode ? 500 : 20;
+  }
+
+  static getInstance(): DomObserver {
+    if (DomObserver.instance == null) {
+      DomObserver.instance = new DomObserver();
+    }
+    return DomObserver.instance;
+  }
 
   private static createError(
     code: string,
@@ -186,17 +203,23 @@ export class DomObserver {
     id: ObserverId,
     config: DomObserverConfig,
   ): MutationCallback {
-    const isEnergySavingMode =
-      ExtensionLocalStorageService.getCachedSync().energySavingMode;
+    const instance = DomObserver.getInstance();
 
-    const DEFAULT_DEBOUNCE_TIME = isEnergySavingMode ? 500 : 20;
-
-    const throttleFn = isEnergySavingMode ? throttle : debounce;
-
-    const throttledCallback = throttleFn(
-      config.onMutation,
-      config.debounceTime ?? DEFAULT_DEBOUNCE_TIME,
-      isEnergySavingMode ? {} : { leading: false, trailing: true },
+    const throttledCallback = debounce(
+      (mutations?: MutationRecord[]) => {
+        const hasInternalMutation = mutations?.some((m) => {
+          return (
+            getReactFiberKey(m.target as Element) ||
+            Array.from(m.addedNodes).some((node) =>
+              getReactFiberKey(node as Element),
+            )
+          );
+        });
+        if (hasInternalMutation) return;
+        config.onMutation();
+      },
+      config.debounceTime ?? instance.DEFAULT_DEBOUNCE_TIME,
+      { leading: false, trailing: true },
     );
 
     throttledCallback?.();

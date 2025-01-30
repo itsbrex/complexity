@@ -61,9 +61,9 @@ export function setupReactVdomListeners() {
       findReactFiberNodeValue({
         fiberNode: ($el[0] as any)[getReactFiberKey($el[0])],
         condition: (node) =>
-          !!(node.memoizedProps.children[2].props.result.status != null),
+          !!(node.memoizedProps.children[3].props.result.status != null),
         select: (node) =>
-          node.memoizedProps.children[2].props.result.status as string,
+          node.memoizedProps.children[3].props.result.status as string,
       }),
     )();
 

@@ -14,9 +14,4 @@ export const imageGenModels = [
     shortLabel: "Playground",
     code: "default",
   },
-  {
-    label: "Stable Diffusion XL",
-    shortLabel: "SDXL",
-    code: "sdxl",
-  },
 ] as const;

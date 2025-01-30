@@ -20,8 +20,8 @@ export default function PromptHistoryPluginDetails() {
   return (
     <div className="x-flex x-max-w-lg x-flex-col x-gap-4">
       <P>
-        Frustrated when losing your prompt? This plugin will save your prompt to
-        history and allow you to easily access it.
+        Frustrated when losing your prompt? This plugin will locally save your
+        prompt to history and allow you to easily access it.
       </P>
       <Switch
         textLabel="Enable"

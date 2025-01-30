@@ -4,7 +4,7 @@ import { FocusMode } from "@/data/plugins/better-focus-selector/focus-modes";
 import { FocusWebRecency } from "@/data/plugins/better-focus-selector/focus-web-recency";
 import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 
-export const UserSettingsApiResponseSchema = z.object({
+export const PplxUserSettingsApiResponseSchema = z.object({
   has_ai_profile: z.boolean(),
   default_copilot: z.boolean().nullable(),
   default_model: z.string(),
@@ -18,16 +18,16 @@ export const UserSettingsApiResponseSchema = z.object({
   query_count: z.number(),
 });
 
-export type UserSettingsApiResponse = z.infer<
-  typeof UserSettingsApiResponseSchema
+export type PplxUserSettingsApiResponse = z.infer<
+  typeof PplxUserSettingsApiResponseSchema
 >;
 
-export const OrgSettingsApiResponseSchema = z.object({
+export const PplxOrgSettingsApiResponseSchema = z.object({
   is_in_organization: z.boolean(),
 });
 
-export type OrgSettingsApiResponse = z.infer<
-  typeof OrgSettingsApiResponseSchema
+export type PplxOrgSettingsApiResponse = z.infer<
+  typeof PplxOrgSettingsApiResponseSchema
 >;
 
 export const ThreadMessageApiResponseSchema = z.object({

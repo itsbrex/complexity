@@ -30,11 +30,7 @@ csLoaderRegistry.register({
             return skip();
           }
 
-          const firstPayloadItem = payload[0];
-          const shouldBlockAnalyticEvents =
-            firstPayloadItem === "analytics_event";
-
-          if (shouldBlockAnalyticEvents) {
+          if (payload[0] === "analytics_event") {
             stopPropagation("");
           }
 

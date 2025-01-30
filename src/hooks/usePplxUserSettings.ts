@@ -1,17 +1,17 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
 import usePplxAuth from "@/hooks/usePplxAuth";
-import { UserSettingsApiResponse } from "@/services/pplx-api/pplx-api.types";
+import { PplxUserSettingsApiResponse } from "@/services/pplx-api/pplx-api.types";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 import { ControlledQueryOptions } from "@/types/tanstack-query.types";
 
 export default function usePplxUserSettings({
   ...props
 }: ControlledQueryOptions<
-  UserSettingsApiResponse,
+  PplxUserSettingsApiResponse,
   typeof pplxApiQueries.userSettings.queryKey,
   "enabled"
-> = {}): UseQueryResult<UserSettingsApiResponse> {
+> = {}): UseQueryResult<PplxUserSettingsApiResponse> {
   const { isLoggedIn } = usePplxAuth();
 
   const query = useQuery({

@@ -5,7 +5,7 @@ import type { LanguageModel } from "@/data/plugins/query-box/language-model-sele
 import { InternalWebSocketManager } from "@/plugins/_api/web-socket/internal-web-socket-manager";
 import { ENDPOINTS } from "@/services/pplx-api/endpoints";
 import {
-  OrgSettingsApiResponseSchema,
+  PplxOrgSettingsApiResponseSchema,
   Space,
   SpaceFileDownloadUrlApiResponse,
   SpaceFileDownloadUrlApiResponseSchema,
@@ -19,8 +19,8 @@ import {
   ThreadMessageApiResponseSchema,
   ThreadsSearchApiResponse,
   ThreadsSearchApiResponseSchema,
-  UserSettingsApiResponse,
-  UserSettingsApiResponseSchema,
+  PplxUserSettingsApiResponse,
+  PplxUserSettingsApiResponseSchema,
 } from "@/services/pplx-api/pplx-api.types";
 import {
   saveSettingViaFetch,
@@ -43,7 +43,7 @@ export class PplxApiService {
     return data;
   }
 
-  static async fetchUserSettings(): Promise<UserSettingsApiResponse> {
+  static async fetchUserSettings(): Promise<PplxUserSettingsApiResponse> {
     const resp = await fetch(ENDPOINTS.USER_SETTINGS);
 
     const respText = await resp.text();
@@ -52,7 +52,7 @@ export class PplxApiService {
       throw new Error("Cloudflare timeout");
     }
 
-    const parsedJson = UserSettingsApiResponseSchema.parse(
+    const parsedJson = PplxUserSettingsApiResponseSchema.parse(
       jsonUtils.safeParse(respText),
     );
 
@@ -62,7 +62,7 @@ export class PplxApiService {
   static async fetchOrgSettings() {
     const resp = await fetchResource(ENDPOINTS.ORG_SETTINGS);
 
-    const data = OrgSettingsApiResponseSchema.parse(jsonUtils.safeParse(resp));
+    const data = PplxOrgSettingsApiResponseSchema.parse(jsonUtils.safeParse(resp));
 
     return data;
   }

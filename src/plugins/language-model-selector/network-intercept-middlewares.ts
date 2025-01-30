@@ -1,3 +1,5 @@
+import { produce } from "immer";
+
 import { pluginGuardsStore } from "@/components/plugins-guard/store";
 import { networkInterceptMiddlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
 import {
@@ -74,6 +76,33 @@ csLoaderRegistry.register({
             type: "message",
             data: `${wsMessage.messageId}${JSON.stringify(newPayload)}`,
           });
+        },
+      });
+
+      networkInterceptMiddlewareManager.updateMiddleware({
+        id: "persist-reasoning-model",
+        middlewareFn({ data, skip }) {
+          if (
+            data.type !== "network-intercept:fetchEvent" ||
+            data.event !== "request"
+          ) {
+            return skip();
+          }
+
+          const isSaveSettingsRequest = data.payload.url.includes(
+            "/rest/user/save-settings",
+          );
+
+          if (!isSaveSettingsRequest) return skip();
+
+          const parsedPayload = JSON.parse(data.payload.data);
+
+          const newPayload = produce(parsedPayload, (draft: any) => {
+            draft.updated_settings.default_model =
+              sharedQueryBoxStore.getState().selectedLanguageModel;
+          });
+
+          return JSON.stringify(newPayload);
         },
       });
     });

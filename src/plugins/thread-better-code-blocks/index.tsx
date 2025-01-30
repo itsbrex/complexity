@@ -8,6 +8,49 @@ import { useMirroredCodeBlocksStore } from "@/plugins/thread-better-code-blocks/
 import useBetterCodeBlockOptions from "@/plugins/thread-better-code-blocks/useBetterCodeBlockOptions";
 import useProcessCodeBlocks from "@/plugins/thread-better-code-blocks/useProcessCodeBlocks";
 
+export default function BetterCodeBlocksWrapper() {
+  const messageBlocks = useGlobalDomObserverStore(
+    (state) => state.threadComponents.messageBlocks,
+  );
+
+  useProcessCodeBlocks();
+
+  const mirroredCodeBlocks = useMirroredCodeBlocksStore(
+    (state) => state.blocks,
+  );
+
+  useInsertCss({
+    id: "cplx-hide-native-code-blocks",
+    css: hideNativeCodeBlocksCss,
+  });
+
+  return mirroredCodeBlocks.map((messageBlock, sourceMessageBlockIndex) =>
+    messageBlock.map((mirroredCodeBlock, sourceCodeBlockIndex) => {
+      const { language, codeString, isInFlight, portalContainer } =
+        mirroredCodeBlock;
+
+      return (
+        <Portal
+          key={`${sourceMessageBlockIndex}-${sourceCodeBlockIndex}`}
+          container={portalContainer}
+        >
+          <MemoizedWrapper
+            language={language}
+            codeString={codeString}
+            isInFlight={isInFlight}
+            isMessageBlockInFlight={
+              !!messageBlocks?.[sourceMessageBlockIndex]?.isInFlight
+            }
+            sourceMessageBlockIndex={sourceMessageBlockIndex}
+            sourceCodeBlockIndex={sourceCodeBlockIndex}
+            codeElement={mirroredCodeBlock.$code[0]}
+          />
+        </Portal>
+      );
+    }),
+  );
+}
+
 type MemoizedWrapperProps = {
   language: string | null;
   codeString: string | null;
@@ -52,46 +95,3 @@ const MemoizedWrapper = memo(function MemoizedWrapper({
     </MirroredCodeBlockContextProvider>
   );
 });
-
-export default function BetterCodeBlocksWrapper() {
-  const messageBlocks = useGlobalDomObserverStore(
-    (state) => state.threadComponents.messageBlocks,
-  );
-
-  useProcessCodeBlocks();
-
-  const mirroredCodeBlocks = useMirroredCodeBlocksStore(
-    (state) => state.blocks,
-  );
-
-  useInsertCss({
-    id: "cplx-hide-native-code-blocks",
-    css: hideNativeCodeBlocksCss,
-  });
-
-  return mirroredCodeBlocks.map((messageBlock, sourceMessageBlockIndex) =>
-    messageBlock.map((mirroredCodeBlock, sourceCodeBlockIndex) => {
-      const { language, codeString, isInFlight, portalContainer } =
-        mirroredCodeBlock;
-
-      return (
-        <Portal
-          key={`${sourceMessageBlockIndex}-${sourceCodeBlockIndex}`}
-          container={portalContainer}
-        >
-          <MemoizedWrapper
-            language={language}
-            codeString={codeString}
-            isInFlight={isInFlight}
-            isMessageBlockInFlight={
-              !!messageBlocks?.[sourceMessageBlockIndex]?.isInFlight
-            }
-            sourceMessageBlockIndex={sourceMessageBlockIndex}
-            sourceCodeBlockIndex={sourceCodeBlockIndex}
-            codeElement={mirroredCodeBlock.$code[0]}
-          />
-        </Portal>
-      );
-    }),
-  );
-}

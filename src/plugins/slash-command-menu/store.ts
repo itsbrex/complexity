@@ -35,23 +35,19 @@ type SlashCommandMenuStore = {
   };
 };
 
-const createStore = () => ({
-  isOpen: false,
-  selectedValue: "",
-  searchValue: "",
-  filter: null,
-  searchValueBoundary: {
-    ignoreLeftCount: null,
-    ignoreRightCount: null,
-  },
-});
-
 export const slashCommandMenuStore =
   createWithEqualityFn<SlashCommandMenuStore>()(
     subscribeWithSelector(
       immer(
         (set, get): SlashCommandMenuStore => ({
-          ...createStore(),
+          isOpen: false,
+          selectedValue: "",
+          searchValue: "",
+          filter: null,
+          searchValueBoundary: {
+            ignoreLeftCount: null,
+            ignoreRightCount: null,
+          },
           actions: {
             setIsOpen: (isOpen) => {
               set((state) => {
@@ -121,3 +117,18 @@ export const slashCommandMenuStore =
   );
 
 export const useSlashCommandMenuStore = slashCommandMenuStore;
+
+export const useSlashCommandMenuIsOpen = () =>
+  slashCommandMenuStore((state) => state.isOpen);
+
+export const useSlashCommandMenuSearchValue = () =>
+  slashCommandMenuStore((state) => state.searchValue);
+
+export const useSlashCommandMenuFilter = () =>
+  slashCommandMenuStore((state) => state.filter);
+
+export const useSlashCommandMenuSelectedValue = () =>
+  slashCommandMenuStore((state) => state.selectedValue);
+
+export const useSlashCommandMenuActions = () =>
+  slashCommandMenuStore((state) => state.actions);

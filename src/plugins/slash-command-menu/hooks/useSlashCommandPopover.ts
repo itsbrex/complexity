@@ -1,19 +1,30 @@
 import { usePopover } from "@ark-ui/react";
 
 import { useScopedQueryBoxContext } from "@/plugins/_core/ui-groups/query-box/context/context";
-import { useSlashCommandMenuStore } from "@/plugins/slash-command-menu/store";
+import { useSlashCommandMenuIsOpen } from "@/plugins/slash-command-menu/store";
 import { getPopoverPositionConfig } from "@/plugins/slash-command-menu/utils";
 
-export const useSlashCommandPopover = (anchor: HTMLElement | null) => {
+type UseSlashCommandPopoverProps = {
+  anchor: HTMLElement | null;
+};
+
+export const useSlashCommandPopover = ({
+  anchor,
+}: UseSlashCommandPopoverProps) => {
   const { store } = useScopedQueryBoxContext();
-  const { isOpen } = useSlashCommandMenuStore();
+  const isOpen = useSlashCommandMenuIsOpen();
+
+  const positioningOptions = useMemo(
+    () => ({
+      ...getPopoverPositionConfig(store.type),
+      getAnchorRect: () => anchor?.getBoundingClientRect() ?? null,
+    }),
+    [store.type, anchor],
+  );
 
   return usePopover({
     open: isOpen,
-    positioning: {
-      ...getPopoverPositionConfig(store.type),
-      getAnchorRect: () => anchor?.getBoundingClientRect() ?? null,
-    },
+    positioning: positioningOptions,
     portalled: false,
     autoFocus: false,
     modal: false,

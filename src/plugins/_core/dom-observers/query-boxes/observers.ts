@@ -206,7 +206,7 @@ const observeReasoningModePreference = throttle(
   },
   300,
   {
-    leading: true,
+    leading: false,
     trailing: true,
   },
 );

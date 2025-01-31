@@ -38,6 +38,7 @@ csLoaderRegistry.register({
   dependencies: [
     "cache:extensionLocalStorage",
     "cache:pluginsStates",
+    "plugins:core",
     "messaging:spaRouter",
   ],
 });

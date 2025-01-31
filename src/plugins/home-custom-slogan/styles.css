@@ -1,5 +1,6 @@
 .mb-lg.md\:text-center.pb-xs.md\:text-center {
   text-align: center;
+  text-wrap: balance;
 
   &:not([custom-slogan]) span {
     display: none;

@@ -9,8 +9,6 @@
         > div
         > div
         > div
-        > div
-        > div
     )
     .col-span-8[data-cplx-component="message-block-text-col"] {
     grid-column: span 8 / span 8;
@@ -23,8 +21,6 @@
 
   &:has(
       .col-span-4[data-cplx-component="message-block-visual-col"]
-        > div
-        > div
         > div
         > div
         > div

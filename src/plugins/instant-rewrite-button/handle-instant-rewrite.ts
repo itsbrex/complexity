@@ -23,7 +23,6 @@ export async function handleInstantRewrite({
 
   networkInterceptMiddlewareManager.addMiddleware({
     id: "instant-rewrite-model-change",
-    priority: { position: "last" },
     middlewareFn({ data, skip }) {
       if (data.type === "network-intercept:fetchEvent") {
         return skip();

@@ -4,8 +4,4 @@
   span button:has(svg[data-icon="chevron-down"]) {
     display: none;
   }
-
-  button svg[data-icon="circle-plus"] + div {
-    display: none;
-  }
 }

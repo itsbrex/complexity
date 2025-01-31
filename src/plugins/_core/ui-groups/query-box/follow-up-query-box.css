@@ -38,7 +38,8 @@
     }
   }
 
-  button:has(svg[data-icon="circle-plus"]) {
+  button:has(svg[data-icon="paperclip"]),
+  button:has(svg[data-icon="file"]) {
     @apply x-size-8 x-rounded-md;
 
     svg {

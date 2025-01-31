@@ -80,7 +80,7 @@ export const DOM_SELECTORS = {
         '[location="thread"] .pointer-events-none.fixed.bottom-mobileNavHeight textarea[placeholder][autocomplete]',
       ARBITRARY: "textarea[placeholder][autocomplete]",
     },
-    ATTACH_BUTTON: 'button:has([data-icon="circle-plus"]):last',
+    ATTACH_BUTTON: 'button:has([data-icon="paperclip"]):last',
     SUBMIT_BUTTON: 'button[aria-label="Submit"]',
     FORK_BUTTON: 'button svg[data-icon="code-fork"]',
     /** The floating container that wraps the query box */

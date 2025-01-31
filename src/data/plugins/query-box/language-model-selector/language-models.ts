@@ -12,50 +12,56 @@ export const localLanguageModels = [
     shortLabel: "Sonnet",
     code: "claude2",
     provider: "Anthropic",
+    limitKey: "gpt4_limit",
   },
   {
     label: "Claude 3.5 Haiku",
     shortLabel: "Haiku",
     code: "claude35haiku",
     provider: "Anthropic",
+    limitKey: "gpt4_limit",
   },
   {
     label: "DeepSeek R1",
     shortLabel: "R1",
     code: "r1",
     provider: "DeepSeek",
-    hideInDropdown: true,
+    limitKey: "pro_reasoning_limit",
   },
   {
     label: "O1",
     shortLabel: "O1",
     code: "o1",
     provider: "OpenAI",
-    hideInDropdown: true,
+    limitKey: "o1_limit",
   },
   {
     label: "GPT-4 Omni",
     shortLabel: "GPT-4o",
     code: "gpt4o",
     provider: "OpenAI",
+    limitKey: "gpt4_limit",
   },
   {
     label: "Grok-2",
     shortLabel: "Grok-2",
     code: "grok",
     provider: "xAI",
+    limitKey: "gpt4_limit",
   },
   {
     label: "Sonar Huge",
     shortLabel: "Sonar XL",
     code: "llama_x_large",
     provider: "Perplexity",
+    limitKey: "gpt4_limit",
   },
   {
     label: "Sonar Large",
     shortLabel: "Sonar",
     code: "experimental",
     provider: "Perplexity",
+    limitKey: "gpt4_limit",
   },
   {
     label: "Default",
@@ -100,9 +106,7 @@ csLoaderRegistry.register({
       }),
     )();
 
-    if (error || !data) {
-      languageModels = [...localLanguageModels];
-    } else {
+    if (!error && data) {
       languageModels = data;
       groupedLanguageModelsByProvider = getGroupedLanguageModelsByProvider();
     }

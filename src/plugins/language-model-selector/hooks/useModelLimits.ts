@@ -9,21 +9,14 @@ export function useModelLimits() {
 
   const getModelLimit = useCallback(
     (model: LanguageModel) => {
-      if (model.unknownLimit) {
-        return null;
-      }
-
       switch (model.code) {
-        case "claude3opus":
-          return data?.opus_limit ?? 0;
-        case "o1":
-          return data?.o1_limit ?? 0;
-        case "r1":
-          return data?.pro_reasoning_limit ?? 0;
         case "turbo":
           return Infinity;
-        default:
-          return data?.gpt4_limit ?? 0;
+        default: {
+          const limitKey = model.limitKey;
+          if (!limitKey) return null;
+          return (data as any)?.[limitKey] ?? null;
+        }
       }
     },
     [data],

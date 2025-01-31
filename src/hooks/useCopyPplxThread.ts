@@ -10,6 +10,7 @@ import {
 import { errorWrapper } from "@/utils/error-wrapper";
 import { ThreadExport } from "@/utils/thread-export";
 import { parseUrl } from "@/utils/utils";
+import { sendMessage } from "webext-bridge/content-script";
 
 type FetchFn = () => Promise<ThreadMessageApiResponse[] | undefined>;
 
@@ -93,9 +94,22 @@ async function copyMessageWithCitations({
 }: {
   messageBlockIndex: number;
 }) {
-  $(
-    `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR}"] ${DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR_CHILD.COPY_BUTTON}`,
-  ).trigger("click");
+  const message = await sendMessage(
+    "reactVdom:getMessageContent",
+    {
+      index: messageBlockIndex,
+    },
+    "window",
+  );
+
+  if (message == null) {
+    $(
+      `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR}"] ${DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR_CHILD.COPY_BUTTON}`,
+    ).trigger("click");
+    return;
+  }
+
+  navigator.clipboard.writeText(message);
 }
 
 async function copyMessageWithoutCitations({

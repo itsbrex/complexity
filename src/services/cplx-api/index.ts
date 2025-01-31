@@ -16,6 +16,7 @@ import {
 } from "@/services/cplx-api/feature-flags/cplx-feature-flags.types";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
+import { ExtensionVersion } from "@/utils/ext-version";
 import { queryClient } from "@/utils/ts-query-client";
 import { fetchResource, jsonUtils } from "@/utils/utils";
 
@@ -51,7 +52,7 @@ export class CplxApiService {
 
     const versionUrl = versions?.featureFlagsEntries.includes(currentVersion)
       ? currentVersion
-      : "latest";
+      : getClosestVersion();
 
     return CplxFeatureFlagsSchema.parse(
       JSON.parse(
@@ -60,6 +61,37 @@ export class CplxApiService {
         ),
       ),
     );
+
+    function getClosestVersion() {
+      if (
+        versions?.featureFlagsEntries == null ||
+        versions?.featureFlagsEntries.length < 1
+      )
+        return "latest";
+
+      if (!versions.featureFlagsEntries.includes(currentVersion)) {
+        const lastEntry =
+          versions.featureFlagsEntries[
+            versions.featureFlagsEntries.length - 1
+          ]!;
+
+        if (new ExtensionVersion(lastEntry).isNewerThan(currentVersion))
+          return lastEntry;
+      }
+
+      if (
+        new ExtensionVersion(currentVersion).isNewerThan(
+          versions.featureFlagsEntries[0]!,
+        )
+      )
+        return "latest";
+
+      const closestVersion = versions.featureFlagsEntries.find((entry) =>
+        new ExtensionVersion(entry).isOlderThanOrEqualTo(currentVersion),
+      );
+
+      return closestVersion ?? "latest";
+    }
   }
 
   static async fetchLanguageModels(): Promise<LanguageModel[]> {

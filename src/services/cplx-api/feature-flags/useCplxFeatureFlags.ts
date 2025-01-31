@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
-import { whereAmI } from "@/utils/utils";
+import { isInContentScript } from "@/utils/utils";
 
 export default function useCplxFeatureFlags() {
-  if (whereAmI() !== "unknown")
+  if (isInContentScript())
     throw new Error("Can not run this hook in content script");
 
   return useQuery({

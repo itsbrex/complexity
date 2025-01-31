@@ -154,7 +154,7 @@ function CanvasPrePromptInstallationDialog() {
                 description: "",
                 emoji: "1f5bc-fe0f",
                 instructions: canvasInstruction,
-                model_selection: "claude2",
+                model_selection: "r1",
               });
             }}
           >

@@ -109,7 +109,7 @@ export default function CanvasPluginDetails() {
                     any
                   </td>
                   <td className="x-border x-border-border x-p-2 x-text-center">
-                    Claude 3.5 Sonnet, GPT-4o, GPT-o1, Sonar Huge, Grok-2
+                    Works best with DeepSeek-R1, o1, and Claude 3.5 Sonnet
                   </td>
                 </tr>
                 <tr>

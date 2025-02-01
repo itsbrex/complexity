@@ -310,15 +310,14 @@ export function setupReactVdomListeners() {
   );
 
   onMessage("reactVdom:getCopilotReasoningModeModelCode", () => {
-    const $copilotWrapper = $(`${DOM_SELECTORS.QUERY_BOX.PRO_SEARCH_TOGGLE}`)
-      .parent()
-      .parent()
-      .parent();
+    const $toolbarWrapper = $(
+      `${DOM_SELECTORS.QUERY_BOX.SUBMIT_BUTTON}`,
+    ).parent();
 
-    if (!$copilotWrapper.length) return null;
+    if (!$toolbarWrapper.length) return null;
 
-    const fiberNode = ($copilotWrapper[0] as any)[
-      getReactPropsKey($copilotWrapper[0])
+    const fiberNode = ($toolbarWrapper[0] as any)[
+      getReactPropsKey($toolbarWrapper[0])
     ];
 
     if (fiberNode == null) return null;
@@ -327,14 +326,16 @@ export function setupReactVdomListeners() {
       findReactFiberNodeValue({
         fiberNode,
         condition: (node) =>
-          node.children[1][0].props.reasoningModelPreference != null,
+          node.children[1][1].props.reasoningModelPreference != null,
         select: (node) =>
-          node.children[1][0].props
+          node.children[1][1].props
             .reasoningModelPreference as LanguageModelCode,
       }),
     )();
 
-    if (error || modelCode == null) return null;
+    if (error || modelCode == null) {
+      return null;
+    }
 
     return modelCode;
   });
@@ -342,15 +343,14 @@ export function setupReactVdomListeners() {
   onMessage(
     "reactVdom:setCopilotReasoningModeModelCode",
     ({ data: { modelCode } }) => {
-      const $copilotWrapper = $(`${DOM_SELECTORS.QUERY_BOX.PRO_SEARCH_TOGGLE}`)
-        .parent()
-        .parent()
-        .parent();
+      const $toolbarWrapper = $(
+        `${DOM_SELECTORS.QUERY_BOX.SUBMIT_BUTTON}`,
+      ).parent();
 
-      if (!$copilotWrapper.length) return false;
+      if (!$toolbarWrapper.length) return false;
 
-      const fiberNode = ($copilotWrapper[0] as any)[
-        getReactPropsKey($copilotWrapper[0])
+      const fiberNode = ($toolbarWrapper[0] as any)[
+        getReactPropsKey($toolbarWrapper[0])
       ];
 
       if (fiberNode == null) return false;
@@ -359,9 +359,9 @@ export function setupReactVdomListeners() {
         findReactFiberNodeValue({
           fiberNode,
           condition: (node) =>
-            node.children[1][0].props.setReasoningModelPreference != null,
+            node.children[1][1].props.setReasoningModelPreference != null,
           select: (node) =>
-            node.children[1][0].props.setReasoningModelPreference as (
+            node.children[1][1].props.setReasoningModelPreference as (
               modelCode: LanguageModelCode | null,
             ) => void,
         }),

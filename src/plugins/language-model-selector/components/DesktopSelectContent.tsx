@@ -26,14 +26,19 @@ export function DesktopSelectContent() {
           {models.map((model) => {
             const Icon = languageModelProviderIcons[provider];
 
+            const limit =
+              modelsLimits[model.code] === Infinity
+                ? "Unlimited"
+                : modelsLimits[model.code];
+
+            const tooltipContent = model.description
+              ? `${limit} uses left. ${model.description}`
+              : `${limit} uses left`;
+
             return (
               <Tooltip
                 key={model.code}
-                content={
-                  modelsLimits[model.code] === Infinity
-                    ? "Unlimited"
-                    : modelsLimits[model.code]
-                }
+                content={tooltipContent}
                 disabled={modelsLimits[model.code] == null}
                 positioning={{ placement: "right", gutter: 10 }}
               >
@@ -42,7 +47,7 @@ export function DesktopSelectContent() {
                   item={model.code}
                   className="x-font-medium x-text-foreground"
                 >
-                  <div className="x-flex x-max-w-full x-items-center x-justify-around x-gap-2">
+                  <div className="x-flex x-w-full x-max-w-full x-items-center x-justify-start x-gap-2">
                     {Icon != null ? (
                       <Icon className="x-size-4" />
                     ) : (

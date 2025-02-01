@@ -1,6 +1,7 @@
 import { produce } from "immer";
 
 import { pluginGuardsStore } from "@/components/plugins-guard/store";
+import { reasoningLanguageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
 import { networkInterceptMiddlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
 import {
   encodeWebSocketData,
@@ -56,21 +57,24 @@ csLoaderRegistry.register({
 
           const settings = ExtensionLocalStorageService.getCachedSync();
 
-          const newPayload = [
-            ...payload.slice(0, 2),
-            {
-              ...payload[2],
-              model_preference: !isRewriteMessage
+          const isReasoningModel =
+            reasoningLanguageModels.find(
+              (model) => model.code === payload[2].model_preference,
+            ) != null;
+
+          const newPayload = produce(payload, (draft) => {
+            draft[2].timezone =
+              settings.devMode &&
+              settings.plugins["queryBox:languageModelSelector"].changeTimezone
+                ? "America/Los_Angeles"
+                : payload[2].timezone;
+
+            if (!isReasoningModel) {
+              draft[2].model_preference = !isRewriteMessage
                 ? sharedQueryBoxStore.getState().selectedLanguageModel
-                : payload[2].model_preference,
-              timezone:
-                settings.devMode &&
-                settings.plugins["queryBox:languageModelSelector"]
-                  .changeTimezone
-                  ? "America/Los_Angeles"
-                  : payload[2].timezone,
-            },
-          ];
+                : payload[2].model_preference;
+            }
+          });
 
           return encodeWebSocketData({
             type: "message",

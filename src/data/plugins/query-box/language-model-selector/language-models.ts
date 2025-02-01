@@ -1,3 +1,4 @@
+import { APP_CONFIG } from "@/app.config";
 import { GroupedLanguageModelsByProvider } from "@/data/plugins/query-box/language-model-selector/language-model-selector.types";
 import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
@@ -13,6 +14,7 @@ export const localLanguageModels = [
     code: "claude2",
     provider: "Anthropic",
     limitKey: "gpt4_limit",
+    isReasoningModel: false,
   },
   {
     label: "Claude 3.5 Haiku",
@@ -20,6 +22,7 @@ export const localLanguageModels = [
     code: "claude35haiku",
     provider: "Anthropic",
     limitKey: "gpt4_limit",
+    isReasoningModel: false,
   },
   {
     label: "DeepSeek R1",
@@ -27,13 +30,17 @@ export const localLanguageModels = [
     code: "r1",
     provider: "DeepSeek",
     limitKey: "pro_reasoning_limit",
+    isReasoningModel: true,
+    description: "Same as selecting this model in Pro Search.",
   },
   {
-    label: "O1",
-    shortLabel: "O1",
-    code: "o1",
+    label: "o3 Mini",
+    shortLabel: "o3 Mini",
+    code: "o3mini",
     provider: "OpenAI",
     limitKey: "o1_limit",
+    isReasoningModel: true,
+    description: "Same as selecting this model in Pro Search.",
   },
   {
     label: "GPT-4 Omni",
@@ -41,6 +48,7 @@ export const localLanguageModels = [
     code: "gpt4o",
     provider: "OpenAI",
     limitKey: "gpt4_limit",
+    isReasoningModel: false,
   },
   {
     label: "Grok-2",
@@ -48,6 +56,15 @@ export const localLanguageModels = [
     code: "grok",
     provider: "xAI",
     limitKey: "gpt4_limit",
+    isReasoningModel: false,
+  },
+  {
+    label: "Sonar",
+    shortLabel: "Sonar",
+    code: "experimental",
+    provider: "Perplexity",
+    limitKey: "gpt4_limit",
+    isReasoningModel: false,
   },
   {
     label: "Sonar Huge",
@@ -55,25 +72,24 @@ export const localLanguageModels = [
     code: "llama_x_large",
     provider: "Perplexity",
     limitKey: "gpt4_limit",
-  },
-  {
-    label: "Sonar Large",
-    shortLabel: "Sonar",
-    code: "experimental",
-    provider: "Perplexity",
-    limitKey: "gpt4_limit",
+    isReasoningModel: false,
   },
   {
     label: "Default",
     shortLabel: "Default",
     code: "turbo",
     provider: "Perplexity",
+    isReasoningModel: false,
   },
 ] as const;
 
 export let languageModels: LanguageModel[] = [...localLanguageModels];
 export let groupedLanguageModelsByProvider: GroupedLanguageModelsByProvider =
   getGroupedLanguageModelsByProvider();
+
+export let reasoningLanguageModels: LanguageModel[] = [
+  ...languageModels.filter((model) => model.isReasoningModel),
+];
 
 export function getGroupedLanguageModelsByProvider() {
   return languageModels.reduce((acc, model) => {
@@ -94,6 +110,8 @@ export function getGroupedLanguageModelsByProvider() {
 csLoaderRegistry.register({
   id: "cache:languageModels",
   loader: async () => {
+    if (APP_CONFIG.IS_DEV) return;
+
     const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
     if (!pluginsEnableStates["queryBox:languageModelSelector"])
@@ -109,6 +127,9 @@ csLoaderRegistry.register({
     if (!error && data) {
       languageModels = data;
       groupedLanguageModelsByProvider = getGroupedLanguageModelsByProvider();
+      reasoningLanguageModels = languageModels.filter(
+        (model) => model.isReasoningModel,
+      );
     }
   },
 });

@@ -9,11 +9,13 @@ import {
   isFocusModeCode,
 } from "@/data/plugins/better-focus-selector/focus-modes";
 import { FocusWebRecency } from "@/data/plugins/better-focus-selector/focus-web-recency";
-import { languageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
+import {
+  languageModels,
+  reasoningLanguageModels,
+} from "@/data/plugins/query-box/language-model-selector/language-models";
 import {
   isLanguageModelCode,
   LanguageModel,
-  LanguageModelCode,
 } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { globalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
 import { spaRouteChangeCompleteSubscribe } from "@/plugins/_api/spa-router/listeners";
@@ -63,7 +65,11 @@ const useSharedQueryBoxStore = createWithEqualityFn<SharedQueryBoxStore>()(
         setSelectedLanguageModel: async (selectedLanguageModel) => {
           set({ selectedLanguageModel });
 
-          if (!["o1", "r1"].includes(selectedLanguageModel)) {
+          if (
+            !reasoningLanguageModels
+              .map((m) => m.code)
+              .includes(selectedLanguageModel)
+          ) {
             await PplxApiService.setDefaultLanguageModel(selectedLanguageModel);
             queryClient.invalidateQueries({
               queryKey: pplxApiQueries.userSettings.queryKey,
@@ -125,7 +131,9 @@ csLoaderRegistry.register({
       (store) => store.selectedLanguageModel,
       (selectedLanguageModel) => {
         if (
-          (["o1", "r1"] as LanguageModelCode[]).includes(selectedLanguageModel)
+          reasoningLanguageModels.find(
+            (model) => model.code === selectedLanguageModel,
+          ) != null
         ) {
           sendMessage(
             "reactVdom:toggleCopilotState",
@@ -156,7 +164,9 @@ csLoaderRegistry.register({
       (reasoningModePreferenceModelCode) => {
         if (
           reasoningModePreferenceModelCode != null &&
-          ["o1", "r1"].includes(reasoningModePreferenceModelCode)
+          reasoningLanguageModels.find(
+            (model) => model.code === reasoningModePreferenceModelCode,
+          ) != null
         ) {
           sharedQueryBoxStore.setState({
             selectedLanguageModel: reasoningModePreferenceModelCode,
@@ -164,14 +174,25 @@ csLoaderRegistry.register({
         }
 
         if (reasoningModePreferenceModelCode == null) {
-          const filteredLanguageModels = languageModels.filter(
-            (model) => !["o1", "r1"].includes(model.code),
+          const currentlySelectedLanguageModel =
+            sharedQueryBoxStore.getState().selectedLanguageModel;
+
+          const isReasoningLanguageModel =
+            reasoningLanguageModels.find(
+              (model) => model.code === currentlySelectedLanguageModel,
+            ) != null;
+
+          if (!isReasoningLanguageModel) return;
+
+          const nonReasoningLanguageModels = languageModels.filter(
+            (model) =>
+              !reasoningLanguageModels.map((m) => m.code).includes(model.code),
           );
 
-          if (filteredLanguageModels.length === 0) return;
+          if (nonReasoningLanguageModels.length === 0) return;
 
           sharedQueryBoxStore.setState({
-            selectedLanguageModel: filteredLanguageModels[0]!.code,
+            selectedLanguageModel: nonReasoningLanguageModels[0]!.code,
           });
         }
       },

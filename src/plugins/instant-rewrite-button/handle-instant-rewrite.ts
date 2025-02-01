@@ -76,6 +76,12 @@ export async function handleInstantRewrite({
     },
   });
 
+  setTimeout(() => {
+    networkInterceptMiddlewareManager.removeMiddleware(
+      "instant-rewrite-model-change",
+    );
+  }, 1000);
+
   sendMessage(
     "reactVdom:triggerRewriteOption",
     {

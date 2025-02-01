@@ -29,6 +29,7 @@
           grid-column-start: 1;
           align-items: center;
           order: 1;
+          column-gap: 0px;
         }
 
         > div:nth-child(3) {

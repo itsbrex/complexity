@@ -5,6 +5,7 @@
     grid-column-end: 3 !important;
     display: flex;
     flex-wrap: wrap;
+    column-gap: 0px;
     @apply x-gap-y-1;
   }
 

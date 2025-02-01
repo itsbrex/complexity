@@ -9,6 +9,7 @@ import { useCanvasStore } from "@/plugins/canvas/store";
 import { PANEL_WIDTH } from "@/plugins/thread-toc";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
+import { UiUtils } from "@/utils/ui-utils";
 
 const DOM_OBSERVER_ID = "thread-navigation-toc-panel-position";
 
@@ -41,11 +42,16 @@ export function usePanelPosition(): UsePanelPosition | null {
     const threadWrapperWidth = $threadWrapper.width();
     const threadWrapperOffset = $threadWrapper.offset();
 
+    const $stickyHeader = UiUtils.getStickyNavbar();
+    const stickyHeaderHeight = $stickyHeader.height();
+
     if (
       threadWrapperWidth == null ||
       threadWrapperOffset == null ||
       threadWrapperOffset.left === 0 ||
-      threadWrapperOffset.top === 0
+      threadWrapperOffset.top === 0 ||
+      stickyHeaderHeight == null ||
+      threadWrapperOffset.top < stickyHeaderHeight
     )
       return null;
 
@@ -68,7 +74,9 @@ export function usePanelPosition(): UsePanelPosition | null {
 
   useEffect(() => {
     const debouncedUpdate = debounce(() => {
-      setPanelPosition(calculatePosition());
+      const newPanelPosition = calculatePosition();
+      if (newPanelPosition == null) return;
+      setPanelPosition(newPanelPosition);
     }, 100);
 
     debouncedUpdate();

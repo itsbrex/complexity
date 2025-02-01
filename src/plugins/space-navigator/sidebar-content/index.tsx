@@ -49,8 +49,6 @@ export default function SpaceNavigatorWrapper() {
     return $portalContainer;
   }, [spaceButtonWrapper]);
 
-  console.log($triggerButtonsPortalContainer);
-
   return (
     <>
       {$triggerButtonsPortalContainer != null &&

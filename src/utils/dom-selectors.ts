@@ -5,16 +5,14 @@ export const DOM_SELECTORS = {
   },
   THREAD: {
     /** The outermost container that wraps the thread container and the query box */
-    WRAPPER: ".max-w-threadWidth",
+    WRAPPER: ".max-w-threadWidth>.max-w-threadWidth",
     NAVBAR: ".sticky.left-0.right-0.top-0.z-10.border-b",
     /** The container that wraps all messages */
     CONTAINER: {
       /** Normal thread*/
-      NORMAL:
-        ".h-full.w-full.max-w-threadWidth.px-md.md\\:px-lg > div:first-child > div.relative > div:first-child",
+      NORMAL: ".size-full.max-w-threadWidth > div.relative > div:first-child",
       /** Branched thread */
-      BRANCHED:
-        ".h-full.w-full.max-w-threadWidth.px-md.md\\:px-lg div.relative > div:nth-child(2):not([class])",
+      BRANCHED: ".size-full.max-w-threadWidth > div:nth-child(2):not([class])",
     },
     MESSAGE: {
       WRAPPER: ".grid-cols-12",

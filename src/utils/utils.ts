@@ -1,7 +1,6 @@
 import { Key } from "ts-key-enum";
 
 import { APP_CONFIG } from "@/app.config";
-import { UiUtils } from "@/utils/ui-utils";
 
 export const jsonUtils = {
   safeParse(json: string) {
@@ -91,24 +90,34 @@ export function detectConsecutiveClicks(params: {
 export function scrollToElement(
   $anchor: JQuery<Element>,
   offset = 0,
-  duration = 500,
+  duration = 300,
 ) {
-  const $stickyHeader = UiUtils.getStickyNavbar();
+  if (!$anchor.length) return;
 
-  if ($stickyHeader.length) {
-    offset -= $stickyHeader.height() ?? 0;
+  const $scrollContainer = $anchor.closest(".overflow-auto, .overflow-y-auto");
+
+  if ($scrollContainer.length) {
+    const containerRect = $scrollContainer[0].getBoundingClientRect();
+    const elementRect = $anchor[0].getBoundingClientRect();
+
+    const relativePosition = elementRect.top - containerRect.top;
+    const scrollTarget =
+      ($scrollContainer.scrollTop() ?? 0) + relativePosition + offset;
+
+    $scrollContainer.animate(
+      {
+        scrollTop: scrollTarget,
+      },
+      {
+        duration,
+        easing: "swing",
+      },
+    );
+  } else {
+    $anchor[0].scrollIntoView({ behavior: "smooth" });
   }
-
-  const elementPosition = $anchor.offset()?.top ?? 0;
-  const scrollPosition = (elementPosition || 0) + offset;
-
-  $("html, body").animate(
-    {
-      scrollTop: scrollPosition,
-    },
-    duration,
-  );
 }
+
 export async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }

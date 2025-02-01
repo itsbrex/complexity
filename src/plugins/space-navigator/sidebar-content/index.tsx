@@ -18,7 +18,7 @@ export default function SpaceNavigatorWrapper() {
     $spaceButtonWrapper.addClass("x-group");
 
     const $target = $spaceButtonWrapper.find(
-      `.flex.items-center.min-w-0.justify-left.w-full.gap-xs`,
+      `.flex.items-center.min-w-0.justify-left.w-full.gap-sm`,
     );
 
     return $target;
@@ -48,6 +48,8 @@ export default function SpaceNavigatorWrapper() {
 
     return $portalContainer;
   }, [spaceButtonWrapper]);
+
+  console.log($triggerButtonsPortalContainer);
 
   return (
     <>

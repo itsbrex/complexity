@@ -22,6 +22,7 @@ body[data-cplx-canvas-active-panel] {
     justify-content: space-between;
     max-width: 100%;
     isolation: isolate;
+    height: max-content;
   }
 }
 

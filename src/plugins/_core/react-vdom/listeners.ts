@@ -376,15 +376,14 @@ export function setupReactVdomListeners() {
   );
 
   onMessage("reactVdom:toggleCopilotState", ({ data: { checked } }) => {
-    const $copilotWrapper = $(`${DOM_SELECTORS.QUERY_BOX.PRO_SEARCH_TOGGLE}`)
-      .parent()
-      .parent()
-      .parent();
+    const $toolbarWrapper = $(
+      `${DOM_SELECTORS.QUERY_BOX.SUBMIT_BUTTON}`,
+    ).parent();
 
-    if (!$copilotWrapper.length) return false;
+    if (!$toolbarWrapper.length) return false;
 
-    const fiberNode = ($copilotWrapper[0] as any)[
-      getReactPropsKey($copilotWrapper[0])
+    const fiberNode = ($toolbarWrapper[0] as any)[
+      getReactPropsKey($toolbarWrapper[0])
     ];
 
     if (fiberNode == null) return false;
@@ -392,9 +391,9 @@ export function setupReactVdomListeners() {
     const [onCheckedChangeHandler, error] = errorWrapper(() =>
       findReactFiberNodeValue({
         fiberNode,
-        condition: (node) => node.children[1][0].props.onChange != null,
+        condition: (node) => node.children[1][1].props.onChange != null,
         select: (node) =>
-          node.children[1][0].props.onChange as (checked: boolean) => void,
+          node.children[1][1].props.onChange as (checked: boolean) => void,
       }),
     )();
 

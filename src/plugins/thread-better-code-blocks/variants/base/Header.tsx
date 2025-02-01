@@ -66,9 +66,8 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
         "x-flex x-items-center x-justify-between x-rounded-t-md x-border-b x-border-border/50 x-bg-secondary x-p-2 x-px-4 x-pb-2 x-text-muted-foreground",
         {
           "x-sticky": isSticky,
-          "x-top-[calc(var(--navbar-height))]":
-            isSticky && (isMessageBlockInFlight || !isBottomBarSticky),
-          "x-top-[calc(var(--navbar-height)+var(--message-block-bottom-bar-height))]":
+          "x-top-0": isSticky && (isMessageBlockInFlight || !isBottomBarSticky),
+          "x-top-[var(--message-block-bottom-bar-height)]":
             isSticky && !isMessageBlockInFlight && isBottomBarSticky,
         },
       )}

@@ -8,7 +8,7 @@
 
     [data-cplx-component="message-block-bottom-bar"] {
       position: sticky;
-      top: var(--navbar-height);
+      top: 0;
       order: -1;
       z-index: 1;
       @apply x-mb-8 x-mt-0 x-border-b x-border-dashed x-border-border/50 x-bg-background x-p-2;

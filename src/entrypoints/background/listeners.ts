@@ -8,6 +8,7 @@ import {
   ExtensionLocalStorage,
   ExtensionLocalStorageSchema,
 } from "@/services/extension-local-storage/extension-local-storage.types";
+import { hasRequiredPermissions } from "@/services/pplx-theme-preloader";
 import { errorWrapper } from "@/utils/error-wrapper";
 import { ExtensionVersion } from "@/utils/ext-version";
 import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
@@ -77,11 +78,14 @@ function contentScriptListeners() {
   });
 
   onMessage("bg:removePreloadedTheme", async ({ sender }) => {
+    if (!(await hasRequiredPermissions())) return;
+
     const chosenThemeId = (await ExtensionLocalStorageService.get()).theme;
     const css = await getThemeCss(chosenThemeId);
 
     if (!css) return;
 
+    console.log("Removing theme", css);
     chrome.scripting.removeCSS({
       target: { tabId: sender.tabId },
       css,

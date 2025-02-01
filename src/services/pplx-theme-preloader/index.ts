@@ -5,13 +5,14 @@ import { APP_CONFIG } from "@/app.config";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { ExtensionLocalStorageApi } from "@/services/extension-local-storage/extension-local-storage-api";
 import { getThemeCss } from "@/utils/pplx-theme-loader-utils";
+import { isInContentScript } from "@/utils/utils";
 
 const PERPLEXITY_MATCH_PATTERNS = [
   new MatchPattern(APP_CONFIG["perplexity-ai"].globalMatches[0]!),
   new MatchPattern(APP_CONFIG["perplexity-ai"].globalMatches[1]!),
 ] as const;
 
-const hasRequiredPermissions = async () => {
+export const hasRequiredPermissions = async () => {
   const hasPermissions = await chrome.permissions.contains({
     permissions: ["scripting", "webNavigation"],
   });
@@ -130,3 +131,12 @@ export const [registerPplxThemePreloaderService, getPplxThemePreloaderService] =
   defineProxyService("PplxThemePreloaderService", () =>
     PplxThemePreloaderService.getInstance(),
   );
+
+export function getNonProxiedPplxThemePreloaderService() {
+  if (isInContentScript())
+    throw new Error(
+      "Not allowed in content script. Call getPplxThemePreloaderService() instead.",
+    );
+
+  return PplxThemePreloaderService.getInstance();
+}

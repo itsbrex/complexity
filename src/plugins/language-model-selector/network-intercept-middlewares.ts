@@ -73,6 +73,10 @@ csLoaderRegistry.register({
               draft[2].model_preference = !isRewriteMessage
                 ? sharedQueryBoxStore.getState().selectedLanguageModel
                 : payload[2].model_preference;
+            } else {
+              draft[2].reasoning_model_preference =
+                sharedQueryBoxStore.getState().selectedLanguageModel;
+              draft[2].mode = "copilot";
             }
           });
 

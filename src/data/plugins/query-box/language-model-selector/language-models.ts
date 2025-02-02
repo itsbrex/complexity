@@ -31,7 +31,7 @@ export const localLanguageModels = [
     provider: "DeepSeek",
     limitKey: "pro_reasoning_limit",
     isReasoningModel: true,
-    description: "Same as selecting this model in Pro Search.",
+    description: `This option will be synced with the "Pro" model selector on the right`,
   },
   {
     label: "o3 Mini",
@@ -40,7 +40,7 @@ export const localLanguageModels = [
     provider: "OpenAI",
     limitKey: "o1_limit",
     isReasoningModel: true,
-    description: "Same as selecting this model in Pro Search.",
+    description: `This option will be synced with the "Pro" model selector on the right`,
   },
   {
     label: "GPT-4 Omni",

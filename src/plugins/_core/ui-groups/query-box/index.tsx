@@ -45,12 +45,12 @@ function useInsertToolbarCss() {
         settings?.plugins["queryBox:slashCommandMenu"].showTriggerButton));
 
   useInsertCss({
-    id: "cplx-main-query-box",
+    id: "main-query-box",
     css: mainQueryBoxCss,
     inject: shouldInjectMain,
   });
   useInsertCss({
-    id: "cplx-follow-up-query-box",
+    id: "follow-up-query-box",
     css: followUpQueryBoxCss,
     inject: shouldInjectFollowUp,
   });

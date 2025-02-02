@@ -38,7 +38,9 @@ export function DesktopSelectContent() {
             return (
               <Tooltip
                 key={model.code}
-                content={tooltipContent}
+                content={
+                  <div className="x-w-48 x-text-pretty">{tooltipContent}</div>
+                }
                 disabled={modelsLimits[model.code] == null}
                 positioning={{ placement: "right", gutter: 10 }}
               >

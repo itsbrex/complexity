@@ -1,4 +1,5 @@
 import debounce from "lodash/debounce";
+import throttle from "lodash/throttle";
 
 import {
   DomObserverConfig,
@@ -9,11 +10,12 @@ import {
   Result,
 } from "@/plugins/_api/dom-observer/dom-observer.types";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
-import { getReactFiberKey } from "@/utils/utils";
 
 export class DomObserver {
   private static instance: DomObserver;
   private DEFAULT_DEBOUNCE_TIME: number;
+  private debounceFn: typeof throttle;
+  private debounceConfig: { leading: boolean; trailing: boolean };
 
   private static instances = new Map<ObserverId, DomObserverInstance>();
   private static isLogging = false;
@@ -22,7 +24,12 @@ export class DomObserver {
     const isEnergySavingMode =
       ExtensionLocalStorageService.getCachedSync().energySavingMode;
 
-    this.DEFAULT_DEBOUNCE_TIME = isEnergySavingMode ? 500 : 20;
+    this.DEFAULT_DEBOUNCE_TIME = isEnergySavingMode ? 500 : 70;
+
+    this.debounceFn = isEnergySavingMode ? debounce : throttle;
+    this.debounceConfig = isEnergySavingMode
+      ? { leading: false, trailing: true }
+      : { leading: true, trailing: true };
   }
 
   static getInstance(): DomObserver {
@@ -205,21 +212,10 @@ export class DomObserver {
   ): MutationCallback {
     const instance = DomObserver.getInstance();
 
-    const throttledCallback = debounce(
-      (mutations?: MutationRecord[]) => {
-        const hasInternalMutation = mutations?.some((m) => {
-          return (
-            getReactFiberKey(m.target as Element) ||
-            Array.from(m.addedNodes).some((node) =>
-              getReactFiberKey(node as Element),
-            )
-          );
-        });
-        if (hasInternalMutation) return;
-        config.onMutation();
-      },
+    const throttledCallback = instance.debounceFn(
+      config.onMutation,
       config.debounceTime ?? instance.DEFAULT_DEBOUNCE_TIME,
-      { leading: false, trailing: true },
+      instance.debounceConfig,
     );
 
     throttledCallback?.();

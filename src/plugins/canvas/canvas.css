@@ -20,16 +20,17 @@ body[data-cplx-canvas-active-panel] {
     display: flex;
     gap: 2rem;
     justify-content: space-between;
-    max-width: 100%;
     isolation: isolate;
     height: max-content;
+  }
+
+  .max-w-threadWidth {
+    max-width: 100% !important;
   }
 }
 
 body[data-cplx-canvas-active-panel="list"]
   [data-cplx-component="thread-wrapper"] {
-  max-width: max-content;
-
   .pointer-events-auto.md\:col-span-8 {
     grid-column: span 8 / span 8;
   }

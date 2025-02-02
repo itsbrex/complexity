@@ -30,7 +30,6 @@ export default function Tooltip({
 }: TooltipProps) {
   return (
     <TooltipRoot
-      unmountOnExit
       lazyMount={true}
       openDelay={0}
       closeDelay={0}

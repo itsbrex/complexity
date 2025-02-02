@@ -40,28 +40,26 @@ export function usePanelPosition(): UsePanelPosition | null {
 
     const $threadWrapper = $(threadWrapper).children().first();
     const threadWrapperWidth = $threadWrapper.width();
-    const threadWrapperOffset = $threadWrapper.offset();
+    const $fitContainer = $threadWrapper.children().first();
+    const fitContainerOffset = $fitContainer.offset();
 
     const $stickyHeader = UiUtils.getStickyNavbar();
     const stickyHeaderHeight = $stickyHeader.height();
 
     if (
       threadWrapperWidth == null ||
-      threadWrapperOffset == null ||
-      threadWrapperOffset.left === 0 ||
-      threadWrapperOffset.top === 0 ||
-      stickyHeaderHeight == null ||
-      threadWrapperOffset.top < stickyHeaderHeight
+      fitContainerOffset == null ||
+      stickyHeaderHeight == null
     )
       return null;
 
-    const { top, left } = threadWrapperOffset;
+    const { left } = fitContainerOffset;
 
     const panelRightEdge = left + threadWrapperWidth + PANEL_WIDTH + 75;
     const isFloating = panelRightEdge > window.innerWidth;
 
     const position = {
-      top: top + 25,
+      top: stickyHeaderHeight + 40,
       left: threadWrapperWidth + left + 25,
     };
 

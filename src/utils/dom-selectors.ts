@@ -5,7 +5,7 @@ export const DOM_SELECTORS = {
   },
   THREAD: {
     /** The outermost container that wraps the thread container and the query box */
-    WRAPPER: ".max-w-threadWidth>.max-w-threadWidth",
+    WRAPPER: ".flex-1.basis-0.overflow-auto.scrollbar-thin:has(>.max-w-threadWidth)",
     NAVBAR: ".sticky.left-0.right-0.top-0.z-10.border-b",
     /** The container that wraps all messages */
     CONTAINER: {

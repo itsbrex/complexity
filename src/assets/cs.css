@@ -10,7 +10,3 @@
 body#__next {
   @apply x-font-sans;
 }
-
-[data-cplx-component="thread-wrapper"] > :first-child {
-  padding-bottom: 5rem !important;
-}

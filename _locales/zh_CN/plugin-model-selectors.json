@@ -1,6 +1,20 @@
 {
   "languageModelSelector": {
-    "tooltip": "选择语言模型"
+    "tooltip": "选择语言模型",
+    "proSearch": {
+      "tooltip": "获取最多3个网络来源"
+    },
+    "reasoningModels": {
+      "label": "推理模型",
+      "tooltip": {
+        "description": "生成答案需要更长时间，但通常更详细和准确。",
+        "proSearchNote": "选择推理模型时，<emphasis>Pro Search</emphasis>始终启用。"
+      },
+      "usesLeft": {
+        "unlimited": "无限制",
+        "limited": "剩余{{count}}次使用"
+      }
+    }
   },
   "imageGenModelSelector": {
     "tooltip": "选择图像模型"

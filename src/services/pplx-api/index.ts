@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { ImageGenModel } from "@/data/plugins/image-gen-model-selector/image-gen-model-seletor.types";
-import type { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
+import { type LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { InternalWebSocketManager } from "@/plugins/_api/web-socket/internal-web-socket-manager";
 import { ENDPOINTS } from "@/services/pplx-api/endpoints";
 import {
@@ -62,13 +62,15 @@ export class PplxApiService {
   static async fetchOrgSettings() {
     const resp = await fetchResource(ENDPOINTS.ORG_SETTINGS);
 
-    const data = PplxOrgSettingsApiResponseSchema.parse(jsonUtils.safeParse(resp));
+    const data = PplxOrgSettingsApiResponseSchema.parse(
+      jsonUtils.safeParse(resp),
+    );
 
     return data;
   }
 
   private static async saveSetting(
-    settings: Record<string, unknown>,
+    settings: Partial<PplxUserSettingsApiResponse>,
     method: "websocket" | "fetch" = "fetch",
   ) {
     if (method === "fetch") {

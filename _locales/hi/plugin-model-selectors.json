@@ -1,6 +1,20 @@
 {
   "languageModelSelector": {
-    "tooltip": "भाषा मॉडल चुनें"
+    "tooltip": "भाषा मॉडल चुनें",
+    "proSearch": {
+      "tooltip": "3 तक वेब स्रोत प्राप्त करें"
+    },
+    "reasoningModels": {
+      "label": "तर्क मॉडल",
+      "tooltip": {
+        "description": "उत्तर जनरेट होने में अधिक समय लगेगा, लेकिन वे अधिक विस्तृत और सटीक होते हैं।",
+        "proSearchNote": "तर्क मॉडल चुनते समय <emphasis>Pro Search</emphasis> हमेशा सक्रिय रहता है।"
+      },
+      "usesLeft": {
+        "unlimited": "असीमित",
+        "limited": "{{count}} उपयोग शेष"
+      }
+    }
   },
   "imageGenModelSelector": {
     "tooltip": "छवि मॉडल चुनें"

@@ -1,7 +1,7 @@
 import { LuChevronLeft } from "react-icons/lu";
 import { Link } from "react-router-dom";
 
-import { PLUGINS_METADATA } from "@/data/plugins/plugins-data";
+import { PLUGINS_METADATA } from "@/data/plugins-data/plugins-data";
 import { PLUGIN_DETAILS } from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/plugins-details";
 
 type PluginDetailsPageProps = {

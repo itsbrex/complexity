@@ -89,18 +89,18 @@ export default function FocusSelectorWrapper() {
           </SelectValue>
         </SelectTrigger>
       </Tooltip>
-      <SelectContext>
-        {({ open, setOpen }) => {
-          return isMobile ? (
+      {isMobile ? (
+        <SelectContext>
+          {({ open, setOpen }) => (
             <MobileSelectContent
               open={open}
               onOpenChange={({ open }) => setOpen(open)}
             />
-          ) : (
-            <DesktopSelectContent />
-          );
-        }}
-      </SelectContext>
+          )}
+        </SelectContext>
+      ) : (
+        <DesktopSelectContent />
+      )}
     </Select>
   );
 }

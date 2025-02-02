@@ -1,6 +1,20 @@
 {
   "languageModelSelector": {
-    "tooltip": "Vybrať jazykový model"
+    "tooltip": "Vybrať jazykový model",
+    "proSearch": {
+      "tooltip": "Získajte až 3 webové zdroje"
+    },
+    "reasoningModels": {
+      "label": "Modely uvažovania",
+      "tooltip": {
+        "description": "Generovanie odpovedí bude trvať dlhšie, ale odpovede bývajú podrobnejšie a presnejšie.",
+        "proSearchNote": "Pri výbere modelu uvažovania je <emphasis>Pro Search</emphasis> vždy aktívny."
+      },
+      "usesLeft": {
+        "unlimited": "Neobmedzene",
+        "limited": "Zostáva {{count}} použití"
+      }
+    }
   },
   "imageGenModelSelector": {
     "tooltip": "Vybrať model pre obrázky"

@@ -106,10 +106,10 @@ export default function CanvasPluginDetails() {
                     Supported language models
                   </td>
                   <td className="x-border x-border-border x-p-2 x-text-center x-text-muted-foreground">
-                    any
+                    any premium models
                   </td>
                   <td className="x-border x-border-border x-p-2 x-text-center">
-                    Works best with DeepSeek-R1, o1, and Claude 3.5 Sonnet
+                    Works best with DeepSeek-R1 & o3-mini
                   </td>
                 </tr>
                 <tr>

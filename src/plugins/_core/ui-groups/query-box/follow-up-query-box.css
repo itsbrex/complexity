@@ -47,6 +47,20 @@
       @apply x-size-4;
     }
   }
+
+  [data-cplx-component="query-box-components-wrapper"]
+    > div:nth-child(2)
+    button {
+    @apply x-h-8 x-rounded-md;
+  }
+
+  [data-cplx-component="query-box-components-wrapper"] > div:nth-child(2) {
+    @apply x-gap-1;
+  }
+
+  [data-cplx-component="query-box-components-wrapper"] > div:nth-child(3) {
+    max-height: max-content;
+  }
 }
 
 .pointer-events-none.fixed.bottom-mobileNavHeight {

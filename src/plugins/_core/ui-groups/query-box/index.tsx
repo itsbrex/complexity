@@ -1,3 +1,4 @@
+import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { useInsertCss } from "@/hooks/useInsertCss";
 import { useSpaRouter } from "@/plugins/_api/spa-router/listeners";
 import followUpQueryBoxCss from "@/plugins/_core/ui-groups/query-box/follow-up-query-box.css?inline";
@@ -25,22 +26,24 @@ export default function QueryBoxWrapper() {
 
 function useInsertToolbarCss() {
   const location = whereAmI(useSpaRouter().url);
+  const { isMobile } = useIsMobileStore();
 
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
   const settings = ExtensionLocalStorageService.getCachedSync();
 
   const shouldInjectMain =
-    settings?.plugins["queryBox:languageModelSelector"].main &&
-    (pluginsEnableStates["queryBox:languageModelSelector"] ||
-      pluginsEnableStates["spaceNavigator"] ||
-      (pluginsEnableStates["queryBox:slashCommandMenu"] &&
-        settings?.plugins["queryBox:slashCommandMenu"].showTriggerButton));
+    pluginsEnableStates["queryBox:languageModelSelector"] ||
+    pluginsEnableStates["queryBox:focusSelector"] ||
+    pluginsEnableStates["spaceNavigator"] ||
+    (pluginsEnableStates["queryBox:slashCommandMenu"] &&
+      settings?.plugins["queryBox:slashCommandMenu"].showTriggerButton);
 
   const shouldInjectFollowUp =
     location === "thread" &&
-    settings?.plugins["queryBox:languageModelSelector"].followUp &&
     (pluginsEnableStates["queryBox:languageModelSelector"] ||
+      pluginsEnableStates["queryBox:focusSelector"] ||
+      (isMobile && pluginsEnableStates["spaceNavigator"]) ||
       (pluginsEnableStates["queryBox:slashCommandMenu"] &&
         settings?.plugins["queryBox:slashCommandMenu"].showTriggerButton));
 
@@ -49,6 +52,7 @@ function useInsertToolbarCss() {
     css: mainQueryBoxCss,
     inject: shouldInjectMain,
   });
+
   useInsertCss({
     id: "follow-up-query-box",
     css: followUpQueryBoxCss,

@@ -1,4 +1,4 @@
-import { PLUGINS_METADATA } from "@/data/plugins/plugins-data";
+import { PLUGINS_METADATA } from "@/data/plugins-data/plugins-data";
 import {
   CplxFeatureFlags,
   UserGroup,

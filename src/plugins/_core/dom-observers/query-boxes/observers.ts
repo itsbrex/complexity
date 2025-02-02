@@ -1,6 +1,3 @@
-import throttle from "lodash/throttle";
-import { sendMessage } from "webext-bridge/content-script";
-
 import { CallbackQueue } from "@/plugins/_api/dom-observer/callback-queue";
 import { DomObserver } from "@/plugins/_api/dom-observer/dom-observer";
 import { globalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
@@ -52,16 +49,6 @@ async function setupQueryBoxesObserver(location: ReturnType<typeof whereAmI>) {
     return;
 
   cleanup();
-
-  DomObserver.create(DOM_OBSERVER_ID.REASONING_MODE_PREFERENCE, {
-    target: document.body,
-    config: { childList: true, subtree: true },
-    onMutation: () =>
-      CallbackQueue.getInstance().enqueue(
-        observeReasoningModePreference,
-        DOM_OBSERVER_ID.REASONING_MODE_PREFERENCE,
-      ),
-  });
 
   if (location === "home") {
     globalDomObserverStore.getState().setQueryBoxes({
@@ -194,20 +181,3 @@ async function observeFollowUpQueryBox() {
     followUpQueryBox: $followUpQueryBox[0],
   });
 }
-
-const observeReasoningModePreference = throttle(
-  async () => {
-    globalDomObserverStore.getState().setQueryBoxes({
-      reasoningModePreferenceModelCode: await sendMessage(
-        "reactVdom:getCopilotReasoningModeModelCode",
-        undefined,
-        "window",
-      ),
-    });
-  },
-  300,
-  {
-    leading: false,
-    trailing: true,
-  },
-);

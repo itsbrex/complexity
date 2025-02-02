@@ -1,5 +1,9 @@
-import { AiOutlineOpenAI } from "react-icons/ai";
-import { SiAnthropic, SiGooglegemini, SiPerplexity } from "react-icons/si";
+import {
+  SiAnthropic,
+  SiGooglegemini,
+  SiOpenai,
+  SiPerplexity,
+} from "react-icons/si";
 
 import DeepSeek from "@/components/icons/DeepSeek";
 import MistralAiIcon from "@/components/icons/MistralAiIcon";
@@ -11,7 +15,7 @@ export const languageModelProviderIcons: Record<
   React.ElementType
 > = {
   Anthropic: SiAnthropic,
-  OpenAI: AiOutlineOpenAI,
+  OpenAI: SiOpenai,
   xAI: XAiIcon,
   Perplexity: SiPerplexity,
   Google: SiGooglegemini,

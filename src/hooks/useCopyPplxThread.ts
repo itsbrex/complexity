@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { sendMessage } from "webext-bridge/content-script";
 
 import { toast } from "@/components/ui/use-toast";
 import { ThreadMessageApiResponse } from "@/services/pplx-api/pplx-api.types";
@@ -10,7 +11,6 @@ import {
 import { errorWrapper } from "@/utils/error-wrapper";
 import { ThreadExport } from "@/utils/thread-export";
 import { parseUrl } from "@/utils/utils";
-import { sendMessage } from "webext-bridge/content-script";
 
 type FetchFn = () => Promise<ThreadMessageApiResponse[] | undefined>;
 

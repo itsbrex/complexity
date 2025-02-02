@@ -1,5 +1,4 @@
 import { APP_CONFIG } from "@/app.config";
-import { GroupedLanguageModelsByProvider } from "@/data/plugins/query-box/language-model-selector/language-model-selector.types";
 import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
 import { PluginsStatesService } from "@/services/plugins-states";
@@ -31,19 +30,17 @@ export const localLanguageModels = [
     provider: "DeepSeek",
     limitKey: "pro_reasoning_limit",
     isReasoningModel: true,
-    description: `This option will be synced with the "Pro" model selector on the right`,
   },
   {
-    label: "o3 Mini",
-    shortLabel: "o3 Mini",
+    label: "O3 Mini",
+    shortLabel: "O3 Mini",
     code: "o3mini",
     provider: "OpenAI",
     limitKey: "o1_limit",
     isReasoningModel: true,
-    description: `This option will be synced with the "Pro" model selector on the right`,
   },
   {
-    label: "GPT-4 Omni",
+    label: "GPT-4o",
     shortLabel: "GPT-4o",
     code: "gpt4o",
     provider: "OpenAI",
@@ -84,28 +81,14 @@ export const localLanguageModels = [
 ] as const;
 
 export let languageModels: LanguageModel[] = [...localLanguageModels];
-export let groupedLanguageModelsByProvider: GroupedLanguageModelsByProvider =
-  getGroupedLanguageModelsByProvider();
+
+export let fastLanguageModels: LanguageModel[] = [
+  ...languageModels.filter((model) => !model.isReasoningModel),
+];
 
 export let reasoningLanguageModels: LanguageModel[] = [
   ...languageModels.filter((model) => model.isReasoningModel),
 ];
-
-export function getGroupedLanguageModelsByProvider() {
-  return languageModels.reduce((acc, model) => {
-    const existingGroup = acc.find(
-      (group) => group.provider === model.provider,
-    );
-
-    if (!existingGroup) {
-      acc.push({ provider: model.provider, models: [model] });
-    } else {
-      existingGroup.models.push(model);
-    }
-
-    return acc;
-  }, [] as GroupedLanguageModelsByProvider);
-}
 
 csLoaderRegistry.register({
   id: "cache:languageModels",
@@ -126,7 +109,9 @@ csLoaderRegistry.register({
 
     if (!error && data) {
       languageModels = data;
-      groupedLanguageModelsByProvider = getGroupedLanguageModelsByProvider();
+      fastLanguageModels = languageModels.filter(
+        (model) => !model.isReasoningModel,
+      );
       reasoningLanguageModels = languageModels.filter(
         (model) => model.isReasoningModel,
       );

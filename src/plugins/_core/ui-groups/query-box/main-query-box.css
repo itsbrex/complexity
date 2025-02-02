@@ -1,17 +1,28 @@
 [cplx-main-query-box],
-[cplx-space-query-box] {
-  div:has(> textarea) + div {
-    grid-column-start: 1 !important;
-    grid-column-end: 3 !important;
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 0px;
-    @apply x-gap-y-1;
-  }
+[cplx-space-query-box],
+[cplx-main-modal-query-box] {
+  [data-cplx-component="query-box-components-wrapper"] {
+    & > div:nth-child(2) {
+      grid-column-start: 1 !important;
+      grid-column-end: 3 !important;
+      display: flex;
+      flex-wrap: wrap;
+      @apply x-gap-1 x-gap-y-1;
 
-  button:not([aria-label="Submit"]):not(
-      [data-testid="copilot-toggle"]
-    ).rounded-full {
-    border-radius: 0.375rem !important;
+      button.rounded-full {
+        @apply x-rounded-md;
+      }
+    }
+
+    & > div:nth-child(3) {
+      max-height: max-content;
+    }
   }
+}
+
+[cplx-space-query-box]
+  [data-cplx-component="query-box-components-wrapper"]
+  > div:nth-child(2)
+  > span:has(> button:disabled) {
+  display: none;
 }

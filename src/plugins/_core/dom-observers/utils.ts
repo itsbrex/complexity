@@ -1,8 +1,8 @@
+import { PLUGINS_METADATA } from "@/data/plugins-data/plugins-data";
 import {
   CoreObserverId,
   CplxPluginMetadata,
-  PLUGINS_METADATA,
-} from "@/data/plugins/plugins-data";
+} from "@/data/plugins-data/plugins-data.types";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { PluginsStatesService } from "@/services/plugins-states";
 

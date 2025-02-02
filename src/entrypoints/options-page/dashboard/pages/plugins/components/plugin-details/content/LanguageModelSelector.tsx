@@ -1,3 +1,5 @@
+import { LuCheck } from "react-icons/lu";
+
 import { Image } from "@/components/ui/image";
 import { Switch } from "@/components/ui/switch";
 import { P } from "@/components/ui/typography";
@@ -10,12 +12,18 @@ export default function LanguageModelSelectorPluginDetails() {
 
   return (
     <div className="x-flex x-flex-col x-gap-4 x-overflow-y-auto">
-      <P>
-        Allow you to change your preferred language model{" "}
-        <span className="x-font-medium x-text-primary x-underline">
-          anywhere
-        </span>
-        . The selector can be found on all query boxes.
+      <P className="x-my-0">
+        <div className="x-flex x-items-center x-gap-2">
+          <LuCheck className="x-text-primary" /> Take complete control of all
+          available language models.
+        </div>
+        <div className="x-flex x-items-center x-gap-2">
+          <LuCheck className="x-text-primary" /> No ambiguity, no confusion,
+          change your preferred one anywhere.
+        </div>
+        <div className="x-flex x-items-center x-gap-2">
+          <LuCheck className="x-text-primary" /> Supports keyboard navigation.
+        </div>
       </P>
       <Switch
         textLabel="Enable"
@@ -30,60 +38,31 @@ export default function LanguageModelSelectorPluginDetails() {
       />
       {settings.plugins["queryBox:languageModelSelector"].enabled && (
         <div className="x-flex x-flex-col x-gap-2">
-          <div className="x-ml-8 x-flex x-flex-col x-gap-2">
-            <Switch
-              textLabel="Homepage + Modal + Space"
-              checked={
-                settings.plugins["queryBox:languageModelSelector"].main ?? false
-              }
-              onCheckedChange={({ checked }) => {
-                mutation.mutate((draft) => {
-                  draft.plugins["queryBox:languageModelSelector"].main =
-                    checked;
-                });
-              }}
-            />
-            <Switch
-              className="x-ml-8 x-items-start"
-              textLabel={
-                <div>
-                  <div className="x-text-sm">
-                    Respect default Space&apos;s model
-                  </div>
-                  <div className="x-text-sm x-text-muted-foreground">
-                    Automatically switch to the default model when entering a
-                    Space
-                  </div>
+          <Switch
+            className="x-items-start"
+            textLabel={
+              <div>
+                <div className="x-text-sm">
+                  Respect default Space&apos;s model
                 </div>
-              }
-              checked={
-                settings.plugins["queryBox:languageModelSelector"]
-                  .respectDefaultSpaceModel ?? false
-              }
-              onCheckedChange={({ checked }) => {
-                mutation.mutate((draft) => {
-                  draft.plugins[
-                    "queryBox:languageModelSelector"
-                  ].respectDefaultSpaceModel = checked;
-                });
-              }}
-            />
-            <div className="x-flex x-flex-col x-gap-2">
-              <Switch
-                textLabel="Follow-up (in a thread)"
-                checked={
-                  settings.plugins["queryBox:languageModelSelector"].followUp ??
-                  false
-                }
-                onCheckedChange={({ checked }) => {
-                  mutation.mutate((draft) => {
-                    draft.plugins["queryBox:languageModelSelector"].followUp =
-                      checked;
-                  });
-                }}
-              />
-            </div>
-          </div>
+                <div className="x-text-sm x-text-muted-foreground">
+                  Automatically switch to the default model when entering a
+                  Space
+                </div>
+              </div>
+            }
+            checked={
+              settings.plugins["queryBox:languageModelSelector"]
+                .respectDefaultSpaceModel ?? false
+            }
+            onCheckedChange={({ checked }) => {
+              mutation.mutate((draft) => {
+                draft.plugins[
+                  "queryBox:languageModelSelector"
+                ].respectDefaultSpaceModel = checked;
+              });
+            }}
+          />
           {settings.devMode && (
             <Switch
               textLabel="Change timezone"
@@ -104,7 +83,7 @@ export default function LanguageModelSelectorPluginDetails() {
       )}
       <div className="x-mx-auto x-w-full x-max-w-[700px]">
         <Image
-          src="https://i.imgur.com/IBClpp3.png"
+          src="https://i.imgur.com/19WKLlf.png"
           alt="language-model-selector"
           className="x-w-full"
         />

@@ -59,7 +59,7 @@ export default function FocusWebRecencySelector({
         })}
       >
         <SelectTrigger variant="ghost" className="x-h-full x-w-fit x-px-2">
-          <SelectValue className="x-flex x-items-center x-gap-1">
+          <SelectValue className="x-flex x-items-center x-gap-2">
             <LuClock className="x-size-4" />
             {recencyData.value !== "ALL" && (
               <span className="x-hidden md:x-inline">{recencyData.label}</span>
@@ -67,18 +67,18 @@ export default function FocusWebRecencySelector({
           </SelectValue>
         </SelectTrigger>
       </Tooltip>
-      <SelectContext>
-        {({ open, setOpen }) => {
-          return isMobile ? (
+      {isMobile ? (
+        <SelectContext>
+          {({ open, setOpen }) => (
             <MobileSelectContent
               open={open}
               onOpenChange={({ open }) => setOpen(open)}
             />
-          ) : (
-            <DesktopSelectContent />
-          );
-        }}
-      </SelectContext>
+          )}
+        </SelectContext>
+      ) : (
+        <DesktopSelectContent />
+      )}
     </Select>
   );
 }

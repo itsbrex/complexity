@@ -47,11 +47,17 @@ csLoaderRegistry.register({
       });
     });
 
-    isMobileStore.subscribe(({ isMobile }) => {
-      pluginGuardsStore.setState((state) => {
-        state.isMobile = isMobile;
-      });
-    });
+    isMobileStore.subscribe(
+      (store) => store.isMobile,
+      (isMobile) => {
+        pluginGuardsStore.setState((state) => {
+          state.isMobile = isMobile;
+        });
+      },
+      {
+        fireImmediately: true,
+      },
+    );
 
     const pplxAuthQueryObserver = new QueryObserver(
       queryClient,

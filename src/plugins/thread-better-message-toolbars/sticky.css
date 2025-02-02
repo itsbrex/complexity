@@ -27,6 +27,17 @@
         border-style: solid;
         box-shadow: 0 16px 16px -16px rgba(0, 0, 0, 0.3);
       }
+
+      /* fix the oversized rewrite button on mobile */
+      @media screen and (max-width: 768px) {
+        button:has(svg[data-icon="repeat"]) {
+          @apply x-size-8;
+
+          svg {
+            @apply x-size-[0.8em];
+          }
+        }
+      }
     }
   }
 }

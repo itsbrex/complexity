@@ -1,3 +1,4 @@
+import { produce } from "immer";
 import { sendMessage } from "webext-bridge/content-script";
 
 import { networkInterceptMiddlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
@@ -57,17 +58,14 @@ export async function handleInstantRewrite({
         ? "reasoning_model_preference"
         : "model_preference";
 
-      const newPayload = [
-        ...payload.slice(0, 2),
-        {
-          ...payload[2],
-          mode: currentModelPreferences.isProReasoningMode
-            ? currentModelPreferences.mode.toLowerCase()
-            : payload[2].mode,
-          is_pro_reasoning_mode: currentModelPreferences.isProReasoningMode,
-          [modelPreferenceKey]: currentModelPreferences.displayModel,
-        },
-      ];
+      const newPayload = produce(payload, (draft) => {
+        if (currentModelPreferences.isProReasoningMode) {
+          draft[2].mode = currentModelPreferences.mode.toLowerCase();
+          draft[2].is_pro_reasoning_mode = true;
+        }
+
+        draft[2][modelPreferenceKey] = currentModelPreferences.displayModel;
+      });
 
       return encodeWebSocketData({
         type: "message",

@@ -2,8 +2,8 @@ import CsUiPluginsGuard from "@/components/plugins-guard/CsUiPluginsGuard";
 import { Portal } from "@/components/ui/portal";
 import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
 import { ScopedQueryBoxContextProvider } from "@/plugins/_core/ui-groups/query-box/context/context";
-import { findToolbarPortalContainer } from "@/plugins/_core/ui-groups/query-box/utils";
-import LanguageModelSelector from "@/plugins/language-model-selector/LanguageModelSelector";
+import { useFindToolbarPortalContainer } from "@/plugins/_core/ui-groups/query-box/hooks/useFindPortalContainer";
+import BetterLanguageModelSelectorWrapper from "@/plugins/language-model-selector";
 import SlashCommandMenuWrapper from "@/plugins/slash-command-menu";
 import SlashCommandMenuTriggerButton from "@/plugins/slash-command-menu/TriggerButton";
 import SpaceNavigatorWrapper from "@/plugins/space-navigator/query-box";
@@ -13,13 +13,18 @@ export default function SpaceQueryBoxWrapper() {
     (state) => state.queryBoxes.spaceQueryBox,
   );
 
-  const spaceQueryBoxToolbarPortalContainer =
-    findToolbarPortalContainer(spaceQueryBox);
+  const portalContainer = useFindToolbarPortalContainer(spaceQueryBox, "space");
 
   return (
     <ScopedQueryBoxContextProvider storeValue={{ type: "space" }}>
-      <Portal container={spaceQueryBoxToolbarPortalContainer}>
-        <div className="x-flex x-flex-wrap x-items-center md:x-flex-nowrap">
+      <Portal container={portalContainer}>
+        <div className="x-flex x-flex-wrap x-items-center x-gap-1">
+          <CsUiPluginsGuard
+            allowedAccountTypes={[["pro"], ["pro", "enterprise"]]}
+            dependentPluginIds={["queryBox:languageModelSelector"]}
+          >
+            <BetterLanguageModelSelectorWrapper />
+          </CsUiPluginsGuard>
           <CsUiPluginsGuard
             desktopOnly
             dependentPluginIds={["queryBox:slashCommandMenu"]}
@@ -35,15 +40,6 @@ export default function SpaceQueryBoxWrapper() {
             dependentPluginIds={["spaceNavigator"]}
           >
             <SpaceNavigatorWrapper />
-          </CsUiPluginsGuard>
-          <CsUiPluginsGuard
-            allowedAccountTypes={[["pro"], ["pro", "enterprise"]]}
-            dependentPluginIds={["queryBox:languageModelSelector"]}
-            additionalCheck={({ settings }) =>
-              settings?.plugins["queryBox:languageModelSelector"].main
-            }
-          >
-            <LanguageModelSelector />
           </CsUiPluginsGuard>
         </div>
         <CsUiPluginsGuard

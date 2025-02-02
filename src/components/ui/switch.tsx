@@ -1,15 +1,68 @@
 import { Switch as ArkSwitch } from "@ark-ui/react";
+import { cva, type VariantProps } from "class-variance-authority";
 import { ReactNode } from "react";
+
+const switchVariants = cva(
+  "x-inline-flex x-shrink-0 x-cursor-pointer x-items-center x-space-x-2 x-rounded-full x-border x-border-border x-bg-transparent x-transition-all focus-visible:x-outline-none focus-visible:x-ring-1 focus-visible:x-ring-ring focus-visible:x-ring-offset-2 focus-visible:x-ring-offset-background data-[disabled]:x-cursor-not-allowed data-[disabled]:x-opacity-50 [&>span]:x-transition-all [&>span]:x-duration-150 [&>span]:hover:x-scale-95",
+  {
+    variants: {
+      size: {
+        sm: "x-h-5 x-w-9",
+        base: "x-h-6 x-w-11",
+        lg: "x-h-7 x-w-[52px]",
+      },
+    },
+    defaultVariants: {
+      size: "base",
+    },
+  },
+);
+
+const thumbVariants = cva(
+  "x-pointer-events-none x-block x-rounded-full x-bg-muted-foreground x-shadow-lg x-ring-0 data-[state=checked]:x-bg-primary data-[state=checked]:x-text-primary",
+  {
+    variants: {
+      size: {
+        sm: "x-h-3.5 x-w-3.5 data-[state=checked]:x-translate-x-[17px] data-[state=unchecked]:x-translate-x-0.5",
+        base: "x-h-4 x-w-4 data-[state=checked]:x-translate-x-6 data-[state=unchecked]:x-translate-x-1",
+        lg: "x-h-5 x-w-5 data-[state=checked]:x-translate-x-[27px] data-[state=unchecked]:x-translate-x-0.5",
+      },
+    },
+    defaultVariants: {
+      size: "base",
+    },
+  },
+);
+
+const labelVariants = cva(
+  "x-duration-15 x-cursor-pointer x-transition-colors data-[disabled]:x-cursor-not-allowed data-[state=unchecked]:x-text-muted-foreground data-[disabled]:x-opacity-50 hover:data-[state=unchecked]:x-text-foreground",
+  {
+    variants: {
+      size: {
+        sm: "x-text-xs",
+        base: "x-text-sm",
+        lg: "x-text-base",
+      },
+    },
+    defaultVariants: {
+      size: "base",
+    },
+  },
+);
+
+type SwitchProps = ArkSwitch.RootProps &
+  VariantProps<typeof switchVariants> & {
+    labelClassName?: string;
+    textLabel?: ReactNode;
+  };
 
 function Switch({
   textLabel,
   labelClassName,
   className,
+  size,
   ...props
-}: ArkSwitch.RootProps & {
-  labelClassName?: string;
-  textLabel?: ReactNode;
-}) {
+}: SwitchProps) {
   return (
     <ArkSwitch.Root
       className={cn("x-flex x-items-center x-space-x-2", className)}
@@ -18,20 +71,13 @@ function Switch({
       <ArkSwitch.Context>
         {({ checked }) => (
           <>
-            <ArkSwitch.Control className="x-inline-flex x-h-6 x-w-11 x-shrink-0 x-cursor-pointer x-items-center x-space-x-2 x-rounded-full x-border x-border-border x-bg-transparent x-transition-all focus-visible:x-outline-none focus-visible:x-ring-1 focus-visible:x-ring-ring focus-visible:x-ring-offset-2 focus-visible:x-ring-offset-background data-[disabled]:x-cursor-not-allowed data-[disabled]:x-opacity-50 [&>span]:x-transition-all [&>span]:x-duration-150 [&>span]:hover:x-scale-95">
-              <ArkSwitch.Thumb
-                className={cn(
-                  "x-pointer-events-none x-block x-h-4 x-w-4 x-rounded-full x-bg-muted-foreground x-shadow-lg x-ring-0",
-                  "data-[state=checked]:x-translate-x-6 data-[state=checked]:x-bg-primary data-[state=checked]:x-text-primary",
-                  "data-[state=unchecked]:x-translate-x-1",
-                )}
-              />
+            <ArkSwitch.Control className={switchVariants({ size })}>
+              <ArkSwitch.Thumb className={thumbVariants({ size })} />
             </ArkSwitch.Control>
             {textLabel != null && textLabel !== "" && (
               <ArkSwitch.Label
                 className={cn(
-                  "x-duration-15 x-text-sm x-transition-colors",
-                  "x-cursor-pointer data-[disabled]:x-cursor-not-allowed data-[state=unchecked]:x-text-muted-foreground data-[disabled]:x-opacity-50 hover:data-[state=unchecked]:x-text-foreground",
+                  labelVariants({ size }),
                   {
                     "x-text-primary": checked,
                   },

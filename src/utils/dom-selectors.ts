@@ -5,7 +5,8 @@ export const DOM_SELECTORS = {
   },
   THREAD: {
     /** The outermost container that wraps the thread container and the query box */
-    WRAPPER: ".flex-1.basis-0.overflow-auto.scrollbar-thin:has(>.max-w-threadWidth)",
+    WRAPPER:
+      ".flex-1.basis-0.overflow-auto.scrollbar-thin:has(>.max-w-threadWidth)",
     NAVBAR: ".sticky.left-0.right-0.top-0.z-10.border-b",
     /** The container that wraps all messages */
     CONTAINER: {
@@ -87,6 +88,7 @@ export const DOM_SELECTORS = {
     INCOGNITO_TOGGLE: ".mr-xs.flex.shrink-0.items-center",
   },
   SPACES_PAGE: {
+    INFO_CARD: ".col-span-4 > div > div",
     SPACE_CARD: `.contents a[data-testid="collection-preview"]`,
   },
   SETTINGS_PAGE: {
@@ -132,6 +134,9 @@ export const DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS = {
       },
     },
     NAVBAR: "thread-navbar",
+  },
+  QUERY_BOX_CHILD: {
+    COMPONENTS_WRAPPER: "query-box-components-wrapper",
   },
 } as const;
 

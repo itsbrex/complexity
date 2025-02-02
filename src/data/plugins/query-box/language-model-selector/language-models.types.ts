@@ -1,8 +1,10 @@
 import { z } from "zod";
 
 import {
+  fastLanguageModels,
   languageModels,
   localLanguageModels,
+  reasoningLanguageModels,
 } from "@/data/plugins/query-box/language-model-selector/language-models";
 
 export const LanguageModelSchema = z.object({
@@ -29,4 +31,16 @@ export function isLanguageModelCode(
   value: string,
 ): value is LanguageModel["code"] {
   return languageModels.some((model) => model.code === value);
+}
+
+export function isReasoningLanguageModelCode(
+  value: string,
+): value is LanguageModel["code"] {
+  return reasoningLanguageModels.some((model) => model.code === value);
+}
+
+export function isFastLanguageModelCode(
+  value: string,
+): value is LanguageModel["code"] {
+  return fastLanguageModels.some((model) => model.code === value);
 }

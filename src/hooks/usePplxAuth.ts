@@ -8,6 +8,7 @@ export default function usePplxAuth() {
   const orgStatusQuery = useQuery({
     ...pplxApiQueries.auth._ctx.orgStatus,
     enabled: isLoggedIn,
+    staleTime: 60 * 1000,
   });
   const isOrgMember = orgStatusQuery.data?.is_in_organization ?? false;
 

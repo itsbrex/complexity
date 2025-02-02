@@ -21,7 +21,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Switch } from "@/components/ui/switch";
 import { Ul } from "@/components/ui/typography";
-import { PLUGIN_TAGS, PLUGINS_METADATA } from "@/data/plugins/plugins-data";
+import { PLUGINS_METADATA } from "@/data/plugins-data/plugins-data";
+import { PLUGIN_TAGS } from "@/data/plugins-data/tags";
 import { PLUGIN_DETAILS } from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/plugins-details";
 import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatureFlags";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";

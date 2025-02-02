@@ -20,6 +20,7 @@ import "@/plugins/_core/dom-observers/settings-page/observers";
 
 // Query Box Plugins
 import "@/plugins/language-model-selector/network-intercept-middlewares";
+import "@/plugins/language-model-selector/respect-space-model";
 import "@/plugins/focus-web-recency/network-intercept-middlewares";
 import "@/plugins/better-focus-selector/network-intercept-middlewares";
 import "@/plugins/_core/ui-groups/query-box/shared-store";

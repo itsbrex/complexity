@@ -3,7 +3,8 @@ import {
   sendMessage,
 } from "webext-bridge/content-script";
 
-import { CorePluginId, PLUGINS_METADATA } from "@/data/plugins/plugins-data";
+import { PLUGINS_METADATA } from "@/data/plugins-data/plugins-data";
+import { CorePluginId } from "@/data/plugins-data/plugins-data.types";
 import { InternalWebSocketManager } from "@/plugins/_api/web-socket/internal-web-socket-manager";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";

@@ -31,7 +31,7 @@ export default function useProcessCodeBlocks() {
       const $existingPortalContainer = codeBlock.$wrapper.prev();
 
       const codeData = await sendMessage(
-        "reactVdom:getCodeFromCodeBlock",
+        "reactVdom:getCodeBlockContent",
         {
           messageBlockIndex,
           codeBlockIndex,

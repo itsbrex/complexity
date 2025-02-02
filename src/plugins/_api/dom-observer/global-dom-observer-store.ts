@@ -3,7 +3,6 @@ import { subscribeWithSelector } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
 
-import { LanguageModelCode } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { CodeBlock, MessageBlock } from "@/utils/ui-utils.types";
 
 export type ExtendedMessageBlock = MessageBlock & {
@@ -22,7 +21,6 @@ type QueryBoxes = {
   mainModalQueryBox: HTMLElement | null;
   spaceQueryBox: HTMLElement | null;
   followUpQueryBox: HTMLElement | null;
-  reasoningModePreferenceModelCode: LanguageModelCode | null;
 };
 
 type HomeComponents = {
@@ -116,7 +114,6 @@ export const globalDomObserverStore =
             mainModalQueryBox: null,
             spaceQueryBox: null,
             followUpQueryBox: null,
-            reasoningModePreferenceModelCode: null,
           },
           setQueryBoxes: createSectionSetter<QueryBoxes>(
             set,

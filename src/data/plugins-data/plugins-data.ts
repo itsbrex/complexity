@@ -1,94 +1,12 @@
+import { CplxPluginMetadata } from "@/data/plugins-data/plugins-data.types";
 import { getPlatform } from "@/hooks/usePlatformDetection";
-import { PluginId } from "@/services/extension-local-storage/plugins.types";
-
-const CORE_OBSERVERS = [
-  "domObserver:home",
-  "domObserver:queryBoxes",
-  "domObserver:thread",
-  "domObserver:sidebar",
-  "domObserver:spacesPage",
-  "domObserver:settingsPage",
-] as const;
-
-export type CoreObserverId = (typeof CORE_OBSERVERS)[number];
-
-const CORE_PLUGINS = [
-  "networkIntercept",
-  "spaRouter",
-  "webSocket",
-  "reactVdom",
-  "mermaidRenderer",
-  "markmapRenderer",
-  ...CORE_OBSERVERS,
-] as const;
-
-export type CorePluginId = (typeof CORE_PLUGINS)[number];
-
-export type PluginTagValues = keyof typeof PLUGIN_TAGS;
-
-export const PLUGIN_TAGS = {
-  ui: {
-    label: "Appearance",
-    description: "UI related plugins",
-  },
-  ux: {
-    label: "Ease of Use",
-    description: "UX related plugins",
-  },
-  desktopOnly: {
-    label: "Desktop Only",
-    description: "Can only be used on desktop/screen width > 768px",
-  },
-  slashCommand: {
-    label: "Slash Command",
-    description: "Plugins that are enabled by typing a slash command",
-  },
-  privacy: {
-    label: "Privacy",
-    description: "Privacy related plugins",
-  },
-  pplxPro: {
-    label: "Perplexity Pro",
-    description: "Requires an active Perplexity Pro subscription",
-  },
-  experimental: {
-    label: "Experimental",
-    description:
-      "Experimental plugins. Subject to change or removal without prior notice",
-  },
-  beta: {
-    label: "Beta",
-    description: "Official plugins but still in testing/development",
-  },
-  forFun: {
-    label: "For Fun",
-    description: "Just for fun!",
-  },
-  new: {
-    label: "New",
-    description: "Recently added plugins",
-  },
-} as const;
-
-export type CplxPluginMetadata = Record<
-  PluginId,
-  {
-    id: PluginId;
-    routeSegment: string;
-    title: string;
-    description: React.ReactNode;
-    tags?: PluginTagValues[];
-    dependentCorePlugins?: CorePluginId[];
-    dependentPlugins?: PluginId[];
-  }
->;
 
 export const PLUGINS_METADATA: CplxPluginMetadata = {
   "queryBox:languageModelSelector": {
     id: "queryBox:languageModelSelector",
     routeSegment: "query-box-language-model-selector",
     title: "Language Model Selector",
-    description: "Enable selection of different language models",
+    description: "Take complete control of all available language models.",
     tags: ["ui", "ux", "pplxPro"],
     dependentCorePlugins: [
       "networkIntercept",

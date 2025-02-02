@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
-import { PLUGINS_METADATA } from "@/data/plugins/plugins-data";
+import { PLUGINS_METADATA } from "@/data/plugins-data/plugins-data";
 import Page from "@/entrypoints/options-page/components/Page";
 import PluginDetailsModal from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/PluginDetailsModal";
 import PluginDetailsPage from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/PluginDetailsPage";

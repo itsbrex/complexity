@@ -39,6 +39,11 @@ const cleanup = () => {
 
 csLoaderRegistry.register({
   id: "coreDomObserver:threadComponents",
+  dependencies: [
+    "cache:pluginsStates",
+    "messaging:spaRouter",
+    "messaging:namespaceSetup",
+  ],
   loader: () => {
     setupThreadComponentsObserver(whereAmI());
 
@@ -55,7 +60,6 @@ csLoaderRegistry.register({
       },
     );
   },
-  dependencies: ["cache:pluginsStates", "messaging:spaRouter"],
 });
 
 async function setupThreadComponentsObserver(

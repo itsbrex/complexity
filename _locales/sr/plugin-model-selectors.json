@@ -1,8 +1,22 @@
 {
   "languageModelSelector": {
-    "tooltip": "Изабери језички модел"
+    "tooltip": "Izaberi jezički model",
+    "proSearch": {
+      "tooltip": "Dobij do 3 web izvora"
+    },
+    "reasoningModels": {
+      "label": "Modeli rezonovanja",
+      "tooltip": {
+        "description": "Generisanje odgovora će trajati duže, ali odgovori su obično detaljniji i precizniji.",
+        "proSearchNote": "<emphasis>Pro Search</emphasis> je uvijek aktivan pri izboru modela rezonovanja."
+      },
+      "usesLeft": {
+        "unlimited": "Neograničeno",
+        "limited": "Preostalo {{count}} korišćenja"
+      }
+    }
   },
   "imageGenModelSelector": {
-    "tooltip": "Изабери модел за слике"
+    "tooltip": "Izaberi model za slike"
   }
 }

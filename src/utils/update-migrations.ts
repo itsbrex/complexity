@@ -11,8 +11,8 @@ type MigrationFn = ({
 export const migrateHideHomepageWidgetsKey: MigrationFn = async ({
   oldRawSettings,
 }) => {
-  console.log("[ExtUpdateMigrations] Migrate Hide HomepageWidgets Key")
-  
+  console.log("[ExtUpdateMigrations] Migrate Hide HomepageWidgets Key");
+
   return produce(oldRawSettings, (draft) => {
     draft.plugins["home:hideHomepageWidgets"] = {
       enabled: (oldRawSettings.plugins["zenMode"] as any)
@@ -24,8 +24,8 @@ export const migrateHideHomepageWidgetsKey: MigrationFn = async ({
 export const migrateInstantRewriteButtonKey: MigrationFn = async ({
   oldRawSettings,
 }) => {
-  console.log("[ExtUpdateMigrations] Migrate Instant Rewrite Button key")
-  
+  console.log("[ExtUpdateMigrations] Migrate Instant Rewrite Button key");
+
   return produce(oldRawSettings, (draft) => {
     draft.plugins["thread:instantRewriteButton"] = {
       enabled: (oldRawSettings.plugins["thread:betterMessageToolbars"] as any)

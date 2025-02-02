@@ -47,6 +47,7 @@ const selectTriggerVariants = cva(
           "active:scale-95 x-bg-buttonBackground hover:x-text-muted-foreground focus:x-outline-none",
         ghost:
           "x-text-center x-text-muted-foreground hover:x-bg-primary-foreground hover:x-text-foreground active:x-scale-95",
+        noStyle: "",
       },
     },
     defaultVariants: {
@@ -89,7 +90,7 @@ const SelectValue = ({ className, ...props }: SelectValueProps) => {
 
 SelectValue.displayName = "SelectValue";
 
-export type SelectContentProps = ArkSelect.ContentProps;
+export type SelectContentProps = ComponentProps<typeof ArkSelect.Content>;
 
 const SelectContent = ({ className, ...props }: SelectContentProps) => {
   const { portal } = use(SelectLocalContext);

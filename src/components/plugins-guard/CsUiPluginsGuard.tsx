@@ -23,7 +23,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Ul } from "@/components/ui/typography";
-import { PLUGINS_METADATA } from "@/data/plugins/plugins-data";
+import { PLUGINS_METADATA } from "@/data/plugins-data/plugins-data";
 import usePplxIncognitoMode from "@/hooks/usePplxIncognitoMode";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states";

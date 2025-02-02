@@ -1,6 +1,20 @@
 {
   "languageModelSelector": {
-    "tooltip": "言語モデルを選択"
+    "tooltip": "言語モデルを選択",
+    "proSearch": {
+      "tooltip": "最大3つのWeb情報源を取得"
+    },
+    "reasoningModels": {
+      "label": "推論モデル",
+      "tooltip": {
+        "description": "回答の生成に時間がかかりますが、より詳細で正確な傾向があります。",
+        "proSearchNote": "推論モデルを選択すると、<emphasis>Pro Search</emphasis>は常に有効になります。"
+      },
+      "usesLeft": {
+        "unlimited": "無制限",
+        "limited": "残り{{count}}回"
+      }
+    }
   },
   "imageGenModelSelector": {
     "tooltip": "画像モデルを選択"

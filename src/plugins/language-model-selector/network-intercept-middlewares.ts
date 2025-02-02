@@ -1,7 +1,7 @@
 import { produce } from "immer";
 
 import { pluginGuardsStore } from "@/components/plugins-guard/store";
-import { reasoningLanguageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
+import { isReasoningLanguageModelCode } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { networkInterceptMiddlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
 import {
   encodeWebSocketData,
@@ -53,14 +53,11 @@ csLoaderRegistry.register({
 
           if (!isPerplexityAskMessage) return skip();
 
-          const isRewriteMessage = payload[2].query_source == "retry";
+          const isRetry = payload[2].query_source == "retry";
+
+          if (isRetry) return skip();
 
           const settings = ExtensionLocalStorageService.getCachedSync();
-
-          const isReasoningModel =
-            reasoningLanguageModels.find(
-              (model) => model.code === payload[2].model_preference,
-            ) != null;
 
           const newPayload = produce(payload, (draft) => {
             draft[2].timezone =
@@ -69,15 +66,21 @@ csLoaderRegistry.register({
                 ? "America/Los_Angeles"
                 : payload[2].timezone;
 
-            if (!isReasoningModel) {
-              draft[2].model_preference = !isRewriteMessage
-                ? sharedQueryBoxStore.getState().selectedLanguageModel
-                : payload[2].model_preference;
-            } else {
-              draft[2].reasoning_model_preference =
-                sharedQueryBoxStore.getState().selectedLanguageModel;
-              draft[2].mode = "copilot";
-            }
+            const { isProSearchEnabled, selectedLanguageModel } =
+              sharedQueryBoxStore.getState();
+
+            const isReasoningMode = isReasoningLanguageModelCode(
+              selectedLanguageModel,
+            );
+
+            const modelPreferenceKey = isReasoningMode
+              ? "reasoning_model_preference"
+              : "model_preference";
+
+            draft[2][modelPreferenceKey] = selectedLanguageModel;
+            draft[2].mode =
+              isProSearchEnabled || isReasoningMode ? "copilot" : "concise";
+            draft[2].is_pro_reasoning_mode = isReasoningMode;
           });
 
           return encodeWebSocketData({

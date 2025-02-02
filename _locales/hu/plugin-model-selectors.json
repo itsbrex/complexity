@@ -1,8 +1,22 @@
 {
   "languageModelSelector": {
-    "tooltip": "Nyelvi modell kiválasztása"
+    "tooltip": "Nyelvi modell választása",
+    "proSearch": {
+      "tooltip": "Akár 3 webes forrás beszerzése"
+    },
+    "reasoningModels": {
+      "label": "Következtető modellek",
+      "tooltip": {
+        "description": "A válaszok generálása tovább tart, de általában részletesebbek és pontosabbak.",
+        "proSearchNote": "A <emphasis>Pro Search</emphasis> mindig aktív következtető modell választásakor."
+      },
+      "usesLeft": {
+        "unlimited": "Korlátlan",
+        "limited": "{{count}} használat maradt"
+      }
+    }
   },
   "imageGenModelSelector": {
-    "tooltip": "Képgeneráló modell kiválasztása"
+    "tooltip": "Képmodell választása"
   }
 }

@@ -3,28 +3,28 @@ import { SVGProps } from "react";
 export default function XAiIcon({ ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
       width="0.8em"
       height="0.8em"
-      viewBox="0 0 1000 1000"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 841.89 595.28"
       {...props}
     >
       <g>
         <polygon
           fill="currentColor"
-          points="226.83 411.15 501.31 803.15 623.31 803.15 348.82 411.15 226.83 411.15"
+          points="557.09,211.99 565.4,538.36 631.96,538.36 640.28,93.18"
         />
         <polygon
           fill="currentColor"
-          points="348.72 628.87 226.69 803.15 348.77 803.15 409.76 716.05 348.72 628.87"
+          points="640.28,56.91 538.72,56.91 379.35,284.53 430.13,357.05"
         />
         <polygon
           fill="currentColor"
-          points="651.23 196.85 440.28 498.12 501.32 585.29 773.31 196.85 651.23 196.85"
+          points="201.61,538.36 303.17,538.36 353.96,465.84 303.17,393.31"
         />
         <polygon
           fill="currentColor"
-          points="673.31 383.25 673.31 803.15 773.31 803.15 773.31 240.44 673.31 383.25"
+          points="201.61,211.99 430.13,538.36 531.69,538.36 303.17,211.99"
         />
       </g>
     </svg>

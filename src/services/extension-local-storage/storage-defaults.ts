@@ -9,9 +9,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
   plugins: {
     "queryBox:languageModelSelector": {
       enabled: false,
-      main: true,
       respectDefaultSpaceModel: false,
-      followUp: true,
       changeTimezone: false,
     },
     "queryBox:fullWidthFollowUp": {
@@ -27,7 +25,7 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     },
     "queryBox:slashCommandMenu": {
       enabled: false,
-      showTriggerButton: true,
+      showTriggerButton: false,
     },
     "queryBox:slashCommandMenu:promptHistory": {
       enabled: false,

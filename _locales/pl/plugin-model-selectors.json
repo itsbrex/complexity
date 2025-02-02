@@ -1,6 +1,20 @@
 {
   "languageModelSelector": {
-    "tooltip": "Wybierz model językowy"
+    "tooltip": "Wybierz model językowy",
+    "proSearch": {
+      "tooltip": "Uzyskaj do 3 źródeł internetowych"
+    },
+    "reasoningModels": {
+      "label": "Modele rozumowania",
+      "tooltip": {
+        "description": "Generowanie odpowiedzi zajmie więcej czasu, ale odpowiedzi są zazwyczaj bardziej szczegółowe i dokładne.",
+        "proSearchNote": "<emphasis>Pro Search</emphasis> jest zawsze aktywny przy wyborze modelu rozumowania."
+      },
+      "usesLeft": {
+        "unlimited": "Bez limitu",
+        "limited": "Pozostało {{count}} użyć"
+      }
+    }
   },
   "imageGenModelSelector": {
     "tooltip": "Wybierz model obrazów"

@@ -1,6 +1,20 @@
 {
   "languageModelSelector": {
-    "tooltip": "Escolher modelo de linguagem"
+    "tooltip": "Escolher modelo de linguagem",
+    "proSearch": {
+      "tooltip": "Obter até 3 fontes da web"
+    },
+    "reasoningModels": {
+      "label": "Modelos de raciocínio",
+      "tooltip": {
+        "description": "As respostas demorarão mais tempo a ser geradas, mas tendem a ser mais detalhadas e precisas.",
+        "proSearchNote": "<emphasis>Pro Search</emphasis> está sempre ativo ao escolher um modelo de raciocínio."
+      },
+      "usesLeft": {
+        "unlimited": "Ilimitado",
+        "limited": "{{count}} utilizações restantes"
+      }
+    }
   },
   "imageGenModelSelector": {
     "tooltip": "Escolher modelo de imagem"

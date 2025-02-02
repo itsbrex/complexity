@@ -11,9 +11,7 @@ export type PluginSettings = z.infer<typeof PluginSettingsSchema>;
 
 export const PluginsSchema = z.object({
   "queryBox:languageModelSelector": PluginSettingsSchema.extend({
-    main: z.boolean(),
     respectDefaultSpaceModel: z.boolean(),
-    followUp: z.boolean(),
     changeTimezone: z.boolean(),
   }),
   "queryBox:fullWidthFollowUp": PluginSettingsSchema,

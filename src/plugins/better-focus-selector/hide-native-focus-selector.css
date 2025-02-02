@@ -1,7 +1,18 @@
 [cplx-main-query-box],
 [cplx-main-modal-query-box] {
-  span button:has(svg[data-icon="bars-filter"]),
-  span button:has(svg[data-icon="chevron-down"]) {
-    display: none;
+  [data-cplx-component="query-box-components-wrapper"] > div:nth-child(2) {
+    &:has(> div.mr-xs.flex.shrink-0.items-center) {
+      & > span:nth-child(3),
+      & > span:nth-child(3) {
+        display: none;
+      }
+    }
+
+    &:not(:has(> div.mr-xs.flex.shrink-0.items-center)) {
+      & > span:nth-child(2),
+      & > span:nth-child(2) {
+        display: none;
+      }
+    }
   }
 }

@@ -12,7 +12,7 @@ import {
 } from "@/utils/dom-selectors";
 import { errorWrapper } from "@/utils/error-wrapper";
 import { UiUtils } from "@/utils/ui-utils";
-import { getReactFiberKey, getReactPropsKey } from "@/utils/utils";
+import { getReactFiberKey } from "@/utils/utils";
 
 export type ReactVdomEvents = {
   "reactVdom:isMessageBlockInFlight": (params: {
@@ -30,7 +30,7 @@ export type ReactVdomEvents = {
   "reactVdom:getMessageFocusMode": (params: {
     index: number;
   }) => FocusMode["code"] | null;
-  "reactVdom:getCodeFromCodeBlock": (params: {
+  "reactVdom:getCodeBlockContent": (params: {
     messageBlockIndex: number;
     codeBlockIndex: number;
   }) => {
@@ -42,11 +42,6 @@ export type ReactVdomEvents = {
     messageBlockIndex: number;
     optionIndex?: number;
   }) => boolean;
-  "reactVdom:getCopilotReasoningModeModelCode": () => LanguageModelCode | null;
-  "reactVdom:setCopilotReasoningModeModelCode": (params: {
-    modelCode: LanguageModelCode | null;
-  }) => boolean;
-  "reactVdom:toggleCopilotState": (params: { checked: boolean }) => boolean;
 };
 
 export function setupReactVdomListeners() {
@@ -158,7 +153,7 @@ export function setupReactVdomListeners() {
   });
 
   onMessage(
-    "reactVdom:getCodeFromCodeBlock",
+    "reactVdom:getCodeBlockContent",
     ({ data: { messageBlockIndex, codeBlockIndex } }) => {
       const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}"][data-index="${codeBlockIndex}"] pre`;
 
@@ -240,10 +235,24 @@ export function setupReactVdomListeners() {
     if (!$activeQueryBox.length) {
       return;
     }
+    function getFocusSelector() {
+      const isIncognito =
+        $activeQueryBox
+          .find(
+            `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD.COMPONENTS_WRAPPER}"] > div:nth-child(2)`,
+          )
+          .find(DOM_SELECTORS.QUERY_BOX.INCOGNITO_TOGGLE).length > 0;
 
-    const $focusSelector = $activeQueryBox.find(
-      `button:has(svg[data-icon="bars-filter"]), button:has(svg[data-icon="chevron-down"])`,
-    );
+      return $activeQueryBox
+        .find(
+          `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD.COMPONENTS_WRAPPER}"] > div:nth-child(2)`,
+        )
+        .find(
+          `> span:nth-child(${isIncognito ? 3 : 2}) > button:has(svg[data-icon="bars-filter"]), > span:nth-child(${isIncognito ? 3 : 2}) > button:has(svg[data-icon="chevron-down"])`,
+        );
+    }
+
+    const $focusSelector = getFocusSelector();
 
     if (!$focusSelector.length) {
       return;
@@ -308,101 +317,6 @@ export function setupReactVdomListeners() {
       return true;
     },
   );
-
-  onMessage("reactVdom:getCopilotReasoningModeModelCode", () => {
-    const $toolbarWrapper = $(
-      `${DOM_SELECTORS.QUERY_BOX.SUBMIT_BUTTON}`,
-    ).parent();
-
-    if (!$toolbarWrapper.length) return null;
-
-    const fiberNode = ($toolbarWrapper[0] as any)[
-      getReactPropsKey($toolbarWrapper[0])
-    ];
-
-    if (fiberNode == null) return null;
-
-    const [modelCode, error] = errorWrapper(() =>
-      findReactFiberNodeValue({
-        fiberNode,
-        condition: (node) =>
-          node.children[1][1].props.reasoningModelPreference != null,
-        select: (node) =>
-          node.children[1][1].props
-            .reasoningModelPreference as LanguageModelCode,
-      }),
-    )();
-
-    if (error || modelCode == null) {
-      return null;
-    }
-
-    return modelCode;
-  });
-
-  onMessage(
-    "reactVdom:setCopilotReasoningModeModelCode",
-    ({ data: { modelCode } }) => {
-      const $toolbarWrapper = $(
-        `${DOM_SELECTORS.QUERY_BOX.SUBMIT_BUTTON}`,
-      ).parent();
-
-      if (!$toolbarWrapper.length) return false;
-
-      const fiberNode = ($toolbarWrapper[0] as any)[
-        getReactPropsKey($toolbarWrapper[0])
-      ];
-
-      if (fiberNode == null) return false;
-
-      const [setReasoningModelPreferenceHandler, error] = errorWrapper(() =>
-        findReactFiberNodeValue({
-          fiberNode,
-          condition: (node) =>
-            node.children[1][1].props.setReasoningModelPreference != null,
-          select: (node) =>
-            node.children[1][1].props.setReasoningModelPreference as (
-              modelCode: LanguageModelCode | null,
-            ) => void,
-        }),
-      )();
-
-      if (error || setReasoningModelPreferenceHandler == null) return false;
-
-      setReasoningModelPreferenceHandler(modelCode);
-
-      return true;
-    },
-  );
-
-  onMessage("reactVdom:toggleCopilotState", ({ data: { checked } }) => {
-    const $toolbarWrapper = $(
-      `${DOM_SELECTORS.QUERY_BOX.SUBMIT_BUTTON}`,
-    ).parent();
-
-    if (!$toolbarWrapper.length) return false;
-
-    const fiberNode = ($toolbarWrapper[0] as any)[
-      getReactPropsKey($toolbarWrapper[0])
-    ];
-
-    if (fiberNode == null) return false;
-
-    const [onCheckedChangeHandler, error] = errorWrapper(() =>
-      findReactFiberNodeValue({
-        fiberNode,
-        condition: (node) => node.children[1][1].props.onChange != null,
-        select: (node) =>
-          node.children[1][1].props.onChange as (checked: boolean) => void,
-      }),
-    )();
-
-    if (error || onCheckedChangeHandler == null) return false;
-
-    onCheckedChangeHandler(checked);
-
-    return true;
-  });
 }
 
 function findReactFiberNodeValue<T>({

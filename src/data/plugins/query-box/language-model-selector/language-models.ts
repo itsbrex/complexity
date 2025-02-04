@@ -48,6 +48,14 @@ export const localLanguageModels = [
     isReasoningModel: false,
   },
   {
+    label: "Gemini 2.0 Flash",
+    shortLabel: "Gemini Flash",
+    code: "gemini2flash",
+    provider: "Google",
+    limitKey: "gpt4_limit",
+    isReasoningModel: false,
+  },
+  {
     label: "Grok-2",
     shortLabel: "Grok-2",
     code: "grok",

@@ -1,11 +1,13 @@
 import { produce } from "immer";
 import { sendMessage } from "webext-bridge/content-script";
 
+import { isReasoningLanguageModelCode } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { networkInterceptMiddlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
 import {
   encodeWebSocketData,
   parseWebSocketData,
 } from "@/plugins/_core/network-intercept/web-socket-message-parser";
+import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
 
 export async function handleInstantRewrite({
   messageBlockIndex,
@@ -19,6 +21,17 @@ export async function handleInstantRewrite({
     },
     "window",
   );
+
+  const $proSearchPanel = $(
+    `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY}"]`,
+  )
+    .next()
+    .find("> div[data-test-id]:first-child");
+
+  if (!$proSearchPanel.length) return;
+
+  const isProSearchEnabled =
+    $proSearchPanel.find(`svg[data-icon="copilot"]`).length > 0;
 
   if (currentModelPreferences == null) return;
 
@@ -54,16 +67,22 @@ export async function handleInstantRewrite({
         "instant-rewrite-model-change",
       );
 
-      const modelPreferenceKey = currentModelPreferences.isProReasoningMode
+      const isProReasoningMode = isReasoningLanguageModelCode(
+        currentModelPreferences.displayModel,
+      );
+
+      const modelPreferenceKey = isProReasoningMode
         ? "reasoning_model_preference"
         : "model_preference";
 
-      const newPayload = produce(payload, (draft) => {
-        if (currentModelPreferences.isProReasoningMode) {
-          draft[2].mode = currentModelPreferences.mode.toLowerCase();
-          draft[2].is_pro_reasoning_mode = true;
-        }
+      const toDeleteKey = isProReasoningMode
+        ? "model_preference"
+        : "reasoning_model_preference";
 
+      const newPayload = produce(payload, (draft) => {
+        delete payload[2][toDeleteKey];
+        draft[2].mode = isProSearchEnabled ? "copilot" : "concise";
+        draft[2].is_pro_reasoning_mode = isProReasoningMode;
         draft[2][modelPreferenceKey] = currentModelPreferences.displayModel;
       });
 

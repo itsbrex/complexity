@@ -19,8 +19,6 @@ export type ReactVdomEvents = {
     index: number;
   }) => boolean | null;
   "reactVdom:getMessageModelPreferences": (params: { index: number }) => {
-    mode: string;
-    isProReasoningMode: boolean;
     displayModel: LanguageModelCode;
   } | null;
   "reactVdom:getMessageDisplayModelCode": (params: {
@@ -98,8 +96,8 @@ export function setupReactVdomListeners() {
     if (error || preferences == null) return null;
 
     return {
-      mode: preferences.mode,
-      isProReasoningMode: preferences.is_pro_reasoning_mode,
+      // mode: preferences.mode,
+      // isProReasoningMode: preferences.is_pro_reasoning_mode,
       displayModel: preferences.display_model,
     };
   });

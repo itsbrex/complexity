@@ -63,9 +63,6 @@ export default function ProSearchSwitch({
           }}
         />
       </div>
-      <div className="x-text-sm x-text-muted-foreground">
-        {t("plugin-model-selectors:languageModelSelector.proSearch.tooltip")}
-      </div>
     </div>
   );
 }

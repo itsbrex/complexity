@@ -49,7 +49,6 @@ export function handleSearchModeChange() {
           });
           return;
         } else if (previousIsProSearchEnabled && !isProSearchEnabled) {
-          console.log("hey");
           setCookie("pplx.search-mode", "default", 30);
           sharedQueryBoxStore.setState((state) => {
             const defaultLanguageModel =

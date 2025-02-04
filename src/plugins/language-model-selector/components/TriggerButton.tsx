@@ -1,3 +1,4 @@
+import { type ComponentType, type SVGProps } from "react";
 import { LuCpu } from "react-icons/lu";
 
 import FaLightBulbOn from "@/components/icons/FaLightBulbOn";
@@ -12,51 +13,63 @@ import { useSharedQueryBoxStore } from "@/plugins/_core/ui-groups/query-box/shar
 export default function BetterLanguageModelSelectorTriggerButton() {
   const { isMobile } = useIsMobileStore();
 
-  const { isProSearchEnabled, selectedLanguageModel } =
-    useSharedQueryBoxStore();
-
-  const isReasoningModel = isReasoningLanguageModelCode(selectedLanguageModel);
-  const modelInfo = languageModels.find(
-    (m) => m.code === selectedLanguageModel,
+  const isProSearchEnabled = useSharedQueryBoxStore(
+    (state) => state.isProSearchEnabled,
+  );
+  const selectedLanguageModel = useSharedQueryBoxStore(
+    (state) => state.selectedLanguageModel,
   );
 
-  const labelfragments = [];
+  const isReasoningModel = useMemo(
+    () => isReasoningLanguageModelCode(selectedLanguageModel),
+    [selectedLanguageModel],
+  );
 
-  if (isProSearchEnabled && !isReasoningModel && !isMobile)
-    labelfragments.push("Pro");
+  const modelInfo = useMemo(
+    () => languageModels.find((m) => m.code === selectedLanguageModel),
+    [selectedLanguageModel],
+  );
 
-  if (isReasoningModel) labelfragments.push("Reasoning");
+  const label = useMemo(() => {
+    const fragments = [];
+    if (isProSearchEnabled && !isReasoningModel && !isMobile)
+      fragments.push("Pro");
+    if (isReasoningModel && !isMobile) fragments.push("Reasoning");
+    fragments.push(modelInfo?.shortLabel);
+    return fragments.join(" · ");
+  }, [isProSearchEnabled, isReasoningModel, isMobile, modelInfo?.shortLabel]);
 
-  labelfragments.push(modelInfo?.shortLabel);
+  const Icon = useMemo(
+    () =>
+      isReasoningModel
+        ? FaLightBulbOn
+        : isProSearchEnabled
+          ? ProSearchIcon
+          : ((modelInfo?.provider != null
+              ? languageModelProviderIcons[modelInfo.provider]
+              : LuCpu) as ComponentType<SVGProps<SVGSVGElement>>),
+    [isReasoningModel, isProSearchEnabled, modelInfo?.provider],
+  );
 
-  const label = labelfragments.join(" · ");
-
-  const ModelIcon =
-    modelInfo?.provider != null
-      ? languageModelProviderIcons[modelInfo?.provider]
-      : null;
-
-  const Icon = isReasoningModel
-    ? FaLightBulbOn
-    : isProSearchEnabled
-      ? ProSearchIcon
-      : (ModelIcon ?? LuCpu);
+  const className = useMemo(
+    () =>
+      cn(
+        "x-flex x-h-8 x-items-center x-gap-2 x-rounded-md x-border x-border-transparent x-px-2 x-text-sm x-font-medium x-text-muted-foreground x-transition-all active:x-scale-95",
+        {
+          "x-border-primary/30 x-bg-primary/10 x-text-primary hover:x-bg-primary/10":
+            isProSearchEnabled,
+          "x-border-border/50 hover:x-bg-primary-foreground hover:x-text-foreground":
+            !isProSearchEnabled,
+        },
+      ),
+    [isProSearchEnabled],
+  );
 
   return (
     <Tooltip
       content={t("plugin-model-selectors:languageModelSelector.tooltip")}
     >
-      <div
-        className={cn(
-          "x-flex x-h-8 x-items-center x-gap-2 x-rounded-md x-border x-border-transparent x-px-2 x-text-sm x-font-medium x-text-muted-foreground x-transition-all active:x-scale-95",
-          {
-            "x-border-primary/30 x-bg-primary/10 x-text-primary hover:x-bg-primary/10":
-              isProSearchEnabled,
-            "x-border-border/50 hover:x-bg-primary-foreground hover:x-text-foreground":
-              !isProSearchEnabled,
-          },
-        )}
-      >
+      <div className={className}>
         <Icon className="x-size-4 x-shrink-0" />
         <span className="x-truncate">{label}</span>
       </div>

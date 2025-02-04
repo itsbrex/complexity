@@ -77,6 +77,12 @@ csLoaderRegistry.register({
               ? "reasoning_model_preference"
               : "model_preference";
 
+            const toDeleteKey = isReasoningMode
+              ? "model_preference"
+              : "reasoning_model_preference";
+
+            delete draft[2][toDeleteKey];
+
             draft[2][modelPreferenceKey] = selectedLanguageModel;
             draft[2].mode =
               isProSearchEnabled || isReasoningMode ? "copilot" : "concise";

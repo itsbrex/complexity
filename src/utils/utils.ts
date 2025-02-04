@@ -366,14 +366,16 @@ export function insertCss({
 }): () => void {
   if (!id.startsWith("cplx-")) id = `cplx-${id}`;
 
-  const styleSelector = `style#${id}`;
-  const removeStyle = () => $(styleSelector).remove();
+  const isLink = css.startsWith("chrome-extension://");
+  const tagName = isLink ? "link" : "style";
+  const selector = `${tagName}#${id}`;
+  const removeStyle = () => $(selector).remove();
 
-  if ($(styleSelector).length) {
+  if ($(selector).length) {
     return removeStyle;
   }
 
-  if (css.startsWith("chrome-extension://")) {
+  if (isLink) {
     $("<link>")
       .attr({
         rel: "stylesheet",

@@ -7,6 +7,7 @@ import {
   handleSearchModeChange,
   populateDefaults,
   resetForceExternalSourcesOffOnRouteChange,
+  syncNativeModelSelector,
 } from "@/plugins/_core/ui-groups/query-box/utils";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 
@@ -55,6 +56,7 @@ csLoaderRegistry.register({
     populateDefaults();
     resetForceExternalSourcesOffOnRouteChange();
     handleSearchModeChange();
+    syncNativeModelSelector();
   },
 });
 

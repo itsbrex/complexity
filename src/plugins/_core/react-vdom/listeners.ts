@@ -6,7 +6,7 @@ import {
   DOM_SELECTORS,
 } from "@/utils/dom-selectors";
 import { errorWrapper } from "@/utils/error-wrapper";
-import { getReactFiberKey } from "@/utils/utils";
+import { getCookie, getReactFiberKey } from "@/utils/utils";
 
 export type ReactVdomEvents = {
   "reactVdom:isMessageBlockInFlight": (params: {
@@ -30,6 +30,7 @@ export type ReactVdomEvents = {
     messageBlockIndex: number;
     optionIndex?: number;
   }) => boolean;
+  "reactVdom:syncNativeModelSelector": () => void;
 };
 
 export function setupReactVdomListeners() {
@@ -225,6 +226,42 @@ export function setupReactVdomListeners() {
       return true;
     },
   );
+
+  onMessage("reactVdom:syncNativeModelSelector", () => {
+    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD.PPLX_COMPONENTS_WRAPPER}"]:last > :first-child`;
+
+    const $modelSelector = $(selector);
+
+    if (!$modelSelector.length) return;
+
+    const fiberNode = ($modelSelector[0] as any)[
+      getReactFiberKey($modelSelector[0])
+    ];
+
+    if (fiberNode == null) return;
+
+    const [items, error] = errorWrapper(() =>
+      findReactFiberNodeValue({
+        fiberNode,
+        condition: (node) => node.return.return.memoizedProps.items != null,
+        select: (node) =>
+          node.return.return.memoizedProps.items as {
+            onClick: () => void;
+            value: "default" | "pro" | LanguageModelCode;
+          }[],
+      }),
+    )();
+
+    if (error || items == null) return;
+
+    const searchMode = getCookie("pplx.search-mode");
+
+    const item = items.find((item) => item.value === searchMode);
+
+    if (item == null) return;
+
+    item.onClick();
+  });
 }
 
 function findReactFiberNodeValue<T>({

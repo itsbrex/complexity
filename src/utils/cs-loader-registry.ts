@@ -9,7 +9,6 @@ export const LOADER_IDS = [
   "cache:extensionLocalStorage",
   "cache:pluginsStates",
   "cache:languageModels",
-  "cache:focusWebRecency",
   "cache:betterCodeBlocksFineGrainedOptions",
 
   "messaging:namespaceSetup",
@@ -46,7 +45,6 @@ export const LOADER_IDS = [
   "plugin:spaceNavigator:networkInterceptMiddleware",
   "plugin:queryBox:initSharedStore",
   "plugin:queryBox:languageModelSelector:respectSpaceModel",
-  "plugin:queryBox:focusSelector:webRecency:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:networkInterceptMiddleware",
   "plugin:queryBox:promptHistory:listeners",
   "plugin:queryBox:noFileCreationOnPaste",

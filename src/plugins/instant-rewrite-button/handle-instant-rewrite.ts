@@ -28,9 +28,8 @@ export async function handleInstantRewrite({
     .next()
     .find("> div[data-test-id]:first-child");
 
-  if (!$proSearchPanel.length) return;
-
   const isProSearchEnabled =
+    $proSearchPanel.length > 0 &&
     $proSearchPanel.find(`svg[data-icon="copilot"]`).length > 0;
 
   if (currentModelPreferences == null) return;

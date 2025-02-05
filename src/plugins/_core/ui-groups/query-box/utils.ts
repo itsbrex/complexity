@@ -1,10 +1,12 @@
 import { QueryObserver } from "@tanstack/react-query";
+import { sendMessage } from "webext-bridge/content-script";
 
 import { fastLanguageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
 import {
   isReasoningLanguageModelCode,
   isLanguageModelCode,
 } from "@/data/plugins/query-box/language-model-selector/language-models.types";
+import { pplxCookiesStore } from "@/data/pplx-cookies-store";
 import { spaRouteChangeCompleteSubscribe } from "@/plugins/_api/spa-router/listeners";
 import { sharedQueryBoxStore } from "@/plugins/_core/ui-groups/query-box/shared-store";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
@@ -157,6 +159,15 @@ export function handleSearchModeChange() {
       }
 
       setCookie("pplx.search-mode", "default", 30);
+    },
+  );
+}
+
+export function syncNativeModelSelector() {
+  pplxCookiesStore.subscribe(
+    (state) => state.cookies,
+    () => {
+      sendMessage("reactVdom:syncNativeModelSelector", undefined, "window");
     },
   );
 }

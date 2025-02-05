@@ -34,7 +34,6 @@ function useInsertToolbarCss() {
 
   const shouldInjectMain =
     pluginsEnableStates["queryBox:languageModelSelector"] ||
-    pluginsEnableStates["queryBox:focusSelector"] ||
     pluginsEnableStates["spaceNavigator"] ||
     (pluginsEnableStates["queryBox:slashCommandMenu"] &&
       settings?.plugins["queryBox:slashCommandMenu"].showTriggerButton);
@@ -42,7 +41,6 @@ function useInsertToolbarCss() {
   const shouldInjectFollowUp =
     location === "thread" &&
     (pluginsEnableStates["queryBox:languageModelSelector"] ||
-      pluginsEnableStates["queryBox:focusSelector"] ||
       (isMobile && pluginsEnableStates["spaceNavigator"]) ||
       (pluginsEnableStates["queryBox:slashCommandMenu"] &&
         settings?.plugins["queryBox:slashCommandMenu"].showTriggerButton));

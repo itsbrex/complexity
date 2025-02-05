@@ -1,20 +1,14 @@
 [cplx-main-query-box],
 [cplx-main-modal-query-box],
 [cplx-space-query-box] {
-  [data-cplx-component="query-box-components-wrapper"] > div:nth-child(2) {
-    &:has(> div.mr-xs.flex.shrink-0.items-center) > span:nth-child(2) {
-      display: none;
-    }
-
-    &:not(:has(> div.mr-xs.flex.shrink-0.items-center)) > span:nth-child(1) {
-      display: none;
-    }
+  [data-cplx-component="query-box-components-wrapper"]
+    [data-cplx-component="query-box-pplx-components-wrapper"]
+    > :first-child {
+    display: none;
   }
 }
 
 [cplx-follow-up-query-box]
-  [data-cplx-component="query-box-components-wrapper"]
-  > div:nth-child(2)
-  > span:first-child {
+  [data-cplx-component="query-box-pplx-components-wrapper"] {
   display: none;
 }

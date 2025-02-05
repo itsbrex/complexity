@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 import { BetterCodeBlockGlobalOptionsSchema } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
-import { FocusMode } from "@/data/plugins/better-focus-selector/focus-modes";
 
 export const PluginSettingsSchema = z.object({
   enabled: z.boolean(),
@@ -15,14 +14,6 @@ export const PluginsSchema = z.object({
     changeTimezone: z.boolean(),
   }),
   "queryBox:fullWidthFollowUp": PluginSettingsSchema,
-  "queryBox:focusSelector": PluginSettingsSchema.extend({
-    mode: z.enum(["persistent", "default"]).nullable(),
-    defaultFocusMode: z
-      .string()
-      .transform((val) => val as FocusMode["code"])
-      .nullable(),
-  }),
-  "queryBox:focusSelector:webRecency": PluginSettingsSchema,
   "queryBox:slashCommandMenu": PluginSettingsSchema.extend({
     showTriggerButton: z.boolean(),
   }),

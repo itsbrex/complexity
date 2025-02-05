@@ -1,9 +1,5 @@
 import { QueryObserver } from "@tanstack/react-query";
 
-import {
-  FocusMode,
-  isFocusModeCode,
-} from "@/data/plugins/better-focus-selector/focus-modes";
 import { fastLanguageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
 import {
   isReasoningLanguageModelCode,
@@ -15,8 +11,84 @@ import { ExtensionLocalStorageService } from "@/services/extension-local-storage
 import { PplxApiService } from "@/services/pplx-api";
 import { PplxUserSettingsApiResponse } from "@/services/pplx-api/pplx-api.types";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
+import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
 import { queryClient } from "@/utils/ts-query-client";
 import { getCookie, setCookie, whereAmI } from "@/utils/utils";
+
+export function findToolbarPortalContainer(queryBox: HTMLElement): {
+  leftContainer: HTMLElement | null;
+  rightContainer: HTMLElement | null;
+} {
+  const $textareaWrapper = $(queryBox).find("textarea").parent();
+
+  const $queryBoxComponentsWrapper = $textareaWrapper.parent();
+
+  $queryBoxComponentsWrapper.internalComponentAttr(
+    DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD.COMPONENTS_WRAPPER,
+  );
+
+  const $toolbar = $queryBoxComponentsWrapper.find(">div:nth-child(2)");
+
+  $toolbar
+    .find(">div.flex:first-child")
+    .internalComponentAttr(
+      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD
+        .PPLX_COMPONENTS_WRAPPER,
+    );
+
+  const $leftContainer = (() => {
+    if (!$toolbar.length) return null;
+
+    const $existingLeftContainer = $toolbar.find(
+      `[data-cplx-component="${
+        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD
+          .CPLX_COMPONENTS_LEFT_WRAPPER
+      }"]`,
+    );
+
+    if ($existingLeftContainer.length) return $existingLeftContainer;
+
+    const $newLeftContainer = $("<div>");
+
+    $newLeftContainer.internalComponentAttr(
+      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD
+        .CPLX_COMPONENTS_LEFT_WRAPPER,
+    );
+
+    $toolbar.prepend($newLeftContainer);
+
+    return $newLeftContainer;
+  })();
+
+  const $rightContainer = (() => {
+    if (!$toolbar.length) return null;
+
+    const $existingRightContainer = $toolbar.find(
+      `[data-cplx-component="${
+        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD
+          .CPLX_COMPONENTS_RIGHT_WRAPPER
+      }"]`,
+    );
+
+    if ($existingRightContainer.length) return $existingRightContainer;
+
+    const $newRightContainer = $("<div>");
+
+    $newRightContainer.internalComponentAttr(
+      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD
+        .CPLX_COMPONENTS_RIGHT_WRAPPER,
+    );
+
+    $toolbar.append($newRightContainer);
+
+    return $newRightContainer;
+  })();
+
+  return {
+    leftContainer: $leftContainer?.[0] ?? null,
+    rightContainer: $rightContainer?.[0] ?? null,
+  };
+}
 
 export function handleSearchModeChange() {
   sharedQueryBoxStore.subscribe(
@@ -102,7 +174,6 @@ export function populateDefaults() {
 
   populateLanguageModelDefaults(searchMode);
   populateProSearchDefaults(searchMode);
-  populateFocusModeDefaults();
 }
 
 function populateLanguageModelDefaults(searchMode: string | null) {
@@ -147,15 +218,4 @@ function populateProSearchDefaults(searchMode: string | null) {
     draft.isProSearchEnabled =
       searchMode === "pro" || isReasoningLanguageModelCode(searchMode);
   });
-}
-
-function populateFocusModeDefaults() {
-  const settings = ExtensionLocalStorageService.getCachedSync();
-
-  const defaultFocusMode = settings?.plugins["queryBox:focusSelector"]
-    .defaultFocusMode as FocusMode["code"];
-
-  if (isFocusModeCode(defaultFocusMode)) {
-    sharedQueryBoxStore.setState({ selectedFocusMode: defaultFocusMode });
-  }
 }

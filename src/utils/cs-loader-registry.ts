@@ -9,7 +9,6 @@ export const LOADER_IDS = [
   "cache:extensionLocalStorage",
   "cache:pluginsStates",
   "cache:languageModels",
-  "cache:focusModes",
   "cache:focusWebRecency",
   "cache:betterCodeBlocksFineGrainedOptions",
 
@@ -53,7 +52,6 @@ export const LOADER_IDS = [
   "plugin:queryBox:noFileCreationOnPaste",
   "plugin:queryBox:submitOnCtrlEnter",
   "plugin:queryBox:fullWidthFollowUp",
-  "plugin:queryBox:focusSelector:forceDisableExternalSources:networkInterceptMiddleware",
   "plugin:home:customSlogan",
   "plugin:home:hideHomepageWidgets",
 

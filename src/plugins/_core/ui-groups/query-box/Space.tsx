@@ -2,7 +2,7 @@ import CsUiPluginsGuard from "@/components/plugins-guard/CsUiPluginsGuard";
 import { Portal } from "@/components/ui/portal";
 import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
 import { ScopedQueryBoxContextProvider } from "@/plugins/_core/ui-groups/query-box/context/context";
-import { useFindToolbarPortalContainer } from "@/plugins/_core/ui-groups/query-box/hooks/useFindPortalContainer";
+import { findToolbarPortalContainer } from "@/plugins/_core/ui-groups/query-box/utils";
 import BetterLanguageModelSelectorWrapper from "@/plugins/language-model-selector";
 import SlashCommandMenuWrapper from "@/plugins/slash-command-menu";
 import SlashCommandMenuTriggerButton from "@/plugins/slash-command-menu/TriggerButton";
@@ -13,18 +13,23 @@ export default function SpaceQueryBoxWrapper() {
     (state) => state.queryBoxes.spaceQueryBox,
   );
 
-  const portalContainer = useFindToolbarPortalContainer(spaceQueryBox, "space");
+  if (!spaceQueryBox) return null;
+
+  const { leftContainer, rightContainer } =
+    findToolbarPortalContainer(spaceQueryBox);
 
   return (
     <ScopedQueryBoxContextProvider storeValue={{ type: "space" }}>
-      <Portal container={portalContainer}>
+      <Portal container={leftContainer}>
+        <CsUiPluginsGuard
+          allowedAccountTypes={[["pro"], ["pro", "enterprise"]]}
+          dependentPluginIds={["queryBox:languageModelSelector"]}
+        >
+          <BetterLanguageModelSelectorWrapper />
+        </CsUiPluginsGuard>
+      </Portal>
+      <Portal container={rightContainer}>
         <div className="x-flex x-flex-wrap x-items-center x-gap-1">
-          <CsUiPluginsGuard
-            allowedAccountTypes={[["pro"], ["pro", "enterprise"]]}
-            dependentPluginIds={["queryBox:languageModelSelector"]}
-          >
-            <BetterLanguageModelSelectorWrapper />
-          </CsUiPluginsGuard>
           <CsUiPluginsGuard
             desktopOnly
             dependentPluginIds={["queryBox:slashCommandMenu"]}

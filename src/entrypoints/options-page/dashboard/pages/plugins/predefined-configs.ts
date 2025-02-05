@@ -21,7 +21,6 @@ export const POWER_USER: ExtensionLocalStorage["plugins"] = produce(
   DEFAULT_STORAGE.plugins,
   (draft) => {
     draft["queryBox:languageModelSelector"].enabled = true;
-    draft["queryBox:focusSelector"].enabled = true;
     draft["spaceNavigator"].enabled = true;
     draft["queryBox:slashCommandMenu"].enabled = true;
     draft["queryBox:slashCommandMenu:promptHistory"].enabled = true;

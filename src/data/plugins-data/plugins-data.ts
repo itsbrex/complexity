@@ -14,25 +14,6 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
       "domObserver:queryBoxes",
     ],
   },
-  "queryBox:focusSelector": {
-    id: "queryBox:focusSelector",
-    routeSegment: "query-box-focus-selector",
-    title: "Better Focus Selector",
-    description:
-      "Replace the default Perplexity's focus selector with a more customizable one. \nAlso allows you to temporarily switch to writing mode while in web modes",
-    tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver:queryBoxes"],
-  },
-  "queryBox:focusSelector:webRecency": {
-    id: "queryBox:focusSelector:webRecency",
-    routeSegment: "query-box-focus-selector-web-recency",
-    title: "Web Focus Recency Selector",
-    description:
-      "Select the recency of the web search from homepage and within threads",
-    tags: ["beta", "ui", "ux"],
-    dependentPlugins: ["queryBox:focusSelector"],
-    dependentCorePlugins: ["spaRouter", "domObserver:queryBoxes", "reactVdom"],
-  },
   "queryBox:slashCommandMenu": {
     id: "queryBox:slashCommandMenu",
     routeSegment: "query-box-slash-command-menu",

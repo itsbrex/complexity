@@ -11,8 +11,6 @@ import CanvasPluginDetails from "@/entrypoints/options-page/dashboard/pages/plug
 import CommandMenuPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/CommandMenu";
 import CustomThreadContainerWidthPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/CustomThreadContainerWidth";
 import ExportThreadPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/ExportThread";
-import FocusSelectorPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/FocusSelector";
-import FocusWebRecencySelectorPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/FocusWebRecencySelector";
 import FullWidthFollowUpQueryBoxPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/FullWidthFollowUpQueryBox";
 import InstantThreadMessageRewriteButtonsPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/InstantThreadMessageRewriteButtons";
 import PromptHistoryPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/PromptHistory";
@@ -27,8 +25,6 @@ export type PluginPluginDetails = Partial<Record<PluginId, React.ReactNode>>;
 
 export const PLUGIN_DETAILS: PluginPluginDetails = {
   "queryBox:languageModelSelector": <LanguageModelSelectorPluginDetails />,
-  "queryBox:focusSelector": <FocusSelectorPluginDetails />,
-  "queryBox:focusSelector:webRecency": <FocusWebRecencySelectorPluginDetails />,
   spaceNavigator: <SpaceNavigatorPluginDetails />,
   "queryBox:slashCommandMenu": <SlashCommandMenuPluginDetails />,
   "queryBox:slashCommandMenu:promptHistory": <PromptHistoryPluginDetails />,

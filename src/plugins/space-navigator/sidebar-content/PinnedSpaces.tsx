@@ -46,6 +46,8 @@ function PinnedSpaceContent({
           "hover:x-bg-black/5 dark:hover:x-bg-white/5",
       )}
       onClick={(e) => {
+        if (e.metaKey || e.ctrlKey) return;
+
         e.preventDefault();
         e.stopPropagation();
 

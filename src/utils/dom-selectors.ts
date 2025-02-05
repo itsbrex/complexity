@@ -137,6 +137,9 @@ export const DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS = {
   },
   QUERY_BOX_CHILD: {
     COMPONENTS_WRAPPER: "query-box-components-wrapper",
+    PPLX_COMPONENTS_WRAPPER: "query-box-pplx-components-wrapper",
+    CPLX_COMPONENTS_LEFT_WRAPPER: "query-box-cplx-components-left-wrapper",
+    CPLX_COMPONENTS_RIGHT_WRAPPER: "query-box-cplx-components-right-wrapper",
   },
 } as const;
 

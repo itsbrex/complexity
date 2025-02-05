@@ -33,9 +33,7 @@ export default function ReasoningLanguageModels() {
           placement: "right",
         }}
       >
-        <SelectLabel className="x-underline x-decoration-dashed">
-          Reasoning Models
-        </SelectLabel>
+        <SelectLabel>Reasoning Models</SelectLabel>
       </Tooltip>
       {reasoningLanguageModels.map((model, index) => {
         const Icon = languageModelProviderIcons[model.provider] ?? LuCpu;

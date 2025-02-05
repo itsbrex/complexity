@@ -13,7 +13,6 @@ const DOM_OBSERVER_ID = {
   COLLECTION: "query-boxes-collection",
   FOLLOW_UP: "query-boxes-follow-up",
   MODAL: "query-boxes-modal",
-  REASONING_MODE_PREFERENCE: "query-boxes-reasoning-mode-preference",
 };
 
 const cleanup = () => {
@@ -21,7 +20,6 @@ const cleanup = () => {
   DomObserver.destroy(DOM_OBSERVER_ID.COLLECTION);
   DomObserver.destroy(DOM_OBSERVER_ID.FOLLOW_UP);
   DomObserver.destroy(DOM_OBSERVER_ID.MODAL);
-  DomObserver.destroy(DOM_OBSERVER_ID.REASONING_MODE_PREFERENCE);
 };
 
 csLoaderRegistry.register({

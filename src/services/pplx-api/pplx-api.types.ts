@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-import { FocusMode } from "@/data/plugins/better-focus-selector/focus-modes";
-import { FocusWebRecency } from "@/data/plugins/better-focus-selector/focus-web-recency";
 import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 
 export const PplxUserSettingsApiResponseSchema = z.object({
@@ -38,14 +36,6 @@ export const ThreadMessageApiResponseSchema = z.object({
   author_username: z.string().nullable(),
   thread_url_slug: z.string(),
   display_model: z.string().transform((val) => val as LanguageModel["code"]),
-  search_focus: z.string().transform((val) => val as FocusMode["code"]),
-  search_recency_filter: z
-    .string()
-    .nullable()
-    .transform((val): FocusWebRecency["value"] => {
-      if (val == null) return "ALL";
-      return val as FocusWebRecency["value"];
-    }),
 });
 
 export type ThreadMessageApiResponse = z.infer<

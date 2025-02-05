@@ -1,17 +1,11 @@
 import { onMessage } from "webext-bridge/window";
 
-import {
-  FOCUS_MODES_NATIVE_VDOM_MAP,
-  FocusMode,
-  isFocusModeCode,
-} from "@/data/plugins/better-focus-selector/focus-modes";
 import { LanguageModelCode } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import {
   DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
   DOM_SELECTORS,
 } from "@/utils/dom-selectors";
 import { errorWrapper } from "@/utils/error-wrapper";
-import { UiUtils } from "@/utils/ui-utils";
 import { getReactFiberKey } from "@/utils/utils";
 
 export type ReactVdomEvents = {
@@ -25,9 +19,6 @@ export type ReactVdomEvents = {
     index: number;
   }) => string | null;
   "reactVdom:getMessageContent": (params: { index: number }) => string | null;
-  "reactVdom:getMessageFocusMode": (params: {
-    index: number;
-  }) => FocusMode["code"] | null;
   "reactVdom:getCodeBlockContent": (params: {
     messageBlockIndex: number;
     codeBlockIndex: number;
@@ -35,7 +26,6 @@ export type ReactVdomEvents = {
     code: string;
     language: string;
   } | null;
-  "reactVdom:setFocusMode": (params: { focusMode: FocusMode["code"] }) => void;
   "reactVdom:triggerRewriteOption": (params: {
     messageBlockIndex: number;
     optionIndex?: number;
@@ -196,86 +186,6 @@ export function setupReactVdomListeners() {
       };
     },
   );
-
-  onMessage("reactVdom:getMessageFocusMode", ({ data: { index } }) => {
-    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${index}"]`;
-
-    const $el = $(selector).prev();
-
-    if (!$el.length) return null;
-
-    const [focusMode, error] = errorWrapper(() =>
-      findReactFiberNodeValue({
-        fiberNode: ($el[0] as any)[getReactFiberKey($el[0])],
-        condition: (node) =>
-          node.return.memoizedProps.result.search_focus != null,
-        select: (node) =>
-          node.return.memoizedProps.result.search_focus as string,
-      }),
-    )();
-
-    if (error) console.warn("[VDOM Plugin] getMessageFocusMode", error);
-
-    if (error || focusMode == null) return null;
-
-    if (!isFocusModeCode(focusMode)) return null;
-
-    return focusMode;
-  });
-
-  onMessage("reactVdom:setFocusMode", ({ data: { focusMode } }) => {
-    if (!isFocusModeCode(focusMode)) {
-      return;
-    }
-
-    const $activeQueryBox = UiUtils.getActiveQueryBox();
-
-    if (!$activeQueryBox.length) {
-      return;
-    }
-    function getFocusSelector() {
-      const isIncognito =
-        $activeQueryBox
-          .find(
-            `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD.COMPONENTS_WRAPPER}"] > div:nth-child(2)`,
-          )
-          .find(DOM_SELECTORS.QUERY_BOX.INCOGNITO_TOGGLE).length > 0;
-
-      return $activeQueryBox
-        .find(
-          `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD.COMPONENTS_WRAPPER}"] > div:nth-child(2)`,
-        )
-        .find(
-          `> span:nth-child(${isIncognito ? 3 : 2}) > button:has(svg[data-icon="bars-filter"]), > span:nth-child(${isIncognito ? 3 : 2}) > button:has(svg[data-icon="chevron-down"])`,
-        );
-    }
-
-    const $focusSelector = getFocusSelector();
-
-    if (!$focusSelector.length) {
-      return;
-    }
-
-    const $wrapper = $focusSelector.parent();
-
-    if (!$wrapper.length) {
-      return;
-    }
-
-    const fiberNode = ($wrapper[0] as any)[getReactFiberKey($wrapper[0])];
-
-    if (fiberNode == null) {
-      return;
-    }
-
-    errorWrapper(() => {
-      const index = FOCUS_MODES_NATIVE_VDOM_MAP.indexOf(focusMode);
-
-      if (index === -1) return;
-
-      fiberNode.return.return.memoizedProps.items[index].onClick();
-    })();
-  });
 
   onMessage(
     "reactVdom:triggerRewriteOption",

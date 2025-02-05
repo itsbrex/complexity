@@ -17,12 +17,34 @@
     & > div:nth-child(3) {
       max-height: max-content;
     }
+
+    [data-cplx-component="query-box-pplx-components-wrapper"] {
+      @apply x-h-8 x-gap-1;
+
+      button {
+        margin: 0;
+      }
+
+      button:has(svg[data-icon="sources"]) {
+        > div {
+          @apply x-h-8;
+
+          > div {
+            @apply x-h-8;
+          }
+
+          svg {
+            @apply x-h-8;
+          }
+        }
+      }
+    }
   }
 }
 
 [cplx-space-query-box]
   [data-cplx-component="query-box-components-wrapper"]
-  > div:nth-child(2)
-  > span:has(> button:disabled) {
+  [data-cplx-component="query-box-pplx-components-wrapper"]
+  > :has(button:disabled) {
   display: none;
 }

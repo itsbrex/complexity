@@ -15,14 +15,6 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "queryBox:fullWidthFollowUp": {
       enabled: false,
     },
-    "queryBox:focusSelector": {
-      enabled: false,
-      mode: "persistent",
-      defaultFocusMode: "internet",
-    },
-    "queryBox:focusSelector:webRecency": {
-      enabled: false,
-    },
     "queryBox:slashCommandMenu": {
       enabled: false,
       showTriggerButton: false,

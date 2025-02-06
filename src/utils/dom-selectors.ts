@@ -13,7 +13,7 @@ export const DOM_SELECTORS = {
       /** Normal thread*/
       NORMAL: ".size-full.max-w-threadWidth > div.relative > div:first-child",
       /** Branched thread */
-      BRANCHED: ".size-full.max-w-threadWidth > div:nth-child(2):not([class])",
+      BRANCHED: ".size-full.max-w-threadWidth > div.relative > div:first-of-type",
     },
     MESSAGE: {
       WRAPPER: ".grid-cols-12",

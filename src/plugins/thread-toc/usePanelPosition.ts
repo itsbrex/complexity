@@ -5,9 +5,7 @@ import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { CallbackQueue } from "@/plugins/_api/dom-observer/callback-queue";
 import { DomObserver } from "@/plugins/_api/dom-observer/dom-observer";
 import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
-import { useCanvasStore } from "@/plugins/canvas/store";
 import { PANEL_WIDTH } from "@/plugins/thread-toc";
-import { PluginsStatesService } from "@/services/plugins-states";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 import { UiUtils } from "@/utils/ui-utils";
 
@@ -19,13 +17,6 @@ type UsePanelPosition = {
 };
 
 export function usePanelPosition(): UsePanelPosition | null {
-  const isCanvasEnabled =
-    PluginsStatesService.getCachedSync().pluginsEnableStates["thread:canvas"];
-  const isCanvasOpen = useCanvasStore(
-    (state) => state.selectedCodeBlockLocation != null,
-  );
-  const isCanvasListOpen = useCanvasStore((state) => state.isCanvasListOpen);
-
   const { isMobile } = useIsMobileStore();
   const windowSize = useWindowSize();
   const [panelPosition, setPanelPosition] = useState<UsePanelPosition | null>(
@@ -38,37 +29,34 @@ export function usePanelPosition(): UsePanelPosition | null {
   const calculatePosition = useCallback(() => {
     if (threadWrapper == null) return null;
 
-    const $threadWrapper = $(threadWrapper).children().first();
-    const threadWrapperWidth = $threadWrapper.width();
-    const $fitContainer = $threadWrapper.children().first();
-    const fitContainerOffset = $fitContainer.offset();
+    const $threadWrapper = $(threadWrapper);
+    const $children = $threadWrapper.children();
 
-    const $stickyHeader = UiUtils.getStickyNavbar();
-    const stickyHeaderHeight = $stickyHeader.height();
+    const $firstChild = $children.first();
+    const threadWrapperOffset = $firstChild.offset();
+    if (!threadWrapperOffset) return null;
 
-    if (
-      threadWrapperWidth == null ||
-      fitContainerOffset == null ||
-      stickyHeaderHeight == null
-    )
-      return null;
+    const stickyHeaderHeight = UiUtils.getStickyNavbar().height();
+    if (stickyHeaderHeight == null) return null;
 
-    const { left } = fitContainerOffset;
+    let threadWrapperWidth = 0;
+    $children.each((_, child) => {
+      const width = $(child).width();
+      if (width != null) threadWrapperWidth += width;
+    });
+    if (threadWrapperWidth === 0) return null;
 
+    const { left } = threadWrapperOffset;
     const panelRightEdge = left + threadWrapperWidth + PANEL_WIDTH + 75;
-    const isFloating = panelRightEdge > window.innerWidth;
-
-    const position = {
-      top: stickyHeaderHeight + 40,
-      left: threadWrapperWidth + left + 25,
-    };
 
     return {
-      position,
-      isFloating:
-        isFloating || (!!isCanvasEnabled && (isCanvasOpen || isCanvasListOpen)),
+      position: {
+        top: stickyHeaderHeight + 40,
+        left: threadWrapperWidth + left + 50,
+      },
+      isFloating: panelRightEdge > window.innerWidth,
     };
-  }, [threadWrapper, isCanvasOpen, isCanvasEnabled, isCanvasListOpen]);
+  }, [threadWrapper]);
 
   useEffect(() => {
     const debouncedUpdate = debounce(() => {
@@ -93,7 +81,7 @@ export function usePanelPosition(): UsePanelPosition | null {
       debouncedUpdate.cancel();
       DomObserver.destroy(DOM_OBSERVER_ID);
     };
-  }, [calculatePosition, isMobile, windowSize, isCanvasOpen]);
+  }, [calculatePosition, isMobile, windowSize]);
 
   return panelPosition;
 }

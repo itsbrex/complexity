@@ -116,6 +116,8 @@ csLoaderRegistry.register({
     });
 
     initializeAutonomousMode();
+
+    emitResizeEvent();
   },
 });
 
@@ -229,6 +231,18 @@ const handleCanvasBlockClick = (location: CodeBlockLocation) => {
     const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${location.messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.MIRRORED_CODE_BLOCK}"][data-index="${location.codeBlockIndex}"]`;
     scrollToElement($(selector), -100);
   });
+};
+
+const emitResizeEvent = () => {
+  canvasStore.subscribe(
+    (state) => ({
+      isCanvasOpen: state.selectedCodeBlockLocation != null,
+      isCanvasListOpen: state.isCanvasListOpen,
+    }),
+    () => {
+      window.dispatchEvent(new Event("resize"));
+    },
+  );
 };
 
 export const useCanvasStore = canvasStore;

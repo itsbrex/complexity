@@ -29,6 +29,10 @@ const unimportConfig: Partial<UnimportPluginOptions> = {
       from: normalizePath("src/utils/i18next.ts"),
       imports: ["t"],
     },
+    {
+      from: normalizePath("src/utils/deep-equal.ts"),
+      imports: ["deepEqual"],
+    },
   ],
   imports: [
     {

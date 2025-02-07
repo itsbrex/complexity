@@ -1,9 +1,5 @@
 import { QueryBoxType } from "@/data/plugins/query-box/types";
-import { ExtendedMessageBlock } from "@/plugins/_api/dom-observer/global-dom-observer-store";
-import {
-  DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
-  DOM_SELECTORS,
-} from "@/utils/dom-selectors";
+import { INTERNAL_ATTRIBUTES, DOM_SELECTORS } from "@/utils/dom-selectors";
 import { CodeBlock, MessageBlock } from "@/utils/ui-utils.types";
 
 export class UiUtils {
@@ -30,12 +26,9 @@ export class UiUtils {
 
     const textColSelector = `${DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL}:last`;
     const visualColSelector = `${DOM_SELECTORS.THREAD.MESSAGE.VISUAL_COL}:last`;
-    const internalTextColAttr =
-      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL;
-    const internalVisualColAttr =
-      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.VISUAL_COL;
-    const internalBlockAttr =
-      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK;
+    const internalTextColAttr = INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL;
+    const internalVisualColAttr = INTERNAL_ATTRIBUTES.THREAD.MESSAGE.VISUAL_COL;
+    const internalBlockAttr = INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK;
 
     const children = $messagesContainer
       .children()
@@ -60,16 +53,13 @@ export class UiUtils {
         UiUtils.parseMessageBlock($wrapper);
 
       $query.internalComponentAttr(
-        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
-          .QUERY,
+        INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY,
       );
       $answer.internalComponentAttr(
-        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
-          .ANSWER,
+        INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER,
       );
       $answerHeading.internalComponentAttr(
-        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
-          .ANSWER_HEADING,
+        INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING,
       );
 
       const $textCol = $wrapper.find(textColSelector);
@@ -136,8 +126,7 @@ export class UiUtils {
 
         $codeBlock
           .internalComponentAttr(
-            DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
-              .CODE_BLOCK,
+            INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK,
           )
           .attr("data-index", j);
 
@@ -172,28 +161,6 @@ export class UiUtils {
     }
 
     return returnValue;
-  }
-
-  static isCodeBlockInFlight({
-    messageBlocks,
-    messageBlockIndex,
-    codeBlockIndex,
-  }: {
-    messageBlocks: ExtendedMessageBlock[];
-    messageBlockIndex: number;
-    codeBlockIndex: number;
-  }) {
-    const isMessageBlockInFlight = messageBlocks[messageBlockIndex]?.isInFlight;
-
-    if (!isMessageBlockInFlight) return false;
-
-    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}"][data-index="${codeBlockIndex}"]`;
-
-    const isInFlight =
-      !!messageBlocks[messageBlockIndex]?.isInFlight &&
-      document.querySelector(selector)?.nextElementSibling == null;
-
-    return isInFlight;
   }
 
   static getActiveQueryBoxTextarea({

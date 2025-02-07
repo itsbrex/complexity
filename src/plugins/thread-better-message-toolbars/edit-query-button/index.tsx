@@ -1,27 +1,25 @@
 import FaPencilSquare from "@/components/icons/FaPencilSquare";
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
-import {
-  DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
-  DOM_SELECTORS,
-} from "@/utils/dom-selectors";
+import { useThreadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
+import { INTERNAL_ATTRIBUTES, DOM_SELECTORS } from "@/utils/dom-selectors";
 
 export default function EditQueryButton({
   messageBlockIndex,
 }: {
   messageBlockIndex: number;
 }) {
-  const isEditingQuery = useGlobalDomObserverStore(
-    (store) =>
-      store.threadComponents.messageBlocks?.[messageBlockIndex]?.isEditingQuery,
+  const isEditingQuery = useThreadMessageBlocksDomObserverStore(
+    (store) => store.messageBlocks?.[messageBlockIndex]?.states.isEditingQuery,
+    deepEqual,
   );
 
-  const isReadOnly = useGlobalDomObserverStore(
-    (store) =>
-      store.threadComponents.messageBlocks?.[messageBlockIndex]?.isReadOnly,
+  const isReadOnly = useThreadMessageBlocksDomObserverStore(
+    (store) => store.messageBlocks?.[messageBlockIndex]?.states.isReadOnly,
+    deepEqual,
   );
 
-  const isAnyMessageBlockInFlight = useGlobalDomObserverStore((store) =>
-    store.threadComponents.messageBlocks?.some((block) => block.isInFlight),
+  const isAnyMessageBlockInFlight = useThreadMessageBlocksDomObserverStore(
+    (store) => store.messageBlocks?.some((block) => block.states.isInFlight),
+    deepEqual,
   );
 
   if (isReadOnly || isEditingQuery || isAnyMessageBlockInFlight) return null;
@@ -32,7 +30,7 @@ export default function EditQueryButton({
       className="x-cursor-pointer x-rounded-md x-p-2 x-text-base x-text-muted-foreground x-transition-all x-animate-in x-fade-in hover:x-bg-secondary hover:x-text-foreground active:x-scale-95"
       onClick={() => {
         const $editQueryButton = $(
-          `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"]`,
+          `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"]`,
         )
           .find(
             DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_HOVER_CONTAINER,

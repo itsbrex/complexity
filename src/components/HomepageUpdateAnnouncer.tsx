@@ -1,18 +1,16 @@
 import ExtensionUpdateInfoDialogWrapper from "@/components/ExtensionUpdateInfoDialogWrapper";
 import { Portal } from "@/components/ui/portal";
 import useExtensionUpdate from "@/hooks/useExtensionUpdate";
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { useHomeDomObserverStore } from "@/plugins/_core/dom-observers/home/store";
 
 export default function HomepageUpdateAnnouncer() {
   const { isUpdateAvailable } = useExtensionUpdate();
 
-  const sloganWrapper = useGlobalDomObserverStore(
-    (state) => state.homeComponents.slogan,
-  );
+  const $slogan = useHomeDomObserverStore((store) => store.$slogan);
 
-  if (!sloganWrapper || !isUpdateAvailable) return null;
+  if (!$slogan || !$slogan.length || !isUpdateAvailable) return null;
 
-  const $anchor = $(sloganWrapper).find(">*").first();
+  const $anchor = $slogan.find(">*").first();
 
   return (
     <Portal container={$anchor[0]}>

@@ -5,25 +5,15 @@ import { getInterpretedCanvasLanguage } from "@/plugins/canvas/canvas.types";
 import { useMirroredCodeBlockContext } from "@/plugins/thread-better-code-blocks/MirroredCodeBlockContext";
 
 const HighlightedCodeWrapper = memo(() => {
-  const { maxHeight, isWrapped, codeString, language, isInFlight } =
-    useMirroredCodeBlockContext()((state) => ({
-      codeElement: state.codeElement,
-      codeString: state.codeString,
-      language: state.language,
-      maxHeight: state.maxHeight,
-      isWrapped: state.isWrapped,
-      isInFlight: state.isInFlight,
-    }));
+  const { codeBlock, maxHeight, isWrapped } = useMirroredCodeBlockContext();
+
+  const isInFlight = codeBlock?.states.isInFlight;
+  const code = codeBlock?.content.code ?? "";
+  const language = codeBlock?.content.language;
 
   const interpretedLanguage = getInterpretedCanvasLanguage(language ?? "text");
 
-  const preTag = useMemo(() => {
-    const PreComponent = ({ children }: { children: ReactNode }) => (
-      <pre className="x-px-4 x-py-2">{children}</pre>
-    );
-    PreComponent.displayName = "PreTag";
-    return PreComponent;
-  }, []);
+  if (!codeBlock) return null;
 
   return (
     <div
@@ -42,12 +32,16 @@ const HighlightedCodeWrapper = memo(() => {
           },
         )}
       >
-        <CodeHighlighter language={interpretedLanguage} PreTag={preTag}>
-          {codeString}
+        <CodeHighlighter language={interpretedLanguage} PreTag={PreTag}>
+          {code}
         </CodeHighlighter>
       </div>
     </div>
   );
 });
+
+function PreTag({ children }: { children: ReactNode }) {
+  return <pre className="x-px-4 x-py-2">{children}</pre>;
+}
 
 export default HighlightedCodeWrapper;

@@ -7,13 +7,13 @@ import {
   isLanguageModelCode,
 } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { pplxCookiesStore } from "@/data/pplx-cookies-store";
-import { spaRouteChangeCompleteSubscribe } from "@/plugins/_api/spa-router/listeners";
 import { sharedQueryBoxStore } from "@/plugins/_core/ui-groups/query-box/shared-store";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
+import { PluginsStatesService } from "@/services/plugins-states";
 import { PplxApiService } from "@/services/pplx-api";
 import { PplxUserSettingsApiResponse } from "@/services/pplx-api/pplx-api.types";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
-import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
+import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 import { queryClient } from "@/utils/ts-query-client";
 import { getCookie, setCookie, whereAmI } from "@/utils/utils";
 
@@ -26,7 +26,7 @@ export function findToolbarPortalContainer(queryBox: HTMLElement): {
   const $queryBoxComponentsWrapper = $textareaWrapper.parent();
 
   $queryBoxComponentsWrapper.internalComponentAttr(
-    DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD.COMPONENTS_WRAPPER,
+    INTERNAL_ATTRIBUTES.QUERY_BOX_CHILD.COMPONENTS_WRAPPER,
   );
 
   const $toolbar = $queryBoxComponentsWrapper.find(">div:nth-child(2)");
@@ -34,8 +34,7 @@ export function findToolbarPortalContainer(queryBox: HTMLElement): {
   $toolbar
     .find(">div.flex:first-child")
     .internalComponentAttr(
-      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD
-        .PPLX_COMPONENTS_WRAPPER,
+      INTERNAL_ATTRIBUTES.QUERY_BOX_CHILD.PPLX_COMPONENTS_WRAPPER,
     );
 
   const $leftContainer = (() => {
@@ -43,8 +42,7 @@ export function findToolbarPortalContainer(queryBox: HTMLElement): {
 
     const $existingLeftContainer = $toolbar.find(
       `[data-cplx-component="${
-        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD
-          .CPLX_COMPONENTS_LEFT_WRAPPER
+        INTERNAL_ATTRIBUTES.QUERY_BOX_CHILD.CPLX_COMPONENTS_LEFT_WRAPPER
       }"]`,
     );
 
@@ -53,8 +51,7 @@ export function findToolbarPortalContainer(queryBox: HTMLElement): {
     const $newLeftContainer = $("<div>");
 
     $newLeftContainer.internalComponentAttr(
-      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD
-        .CPLX_COMPONENTS_LEFT_WRAPPER,
+      INTERNAL_ATTRIBUTES.QUERY_BOX_CHILD.CPLX_COMPONENTS_LEFT_WRAPPER,
     );
 
     $toolbar.prepend($newLeftContainer);
@@ -67,8 +64,7 @@ export function findToolbarPortalContainer(queryBox: HTMLElement): {
 
     const $existingRightContainer = $toolbar.find(
       `[data-cplx-component="${
-        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD
-          .CPLX_COMPONENTS_RIGHT_WRAPPER
+        INTERNAL_ATTRIBUTES.QUERY_BOX_CHILD.CPLX_COMPONENTS_RIGHT_WRAPPER
       }"]`,
     );
 
@@ -77,8 +73,7 @@ export function findToolbarPortalContainer(queryBox: HTMLElement): {
     const $newRightContainer = $("<div>");
 
     $newRightContainer.internalComponentAttr(
-      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD
-        .CPLX_COMPONENTS_RIGHT_WRAPPER,
+      INTERNAL_ATTRIBUTES.QUERY_BOX_CHILD.CPLX_COMPONENTS_RIGHT_WRAPPER,
     );
 
     $toolbar.append($newRightContainer);
@@ -93,6 +88,10 @@ export function findToolbarPortalContainer(queryBox: HTMLElement): {
 }
 
 export function handleSearchModeChange() {
+  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+
+  if (!pluginsEnableStates["queryBox:languageModelSelector"]) return;
+
   sharedQueryBoxStore.subscribe(
     (store) => ({
       isProSearchEnabled: store.isProSearchEnabled,
@@ -164,20 +163,16 @@ export function handleSearchModeChange() {
 }
 
 export function syncNativeModelSelector() {
+  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+
+  if (!pluginsEnableStates["queryBox:languageModelSelector"]) return;
+
   pplxCookiesStore.subscribe(
     (state) => state.cookies,
     () => {
       sendMessage("reactVdom:syncNativeModelSelector", undefined, "window");
     },
   );
-}
-
-export function resetForceExternalSourcesOffOnRouteChange() {
-  spaRouteChangeCompleteSubscribe(() => {
-    sharedQueryBoxStore.setState({
-      forceExternalSourcesOff: false,
-    });
-  });
 }
 
 export function populateDefaults() {

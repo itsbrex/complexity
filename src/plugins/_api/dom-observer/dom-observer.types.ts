@@ -1,13 +1,14 @@
+import { ObserverId } from "@/plugins/_api/dom-observer/observer-ids";
+
 export type MutationCallback = () => void | Promise<void>;
 
 export type MutationConfig = MutationObserverInit;
-
-export type ObserverId = string;
 
 export type DomObserverConfig = {
   readonly target: Element | null;
   readonly config: MutationConfig;
   readonly debounceTime?: number;
+  readonly fireImmediately?: boolean;
   readonly onMutation: MutationCallback;
 };
 

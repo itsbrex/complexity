@@ -7,13 +7,11 @@ import {
 } from "@/data/plugins/query-box/language-model-selector/language-models";
 import { LanguageModelCode } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
-import { useInsertCss } from "@/hooks/useInsertCss";
 import useBindBetterLanguageModelSelectorHotKeys from "@/plugins/_core/ui-groups/query-box/hooks/useBindHotKeys";
 import { useSharedQueryBoxStore } from "@/plugins/_core/ui-groups/query-box/shared-store";
 import DesktopContent from "@/plugins/language-model-selector/components/desktop";
 import MobileContent from "@/plugins/language-model-selector/components/mobile";
 import BetterLanguageModelSelectorTriggerButton from "@/plugins/language-model-selector/components/TriggerButton";
-import hideNativeModelSelector from "@/plugins/language-model-selector/hide-native-model-selector.css?inline";
 import { useColumnNavigation } from "@/plugins/language-model-selector/hooks/useColumnNavigation";
 import { TEST_ID_SELECTORS } from "@/utils/dom-selectors";
 import { UiUtils } from "@/utils/ui-utils";
@@ -47,11 +45,6 @@ export default function BetterLanguageModelSelectorWrapper() {
   });
 
   useBindBetterLanguageModelSelectorHotKeys();
-
-  useInsertCss({
-    id: "hide-native-model-selector",
-    css: hideNativeModelSelector,
-  });
 
   return (
     <Select

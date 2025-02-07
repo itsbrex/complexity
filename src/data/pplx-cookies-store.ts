@@ -31,7 +31,7 @@ csLoaderRegistry.register({
   loader: () => {
     parseCookies();
 
-    DomObserver.create("pplx-cookies", {
+    DomObserver.create("pplxCookies", {
       target: document.body,
       config: { childList: true, subtree: true },
       onMutation: parseCookies,

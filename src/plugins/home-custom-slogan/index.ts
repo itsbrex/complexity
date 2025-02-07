@@ -1,9 +1,9 @@
-import { globalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
-import { OBSERVER_ID } from "@/plugins/_core/dom-observers/home/observer-ids";
+import { homeDomObserverStore } from "@/plugins/_core/dom-observers/home/store";
 import styles from "@/plugins/home-custom-slogan/styles.css?inline";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
+import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 import { insertCss, whereAmI } from "@/utils/utils";
 
 let removeCss: (() => void) | null = null;
@@ -39,7 +39,7 @@ function setupCustomSlogan({
 
   if (!$slogan.length) return;
 
-  $slogan.attr(OBSERVER_ID.SLOGAN, "true");
+  $slogan.attr(INTERNAL_ATTRIBUTES.HOME.SLOGAN, "true");
 
   $slogan.find("span").text(sloganText);
 }
@@ -47,10 +47,11 @@ function setupCustomSlogan({
 csLoaderRegistry.register({
   id: "plugin:home:customSlogan",
   loader: () => {
-    globalDomObserverStore.subscribe(
-      (state) => state.homeComponents.slogan,
-      (slogan) => {
-        setupCustomSlogan({ location: whereAmI(), slogan });
+    homeDomObserverStore.subscribe(
+      (store) => store.$slogan,
+      ($slogan) => {
+        if (!$slogan || !$slogan.length) return;
+        setupCustomSlogan({ location: whereAmI(), slogan: $slogan[0] });
       },
     );
   },

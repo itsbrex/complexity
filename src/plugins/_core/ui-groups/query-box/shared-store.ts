@@ -6,7 +6,6 @@ import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/
 import {
   handleSearchModeChange,
   populateDefaults,
-  resetForceExternalSourcesOffOnRouteChange,
   syncNativeModelSelector,
 } from "@/plugins/_core/ui-groups/query-box/utils";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
@@ -18,8 +17,6 @@ type SharedQueryBoxStore = {
   setSelectedLanguageModel: (
     selectedLanguageModel: LanguageModel["code"],
   ) => void;
-  forceExternalSourcesOff: boolean;
-  setForceExternalSourcesOff: (forceExternalSourcesOff: boolean) => void;
 };
 
 const useSharedQueryBoxStore = createWithEqualityFn<SharedQueryBoxStore>()(
@@ -33,10 +30,6 @@ const useSharedQueryBoxStore = createWithEqualityFn<SharedQueryBoxStore>()(
         selectedLanguageModel: "turbo",
         setSelectedLanguageModel: async (selectedLanguageModel) => {
           set({ selectedLanguageModel });
-        },
-        forceExternalSourcesOff: false,
-        setForceExternalSourcesOff: (forceExternalSourcesOff) => {
-          set({ forceExternalSourcesOff });
         },
       }),
     ),
@@ -54,7 +47,6 @@ csLoaderRegistry.register({
   ],
   loader: async () => {
     populateDefaults();
-    resetForceExternalSourcesOffOnRouteChange();
     handleSearchModeChange();
     syncNativeModelSelector();
   },

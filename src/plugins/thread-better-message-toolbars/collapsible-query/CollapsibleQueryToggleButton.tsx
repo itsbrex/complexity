@@ -1,18 +1,19 @@
 import { LuChevronDown, LuChevronUp } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { useThreadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
 
 export default function CollapsibleQueryToggleButton({
   messageIndex,
 }: {
   messageIndex: number;
 }) {
-  const messageBlock = useGlobalDomObserverStore(
-    (state) => state.threadComponents.messageBlocks?.[messageIndex],
+  const messageBlock = useThreadMessageBlocksDomObserverStore(
+    (store) => store.messageBlocks?.[messageIndex],
+    deepEqual,
   );
 
-  const $queryElement = messageBlock?.$query;
+  const $queryElement = messageBlock?.nodes.$query;
 
   const [isCollapsed, setIsCollapsed] = useState(() => {
     const previousState = $queryElement?.attr("data-cplx-query-collapsed");

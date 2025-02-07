@@ -6,9 +6,7 @@ import CanvasPlaceholderWrapper from "@/plugins/thread-better-code-blocks/varian
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 
 const MirroredCodeBlock = memo(function MirroredCodeBlock() {
-  const { language } = useMirroredCodeBlockContext()((state) => ({
-    language: state.language,
-  }));
+  const { codeBlock } = useMirroredCodeBlockContext();
 
   const { isMobile } = useIsMobileStore();
   if (isMobile) return <BaseCodeBlockWrapper />;
@@ -16,9 +14,11 @@ const MirroredCodeBlock = memo(function MirroredCodeBlock() {
   const settings = ExtensionLocalStorageService.getCachedSync();
   const isAutonomousCanvasLanguage =
     settings.plugins["thread:canvas"].enabled &&
-    isAutonomousCanvasLanguageString(language);
+    isAutonomousCanvasLanguageString(codeBlock?.content.language);
 
   if (isAutonomousCanvasLanguage) return <CanvasPlaceholderWrapper />;
+
+  if (!codeBlock) return null;
 
   return <BaseCodeBlockWrapper />;
 });

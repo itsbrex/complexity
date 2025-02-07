@@ -1,13 +1,13 @@
 import { Portal } from "@/components/ui/portal";
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { useSidebarDomObserverStore } from "@/plugins/_core/dom-observers/sidebar/store";
 import SidebarPinnedSpacesVisToggle from "@/plugins/space-navigator/sidebar-content/PinnedItemsVisToggle";
 import SidebarPinnedSpaces from "@/plugins/space-navigator/sidebar-content/PinnedSpaces";
 import SpaceNavigator from "@/plugins/space-navigator/sidebar-content/SpaceNavigator";
-import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
+import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 
 export default function SpaceNavigatorWrapper() {
-  const spaceButtonWrapper = useGlobalDomObserverStore(
-    (state) => state.sidebarComponents.spaceButtonWrapper,
+  const spaceButtonWrapper = useSidebarDomObserverStore(
+    (state) => state.$spaceButtonWrapper?.[0],
   );
 
   const $triggerButtonsPortalContainer = useMemo(() => {
@@ -32,7 +32,7 @@ export default function SpaceNavigatorWrapper() {
     const $existingPinnedSpacesPortalContainer = $spaceButtonWrapper
       .parent()
       .find(
-        `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.SIDEBAR.PINNED_SPACES_PORTAL_CONTAINER}"]`,
+        `[data-cplx-component="${INTERNAL_ATTRIBUTES.SIDEBAR.PINNED_SPACES_PORTAL_CONTAINER}"]`,
       );
 
     if ($existingPinnedSpacesPortalContainer.length) {
@@ -41,8 +41,7 @@ export default function SpaceNavigatorWrapper() {
 
     const $portalContainer = $("<div>")
       .internalComponentAttr(
-        DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.SIDEBAR
-          .PINNED_SPACES_PORTAL_CONTAINER,
+        INTERNAL_ATTRIBUTES.SIDEBAR.PINNED_SPACES_PORTAL_CONTAINER,
       )
       .insertAfter($spaceButtonWrapper);
 

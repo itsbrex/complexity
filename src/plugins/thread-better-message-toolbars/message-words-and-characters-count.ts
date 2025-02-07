@@ -1,17 +1,14 @@
 import { sendMessage } from "webext-bridge/content-script";
 
-import { globalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { threadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
-import {
-  DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
-  DOM_SELECTORS,
-} from "@/utils/dom-selectors";
+import { INTERNAL_ATTRIBUTES, DOM_SELECTORS } from "@/utils/dom-selectors";
 
 const OBSERVER_ID =
   "cplx-better-message-toolbars-display-words-and-characters-count";
-const MODEL_NAME_COMPONENT_SELECTOR = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING_WORDS_AND_CHARACTERS_COUNT}"]`;
+const MODEL_NAME_COMPONENT_SELECTOR = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING_WORDS_AND_CHARACTERS_COUNT}"]`;
 
 const handleInFlightMessage = ($answerHeading: JQuery<Element>) => {
   $answerHeading.find(MODEL_NAME_COMPONENT_SELECTOR).remove();
@@ -24,7 +21,7 @@ const createAnswerHeadingContainer = (content: string) => {
       "x-text-muted-foreground x-italic x-text-xs x-ml-4 x-text-right x-font-medium",
     )
     .internalComponentAttr(
-      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
+      INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD
         .ANSWER_HEADING_WORDS_AND_CHARACTERS_COUNT,
     );
 };
@@ -50,21 +47,21 @@ csLoaderRegistry.register({
         "thread:betterMessageToolbars"
       ].tokensCount;
 
-    globalDomObserverStore.subscribe(
-      (state) => ({
-        messageBlocks: state.threadComponents.messageBlocks,
-        queryHoverContainers: state.threadComponents.queryHoverContainers,
-      }),
-      ({ messageBlocks }) => {
+    threadMessageBlocksDomObserverStore.subscribe(
+      (store) => store.messageBlocks,
+      (messageBlocks) => {
         messageBlocks?.forEach(
-          async ({ isInFlight, $answerHeading, $wrapper }, index) => {
+          async (
+            { nodes: { $answerHeading, $wrapper }, states: { isInFlight } },
+            index,
+          ) => {
             if (isInFlight) {
               handleInFlightMessage($answerHeading);
               return;
             }
 
             const $buttonBar = $wrapper.find(
-              DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR,
+              DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR,
             );
 
             if (
@@ -109,6 +106,9 @@ csLoaderRegistry.register({
             $answerHeading.append(answerWordsAndCharactersCountContainer);
           },
         );
+      },
+      {
+        equalityFn: deepEqual,
       },
     );
   },

@@ -1,11 +1,9 @@
-import { memo } from "react";
-import { LuLoaderCircle } from "react-icons/lu";
-
 import CopyButton from "@/components/CopyButton";
 import { Separator } from "@/components/ui/separator";
 import { BetterCodeBlockFineGrainedOptions } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
+import { useThreadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
 import { useMirroredCodeBlockContext } from "@/plugins/thread-better-code-blocks/MirroredCodeBlockContext";
-import useBetterCodeBlockOptions from "@/plugins/thread-better-code-blocks/useBetterCodeBlockOptions";
+import { getBetterCodeBlockOptions } from "@/plugins/thread-better-code-blocks/utils";
 import CanvasSimpleModeRenderButton from "@/plugins/thread-better-code-blocks/variants/base/header-buttons/CanvasSimpleModeRenderButton";
 import { ExpandCollapseButton } from "@/plugins/thread-better-code-blocks/variants/base/header-buttons/ExpandCollapseButton";
 import { WrapToggleButton } from "@/plugins/thread-better-code-blocks/variants/base/header-buttons/WrapToggleButton";
@@ -13,29 +11,25 @@ import { ExtensionLocalStorageService } from "@/services/extension-local-storage
 
 const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
   const {
-    language,
-    codeString,
-    isInFlight,
-    isMessageBlockInFlight,
-    codeElement,
+    codeBlock,
+    sourceMessageBlockIndex,
     isWrapped,
-    maxHeight,
     setIsWrapped,
+    maxHeight,
     setMaxHeight,
-  } = useMirroredCodeBlockContext()((state) => ({
-    language: state.language,
-    codeString: state.codeString,
-    codeElement: state.codeElement,
-    isInFlight: state.isInFlight,
-    isMessageBlockInFlight: state.isMessageBlockInFlight,
-    isWrapped: state.isWrapped,
-    maxHeight: state.maxHeight,
-    setIsWrapped: state.setIsWrapped,
-    setMaxHeight: state.setMaxHeight,
-  }));
+  } = useMirroredCodeBlockContext();
 
+  const language = codeBlock?.content.language ?? null;
+  const isInFlight = codeBlock?.states.isInFlight ?? false;
+  const code = codeBlock?.content.code ?? "";
+  const isMessageBlockInFlight = useThreadMessageBlocksDomObserverStore(
+    (store) =>
+      store.messageBlocks?.[sourceMessageBlockIndex]?.states.isInFlight,
+    deepEqual,
+  );
+
+  const fineGrainedSettings = getBetterCodeBlockOptions(language);
   const settings = ExtensionLocalStorageService.getCachedSync();
-  const fineGrainedSettings = useBetterCodeBlockOptions({ language });
 
   const placeholderText:
     | BetterCodeBlockFineGrainedOptions["placeholderText"]
@@ -48,17 +42,23 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
   const [shouldShowWrapToggleButton] = useState(
     () =>
       fineGrainedSettings.unwrap.showToggleButton &&
-      isContainerHorizontalOverflowing({ codeElement }),
+      codeBlock &&
+      isContainerHorizontalOverflowing({
+        codeElement: codeBlock.nodes.$wrapper[0],
+      }),
   );
   const [shouldShowExpandCollapseButton] = useState(
     () =>
       fineGrainedSettings.maxHeight.enabled &&
       fineGrainedSettings.maxHeight.showToggleButton &&
+      codeBlock &&
       isContainerVerticalOverflowing({
         initialMaxHeight: fineGrainedSettings.maxHeight.value,
-        codeElement,
+        codeElement: codeBlock.nodes.$wrapper[0],
       }),
   );
+
+  if (!codeBlock) return null;
 
   return (
     <div
@@ -85,16 +85,6 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
       </div>
 
       <div className="x-flex x-items-center x-gap-4">
-        {isInFlight && (
-          <span className="x-flex x-items-center x-gap-2">
-            {placeholderText?.loading && (
-              <span className="x-animate-pulse x-font-sans">
-                {placeholderText.loading}
-              </span>
-            )}
-            <LuLoaderCircle className="x-animate-spin" />
-          </span>
-        )}
         {!isInFlight && (
           <>
             <CanvasSimpleModeRenderButton />
@@ -104,7 +94,7 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
                 setIsWrapped={setIsWrapped}
               />
             )}
-            <CopyButton content={codeString} />
+            <CopyButton content={code} />
             {shouldShowExpandCollapseButton && (
               <ExpandCollapseButton
                 defaultMaxHeight={fineGrainedSettings.maxHeight.value}

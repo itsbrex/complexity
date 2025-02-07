@@ -1,4 +1,4 @@
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { useThreadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 
 export default function QueryWordsAndCharactersCount({
@@ -6,13 +6,14 @@ export default function QueryWordsAndCharactersCount({
 }: {
   messageBlockIndex: number;
 }) {
-  const messageBlock = useGlobalDomObserverStore(
-    (store) => store.threadComponents.messageBlocks?.[messageBlockIndex],
+  const $query = useThreadMessageBlocksDomObserverStore(
+    (store) => store.messageBlocks?.[messageBlockIndex]?.nodes?.$query,
+    deepEqual,
   );
 
-  if (messageBlock == null) return null;
+  if ($query == null || !$query.length) return null;
 
-  const query = messageBlock.$query
+  const query = $query
     .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
     .text();
 

@@ -1,11 +1,9 @@
 import SponsorDialogWrapper from "@/components/SponsorDialogWrapper";
 import { Portal } from "@/components/ui/portal";
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { useHomeDomObserverStore } from "@/plugins/_core/dom-observers/home/store";
 
 export function SponsorHomeLink() {
-  const bottomBar = useGlobalDomObserverStore(
-    (state) => state.homeComponents.bottomBar,
-  );
+  const bottomBar = useHomeDomObserverStore((store) => store.$bottomBar?.[0]);
 
   const portalContainer = useMemo(() => {
     if (!bottomBar) return null;

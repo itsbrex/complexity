@@ -8,13 +8,16 @@ import "@/services/indexed-db/better-code-blocks";
 import "@/services/pplx-api/network-intercept-middlewares";
 import "@/data/plugins/query-box/language-model-selector/language-models";
 
-// Core Features
+// Cores
 import "@/plugins/_api/spa-router/listeners";
 import "@/plugins/_core/network-intercept/listeners";
-import "@/plugins/_core/dom-observers/query-boxes/observers";
-import "@/plugins/_core/dom-observers/home/observers";
-import "@/plugins/_core/dom-observers/thread/observers";
+
 import "@/plugins/_core/dom-observers/sidebar/observers";
+import "@/plugins/_core/dom-observers/home/observer";
+import "@/plugins/_core/dom-observers/query-boxes/observers";
+import "@/plugins/_core/dom-observers/thread/observer";
+import "@/plugins/_core/dom-observers/thread/message-blocks/observer";
+import "@/plugins/_core/dom-observers/thread/code-blocks/observer";
 import "@/plugins/_core/dom-observers/spaces-page/observers";
 import "@/plugins/_core/dom-observers/settings-page/observers";
 

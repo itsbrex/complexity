@@ -1,6 +1,6 @@
 import CsUiPluginsGuard from "@/components/plugins-guard/CsUiPluginsGuard";
 import { Portal } from "@/components/ui/portal";
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { queryBoxesDomObserverStore } from "@/plugins/_core/dom-observers/query-boxes/store";
 import { ScopedQueryBoxContextProvider } from "@/plugins/_core/ui-groups/query-box/context/context";
 import { findToolbarPortalContainer } from "@/plugins/_core/ui-groups/query-box/utils";
 import BetterLanguageModelSelectorWrapper from "@/plugins/language-model-selector";
@@ -8,8 +8,9 @@ import SlashCommandMenuWrapper from "@/plugins/slash-command-menu";
 import SlashCommandMenuTriggerButton from "@/plugins/slash-command-menu/TriggerButton";
 
 export default function MainModalQueryBoxWrapper() {
-  const mainModalQueryBox = useGlobalDomObserverStore(
-    (state) => state.queryBoxes.mainModalQueryBox,
+  const mainModalQueryBox = queryBoxesDomObserverStore(
+    (store) => store.main.$mainModalQueryBox?.[0],
+    deepEqual,
   );
 
   if (!mainModalQueryBox) return null;

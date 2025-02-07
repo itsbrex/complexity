@@ -58,12 +58,12 @@ const spaRouterStore = createWithEqualityFn<SpaRouterStore>()(
 export const spaRouterStoreSubscribe = spaRouterStore.subscribe;
 
 export const spaRouteChangeCompleteSubscribe = (
-  callback: (url: string) => void,
+  callback: (url: string, prevUrl: string) => void,
 ) => {
   return spaRouterStore.subscribe(
     (state) => ({ state: state.state, url: state.url }),
-    ({ state, url }) => {
-      if (state === "complete") callback(url);
+    ({ state, url }, { url: prevUrl }) => {
+      if (state === "complete" || url !== prevUrl) callback(url, prevUrl);
     },
   );
 };

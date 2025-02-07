@@ -11,12 +11,8 @@ import { canvasStore, useCanvasStore } from "@/plugins/canvas/store";
 import { useMirroredCodeBlockContext } from "@/plugins/thread-better-code-blocks/MirroredCodeBlockContext";
 
 const CanvasPlaceholderWrapper = memo(function CanvasPlaceholderWrapper() {
-  const {
-    language,
-    isInFlight,
-    sourceMessageBlockIndex,
-    sourceCodeBlockIndex,
-  } = useMirroredCodeBlockContext()();
+  const { codeBlock, sourceMessageBlockIndex, sourceCodeBlockIndex } =
+    useMirroredCodeBlockContext();
 
   const selectedCodeBlockLocation = useCanvasStore(
     (state) => state.selectedCodeBlockLocation,
@@ -26,8 +22,10 @@ const CanvasPlaceholderWrapper = memo(function CanvasPlaceholderWrapper() {
     selectedCodeBlockLocation?.messageBlockIndex === sourceMessageBlockIndex &&
     selectedCodeBlockLocation?.codeBlockIndex === sourceCodeBlockIndex;
 
-  const title = formatCanvasTitle(getCanvasTitle(language));
-  const interpretedLanguage = getInterpretedCanvasLanguage(language);
+  const title = formatCanvasTitle(getCanvasTitle(codeBlock?.content.language));
+  const interpretedLanguage = getInterpretedCanvasLanguage(
+    codeBlock?.content.language ?? "",
+  );
 
   const placeholderElements =
     CANVAS_PLACEHOLDERS[interpretedLanguage as CanvasLanguage];
@@ -59,7 +57,7 @@ const CanvasPlaceholderWrapper = memo(function CanvasPlaceholderWrapper() {
           },
         )}
       >
-        {isInFlight ? (
+        {codeBlock?.states.isInFlight ? (
           <LuLoaderCircle className="x-size-4 x-animate-spin x-text-muted-foreground" />
         ) : (
           <placeholderElements.icon className="x-size-8" />
@@ -77,7 +75,7 @@ const CanvasPlaceholderWrapper = memo(function CanvasPlaceholderWrapper() {
           {title.length > 0 ? title : placeholderElements.defaultTitle}
         </div>
         <div className="x-w-max x-text-sm x-text-muted-foreground">
-          {isInFlight ? (
+          {codeBlock?.states.isInFlight ? (
             <span className="x-animate-pulse">Generating...</span>
           ) : (
             placeholderElements.description

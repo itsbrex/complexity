@@ -2,7 +2,7 @@
   text-align: center;
   text-wrap: balance;
 
-  &:not([custom-slogan]) span {
+  &:not([home-slogan]) span {
     display: none;
   }
 

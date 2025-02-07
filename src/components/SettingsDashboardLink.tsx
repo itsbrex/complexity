@@ -2,18 +2,16 @@ import { sendMessage } from "webext-bridge/content-script";
 
 import FaArrowUpRight from "@/components/icons/FaArrowUpRight";
 import { Portal } from "@/components/ui/portal";
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { useSettingsPageDomObserverStore } from "@/plugins/_core/dom-observers/settings-page/store";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 
 export default function SettingsDashboardLink() {
-  const topNavWrapper = useGlobalDomObserverStore(
-    (store) => store.settingsPageComponents.topNavWrapper,
+  const $topNavWrapper = useSettingsPageDomObserverStore(
+    (store) => store.$topNavWrapper,
   );
 
   const portalContainer = useMemo(() => {
-    if (topNavWrapper == null) return null;
-
-    const $topNavWrapper = $(topNavWrapper);
+    if ($topNavWrapper == null || !$topNavWrapper.length) return null;
 
     const $navLinksWrapper = $topNavWrapper.find(
       DOM_SELECTORS.SETTINGS_PAGE.TOP_NAV_CHILD.NAV_LINKS_WRAPPER,
@@ -22,7 +20,7 @@ export default function SettingsDashboardLink() {
     if (!$navLinksWrapper.length) return null;
 
     return $navLinksWrapper[0];
-  }, [topNavWrapper]);
+  }, [$topNavWrapper]);
 
   if (portalContainer == null) return null;
 

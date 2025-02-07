@@ -1,29 +1,23 @@
 import { CSSProperties, ReactNode } from "react";
 
 import CodeHighlighter from "@/components/CodeHighlighter";
+import useThreadCodeBlock from "@/plugins/_core/dom-observers/thread/code-blocks/hooks/useThreadCodeBlock";
 import { getInterpretedCanvasLanguage } from "@/plugins/canvas/canvas.types";
 import { useCanvasStore } from "@/plugins/canvas/store";
-import {
-  useMirroredCodeBlocksStore,
-  getMirroredCodeBlockByLocation,
-} from "@/plugins/thread-better-code-blocks/store";
 
 export default function CodeView() {
   const selectedCodeBlockLocation = useCanvasStore(
     (state) => state.selectedCodeBlockLocation,
   );
-  const mirroredCodeBlocks = useMirroredCodeBlocksStore(
-    (state) => state.blocks,
-  );
-  const selectedCodeBlock = getMirroredCodeBlockByLocation({
-    mirroredCodeBlocks,
+  const selectedCodeBlock = useThreadCodeBlock({
     messageBlockIndex: selectedCodeBlockLocation?.messageBlockIndex,
     codeBlockIndex: selectedCodeBlockLocation?.codeBlockIndex,
   });
-  const isInFlight = selectedCodeBlock?.isInFlight;
-  const codeString = selectedCodeBlock?.codeString ?? "";
+
+  const isInFlight = selectedCodeBlock?.states.isInFlight;
+  const codeString = selectedCodeBlock?.content.code ?? "";
   const language = getInterpretedCanvasLanguage(
-    selectedCodeBlock?.language ?? "",
+    selectedCodeBlock?.content.language ?? "",
   );
 
   const lineNumberStyle = useMemo((): CSSProperties => {

@@ -1,4 +1,4 @@
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { useThreadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
 
 type TocItem = {
   id: string;
@@ -12,8 +12,9 @@ export function useThreadTocItems() {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const activeItemIdRef = useRef<string | null>(null);
 
-  const messageBlocks = useGlobalDomObserverStore(
-    (state) => state.threadComponents.messageBlocks,
+  const messageBlocks = useThreadMessageBlocksDomObserverStore(
+    (state) => state.messageBlocks,
+    deepEqual,
   );
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export function useThreadTocItems() {
     observerRef.current = observer;
 
     setTocItems((prevTocItems) =>
-      messageBlocks.map(({ $wrapper, title }, idx) => {
+      messageBlocks.map(({ nodes: { $wrapper }, content: { title } }, idx) => {
         const id = `toc-item-${idx}`;
         $wrapper.attr("id", id);
         observer.observe($wrapper[0]);

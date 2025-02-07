@@ -1,6 +1,6 @@
 import { isHotkeyPressed } from "react-hotkeys-hook";
 
-import { globalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { threadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
 import { handleInstantRewrite } from "@/plugins/instant-rewrite-button/handle-instant-rewrite";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
@@ -15,23 +15,23 @@ csLoaderRegistry.register({
 
     if (!pluginsEnableStates["thread:instantRewriteButton"]) return;
 
-    globalDomObserverStore.subscribe(
-      (store) => store.threadComponents.messageBlockBottomBars,
-      (messageBlockBottomBars) => {
-        messageBlockBottomBars?.forEach((messageBlockBottomBar, index) => {
-          if (messageBlockBottomBar == null) return;
+    threadMessageBlocksDomObserverStore.subscribe(
+      (state) => state.messageBlocks,
+      (messageBlocks) => {
+        messageBlocks?.forEach((messageBlock, index) => {
+          const $bottomBar = messageBlock.nodes.$bottomBar;
 
-          const $nativeRewriteBtn = $(messageBlockBottomBar).find(
-            DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR_CHILD.REWRITE_BUTTON,
+          if (!$bottomBar.length) return;
+
+          const $nativeRewriteBtn = $bottomBar.find(
+            DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR_CHILD
+              .REWRITE_BUTTON,
           );
 
-          if (
-            !$nativeRewriteBtn.length ||
-            $nativeRewriteBtn.internalComponentAttr() === OBSERVER_ID
-          )
+          if (!$nativeRewriteBtn.length || $nativeRewriteBtn.attr(OBSERVER_ID))
             return;
 
-          $nativeRewriteBtn.internalComponentAttr(OBSERVER_ID);
+          $nativeRewriteBtn.attr(OBSERVER_ID, "true");
 
           $nativeRewriteBtn.on("click", (e) => {
             if (!isHotkeyPressed(Key.Control) && !isHotkeyPressed(Key.Meta))
@@ -43,6 +43,9 @@ csLoaderRegistry.register({
             handleInstantRewrite({ messageBlockIndex: index });
           });
         });
+      },
+      {
+        equalityFn: deepEqual,
       },
     );
   },

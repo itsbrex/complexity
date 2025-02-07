@@ -1,7 +1,5 @@
-import {
-  ExtendedMessageBlock,
-  globalDomObserverStore,
-} from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { threadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
+import { MessageBlock } from "@/plugins/_core/dom-observers/thread/message-blocks/types";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
@@ -9,9 +7,9 @@ import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 function populateOriginalHeight({
   messageBlocks,
 }: {
-  messageBlocks: ExtendedMessageBlock[];
+  messageBlocks: MessageBlock[];
 }) {
-  messageBlocks.forEach(({ $query }) => {
+  messageBlocks.forEach(({ nodes: { $query } }) => {
     const queryContainerOriginalHeight = $query.attr("original-height");
     if (queryContainerOriginalHeight == null) {
       const originalHeight = $query[0]?.getBoundingClientRect().height ?? 0;
@@ -36,14 +34,17 @@ csLoaderRegistry.register({
     )
       return;
 
-    globalDomObserverStore.subscribe(
-      (state) => ({
-        messageBlocks: state.threadComponents.messageBlocks,
+    threadMessageBlocksDomObserverStore.subscribe(
+      (store) => ({
+        messageBlocks: store.messageBlocks,
       }),
       ({ messageBlocks }) => {
         populateOriginalHeight({
           messageBlocks: messageBlocks ?? [],
         });
+      },
+      {
+        equalityFn: deepEqual,
       },
     );
   },

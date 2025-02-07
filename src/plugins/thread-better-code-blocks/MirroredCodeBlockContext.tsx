@@ -2,24 +2,13 @@ import { subscribeWithSelector } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
 
-import { MirroredCodeBlock } from "@/plugins/thread-better-code-blocks/store";
-import { RemoveNull } from "@/types/utils.types";
+import useThreadCodeBlock from "@/plugins/_core/dom-observers/thread/code-blocks/hooks/useThreadCodeBlock";
 
 type MirroredCodeBlockContext = ReturnType<typeof createStore>;
 
-type NonNullMirroredCodeBlock = RemoveNull<
-  MirroredCodeBlock,
-  "language" | "codeString"
->;
-
-type MirroredCodeBlockStore = Pick<
-  NonNullMirroredCodeBlock,
-  "language" | "codeString" | "isInFlight"
-> & {
+type MirroredCodeBlockStore = {
   sourceMessageBlockIndex: number;
   sourceCodeBlockIndex: number;
-  isMessageBlockInFlight: boolean;
-  codeElement: Element;
   isWrapped: boolean;
   setIsWrapped: (isWrapped: boolean) => void;
   maxHeight: number;
@@ -28,25 +17,27 @@ type MirroredCodeBlockStore = Pick<
 
 type InitialState = Omit<
   MirroredCodeBlockStore,
-  "setIsWrapped" | "setMaxHeight" | "setContent"
+  "setIsWrapped" | "setMaxHeight"
 >;
 
 export const createStore = (initialState: InitialState) =>
   createWithEqualityFn<MirroredCodeBlockStore>()(
     subscribeWithSelector(
-      immer((set) => ({
-        ...initialState,
-        setIsWrapped: (isWrapped) => {
-          set((state) => {
-            state.isWrapped = isWrapped;
-          });
-        },
-        setMaxHeight: (maxHeight) => {
-          set((state) => {
-            state.maxHeight = maxHeight;
-          });
-        },
-      })),
+      immer(
+        (set): MirroredCodeBlockStore => ({
+          ...initialState,
+          setIsWrapped: (isWrapped) => {
+            set((state) => {
+              state.isWrapped = isWrapped;
+            });
+          },
+          setMaxHeight: (maxHeight) => {
+            set((state) => {
+              state.maxHeight = maxHeight;
+            });
+          },
+        }),
+      ),
     ),
   );
 
@@ -64,10 +55,6 @@ export const MirroredCodeBlockContextProvider = memo(
   }) {
     const [store] = useState(() => createStore(storeValue));
 
-    useEffect(() => {
-      store.setState(storeValue);
-    }, [store, storeValue]);
-
     return (
       <MirroredCodeBlockContext.Provider value={store}>
         {children}
@@ -83,5 +70,14 @@ export function useMirroredCodeBlockContext() {
       "useMirroredCodeBlockContext must be used within a MirroredCodeBlockContext",
     );
   }
-  return context;
+
+  const contextValues = context();
+
+  return {
+    codeBlock: useThreadCodeBlock({
+      messageBlockIndex: contextValues.sourceMessageBlockIndex,
+      codeBlockIndex: contextValues.sourceCodeBlockIndex,
+    }),
+    ...contextValues,
+  };
 }

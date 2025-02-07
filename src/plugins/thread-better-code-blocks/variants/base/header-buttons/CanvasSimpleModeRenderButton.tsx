@@ -10,12 +10,12 @@ import { canvasStore } from "@/plugins/canvas/store";
 import { useMirroredCodeBlockContext } from "@/plugins/thread-better-code-blocks/MirroredCodeBlockContext";
 
 export default function CanvasSimpleModeRenderButton() {
-  const { messageBlockIndex, codeBlockIndex, language } =
-    useMirroredCodeBlockContext()((state) => ({
-      language: state.language,
-      messageBlockIndex: state.sourceMessageBlockIndex,
-      codeBlockIndex: state.sourceCodeBlockIndex,
-    }));
+  const { codeBlock, sourceCodeBlockIndex, sourceMessageBlockIndex } =
+    useMirroredCodeBlockContext();
+
+  if (!codeBlock) return null;
+
+  const language = codeBlock.content.language;
 
   if (
     !isCanvasLanguageString(language) &&
@@ -31,8 +31,8 @@ export default function CanvasSimpleModeRenderButton() {
           onClick={() => {
             canvasStore.setState((draft) => {
               draft.selectedCodeBlockLocation = {
-                messageBlockIndex,
-                codeBlockIndex,
+                messageBlockIndex: sourceMessageBlockIndex,
+                codeBlockIndex: sourceCodeBlockIndex,
               };
               draft.state = "preview";
             });

@@ -1,26 +1,26 @@
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { useThreadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
 
 const OBSERVER_ID = "cplx-thread-query-hover-container";
 
 export function useObserver(): (Element | null)[] {
-  const queryHoverContainers = useGlobalDomObserverStore(
-    (state) => state.threadComponents.queryHoverContainers,
+  const messageBlocks = useThreadMessageBlocksDomObserverStore(
+    (state) => state.messageBlocks,
+    deepEqual,
   );
 
-  if (queryHoverContainers == null) return [];
+  if (messageBlocks == null) return [];
 
-  return queryHoverContainers.map((container) => {
-    if (container == null) return null;
-
-    const $existingPortalContainer = $(container).find(
-      `div[data-cplx-component="${OBSERVER_ID}"]`,
-    );
+  return messageBlocks.map((messageBlock) => {
+    const $existingPortalContainer =
+      messageBlock.nodes.$queryHoverContainer.find(
+        `div[data-cplx-component="${OBSERVER_ID}"]`,
+      );
 
     if ($existingPortalContainer.length) return $existingPortalContainer[0];
 
     const $portalContainer = $("<div>").internalComponentAttr(OBSERVER_ID);
 
-    $(container).prepend($portalContainer);
+    messageBlock.nodes.$queryHoverContainer.prepend($portalContainer);
 
     return $portalContainer[0];
   });

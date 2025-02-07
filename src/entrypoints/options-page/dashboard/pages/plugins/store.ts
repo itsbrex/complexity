@@ -2,7 +2,7 @@ import { subscribeWithSelector } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
 
-import { PluginTagValues } from "@/data/plugins-data/tags";
+import { PluginTagValues } from "@/data/plugins-data/plugins-tags";
 
 export type PluginFilters = {
   tags: PluginTagValues[];

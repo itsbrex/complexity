@@ -6,11 +6,7 @@ import { ExtensionLocalStorageService } from "@/services/extension-local-storage
 
 const BaseCodeBlockWrapper = memo(function BaseCodeBlockWrapper() {
   const { maxHeight, sourceMessageBlockIndex, sourceCodeBlockIndex } =
-    useMirroredCodeBlockContext()((state) => ({
-      maxHeight: state.maxHeight,
-      sourceMessageBlockIndex: state.sourceMessageBlockIndex,
-      sourceCodeBlockIndex: state.sourceCodeBlockIndex,
-    }));
+    useMirroredCodeBlockContext();
 
   const isCanvasEnabled =
     ExtensionLocalStorageService.getCachedSync().plugins["thread:canvas"]

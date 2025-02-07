@@ -4,17 +4,13 @@ import { sendMessage } from "webext-bridge/content-script";
 import Tooltip from "@/components/Tooltip";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
+import useThreadCodeBlock from "@/plugins/_core/dom-observers/thread/code-blocks/hooks/useThreadCodeBlock";
 import { useCanvasStore } from "@/plugins/canvas/store";
-import {
-  getMirroredCodeBlockByLocation,
-  useMirroredCodeBlocksStore,
-} from "@/plugins/thread-better-code-blocks/store";
 
 export default function MermaidOpenInPlayground() {
   const { selectedCodeBlockLocation } = useCanvasStore();
-  const mirroredCodeBlocks = useMirroredCodeBlocksStore().blocks;
-  const selectedCodeBlock = getMirroredCodeBlockByLocation({
-    mirroredCodeBlocks,
+
+  const selectedCodeBlock = useThreadCodeBlock({
     messageBlockIndex: selectedCodeBlockLocation?.messageBlockIndex,
     codeBlockIndex: selectedCodeBlockLocation?.codeBlockIndex,
   });
@@ -27,12 +23,12 @@ export default function MermaidOpenInPlayground() {
         variant="ghost"
         size="iconSm"
         onClick={async () => {
-          if (!selectedCodeBlock.codeString) return;
+          if (!selectedCodeBlock.content.code) return;
 
           const url = await sendMessage(
             "mermaidRenderer:getPlaygroundUrl",
             {
-              code: selectedCodeBlock.codeString,
+              code: selectedCodeBlock.content.code,
             },
             "window",
           );

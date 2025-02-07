@@ -1,20 +1,18 @@
-import debounce from "lodash/debounce";
 import throttle from "lodash/throttle";
 
 import {
   DomObserverConfig,
   DomObserverInstance,
   MutationCallback,
-  ObserverId,
   ObserverOperation,
   Result,
 } from "@/plugins/_api/dom-observer/dom-observer.types";
+import { ObserverId } from "@/plugins/_api/dom-observer/observer-ids";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 
 export class DomObserver {
   private static instance: DomObserver;
   private DEFAULT_DEBOUNCE_TIME: number;
-  private debounceFn: typeof throttle;
   private debounceConfig: { leading: boolean; trailing: boolean };
 
   private static instances = new Map<ObserverId, DomObserverInstance>();
@@ -24,9 +22,8 @@ export class DomObserver {
     const isEnergySavingMode =
       ExtensionLocalStorageService.getCachedSync().energySavingMode;
 
-    this.DEFAULT_DEBOUNCE_TIME = isEnergySavingMode ? 500 : 70;
+    this.DEFAULT_DEBOUNCE_TIME = isEnergySavingMode ? 500 : 50;
 
-    this.debounceFn = isEnergySavingMode ? debounce : throttle;
     this.debounceConfig = isEnergySavingMode
       ? { leading: false, trailing: true }
       : { leading: true, trailing: true };
@@ -108,6 +105,10 @@ export class DomObserver {
 
     const targetValidation = this.validateTarget(config.target, id);
     if (!targetValidation.success) return targetValidation;
+
+    if (config.fireImmediately) {
+      config.onMutation();
+    }
 
     const observer = new MutationObserver(
       this.createMutationHandler(id, config),
@@ -212,7 +213,7 @@ export class DomObserver {
   ): MutationCallback {
     const instance = DomObserver.getInstance();
 
-    const throttledCallback = instance.debounceFn(
+    const throttledCallback = throttle(
       config.onMutation,
       config.debounceTime ?? instance.DEFAULT_DEBOUNCE_TIME,
       instance.debounceConfig,

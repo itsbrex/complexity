@@ -1,4 +1,4 @@
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { useThreadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
 import CopyButton from "@/plugins/thread-better-message-copy-buttons/CopyButton";
 
 export default function BetterMessageCopyButton({
@@ -6,10 +6,9 @@ export default function BetterMessageCopyButton({
 }: {
   messageBlockIndex: number;
 }) {
-  const $sourcesHeading = useGlobalDomObserverStore(
-    (store) =>
-      store.threadComponents.messageBlocks?.[messageBlockIndex]
-        ?.$sourcesHeading,
+  const $sourcesHeading = useThreadMessageBlocksDomObserverStore(
+    (store) => store.messageBlocks?.[messageBlockIndex]?.nodes?.$sourcesHeading,
+    deepEqual,
   );
 
   if (!$sourcesHeading) return null;

@@ -1,6 +1,7 @@
 import { Portal } from "@/components/ui/portal";
 import { useInsertCss } from "@/hooks/useInsertCss";
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import useThreadCodeBlock from "@/plugins/_core/dom-observers/thread/code-blocks/hooks/useThreadCodeBlock";
+import { useThreadDomObserverStore } from "@/plugins/_core/dom-observers/thread/store";
 import styles from "@/plugins/canvas/canvas.css?inline";
 import CanvasContent from "@/plugins/canvas/components/CanvasContent";
 import CanvasFooter from "@/plugins/canvas/components/CanvasFooter";
@@ -9,14 +10,11 @@ import CanvasList from "@/plugins/canvas/components/CanvasList";
 import { useCanvasStore } from "@/plugins/canvas/store";
 import useHandleAutonomousCanvasState from "@/plugins/canvas/useHandleAutonomousCanvasState";
 import { useHandleCanvasState } from "@/plugins/canvas/useHandleCanvasState";
-import {
-  getMirroredCodeBlockByLocation,
-  useMirroredCodeBlocksStore,
-} from "@/plugins/thread-better-code-blocks/store";
 
 export default function CanvasWrapper() {
-  const threadWrapperElement = useGlobalDomObserverStore(
-    (state) => state.threadComponents.wrapper,
+  const threadWrapper = useThreadDomObserverStore(
+    (state) => state.$wrapper?.[0],
+    deepEqual,
   );
 
   useHandleCanvasState();
@@ -25,15 +23,12 @@ export default function CanvasWrapper() {
   const selectedCodeBlockLocation = useCanvasStore(
     (state) => state.selectedCodeBlockLocation,
   );
-  const isCanvasOpen = selectedCodeBlockLocation !== null;
-  const mirroredCodeBlocks = useMirroredCodeBlocksStore(
-    (state) => state.blocks,
-  );
-  const selectedCodeBlock = getMirroredCodeBlockByLocation({
-    mirroredCodeBlocks,
+
+  const selectedCodeBlock = useThreadCodeBlock({
     messageBlockIndex: selectedCodeBlockLocation?.messageBlockIndex,
     codeBlockIndex: selectedCodeBlockLocation?.codeBlockIndex,
   });
+  const isCanvasOpen = selectedCodeBlockLocation !== null;
   const isCanvasListOpen = useCanvasStore((state) => state.isCanvasListOpen);
 
   useInsertCss({
@@ -56,8 +51,10 @@ export default function CanvasWrapper() {
 
   if (!isCanvasOpen && !isCanvasListOpen) return null;
 
+  if (!threadWrapper) return null;
+
   return (
-    <Portal container={threadWrapperElement}>
+    <Portal container={threadWrapper}>
       <div
         className={cn(
           "x-fixed x-right-8 x-my-8 x-h-[calc(100dvh-var(--navbar-height)-11rem)] x-overflow-hidden x-rounded-md x-border x-border-border/50 x-bg-secondary x-text-sm x-transition-all x-animate-in x-fade-in x-slide-in-from-right",

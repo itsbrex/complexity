@@ -49,12 +49,15 @@ export default function SettingsPage() {
           title={
             <div className="x-flex x-items-center x-gap-2">
               <LuLeafyGreen className="x-text-success" />
-              <span>Energy Saving Mode</span>
+              <span>Low Performance Mode</span>
             </div>
           }
           description={
             <div>
-              <div>Reduce the extension sensitivity to changes on the page</div>
+              <div className="x-text-sm x-text-muted-foreground">
+                Enable this mode if you notice significant performance issues,
+                even in smaller threads.
+              </div>
               <div className="x-text-sm x-italic x-text-muted-foreground">
                 (Existing tabs require a refresh to apply)
               </div>

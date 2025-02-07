@@ -2,20 +2,15 @@ import { sendMessage } from "webext-bridge/content-script";
 
 import { languageModels } from "@/data/plugins/query-box/language-model-selector/language-models";
 import { isLanguageModelCode } from "@/data/plugins/query-box/language-model-selector/language-models.types";
-import {
-  ExtendedMessageBlock,
-  globalDomObserverStore,
-} from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { threadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
+import { MessageBlock } from "@/plugins/_core/dom-observers/thread/message-blocks/types";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
-import {
-  DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
-  DOM_SELECTORS,
-} from "@/utils/dom-selectors";
+import { INTERNAL_ATTRIBUTES, DOM_SELECTORS } from "@/utils/dom-selectors";
 
-const OBSERVER_ID = "cplx-better-message-toolbars-display-explicit-model-name";
-const MODEL_NAME_COMPONENT_SELECTOR = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING_MODEL_NAME}"]`;
+const OBSERVER_ID = "better-message-toolbars-display-explicit-model-name";
+const MODEL_NAME_COMPONENT_SELECTOR = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING_MODEL_NAME}"]`;
 
 const handleInFlightMessage = ($answerHeading: JQuery<Element>) => {
   $answerHeading.find(MODEL_NAME_COMPONENT_SELECTOR).remove();
@@ -28,7 +23,7 @@ const createModelBadge = (modelName: string) => {
       "x-font-mono x-animate-in x-fade-in x-border x-border-border/50 x-p-1 x-px-2 x-rounded-md x-text-xs x-bg-secondary x-font-medium",
     )
     .internalComponentAttr(
-      DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD
+      INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD
         .ANSWER_HEADING_MODEL_NAME,
     );
 };
@@ -49,7 +44,9 @@ const displayModelBadge = async ({
     return;
   }
 
-  const $buttonBar = $wrapper.find(DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR);
+  const $buttonBar = $wrapper.find(
+    DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR,
+  );
   if (!$buttonBar.length || $buttonBar.attr(OBSERVER_ID)) return;
 
   $buttonBar.attr(OBSERVER_ID, "true");
@@ -83,7 +80,7 @@ const displayModelBadge = async ({
   $target.append(modelNameElement);
 };
 
-function explicitModelName(messageBlocks: ExtendedMessageBlock[]) {
+function explicitModelName(messageBlocks: MessageBlock[]) {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
   if (
     !pluginsEnableStates["thread:betterMessageToolbars"] ||
@@ -93,18 +90,35 @@ function explicitModelName(messageBlocks: ExtendedMessageBlock[]) {
   )
     return;
 
-  messageBlocks.forEach(({ $wrapper, $answerHeading, isInFlight }, index) => {
-    displayModelBadge({ $wrapper, $answerHeading, isInFlight, index });
-  });
+  messageBlocks.forEach(
+    (
+      { nodes: { $wrapper, $answerHeading }, states: { isInFlight } },
+      index,
+    ) => {
+      displayModelBadge({ $wrapper, $answerHeading, isInFlight, index });
+    },
+  );
 }
 
 csLoaderRegistry.register({
   id: "plugin:thread:betterMessageToolbars:explicitModelName",
   loader: () => {
-    globalDomObserverStore.subscribe(
-      (state) => state.threadComponents.messageBlocks,
+    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const settings = ExtensionLocalStorageService.getCachedSync();
+
+    if (
+      !pluginsEnableStates["thread:betterMessageToolbars"] ||
+      !settings.plugins["thread:betterMessageToolbars"].explicitModelName
+    )
+      return;
+
+    threadMessageBlocksDomObserverStore.subscribe(
+      (store) => store.messageBlocks,
       (messageBlocks) => {
         explicitModelName(messageBlocks ?? []);
+      },
+      {
+        equalityFn: deepEqual,
       },
     );
   },

@@ -1,29 +1,24 @@
 import { LuArrowLeft, LuArrowRight } from "react-icons/lu";
 
 import { Button } from "@/components/ui/button";
+import useThreadCodeBlock from "@/plugins/_core/dom-observers/thread/code-blocks/hooks/useThreadCodeBlock";
 import { getCanvasTitle } from "@/plugins/canvas/canvas.types";
 import { canvasStore, useCanvasStore } from "@/plugins/canvas/store";
-import {
-  getMirroredCodeBlockByLocation,
-  useMirroredCodeBlocksStore,
-} from "@/plugins/thread-better-code-blocks/store";
-import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
+import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 import { scrollToElement } from "@/utils/utils";
 
 export default function AutonomousCanvasVersionsNavigator() {
   const selectedCodeBlockLocation = useCanvasStore(
     (state) => state.selectedCodeBlockLocation,
   );
-  const mirroredCodeBlocks = useMirroredCodeBlocksStore(
-    (state) => state.blocks,
-  );
-  const selectedCodeBlock = getMirroredCodeBlockByLocation({
-    mirroredCodeBlocks,
+
+  const selectedCodeBlock = useThreadCodeBlock({
     messageBlockIndex: selectedCodeBlockLocation?.messageBlockIndex,
     codeBlockIndex: selectedCodeBlockLocation?.codeBlockIndex,
   });
+
   const canvasBlocks = useCanvasStore((state) => state.canvasBlocks);
-  const canvasTitle = getCanvasTitle(selectedCodeBlock?.language);
+  const canvasTitle = getCanvasTitle(selectedCodeBlock?.content.language);
 
   const versions = canvasBlocks[canvasTitle];
   const currentLocationIndex = versions?.location.findIndex(
@@ -67,7 +62,7 @@ export default function AutonomousCanvasVersionsNavigator() {
             canvasStore.getState().selectedCodeBlockLocation;
           if (!selectedCodeBlockLocation) return;
 
-          const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${selectedCodeBlockLocation.messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.MIRRORED_CODE_BLOCK}"][data-index="${selectedCodeBlockLocation.codeBlockIndex}"]`;
+          const selector = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${selectedCodeBlockLocation.messageBlockIndex}"] [data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.MIRRORED_CODE_BLOCK}"][data-index="${selectedCodeBlockLocation.codeBlockIndex}"]`;
 
           scrollToElement($(selector), -100);
         }}

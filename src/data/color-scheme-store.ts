@@ -16,7 +16,7 @@ type ColorSchemeStoreType = {
 export const colorSchemeStore = createWithEqualityFn<ColorSchemeStoreType>()(
   subscribeWithSelector(
     immer(
-      (set): ColorSchemeStoreType => ({
+      (): ColorSchemeStoreType => ({
         colorScheme: "system",
         setColorScheme: (scheme) => {
           const systemPreference = window.matchMedia(

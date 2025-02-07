@@ -7,9 +7,9 @@ import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { PluginsStatesService } from "@/services/plugins-states";
 
 export function shouldEnableCoreObserver({
-  coreObserverName,
+  coreObserverId,
 }: {
-  coreObserverName: CoreObserverId;
+  coreObserverId: CoreObserverId;
 }) {
   const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
 
@@ -19,9 +19,19 @@ export function shouldEnableCoreObserver({
       CplxPluginMetadata[PluginId],
     ];
 
+    const isPluginEnabled = pluginsEnableStates[pluginId];
+
+    const haveObserverAsDirectDependency =
+      pluginMetadata.dependentDomObservers?.includes(coreObserverId);
+
+    const haveObserverAsChildDependency =
+      pluginMetadata.dependentDomObservers?.find((dependency) =>
+        dependency.startsWith(coreObserverId),
+      );
+
     return (
-      pluginsEnableStates[pluginId] &&
-      pluginMetadata.dependentCorePlugins?.includes(coreObserverName)
+      isPluginEnabled &&
+      (haveObserverAsDirectDependency || haveObserverAsChildDependency)
     );
   });
 }

@@ -1,5 +1,6 @@
 import CopyButton from "@/components/CopyButton";
 import { Button } from "@/components/ui/button";
+import useThreadCodeBlock from "@/plugins/_core/dom-observers/thread/code-blocks/hooks/useThreadCodeBlock";
 import {
   getInterpretedCanvasLanguage,
   CanvasLanguage,
@@ -7,27 +8,20 @@ import {
 import { CANVAS_LANGUAGE_ACTION_BUTTONS } from "@/plugins/canvas/canvases";
 import AutonomousCanvasVersionsNavigator from "@/plugins/canvas/components/VersionsNavigator";
 import { useCanvasStore } from "@/plugins/canvas/store";
-import {
-  getMirroredCodeBlockByLocation,
-  useMirroredCodeBlocksStore,
-} from "@/plugins/thread-better-code-blocks/store";
 
 export default function CanvasFooter() {
   const selectedCodeBlockLocation = useCanvasStore(
     (state) => state.selectedCodeBlockLocation,
   );
-  const mirroredCodeBlocks = useMirroredCodeBlocksStore(
-    (state) => state.blocks,
-  );
-  const selectedCodeBlock = getMirroredCodeBlockByLocation({
-    mirroredCodeBlocks,
+
+  const selectedCodeBlock = useThreadCodeBlock({
     messageBlockIndex: selectedCodeBlockLocation?.messageBlockIndex,
     codeBlockIndex: selectedCodeBlockLocation?.codeBlockIndex,
   });
+
   const language = getInterpretedCanvasLanguage(
-    selectedCodeBlock?.language ?? "text",
+    selectedCodeBlock?.content.language ?? "text",
   ) as CanvasLanguage;
-  const codeString = selectedCodeBlock?.codeString;
 
   return (
     <div className="x-flex x-w-full x-items-center x-justify-between x-border-t x-border-border/50 x-bg-background x-p-2 x-px-4">
@@ -45,7 +39,7 @@ export default function CanvasFooter() {
           size="iconSm"
         >
           <CopyButton
-            content={codeString ?? ""}
+            content={selectedCodeBlock?.content.code ?? ""}
             className="group-hover:x-text-primary"
           />
         </Button>

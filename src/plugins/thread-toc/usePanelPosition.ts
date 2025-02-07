@@ -4,12 +4,10 @@ import debounce from "lodash/debounce";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { CallbackQueue } from "@/plugins/_api/dom-observer/callback-queue";
 import { DomObserver } from "@/plugins/_api/dom-observer/dom-observer";
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { useThreadDomObserverStore } from "@/plugins/_core/dom-observers/thread/store";
 import { PANEL_WIDTH } from "@/plugins/thread-toc";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 import { UiUtils } from "@/utils/ui-utils";
-
-const DOM_OBSERVER_ID = "thread-navigation-toc-panel-position";
 
 type UsePanelPosition = {
   position: { top: number; left: number };
@@ -22,8 +20,8 @@ export function usePanelPosition(): UsePanelPosition | null {
   const [panelPosition, setPanelPosition] = useState<UsePanelPosition | null>(
     null,
   );
-  const threadWrapper = useGlobalDomObserverStore(
-    (state) => state.threadComponents.wrapper,
+  const threadWrapper = useThreadDomObserverStore(
+    (state) => state.$wrapper?.[0],
   );
 
   const calculatePosition = useCallback(() => {
@@ -47,12 +45,20 @@ export function usePanelPosition(): UsePanelPosition | null {
     if (threadWrapperWidth === 0) return null;
 
     const { left } = threadWrapperOffset;
+
+    if (left <= 0) {
+      setTimeout(() => {
+        window.dispatchEvent(new Event("resize"));
+      }, 0);
+      return;
+    }
+
     const panelRightEdge = left + threadWrapperWidth + PANEL_WIDTH + 75;
 
     return {
       position: {
         top: stickyHeaderHeight + 40,
-        left: threadWrapperWidth + left + 50,
+        left: threadWrapperWidth + left + 60,
       },
       isFloating: panelRightEdge > window.innerWidth,
     };
@@ -67,19 +73,22 @@ export function usePanelPosition(): UsePanelPosition | null {
 
     debouncedUpdate();
 
-    DomObserver.create(DOM_OBSERVER_ID, {
+    DomObserver.create("thread:tocSidebarObserver", {
       target: $(DOM_SELECTORS.SIDEBAR.WRAPPER)[0],
       config: {
         attributes: true,
         attributeFilter: ["class"],
       },
       onMutation: () =>
-        CallbackQueue.getInstance().enqueue(debouncedUpdate, DOM_OBSERVER_ID),
+        CallbackQueue.getInstance().enqueue(
+          debouncedUpdate,
+          "thread:tocSidebarObserver",
+        ),
     });
 
     return () => {
       debouncedUpdate.cancel();
-      DomObserver.destroy(DOM_OBSERVER_ID);
+      DomObserver.destroy("thread:tocSidebarObserver");
     };
   }, [calculatePosition, isMobile, windowSize]);
 

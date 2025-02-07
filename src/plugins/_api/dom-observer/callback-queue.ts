@@ -1,3 +1,4 @@
+import { CallbackQueueTaskId } from "@/plugins/_api/dom-observer/callback-queue-task-ids";
 import { MaybePromise } from "@/types/utils.types";
 
 const FRAME_BUDGET_MS = 16; // ~60fps
@@ -12,12 +13,12 @@ export type Callback = () => MaybePromise<void>;
 
 export type CallbackWithId = {
   callback: Callback;
-  id: string;
+  id: CallbackQueueTaskId;
 };
 
 type QueueItem = {
   callback: Callback;
-  id: string;
+  id: CallbackQueueTaskId;
 };
 
 export class CallbackQueue {
@@ -44,7 +45,7 @@ export class CallbackQueue {
     this.cancelResetTimer();
   }
 
-  public enqueue(callback: Callback, id: string): void {
+  public enqueue(callback: Callback, id: CallbackQueueTaskId): void {
     this.queue.enqueue({ callback, id });
     this.processQueue();
     this.cancelResetTimer();

@@ -1,18 +1,14 @@
 import { LuExternalLink } from "react-icons/lu";
 
 import { Button } from "@/components/ui/button";
+import useThreadCodeBlock from "@/plugins/_core/dom-observers/thread/code-blocks/hooks/useThreadCodeBlock";
 import { useCanvasStore } from "@/plugins/canvas/store";
-import {
-  useMirroredCodeBlocksStore,
-  getMirroredCodeBlockByLocation,
-} from "@/plugins/thread-better-code-blocks/store";
 import { generatePlantUMLUrl } from "@/utils/plant-uml";
 
 export default function PlantUmlCanvasActionButtonsWrapper() {
   const { selectedCodeBlockLocation } = useCanvasStore();
-  const mirroredCodeBlocks = useMirroredCodeBlocksStore().blocks;
-  const selectedCodeBlock = getMirroredCodeBlockByLocation({
-    mirroredCodeBlocks,
+
+  const selectedCodeBlock = useThreadCodeBlock({
     messageBlockIndex: selectedCodeBlockLocation?.messageBlockIndex,
     codeBlockIndex: selectedCodeBlockLocation?.codeBlockIndex,
   });
@@ -24,7 +20,7 @@ export default function PlantUmlCanvasActionButtonsWrapper() {
       variant="ghost"
       size="iconSm"
       onClick={() => {
-        const code = selectedCodeBlock.codeString;
+        const code = selectedCodeBlock.content.code;
         if (!code) return;
         const url = generatePlantUMLUrl(code);
         if (!url) return;

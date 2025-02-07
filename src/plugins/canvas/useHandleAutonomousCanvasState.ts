@@ -1,3 +1,5 @@
+import useThreadCodeBlock from "@/plugins/_core/dom-observers/thread/code-blocks/hooks/useThreadCodeBlock";
+import { useThreadCodeBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/code-blocks/store";
 import {
   CanvasLanguage,
   getInterpretedCanvasLanguage,
@@ -5,35 +7,34 @@ import {
 } from "@/plugins/canvas/canvas.types";
 import { CANVAS_INITIAL_STATE } from "@/plugins/canvas/canvases";
 import { canvasStore, useCanvasStore } from "@/plugins/canvas/store";
-import {
-  useMirroredCodeBlocksStore,
-  getMirroredCodeBlockByLocation,
-} from "@/plugins/thread-better-code-blocks/store";
 
 export default function useHandleAutonoumousCanvasState() {
   const selectedCodeBlockLocation = useCanvasStore(
     (state) => state.selectedCodeBlockLocation,
   );
-  const isCanvasOpen = selectedCodeBlockLocation !== null;
-
-  const hasAutoPreviewTriggered = useCanvasStore(
-    (state) => state.hasAutoPreviewTriggered,
-  );
-  const mirroredCodeBlocks = useMirroredCodeBlocksStore().blocks;
-  const selectedCodeBlock = getMirroredCodeBlockByLocation({
-    mirroredCodeBlocks,
+  const selectedCodeBlock = useThreadCodeBlock({
     messageBlockIndex: selectedCodeBlockLocation?.messageBlockIndex,
     codeBlockIndex: selectedCodeBlockLocation?.codeBlockIndex,
   });
+  const isCanvasOpen = selectedCodeBlockLocation !== null;
+  const hasAutoPreviewTriggered = useCanvasStore(
+    (state) => state.hasAutoPreviewTriggered,
+  );
+  const codeBlocksChunks = useThreadCodeBlocksDomObserverStore(
+    (store) => store.codeBlocksChunks,
+    deepEqual,
+  );
 
   useEffect(
     function handleInFlightCodeBlocks() {
+      if (!codeBlocksChunks) return;
+
       messageBlockLoop: for (
-        let messageIndex = mirroredCodeBlocks.length - 1;
-        messageIndex >= 0;
-        messageIndex--
+        let chunkIndex = codeBlocksChunks.length - 1;
+        chunkIndex >= 0;
+        chunkIndex--
       ) {
-        const messageBlock = mirroredCodeBlocks[messageIndex];
+        const messageBlock = codeBlocksChunks[chunkIndex];
 
         if (!messageBlock) continue;
 
@@ -47,41 +48,41 @@ export default function useHandleAutonoumousCanvasState() {
           if (!codeBlock) continue;
 
           if (
-            !codeBlock.language ||
-            !isAutonomousCanvasLanguageString(codeBlock.language)
+            !codeBlock.content.language ||
+            !isAutonomousCanvasLanguageString(codeBlock.content.language)
           )
             continue;
 
           const isCurrentlySelected =
-            messageIndex === selectedCodeBlockLocation?.messageBlockIndex &&
+            chunkIndex === selectedCodeBlockLocation?.messageBlockIndex &&
             codeIndex === selectedCodeBlockLocation?.codeBlockIndex;
 
-          if (!codeBlock.isInFlight || isCurrentlySelected) continue;
+          if (!codeBlock.states.isInFlight || isCurrentlySelected) continue;
 
           const lastAutoOpenCodeBlockLocation =
             canvasStore.getState().lastAutoOpenCodeBlockLocation;
 
           if (
             lastAutoOpenCodeBlockLocation &&
-            lastAutoOpenCodeBlockLocation.messageBlockIndex === messageIndex &&
+            lastAutoOpenCodeBlockLocation.messageBlockIndex === chunkIndex &&
             lastAutoOpenCodeBlockLocation.codeBlockIndex === codeIndex
           )
             continue;
 
           canvasStore.setState((draft) => {
             draft.selectedCodeBlockLocation = {
-              messageBlockIndex: messageIndex,
+              messageBlockIndex: chunkIndex,
               codeBlockIndex: codeIndex,
             };
             draft.state =
               CANVAS_INITIAL_STATE[
                 getInterpretedCanvasLanguage(
-                  codeBlock.language as CanvasLanguage,
+                  codeBlock.content.language as CanvasLanguage,
                 ) as CanvasLanguage
               ];
             draft.hasAutoPreviewTriggered = false;
             draft.lastAutoOpenCodeBlockLocation = {
-              messageBlockIndex: messageIndex,
+              messageBlockIndex: chunkIndex,
               codeBlockIndex: codeIndex,
             };
             draft.isCanvasListOpen = false;
@@ -94,21 +95,23 @@ export default function useHandleAutonoumousCanvasState() {
     [
       selectedCodeBlockLocation?.messageBlockIndex,
       selectedCodeBlockLocation?.codeBlockIndex,
-      mirroredCodeBlocks,
+      codeBlocksChunks,
       isCanvasOpen,
     ],
   );
 
   useEffect(
     function handleAutoPreview() {
+      if (!codeBlocksChunks) return;
+
       const shouldTriggerAutoPreview =
         isCanvasOpen &&
         !hasAutoPreviewTriggered &&
         selectedCodeBlock &&
-        !selectedCodeBlock.isInFlight &&
+        !selectedCodeBlock.states.isInFlight &&
         selectedCodeBlockLocation != null &&
         selectedCodeBlock ===
-          mirroredCodeBlocks[selectedCodeBlockLocation.messageBlockIndex]?.[
+          codeBlocksChunks[selectedCodeBlockLocation.messageBlockIndex]?.[
             selectedCodeBlockLocation.codeBlockIndex
           ];
 
@@ -127,7 +130,7 @@ export default function useHandleAutonoumousCanvasState() {
       isCanvasOpen,
       hasAutoPreviewTriggered,
       selectedCodeBlockLocation,
-      mirroredCodeBlocks,
+      codeBlocksChunks,
     ],
   );
 }

@@ -1,22 +1,21 @@
+import { ReactNode } from "react";
+
 import { Portal } from "@/components/ui/portal";
 import { useInsertCss } from "@/hooks/useInsertCss";
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import useThreadCodeBlock from "@/plugins/_core/dom-observers/thread/code-blocks/hooks/useThreadCodeBlock";
+import { useThreadCodeBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/code-blocks/store";
 import hideNativeCodeBlocksCss from "@/plugins/thread-better-code-blocks/hide-native-code-blocks.css?inline";
 import MirroredCodeBlock from "@/plugins/thread-better-code-blocks/MirroredCodeBlock";
 import { MirroredCodeBlockContextProvider } from "@/plugins/thread-better-code-blocks/MirroredCodeBlockContext";
-import { useMirroredCodeBlocksStore } from "@/plugins/thread-better-code-blocks/store";
-import useBetterCodeBlockOptions from "@/plugins/thread-better-code-blocks/useBetterCodeBlockOptions";
-import useProcessCodeBlocks from "@/plugins/thread-better-code-blocks/useProcessCodeBlocks";
+import {
+  createMirroredPortalContainer,
+  getBetterCodeBlockOptions,
+} from "@/plugins/thread-better-code-blocks/utils";
 
 export default function BetterCodeBlocksWrapper() {
-  const messageBlocks = useGlobalDomObserverStore(
-    (state) => state.threadComponents.messageBlocks,
-  );
-
-  useProcessCodeBlocks();
-
-  const mirroredCodeBlocks = useMirroredCodeBlocksStore(
-    (state) => state.blocks,
+  const codeBlocksChunks = useThreadCodeBlocksDomObserverStore(
+    (store) => store.codeBlocksChunks,
+    deepEqual,
   );
 
   useInsertCss({
@@ -24,74 +23,62 @@ export default function BetterCodeBlocksWrapper() {
     css: hideNativeCodeBlocksCss,
   });
 
-  return mirroredCodeBlocks.map((messageBlock, sourceMessageBlockIndex) =>
-    messageBlock.map((mirroredCodeBlock, sourceCodeBlockIndex) => {
-      const { language, codeString, isInFlight, portalContainer } =
-        mirroredCodeBlock;
+  if (!codeBlocksChunks) return null;
 
-      return (
-        <Portal
-          key={`${sourceMessageBlockIndex}-${sourceCodeBlockIndex}`}
-          container={portalContainer}
-        >
-          <MemoizedWrapper
-            language={language}
-            codeString={codeString}
-            isInFlight={isInFlight}
-            isMessageBlockInFlight={
-              !!messageBlocks?.[sourceMessageBlockIndex]?.isInFlight
-            }
-            sourceMessageBlockIndex={sourceMessageBlockIndex}
-            sourceCodeBlockIndex={sourceCodeBlockIndex}
-            codeElement={mirroredCodeBlock.$code[0]}
-          />
-        </Portal>
-      );
-    }),
+  return codeBlocksChunks.map((chunk, sourceMessageBlockIndex) =>
+    chunk.map((_, sourceCodeBlockIndex) => (
+      <ContextWrapper
+        key={`${sourceMessageBlockIndex}-${sourceCodeBlockIndex}`}
+        sourceMessageBlockIndex={sourceMessageBlockIndex}
+        sourceCodeBlockIndex={sourceCodeBlockIndex}
+      >
+        <MirroredCodeBlock />
+      </ContextWrapper>
+    )),
   );
 }
 
-type MemoizedWrapperProps = {
-  language: string | null;
-  codeString: string | null;
-  isInFlight: boolean;
-  isMessageBlockInFlight: boolean;
-  sourceMessageBlockIndex: number;
-  sourceCodeBlockIndex: number;
-  codeElement: Element;
-};
-
-const MemoizedWrapper = memo(function MemoizedWrapper({
-  language,
-  codeString,
-  isInFlight,
-  isMessageBlockInFlight,
+function ContextWrapper({
+  children,
   sourceMessageBlockIndex,
   sourceCodeBlockIndex,
-  codeElement,
-}: MemoizedWrapperProps) {
-  const settings = useBetterCodeBlockOptions({ language });
+}: {
+  children: ReactNode;
+  sourceMessageBlockIndex: number;
+  sourceCodeBlockIndex: number;
+}) {
+  const codeBlock = useThreadCodeBlock({
+    messageBlockIndex: sourceMessageBlockIndex,
+    codeBlockIndex: sourceCodeBlockIndex,
+  });
 
-  if (!language || !codeString) return null;
+  if (!codeBlock) return null;
+
+  const finegrainedSettings = getBetterCodeBlockOptions(
+    codeBlock.content.language,
+  );
+
+  const portalContainer = createMirroredPortalContainer(
+    codeBlock,
+    sourceCodeBlockIndex,
+  );
 
   return (
-    <MirroredCodeBlockContextProvider
-      storeValue={{
-        language,
-        codeString,
-        sourceMessageBlockIndex,
-        sourceCodeBlockIndex,
-        isInFlight,
-        isMessageBlockInFlight,
-        codeElement,
-        isWrapped: !settings.unwrap.enabled,
-        maxHeight:
-          settings.maxHeight.enabled && settings.maxHeight.collapseByDefault
-            ? settings.maxHeight.value
-            : 9999,
-      }}
-    >
-      <MirroredCodeBlock />
-    </MirroredCodeBlockContextProvider>
+    <Portal container={portalContainer}>
+      <MirroredCodeBlockContextProvider
+        storeValue={{
+          sourceMessageBlockIndex,
+          sourceCodeBlockIndex,
+          isWrapped: !finegrainedSettings.unwrap.enabled,
+          maxHeight:
+            finegrainedSettings.maxHeight.enabled &&
+            finegrainedSettings.maxHeight.collapseByDefault
+              ? finegrainedSettings.maxHeight.value
+              : 9999,
+        }}
+      >
+        {children}
+      </MirroredCodeBlockContextProvider>
+    </Portal>
   );
-});
+}

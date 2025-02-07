@@ -1,4 +1,4 @@
-[data-cplx-component="cplx-mirrored-code-block"]:not(:empty)
+[data-cplx-component="mirrored-code-block"]:not(:empty)
   + [data-cplx-component="message-block-code-block"] {
   display: none;
 }

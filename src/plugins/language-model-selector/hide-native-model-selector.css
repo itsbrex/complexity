@@ -1,6 +1,5 @@
 [cplx-main-query-box],
-[cplx-main-modal-query-box],
-[cplx-space-query-box] {
+[cplx-main-modal-query-box] {
   [data-cplx-component="query-box-components-wrapper"]
     [data-cplx-component="query-box-pplx-components-wrapper"] {
     > :nth-last-child(2) {
@@ -10,6 +9,18 @@
     .mr-xs.flex.shrink-0.items-center {
       @apply x-ml-2;
     }
+  }
+}
+
+[cplx-space-query-box]
+  [data-cplx-component="query-box-components-wrapper"]
+  [data-cplx-component="query-box-pplx-components-wrapper"] {
+  > :first-child {
+    display: none;
+  }
+
+  .mr-xs.flex.shrink-0.items-center {
+    @apply x-ml-2;
   }
 }
 

@@ -17,26 +17,26 @@
     & > div:nth-child(3) {
       max-height: max-content;
     }
+  }
+}
 
-    [data-cplx-component="query-box-pplx-components-wrapper"] {
-      @apply x-h-8 x-gap-1;
+[data-cplx-component="query-box-pplx-components-wrapper"] {
+  @apply x-h-8 x-gap-1;
 
-      button {
-        margin: 0;
+  button {
+    margin: 0;
+  }
+
+  button:has(svg[data-icon="sources"]) {
+    > div {
+      @apply x-h-8;
+
+      > div {
+        @apply x-h-8;
       }
 
-      button:has(svg[data-icon="sources"]) {
-        > div {
-          @apply x-h-8;
-
-          > div {
-            @apply x-h-8;
-          }
-
-          svg {
-            @apply x-h-8;
-          }
-        }
+      svg {
+        @apply x-h-8;
       }
     }
   }

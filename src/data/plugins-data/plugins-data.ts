@@ -8,11 +8,9 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Language Model Selector",
     description: "Take complete control of all available language models.",
     tags: ["ui", "ux", "pplxPro"],
-    dependentCorePlugins: [
-      "networkIntercept",
-      "spaRouter",
-      "domObserver:queryBoxes",
-    ],
+    uiGroup: ["queryBoxes:toolbar"],
+    dependentDomObservers: ["coreDomObserver:queryBoxes"],
+    dependentCorePlugins: ["networkIntercept", "spaRouter"],
   },
   "queryBox:slashCommandMenu": {
     id: "queryBox:slashCommandMenu",
@@ -20,11 +18,9 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Slash Command Menu",
     description: "Invoke actions via slash commands",
     tags: ["desktopOnly", "ui", "ux"],
-    dependentCorePlugins: [
-      "spaRouter",
-      "domObserver:queryBoxes",
-      "networkIntercept",
-    ],
+    uiGroup: ["queryBoxes:toolbar"],
+    dependentDomObservers: ["coreDomObserver:queryBoxes"],
+    dependentCorePlugins: ["spaRouter", "networkIntercept"],
   },
   "queryBox:slashCommandMenu:promptHistory": {
     id: "queryBox:slashCommandMenu:promptHistory",
@@ -32,12 +28,9 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Prompt History",
     description: "Reuse previous prompts",
     tags: ["experimental", "slashCommand", "desktopOnly", "ui", "ux"],
+    dependentDomObservers: ["coreDomObserver:queryBoxes"],
     dependentPlugins: ["queryBox:slashCommandMenu"],
-    dependentCorePlugins: [
-      "spaRouter",
-      "domObserver:queryBoxes",
-      "networkIntercept",
-    ],
+    dependentCorePlugins: ["spaRouter", "networkIntercept"],
   },
   spaceNavigator: {
     id: "spaceNavigator",
@@ -45,12 +38,13 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Space Navigator",
     description: "Search & navigate between spaces",
     tags: ["ui", "ux"],
-    dependentCorePlugins: [
-      "spaRouter",
-      "domObserver:queryBoxes",
-      "domObserver:sidebar",
-      "domObserver:spacesPage",
+    uiGroup: ["queryBoxes:toolbar"],
+    dependentDomObservers: [
+      "coreDomObserver:queryBoxes",
+      "coreDomObserver:sidebar",
+      "coreDomObserver:spacesPage",
     ],
+    dependentCorePlugins: ["spaRouter"],
   },
   "queryBox:noFileCreationOnPaste": {
     id: "queryBox:noFileCreationOnPaste",
@@ -59,7 +53,8 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description:
       "Prevent automatic file creation when pasting (very) long text into the query box",
     tags: ["ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver:queryBoxes"],
+    dependentDomObservers: ["coreDomObserver:queryBoxes"],
+    dependentCorePlugins: ["spaRouter"],
   },
   "queryBox:submitOnCtrlEnter": {
     id: "queryBox:submitOnCtrlEnter",
@@ -67,7 +62,8 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: `Query Box: Submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
     description: `Insert new line on Enter, submit on ${getPlatform() === "mac" ? "Cmd" : "Ctrl"}+Enter`,
     tags: ["ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver:queryBoxes"],
+    dependentDomObservers: ["coreDomObserver:queryBoxes"],
+    dependentCorePlugins: ["spaRouter"],
   },
   "queryBox:fullWidthFollowUp": {
     id: "queryBox:fullWidthFollowUp",
@@ -75,6 +71,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Full Width Follow Up Query Box",
     description: "Make the query box in threads wider",
     tags: ["desktopOnly", "ui"],
+    dependentDomObservers: ["coreDomObserver:queryBoxes"],
     dependentCorePlugins: ["spaRouter"],
   },
   commandMenu: {
@@ -92,7 +89,8 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description:
       "Quickly navigate between messages in a thread. Only shows up when there are more than 2 messages",
     tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver:thread"],
+    dependentDomObservers: ["coreDomObserver:thread:messageBlocks"],
+    dependentCorePlugins: ["spaRouter", "reactVdom"],
   },
   "thread:betterMessageToolbars": {
     id: "thread:betterMessageToolbars",
@@ -100,7 +98,8 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Better Thread Message Toolbars",
     description: "Enhance message toolbars (in threads)",
     tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver:thread", "reactVdom"],
+    dependentDomObservers: ["coreDomObserver:thread:messageBlocks"],
+    dependentCorePlugins: ["spaRouter", "reactVdom"],
   },
   "thread:instantRewriteButton": {
     id: "thread:instantRewriteButton",
@@ -109,15 +108,18 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description:
       "Rewrite messages with the same model without opening the original Rewrite dropdown menu",
     tags: ["new", "ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver:thread", "reactVdom"],
+    uiGroup: ["thread:messageBlocks:queryHoverContainer"],
+    dependentDomObservers: ["coreDomObserver:thread:messageBlocks"],
+    dependentCorePlugins: ["spaRouter", "reactVdom"],
   },
   "thread:betterCodeBlocks": {
     id: "thread:betterCodeBlocks",
     routeSegment: "thread-better-code-blocks",
     title: "Better Code Blocks",
     description: "Enhance code blocks (in threads)",
-    tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver:thread", "reactVdom"],
+    tags: ["ui", "ux", "codeBlockHighPerformanceImpact"],
+    dependentDomObservers: ["coreDomObserver:thread:codeBlocks"],
+    dependentCorePlugins: ["spaRouter", "reactVdom"],
   },
   "thread:canvas": {
     id: "thread:canvas",
@@ -127,12 +129,11 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
       "Visualize and interact with generated content side by side. Similar to claude.ai's artifacts. Very experimental",
     tags: ["new", "experimental", "desktopOnly", "ui"],
     dependentPlugins: ["thread:betterCodeBlocks"],
-    dependentCorePlugins: [
-      "spaRouter",
-      "domObserver:thread",
-      "mermaidRenderer",
-      "markmapRenderer",
+    dependentDomObservers: [
+      "coreDomObserver:thread:messageBlocks",
+      "coreDomObserver:thread:codeBlocks",
     ],
+    dependentCorePlugins: ["spaRouter", "mermaidRenderer", "markmapRenderer"],
   },
   "thread:exportThread": {
     id: "thread:exportThread",
@@ -141,7 +142,8 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description:
       "Export the current thread in markdown format (with optional citations). More formatting options coming soon",
     tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver:thread"],
+    dependentDomObservers: ["coreDomObserver:thread:messageBlocks"],
+    dependentCorePlugins: ["spaRouter", "reactVdom"],
   },
   "thread:betterMessageCopyButtons": {
     id: "thread:betterMessageCopyButtons",
@@ -150,7 +152,9 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     description:
       "Copy message content without citations. More formatting options coming soon",
     tags: ["ui", "ux"],
-    dependentCorePlugins: ["spaRouter", "domObserver:thread"],
+    uiGroup: ["thread:messageBlocks:queryHoverContainer"],
+    dependentDomObservers: ["coreDomObserver:thread:messageBlocks"],
+    dependentCorePlugins: ["spaRouter", "reactVdom"],
   },
   "thread:dragAndDropFileToUploadInThread": {
     id: "thread:dragAndDropFileToUploadInThread",
@@ -183,11 +187,8 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Image Generation Model Selector",
     description: "Enable selection of different image generation models",
     tags: ["ui", "ux", "desktopOnly", "pplxPro"],
-    dependentCorePlugins: [
-      "networkIntercept",
-      "spaRouter",
-      "domObserver:thread",
-    ],
+    dependentDomObservers: ["coreDomObserver:thread"],
+    dependentCorePlugins: ["spaRouter", "webSocket"],
   },
   onCloudflareTimeoutAutoReload: {
     id: "onCloudflareTimeoutAutoReload",
@@ -211,7 +212,8 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Custom Home Slogan",
     description: "Customize the slogan on the home page",
     tags: ["ui", "forFun"],
-    dependentCorePlugins: ["domObserver:home"],
+    dependentDomObservers: ["coreDomObserver:home"],
+    dependentCorePlugins: ["spaRouter"],
   },
   "home:hideHomepageWidgets": {
     id: "home:hideHomepageWidgets",

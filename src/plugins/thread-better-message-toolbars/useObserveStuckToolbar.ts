@@ -1,4 +1,4 @@
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { useThreadDomObserverStore } from "@/plugins/_core/dom-observers/thread/store";
 import useToolbars from "@/plugins/thread-better-message-toolbars/useToolbars";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 
@@ -10,8 +10,8 @@ export function useObserveStuckToolbar() {
 
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const navbarHeight = useGlobalDomObserverStore(
-    (state) => state.threadComponents.navbarHeight,
+  const navbarHeight = useThreadDomObserverStore(
+    (store) => store.$navbar?.[0]?.offsetHeight,
   );
 
   const toolbars = useToolbars();

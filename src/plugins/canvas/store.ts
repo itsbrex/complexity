@@ -5,6 +5,8 @@ import { immer } from "zustand/middleware/immer";
 import { createWithEqualityFn } from "zustand/traditional";
 
 import { spaRouteChangeCompleteSubscribe } from "@/plugins/_api/spa-router/listeners";
+import { threadCodeBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/code-blocks/store";
+import { CodeBlock } from "@/plugins/_core/dom-observers/thread/code-blocks/types";
 import {
   CanvasLanguage,
   CanvasState,
@@ -14,11 +16,10 @@ import {
   isAutonomousCanvasLanguageString,
 } from "@/plugins/canvas/canvas.types";
 import { CANVAS_PLACEHOLDERS } from "@/plugins/canvas/canvases";
-import { mirroredCodeBlocksStore } from "@/plugins/thread-better-code-blocks/store";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
-import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
-import { scrollToElement, whereAmI } from "@/utils/utils";
+import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
+import { parseUrl, scrollToElement, whereAmI } from "@/utils/utils";
 
 type CodeBlockLocation = {
   messageBlockIndex: number;
@@ -118,60 +119,78 @@ csLoaderRegistry.register({
     initializeAutonomousMode();
 
     emitResizeEvent();
+
+    closeOnRouteChange();
   },
 });
 
 const initializeAutonomousMode = () => {
-  mirroredCodeBlocksStore.subscribe(
-    (state) => state.blocks,
-    (blocks, prevBlocks) => {
-      const getTotalBlocks = (blocks: any[]) =>
-        blocks.reduce((acc, block) => acc + block.length, 0);
+  threadCodeBlocksDomObserverStore.subscribe(
+    (store) => store.codeBlocksChunks,
+    (codeBlocksChunks, prevCodeBlocksChunks) => {
+      if (!codeBlocksChunks || !prevCodeBlocksChunks) return;
 
-      if (getTotalBlocks(blocks) !== getTotalBlocks(prevBlocks)) {
+      const getTotalBlocks = (chunks: CodeBlock[][]) =>
+        chunks.reduce((acc, blocks) => acc + blocks.length, 0);
+
+      if (
+        getTotalBlocks(codeBlocksChunks) !==
+        getTotalBlocks(prevCodeBlocksChunks)
+      ) {
         canvasStore.getState().setLastAutoOpenCodeBlockLocation(null);
       }
     },
+    {
+      equalityFn: deepEqual,
+    },
   );
 
-  mirroredCodeBlocksStore.subscribe(({ blocks }) => {
-    requestIdleCallback(
-      () => {
-        const newCanvasBlocks: Record<string, CanvasBlock> = {};
+  threadCodeBlocksDomObserverStore.subscribe(
+    (store) => store.codeBlocksChunks,
+    (codeBlocksChunks) => {
+      if (!codeBlocksChunks) return;
 
-        blocks.forEach((messageBlock, messageBlockIndex) => {
-          messageBlock.forEach((codeBlock, codeBlockIndex) => {
-            if (
-              !codeBlock.language ||
-              !isAutonomousCanvasLanguageString(codeBlock.language)
-            )
-              return;
+      requestIdleCallback(
+        () => {
+          const newCanvasBlocks: Record<string, CanvasBlock> = {};
 
-            const key = getCanvasTitle(codeBlock.language);
-            const interpretedLanguage = getInterpretedCanvasLanguage(
-              codeBlock.language,
-            );
+          codeBlocksChunks.forEach((chunks, chunkIndex) => {
+            chunks.forEach((codeBlock, codeBlockIndex) => {
+              if (
+                !codeBlock.content.language ||
+                !isAutonomousCanvasLanguageString(codeBlock.content.language)
+              )
+                return;
 
-            if (!(interpretedLanguage in CANVAS_PLACEHOLDERS)) return;
+              const key = getCanvasTitle(codeBlock.content.language);
+              const interpretedLanguage = getInterpretedCanvasLanguage(
+                codeBlock.content.language,
+              );
 
-            updateCanvasBlocks({
-              key,
-              newCanvasBlocks,
-              codeBlock,
-              messageBlockIndex,
-              codeBlockIndex,
-              interpretedLanguage: interpretedLanguage as CanvasLanguage,
+              if (!(interpretedLanguage in CANVAS_PLACEHOLDERS)) return;
+
+              updateCanvasBlocks({
+                key,
+                newCanvasBlocks,
+                codeBlock,
+                messageBlockIndex: chunkIndex,
+                codeBlockIndex,
+                interpretedLanguage: interpretedLanguage as CanvasLanguage,
+              });
             });
           });
-        });
 
-        canvasStore.setState((draft) => {
-          draft.canvasBlocks = newCanvasBlocks;
-        });
-      },
-      { timeout: 2000 },
-    );
-  });
+          canvasStore.setState((draft) => {
+            draft.canvasBlocks = newCanvasBlocks;
+          });
+        },
+        { timeout: 2000 },
+      );
+    },
+    {
+      equalityFn: deepEqual,
+    },
+  );
 
   canvasStore.subscribe((state, prevState) => {
     if (state.isCanvasListOpen && prevState.selectedCodeBlockLocation != null) {
@@ -228,7 +247,7 @@ const handleCanvasBlockClick = (location: CodeBlockLocation) => {
     draft.selectedCodeBlockLocation = location;
     draft.state = "preview";
 
-    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${location.messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.MIRRORED_CODE_BLOCK}"][data-index="${location.codeBlockIndex}"]`;
+    const selector = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${location.messageBlockIndex}"] [data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.MIRRORED_CODE_BLOCK}"][data-index="${location.codeBlockIndex}"]`;
     scrollToElement($(selector), -100);
   });
 };
@@ -243,6 +262,19 @@ const emitResizeEvent = () => {
       window.dispatchEvent(new Event("resize"));
     },
   );
+};
+
+const closeOnRouteChange = () => {
+  spaRouteChangeCompleteSubscribe((url, prevUrl) => {
+    if (
+      prevUrl === url ||
+      parseUrl(prevUrl).queryParams.get("q") != null ||
+      parseUrl(url).queryParams.get("q") != null
+    )
+      return;
+
+    canvasStore.getState().close();
+  });
 };
 
 export const useCanvasStore = canvasStore;

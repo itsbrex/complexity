@@ -1,10 +1,7 @@
 import { onMessage } from "webext-bridge/window";
 
 import { LanguageModelCode } from "@/data/plugins/query-box/language-model-selector/language-models.types";
-import {
-  DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS,
-  DOM_SELECTORS,
-} from "@/utils/dom-selectors";
+import { INTERNAL_ATTRIBUTES, DOM_SELECTORS } from "@/utils/dom-selectors";
 import { errorWrapper } from "@/utils/error-wrapper";
 import { getCookie, getReactFiberKey } from "@/utils/utils";
 
@@ -35,11 +32,11 @@ export type ReactVdomEvents = {
 
 export function setupReactVdomListeners() {
   onMessage("reactVdom:isMessageBlockInFlight", ({ data: { index } }) => {
-    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${index}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL}"]`;
+    const selector = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${index}"] [data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL}"]`;
 
     const $el = $(selector);
 
-    if (!$el.length) return null;
+    if (!$el.length) return false;
 
     const [status, error] = errorWrapper(() =>
       findReactFiberNodeValue({
@@ -53,13 +50,16 @@ export function setupReactVdomListeners() {
 
     if (error) console.warn("[VDOM Plugin] isMessageBlockInFlight", error);
 
-    if (error || status == null) return null;
+    if (error || status == null)
+      return (
+        $el.find(".prose > .animate-in.fade-in-25.duration-700").length > 0
+      );
 
     return status.toLowerCase() !== "completed";
   });
 
   onMessage("reactVdom:getMessageModelPreferences", ({ data: { index } }) => {
-    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${index}"]`;
+    const selector = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${index}"]`;
 
     const $el = $(selector).prev();
 
@@ -94,7 +94,7 @@ export function setupReactVdomListeners() {
   });
 
   onMessage("reactVdom:getMessageDisplayModelCode", ({ data: { index } }) => {
-    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${index}"]`;
+    const selector = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${index}"]`;
 
     const $el = $(selector).prev();
 
@@ -118,7 +118,7 @@ export function setupReactVdomListeners() {
   });
 
   onMessage("reactVdom:getMessageContent", ({ data: { index } }) => {
-    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${index}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER}"] div[dir="auto"]`;
+    const selector = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${index}"] [data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER}"] div[dir="auto"]`;
 
     const $el = $(selector);
 
@@ -144,7 +144,7 @@ export function setupReactVdomListeners() {
   onMessage(
     "reactVdom:getCodeBlockContent",
     ({ data: { messageBlockIndex, codeBlockIndex } }) => {
-      const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}"][data-index="${codeBlockIndex}"] pre`;
+      const selector = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK}"][data-index="${codeBlockIndex}"] pre`;
 
       const $el = $(selector);
 
@@ -191,7 +191,7 @@ export function setupReactVdomListeners() {
   onMessage(
     "reactVdom:triggerRewriteOption",
     ({ data: { messageBlockIndex, optionIndex } }) => {
-      const selector = `div[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR}"] ${DOM_SELECTORS.THREAD.MESSAGE.BOTTOM_BAR_CHILD.REWRITE_BUTTON}`;
+      const selector = `div[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR}"] ${DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR_CHILD.REWRITE_BUTTON}`;
 
       const $rewriteButtonWrapper = $(selector).parent().parent();
 
@@ -228,7 +228,7 @@ export function setupReactVdomListeners() {
   );
 
   onMessage("reactVdom:syncNativeModelSelector", () => {
-    const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.QUERY_BOX_CHILD.PPLX_COMPONENTS_WRAPPER}"]:last > :first-child`;
+    const selector = `[data-cplx-component="${INTERNAL_ATTRIBUTES.QUERY_BOX_CHILD.PPLX_COMPONENTS_WRAPPER}"]:last > :first-child`;
 
     const $modelSelector = $(selector);
 
@@ -275,19 +275,23 @@ function findReactFiberNodeValue<T>({
 }): T | null {
   if (fiberNode == null) return null;
 
-  if (condition?.(fiberNode)) return select?.(fiberNode);
+  const tree = fiberNode.alternate ?? fiberNode;
 
-  return (
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    findReactFiberNodeValue({
-      fiberNode: fiberNode.child,
-      condition,
-      select,
-    }) ||
-    findReactFiberNodeValue({
-      fiberNode: fiberNode.sibling,
-      condition,
-      select,
-    })
-  );
+  if (condition?.(tree)) return select?.(tree);
+
+  return null;
+
+  // return (
+  //   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+  //   findReactFiberNodeValue({
+  //     fiberNode: tree.child,
+  //     condition,
+  //     select,
+  //   }) ||
+  //   findReactFiberNodeValue({
+  //     fiberNode: tree.sibling,
+  //     condition,
+  //     select,
+  //   })
+  // );
 }

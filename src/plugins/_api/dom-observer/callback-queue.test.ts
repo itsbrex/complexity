@@ -5,6 +5,7 @@ import {
   type CallbackWithId,
   type Callback,
 } from "@/plugins/_api/dom-observer/callback-queue";
+import { CallbackQueueTaskId } from "@/plugins/_api/dom-observer/callback-queue-task-ids";
 
 describe("CallbackQueue", () => {
   let queue: CallbackQueue;
@@ -63,7 +64,7 @@ describe("CallbackQueue", () => {
 
   it("should process single callback", async () => {
     const mockCallback = vi.fn();
-    queue.enqueue(mockCallback, "1");
+    queue.enqueue(mockCallback, "1" as CallbackQueueTaskId);
     await flushPendingOperations();
     expect(mockCallback).toHaveBeenCalledTimes(1);
   });
@@ -74,7 +75,7 @@ describe("CallbackQueue", () => {
       callback: () => {
         executionOrder.push(num);
       },
-      id: `callback-${num}`,
+      id: `callback-${num}` as CallbackQueueTaskId,
     }));
 
     queue.enqueueArray(orderedCallbacks);
@@ -91,7 +92,7 @@ describe("CallbackQueue", () => {
       executionResults.push(1);
     };
 
-    queue.enqueue(delayedCallback, "async");
+    queue.enqueue(delayedCallback, "async" as CallbackQueueTaskId);
     await flushPendingOperations();
     vi.advanceTimersByTime(10);
     await Promise.resolve();
@@ -102,8 +103,8 @@ describe("CallbackQueue", () => {
   it("should prevent duplicate callbacks with same id", async () => {
     const mockCallback = vi.fn();
 
-    queue.enqueue(mockCallback, "duplicate-id");
-    queue.enqueue(mockCallback, "duplicate-id");
+    queue.enqueue(mockCallback, "duplicate-id" as CallbackQueueTaskId);
+    queue.enqueue(mockCallback, "duplicate-id" as CallbackQueueTaskId);
 
     await flushPendingOperations();
 
@@ -119,11 +120,11 @@ describe("CallbackQueue", () => {
         callback: () => {
           throw new Error("Test error");
         },
-        id: "failing-callback",
+        id: "failing-callback" as CallbackQueueTaskId,
       },
       {
         callback: successCallback,
-        id: "success-callback",
+        id: "success-callback" as CallbackQueueTaskId,
       },
     ]);
 
@@ -136,7 +137,7 @@ describe("CallbackQueue", () => {
   it("should clear the queue", async () => {
     const mockCallback = vi.fn();
 
-    queue.enqueue(mockCallback, "to-be-cleared");
+    queue.enqueue(mockCallback, "to-be-cleared" as CallbackQueueTaskId);
     queue.clear();
 
     await flushPendingOperations();
@@ -153,7 +154,7 @@ describe("CallbackQueue", () => {
       .fill(null)
       .map((_, index) => ({
         callback: simulateSlowOperation as unknown as Callback,
-        id: `slow-operation-${index}`,
+        id: `slow-operation-${index}` as CallbackQueueTaskId,
       }));
 
     queue.enqueueArray(slowCallbacks);
@@ -179,7 +180,7 @@ describe("CallbackQueue", () => {
   it("should process callbacks in insertion order", async () => {
     const executionOrder: string[] = [];
     const orderedCallbacks: CallbackWithId[] = [1, 2, 3].map((num) => ({
-      id: `callback-${num}`,
+      id: `callback-${num}` as CallbackQueueTaskId,
       callback: () => {
         executionOrder.push(`execution-${num}`);
       },
@@ -207,8 +208,14 @@ describe("CallbackQueue", () => {
           }, delay);
         });
 
-    queue.enqueue(createDelayedOperation(1, 10), "delayed-operation-1");
-    queue.enqueue(createDelayedOperation(2, 5), "delayed-operation-2");
+    queue.enqueue(
+      createDelayedOperation(1, 10),
+      "delayed-operation-1" as CallbackQueueTaskId,
+    );
+    queue.enqueue(
+      createDelayedOperation(2, 5),
+      "delayed-operation-2" as CallbackQueueTaskId,
+    );
 
     await flushPendingOperations(5);
     vi.advanceTimersByTime(15);
@@ -222,7 +229,7 @@ describe("CallbackQueue", () => {
       Array(count)
         .fill(null)
         .map((_, index) => ({
-          id: `timed-operation-${index}`,
+          id: `timed-operation-${index}` as CallbackQueueTaskId,
           callback: vi.fn(() => {
             vi.advanceTimersByTime(duration);
           }) as unknown as Callback,

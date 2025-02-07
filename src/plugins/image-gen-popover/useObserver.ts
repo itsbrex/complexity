@@ -1,9 +1,10 @@
-import { useGlobalDomObserverStore } from "@/plugins/_api/dom-observer/global-dom-observer-store";
+import { useThreadDomObserverStore } from "@/plugins/_core/dom-observers/thread/store";
 import { DOM_SELECTORS } from "@/utils/dom-selectors";
 
 export default function useObserver() {
-  const popper = useGlobalDomObserverStore(
-    (state) => state.threadComponents.popper,
+  const popper = useThreadDomObserverStore(
+    (state) => state.$popper?.[0] ?? null,
+    deepEqual,
   );
 
   return useMemo(() => findOptionsGridHeader(popper), [popper]);

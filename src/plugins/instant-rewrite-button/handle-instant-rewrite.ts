@@ -2,12 +2,13 @@ import { produce } from "immer";
 import { sendMessage } from "webext-bridge/content-script";
 
 import { isReasoningLanguageModelCode } from "@/data/plugins/query-box/language-model-selector/language-models.types";
+import { CallbackQueue } from "@/plugins/_api/dom-observer/callback-queue";
 import { networkInterceptMiddlewareManager } from "@/plugins/_api/network-intercept-middleware-manager/middleware-manager";
 import {
   encodeWebSocketData,
   parseWebSocketData,
 } from "@/plugins/_core/network-intercept/web-socket-message-parser";
-import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
+import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 
 export async function handleInstantRewrite({
   messageBlockIndex,
@@ -22,8 +23,10 @@ export async function handleInstantRewrite({
     "window",
   );
 
+  if (currentModelPreferences == null) return;
+
   const $proSearchPanel = $(
-    `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY}"]`,
+    `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY}"]`,
   )
     .next()
     .find("> div[data-test-id]:first-child");
@@ -31,8 +34,6 @@ export async function handleInstantRewrite({
   const isProSearchEnabled =
     $proSearchPanel.length > 0 &&
     $proSearchPanel.find(`svg[data-icon="copilot"]`).length > 0;
-
-  if (currentModelPreferences == null) return;
 
   networkInterceptMiddlewareManager.addMiddleware({
     id: "instant-rewrite-model-change",
@@ -98,11 +99,13 @@ export async function handleInstantRewrite({
     );
   }, 1000);
 
-  sendMessage(
-    "reactVdom:triggerRewriteOption",
-    {
-      messageBlockIndex,
-    },
-    "window",
-  );
+  CallbackQueue.getInstance().enqueue(() => {
+    sendMessage(
+      "reactVdom:triggerRewriteOption",
+      {
+        messageBlockIndex,
+      },
+      "window",
+    );
+  }, "plugin:instantRewriteButton:handleInstantRewrite");
 }

@@ -2,6 +2,7 @@ import { LuList, LuRefreshCcw, LuX } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
 import { Button } from "@/components/ui/button";
+import useThreadCodeBlock from "@/plugins/_core/dom-observers/thread/code-blocks/hooks/useThreadCodeBlock";
 import {
   CanvasLanguage,
   formatCanvasTitle,
@@ -12,34 +13,32 @@ import {
 } from "@/plugins/canvas/canvas.types";
 import PreviewToggle from "@/plugins/canvas/components/PreviewToggle";
 import { canvasStore, useCanvasStore } from "@/plugins/canvas/store";
-import {
-  useMirroredCodeBlocksStore,
-  getMirroredCodeBlockByLocation,
-} from "@/plugins/thread-better-code-blocks/store";
-import { DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS } from "@/utils/dom-selectors";
+import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 import { scrollToElement } from "@/utils/utils";
 
 export default function CanvasHeader() {
   const selectedCodeBlockLocation = useCanvasStore(
     (state) => state.selectedCodeBlockLocation,
   );
-  const mirroredCodeBlocks = useMirroredCodeBlocksStore(
-    (state) => state.blocks,
-  );
-  const selectedCodeBlock = getMirroredCodeBlockByLocation({
-    mirroredCodeBlocks,
+
+  const selectedCodeBlock = useThreadCodeBlock({
     messageBlockIndex: selectedCodeBlockLocation?.messageBlockIndex,
     codeBlockIndex: selectedCodeBlockLocation?.codeBlockIndex,
   });
-  const title = formatCanvasTitle(getCanvasTitle(selectedCodeBlock?.language));
-  const isCanvasLanguage = isCanvasLanguageString(selectedCodeBlock?.language);
-  const isAutonomousCanvasLanguage = isAutonomousCanvasLanguageString(
-    selectedCodeBlock?.language,
+
+  const title = formatCanvasTitle(
+    getCanvasTitle(selectedCodeBlock?.content.language),
   );
-  const isInFlight = selectedCodeBlock?.isInFlight;
+  const isCanvasLanguage = isCanvasLanguageString(
+    selectedCodeBlock?.content.language,
+  );
+  const isAutonomousCanvasLanguage = isAutonomousCanvasLanguageString(
+    selectedCodeBlock?.content.language,
+  );
+  const isInFlight = selectedCodeBlock?.states.isInFlight;
   const canvasViewMode = useCanvasStore((state) => state.state);
   const language = getInterpretedCanvasLanguage(
-    selectedCodeBlock?.language ?? "text",
+    selectedCodeBlock?.content.language ?? "text",
   ) as CanvasLanguage;
 
   if (!isCanvasLanguage && !isAutonomousCanvasLanguage) return null;
@@ -53,7 +52,7 @@ export default function CanvasHeader() {
             canvasStore.getState().selectedCodeBlockLocation;
           if (!selectedCodeBlockLocation) return;
 
-          const selector = `[data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.BLOCK}"][data-index="${selectedCodeBlockLocation.messageBlockIndex}"] [data-cplx-component="${DOM_INTERNAL_DATA_ATTRIBUTES_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.MIRRORED_CODE_BLOCK}"][data-index="${selectedCodeBlockLocation.codeBlockIndex}"]`;
+          const selector = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${selectedCodeBlockLocation.messageBlockIndex}"] [data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.MIRRORED_CODE_BLOCK}"][data-index="${selectedCodeBlockLocation.codeBlockIndex}"]`;
 
           scrollToElement($(selector), -100);
         }}

@@ -15,10 +15,12 @@ export const LOADER_IDS = [
   "messaging:networkIntercept",
   "messaging:spaRouter",
 
-  "coreDomObserver:queryBoxes",
-  "coreDomObserver:homeComponents",
-  "coreDomObserver:threadComponents",
   "coreDomObserver:sidebar",
+  "coreDomObserver:home",
+  "coreDomObserver:queryBoxes",
+  "coreDomObserver:thread",
+  "coreDomObserver:thread:messageBlocks",
+  "coreDomObserver:thread:codeBlocks",
   "coreDomObserver:spacesPage",
   "coreDomObserver:settingsPage",
 

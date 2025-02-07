@@ -4,16 +4,13 @@ import { sendMessage } from "webext-bridge/content-script";
 
 import { Button } from "@/components/ui/button";
 import { useColorSchemeStore } from "@/data/color-scheme-store";
+import useThreadCodeBlock from "@/plugins/_core/dom-observers/thread/code-blocks/hooks/useThreadCodeBlock";
 import {
   formatCanvasTitle,
   getCanvasTitle,
   isAutonomousCanvasLanguageString,
 } from "@/plugins/canvas/canvas.types";
 import { useCanvasStore } from "@/plugins/canvas/store";
-import {
-  getMirroredCodeBlockByLocation,
-  useMirroredCodeBlocksStore,
-} from "@/plugins/thread-better-code-blocks/store";
 import { UiUtils } from "@/utils/ui-utils";
 
 export default function MermaidRenderer() {
@@ -22,22 +19,21 @@ export default function MermaidRenderer() {
   const selectedCodeBlockLocation = useCanvasStore(
     (state) => state.selectedCodeBlockLocation,
   );
-  const mirroredCodeBlocks = useMirroredCodeBlocksStore(
-    (state) => state.blocks,
-  );
-  const selectedCodeBlock = getMirroredCodeBlockByLocation({
-    mirroredCodeBlocks,
+
+  const selectedCodeBlock = useThreadCodeBlock({
     messageBlockIndex: selectedCodeBlockLocation?.messageBlockIndex,
     codeBlockIndex: selectedCodeBlockLocation?.codeBlockIndex,
   });
 
   const isAutonomousCanvas = isAutonomousCanvasLanguageString(
-    selectedCodeBlock?.language,
+    selectedCodeBlock?.content.language,
   );
-  const title = formatCanvasTitle(getCanvasTitle(selectedCodeBlock?.language));
+  const title = formatCanvasTitle(
+    getCanvasTitle(selectedCodeBlock?.content.language),
+  );
 
-  const code = selectedCodeBlock?.codeString;
-  const isInFlight = selectedCodeBlock?.isInFlight;
+  const code = selectedCodeBlock?.content.code;
+  const isInFlight = selectedCodeBlock?.states.isInFlight;
 
   const [refreshKey, refreshContainer] = useReducer((state) => state + 1, 0);
 

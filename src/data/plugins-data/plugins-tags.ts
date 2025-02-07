@@ -42,4 +42,9 @@ export const PLUGIN_TAGS = {
     label: "New",
     description: "Recently added plugins",
   },
+  codeBlockHighPerformanceImpact: {
+    label: "⚡",
+    description:
+      "May have a noticeable impact on performance in large threads with a large amount of code blocks.",
+  },
 } as const;

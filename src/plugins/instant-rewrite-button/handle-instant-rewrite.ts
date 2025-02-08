@@ -67,23 +67,14 @@ export async function handleInstantRewrite({
         "instant-rewrite-model-change",
       );
 
-      const isProReasoningMode = isReasoningLanguageModelCode(
+      const isReasoningMode = isReasoningLanguageModelCode(
         currentModelPreferences.displayModel,
       );
 
-      const modelPreferenceKey = isProReasoningMode
-        ? "reasoning_model_preference"
-        : "model_preference";
-
-      const toDeleteKey = isProReasoningMode
-        ? "model_preference"
-        : "reasoning_model_preference";
-
       const newPayload = produce(payload, (draft) => {
-        delete payload[2][toDeleteKey];
-        draft[2].mode = isProSearchEnabled ? "copilot" : "concise";
-        draft[2].is_pro_reasoning_mode = isProReasoningMode;
-        draft[2][modelPreferenceKey] = currentModelPreferences.displayModel;
+        draft[2].mode =
+          isReasoningMode || isProSearchEnabled ? "copilot" : "concise";
+        draft[2].model_preference = currentModelPreferences.displayModel;
       });
 
       return encodeWebSocketData({

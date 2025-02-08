@@ -73,20 +73,9 @@ csLoaderRegistry.register({
               selectedLanguageModel,
             );
 
-            const modelPreferenceKey = isReasoningMode
-              ? "reasoning_model_preference"
-              : "model_preference";
-
-            const toDeleteKey = isReasoningMode
-              ? "model_preference"
-              : "reasoning_model_preference";
-
-            delete draft[2][toDeleteKey];
-
-            draft[2][modelPreferenceKey] = selectedLanguageModel;
+            draft[2].model_preference = selectedLanguageModel;
             draft[2].mode =
               isProSearchEnabled || isReasoningMode ? "copilot" : "concise";
-            draft[2].is_pro_reasoning_mode = isReasoningMode;
           });
 
           return encodeWebSocketData({

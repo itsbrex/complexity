@@ -5,6 +5,7 @@ import { createWithEqualityFn } from "zustand/traditional";
 type SidebarDomObserverStoreType = {
   $wrapper: JQuery<HTMLElement> | null;
   $spaceButtonWrapper: JQuery<HTMLElement> | null;
+  $libraryButtonWrapper: JQuery<HTMLElement> | null;
   resetStore: () => void;
 };
 
@@ -15,11 +16,12 @@ export const sidebarDomObserverStore =
         (set): SidebarDomObserverStoreType => ({
           $wrapper: null,
           $spaceButtonWrapper: null,
+          $libraryButtonWrapper: null,
           resetStore: () => {
             set({
               $wrapper: null,
-
               $spaceButtonWrapper: null,
+              $libraryButtonWrapper: null,
             });
           },
         }),

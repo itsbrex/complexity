@@ -1,18 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { LuChevronDown, LuChevronUp } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
-import { useSpaceNavigatorSidebarStore } from "@/plugins/space-navigator/sidebar-content/store";
 import { getPinnedSpacesService } from "@/services/indexed-db/pinned-spaces";
 import { pinnedSpacesQueries } from "@/services/indexed-db/pinned-spaces/query-keys";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 
 export default function SidebarPinnedSpacesVisToggle() {
-  const { isShown, setIsShown } = useSpaceNavigatorSidebarStore();
+  const [isCollapsed, setIsCollapsed] = useLocalStorage(
+    "cplx.pinned-spaces-collapsed",
+    false,
+  );
 
   const { data: pinnedSpaces } = useQuery({
     ...pinnedSpacesQueries.list,
-    enabled: isShown,
+    enabled: !isCollapsed,
   });
 
   useCleanUpNonExistingPinnedSpaces();
@@ -22,12 +25,12 @@ export default function SidebarPinnedSpacesVisToggle() {
   return (
     <Tooltip
       content={
-        isShown
+        isCollapsed
           ? t(
-              "plugin-space-navigator:spaceNavigator.pinnedSpaces.toggleVisibility.collapse",
+              "plugin-space-navigator:spaceNavigator.pinnedSpaces.toggleVisibility.expand",
             )
           : t(
-              "plugin-space-navigator:spaceNavigator.pinnedSpaces.toggleVisibility.expand",
+              "plugin-space-navigator:spaceNavigator.pinnedSpaces.toggleVisibility.collapse",
             )
       }
     >
@@ -37,10 +40,10 @@ export default function SidebarPinnedSpacesVisToggle() {
           e.preventDefault();
           e.stopPropagation();
 
-          setIsShown(!isShown);
+          setIsCollapsed((prev) => !prev);
         }}
       >
-        {isShown ? <LuChevronUp /> : <LuChevronDown />}
+        {isCollapsed ? <LuChevronDown /> : <LuChevronUp />}
       </div>
     </Tooltip>
   );

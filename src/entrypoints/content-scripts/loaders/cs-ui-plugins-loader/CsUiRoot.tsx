@@ -50,6 +50,9 @@ const SpaceNavigatorWrapper = lazy(
   () => import("@/plugins/space-navigator/sidebar-content"),
 );
 const ThreadTocWrapper = lazy(() => import("@/plugins/thread-toc"));
+const SidebarToggleableRecentThreadsWrapper = lazy(
+  () => import("@/plugins/sidebar-toggleable-recent-threads"),
+);
 
 export default function CsUiRoot() {
   return (
@@ -143,14 +146,21 @@ function ThreadComponents() {
 
 function SidebarComponents() {
   return (
-    <CsUiPluginsGuard
-      desktopOnly
-      requiresLoggedIn
-      allowIncognito={false}
-      dependentPluginIds={["spaceNavigator"]}
-    >
-      <SpaceNavigatorWrapper />
-    </CsUiPluginsGuard>
+    <>
+      <CsUiPluginsGuard
+        desktopOnly
+        requiresLoggedIn
+        allowIncognito={false}
+        dependentPluginIds={["spaceNavigator"]}
+      >
+        <SpaceNavigatorWrapper />
+      </CsUiPluginsGuard>
+      <CsUiPluginsGuard
+        dependentPluginIds={["sidebar:toggleableRecentThreads"]}
+      >
+        <SidebarToggleableRecentThreadsWrapper />
+      </CsUiPluginsGuard>
+    </>
   );
 }
 

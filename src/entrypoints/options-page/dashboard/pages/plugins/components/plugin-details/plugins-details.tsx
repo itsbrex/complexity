@@ -14,6 +14,7 @@ import ExportThreadPluginDetails from "@/entrypoints/options-page/dashboard/page
 import FullWidthFollowUpQueryBoxPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/FullWidthFollowUpQueryBox";
 import InstantThreadMessageRewriteButtonsPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/InstantThreadMessageRewriteButtons";
 import PromptHistoryPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/PromptHistory";
+import SidebarToggleableRecentThreadsPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/SidebarToggleableRecentThreads";
 import SlashCommandMenuPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/SlashCommandMenu";
 import SpaceNavigatorPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/SpaceNavigator";
 import SubmitOnCtrlEnterPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/SubmitOnCtrlEnterPluginDetails";
@@ -25,12 +26,15 @@ export type PluginPluginDetails = Partial<Record<PluginId, React.ReactNode>>;
 
 export const PLUGIN_DETAILS: PluginPluginDetails = {
   "queryBox:languageModelSelector": <LanguageModelSelectorPluginDetails />,
-  spaceNavigator: <SpaceNavigatorPluginDetails />,
   "queryBox:slashCommandMenu": <SlashCommandMenuPluginDetails />,
   "queryBox:slashCommandMenu:promptHistory": <PromptHistoryPluginDetails />,
   "queryBox:fullWidthFollowUp": <FullWidthFollowUpQueryBoxPluginDetails />,
   "queryBox:noFileCreationOnPaste": <NoFileCreationOnPastePluginDetails />,
   "queryBox:submitOnCtrlEnter": <SubmitOnCtrlEnterPluginDetails />,
+  "sidebar:toggleableRecentThreads": (
+    <SidebarToggleableRecentThreadsPluginDetails />
+  ),
+  spaceNavigator: <SpaceNavigatorPluginDetails />,
   commandMenu: <CommandMenuPluginDetails />,
   "thread:betterMessageToolbars": <BetterThreadMessageToolbarsPluginDetails />,
   "thread:betterCodeBlocks": <BetterCodeBlocksPluginDetails />,

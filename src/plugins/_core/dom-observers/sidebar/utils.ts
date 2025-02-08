@@ -54,3 +54,23 @@ export function findSpaceButtonWrapper() {
     $spaceButtonWrapper,
   });
 }
+
+export function findLibraryButtonWrapper() {
+  const $wrapper = sidebarDomObserverStore.getState().$wrapper;
+
+  if ($wrapper == null) return;
+
+  const $libraryButtonWrapper = $wrapper.find(
+    DOM_SELECTORS.SIDEBAR.LIBRARY_BUTTON_WRAPPER,
+  );
+
+  if (!$libraryButtonWrapper.length) return;
+
+  $libraryButtonWrapper.internalComponentAttr(
+    INTERNAL_ATTRIBUTES.SIDEBAR.LIBRARY_BUTTON_WRAPPER,
+  );
+
+  sidebarDomObserverStore.setState({
+    $libraryButtonWrapper,
+  });
+}

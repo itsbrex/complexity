@@ -46,6 +46,14 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     ],
     dependentCorePlugins: ["spaRouter"],
   },
+  "sidebar:toggleableRecentThreads": {
+    id: "sidebar:toggleableRecentThreads",
+    routeSegment: "sidebar-toggleable-recent-threads",
+    title: "Sidebar: Toggleable Recent Threads",
+    description: "Toggleable recent threads on the sidebar",
+    dependentDomObservers: ["coreDomObserver:sidebar"],
+    dependentCorePlugins: ["spaRouter"],
+  },
   "queryBox:noFileCreationOnPaste": {
     id: "queryBox:noFileCreationOnPaste",
     routeSegment: "query-box-no-file-creation-on-paste",

@@ -6,6 +6,7 @@ export const CALLBACK_QUEUE_TASK_IDS = [
 
   "sidebar:wrapper",
   "sidebar:spaceButtonWrapper",
+  "sidebar:libraryButtonWrapper",
 
   "queryBoxes",
   "queryBoxes:home",

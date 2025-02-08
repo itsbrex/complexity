@@ -35,6 +35,9 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     spaceNavigator: {
       enabled: false,
     },
+    "sidebar:toggleableRecentThreads": {
+      enabled: false,
+    },
     commandMenu: {
       hotkey: [
         getPlatform() === "mac" ? Key.Meta : Key.Control,

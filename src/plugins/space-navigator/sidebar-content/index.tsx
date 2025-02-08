@@ -8,6 +8,7 @@ import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 export default function SpaceNavigatorWrapper() {
   const spaceButtonWrapper = useSidebarDomObserverStore(
     (state) => state.$spaceButtonWrapper?.[0],
+    deepEqual,
   );
 
   const $triggerButtonsPortalContainer = useMemo(() => {

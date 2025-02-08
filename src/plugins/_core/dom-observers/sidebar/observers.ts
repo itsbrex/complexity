@@ -2,6 +2,7 @@ import { isMobileStore } from "@/hooks/use-is-mobile-store";
 import { CallbackQueue } from "@/plugins/_api/dom-observer/callback-queue";
 import { DomObserver } from "@/plugins/_api/dom-observer/dom-observer";
 import {
+  findLibraryButtonWrapper,
   findSidebarWrapper,
   findSpaceButtonWrapper,
 } from "@/plugins/_core/dom-observers/sidebar/utils";
@@ -39,6 +40,10 @@ async function observeSidebar() {
         {
           callback: findSpaceButtonWrapper,
           id: "sidebar:spaceButtonWrapper",
+        },
+        {
+          callback: findLibraryButtonWrapper,
+          id: "sidebar:libraryButtonWrapper",
         },
       ]),
   });

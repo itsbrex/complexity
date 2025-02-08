@@ -2,6 +2,7 @@ export const DOM_SELECTORS = {
   SIDEBAR: {
     WRAPPER: ".group\\/bar",
     SPACE_BUTTON_WRAPPER: `.relative.justify-center.w-full:has(>div>a[role="button"][aria-label="Spaces"])`,
+    LIBRARY_BUTTON_WRAPPER: `.relative.justify-center.w-full:has(>div>a[role="button"][aria-label="Library"])`,
   },
   THREAD: {
     /** The outermost container that wraps the thread container and the query box */
@@ -116,6 +117,8 @@ export const INTERNAL_ATTRIBUTES = {
   SIDEBAR: {
     WRAPPER: "sidebar-wrapper",
     SPACE_BUTTON_WRAPPER: "sidebar-space-button-wrapper",
+    LIBRARY_BUTTON_WRAPPER: "sidebar-library-button-wrapper",
+    LIBRARY_BUTTON_PORTAL_CONTAINER: "sidebar-library-button-portal-container",
     PINNED_SPACES_PORTAL_CONTAINER: "pinned-spaces",
   },
   HOME: {

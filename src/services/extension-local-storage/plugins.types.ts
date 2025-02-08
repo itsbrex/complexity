@@ -29,6 +29,7 @@ export const PluginsSchema = z.object({
   }),
   "queryBox:submitOnCtrlEnter": PluginSettingsSchema,
   spaceNavigator: PluginSettingsSchema,
+  "sidebar:toggleableRecentThreads": PluginSettingsSchema,
   "thread:toc": PluginSettingsSchema,
   "thread:betterMessageToolbars": PluginSettingsSchema.extend({
     sticky: z.boolean(),

@@ -1,5 +1,6 @@
 import { DragEndEvent } from "@dnd-kit/core";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { LuPinOff } from "react-icons/lu";
 import { sendMessage } from "webext-bridge/content-script";
 
@@ -7,7 +8,6 @@ import SwappableDndProvider from "@/components/dnd/SwappableDndProvider";
 import SwappableSortableItem from "@/components/dnd/SwappableSortableItem";
 import Tooltip from "@/components/Tooltip";
 import { PinnedSpace } from "@/data/plugins/space-navigator/pinned-space.types";
-import { useSpaceNavigatorSidebarStore } from "@/plugins/space-navigator/sidebar-content/store";
 import { useUnpinSpaceMutation } from "@/plugins/space-navigator/sidebar-content/use-pinned-spaces-mutations";
 import { getPinnedSpacesService } from "@/services/indexed-db/pinned-spaces";
 import { pinnedSpacesQueries } from "@/services/indexed-db/pinned-spaces/query-keys";
@@ -88,7 +88,8 @@ function PinnedSpaceContent({
 }
 
 export default function SidebarPinnedSpaces() {
-  const { isShown } = useSpaceNavigatorSidebarStore();
+  const [isCollapsed] = useLocalStorage("cplx.pinned-spaces-collapsed", false);
+
   const [localPinnedSpaces, setLocalPinnedSpaces] = useState<PinnedSpace[]>([]);
 
   const { data: spaces, isLoading: isSpacesLoading } = useQuery(
@@ -97,7 +98,7 @@ export default function SidebarPinnedSpaces() {
 
   const { data: pinnedSpaces = [] } = useQuery({
     ...pinnedSpacesQueries.list,
-    enabled: isShown,
+    enabled: !isCollapsed,
   });
 
   useEffect(() => {
@@ -152,7 +153,7 @@ export default function SidebarPinnedSpaces() {
     },
   });
 
-  if (!isShown || localPinnedSpaces.length === 0) return null;
+  if (isCollapsed || localPinnedSpaces.length === 0) return null;
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;

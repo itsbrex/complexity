@@ -65,7 +65,7 @@ function useGuardConditions(props: CsUiPluginsGuardProps) {
   const { currentLocation, hasActiveSub, isLoggedIn, isMobile, isOrgMember } =
     usePluginGuardsStore();
 
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+  const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();
   const isIncognito = usePplxIncognitoMode();
 
   const deviceValid = checkDeviceType(props, { isMobile });
@@ -154,7 +154,7 @@ function useErrorTraces({
       dependentPluginIds,
       currentUrl: window.location.href,
       settings: ExtensionLocalStorageService.getCachedSync(),
-      pluginsStates: PluginsStatesService.getCachedSync(),
+      pluginsStates: PluginsStatesService.getEnableStatesCachedSync(),
     },
     null,
     4,

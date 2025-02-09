@@ -24,7 +24,7 @@ import { Ul } from "@/components/ui/typography";
 import { PLUGINS_METADATA } from "@/data/plugins-data/plugins-data";
 import { PLUGIN_TAGS } from "@/data/plugins-data/plugins-tags";
 import { PLUGIN_DETAILS } from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/plugins-details";
-import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatureFlags";
+import usePluginsStates from "@/entrypoints/options-page/dashboard/pages/plugins/hooks/usePluginsStates";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
@@ -42,7 +42,7 @@ export function PluginCard({ pluginId, isForceDisabled }: PluginCardProps) {
 
   const dialogContent = PLUGIN_DETAILS[pluginId];
 
-  const { data: featureFlags } = useCplxFeatureFlags();
+  const { pluginsStates } = usePluginsStates();
 
   const areAllDependentPluginsEnabled = useMemo(
     () =>
@@ -52,13 +52,12 @@ export function PluginCard({ pluginId, isForceDisabled }: PluginCardProps) {
     [pluginId, settings],
   );
 
-  const areAnyDependentPluginsForceDisabled = useMemo(
+  const areAnyDependentPluginsDisabled = useMemo(
     () =>
       PLUGINS_METADATA?.[pluginId]?.dependentPlugins?.some(
-        (dependentPluginId) =>
-          featureFlags?.anon?.forceDisable.includes(dependentPluginId),
+        (dependentPluginId) => pluginsStates[dependentPluginId].isForceDisabled,
       ) ?? false,
-    [pluginId, featureFlags],
+    [pluginId, pluginsStates],
   );
 
   if (!settings) return null;
@@ -181,7 +180,7 @@ export function PluginCard({ pluginId, isForceDisabled }: PluginCardProps) {
             </Tooltip>
           )}
 
-        {areAnyDependentPluginsForceDisabled && (
+        {areAnyDependentPluginsDisabled && (
           <Tooltip
             content={
               <div>

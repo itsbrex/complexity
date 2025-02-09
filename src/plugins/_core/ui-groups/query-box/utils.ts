@@ -88,7 +88,7 @@ export function findToolbarPortalContainer(queryBox: HTMLElement): {
 }
 
 export function handleSearchModeChange() {
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+  const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();
 
   if (!pluginsEnableStates["queryBox:languageModelSelector"]) return;
 
@@ -163,7 +163,7 @@ export function handleSearchModeChange() {
 }
 
 export function syncNativeModelSelector() {
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+  const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();
 
   if (!pluginsEnableStates["queryBox:languageModelSelector"]) return;
 

@@ -5,9 +5,10 @@ import { cplxApiQueries } from "@/services/cplx-api/query-keys";
 import { ExtensionVersion } from "@/utils/ext-version";
 
 export default function useExtensionUpdate() {
-  const { data: versions } = useQuery({
+  const { data: versions, isLoading } = useQuery({
     ...cplxApiQueries.versions,
     staleTime: 1000,
+    retryOnMount: false, // important, without this the query will be refetching indefinitely if queryFn throws error
   });
 
   const isUpdateAvailable = useMemo(() => {
@@ -22,5 +23,6 @@ export default function useExtensionUpdate() {
   return {
     isUpdateAvailable,
     latestVersion: versions?.latest,
+    isLoading,
   };
 }

@@ -103,7 +103,8 @@ csLoaderRegistry.register({
   loader: async () => {
     if (APP_CONFIG.IS_DEV) return;
 
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
 
     if (!pluginsEnableStates["queryBox:languageModelSelector"])
       return undefined;

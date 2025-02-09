@@ -35,7 +35,7 @@ function useInsertToolbarCss() {
   const location = whereAmI(useSpaRouter().url);
   const { isMobile } = useIsMobileStore();
 
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+  const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();
 
   const settings = ExtensionLocalStorageService.getCachedSync();
 

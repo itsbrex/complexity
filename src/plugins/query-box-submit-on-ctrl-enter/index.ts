@@ -8,7 +8,7 @@ import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 const OBSERVER_ID = "submit-on-ctrl-enter";
 
 function submitOnCtrlEnter(queryBoxes: QueryBoxesDomObserverStoreType["main"]) {
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+  const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();
 
   if (!pluginsEnableStates["queryBox:submitOnCtrlEnter"]) return;
 

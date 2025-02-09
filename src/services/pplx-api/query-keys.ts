@@ -2,6 +2,7 @@ import { createQueryKeys } from "@lukemorales/query-key-factory";
 
 import { PplxApiService } from "@/services/pplx-api";
 import { Space } from "@/services/pplx-api/pplx-api.types";
+import { queryClient } from "@/utils/ts-query-client";
 
 export const pplxApiQueries = createQueryKeys("pplxApi", {
   userSettings: {
@@ -55,4 +56,8 @@ export const pplxApiQueries = createQueryKeys("pplxApi", {
       }),
     },
   },
+});
+
+queryClient.setQueryDefaults(pplxApiQueries.spaces.queryKey, {
+  staleTime: 10000,
 });

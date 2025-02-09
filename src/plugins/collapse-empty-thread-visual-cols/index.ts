@@ -10,7 +10,7 @@ function setupCollapseEmptyThreadVisualCols(
   location: ReturnType<typeof whereAmI>,
 ) {
   if (
-    !PluginsStatesService.getCachedSync()?.pluginsEnableStates[
+    !PluginsStatesService.getEnableStatesCachedSync()[
       "thread:collapseEmptyThreadVisualCols"
     ]
   )

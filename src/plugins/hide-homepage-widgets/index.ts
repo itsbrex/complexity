@@ -9,7 +9,8 @@ let cleanup: () => void | null;
 csLoaderRegistry.register({
   id: "plugin:home:hideHomepageWidgets",
   loader: () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
 
     if (!pluginsEnableStates["home:hideHomepageWidgets"]) return;
 

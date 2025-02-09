@@ -9,7 +9,8 @@ csLoaderRegistry.register({
   id: "plugin:spaceNavigator:networkInterceptMiddleware",
   dependencies: ["cache:pluginsStates"],
   loader: () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
 
     if (!pluginsEnableStates["spaceNavigator"]) return;
 

@@ -7,7 +7,7 @@ import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { PluginsStatesService } from "@/services/plugins-states";
 
 export function shouldEnableUiGroup({ uiGroup }: { uiGroup: UiGroup }) {
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+  const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();
 
   return Object.entries(PLUGINS_METADATA).some((entry) => {
     const [pluginId, pluginMetadata] = entry as [

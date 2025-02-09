@@ -49,8 +49,9 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
   "sidebar:toggleableRecentThreads": {
     id: "sidebar:toggleableRecentThreads",
     routeSegment: "sidebar-toggleable-recent-threads",
-    title: "Sidebar: Toggleable Recent Threads",
-    description: "Toggleable recent threads on the sidebar",
+    title: "Sidebar: Hide Recent Threads",
+    tags: ["ui", "new"],
+    description: "Hide recent threads on the sidebar",
     dependentDomObservers: ["coreDomObserver:sidebar"],
     dependentCorePlugins: ["spaRouter"],
   },

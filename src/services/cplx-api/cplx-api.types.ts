@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { PluginId } from "@/services/extension-local-storage/plugins.types";
+
 export const CplxVersionsApiResponseSchema = z.object({
   latest: z.string(),
   latestFirefox: z.string(),
@@ -13,3 +15,10 @@ export type CplxVersionsApiResponse = z.infer<
 >;
 
 export type CplxVersions = Omit<CplxVersionsApiResponse, "latestFirefox">;
+
+export const FeatureCompatibilitySchema = z.record(
+  z.string() as z.ZodType<PluginId>,
+  z.string(),
+);
+
+export type FeatureCompatibility = z.infer<typeof FeatureCompatibilitySchema>;

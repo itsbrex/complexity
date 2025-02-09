@@ -16,7 +16,8 @@ csLoaderRegistry.register({
   id: "networkIntercept:languageModelSelector",
   dependencies: ["cache:pluginsStates"],
   loader: () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
 
     if (!pluginsEnableStates["queryBox:languageModelSelector"]) return;
 

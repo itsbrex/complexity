@@ -1,142 +1,62 @@
-import { PLUGINS_METADATA } from "@/data/plugins-data/plugins-data";
+import { APP_CONFIG } from "@/app.config";
 import {
-  CplxFeatureFlags,
-  UserGroup,
-} from "@/services/cplx-api/feature-flags/cplx-feature-flags.types";
+  CplxVersions,
+  FeatureCompatibility,
+} from "@/services/cplx-api/cplx-api.types";
+import { CplxFeatureFlags } from "@/services/cplx-api/cplx-feature-flags.types";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
-import { pluginsStatesQueries } from "@/services/plugins-states/query-keys";
+import {
+  initializePluginStates,
+  updatePluginStatesWithEnableStates,
+  updatePluginStatesWithFeatureCompat,
+  updatePluginStatesWithFeatureFlags,
+} from "@/services/plugins-states/utils";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
-import { errorWrapper } from "@/utils/error-wrapper";
 import { queryClient } from "@/utils/ts-query-client";
 
-export type PluginsStates = {
-  pluginsEnableStates: Partial<Record<PluginId, boolean>>;
-  pluginsHideFromDashboardStates: Partial<Record<PluginId, boolean>> | null;
-};
-
 export class PluginsStatesService {
-  private static getDefaultPluginsStates(): PluginsStates {
-    const localSettings = ExtensionLocalStorageService.getCachedSync();
+  static cachedEnableStates: Record<PluginId, boolean> | null = null;
 
-    return {
-      pluginsEnableStates: PluginsStatesService.checkDependencies(
-        Object.fromEntries(
-          Object.keys(localSettings.plugins).map((pluginId) => [
-            pluginId,
-            localSettings.plugins[pluginId as PluginId].enabled,
-          ]),
-        ),
-      ),
-      pluginsHideFromDashboardStates: null,
-    };
-  }
+  static getEnableStatesCachedSync(): Record<PluginId, boolean> {
+    if (this.cachedEnableStates) return this.cachedEnableStates;
 
-  private static async getFeatureFlags({ cache }: { cache: boolean }) {
-    if (cache) {
-      const cachedData = queryClient.getQueryData<CplxFeatureFlags>(
-        cplxApiQueries.featureFlags.queryKey,
-      );
-
-      if (cachedData) return cachedData;
-    }
-
-    return await queryClient.fetchQuery({
-      ...cplxApiQueries.featureFlags,
-      gcTime: Infinity,
-    });
-  }
-
-  static async get(
-    { cache }: { cache: boolean } = { cache: true },
-  ): Promise<PluginsStates> {
-    const DEFAULT_RETURN = this.getDefaultPluginsStates();
-
-    const localSettings = ExtensionLocalStorageService.getCachedSync();
-
-    const userGroup: UserGroup = "anon"; // TODO: implement
-
-    const [featureFlags, error] = await errorWrapper(() =>
-      this.getFeatureFlags({ cache }),
-    )();
-
-    if (featureFlags == null || localSettings == null || error) {
-      return DEFAULT_RETURN;
-    }
-
-    const pluginsEnableStates = Object.fromEntries(
-      Object.keys(localSettings.plugins).map((pluginId) => {
-        const locallyEnabled =
-          localSettings.plugins[pluginId as PluginId].enabled;
-        const isRemotelyDisabled = featureFlags[
-          userGroup
-        ]?.forceDisable.includes(pluginId as PluginId);
-
-        const mergedState = !isRemotelyDisabled && locallyEnabled;
-        return [pluginId, mergedState];
-      }),
+    const featureCompat = queryClient.getQueryData<FeatureCompatibility>(
+      cplxApiQueries.featureCompat.queryKey,
     );
 
-    const pluginsHideFromDashboardStates = Object.fromEntries(
-      Object.keys(localSettings.plugins).map((pluginId) => {
-        const isHiddenFromDashboard = featureFlags[userGroup]?.hide?.includes(
-          pluginId as PluginId,
-        );
-
-        return [pluginId, isHiddenFromDashboard];
-      }),
+    const featureFlags = queryClient.getQueryData<CplxFeatureFlags>(
+      cplxApiQueries.featureFlags.queryKey,
     );
 
-    return {
-      pluginsEnableStates:
-        PluginsStatesService.checkDependencies(pluginsEnableStates),
-      pluginsHideFromDashboardStates,
-    };
-  }
-
-  static getCachedSync(): PluginsStates {
-    const pluginsStates = queryClient.getQueryData<PluginsStates>(
-      pluginsStatesQueries.computed.queryKey,
+    const cplxVersions = queryClient.getQueryData<CplxVersions>(
+      cplxApiQueries.versions.queryKey,
     );
 
-    return pluginsStates ?? this.getDefaultPluginsStates();
-  }
+    const pluginsStates = initializePluginStates();
 
-  private static areAllDependentPluginsEnabled({
-    pluginId,
-    pluginsEnableStates,
-  }: {
-    pluginId: PluginId;
-    pluginsEnableStates: NonNullable<PluginsStates["pluginsEnableStates"]>;
-  }) {
-    return PLUGINS_METADATA[pluginId]?.dependentPlugins?.every(
-      (dependentPluginId) => pluginsEnableStates[dependentPluginId],
+    const withFeatureCompat = updatePluginStatesWithFeatureCompat(
+      pluginsStates,
+      featureCompat,
+      APP_CONFIG.VERSION,
+      cplxVersions?.latest,
     );
-  }
 
-  private static checkDependencies(
-    pluginsEnableStates: NonNullable<PluginsStates["pluginsEnableStates"]>,
-  ) {
-    const mutablePluginsEnableStates = { ...pluginsEnableStates };
+    const withFeatureFlags = updatePluginStatesWithFeatureFlags(
+      withFeatureCompat,
+      featureFlags,
+      "anon",
+    );
 
-    Object.keys(pluginsEnableStates).forEach((pluginId) => {
-      const dependentPlugins =
-        PLUGINS_METADATA[pluginId as PluginId]?.dependentPlugins;
+    const withEnableStates = updatePluginStatesWithEnableStates(
+      withFeatureFlags,
+      ExtensionLocalStorageService.getCachedSync().plugins,
+    );
 
-      if (!dependentPlugins) return;
+    this.cachedEnableStates = withEnableStates;
 
-      if (
-        !PluginsStatesService.areAllDependentPluginsEnabled({
-          pluginId: pluginId as PluginId,
-          pluginsEnableStates,
-        })
-      ) {
-        mutablePluginsEnableStates[pluginId as PluginId] = false;
-      }
-    });
-
-    return mutablePluginsEnableStates;
+    return withEnableStates;
   }
 }
 
@@ -144,9 +64,21 @@ csLoaderRegistry.register({
   id: "cache:pluginsStates",
   dependencies: ["cache:extensionLocalStorage"],
   loader: async () => {
-    await queryClient.prefetchQuery({
-      ...pluginsStatesQueries.computed,
-      gcTime: Infinity,
-    });
+    await Promise.all([
+      queryClient.prefetchQuery({
+        ...cplxApiQueries.versions,
+        staleTime: 1000,
+      }),
+      queryClient.prefetchQuery({
+        ...cplxApiQueries.featureCompat,
+        gcTime: Infinity,
+        staleTime: Infinity,
+      }),
+      queryClient.prefetchQuery({
+        ...cplxApiQueries.featureFlags,
+        gcTime: Infinity,
+        staleTime: Infinity,
+      }),
+    ]);
   },
 });

@@ -81,7 +81,7 @@ const displayModelBadge = async ({
 };
 
 function explicitModelName(messageBlocks: MessageBlock[]) {
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+  const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();
   if (
     !pluginsEnableStates["thread:betterMessageToolbars"] ||
     !ExtensionLocalStorageService.getCachedSync().plugins[
@@ -103,7 +103,8 @@ function explicitModelName(messageBlocks: MessageBlock[]) {
 csLoaderRegistry.register({
   id: "plugin:thread:betterMessageToolbars:explicitModelName",
   loader: () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
     const settings = ExtensionLocalStorageService.getCachedSync();
 
     if (

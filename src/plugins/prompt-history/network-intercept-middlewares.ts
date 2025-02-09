@@ -11,7 +11,8 @@ csLoaderRegistry.register({
   id: "plugin:queryBox:promptHistory:networkInterceptMiddleware",
   dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
   loader: () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
     const settings = ExtensionLocalStorageService.getCachedSync();
 
     if (

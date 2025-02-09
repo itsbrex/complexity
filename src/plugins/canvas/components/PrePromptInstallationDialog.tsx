@@ -169,7 +169,8 @@ function CanvasPrePromptInstallationDialog() {
 export const canvasPrePromptInstallationDialogRouterRoute: RouteObject = {
   path: "/cplx/canvas/install-pre-prompt-as-space",
   loader: () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
 
     if (!pluginsEnableStates["thread:canvas"]) {
       return redirect("/");

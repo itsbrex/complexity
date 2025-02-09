@@ -17,7 +17,8 @@ csLoaderRegistry.register({
     "plugin:queryBox:initSharedStore",
   ],
   loader: () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
     const settings = ExtensionLocalStorageService.getCachedSync();
 
     if (

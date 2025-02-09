@@ -2,8 +2,7 @@ import { useMemo } from "react";
 
 import { PLUGINS_METADATA } from "@/data/plugins-data/plugins-data";
 import { PluginTagValues } from "@/data/plugins-data/plugins-tags";
-import { UserGroup } from "@/services/cplx-api/feature-flags/cplx-feature-flags.types";
-import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatureFlags";
+import usePluginsStates from "@/entrypoints/options-page/dashboard/pages/plugins/hooks/usePluginsStates";
 
 type UseFilteredPluginsParams = {
   searchTerm: string;
@@ -16,15 +15,13 @@ export function useFilteredPlugins({
   selectedTags,
   excludeTags,
 }: UseFilteredPluginsParams) {
-  const userGroup: UserGroup = "anon";
-  const { data: featureFlags } = useCplxFeatureFlags();
+  const { pluginsStates } = usePluginsStates();
 
   const filteredPlugins = useMemo(() => {
     return Object.values(PLUGINS_METADATA)
       .filter((plugin) => {
-        const isHiddenFromDashboard = featureFlags?.[userGroup]?.hide.includes(
-          plugin.id,
-        );
+        const isHiddenFromDashboard =
+          pluginsStates[plugin.id].isHiddenFromDashboard;
         const matchesSearch = (plugin.title + plugin.description)
           .toLowerCase()
           .includes(searchTerm.toLowerCase());
@@ -45,7 +42,7 @@ export function useFilteredPlugins({
         );
       })
       .map((plugin) => plugin.id);
-  }, [searchTerm, selectedTags, excludeTags, featureFlags, userGroup]);
+  }, [searchTerm, selectedTags, excludeTags, pluginsStates]);
 
   return filteredPlugins;
 }

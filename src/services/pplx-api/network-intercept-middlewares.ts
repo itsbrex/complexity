@@ -8,7 +8,8 @@ import { queryClient } from "@/utils/ts-query-client";
 csLoaderRegistry.register({
   id: "networkIntercept:pplxApi",
   loader: () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
 
     const shouldInvalidatePplxUserSettings =
       pluginsEnableStates["queryBox:languageModelSelector"] === true ||

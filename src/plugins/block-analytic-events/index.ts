@@ -6,7 +6,8 @@ import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 csLoaderRegistry.register({
   id: "plugin:blockAnalyticEvents",
   loader: () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
 
     if (pluginsEnableStates?.blockAnalyticEvents === true)
       networkInterceptMiddlewareManager.addMiddleware({

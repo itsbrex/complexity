@@ -10,7 +10,7 @@ csLoaderRegistry.register({
   dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
   loader: () => {
     const pluginsEnableStates =
-      PluginsStatesService.getCachedSync().pluginsEnableStates;
+      PluginsStatesService.getEnableStatesCachedSync();
     const settings = ExtensionLocalStorageService.getCachedSync();
 
     if (

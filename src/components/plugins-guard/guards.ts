@@ -1,6 +1,5 @@
 import { ExtensionLocalStorage } from "@/services/extension-local-storage/extension-local-storage.types";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
-import { PluginsStates } from "@/services/plugins-states";
 import { whereAmI } from "@/utils/utils";
 
 export type GuardConditions = {
@@ -20,7 +19,7 @@ export type GuardCheckParams = {
   hasActiveSub: boolean;
   currentLocation: ReturnType<typeof whereAmI>;
   isIncognito: boolean;
-  pluginsEnableStates: PluginsStates["pluginsEnableStates"];
+  pluginsEnableStates: Record<PluginId, boolean>;
 };
 
 export function checkDeviceType(
@@ -90,7 +89,7 @@ export function checkIncognito(
 }
 
 export type AdditionalCheckParams = GuardConditions & {
-  pluginsEnableStates: PluginsStates["pluginsEnableStates"];
+  pluginsEnableStates: Record<PluginId, boolean>;
   settings: ExtensionLocalStorage;
 };
 

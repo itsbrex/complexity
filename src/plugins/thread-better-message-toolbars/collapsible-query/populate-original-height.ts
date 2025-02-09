@@ -25,7 +25,8 @@ csLoaderRegistry.register({
   id: "plugin:thread:betterMessageToolbars:collapsibleQuery",
   dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
   loader: () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
     const settings = ExtensionLocalStorageService.getCachedSync();
 
     if (

@@ -9,13 +9,14 @@ import {
   CplxVersions,
   CplxVersionsApiResponse,
   CplxVersionsApiResponseSchema,
+  FeatureCompatibility,
 } from "@/services/cplx-api/cplx-api.types";
 import {
   CplxFeatureFlags,
   CplxFeatureFlagsSchema,
-} from "@/services/cplx-api/feature-flags/cplx-feature-flags.types";
+} from "@/services/cplx-api/cplx-feature-flags.types";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
+import { getTParam } from "@/services/cplx-api/utils";
 import { ExtensionVersion } from "@/utils/ext-version";
 import { queryClient } from "@/utils/ts-query-client";
 import { fetchResource, jsonUtils } from "@/utils/utils";
@@ -92,6 +93,14 @@ export class CplxApiService {
 
       return closestVersion ?? "latest";
     }
+  }
+
+  static async fetchFeatureCompat(): Promise<FeatureCompatibility> {
+    return JSON.parse(
+      await fetchResource(
+        `${APP_CONFIG.CPLX_CDN_URL}/feature-compat.json?t=${getTParam()}`,
+      ),
+    );
   }
 
   static async fetchLanguageModels(): Promise<LanguageModel[]> {
@@ -181,21 +190,4 @@ export class CplxApiService {
 
     return resp.text();
   }
-}
-
-function getTParam() {
-  const extensionLocalStorage = ExtensionLocalStorageService.getCachedSync();
-  const cdnLastUpdated = extensionLocalStorage.cdnLastUpdated;
-
-  const nowInMilliseconds = Date.now();
-  const oneHourInMilliseconds = 1000 * 60 * 60;
-
-  if (nowInMilliseconds - cdnLastUpdated > oneHourInMilliseconds) {
-    ExtensionLocalStorageService.set((draft) => {
-      draft.cdnLastUpdated = nowInMilliseconds;
-    });
-    return nowInMilliseconds;
-  }
-
-  return cdnLastUpdated;
 }

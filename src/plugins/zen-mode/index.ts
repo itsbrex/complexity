@@ -9,7 +9,8 @@ import { insertCss } from "@/utils/utils";
 csLoaderRegistry.register({
   id: "plugin:zenMode",
   loader: () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
 
     if (!pluginsEnableStates["zenMode"]) return;
 

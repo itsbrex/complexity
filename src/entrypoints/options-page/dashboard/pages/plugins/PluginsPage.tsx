@@ -6,14 +6,14 @@ import PluginDetailsWrapper from "@/entrypoints/options-page/dashboard/pages/plu
 import { PluginSections } from "@/entrypoints/options-page/dashboard/pages/plugins/components/PluginSections";
 import { TagsFilter } from "@/entrypoints/options-page/dashboard/pages/plugins/components/TagsFilter";
 import { useFilteredPlugins } from "@/entrypoints/options-page/dashboard/pages/plugins/hooks/useFilteredPlugins";
+import usePluginsStates from "@/entrypoints/options-page/dashboard/pages/plugins/hooks/usePluginsStates";
 import { usePluginFiltersStore } from "@/entrypoints/options-page/dashboard/pages/plugins/store";
-import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatureFlags";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import useExtensionLocalStorage from "@/services/extension-local-storage/useExtensionLocalStorage";
 
 function PluginsListing() {
   const { settings } = useExtensionLocalStorage();
-  const { isFetching: isFetchingFeatureFlags } = useCplxFeatureFlags();
+  const { isLoading: isFetchingPLuginsStates } = usePluginsStates();
   const filters = usePluginFiltersStore((state) => state.filters);
   const setFilters = usePluginFiltersStore((state) => state.setFilters);
 
@@ -58,7 +58,7 @@ function PluginsListing() {
           settings.
         </div>
 
-        {isFetchingFeatureFlags ? (
+        {isFetchingPLuginsStates ? (
           <div className="x-m-auto x-flex x-size-max x-items-center x-gap-2">
             <LuLoaderCircle className="x-animate-spin" />
             Fetching plugins...

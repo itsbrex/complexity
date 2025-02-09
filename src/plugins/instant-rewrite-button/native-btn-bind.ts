@@ -11,7 +11,8 @@ const OBSERVER_ID = "instant-rewrite-button-native-btn-bind";
 csLoaderRegistry.register({
   id: "plugin:thread:instantRewriteButton:nativeBtnBind",
   loader: () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
 
     if (!pluginsEnableStates["thread:instantRewriteButton"]) return;
 

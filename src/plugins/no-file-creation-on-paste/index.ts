@@ -12,7 +12,7 @@ const OBSERVER_ID = "no-file-creation-on-paste";
 function noFileCreationOnPaste(
   queryBoxes: QueryBoxesDomObserverStoreType["main"],
 ) {
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+  const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();
 
   if (!pluginsEnableStates["queryBox:noFileCreationOnPaste"]) return;
 

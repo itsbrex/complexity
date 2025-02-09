@@ -6,10 +6,9 @@ import { PLUGINS_METADATA } from "@/data/plugins-data/plugins-data";
 import Page from "@/entrypoints/options-page/components/Page";
 import PluginDetailsModal from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/PluginDetailsModal";
 import PluginDetailsPage from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/PluginDetailsPage";
+import usePluginsStates from "@/entrypoints/options-page/dashboard/pages/plugins/hooks/usePluginsStates";
 import PluginsPage from "@/entrypoints/options-page/dashboard/pages/plugins/PluginsPage";
 import useClearLocationState from "@/hooks/useClearLocationState";
-import { UserGroup } from "@/services/cplx-api/feature-flags/cplx-feature-flags.types";
-import useCplxFeatureFlags from "@/services/cplx-api/feature-flags/useCplxFeatureFlags";
 import {
   isPluginId,
   PluginId,
@@ -20,8 +19,7 @@ export default function PluginDetailsWrapper() {
   const navigate = useNavigate();
   const { pluginId: pluginRouteSegment } = useParams();
   const location = useLocation();
-  const { data: featureFlags } = useCplxFeatureFlags();
-  const userGroup: UserGroup = "anon";
+  const { pluginsStates } = usePluginsStates();
 
   const plugin = useMemo(
     () =>
@@ -39,7 +37,10 @@ export default function PluginDetailsWrapper() {
     return null;
   }
 
-  if (featureFlags?.[userGroup]?.forceDisable.includes(plugin.id)) {
+  if (
+    pluginsStates[plugin.id].isForceDisabled ||
+    pluginsStates[plugin.id].isHiddenFromDashboard
+  ) {
     return <PluginUnavailable onBackClick={() => navigate("/plugins")} />;
   }
 

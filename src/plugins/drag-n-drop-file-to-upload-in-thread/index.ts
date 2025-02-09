@@ -16,7 +16,7 @@ let $overlay: JQuery<HTMLElement> | null = null;
 
 export function setupDragNDropFileToUploadInThread() {
   if (
-    !PluginsStatesService.getCachedSync()?.pluginsEnableStates[
+    !PluginsStatesService.getEnableStatesCachedSync()[
       "thread:dragAndDropFileToUploadInThread"
     ]
   )

@@ -105,7 +105,7 @@ csLoaderRegistry.register({
   dependencies: ["cache:pluginsStates"],
   loader: () => {
     const isCanvasEnabled =
-      PluginsStatesService.getCachedSync().pluginsEnableStates["thread:canvas"];
+      PluginsStatesService.getEnableStatesCachedSync()["thread:canvas"];
     if (!isCanvasEnabled) return;
 
     spaRouteChangeCompleteSubscribe((url) => {

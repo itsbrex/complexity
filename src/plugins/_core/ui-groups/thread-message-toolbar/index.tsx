@@ -9,7 +9,7 @@ import { PluginsStatesService } from "@/services/plugins-states";
 
 export default function ThreadMessageToolbarExtraButtonsWrapper() {
   const portalContainers = useObserver();
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+  const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();
 
   useInsertCss({
     id: "cplx-thread-message-toolbar-extra-buttons",

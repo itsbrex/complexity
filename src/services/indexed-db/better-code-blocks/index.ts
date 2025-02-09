@@ -70,7 +70,8 @@ export const [
 csLoaderRegistry.register({
   id: "cache:betterCodeBlocksFineGrainedOptions",
   loader: async () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
 
     if (!pluginsEnableStates["thread:betterCodeBlocks"]) return;
 

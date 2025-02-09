@@ -9,12 +9,7 @@ export default function useCplxFeatureFlags() {
 
   return useQuery({
     ...cplxApiQueries.featureFlags,
-    retry: false,
+    staleTime: 1000,
     retryOnMount: false, // important, without this the query will be refetching indefinitely if queryFn throws error
-    refetchOnWindowFocus: false,
-    refetchInterval: false,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    gcTime: Infinity,
   });
 }

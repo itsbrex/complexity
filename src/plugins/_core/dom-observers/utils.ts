@@ -11,7 +11,7 @@ export function shouldEnableCoreObserver({
 }: {
   coreObserverId: CoreObserverId;
 }) {
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+  const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();
 
   return Object.entries(PLUGINS_METADATA).some((entry) => {
     const [pluginId, pluginMetadata] = entry as [

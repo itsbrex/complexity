@@ -93,8 +93,20 @@ describe("whereAmI", () => {
     expect(whereAmI("https://www.perplexity.ai/")).toBe("home");
   });
 
+  it('should return "settings" for the settings URL', () => {
+    expect(whereAmI("https://www.perplexity.ai/settings")).toBe("settings");
+    expect(whereAmI("https://www.perplexity.ai/settings/account")).toBe(
+      "settings",
+    );
+    expect(whereAmI("https://www.perplexity.ai/settings/profile")).toBe(
+      "settings",
+    );
+  });
+
   it('should return "same_origin" for unrecognized paths on perplexity.ai', () => {
-    expect(whereAmI("https://www.perplexity.ai/settings")).toBe("same_origin");
+    expect(whereAmI("https://www.perplexity.ai/unknown-path")).toBe(
+      "same_origin",
+    );
   });
 
   it('should return "unknown" for non-perplexity.ai URLs', () => {

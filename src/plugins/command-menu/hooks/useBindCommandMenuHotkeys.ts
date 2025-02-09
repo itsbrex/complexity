@@ -11,7 +11,7 @@ import { PluginsStatesService } from "@/services/plugins-states";
 import { keysToString } from "@/utils/utils";
 
 export default function useBindCommandMenuHotkeys() {
-  const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+  const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();
 
   const settings = ExtensionLocalStorageService.getCachedSync();
 

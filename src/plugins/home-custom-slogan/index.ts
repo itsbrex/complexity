@@ -15,11 +15,7 @@ function setupCustomSlogan({
   location: ReturnType<typeof whereAmI>;
   slogan: HTMLElement | null;
 }) {
-  if (
-    !PluginsStatesService.getCachedSync()?.pluginsEnableStates[
-      "home:customSlogan"
-    ]
-  )
+  if (!PluginsStatesService.getEnableStatesCachedSync()["home:customSlogan"])
     return;
 
   const sloganText =

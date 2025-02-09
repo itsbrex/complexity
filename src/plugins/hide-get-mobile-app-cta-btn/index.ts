@@ -6,7 +6,8 @@ import { insertCss } from "@/utils/utils";
 csLoaderRegistry.register({
   id: "plugin:hideGetMobileAppCtaBtn",
   loader: () => {
-    const { pluginsEnableStates } = PluginsStatesService.getCachedSync();
+    const pluginsEnableStates =
+      PluginsStatesService.getEnableStatesCachedSync();
 
     if (!pluginsEnableStates["hide-get-mobile-app-cta-btn"]) return;
 

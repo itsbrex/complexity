@@ -10,6 +10,7 @@ import {
   type GuardConditions,
   type GuardCheckParams,
 } from "@/components/plugins-guard/guards";
+import { PluginId } from "@/services/extension-local-storage/plugins.types";
 
 describe("Guard Functions", () => {
   describe("checkDeviceType", () => {
@@ -93,7 +94,7 @@ describe("Guard Functions", () => {
     it("should return true when no dependencies", () => {
       const conditions: GuardConditions = {};
       const params: Pick<GuardCheckParams, "pluginsEnableStates"> = {
-        pluginsEnableStates: {},
+        pluginsEnableStates: {} as Record<PluginId, boolean>,
       };
       expect(checkPluginDependencies(conditions, params)).toBe(true);
     });
@@ -103,7 +104,9 @@ describe("Guard Functions", () => {
         dependentPluginIds: ["queryBox:languageModelSelector"],
       };
       const params: Pick<GuardCheckParams, "pluginsEnableStates"> = {
-        pluginsEnableStates: { "queryBox:languageModelSelector": false },
+        pluginsEnableStates: {
+          "queryBox:languageModelSelector": false,
+        } as Record<PluginId, boolean>,
       };
       expect(checkPluginDependencies(conditions, params)).toBe(false);
     });

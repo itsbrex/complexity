@@ -70,6 +70,8 @@ export const ZENMODE_ITEMS: ZenModeItem[] = [
 
 export type SearchFilter = "threads" | "spaces" | "spaces-threads";
 
+export const DISABLE_LOCAL_FILTER_SEARCH_FILTERS: SearchFilter[] = ["threads"];
+
 export const SEARCH_FILTERS: Record<
   SearchFilter,
   {

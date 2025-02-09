@@ -20,11 +20,7 @@ type CommandMenuStoreType = {
   setSpacethreadTitle: (value: string | null) => void;
   spacethreadFilterSlug: string | null;
   setSpacethreadFilterSlug: (value: string | null) => void;
-  closeCommandMenu: ({
-    clearSearchValue,
-    clearFilter,
-    clearSpacethreadFilter,
-  }?: {
+  closeCommandMenu: (params?: {
     clearSearchValue?: boolean;
     clearFilter?: boolean;
     clearSpacethreadFilter?: boolean;

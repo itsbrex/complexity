@@ -1,7 +1,9 @@
+import { DISABLE_LOCAL_FILTER_SEARCH_FILTERS } from "@/data/plugins/command-menu/items";
 import { useCommandMenuStore } from "@/data/plugins/command-menu/store";
 
 export function useSearchFilter() {
-  const { searchValue, setSearchValue, setFilter } = useCommandMenuStore();
+  const { searchValue, setSearchValue, filter, setFilter } =
+    useCommandMenuStore();
 
   useEffect(() => {
     const handleSearchFilter = () => {
@@ -20,4 +22,9 @@ export function useSearchFilter() {
 
     handleSearchFilter();
   }, [searchValue, setFilter, setSearchValue]);
+
+  return {
+    shouldFilter:
+      !filter || !DISABLE_LOCAL_FILTER_SEARCH_FILTERS.includes(filter),
+  };
 }

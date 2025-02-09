@@ -9,8 +9,8 @@ export default function CommandMenuWrapper() {
   const { open, setOpen, selectedValue, setSelectedValue } =
     useCommandMenuStore();
 
+  const { shouldFilter } = useSearchFilter();
   useBindCommandMenuHotkeys();
-  useSearchFilter();
 
   return (
     <CommandDialog
@@ -24,7 +24,7 @@ export default function CommandMenuWrapper() {
           const normalizedSearch = search.replace(/\s+/g, "").toLowerCase();
           return extendValue.includes(normalizedSearch) ? 1 : 0;
         },
-        shouldFilter: true,
+        shouldFilter,
       }}
       onOpenChange={({ open }) => setOpen(open)}
     >

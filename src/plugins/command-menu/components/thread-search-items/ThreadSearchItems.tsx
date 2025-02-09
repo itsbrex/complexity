@@ -16,7 +16,7 @@ export default function ThreadSearchItems() {
     data: threads,
     isFetching: isFetchingThreads,
     isLoading: isLoadingThreads,
-    isError: isErrorThreads,
+    isError,
   } = useQuery({
     ...pplxApiQueries.threadsSearch({
       searchValue: debouncedValue,
@@ -35,34 +35,33 @@ export default function ThreadSearchItems() {
         "x-opacity-50": isFetchingThreads || isLoadingThreads,
       })}
     >
-      {!isErrorThreads && !isLoadingThreads && (
+      {!isError && !isLoadingThreads && (
         <EmptyState searchValue={searchValue} />
       )}
-      {isErrorThreads ? (
+      {isError && (
         <CommandEmpty>
           {t("plugin-command-menu:commandMenu.threadSearch.error")}
         </CommandEmpty>
-      ) : (
-        <CommandGroup
-          heading={
-            threads && threads.length > 0
-              ? searchValue
-                ? t(
-                    "plugin-command-menu:commandMenu.threadSearch.heading.withSearch",
-                    { count: threads.length },
-                  )
-                : t(
-                    "plugin-command-menu:commandMenu.threadSearch.heading.withoutSearch",
-                  )
-              : ""
-          }
-        >
-          {isLoadingThreads && <LoadingState />}
-          {threads?.map((thread) => (
-            <ThreadItem key={thread.slug} thread={thread} />
-          ))}
-        </CommandGroup>
       )}
+      <CommandGroup
+        heading={
+          threads && threads.length > 0
+            ? searchValue
+              ? t(
+                  "plugin-command-menu:commandMenu.threadSearch.heading.withSearch",
+                  { count: threads.length },
+                )
+              : t(
+                  "plugin-command-menu:commandMenu.threadSearch.heading.withoutSearch",
+                )
+            : ""
+        }
+      >
+        {isLoadingThreads && <LoadingState />}
+        {threads?.map((thread) => (
+          <ThreadItem key={thread.slug} thread={thread} />
+        ))}
+      </CommandGroup>
     </div>
   );
 }

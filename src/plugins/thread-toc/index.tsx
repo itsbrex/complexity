@@ -112,6 +112,7 @@ const TocItem = memo(function TocItem({
   return (
     <div
       className="x-flex x-cursor-pointer x-items-center x-gap-3"
+      title={item.title}
       onClick={onClick}
     >
       <div

@@ -2,7 +2,15 @@ export const DOM_SELECTORS = {
   SIDEBAR: {
     WRAPPER: ".group\\/bar",
     SPACE_BUTTON_WRAPPER: `.relative.justify-center.w-full:has(>div>a[role="button"][aria-label="Spaces"])`,
+    SPACE_BUTTON_WRAPPER_CHILD: {
+      TRIGGER_BUTTONS_PORTAL_CONTAINER:
+        ".flex.items-center.min-w-0.justify-left.w-full",
+    },
     LIBRARY_BUTTON_WRAPPER: `.relative.justify-center.w-full:has(>div>a[role="button"][aria-label="Library"])`,
+    LIBRARY_BUTTON_WRAPPER_CHILD: {
+      TRIGGER_BUTTONS_PORTAL_CONTAINER:
+        ".flex.items-center.min-w-0.justify-left.w-full .-mr-sm.flex.w-full.flex-1.justify-end",
+    },
   },
   THREAD: {
     /** The outermost container that wraps the thread container and the query box */
@@ -117,8 +125,11 @@ export const INTERNAL_ATTRIBUTES = {
   SIDEBAR: {
     WRAPPER: "sidebar-wrapper",
     SPACE_BUTTON_WRAPPER: "sidebar-space-button-wrapper",
+    SPACE_BUTTON_TRIGGER_BUTTONS_PORTAL_CONTAINER:
+      "sidebar-space-button-trigger-buttons-portal-container",
     LIBRARY_BUTTON_WRAPPER: "sidebar-library-button-wrapper",
-    LIBRARY_BUTTON_PORTAL_CONTAINER: "sidebar-library-button-portal-container",
+    LIBRARY_BUTTON_TRIGGER_BUTTONS_PORTAL_CONTAINER:
+      "sidebar-library-button-trigger-buttons-portal-container",
     PINNED_SPACES_PORTAL_CONTAINER: "pinned-spaces",
   },
   HOME: {

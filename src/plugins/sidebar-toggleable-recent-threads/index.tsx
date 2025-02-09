@@ -9,37 +9,40 @@ export default function SidebarToggleableRecentThreadsWrapper() {
     deepEqual,
   );
 
+  const $libraryButtonTriggerButtonsWrapper = useSidebarDomObserverStore(
+    (state) => state.$libraryButtonTriggerButtonsWrapper,
+    deepEqual,
+  );
+
   const triggerButtonsPortalContainer = useMemo(() => {
-    if (libraryButtonWrapper == null) return null;
+    if (
+      libraryButtonWrapper == null ||
+      $libraryButtonTriggerButtonsWrapper == null ||
+      !$libraryButtonTriggerButtonsWrapper.length
+    )
+      return null;
 
     const $existingPortalContainer = $(libraryButtonWrapper).find(
-      `[data-cplx-component="${INTERNAL_ATTRIBUTES.SIDEBAR.LIBRARY_BUTTON_PORTAL_CONTAINER}"]`,
+      `[data-cplx-component="${INTERNAL_ATTRIBUTES.SIDEBAR.LIBRARY_BUTTON_TRIGGER_BUTTONS_PORTAL_CONTAINER}-cplx"]`,
     );
 
     if ($existingPortalContainer.length) {
       return $existingPortalContainer[0];
     }
 
-    const $libraryButtonWrapper = $(libraryButtonWrapper);
-
-    $libraryButtonWrapper.addClass("x-group");
-
-    const $target = $libraryButtonWrapper.find(
-      `.flex.items-center.min-w-0.justify-left.w-full.gap-sm .-mr-sm.flex.w-full.flex-1.justify-end`,
-    );
-
     const $portalContainer = $("<div>")
       .addClass("x-mr-1")
       .internalComponentAttr(
-        INTERNAL_ATTRIBUTES.SIDEBAR.LIBRARY_BUTTON_PORTAL_CONTAINER,
+        `${
+          INTERNAL_ATTRIBUTES.SIDEBAR
+            .LIBRARY_BUTTON_TRIGGER_BUTTONS_PORTAL_CONTAINER
+        }-cplx`,
       );
 
-    $target.prepend($portalContainer);
+    $libraryButtonTriggerButtonsWrapper.prepend($portalContainer);
 
     return $portalContainer[0];
-  }, [libraryButtonWrapper]);
-
-  if (triggerButtonsPortalContainer == null) return null;
+  }, [$libraryButtonTriggerButtonsWrapper, libraryButtonWrapper]);
 
   return (
     <Portal container={triggerButtonsPortalContainer}>

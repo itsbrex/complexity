@@ -1,3 +1,4 @@
+import { isMobileStore } from "@/hooks/use-is-mobile-store";
 import { sidebarDomObserverStore } from "@/plugins/_core/dom-observers/sidebar/store";
 import { DOM_SELECTORS, INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 
@@ -6,9 +7,9 @@ export function findSidebarWrapper() {
 
   if (!$wrapper.length) return;
 
-  const isOpen = $wrapper.hasClass("w-sideBarWidth");
+  const isExpanded = $wrapper.hasClass("w-sideBarWidth");
 
-  $wrapper.attr("data-state", isOpen ? "expanded" : "collapsed");
+  $wrapper.attr("data-state", isExpanded ? "expanded" : "collapsed");
 
   if ($wrapper.internalComponentAttr() === INTERNAL_ATTRIBUTES.SIDEBAR.WRAPPER)
     return;
@@ -29,15 +30,18 @@ export function findSpaceButtonWrapper() {
     DOM_SELECTORS.SIDEBAR.SPACE_BUTTON_WRAPPER,
   );
 
-  const isOpen = $wrapper.hasClass("w-sideBarWidth");
+  const isMobile = isMobileStore.getState().isMobile;
+  const isExpanded = $wrapper.attr("data-state") === "expanded";
 
-  if (!isOpen && $spaceButtonWrapper.length) {
-    $spaceButtonWrapper.internalComponentAttr(null);
+  if ((isMobile || !isExpanded) && $spaceButtonWrapper.length) {
     sidebarDomObserverStore.setState({
       $spaceButtonWrapper: null,
     });
+    $spaceButtonWrapper.internalComponentAttr(null);
     return;
   }
+
+  $spaceButtonWrapper.addClass("x-group");
 
   if (
     !$spaceButtonWrapper.length ||
@@ -55,6 +59,33 @@ export function findSpaceButtonWrapper() {
   });
 }
 
+export function findSpaceButtonTriggerButtonsWrapper() {
+  const $spaceButtonWrapper =
+    sidebarDomObserverStore.getState().$spaceButtonWrapper;
+
+  if ($spaceButtonWrapper == null) return;
+
+  const $spaceButtonTriggerButtonsWrapper = $spaceButtonWrapper.find(
+    DOM_SELECTORS.SIDEBAR.SPACE_BUTTON_WRAPPER_CHILD
+      .TRIGGER_BUTTONS_PORTAL_CONTAINER,
+  );
+
+  if (
+    !$spaceButtonTriggerButtonsWrapper.length ||
+    $spaceButtonTriggerButtonsWrapper.internalComponentAttr() ===
+      INTERNAL_ATTRIBUTES.SIDEBAR.SPACE_BUTTON_TRIGGER_BUTTONS_PORTAL_CONTAINER
+  )
+    return;
+
+  $spaceButtonTriggerButtonsWrapper.internalComponentAttr(
+    INTERNAL_ATTRIBUTES.SIDEBAR.SPACE_BUTTON_TRIGGER_BUTTONS_PORTAL_CONTAINER,
+  );
+
+  sidebarDomObserverStore.setState({
+    $spaceButtonTriggerButtonsWrapper,
+  });
+}
+
 export function findLibraryButtonWrapper() {
   const $wrapper = sidebarDomObserverStore.getState().$wrapper;
 
@@ -64,7 +95,25 @@ export function findLibraryButtonWrapper() {
     DOM_SELECTORS.SIDEBAR.LIBRARY_BUTTON_WRAPPER,
   );
 
-  if (!$libraryButtonWrapper.length) return;
+  const isMobile = isMobileStore.getState().isMobile;
+  const isExpanded = $wrapper.attr("data-state") === "expanded";
+
+  if ((isMobile || !isExpanded) && $libraryButtonWrapper.length) {
+    sidebarDomObserverStore.setState({
+      $libraryButtonWrapper: null,
+    });
+    $libraryButtonWrapper.internalComponentAttr(null);
+    return;
+  }
+
+  $libraryButtonWrapper.addClass("x-group");
+
+  if (
+    !$libraryButtonWrapper.length ||
+    $libraryButtonWrapper.internalComponentAttr() ===
+      INTERNAL_ATTRIBUTES.SIDEBAR.LIBRARY_BUTTON_WRAPPER
+  )
+    return;
 
   $libraryButtonWrapper.internalComponentAttr(
     INTERNAL_ATTRIBUTES.SIDEBAR.LIBRARY_BUTTON_WRAPPER,
@@ -72,5 +121,33 @@ export function findLibraryButtonWrapper() {
 
   sidebarDomObserverStore.setState({
     $libraryButtonWrapper,
+  });
+}
+
+export function findLibraryButtonTriggerButtonsWrapper() {
+  const $libraryButtonWrapper =
+    sidebarDomObserverStore.getState().$libraryButtonWrapper;
+
+  if ($libraryButtonWrapper == null) return;
+
+  const $libraryButtonTriggerButtonsWrapper = $libraryButtonWrapper.find(
+    DOM_SELECTORS.SIDEBAR.LIBRARY_BUTTON_WRAPPER_CHILD
+      .TRIGGER_BUTTONS_PORTAL_CONTAINER,
+  );
+
+  if (
+    !$libraryButtonTriggerButtonsWrapper.length ||
+    $libraryButtonTriggerButtonsWrapper.internalComponentAttr() ===
+      INTERNAL_ATTRIBUTES.SIDEBAR
+        .LIBRARY_BUTTON_TRIGGER_BUTTONS_PORTAL_CONTAINER
+  )
+    return;
+
+  $libraryButtonTriggerButtonsWrapper.internalComponentAttr(
+    INTERNAL_ATTRIBUTES.SIDEBAR.LIBRARY_BUTTON_TRIGGER_BUTTONS_PORTAL_CONTAINER,
+  );
+
+  sidebarDomObserverStore.setState({
+    $libraryButtonTriggerButtonsWrapper,
   });
 }

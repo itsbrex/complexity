@@ -1,9 +1,10 @@
-import { isMobileStore } from "@/hooks/use-is-mobile-store";
 import { CallbackQueue } from "@/plugins/_api/dom-observer/callback-queue";
 import { DomObserver } from "@/plugins/_api/dom-observer/dom-observer";
 import {
+  findLibraryButtonTriggerButtonsWrapper,
   findLibraryButtonWrapper,
   findSidebarWrapper,
+  findSpaceButtonTriggerButtonsWrapper,
   findSpaceButtonWrapper,
 } from "@/plugins/_core/dom-observers/sidebar/utils";
 import { shouldEnableCoreObserver } from "@/plugins/_core/dom-observers/utils";
@@ -20,10 +21,6 @@ csLoaderRegistry.register({
       return;
 
     observeSidebar();
-
-    isMobileStore.subscribe(() => {
-      observeSidebar();
-    });
   },
 });
 
@@ -42,8 +39,16 @@ async function observeSidebar() {
           id: "sidebar:spaceButtonWrapper",
         },
         {
+          callback: findSpaceButtonTriggerButtonsWrapper,
+          id: "sidebar:spaceButtonTriggerButtonsWrapper",
+        },
+        {
           callback: findLibraryButtonWrapper,
           id: "sidebar:libraryButtonWrapper",
+        },
+        {
+          callback: findLibraryButtonTriggerButtonsWrapper,
+          id: "sidebar:libraryButtonTriggerButtonsWrapper",
         },
       ]),
   });

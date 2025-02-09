@@ -36,7 +36,7 @@ export default function SpaceNavigator({ ...props }: SpaceNavigator) {
           }}
         >
           <PopoverTrigger asChild>
-            <div className="x-flex x-size-6 x-items-center x-justify-center x-text-muted-foreground x-transition-all hover:x-bg-black/5 hover:x-text-foreground dark:hover:x-bg-white/5">
+            <div className="x-flex x-size-6 x-items-center x-justify-center x-text-muted-foreground x-transition-all hover:x-bg-black/5 group-hover:x-text-foreground dark:hover:x-bg-white/5">
               <LuSearch />
             </div>
           </PopoverTrigger>

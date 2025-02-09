@@ -11,19 +11,10 @@ export default function SpaceNavigatorWrapper() {
     deepEqual,
   );
 
-  const $triggerButtonsPortalContainer = useMemo(() => {
-    if (spaceButtonWrapper == null) return null;
-
-    const $spaceButtonWrapper = $(spaceButtonWrapper);
-
-    $spaceButtonWrapper.addClass("x-group");
-
-    const $target = $spaceButtonWrapper.find(
-      `.flex.items-center.min-w-0.justify-left.w-full.gap-sm`,
-    );
-
-    return $target;
-  }, [spaceButtonWrapper]);
+  const triggerButtonsPortalContainer = useSidebarDomObserverStore(
+    (state) => state.$spaceButtonTriggerButtonsWrapper?.[0],
+    deepEqual,
+  );
 
   const $pinnedSpacesPortalContainer = useMemo(() => {
     if (spaceButtonWrapper == null) return null;
@@ -51,17 +42,16 @@ export default function SpaceNavigatorWrapper() {
 
   return (
     <>
-      {$triggerButtonsPortalContainer != null &&
-        $triggerButtonsPortalContainer.length && (
-          <Portal container={$triggerButtonsPortalContainer[0]}>
-            <div className="-x-mr-2 x-flex x-w-full x-flex-1 x-items-center x-justify-end x-gap-1">
-              <SidebarPinnedSpacesVisToggle />
-              <SpaceNavigator />
-            </div>
-          </Portal>
-        )}
+      {triggerButtonsPortalContainer != null && (
+        <Portal container={triggerButtonsPortalContainer}>
+          <div className="-x-mr-2 x-flex x-w-full x-flex-1 x-items-center x-justify-end x-gap-1">
+            <SidebarPinnedSpacesVisToggle />
+            <SpaceNavigator />
+          </div>
+        </Portal>
+      )}
       {$pinnedSpacesPortalContainer != null &&
-        $pinnedSpacesPortalContainer.length && (
+        $pinnedSpacesPortalContainer.length > 0 && (
           <Portal container={$pinnedSpacesPortalContainer[0]}>
             <SidebarPinnedSpaces />
           </Portal>

@@ -23,9 +23,7 @@ csLoaderRegistry.register({
 });
 
 async function observeSettingsPage(location: ReturnType<typeof whereAmI>) {
-  cleanup();
-
-  if (location !== "settings") return;
+  if (location !== "settings") return cleanup();
 
   DomObserver.create("settingsPage:topNavWrapper", {
     target: document.body,

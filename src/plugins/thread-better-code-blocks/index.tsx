@@ -18,12 +18,19 @@ export default function BetterCodeBlocksWrapper() {
     deepEqual,
   );
 
+  const messageBlocksCount = codeBlocksChunks?.length ?? 0;
+  const codeBlocksCount =
+    codeBlocksChunks?.reduce((acc, chunk) => acc + chunk.length, 0) ?? 0;
+
+  const shouldEnable = messageBlocksCount <= 15 && codeBlocksCount <= 50;
+
   useInsertCss({
     id: "cplx-hide-native-code-blocks",
     css: hideNativeCodeBlocksCss,
+    inject: shouldEnable,
   });
 
-  if (!codeBlocksChunks) return null;
+  if (!codeBlocksChunks || !shouldEnable) return null;
 
   return codeBlocksChunks.map((chunk, sourceMessageBlockIndex) =>
     chunk.map((_, sourceCodeBlockIndex) => (

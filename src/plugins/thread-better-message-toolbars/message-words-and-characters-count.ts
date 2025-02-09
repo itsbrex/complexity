@@ -4,16 +4,9 @@ import { threadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observe
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
-import { INTERNAL_ATTRIBUTES, DOM_SELECTORS } from "@/utils/dom-selectors";
+import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 
-const OBSERVER_ID =
-  "cplx-better-message-toolbars-display-words-and-characters-count";
 const MODEL_NAME_COMPONENT_SELECTOR = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING_WORDS_AND_CHARACTERS_COUNT}"]`;
-
-const handleInFlightMessage = ($answerHeading: JQuery<Element>) => {
-  $answerHeading.find(MODEL_NAME_COMPONENT_SELECTOR).remove();
-  $answerHeading.find(":nth-child(2)").removeClass("x-hidden");
-};
 
 const createAnswerHeadingContainer = (content: string) => {
   return $(`<div>${content}</div>`)
@@ -53,30 +46,19 @@ csLoaderRegistry.register({
       (messageBlocks) => {
         messageBlocks?.forEach(
           async (
-            { nodes: { $answerHeading, $wrapper }, states: { isInFlight } },
+            { nodes: { $answerHeading }, states: { isInFlight } },
             index,
           ) => {
             if (isInFlight) {
-              handleInFlightMessage($answerHeading);
+              $answerHeading.find(MODEL_NAME_COMPONENT_SELECTOR).remove();
               return;
             }
 
-            const $buttonBar = $wrapper.find(
-              DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR,
+            const $existingBadge = $answerHeading.find(
+              MODEL_NAME_COMPONENT_SELECTOR,
             );
 
-            if (
-              !$buttonBar.length ||
-              !$buttonBar.is(":visible") ||
-              $buttonBar.attr(OBSERVER_ID)
-            ) {
-              return;
-            }
-
-            $buttonBar.attr(OBSERVER_ID, "true");
-
-            if ($answerHeading.find(MODEL_NAME_COMPONENT_SELECTOR).length > 0) {
-              $buttonBar.removeAttr(OBSERVER_ID);
+            if ($existingBadge.length) {
               return;
             }
 
@@ -86,13 +68,7 @@ csLoaderRegistry.register({
               "window",
             );
 
-            if (!$buttonBar.length || !$buttonBar.is(":visible")) {
-              $buttonBar.removeAttr(OBSERVER_ID);
-              return;
-            }
-
             if (answer == null) {
-              $buttonBar.removeAttr(OBSERVER_ID);
               return;
             }
 

@@ -85,7 +85,6 @@ function contentScriptListeners() {
 
     if (!css) return;
 
-    console.log("Removing theme", css);
     chrome.scripting.removeCSS({
       target: { tabId: sender.tabId },
       css,

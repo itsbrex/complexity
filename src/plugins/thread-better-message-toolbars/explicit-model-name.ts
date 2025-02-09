@@ -7,15 +7,9 @@ import { MessageBlock } from "@/plugins/_core/dom-observers/thread/message-block
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
-import { INTERNAL_ATTRIBUTES, DOM_SELECTORS } from "@/utils/dom-selectors";
+import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 
-const OBSERVER_ID = "better-message-toolbars-display-explicit-model-name";
 const MODEL_NAME_COMPONENT_SELECTOR = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING_MODEL_NAME}"]`;
-
-const handleInFlightMessage = ($answerHeading: JQuery<Element>) => {
-  $answerHeading.find(MODEL_NAME_COMPONENT_SELECTOR).remove();
-  $answerHeading.find(":nth-child(2)").removeClass("x-hidden");
-};
 
 const createModelBadge = (modelName: string) => {
   return $(`<div>${modelName.toLocaleUpperCase()}</div>`)
@@ -29,28 +23,25 @@ const createModelBadge = (modelName: string) => {
 };
 
 const displayModelBadge = async ({
-  $wrapper,
+  $bottomBar,
   $answerHeading,
   isInFlight,
   index,
 }: {
-  $wrapper: JQuery<Element>;
-  $answerHeading: JQuery<Element>;
+  $bottomBar: JQuery<HTMLElement>;
+  $answerHeading: JQuery<HTMLElement>;
   isInFlight: boolean;
   index: number;
 }) => {
   if (isInFlight) {
-    handleInFlightMessage($answerHeading);
+    $answerHeading.find(MODEL_NAME_COMPONENT_SELECTOR).remove();
+    $answerHeading.find(":nth-child(2)").removeClass("x-hidden");
     return;
   }
 
-  const $buttonBar = $wrapper.find(
-    DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR,
-  );
-  if (!$buttonBar.length || $buttonBar.attr(OBSERVER_ID)) return;
+  const $exisitingBadge = $answerHeading.find(MODEL_NAME_COMPONENT_SELECTOR);
 
-  $buttonBar.attr(OBSERVER_ID, "true");
-  await sleep(200);
+  if (!$bottomBar.length || $exisitingBadge.length) return;
 
   const modelCode = await sendMessage(
     "reactVdom:getMessageDisplayModelCode",
@@ -65,12 +56,11 @@ const displayModelBadge = async ({
 
   const $target = $answerHeading.find('[color="super"]');
   if (!$target.length) {
-    $buttonBar.removeAttr(OBSERVER_ID);
     return;
   }
 
   // Hide original model tooltip and the "Answer" text
-  $buttonBar
+  $bottomBar
     .find('div:has(>svg[data-icon="microchip"])')
     .parent()
     .addClass("x-hidden");
@@ -92,10 +82,10 @@ function explicitModelName(messageBlocks: MessageBlock[]) {
 
   messageBlocks.forEach(
     (
-      { nodes: { $wrapper, $answerHeading }, states: { isInFlight } },
+      { nodes: { $answerHeading, $bottomBar }, states: { isInFlight } },
       index,
     ) => {
-      displayModelBadge({ $wrapper, $answerHeading, isInFlight, index });
+      displayModelBadge({ $bottomBar, $answerHeading, isInFlight, index });
     },
   );
 }

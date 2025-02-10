@@ -13,11 +13,13 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
   const {
     codeBlock,
     sourceMessageBlockIndex,
-    isWrapped,
-    setIsWrapped,
-    maxHeight,
-    setMaxHeight,
+    isHorizontalOverflowing,
+    isVerticalOverflowing,
   } = useMirroredCodeBlockContext();
+
+  console.log({
+    codeBlock,
+  });
 
   const language = codeBlock?.content.language ?? null;
   const isInFlight = codeBlock?.states.isInFlight ?? false;
@@ -28,35 +30,20 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
     deepEqual,
   );
 
-  const fineGrainedSettings = getBetterCodeBlockOptions(language);
   const settings = ExtensionLocalStorageService.getCachedSync();
+  const fineGrainedSettings = getBetterCodeBlockOptions(language);
+  const globalSettings =
+    ExtensionLocalStorageService.getCachedSync().plugins[
+      "thread:betterCodeBlocks"
+    ];
 
   const placeholderText:
     | BetterCodeBlockFineGrainedOptions["placeholderText"]
-    | undefined = (fineGrainedSettings as BetterCodeBlockFineGrainedOptions)
-    ?.placeholderText;
+    | undefined = fineGrainedSettings?.placeholderText;
 
-  const isSticky = fineGrainedSettings.stickyHeader;
+  const isSticky = fineGrainedSettings?.stickyHeader;
   const isBottomBarSticky =
     settings.plugins["thread:betterMessageToolbars"].sticky;
-  const [shouldShowWrapToggleButton] = useState(
-    () =>
-      fineGrainedSettings.unwrap.showToggleButton &&
-      codeBlock &&
-      isContainerHorizontalOverflowing({
-        codeElement: codeBlock.nodes.$wrapper[0],
-      }),
-  );
-  const [shouldShowExpandCollapseButton] = useState(
-    () =>
-      fineGrainedSettings.maxHeight.enabled &&
-      fineGrainedSettings.maxHeight.showToggleButton &&
-      codeBlock &&
-      isContainerVerticalOverflowing({
-        initialMaxHeight: fineGrainedSettings.maxHeight.value,
-        codeElement: codeBlock.nodes.$wrapper[0],
-      }),
-  );
 
   if (!codeBlock) return null;
 
@@ -88,18 +75,14 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
         {!isInFlight && (
           <>
             <CanvasSimpleModeRenderButton />
-            {maxHeight > 0 && shouldShowWrapToggleButton && (
-              <WrapToggleButton
-                isWrapped={isWrapped}
-                setIsWrapped={setIsWrapped}
-              />
-            )}
+            {isHorizontalOverflowing && <WrapToggleButton />}
             <CopyButton content={code} />
-            {shouldShowExpandCollapseButton && (
+            {isVerticalOverflowing && (
               <ExpandCollapseButton
-                defaultMaxHeight={fineGrainedSettings.maxHeight.value}
-                maxHeight={maxHeight}
-                setMaxHeight={setMaxHeight}
+                defaultMaxHeight={
+                  fineGrainedSettings?.maxHeight.value ??
+                  globalSettings.maxHeight.value
+                }
               />
             )}
           </>
@@ -110,41 +93,3 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
 });
 
 export default BaseCodeBlockWrapperHeader;
-
-function isContainerHorizontalOverflowing({
-  codeElement,
-}: {
-  codeElement: Element;
-}) {
-  const $target = $(codeElement);
-
-  if (!$target.length) {
-    return false;
-  }
-  const targetWidth = $target[0].getBoundingClientRect().width;
-
-  const parentElement = $target[0].parentElement;
-  if (!parentElement) {
-    return false;
-  }
-  const parentWidth = parentElement.getBoundingClientRect().width;
-
-  return targetWidth > parentWidth;
-}
-
-function isContainerVerticalOverflowing({
-  initialMaxHeight,
-  codeElement,
-}: {
-  initialMaxHeight: number;
-  codeElement: Element;
-}) {
-  const $target = $(codeElement);
-
-  if (!$target.length) {
-    return false;
-  }
-  const targetHeight = $target[0].getBoundingClientRect().height;
-
-  return targetHeight > initialMaxHeight;
-}

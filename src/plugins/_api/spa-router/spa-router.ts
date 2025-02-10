@@ -116,8 +116,7 @@ export async function waitForRouteChangeComplete(
 
   async function checkThreadLoaded() {
     await UiUtils.waitForSpaIdle();
-
-    return UiUtils.getMessageBlocks().length >= 1;
+    return $(DOM_SELECTORS.THREAD.MESSAGE.WRAPPER).length > 0;
   }
 
   function checkHomeLoaded() {

@@ -1,9 +1,16 @@
 import { Portal } from "@/components/ui/portal";
+import { useInsertCss } from "@/hooks/useInsertCss";
 import { useSidebarDomObserverStore } from "@/plugins/_core/dom-observers/sidebar/store";
+import styles from "@/plugins/sidebar-toggleable-recent-threads/styles.css?inline";
 import SidebarToggleableRecentThreadsToggleButton from "@/plugins/sidebar-toggleable-recent-threads/ToggleButton";
 import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 
 export default function SidebarToggleableRecentThreadsWrapper() {
+  useInsertCss({
+    css: styles,
+    id: "sidebar-toggleable-recent-threads",
+  });
+
   const libraryButtonWrapper = useSidebarDomObserverStore(
     (state) => state.$libraryButtonWrapper?.[0],
     deepEqual,

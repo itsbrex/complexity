@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, RefObject } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import lightStyle from "react-syntax-highlighter/dist/esm/styles/prism/vs";
 import darkStyle from "react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus";
@@ -14,8 +14,11 @@ const INTERPRETED_LANGUAGES: Record<string, string> = {
 const CodeHighlighter = memo(function CodeHighlighter({
   children,
   language,
+  codeRef,
   ...props
-}: ComponentProps<typeof SyntaxHighlighter>) {
+}: ComponentProps<typeof SyntaxHighlighter> & {
+  codeRef?: RefObject<HTMLDivElement | null>;
+}) {
   const colorScheme = useColorSchemeStore((state) => state.colorScheme);
 
   const interpretedLanguage = language
@@ -34,6 +37,7 @@ const CodeHighlighter = memo(function CodeHighlighter({
       codeTagProps={{
         className: "x-font-mono",
         style: {},
+        ref: codeRef,
       }}
       language={targetLanguage}
       {...props}

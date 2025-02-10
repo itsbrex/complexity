@@ -109,10 +109,16 @@ const TocItem = memo(function TocItem({
   item: TocItem;
   onClick: () => void;
 }) {
+  const title = useMemo(() => {
+    return (
+      item.title.trim().slice(0, 300) + (item.title.length > 300 ? "..." : "")
+    );
+  }, [item.title]);
+
   return (
     <div
       className="x-flex x-cursor-pointer x-items-center x-gap-3"
-      title={item.title}
+      title={title}
       onClick={onClick}
     >
       <div
@@ -127,7 +133,7 @@ const TocItem = memo(function TocItem({
           "x-text-muted-foreground hover:x-text-foreground": !item.isActive,
         })}
       >
-        {item.title}
+        {title}
       </div>
     </div>
   );

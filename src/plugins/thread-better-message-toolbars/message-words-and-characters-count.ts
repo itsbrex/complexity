@@ -6,9 +6,9 @@ import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 
-const MODEL_NAME_COMPONENT_SELECTOR = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING_WORDS_AND_CHARACTERS_COUNT}"]`;
+const BADGE_COMPONENT_SELECTOR = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING_WORDS_AND_CHARACTERS_COUNT}"]`;
 
-const createAnswerHeadingContainer = (content: string) => {
+function createAnswerHeadingContainer(content: string) {
   return $(`<div>${content}</div>`)
     .addClass(
       "x-text-muted-foreground x-italic x-text-xs x-ml-4 x-text-right x-font-medium",
@@ -17,7 +17,7 @@ const createAnswerHeadingContainer = (content: string) => {
       INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD
         .ANSWER_HEADING_WORDS_AND_CHARACTERS_COUNT,
     );
-};
+}
 
 csLoaderRegistry.register({
   id: "plugin:thread:betterMessageToolbars:messageWordsAndCharactersCount",
@@ -50,12 +50,12 @@ csLoaderRegistry.register({
             index,
           ) => {
             if (isInFlight) {
-              $answerHeading.find(MODEL_NAME_COMPONENT_SELECTOR).remove();
+              $answerHeading.find(BADGE_COMPONENT_SELECTOR).remove();
               return;
             }
 
             const $existingBadge = $answerHeading.find(
-              MODEL_NAME_COMPONENT_SELECTOR,
+              BADGE_COMPONENT_SELECTOR,
             );
 
             if ($existingBadge.length) {

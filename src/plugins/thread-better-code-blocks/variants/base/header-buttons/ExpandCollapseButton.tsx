@@ -1,18 +1,17 @@
 import { LuChevronDown, LuChevronUp } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
+import { useMirroredCodeBlockContext } from "@/plugins/thread-better-code-blocks/MirroredCodeBlockContext";
 
 type ExpandCollapseButtonProps = {
   defaultMaxHeight: number;
-  maxHeight: number;
-  setMaxHeight: (maxHeight: number) => void;
 };
 
 export function ExpandCollapseButton({
   defaultMaxHeight,
-  maxHeight,
-  setMaxHeight,
 }: ExpandCollapseButtonProps) {
+  const { maxHeight, setMaxHeight } = useMirroredCodeBlockContext();
+
   return (
     <Tooltip
       content={

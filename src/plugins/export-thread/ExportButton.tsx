@@ -101,7 +101,7 @@ const ExportButton = memo(function ExportButton() {
         <Button
           variant={isMobile ? "default" : "outline"}
           size="sm"
-          className="x-h-8 x-px-2"
+          className="x-box-content x-h-8 x-px-2"
         >
           {isFetching ? defaultIdleText : (copyConfirmText ?? defaultIdleText)}
         </Button>

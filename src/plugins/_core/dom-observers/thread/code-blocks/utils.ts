@@ -24,11 +24,6 @@ export async function parseCodeBlocks(
           )
           .attr("data-index", j);
 
-        const $pre = $codeBlock.find("pre");
-        const $code = $pre.find("code");
-        const $nativeHeader = $codeBlock.find(
-          DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.NATIVE_HEADER,
-        );
         const $nativeCopyButton = $codeBlock.find(
           DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.NATIVE_COPY_BUTTON,
         );
@@ -41,9 +36,6 @@ export async function parseCodeBlocks(
         return {
           nodes: {
             $wrapper: $codeBlock,
-            $pre,
-            $code,
-            $nativeHeader,
             $nativeCopyButton,
           },
           content,

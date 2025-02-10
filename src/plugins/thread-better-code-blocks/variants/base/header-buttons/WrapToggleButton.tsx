@@ -1,16 +1,11 @@
 import { LuAlignJustify, LuWrapText } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
+import { useMirroredCodeBlockContext } from "@/plugins/thread-better-code-blocks/MirroredCodeBlockContext";
 
-type WrapToggleButtonProps = {
-  isWrapped: boolean;
-  setIsWrapped: (isWrapped: boolean) => void;
-};
+export function WrapToggleButton() {
+  const { isWrapped, setIsWrapped } = useMirroredCodeBlockContext();
 
-export function WrapToggleButton({
-  isWrapped,
-  setIsWrapped,
-}: WrapToggleButtonProps) {
   return (
     <Tooltip
       content={

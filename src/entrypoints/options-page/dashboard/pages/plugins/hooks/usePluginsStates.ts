@@ -24,7 +24,12 @@ export default function usePluginsStates() {
     useExtensionUpdate();
 
   const isLoading =
-    isFetchingFeatureCompat || isFetchingFeatureFlags || isLoadingLatestVersion;
+    !featureCompat &&
+    !featureFlags &&
+    !latestVersion &&
+    (isFetchingFeatureCompat ||
+      isFetchingFeatureFlags ||
+      isLoadingLatestVersion);
 
   const userGroup: UserGroup = "anon";
 

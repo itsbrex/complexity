@@ -13,11 +13,18 @@ type MirroredCodeBlockStore = {
   setIsWrapped: (isWrapped: boolean) => void;
   maxHeight: number;
   setMaxHeight: (maxHeight: number) => void;
+  isHorizontalOverflowing: boolean;
+  setIsHorizontalOverflowing: (isHorizontalOverflowing: boolean) => void;
+  isVerticalOverflowing: boolean;
+  setIsVerticalOverflowing: (isVerticalOverflowing: boolean) => void;
 };
 
 type InitialState = Omit<
   MirroredCodeBlockStore,
-  "setIsWrapped" | "setMaxHeight"
+  | "setIsWrapped"
+  | "setMaxHeight"
+  | "setIsHorizontalOverflowing"
+  | "setIsVerticalOverflowing"
 >;
 
 export const createStore = (initialState: InitialState) =>
@@ -34,6 +41,16 @@ export const createStore = (initialState: InitialState) =>
           setMaxHeight: (maxHeight) => {
             set((state) => {
               state.maxHeight = maxHeight;
+            });
+          },
+          setIsHorizontalOverflowing: (isHorizontalOverflowing) => {
+            set((state) => {
+              state.isHorizontalOverflowing = isHorizontalOverflowing;
+            });
+          },
+          setIsVerticalOverflowing: (isVerticalOverflowing) => {
+            set((state) => {
+              state.isVerticalOverflowing = isVerticalOverflowing;
             });
           },
         }),

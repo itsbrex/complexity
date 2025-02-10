@@ -1,6 +1,5 @@
 import { QueryBoxType } from "@/data/plugins/query-box/types";
-import { INTERNAL_ATTRIBUTES, DOM_SELECTORS } from "@/utils/dom-selectors";
-import { CodeBlock, MessageBlock } from "@/utils/ui-utils.types";
+import { DOM_SELECTORS } from "@/utils/dom-selectors";
 
 export class UiUtils {
   static isDarkTheme() {
@@ -19,65 +18,6 @@ export class UiUtils {
     }
 
     return $messagesContainer;
-  }
-
-  static getMessageBlocks(): MessageBlock[] {
-    const $messagesContainer = UiUtils.getMessagesContainer();
-
-    const textColSelector = `${DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL}:last`;
-    const visualColSelector = `${DOM_SELECTORS.THREAD.MESSAGE.VISUAL_COL}:last`;
-    const internalTextColAttr = INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL;
-    const internalVisualColAttr = INTERNAL_ATTRIBUTES.THREAD.MESSAGE.VISUAL_COL;
-    const internalBlockAttr = INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK;
-
-    const children = $messagesContainer
-      .children()
-      .toArray()
-      .filter(
-        (child) =>
-          $(child).find(DOM_SELECTORS.THREAD.MESSAGE.WRAPPER)?.length > 0,
-      );
-
-    const messageBlocks = [] as MessageBlock[];
-
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-
-      if (child == null) continue;
-
-      const $wrapper = $(child);
-
-      $wrapper.internalComponentAttr(internalBlockAttr).attr("data-index", i);
-
-      const { $query, $sourcesHeading, $answerHeading, $answer } =
-        UiUtils.parseMessageBlock($wrapper);
-
-      $query.internalComponentAttr(
-        INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY,
-      );
-      $answer.internalComponentAttr(
-        INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER,
-      );
-      $answerHeading.internalComponentAttr(
-        INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING,
-      );
-
-      const $textCol = $wrapper.find(textColSelector);
-      const $visualCol = $wrapper.find(visualColSelector);
-
-      $textCol.internalComponentAttr(internalTextColAttr);
-      $visualCol.internalComponentAttr(internalVisualColAttr);
-
-      messageBlocks.push({
-        $wrapper,
-        $query,
-        $sourcesHeading,
-        $answerHeading,
-        $answer,
-      });
-    }
-
-    return messageBlocks;
   }
 
   static parseMessageBlock($messageBlock: JQuery<Element>) {
@@ -101,66 +41,6 @@ export class UiUtils {
       $answerHeading,
       $answer,
     };
-  }
-
-  static getCodeBlocks(messageBlocks: MessageBlock[]): CodeBlock[][] {
-    const returnValue = [] as CodeBlock[][];
-
-    for (let i = 0; i < messageBlocks.length; i++) {
-      const messageBlock = messageBlocks[i];
-
-      if (messageBlock == null) continue;
-
-      const codeBlocks = $(messageBlock.$answer)
-        .find(DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.WRAPPER)
-        .toArray();
-
-      const codeBlocksInMessageBlock = [] as CodeBlock[];
-
-      for (let j = 0; j < codeBlocks.length; j++) {
-        const codeBlock = codeBlocks[j];
-
-        if (codeBlock == null) continue;
-
-        const $codeBlock = $(codeBlock);
-
-        $codeBlock
-          .internalComponentAttr(
-            INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.CODE_BLOCK,
-          )
-          .attr("data-index", j);
-
-        const $pre = $codeBlock.find("pre");
-        const $code = $pre.find("code");
-        const $nativeHeader = $codeBlock.find(
-          DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.NATIVE_HEADER,
-        );
-        const $nativeCopyButton = $codeBlock.find(
-          DOM_SELECTORS.THREAD.MESSAGE.CODE_BLOCK.NATIVE_COPY_BUTTON,
-        );
-
-        if (
-          !$pre.length ||
-          !$code.length ||
-          !$nativeHeader.length ||
-          !$nativeCopyButton.length
-        ) {
-          continue;
-        }
-
-        codeBlocksInMessageBlock.push({
-          $wrapper: $codeBlock,
-          $pre,
-          $code,
-          $nativeHeader,
-          $nativeCopyButton,
-        });
-      }
-
-      returnValue.push(codeBlocksInMessageBlock);
-    }
-
-    return returnValue;
   }
 
   static getActiveQueryBoxTextarea({

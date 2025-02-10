@@ -11,6 +11,7 @@ import {
   createMirroredPortalContainer,
   getBetterCodeBlockOptions,
 } from "@/plugins/thread-better-code-blocks/utils";
+import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 
 export default function BetterCodeBlocksWrapper() {
   const codeBlocksChunks = useThreadCodeBlocksDomObserverStore(
@@ -61,9 +62,11 @@ function ContextWrapper({
 
   if (!codeBlock) return null;
 
-  const finegrainedSettings = getBetterCodeBlockOptions(
-    codeBlock.content.language,
-  );
+  const settings =
+    getBetterCodeBlockOptions(codeBlock.content.language) ??
+    ExtensionLocalStorageService.getCachedSync().plugins[
+      "thread:betterCodeBlocks"
+    ];
 
   const portalContainer = createMirroredPortalContainer(
     codeBlock,
@@ -76,12 +79,13 @@ function ContextWrapper({
         storeValue={{
           sourceMessageBlockIndex,
           sourceCodeBlockIndex,
-          isWrapped: !finegrainedSettings.unwrap.enabled,
+          isWrapped: !settings.unwrap.enabled,
           maxHeight:
-            finegrainedSettings.maxHeight.enabled &&
-            finegrainedSettings.maxHeight.collapseByDefault
-              ? finegrainedSettings.maxHeight.value
+            settings.maxHeight.enabled && settings.maxHeight.collapseByDefault
+              ? settings.maxHeight.value
               : 9999,
+          isHorizontalOverflowing: false,
+          isVerticalOverflowing: false,
         }}
       >
         {children}

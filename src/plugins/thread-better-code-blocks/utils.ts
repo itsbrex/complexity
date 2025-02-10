@@ -1,6 +1,5 @@
 import { BetterCodeBlockFineGrainedOptions } from "@/data/dashboard/better-code-blocks/better-code-blocks-options.types";
 import { CodeBlock } from "@/plugins/_core/dom-observers/thread/code-blocks/types";
-import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { betterCodeBlocksFineGrainedOptionsQueries } from "@/services/indexed-db/better-code-blocks/query-keys";
 import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 import { queryClient } from "@/utils/ts-query-client";
@@ -33,12 +32,9 @@ export function createMirroredPortalContainer(
   return $portalContainer[0];
 }
 
-export function getBetterCodeBlockOptions(language: string | null) {
-  const globalSettings =
-    ExtensionLocalStorageService.getCachedSync().plugins[
-      "thread:betterCodeBlocks"
-    ];
-
+export function getBetterCodeBlockOptions(
+  language: string | null,
+): BetterCodeBlockFineGrainedOptions | undefined | null {
   const fineGrainedSettings = language
     ? queryClient
         .getQueryData<
@@ -47,5 +43,5 @@ export function getBetterCodeBlockOptions(language: string | null) {
         ?.find((option) => option.language === language)
     : null;
 
-  return fineGrainedSettings || globalSettings;
+  return fineGrainedSettings;
 }

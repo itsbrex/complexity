@@ -9,9 +9,9 @@ import { PluginsStatesService } from "@/services/plugins-states";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 
-const MODEL_NAME_COMPONENT_SELECTOR = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING_MODEL_NAME}"]`;
+const MODEL_BADGE_COMPONENT_SELECTOR = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING_MODEL_NAME}"]`;
 
-const createModelBadge = (modelName: string) => {
+function createModelBadge(modelName: string) {
   return $(`<div>${modelName.toLocaleUpperCase()}</div>`)
     .addClass(
       "x-font-mono x-animate-in x-fade-in x-border x-border-border/50 x-p-1 x-px-2 x-rounded-md x-text-xs x-bg-secondary x-font-medium",
@@ -20,9 +20,9 @@ const createModelBadge = (modelName: string) => {
       INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD
         .ANSWER_HEADING_MODEL_NAME,
     );
-};
+}
 
-const displayModelBadge = async ({
+async function displayModelBadge({
   $bottomBar,
   $answerHeading,
   isInFlight,
@@ -32,14 +32,14 @@ const displayModelBadge = async ({
   $answerHeading: JQuery<HTMLElement>;
   isInFlight: boolean;
   index: number;
-}) => {
+}) {
   if (isInFlight) {
-    $answerHeading.find(MODEL_NAME_COMPONENT_SELECTOR).remove();
+    $answerHeading.find(MODEL_BADGE_COMPONENT_SELECTOR).remove();
     $answerHeading.find(":nth-child(2)").removeClass("x-hidden");
     return;
   }
 
-  const $exisitingBadge = $answerHeading.find(MODEL_NAME_COMPONENT_SELECTOR);
+  const $exisitingBadge = $answerHeading.find(MODEL_BADGE_COMPONENT_SELECTOR);
 
   if (!$bottomBar.length || $exisitingBadge.length) return;
 
@@ -68,7 +68,7 @@ const displayModelBadge = async ({
 
   const modelNameElement = createModelBadge(model.label);
   $target.append(modelNameElement);
-};
+}
 
 function explicitModelName(messageBlocks: MessageBlock[]) {
   const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();

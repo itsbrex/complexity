@@ -29,7 +29,7 @@ export default function FollowUpQueryBoxWrapper() {
         </CsUiPluginsGuard>
       </Portal>
       <Portal container={rightContainer}>
-        <div className="x-flex x-flex-wrap x-items-center x-gap-1">
+        <div className="x-flex x-flex-wrap x-items-center x-gap-2">
           <CsUiPluginsGuard
             desktopOnly
             dependentPluginIds={["queryBox:slashCommandMenu"]}

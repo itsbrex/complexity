@@ -57,7 +57,7 @@
   }
 
   [data-cplx-component="query-box-components-wrapper"] > div:nth-child(2) {
-    @apply x-gap-1;
+    @apply x-gap-2;
   }
 
   [data-cplx-component="query-box-components-wrapper"] > div:nth-child(3) {

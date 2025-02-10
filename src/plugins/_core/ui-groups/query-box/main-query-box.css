@@ -7,7 +7,7 @@
       grid-column-end: 3 !important;
       display: flex;
       flex-wrap: wrap;
-      @apply x-gap-1 x-gap-y-1;
+      @apply x-gap-2 x-gap-y-1;
 
       button.rounded-full {
         @apply x-rounded-md;
@@ -21,7 +21,7 @@
 }
 
 [data-cplx-component="query-box-pplx-components-wrapper"] {
-  @apply x-h-8 x-gap-1;
+  @apply x-h-8 x-gap-2;
 
   button {
     margin: 0;
@@ -44,7 +44,15 @@
 
 [cplx-space-query-box]
   [data-cplx-component="query-box-components-wrapper"]
-  [data-cplx-component="query-box-pplx-components-wrapper"]
+  [data-cplx-component="query-box-pplx-components-wrapper"] {
   > :has(button:disabled) {
-  display: none;
+    display: none;
+  }
+
+  > :nth-child(2)
+    .flex.items-center.min-w-0
+    > div
+    > .flex.items-center:not(.px-1) {
+    @apply x-mx-2 x-gap-1;
+  }
 }

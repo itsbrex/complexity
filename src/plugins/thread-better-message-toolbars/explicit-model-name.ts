@@ -14,7 +14,7 @@ const MODEL_BADGE_COMPONENT_SELECTOR = `[data-cplx-component="${INTERNAL_ATTRIBU
 function createModelBadge(modelName: string) {
   return $(`<div>${modelName.toLocaleUpperCase()}</div>`)
     .addClass(
-      "x-font-mono x-animate-in x-fade-in x-border x-border-border/50 x-p-1 x-px-2 x-rounded-md x-text-xs x-bg-secondary x-font-medium",
+      "x-font-mono x-animate-in x-fade-in x-border x-border-border/50 x-p-1 x-px-2 x-rounded-md x-text-[10px] md:x-text-xs x-bg-secondary x-font-medium",
     )
     .internalComponentAttr(
       INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD

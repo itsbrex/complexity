@@ -37,7 +37,7 @@ function PinnedSpaceContent({
 
   return (
     <a
-      href={`/collections/${uuid}`}
+      href={`/collections/${space.slug}`}
       className={cn(
         "x-group x-flex x-cursor-pointer x-select-none x-items-center x-justify-between x-rounded-md x-px-1 x-py-1 x-transition-colors x-duration-300",
         isDragging && "x-opacity-75",
@@ -54,7 +54,7 @@ function PinnedSpaceContent({
         sendMessage(
           "spa-router:push",
           {
-            url: `/collections/${uuid}`,
+            url: `/collections/${space.slug}`,
           },
           "window",
         );

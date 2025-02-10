@@ -1,3 +1,4 @@
+import { isHotkeyPressed } from "react-hotkeys-hook";
 import { sendMessage } from "webext-bridge/content-script";
 
 import { CommandItem } from "@/components/ui/command";
@@ -22,6 +23,7 @@ export default function SpaceItem({
   return (
     <CommandItem
       key={space.uuid}
+      asChild
       className={cn("x-relative x-min-h-10 x-text-sm x-font-medium", {
         "x-text-primary": isOnSpacePage,
       })}
@@ -32,6 +34,8 @@ export default function SpaceItem({
         space.instructions?.slice(0, 100),
       ]}
       onSelect={() => {
+        if (isHotkeyPressed(Key.Control) || isHotkeyPressed(Key.Meta)) return;
+
         setOpen(false);
 
         sendMessage(
@@ -43,19 +47,29 @@ export default function SpaceItem({
         );
       }}
     >
-      <div className="x-flex x-items-center x-gap-2">
-        {space.emoji && <div>{emojiCodeToString(space.emoji)}</div>}
-        {space.title}
-      </div>
-      <div className="x-ml-2 x-flex x-items-center x-gap-1">
-        {isOnSpacePage && (
-          <div className="x-text-xs x-text-muted-foreground">
-            {t(
-              "plugin-space-navigator:spaceNavigator.spaceItem.currentLocation",
-            )}
-          </div>
-        )}
-      </div>
+      <a
+        href={`/collections/${space.slug}`}
+        onClick={(e) => {
+          if (e.metaKey || e.ctrlKey) return;
+
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
+        <div className="x-flex x-items-center x-gap-2">
+          {space.emoji && <div>{emojiCodeToString(space.emoji)}</div>}
+          {space.title}
+        </div>
+        <div className="x-ml-2 x-flex x-items-center x-gap-1">
+          {isOnSpacePage && (
+            <div className="x-text-xs x-text-muted-foreground">
+              {t(
+                "plugin-space-navigator:spaceNavigator.spaceItem.currentLocation",
+              )}
+            </div>
+          )}
+        </div>
+      </a>
     </CommandItem>
   );
 }

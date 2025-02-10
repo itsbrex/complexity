@@ -6,9 +6,6 @@ import { errorWrapper } from "@/utils/error-wrapper";
 import { getCookie, getReactFiberKey } from "@/utils/utils";
 
 export type ReactVdomEvents = {
-  "reactVdom:isMessageBlockInFlight": (params: {
-    index: number;
-  }) => boolean | null;
   "reactVdom:getMessageModelPreferences": (params: { index: number }) => {
     displayModel: LanguageModelCode;
   } | null;
@@ -31,33 +28,6 @@ export type ReactVdomEvents = {
 };
 
 export function setupReactVdomListeners() {
-  onMessage("reactVdom:isMessageBlockInFlight", ({ data: { index } }) => {
-    const selector = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${index}"] [data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL}"]`;
-
-    const $el = $(selector);
-
-    if (!$el.length) return false;
-
-    const [status, error] = errorWrapper(() =>
-      findReactFiberNodeValue({
-        fiberNode: ($el[0] as any)[getReactFiberKey($el[0])],
-        condition: (node) =>
-          !!(node.memoizedProps.children[3].props.result.status != null),
-        select: (node) =>
-          node.memoizedProps.children[3].props.result.status as string,
-      }),
-    )();
-
-    if (error) console.warn("[VDOM Plugin] isMessageBlockInFlight", error);
-
-    if (error || status == null)
-      return (
-        $el.find(".prose > .animate-in.fade-in-25.duration-700").length > 0
-      );
-
-    return status.toLowerCase() !== "completed";
-  });
-
   onMessage("reactVdom:getMessageModelPreferences", ({ data: { index } }) => {
     const selector = `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${index}"]`;
 

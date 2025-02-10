@@ -1,5 +1,3 @@
-import { sendMessage } from "webext-bridge/content-script";
-
 import { MessageBlock } from "@/plugins/_core/dom-observers/thread/message-blocks/types";
 import { INTERNAL_ATTRIBUTES, DOM_SELECTORS } from "@/utils/dom-selectors";
 import { UiUtils } from "@/utils/ui-utils";
@@ -70,9 +68,8 @@ export async function findMessageBlocks(): Promise<MessageBlock[] | null> {
       };
 
       const content = getMessageBlockContent({ messageBlockNodes: nodes });
-      const states = await getMessageBlockStates({
+      const states = getMessageBlockStates({
         messageBlockNodes: nodes,
-        index: i,
       });
 
       return {
@@ -115,23 +112,14 @@ function parseMessageBlock($messageBlock: JQuery<Element>) {
   };
 }
 
-async function getMessageBlockStates({
+function getMessageBlockStates({
   messageBlockNodes,
-  index,
 }: {
   messageBlockNodes: MessageBlock["nodes"];
-  index: number;
-}): Promise<MessageBlock["states"]> {
-  const { $wrapper, $query } = messageBlockNodes;
+}): MessageBlock["states"] {
+  const { $wrapper, $query, $bottomBar } = messageBlockNodes;
 
-  const isInFlight =
-    (await sendMessage(
-      "reactVdom:isMessageBlockInFlight",
-      {
-        index,
-      },
-      "window",
-    )) ?? false;
+  const isInFlight = !$bottomBar.length;
 
   $wrapper.attr("data-inflight", isInFlight ? "true" : "false");
 

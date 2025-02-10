@@ -11,7 +11,7 @@ export default function useBindBetterLanguageModelSelectorHotKeys() {
   useHotkeys(
     keysToString([getPlatform() === "mac" ? Key.Meta : Key.Control, "."]),
     (e) => {
-      e.stopPropagation();
+      e.stopImmediatePropagation();
 
       sharedQueryBoxStore.setState((state) => {
         state.isProSearchEnabled = !state.isProSearchEnabled;

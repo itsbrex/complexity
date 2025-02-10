@@ -1,16 +1,15 @@
-import { defineManifest, ManifestV3Export } from "@crxjs/vite-plugin";
+import { defineManifest } from "@crxjs/vite-plugin";
+import { baseManifest, ExtendedManifestV3Export } from "./manifest.base";
+import { produce } from "immer";
 
-import { baseManifest } from "./manifest.base";
-
-const chromeManifest = {
-  ...baseManifest,
-  permissions: ["storage", "unlimitedStorage", "contextMenus"],
-  optional_permissions: ["scripting", "webNavigation"],
-  background: {
-    service_worker: "src/entrypoints/background/index.ts",
-    type: "module",
-  },
-  minimum_chrome_version: "89",
-} as ManifestV3Export;
-
-export default defineManifest(chromeManifest);
+export default defineManifest(
+  produce(baseManifest as ExtendedManifestV3Export, (draft) => {
+    draft.permissions = ["storage", "unlimitedStorage", "contextMenus"];
+    draft.optional_permissions = ["scripting", "webNavigation"];
+    draft.background = {
+      service_worker: "src/entrypoints/background/index.ts",
+      type: "module",
+    };
+    draft.content_scripts![0]!.run_at = "document_start";
+  }),
+);

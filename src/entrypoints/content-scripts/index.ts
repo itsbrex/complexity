@@ -15,8 +15,6 @@ $(() => {
       id: "cs-ui-root",
     });
   showInitializingIndicator();
+  contentScriptGuard();
+  csLoaderRegistry.executeAll();
 });
-
-contentScriptGuard();
-
-csLoaderRegistry.executeAll();

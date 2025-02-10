@@ -1,6 +1,6 @@
 import { defineManifest } from "@crxjs/vite-plugin";
-
 import { ExtendedManifestV3Export, baseManifest } from "./manifest.base";
+import { produce } from "immer";
 
 export type MozManifest = ExtendedManifestV3Export & {
   browser_specific_settings: {
@@ -19,20 +19,20 @@ const defineMozManifest = defineManifest as unknown as (
   manifest: MozManifest,
 ) => MozManifest;
 
-const mozManifest: MozManifest = {
-  ...baseManifest,
-  permissions: ["storage", "unlimitedStorage", "contextMenus"],
-  optional_permissions: [],
-  browser_specific_settings: {
-    gecko: {
-      id: "complexity@ngocdg",
-      strict_min_version: "109.0",
-    },
-  },
-  background: {
-    scripts: ["src/entrypoints/background/index.ts"],
-    type: "module",
-  },
-} as MozManifest;
-
-export default defineMozManifest(mozManifest);
+export default defineMozManifest(
+  produce(baseManifest as MozManifest, (draft) => {
+    draft.permissions = ["storage", "unlimitedStorage", "contextMenus"];
+    draft.optional_permissions = [];
+    draft.browser_specific_settings = {
+      gecko: {
+        id: "complexity@ngocdg",
+        strict_min_version: "109.0",
+      },
+    };
+    draft.background = {
+      scripts: ["src/entrypoints/background/index.ts"],
+      type: "module",
+    };
+    draft.content_scripts![0]!.run_at = "document_idle";
+  }),
+);

@@ -3,7 +3,12 @@ import { ManifestV3Export } from "@crxjs/vite-plugin";
 import { APP_CONFIG } from "./app.config";
 import packageData from ".././package.json";
 
-export type ExtendedManifestV3Export = ManifestV3Export & {
+export type PlainManifest = Exclude<
+  Exclude<ManifestV3Export, Promise<any>>,
+  (...args: any[]) => any
+>;
+
+export type ExtendedManifestV3Export = PlainManifest & {
   optional_host_permissions: string[];
 };
 
@@ -37,7 +42,6 @@ export const baseManifest: ExtendedManifestV3Export = {
       matches: APP_CONFIG["perplexity-ai"].globalMatches,
       exclude_matches: APP_CONFIG["perplexity-ai"].globalExcludeMatches,
       js: ["src/entrypoints/content-scripts/index.ts"],
-      run_at: "document_idle",
     },
   ],
 

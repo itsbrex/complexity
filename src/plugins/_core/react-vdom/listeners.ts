@@ -126,9 +126,9 @@ export function setupReactVdomListeners() {
         findReactFiberNodeValue({
           fiberNode,
           condition: (node) =>
-            node.memoizedProps.children[0].props.children[0] != null,
+            node.memoizedProps.children.props.children != null,
           select: (node) =>
-            node.memoizedProps.children[0].props.children[0] as string,
+            node.memoizedProps.children.props.children as string,
         }),
       )();
 
@@ -136,10 +136,10 @@ export function setupReactVdomListeners() {
         findReactFiberNodeValue({
           fiberNode,
           condition: (node) =>
-            node.memoizedProps.children[0].props.className != null,
+            node.memoizedProps.children.props.className != null,
           select: (node) => {
             const language =
-              node.memoizedProps.children[0].props.className.replace(
+              node.memoizedProps.children.props.className.replace(
                 /^language-/,
                 "",
               );

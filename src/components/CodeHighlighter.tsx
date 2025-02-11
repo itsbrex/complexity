@@ -9,6 +9,7 @@ const INTERPRETED_LANGUAGES: Record<string, string> = {
   html: "markup",
   react: "jsx",
   markmap: "markdown",
+  "c++": "cpp",
 };
 
 const CodeHighlighter = memo(function CodeHighlighter({

@@ -39,6 +39,7 @@ function noFileCreationOnPaste(
 
 csLoaderRegistry.register({
   id: "plugin:queryBox:noFileCreationOnPaste",
+  dependencies: ["cache:pluginsStates"],
   loader: () => {
     queryBoxesDomObserverStore.subscribe(
       (store) => ({
@@ -56,5 +57,4 @@ csLoaderRegistry.register({
       },
     );
   },
-  dependencies: ["cache:pluginsStates"],
 });

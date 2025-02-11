@@ -7,6 +7,7 @@ import { queryClient } from "@/utils/ts-query-client";
 
 csLoaderRegistry.register({
   id: "networkIntercept:pplxApi",
+  dependencies: ["cache:pluginsStates"],
   loader: () => {
     const pluginsEnableStates =
       PluginsStatesService.getEnableStatesCachedSync();
@@ -52,5 +53,4 @@ csLoaderRegistry.register({
       });
     }
   },
-  dependencies: ["cache:pluginsStates"],
 });

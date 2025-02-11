@@ -42,6 +42,7 @@ function setupCustomSlogan({
 
 csLoaderRegistry.register({
   id: "plugin:home:customSlogan",
+  dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
   loader: () => {
     homeDomObserverStore.subscribe(
       (store) => store.$slogan,
@@ -51,5 +52,4 @@ csLoaderRegistry.register({
       },
     );
   },
-  dependencies: ["cache:pluginsStates"],
 });

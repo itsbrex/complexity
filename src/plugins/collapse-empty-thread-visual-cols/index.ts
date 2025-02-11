@@ -26,6 +26,7 @@ function setupCollapseEmptyThreadVisualCols(
 
 csLoaderRegistry.register({
   id: "plugin:thread:collapseEmptyThreadVisualCols",
+  dependencies: ["cache:pluginsStates"],
   loader: () => {
     setupCollapseEmptyThreadVisualCols(whereAmI());
 
@@ -33,5 +34,4 @@ csLoaderRegistry.register({
       setupCollapseEmptyThreadVisualCols(whereAmI(url));
     });
   },
-  dependencies: ["cache:pluginsStates"],
 });

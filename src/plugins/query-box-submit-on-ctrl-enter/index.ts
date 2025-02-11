@@ -34,6 +34,7 @@ function submitOnCtrlEnter(queryBoxes: QueryBoxesDomObserverStoreType["main"]) {
 
 csLoaderRegistry.register({
   id: "plugin:queryBox:submitOnCtrlEnter",
+  dependencies: ["cache:pluginsStates"],
   loader: () => {
     queryBoxesDomObserverStore.subscribe(
       (store) => ({
@@ -48,5 +49,4 @@ csLoaderRegistry.register({
       },
     );
   },
-  dependencies: ["cache:pluginsStates"],
 });

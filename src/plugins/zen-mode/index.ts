@@ -8,6 +8,7 @@ import { insertCss } from "@/utils/utils";
 
 csLoaderRegistry.register({
   id: "plugin:zenMode",
+  dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
   loader: () => {
     const pluginsEnableStates =
       PluginsStatesService.getEnableStatesCachedSync();
@@ -52,5 +53,4 @@ csLoaderRegistry.register({
       );
     }
   },
-  dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
 });

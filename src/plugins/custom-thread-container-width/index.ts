@@ -4,6 +4,7 @@ import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 
 csLoaderRegistry.register({
   id: "plugin:thread:customThreadContainerWidth",
+  dependencies: ["cache:pluginsStates"],
   loader: () => {
     const pluginsEnableStates =
       PluginsStatesService.getEnableStatesCachedSync();

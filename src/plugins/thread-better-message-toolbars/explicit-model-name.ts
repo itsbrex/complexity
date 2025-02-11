@@ -92,6 +92,11 @@ function explicitModelName(messageBlocks: MessageBlock[]) {
 
 csLoaderRegistry.register({
   id: "plugin:thread:betterMessageToolbars:explicitModelName",
+  dependencies: [
+    "cache:pluginsStates",
+    "cache:extensionLocalStorage",
+    "cache:languageModels",
+  ],
   loader: () => {
     const pluginsEnableStates =
       PluginsStatesService.getEnableStatesCachedSync();
@@ -113,9 +118,4 @@ csLoaderRegistry.register({
       },
     );
   },
-  dependencies: [
-    "cache:pluginsStates",
-    "cache:extensionLocalStorage",
-    "cache:languageModels",
-  ],
 });

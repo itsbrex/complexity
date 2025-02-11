@@ -5,6 +5,7 @@ import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 
 csLoaderRegistry.register({
   id: "plugin:blockAnalyticEvents",
+  dependencies: ["cache:pluginsStates"],
   loader: () => {
     const pluginsEnableStates =
       PluginsStatesService.getEnableStatesCachedSync();
@@ -39,5 +40,4 @@ csLoaderRegistry.register({
         },
       });
   },
-  dependencies: ["cache:pluginsStates"],
 });

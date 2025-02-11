@@ -8,6 +8,7 @@ let cleanup: () => void | null;
 
 csLoaderRegistry.register({
   id: "plugin:home:hideHomepageWidgets",
+  dependencies: ["cache:pluginsStates"],
   loader: () => {
     const pluginsEnableStates =
       PluginsStatesService.getEnableStatesCachedSync();
@@ -20,7 +21,6 @@ csLoaderRegistry.register({
       hideHomepageWidgets(whereAmI(url));
     });
   },
-  dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
 });
 
 function hideHomepageWidgets(location: ReturnType<typeof whereAmI>) {

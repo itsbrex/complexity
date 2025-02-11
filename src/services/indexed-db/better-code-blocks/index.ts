@@ -69,6 +69,7 @@ export const [
 
 csLoaderRegistry.register({
   id: "cache:betterCodeBlocksFineGrainedOptions",
+  dependencies: ["cache:pluginsStates"],
   loader: async () => {
     const pluginsEnableStates =
       PluginsStatesService.getEnableStatesCachedSync();

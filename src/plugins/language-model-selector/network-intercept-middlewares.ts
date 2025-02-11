@@ -14,7 +14,7 @@ import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 
 csLoaderRegistry.register({
   id: "networkIntercept:languageModelSelector",
-  dependencies: ["cache:pluginsStates"],
+  dependencies: ["cache:pluginsStates", "cache:extensionLocalStorage"],
   loader: () => {
     const pluginsEnableStates =
       PluginsStatesService.getEnableStatesCachedSync();

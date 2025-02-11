@@ -99,6 +99,7 @@ csLoaderRegistry.register({
 
 csLoaderRegistry.register({
   id: "plugin:pplxThemeLoader",
+  dependencies: ["cache:extensionLocalStorage"],
   loader: async () => {
     const chosenThemeId = ExtensionLocalStorageService.getCachedSync().theme;
     const css = await getThemeCss(chosenThemeId);
@@ -111,5 +112,4 @@ csLoaderRegistry.register({
     if (ExtensionLocalStorageService.getCachedSync().preloadTheme)
       sendMessage("bg:removePreloadedTheme", undefined, "background");
   },
-  dependencies: ["cache:extensionLocalStorage"],
 });

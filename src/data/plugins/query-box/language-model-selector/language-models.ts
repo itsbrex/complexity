@@ -100,6 +100,7 @@ export let reasoningLanguageModels: LanguageModel[] = [
 
 csLoaderRegistry.register({
   id: "cache:languageModels",
+  dependencies: ["cache:pluginsStates"],
   loader: async () => {
     if (APP_CONFIG.IS_DEV) return;
 

@@ -17,10 +17,6 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
     isVerticalOverflowing,
   } = useMirroredCodeBlockContext();
 
-  console.log({
-    codeBlock,
-  });
-
   const language = codeBlock?.content.language ?? null;
   const isInFlight = codeBlock?.states.isInFlight ?? false;
   const code = codeBlock?.content.code ?? "";

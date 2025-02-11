@@ -10,9 +10,9 @@
       display: none;
     }
 
-    button:has([data-icon="share"]),
-    button:has([data-icon="thumbs-down"]),
-    button:has([data-icon="thumbs-up"]) {
+    button:has(svg.tabler-icon-share-3),
+    button:has(svg.tabler-icon-thumb-down),
+    button:has(svg.tabler-icon-thumb-up) {
       display: none;
     }
   }

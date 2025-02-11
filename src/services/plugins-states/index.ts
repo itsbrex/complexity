@@ -34,6 +34,12 @@ export class PluginsStatesService {
       cplxApiQueries.versions.queryKey,
     );
 
+    if (!featureCompat || !featureFlags || !cplxVersions) {
+      console.error(
+        "[CPLX] Something tried to access plugins states before the required data was fetched",
+      );
+    }
+
     const pluginsStates = initializePluginStates();
 
     const withFeatureCompat = updatePluginStatesWithFeatureCompat(

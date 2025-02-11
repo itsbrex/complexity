@@ -82,7 +82,7 @@ function useOverflowing({
     | BetterCodeBlockFineGrainedOptions
     | ExtensionLocalStorage["plugins"]["thread:betterCodeBlocks"];
 }) {
-  useWindowSize();
+  const windowSize = useWindowSize();
 
   const [initialWidth, setInitialWidth] = useState(0);
 
@@ -99,16 +99,25 @@ function useOverflowing({
     }
   }, [initialWidth, wrapperRef]);
 
-  if (!wrapperRef.current || !codeRef.current) {
-    return;
-  }
+  useEffect(() => {
+    if (!wrapperRef.current || !codeRef.current) {
+      return;
+    }
 
-  setIsHorizontalOverflowing(
-    codeRef.current.getBoundingClientRect().width >
-      wrapperRef.current.getBoundingClientRect().width,
-  );
-  setIsVerticalOverflowing(
-    codeRef.current.getBoundingClientRect().height >
-      fineGrainedSettings.maxHeight.value,
-  );
+    setIsHorizontalOverflowing(
+      codeRef.current.getBoundingClientRect().width >
+        wrapperRef.current.getBoundingClientRect().width,
+    );
+    setIsVerticalOverflowing(
+      codeRef.current.getBoundingClientRect().height >
+        fineGrainedSettings.maxHeight.value,
+    );
+  }, [
+    codeRef,
+    fineGrainedSettings.maxHeight.value,
+    setIsHorizontalOverflowing,
+    setIsVerticalOverflowing,
+    wrapperRef,
+    windowSize,
+  ]);
 }

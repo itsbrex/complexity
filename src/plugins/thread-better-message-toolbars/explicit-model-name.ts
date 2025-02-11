@@ -61,7 +61,7 @@ async function displayModelBadge({
 
   // Hide original model tooltip and the "Answer" text
   $bottomBar
-    .find('div:has(>svg[data-icon="microchip"])')
+    .find("button:has(svg.tabler-icon-cpu)")
     .parent()
     .addClass("x-hidden");
   $target.find(":nth-child(2)").addClass("x-hidden");

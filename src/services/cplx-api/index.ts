@@ -104,57 +104,6 @@ export class CplxApiService {
   }
 
   static async fetchLanguageModels(): Promise<LanguageModel[]> {
-    // return z.array(LanguageModelSchema).parse([
-    //   {
-    //     label: "Claude 3.5 Sonnet",
-    //     shortLabel: "Sonnet",
-    //     code: "claude2",
-    //     provider: "Anthropic",
-    //   },
-    //   {
-    //     label: "Claude 3.5 Haiku",
-    //     shortLabel: "Haiku",
-    //     code: "claude35haiku",
-    //     provider: "Anthropic",
-    //   },
-    //   {
-    //     label: "O1",
-    //     shortLabel: "O1",
-    //     code: "o1",
-    //     provider: "OpenAI",
-    //   },
-    //   {
-    //     label: "GPT-4 Omni",
-    //     shortLabel: "GPT-4o",
-    //     code: "gpt4o",
-    //     provider: "OpenAI",
-    //   },
-    //   {
-    //     label: "Grok-2",
-    //     shortLabel: "Grok-2",
-    //     code: "grok",
-    //     provider: "xAI",
-    //   },
-    //   {
-    //     label: "Sonar Huge",
-    //     shortLabel: "Sonar XL",
-    //     code: "llama_x_large",
-    //     provider: "Perplexity",
-    //   },
-    //   {
-    //     label: "Sonar Large",
-    //     shortLabel: "Sonar",
-    //     code: "experimental",
-    //     provider: "Perplexity",
-    //   },
-    //   {
-    //     label: "Default",
-    //     shortLabel: "Default",
-    //     code: "turbo",
-    //     provider: "Perplexity",
-    //   },
-    // ]);
-
     return z
       .array(LanguageModelSchema)
       .parse(

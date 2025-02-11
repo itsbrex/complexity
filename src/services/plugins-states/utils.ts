@@ -1,9 +1,5 @@
 import { PLUGINS_METADATA } from "@/data/plugins-data/plugins-data";
 import { FeatureCompatibility } from "@/services/cplx-api/cplx-api.types";
-import {
-  CplxFeatureFlags,
-  UserGroup,
-} from "@/services/cplx-api/cplx-feature-flags.types";
 import { ExtensionLocalStorage } from "@/services/extension-local-storage/extension-local-storage.types";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
 import { ExtensionVersion } from "@/utils/ext-version";
@@ -77,28 +73,6 @@ export const updatePluginStatesWithFeatureCompat = (
       };
     },
 
-    { ...pluginsStates },
-  );
-};
-
-export const updatePluginStatesWithFeatureFlags = (
-  pluginsStates: PluginsStates,
-  featureFlags: CplxFeatureFlags | undefined,
-  userGroup: UserGroup,
-): PluginsStates => {
-  if (!featureFlags || !featureFlags[userGroup]) return pluginsStates;
-
-  const groupFlags = featureFlags[userGroup];
-
-  return Object.keys(pluginsStates).reduce(
-    (acc, pluginId) => ({
-      ...acc,
-      [pluginId as PluginId]: {
-        ...pluginsStates[pluginId as PluginId],
-        isForceDisabled: groupFlags.forceDisable.includes(pluginId),
-        isHiddenFromDashboard: groupFlags.hide.includes(pluginId),
-      } satisfies PluginState,
-    }),
     { ...pluginsStates },
   );
 };

@@ -12,10 +12,6 @@ export const cplxApiQueries = createQueryKeys("cplxApi", {
     queryKey: null,
     queryFn: CplxApiService.fetchFeatureCompat,
   },
-  featureFlags: {
-    queryKey: null,
-    queryFn: () => CplxApiService.fetchFeatureFlags(),
-  },
   remoteLanguageModels: {
     queryKey: null,
     queryFn: CplxApiService.fetchLanguageModels,
@@ -31,9 +27,5 @@ queryClient.setQueryDefaults(cplxApiQueries.versions.queryKey, {
 });
 
 queryClient.setQueryDefaults(cplxApiQueries.featureCompat.queryKey, {
-  retry: false,
-});
-
-queryClient.setQueryDefaults(cplxApiQueries.featureFlags.queryKey, {
   retry: false,
 });

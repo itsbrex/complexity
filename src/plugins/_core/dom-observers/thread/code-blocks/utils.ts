@@ -46,6 +46,7 @@ export async function parseCodeBlocks(
         const content = await getCodeBlockContent({
           messageBlockIndex: i,
           codeBlockIndex: j,
+          $wrapper: $codeBlock,
         });
 
         return {
@@ -74,9 +75,11 @@ export async function parseCodeBlocks(
 async function getCodeBlockContent({
   messageBlockIndex,
   codeBlockIndex,
+  $wrapper,
 }: {
   messageBlockIndex: number;
   codeBlockIndex: number;
+  $wrapper: JQuery<HTMLElement>;
 }): Promise<CodeBlock["content"]> {
   const data = await sendMessage(
     "reactVdom:getCodeBlockContent",
@@ -89,8 +92,11 @@ async function getCodeBlockContent({
   );
 
   return {
-    language: data?.language ?? "text",
-    code: data?.code ?? "",
+    language:
+      data?.language ??
+      $wrapper.find(".text-text-200.font-thin:last").text() ??
+      "text",
+    code: data?.code ?? $wrapper.find("code:last").text() ?? "",
   };
 }
 

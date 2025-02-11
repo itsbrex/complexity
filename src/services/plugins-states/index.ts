@@ -3,7 +3,6 @@ import {
   CplxVersions,
   FeatureCompatibility,
 } from "@/services/cplx-api/cplx-api.types";
-import { CplxFeatureFlags } from "@/services/cplx-api/cplx-feature-flags.types";
 import { cplxApiQueries } from "@/services/cplx-api/query-keys";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { PluginId } from "@/services/extension-local-storage/plugins.types";
@@ -11,7 +10,6 @@ import {
   initializePluginStates,
   updatePluginStatesWithEnableStates,
   updatePluginStatesWithFeatureCompat,
-  updatePluginStatesWithFeatureFlags,
 } from "@/services/plugins-states/utils";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 import { queryClient } from "@/utils/ts-query-client";
@@ -26,19 +24,9 @@ export class PluginsStatesService {
       cplxApiQueries.featureCompat.queryKey,
     );
 
-    const featureFlags = queryClient.getQueryData<CplxFeatureFlags>(
-      cplxApiQueries.featureFlags.queryKey,
-    );
-
     const cplxVersions = queryClient.getQueryData<CplxVersions>(
       cplxApiQueries.versions.queryKey,
     );
-
-    if (!featureCompat || !featureFlags || !cplxVersions) {
-      console.error(
-        "[CPLX] Something tried to access plugins states before the required data was fetched",
-      );
-    }
 
     const pluginsStates = initializePluginStates();
 
@@ -49,18 +37,18 @@ export class PluginsStatesService {
       cplxVersions?.latest,
     );
 
-    const withFeatureFlags = updatePluginStatesWithFeatureFlags(
-      withFeatureCompat,
-      featureFlags,
-      "anon",
-    );
-
     const withEnableStates = updatePluginStatesWithEnableStates(
-      withFeatureFlags,
+      withFeatureCompat,
       ExtensionLocalStorageService.getCachedSync().plugins,
     );
 
-    this.cachedEnableStates = withEnableStates;
+    if (!featureCompat || !cplxVersions) {
+      console.error(
+        "[CPLX] Something tried to access plugins states before the required data was fetched",
+      );
+    } else {
+      this.cachedEnableStates = withEnableStates;
+    }
 
     return withEnableStates;
   }
@@ -77,11 +65,6 @@ csLoaderRegistry.register({
       }),
       queryClient.prefetchQuery({
         ...cplxApiQueries.featureCompat,
-        gcTime: Infinity,
-        staleTime: Infinity,
-      }),
-      queryClient.prefetchQuery({
-        ...cplxApiQueries.featureFlags,
         gcTime: Infinity,
         staleTime: Infinity,
       }),

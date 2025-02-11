@@ -2,12 +2,9 @@ import { CallbackQueueTaskId } from "@/plugins/_api/dom-observer/callback-queue-
 import { MaybePromise } from "@/types/utils.types";
 
 const FRAME_BUDGET_MS = 16; // ~60fps
-const MIN_CHUNK_SIZE = 1;
 const MAX_CHUNK_SIZE = 20;
 const INITIAL_CHUNK_SIZE = 5;
-const TOLERANCE = 0.2;
 const RESET_TIMEOUT = 1000;
-const CHUNK_SIZE_ADJUSTMENT = 1;
 
 export type Callback = () => MaybePromise<void>;
 
@@ -16,17 +13,57 @@ export type CallbackWithId = {
   id: CallbackQueueTaskId;
 };
 
-type QueueItem = {
-  callback: Callback;
-  id: CallbackQueueTaskId;
-};
+class FastQueue {
+  private queue: CallbackWithId[] = [];
+  private idSet = new Set<CallbackQueueTaskId>();
+
+  enqueue(item: CallbackWithId): void {
+    if (this.idSet.has(item.id)) return;
+    this.queue.push(item);
+    this.idSet.add(item.id);
+  }
+
+  dequeueChunk(size: number): CallbackWithId[] {
+    return this.queue.splice(0, size);
+  }
+
+  markProcessed(item: CallbackWithId): void {
+    this.idSet.delete(item.id);
+  }
+
+  pushFront(items: CallbackWithId[]): void {
+    for (let i = items.length - 1; i >= 0; i--) {
+      const item = items[i];
+      if (item) {
+        this.queue.unshift(item);
+      }
+    }
+  }
+
+  clear(): void {
+    this.queue.length = 0;
+    this.idSet.clear();
+  }
+
+  get isEmpty(): boolean {
+    return this.queue.length === 0;
+  }
+
+  get length(): number {
+    return this.queue.length;
+  }
+}
 
 export class CallbackQueue {
   private static instance: CallbackQueue | null = null;
-  private queue = new UniqueQueue();
-  private chunkSize = INITIAL_CHUNK_SIZE;
+  private queue = new FastQueue();
+  private dynamicChunkSize = INITIAL_CHUNK_SIZE;
   private resetTimer: number | null = null;
-  private frameStartTime = 0;
+  private isProcessing = false;
+  private shouldStop = false;
+  private scheduledFrame: number | null = null;
+  private averageProcessTime = 0;
+  private readonly FRAME_HISTORY_WEIGHT = 0.2;
 
   private constructor() {}
 
@@ -38,72 +75,100 @@ export class CallbackQueue {
   }
 
   public enqueueArray(callbacks: CallbackWithId[]): void {
-    callbacks.forEach(({ callback, id }) => {
-      this.queue.enqueue({ callback, id });
-    });
-    this.processQueue();
-    this.cancelResetTimer();
+    callbacks.forEach((item) => this.queue.enqueue(item));
+    this.scheduleProcessing();
   }
 
   public enqueue(callback: Callback, id: CallbackQueueTaskId): void {
     this.queue.enqueue({ callback, id });
-    this.processQueue();
+    this.scheduleProcessing();
+  }
+
+  private scheduleProcessing(): void {
+    if (this.isProcessing) return;
+    this.isProcessing = true;
+    this.shouldStop = false;
     this.cancelResetTimer();
+    this.scheduledFrame = requestAnimationFrame(() => {
+      this.scheduledFrame = null;
+      if (!this.shouldStop) {
+        this.processQueue();
+      } else {
+        this.isProcessing = false;
+      }
+    });
   }
 
   private async processQueue(): Promise<void> {
-    while (!this.queue.isEmpty) {
-      await new Promise((resolve) => requestAnimationFrame(resolve));
+    if (this.shouldStop) {
+      this.isProcessing = false;
+      return;
+    }
 
-      this.frameStartTime = performance.now();
-      const chunk = this.queue.dequeueChunk(this.chunkSize);
+    const startTime = performance.now();
+    const timeUsed = performance.now() - startTime;
+
+    while (!this.queue.isEmpty && !this.shouldStop) {
+      const timeRemaining = FRAME_BUDGET_MS - (performance.now() - startTime);
+
+      const adaptiveChunkSize = Math.min(
+        MAX_CHUNK_SIZE,
+        Math.max(1, Math.floor(timeRemaining / (this.averageProcessTime || 1))),
+      );
+
+      const chunk = this.queue.dequeueChunk(adaptiveChunkSize);
 
       for (const item of chunk) {
-        if (performance.now() - this.frameStartTime > FRAME_BUDGET_MS) {
-          // If we're exceeding frame budget, push remaining callbacks back to queue
+        if (this.shouldStop) {
           this.queue.pushFront(chunk.slice(chunk.indexOf(item)));
-          break;
+          this.isProcessing = false;
+          return;
         }
 
+        const taskStart = performance.now();
         try {
           await item.callback();
         } catch (error) {
           console.error("Error processing callback:", error);
+        } finally {
+          this.queue.markProcessed(item);
+          const taskTime = performance.now() - taskStart;
+          this.averageProcessTime =
+            this.averageProcessTime * (1 - this.FRAME_HISTORY_WEIGHT) +
+            taskTime * this.FRAME_HISTORY_WEIGHT;
+        }
+
+        if (performance.now() - startTime > FRAME_BUDGET_MS) {
+          this.queue.pushFront(chunk.slice(chunk.indexOf(item) + 1));
+          this.isProcessing = false;
+          this.dynamicChunkSize = Math.max(
+            1,
+            Math.floor(adaptiveChunkSize * 0.8),
+          );
+          this.scheduleProcessing();
+          return;
         }
       }
-
-      const processingTime = performance.now() - this.frameStartTime;
-      this.adjustChunkSize(processingTime);
     }
 
-    this.startResetTimer();
-  }
+    this.dynamicChunkSize = Math.min(
+      MAX_CHUNK_SIZE,
+      Math.floor(
+        this.dynamicChunkSize * (timeUsed < FRAME_BUDGET_MS ? 1.2 : 0.9),
+      ),
+    );
 
-  private adjustChunkSize(processingTime: number): void {
-    if (processingTime > FRAME_BUDGET_MS * (1 + TOLERANCE)) {
-      this.chunkSize = Math.max(
-        MIN_CHUNK_SIZE,
-        Math.floor(this.chunkSize * (FRAME_BUDGET_MS / processingTime)),
-      );
-    } else if (
-      processingTime < FRAME_BUDGET_MS * (1 - TOLERANCE) &&
-      this.queue.length > 0
-    ) {
-      this.chunkSize = Math.min(
-        MAX_CHUNK_SIZE,
-        this.chunkSize + CHUNK_SIZE_ADJUSTMENT,
-      );
+    this.isProcessing = false;
+    if (!this.shouldStop) {
+      this.startResetTimer();
     }
   }
 
   private startResetTimer(): void {
     this.cancelResetTimer();
     this.resetTimer = window.setTimeout(() => {
-      if (this.chunkSize < MAX_CHUNK_SIZE) {
-        // console.log(
-        //   `Resetting chunk size to ${MAX_CHUNK_SIZE} due to inactivity`,
-        // );
-        this.chunkSize = MAX_CHUNK_SIZE;
+      if (this.dynamicChunkSize < MAX_CHUNK_SIZE) {
+        this.dynamicChunkSize = MAX_CHUNK_SIZE;
       }
     }, RESET_TIMEOUT);
   }
@@ -116,57 +181,13 @@ export class CallbackQueue {
   }
 
   public clear(): void {
+    this.shouldStop = true;
+    if (this.scheduledFrame !== null) {
+      cancelAnimationFrame(this.scheduledFrame);
+      this.scheduledFrame = null;
+    }
     this.queue.clear();
     this.cancelResetTimer();
-  }
-}
-
-class UniqueQueue {
-  private queue: QueueItem[] = [];
-  private set = new Set<string>();
-
-  enqueue(item: QueueItem): boolean {
-    if (!this.set.has(item.id)) {
-      this.queue.push(item);
-      this.set.add(item.id);
-      return true;
-    }
-    return false;
-  }
-
-  dequeue(): QueueItem | undefined {
-    const item = this.queue.shift();
-    if (item) {
-      this.set.delete(item.id);
-    }
-    return item;
-  }
-
-  dequeueChunk(size: number): QueueItem[] {
-    const chunk: QueueItem[] = [];
-    for (let i = 0; i < size && this.queue.length > 0; i++) {
-      const item = this.dequeue();
-      if (item) chunk.push(item);
-    }
-    return chunk;
-  }
-
-  pushFront(items: QueueItem[]): void {
-    items.forEach((item) => this.set.delete(item.id));
-    this.queue.unshift(...items);
-    items.forEach((item) => this.set.add(item.id));
-  }
-
-  clear(): void {
-    this.queue = [];
-    this.set.clear();
-  }
-
-  get isEmpty(): boolean {
-    return this.queue.length === 0;
-  }
-
-  get length(): number {
-    return this.queue.length;
+    this.isProcessing = false;
   }
 }

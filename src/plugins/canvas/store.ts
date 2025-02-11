@@ -130,7 +130,7 @@ const initializeAutonomousMode = () => {
     (codeBlocksChunks, prevCodeBlocksChunks) => {
       if (!codeBlocksChunks || !prevCodeBlocksChunks) return;
 
-      const getTotalBlocks = (chunks: CodeBlock[][]) =>
+      const getTotalBlocks = (chunks: (CodeBlock | null)[][]) =>
         chunks.reduce((acc, blocks) => acc + blocks.length, 0);
 
       if (
@@ -157,6 +157,7 @@ const initializeAutonomousMode = () => {
           codeBlocksChunks.forEach((chunks, chunkIndex) => {
             chunks.forEach((codeBlock, codeBlockIndex) => {
               if (
+                codeBlock == null ||
                 !codeBlock.content.language ||
                 !isAutonomousCanvasLanguageString(codeBlock.content.language)
               )

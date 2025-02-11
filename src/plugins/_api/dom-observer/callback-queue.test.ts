@@ -20,14 +20,13 @@ describe("CallbackQueue", () => {
 
   const createBrowserMocks = () => ({
     requestAnimationFrame: vi.fn((callback) => {
-      callback(Date.now());
-      return 1;
+      return setTimeout(() => callback(Date.now()), 0);
     }),
-    setTimeout: vi.fn((callback) => {
-      Promise.resolve().then(callback);
-      return 1;
+    cancelAnimationFrame: vi.fn((timerId) => {
+      clearTimeout(timerId);
     }),
-    clearTimeout: vi.fn(),
+    setTimeout,
+    clearTimeout,
     performance: { now: vi.fn(() => Date.now()) },
   });
 
@@ -41,6 +40,7 @@ describe("CallbackQueue", () => {
     const browserMocks = createBrowserMocks();
     vi.stubGlobal("window", browserMocks);
     vi.stubGlobal("requestAnimationFrame", browserMocks.requestAnimationFrame);
+    vi.stubGlobal("cancelAnimationFrame", browserMocks.cancelAnimationFrame);
     vi.stubGlobal("setTimeout", browserMocks.setTimeout);
     vi.stubGlobal("clearTimeout", browserMocks.clearTimeout);
     vi.stubGlobal("performance", browserMocks.performance);
@@ -100,17 +100,6 @@ describe("CallbackQueue", () => {
     expect(executionResults).toEqual([1]);
   });
 
-  it("should prevent duplicate callbacks with same id", async () => {
-    const mockCallback = vi.fn();
-
-    queue.enqueue(mockCallback, "duplicate-id" as CallbackQueueTaskId);
-    queue.enqueue(mockCallback, "duplicate-id" as CallbackQueueTaskId);
-
-    await flushPendingOperations();
-
-    expect(mockCallback).toHaveBeenCalledTimes(1);
-  });
-
   it("should handle errors in callbacks without breaking the queue", async () => {
     const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
     const successCallback = vi.fn();
@@ -134,47 +123,50 @@ describe("CallbackQueue", () => {
     expect(successCallback).toHaveBeenCalled();
   });
 
-  it("should clear the queue", async () => {
+  it("should prevent duplicate callbacks with same id", async () => {
     const mockCallback = vi.fn();
+    const duplicateId = "duplicate-task" as CallbackQueueTaskId;
 
-    queue.enqueue(mockCallback, "to-be-cleared" as CallbackQueueTaskId);
-    queue.clear();
+    // Simultaneous duplicate enqueues
+    queue.enqueue(mockCallback, duplicateId);
+    queue.enqueue(mockCallback, duplicateId);
+    queue.enqueue(mockCallback, duplicateId);
 
     await flushPendingOperations();
 
-    expect(mockCallback).not.toHaveBeenCalled();
+    // Should only execute once despite multiple enqueues
+    expect(mockCallback).toHaveBeenCalledTimes(1);
   });
 
-  it("should adjust chunk size based on processing time", async () => {
-    const simulateSlowOperation = vi.fn(() => {
-      vi.advanceTimersByTime(FRAME_BUDGET_MS + 4);
-    });
+  it("should clear the queue", async () => {
+    const mockCallback = vi.fn();
+    const mockCallback2 = vi.fn();
 
-    const slowCallbacks: CallbackWithId[] = Array(10)
-      .fill(null)
-      .map((_, index) => ({
-        callback: simulateSlowOperation as unknown as Callback,
-        id: `slow-operation-${index}` as CallbackQueueTaskId,
-      }));
+    // Use fake timers to control queue processing
+    vi.useFakeTimers();
 
-    queue.enqueueArray(slowCallbacks);
+    queue.enqueueArray([
+      { callback: mockCallback, id: "task1" as CallbackQueueTaskId },
+      { callback: mockCallback2, id: "task2" as CallbackQueueTaskId },
+    ]);
 
-    const processAnimationFrames = async (frameCount: number) => {
-      for (let i = 0; i < frameCount; i++) {
-        vi.runAllTimers();
-        const rafMock = vi.mocked(window.requestAnimationFrame);
-        const rafCallback = rafMock.mock.calls[0]?.[0];
-        if (rafCallback) {
-          rafCallback(performance.now());
-        }
-        await Promise.resolve();
-        vi.runAllTimers();
-        await Promise.resolve();
-      }
-    };
+    // Immediately clear before any processing occurs
+    queue.clear();
 
-    await processAnimationFrames(20);
-    expect(simulateSlowOperation).toHaveBeenCalledTimes(10);
+    // Advance all timers and promises
+    await vi.runAllTimersAsync();
+    await Promise.resolve();
+
+    expect(mockCallback).not.toHaveBeenCalled();
+    expect(mockCallback2).not.toHaveBeenCalled();
+
+    // Verify queue remains functional
+    const postClearCallback = vi.fn();
+    queue.enqueue(postClearCallback, "post-clear" as CallbackQueueTaskId);
+    await flushPendingOperations();
+    expect(postClearCallback).toHaveBeenCalledTimes(1);
+
+    vi.useRealTimers();
   });
 
   it("should process callbacks in insertion order", async () => {
@@ -200,13 +192,14 @@ describe("CallbackQueue", () => {
     const executionResults: number[] = [];
     const createDelayedOperation =
       (value: number, delay: number): Callback =>
-      () =>
-        new Promise<void>((resolve) => {
+      async () => {
+        await new Promise<void>((resolve) => {
           setTimeout(() => {
             executionResults.push(value);
             resolve();
           }, delay);
         });
+      };
 
     queue.enqueue(
       createDelayedOperation(1, 10),
@@ -217,40 +210,44 @@ describe("CallbackQueue", () => {
       "delayed-operation-2" as CallbackQueueTaskId,
     );
 
-    await flushPendingOperations(5);
-    vi.advanceTimersByTime(15);
+    await flushPendingOperations(10);
+    vi.advanceTimersByTime(20);
     await Promise.resolve();
 
     expect(executionResults).toEqual([1, 2]);
   });
 
-  it("should dynamically adjust processing chunk size", async () => {
-    const createTimedOperations = (count: number, duration: number) =>
-      Array(count)
-        .fill(null)
-        .map((_, index) => ({
-          id: `timed-operation-${index}` as CallbackQueueTaskId,
-          callback: vi.fn(() => {
-            vi.advanceTimersByTime(duration);
-          }) as unknown as Callback,
-        }));
+  it("should respect frame budget when processing callbacks", async () => {
+    const executionTimes: number[] = [];
+    let currentTime = 0;
 
-    const timedOperations = createTimedOperations(10, FRAME_BUDGET_MS + 5);
-    queue.enqueueArray(timedOperations);
+    vi.mocked(performance.now).mockImplementation(() => currentTime);
 
-    const processFrameCycle = async (cycles: number) => {
-      for (let i = 0; i < cycles; i++) {
-        vi.runAllTimers();
-        vi
-          .mocked(window.requestAnimationFrame)
-          .mock.calls[0]?.[0](performance.now());
-        await Promise.resolve();
-      }
+    const createTimedOperation = (duration: number): Callback => {
+      return () => {
+        currentTime += duration;
+        executionTimes.push(duration);
+      };
     };
 
-    await processFrameCycle(20);
-    timedOperations.forEach(({ callback }) => {
-      expect(vi.mocked(callback)).toHaveBeenCalled();
-    });
+    const operations = [
+      { duration: 5, id: "fast-1" },
+      { duration: 5, id: "fast-2" },
+      { duration: FRAME_BUDGET_MS + 1, id: "slow-1" },
+      { duration: 5, id: "fast-3" },
+      { duration: 5, id: "fast-4" },
+    ].map(({ duration, id }) => ({
+      callback: createTimedOperation(duration) as Callback,
+      id: id as CallbackQueueTaskId,
+    }));
+
+    queue.enqueueArray(operations);
+
+    await flushPendingOperations(10);
+
+    expect(executionTimes.length).toBe(5);
+    expect(
+      vi.mocked(window.requestAnimationFrame).mock.calls.length,
+    ).toBeGreaterThan(1);
   });
 });

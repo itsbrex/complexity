@@ -5,7 +5,7 @@ import { createWithEqualityFn } from "zustand/traditional";
 import { CodeBlock } from "@/plugins/_core/dom-observers/thread/code-blocks/types";
 
 type ThreadCodeBlocksDomObserverStoreType = {
-  codeBlocksChunks: CodeBlock[][] | null;
+  codeBlocksChunks: (CodeBlock | null)[][] | null;
   resetStore: () => void;
 };
 

@@ -3,6 +3,7 @@ import { onMessage } from "webext-bridge/window";
 import { LanguageModelCode } from "@/data/plugins/query-box/language-model-selector/language-models.types";
 import { INTERNAL_ATTRIBUTES, DOM_SELECTORS } from "@/utils/dom-selectors";
 import { errorWrapper } from "@/utils/error-wrapper";
+import { PplxWebResult } from "@/utils/thread-export";
 import { getCookie, getReactFiberKey } from "@/utils/utils";
 
 export type ReactVdomEvents = {
@@ -12,7 +13,10 @@ export type ReactVdomEvents = {
   "reactVdom:getMessageDisplayModelCode": (params: {
     index: number;
   }) => string | null;
-  "reactVdom:getMessageContent": (params: { index: number }) => string | null;
+  "reactVdom:getMessageContent": (params: { index: number }) => {
+    answer: string;
+    webResults: PplxWebResult[] | undefined;
+  } | null;
   "reactVdom:getCodeBlockContent": (params: {
     messageBlockIndex: number;
     codeBlockIndex: number;
@@ -94,21 +98,23 @@ export function setupReactVdomListeners() {
 
     if (!$el.length) return null;
 
-    const [answer, error] = errorWrapper(() =>
+    const [result, error] = errorWrapper(() =>
       findReactFiberNodeValue({
         fiberNode: ($el[0] as any)[getReactFiberKey($el[0])],
         condition: (node) =>
-          node.memoizedProps.children[3].props.response.answer != null,
-        select: (node) =>
-          node.memoizedProps.children[3].props.response.answer as string,
+          node.memoizedProps.children[3].props.response != null,
+        select: (node) => ({
+          answer: node.memoizedProps.children[3].props.response
+            .answer as string,
+          webResults: node.memoizedProps.children[3].props.response
+            ?.web_results as PplxWebResult[] | undefined,
+        }),
       }),
     )();
 
     if (error) console.warn("[VDOM Plugin] getMessageContent", error);
 
-    if (error || answer == null) return null;
-
-    return answer;
+    return result;
   });
 
   onMessage(

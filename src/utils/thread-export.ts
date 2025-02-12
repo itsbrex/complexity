@@ -4,10 +4,10 @@ import { jsonUtils } from "@/utils/utils";
 
 type ThreadAnswer = {
   answer: string;
-  web_results: WebResult[];
+  web_results: PplxWebResult[];
 };
 
-type WebResult = {
+export type PplxWebResult = {
   name: string;
   url: string;
   snippet: string;
@@ -33,10 +33,10 @@ export class ThreadExport {
 
   private static extractWebResults(
     message: ThreadMessageApiResponse,
-  ): WebResult[] {
+  ): PplxWebResult[] {
     const text = jsonUtils.safeParse(message.text);
 
-    const webResults = text.web_results as WebResult[] | undefined;
+    const webResults = text.web_results as PplxWebResult[] | undefined;
 
     if (webResults != null) {
       return webResults;
@@ -54,7 +54,7 @@ export class ThreadExport {
     );
   }
 
-  private static formatWebResults(webResults: WebResult[]) {
+  static formatWebResults(webResults: PplxWebResult[]) {
     return webResults
       .map(
         (webResult, index) =>
@@ -86,7 +86,7 @@ export class ThreadExport {
       .join("  \n");
   }
 
-  private static trimReferences(answer: string, webResults: WebResult[]) {
+  private static trimReferences(answer: string, webResults: PplxWebResult[]) {
     webResults.forEach((_, index) => {
       const findText = `\\[${index + 1}\\]`;
       answer = answer.replace(new RegExp(findText, "g"), "");

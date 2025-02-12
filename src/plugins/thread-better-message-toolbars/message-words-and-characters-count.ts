@@ -62,19 +62,19 @@ csLoaderRegistry.register({
               return;
             }
 
-            const answer = await sendMessage(
+            const content = await sendMessage(
               "reactVdom:getMessageContent",
               { index },
               "window",
             );
 
-            if (answer == null) {
+            if (content == null) {
               return;
             }
 
-            const answerWordsCount = answer.split(" ").length;
-            const answerCharactersCount = answer.length;
-            const answerTokensCount = Math.ceil(answer.length / 4);
+            const answerWordsCount = content.answer.split(" ").length;
+            const answerCharactersCount = content.answer.length;
+            const answerTokensCount = Math.ceil(content.answer.length / 4);
 
             const answerWordsAndCharactersCountContainer =
               createAnswerHeadingContainer(

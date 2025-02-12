@@ -32,8 +32,7 @@ export const DOM_SELECTORS = {
       VISUAL_COL: ".col-span-4",
       TEXT_COL_CHILD: {
         /** The query box */
-        QUERY_WRAPPER:
-          "div.mt-md.md\\:mt-lg.mb-3.md\\:mb-6:has(> .group\\/title)",
+        QUERY_WRAPPER: `div.mt-md.md\\:mt-lg.mb-3.md\\:mb-6:has(> .group\\/title), div.mt-md.md\\:mt-lg.mb-3.md\\:mb-6:has(div[style*="height"])`,
         QUERY: ".group\\/query",
         QUERY_HOVER_CONTAINER: ".pointer-events-none.absolute.bottom-0.right-0",
         QUERY_HOVER_CONTAINER_CHILD: {
@@ -46,7 +45,7 @@ export const DOM_SELECTORS = {
         /** The sources heading */
         SOURCES: ".mb-lg.border-borderMain\\/50.ring-borderMain\\/50",
         /** The answer wrapper */
-        ANSWER: ".relative.default.font-sans.text-base",
+        ANSWER: ".mb-md > .relative.default.font-sans.text-base",
         /** The bottom toolbar of the message (share, rewrite, model name, etc.) */
         BOTTOM_BAR: ".mt-sm.flex.items-center.justify-between",
         BOTTOM_BAR_CHILD: {

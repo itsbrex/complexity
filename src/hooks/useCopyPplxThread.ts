@@ -2,9 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { sendMessage } from "webext-bridge/content-script";
 
 import { toast } from "@/components/ui/use-toast";
+import { threadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
 import { ThreadMessageApiResponse } from "@/services/pplx-api/pplx-api.types";
 import { pplxApiQueries } from "@/services/pplx-api/query-keys";
-import { INTERNAL_ATTRIBUTES, DOM_SELECTORS } from "@/utils/dom-selectors";
+import { DOM_SELECTORS } from "@/utils/dom-selectors";
 import { errorWrapper } from "@/utils/error-wrapper";
 import { ThreadExport } from "@/utils/thread-export";
 import { parseUrl } from "@/utils/utils";
@@ -91,7 +92,7 @@ async function copyMessageWithCitations({
 }: {
   messageBlockIndex: number;
 }) {
-  const message = await sendMessage(
+  const content = await sendMessage(
     "reactVdom:getMessageContent",
     {
       index: messageBlockIndex,
@@ -99,14 +100,32 @@ async function copyMessageWithCitations({
     "window",
   );
 
-  if (message == null) {
-    $(
-      `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR}"] ${DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR_CHILD.COPY_BUTTON}`,
-    ).trigger("click");
+  if (content == null) {
+    const $bottomBar =
+      threadMessageBlocksDomObserverStore.getState().messageBlocks?.[
+        messageBlockIndex
+      ]?.nodes.$bottomBar;
+
+    if (!$bottomBar || !$bottomBar.length) return;
+
+    const $copyButton = $bottomBar.find(
+      DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.BOTTOM_BAR_CHILD.COPY_BUTTON,
+    );
+
+    if (!$copyButton.length) return;
+
+    $copyButton.trigger("click");
+
     return;
   }
 
-  navigator.clipboard.writeText(message);
+  if (content.webResults && content.webResults.length) {
+    navigator.clipboard.writeText(
+      `${content.answer}\n\nCitations:\n${ThreadExport.formatWebResults(content.webResults)}`,
+    );
+  } else {
+    navigator.clipboard.writeText(content.answer);
+  }
 }
 
 async function copyMessageWithoutCitations({

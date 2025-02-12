@@ -53,7 +53,6 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
       sticky: true,
       editQueryButton: false,
       explicitModelName: true,
-      hideUnnecessaryButtons: true,
       wordsAndCharactersCount: true,
       tokensCount: false,
       collapsibleQuery: false,

@@ -26,7 +26,7 @@ export async function findMessageBlocks(): Promise<MessageBlock[] | null> {
       const {
         $query,
         $queryHoverContainer,
-        $sourcesHeading,
+        $sources,
         $answerHeading,
         $answer,
         $bottomBar,
@@ -60,7 +60,7 @@ export async function findMessageBlocks(): Promise<MessageBlock[] | null> {
       const nodes: MessageBlock["nodes"] = {
         $wrapper,
         $query,
-        $sourcesHeading,
+        $sources,
         $answerHeading,
         $answer,
         $queryHoverContainer,
@@ -86,9 +86,9 @@ export async function findMessageBlocks(): Promise<MessageBlock[] | null> {
 function parseMessageBlock($messageBlock: JQuery<Element>) {
   const selectors = DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD;
 
-  const $query = $messageBlock.find(selectors.QUERY);
+  const $query = $messageBlock.find(selectors.QUERY_WRAPPER);
   const $queryHoverContainer = $query.find(selectors.QUERY_HOVER_CONTAINER);
-  const $sourcesHeading = $messageBlock.find(selectors.SOURCES_HEADING);
+  const $sources = $messageBlock.find(selectors.SOURCES);
   const $answerHeading = $messageBlock.find(selectors.ANSWER_HEADING);
   const $answer = $messageBlock.find(selectors.ANSWER);
   const $bottomBar = $messageBlock.find(selectors.BOTTOM_BAR);
@@ -105,7 +105,7 @@ function parseMessageBlock($messageBlock: JQuery<Element>) {
     $messageBlock,
     $query,
     $queryHoverContainer,
-    $sourcesHeading,
+    $sources,
     $answerHeading,
     $answer,
     $bottomBar,
@@ -156,7 +156,7 @@ function getMessageBlockContent({
   const { $query } = messageBlockNodes;
 
   const title = $query
-    .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
+    .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY)
     .text();
 
   return {

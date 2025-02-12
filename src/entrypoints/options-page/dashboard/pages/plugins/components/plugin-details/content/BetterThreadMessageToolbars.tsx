@@ -61,22 +61,6 @@ export default function BetterThreadMessageToolbarsPluginDetails() {
             className="x-items-start"
             textLabel={
               <div>
-                <div>Hide Unnecessary Buttons</div>
-                <div className="x-text-sm x-text-muted-foreground">
-                  Hide Share, Thumbs Up/Down buttons
-                </div>
-              </div>
-            }
-            checked={
-              settings?.plugins["thread:betterMessageToolbars"]
-                .hideUnnecessaryButtons
-            }
-            onCheckedChange={handleCheckedChange("hideUnnecessaryButtons")}
-          />
-          <Switch
-            className="x-items-start"
-            textLabel={
-              <div>
                 <div>Explicit Model Name</div>
                 <div className="x-text-sm x-text-muted-foreground">
                   Show the model name without hovering

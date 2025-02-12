@@ -6,10 +6,6 @@ export class UiUtils {
     return $("html").attr("data-color-scheme") === "dark";
   }
 
-  static getThreadWrapper() {
-    return $(DOM_SELECTORS.THREAD.WRAPPER);
-  }
-
   static getMessagesContainer() {
     let $messagesContainer = $(DOM_SELECTORS.THREAD.CONTAINER.NORMAL);
 
@@ -18,29 +14,6 @@ export class UiUtils {
     }
 
     return $messagesContainer;
-  }
-
-  static parseMessageBlock($messageBlock: JQuery<Element>) {
-    const $query = $messageBlock.find(
-      DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY,
-    );
-    const $sourcesHeading = $messageBlock.find(
-      DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.SOURCES_HEADING,
-    );
-    const $answerHeading = $messageBlock.find(
-      DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER_HEADING,
-    );
-    const $answer = $messageBlock.find(
-      DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.ANSWER,
-    );
-
-    return {
-      $messageBlock,
-      $query,
-      $sourcesHeading,
-      $answerHeading,
-      $answer,
-    };
   }
 
   static getActiveQueryBoxTextarea({
@@ -78,10 +51,6 @@ export class UiUtils {
     return UiUtils.getActiveQueryBoxTextarea({
       type,
     }).parents(DOM_SELECTORS.QUERY_BOX.WRAPPER);
-  }
-
-  static getProSearchToggle() {
-    return $(DOM_SELECTORS.QUERY_BOX.PRO_SEARCH_TOGGLE);
   }
 
   static getStickyNavbar() {

@@ -32,8 +32,9 @@ export const DOM_SELECTORS = {
       VISUAL_COL: ".col-span-4",
       TEXT_COL_CHILD: {
         /** The query box */
-        QUERY: ".my-md.md\\:my-lg",
-        QUERY_TITLE: ".group\\/query",
+        QUERY_WRAPPER:
+          "div.mt-md.md\\:mt-lg.mb-3.md\\:mb-6:has(> .group\\/title)",
+        QUERY: ".group\\/query",
         QUERY_HOVER_CONTAINER: ".pointer-events-none.absolute.bottom-0.right-0",
         QUERY_HOVER_CONTAINER_CHILD: {
           EDIT_QUERY_BUTTON: "button:has(svg[data-icon='pen-to-square'])",
@@ -43,8 +44,7 @@ export const DOM_SELECTORS = {
         ANSWER_HEADING:
           ".mb-sm.flex.w-full.items-center.justify-between:has(svg.transform-gpu)",
         /** The sources heading */
-        SOURCES_HEADING:
-          '.mb-sm.flex.w-full.items-center.justify-between:has(svg[data-icon="sources"])',
+        SOURCES: ".mb-lg.border-borderMain\\/50.ring-borderMain\\/50",
         /** The answer wrapper */
         ANSWER: ".relative.default.font-sans.text-base",
         /** The bottom toolbar of the message (share, rewrite, model name, etc.) */

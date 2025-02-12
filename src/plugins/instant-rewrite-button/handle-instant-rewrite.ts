@@ -29,11 +29,9 @@ export async function handleInstantRewrite({
     `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY}"]`,
   )
     .next()
-    .find("> div[data-test-id]:first-child");
+    .find("> div > div[data-test-id]:first-child");
 
-  const isProSearchEnabled =
-    $proSearchPanel.length > 0 &&
-    $proSearchPanel.find(`svg[data-icon="copilot"]`).length > 0;
+  const isProSearchEnabled = $proSearchPanel.length > 0;
 
   networkInterceptMiddlewareManager.addMiddleware({
     id: "instant-rewrite-model-change",

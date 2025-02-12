@@ -53,7 +53,6 @@ export default function ProSearchSwitch({
     >
       <Switch
         checked={isProSearchEnabled}
-        size="sm"
         textLabel="Pro Search"
         onCheckedChange={({ checked }) => {
           setIsProSearchEnabled(checked);

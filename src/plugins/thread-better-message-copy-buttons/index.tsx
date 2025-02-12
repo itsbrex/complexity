@@ -6,14 +6,14 @@ export default function BetterMessageCopyButton({
 }: {
   messageBlockIndex: number;
 }) {
-  const $sourcesHeading = useThreadMessageBlocksDomObserverStore(
-    (store) => store.messageBlocks?.[messageBlockIndex]?.nodes?.$sourcesHeading,
+  const $sources = useThreadMessageBlocksDomObserverStore(
+    (store) => store.messageBlocks?.[messageBlockIndex]?.nodes?.$sources,
     deepEqual,
   );
 
-  if (!$sourcesHeading) return null;
+  if (!$sources) return null;
 
-  const hasSources = $sourcesHeading.length > 0;
+  const hasSources = $sources.length > 0;
 
   return (
     <CopyButton messageBlockIndex={messageBlockIndex} hasSources={hasSources} />

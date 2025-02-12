@@ -3,7 +3,7 @@ export type MessageBlock = {
     $wrapper: JQuery<HTMLElement>;
     $query: JQuery<HTMLElement>;
     $queryHoverContainer: JQuery<HTMLElement>;
-    $sourcesHeading: JQuery<HTMLElement>;
+    $sources: JQuery<HTMLElement>;
     $answerHeading: JQuery<HTMLElement>;
     $answer: JQuery<HTMLElement>;
     $bottomBar: JQuery<HTMLElement>;

@@ -14,7 +14,7 @@ export default function QueryWordsAndCharactersCount({
   if ($query == null || !$query.length) return null;
 
   const query = $query
-    .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY_TITLE)
+    .find(DOM_SELECTORS.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY)
     .text();
 
   const queryWordsCount = query.split(" ").length;

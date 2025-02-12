@@ -35,7 +35,6 @@ export const PluginsSchema = z.object({
     sticky: z.boolean(),
     editQueryButton: z.boolean(),
     explicitModelName: z.boolean(),
-    hideUnnecessaryButtons: z.boolean(),
     wordsAndCharactersCount: z.boolean(),
     tokensCount: z.boolean(),
     collapsibleQuery: z.boolean(),

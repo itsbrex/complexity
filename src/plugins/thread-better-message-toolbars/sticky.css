@@ -5,9 +5,9 @@
     padding-bottom: 10rem;
   }
 
-  [data-cplx-component="message-block-query"]
-    + div
-    > div.border-borderMain\/50:last-of-type {
+  [data-cplx-component="message-block-text-col"]
+    > div:not([class])
+    > div.bg-transparent:not(.mb-lg) {
     isolation: isolate;
     display: flex;
     flex-direction: column;

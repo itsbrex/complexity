@@ -26,6 +26,31 @@ export function findNavbar() {
   });
 }
 
+export function findBookmarkButton() {
+  const $navbar = threadDomObserverStore.getState().$navbar;
+
+  if (!$navbar || !$navbar.length) return;
+
+  const $bookmarkButton = $navbar.find(
+    DOM_SELECTORS.SICKY_NAVBAR_CHILD.BOOKMARK_BUTTON,
+  );
+
+  if (
+    !$bookmarkButton.length ||
+    $bookmarkButton.internalComponentAttr() ===
+      INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.BOOKMARK_BUTTON
+  )
+    return;
+
+  $bookmarkButton.internalComponentAttr(
+    INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.BOOKMARK_BUTTON,
+  );
+
+  threadDomObserverStore.setState({
+    $bookmarkButton,
+  });
+}
+
 export function findWrapper() {
   const $wrapper = $(DOM_SELECTORS.THREAD.WRAPPER);
 

@@ -4,6 +4,7 @@ import { createWithEqualityFn } from "zustand/traditional";
 
 type ThreadDomObserverStoreType = {
   $navbar: JQuery<HTMLElement> | null;
+  $bookmarkButton: JQuery<HTMLElement> | null;
   $wrapper: JQuery<HTMLElement> | null;
   $popper: JQuery<HTMLElement> | null;
   resetStore: () => void;
@@ -15,11 +16,13 @@ export const threadDomObserverStore =
       immer(
         (set): ThreadDomObserverStoreType => ({
           $navbar: null,
+          $bookmarkButton: null,
           $wrapper: null,
           $popper: null,
           resetStore: () => {
             set({
               $navbar: null,
+              $bookmarkButton: null,
               $wrapper: null,
               $popper: null,
             });

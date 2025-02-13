@@ -12,12 +12,21 @@ import { toast } from "@/components/ui/use-toast";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { useCopyPplxThread } from "@/hooks/useCopyPplxThread";
 import useToggleButtonText from "@/hooks/useToggleButtonText";
+import { useThreadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
 import { ExportOption } from "@/plugins/export-thread/export-options";
 import { ExportActions } from "@/plugins/export-thread/ExportActions";
 import { ExportFormatSelect } from "@/plugins/export-thread/ExportFormatSelect";
 import { parseUrl } from "@/utils/utils";
 
 const ExportButton = memo(function ExportButton() {
+  const messageBlocks = useThreadMessageBlocksDomObserverStore(
+    (state) => state.messageBlocks,
+    deepEqual,
+  );
+  const isAnyMessageBlockInFlight = useMemo(() => {
+    return messageBlocks?.some((block) => block.states.isInFlight);
+  }, [messageBlocks]);
+
   const { isMobile } = useIsMobileStore();
   const { copyThread, isFetching, getContent } = useCopyPplxThread();
   const [open, setOpen] = useState(false);
@@ -91,6 +100,7 @@ const ExportButton = memo(function ExportButton() {
     >
       <PopoverTrigger asChild>
         <Button
+          disabled={isAnyMessageBlockInFlight}
           variant={isMobile ? "default" : "primary"}
           size="sm"
           className="x-box-content x-h-8 x-px-2"

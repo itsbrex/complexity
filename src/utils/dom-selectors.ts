@@ -114,6 +114,7 @@ export const DOM_SELECTORS = {
     THREAD_TITLE:
       ".min-w-0 .cursor-pointer.transition.duration-300.hover\\:opacity-70",
     THREAD_TITLE_INPUT: 'input[placeholder="Untitled"]',
+    BOOKMARK_BUTTON: 'button[aria-label="Save to Bookmarks"]',
   },
 } as const;
 
@@ -140,6 +141,7 @@ export const INTERNAL_ATTRIBUTES = {
     NAVBAR: "thread-navbar",
     NAVBAR_CHILD: {
       EXPORT_THREAD_BUTTON: "thread-export-button",
+      BOOKMARK_BUTTON: "thread-bookmark-button",
     },
     WRAPPER: "thread-wrapper",
     POPPER: {

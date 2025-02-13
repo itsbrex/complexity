@@ -1,59 +1,29 @@
-import { useSpaRouter } from "@/plugins/_api/spa-router/listeners";
-import { useThreadMessageBlocksDomObserverStore } from "@/plugins/_core/dom-observers/thread/message-blocks/store";
 import { useThreadDomObserverStore } from "@/plugins/_core/dom-observers/thread/store";
 import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 
 export default function useObserver() {
-  useSpaRouter();
-
-  const messageBlocks = useThreadMessageBlocksDomObserverStore(
-    (state) => state.messageBlocks,
+  const $bookmarkButton = useThreadDomObserverStore(
+    (state) => state.$bookmarkButton,
     deepEqual,
   );
 
-  const $navbar = useThreadDomObserverStore(
-    (state) => state.$navbar,
-    deepEqual,
-  );
+  return useMemo(() => {
+    if ($bookmarkButton == null || !$bookmarkButton.length) return null;
 
-  const $bookmarkButton = useMemo(() => {
-    return $navbar?.find(`button[aria-label="Save to Bookmarks"]`) ?? null;
-  }, [$navbar]);
+    const $wrapper = $bookmarkButton.parent();
 
-  const isAnyMessageBlockInFlight = useMemo(() => {
-    return messageBlocks?.some((block) => block.states.isInFlight);
-  }, [messageBlocks]);
+    const $existingPortalContainer = $wrapper.find(
+      `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.EXPORT_THREAD_BUTTON}"]`,
+    );
 
-  if (isAnyMessageBlockInFlight) {
-    setTimeout(() => {
-      $(
-        `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.EXPORT_THREAD_BUTTON}"]`,
-      ).remove();
-    }, 0);
-    return null;
-  }
+    if ($existingPortalContainer.length) return $existingPortalContainer[0];
 
-  return createPortalContainer($navbar, $bookmarkButton);
-}
+    const $portalContainer = $("<div>").internalComponentAttr(
+      INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.EXPORT_THREAD_BUTTON,
+    );
 
-function createPortalContainer(
-  $navbar: JQuery<HTMLElement> | null,
-  $bookmarkButton: JQuery<HTMLElement> | null,
-) {
-  if ($navbar == null || !$navbar.length) return null;
-  if ($bookmarkButton == null || !$bookmarkButton.length) return null;
+    $wrapper.prepend($portalContainer);
 
-  const $existingPortalContainer = $navbar?.find(
-    `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.EXPORT_THREAD_BUTTON}"]`,
-  );
-
-  if ($existingPortalContainer.length) return $existingPortalContainer[0];
-
-  const $portalContainer = $("<div>").internalComponentAttr(
-    INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.EXPORT_THREAD_BUTTON,
-  );
-
-  $bookmarkButton.parent().prepend($portalContainer);
-
-  return $portalContainer[0];
+    return $portalContainer[0];
+  }, [$bookmarkButton]);
 }

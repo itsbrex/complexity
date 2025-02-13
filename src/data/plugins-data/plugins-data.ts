@@ -101,6 +101,13 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     dependentDomObservers: ["coreDomObserver:thread:messageBlocks"],
     dependentCorePlugins: ["spaRouter", "reactVdom"],
   },
+  "thread:rawHeadings": {
+    id: "thread:rawHeadings",
+    routeSegment: "thread-raw-headings",
+    title: "Thread: Raw Headings",
+    description: "Prevent headings from being rendered as follow-up links",
+    tags: ["new", "ui", "ux"],
+  },
   "thread:betterMessageToolbars": {
     id: "thread:betterMessageToolbars",
     routeSegment: "thread-better-message-toolbars",
@@ -116,7 +123,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Instant Thread Message Rewrite Buttons",
     description:
       "Rewrite messages with the same model without opening the original Rewrite dropdown menu",
-    tags: ["new", "ui", "ux"],
+    tags: ["ui", "ux"],
     uiGroup: ["thread:messageBlocks:queryHoverContainer"],
     dependentDomObservers: ["coreDomObserver:thread:messageBlocks"],
     dependentCorePlugins: ["spaRouter", "reactVdom"],
@@ -136,7 +143,7 @@ export const PLUGINS_METADATA: CplxPluginMetadata = {
     title: "Canvas",
     description:
       "Visualize and interact with generated content side by side. Similar to claude.ai's artifacts. Very experimental",
-    tags: ["new", "experimental", "desktopOnly", "ui"],
+    tags: ["experimental", "desktopOnly", "ui"],
     dependentPlugins: ["thread:betterCodeBlocks"],
     dependentDomObservers: [
       "coreDomObserver:thread:messageBlocks",

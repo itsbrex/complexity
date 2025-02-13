@@ -31,6 +31,7 @@ export const PluginsSchema = z.object({
   spaceNavigator: PluginSettingsSchema,
   "sidebar:toggleableRecentThreads": PluginSettingsSchema,
   "thread:toc": PluginSettingsSchema,
+  "thread:rawHeadings": PluginSettingsSchema,
   "thread:betterMessageToolbars": PluginSettingsSchema.extend({
     sticky: z.boolean(),
     editQueryButton: z.boolean(),

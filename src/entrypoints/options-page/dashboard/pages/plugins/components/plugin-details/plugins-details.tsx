@@ -14,6 +14,7 @@ import ExportThreadPluginDetails from "@/entrypoints/options-page/dashboard/page
 import FullWidthFollowUpQueryBoxPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/FullWidthFollowUpQueryBox";
 import InstantThreadMessageRewriteButtonsPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/InstantThreadMessageRewriteButtons";
 import PromptHistoryPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/PromptHistory";
+import RawHeadingsPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/RawHeadings";
 import SidebarToggleableRecentThreadsPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/SidebarToggleableRecentThreads";
 import SlashCommandMenuPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/SlashCommandMenu";
 import SpaceNavigatorPluginDetails from "@/entrypoints/options-page/dashboard/pages/plugins/components/plugin-details/content/SpaceNavigator";
@@ -37,6 +38,7 @@ export const PLUGIN_DETAILS: PluginPluginDetails = {
   spaceNavigator: <SpaceNavigatorPluginDetails />,
   commandMenu: <CommandMenuPluginDetails />,
   "thread:betterMessageToolbars": <BetterThreadMessageToolbarsPluginDetails />,
+  "thread:rawHeadings": <RawHeadingsPluginDetails />,
   "thread:betterCodeBlocks": <BetterCodeBlocksPluginDetails />,
   "thread:toc": <ThreadToCPluginDetails />,
   "thread:canvas": <CanvasPluginDetails />,

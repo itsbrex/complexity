@@ -40,6 +40,7 @@ import "@/plugins/thread-better-message-toolbars/message-words-and-characters-co
 import "@/plugins/thread-better-message-toolbars/collapsible-query/populate-original-height";
 import "@/plugins/instant-rewrite-button/native-btn-bind";
 import "@/plugins/custom-thread-container-width";
+import "@/plugins/thread-raw-headings";
 
 // Home Plugins
 import "@/plugins/home-custom-slogan";

@@ -1,0 +1,15 @@
+[location="thread"] {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong {
+    cursor: text;
+    > button.hover\:duration-80 {
+      user-select: text;
+      pointer-events: none;
+      text-decoration: none;
+    }
+  }
+}

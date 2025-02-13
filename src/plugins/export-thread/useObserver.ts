@@ -11,10 +11,14 @@ export default function useObserver() {
     deepEqual,
   );
 
-  const navbarChildren = useThreadDomObserverStore(
-    (state) => state.$navbar?.find(">div").children().toArray() ?? null,
+  const $navbar = useThreadDomObserverStore(
+    (state) => state.$navbar,
     deepEqual,
   );
+
+  const $bookmarkButton = useMemo(() => {
+    return $navbar?.find(`button[aria-label="Save to Bookmarks"]`) ?? null;
+  }, [$navbar]);
 
   const isAnyMessageBlockInFlight = useMemo(() => {
     return messageBlocks?.some((block) => block.states.isInFlight);
@@ -29,18 +33,18 @@ export default function useObserver() {
     return null;
   }
 
-  return createPortalContainer(navbarChildren);
+  return createPortalContainer($navbar, $bookmarkButton);
 }
 
-function createPortalContainer(navbarChildren: HTMLElement[] | null) {
-  if (navbarChildren == null) return null;
+function createPortalContainer(
+  $navbar: JQuery<HTMLElement> | null,
+  $bookmarkButton: JQuery<HTMLElement> | null,
+) {
+  if ($navbar == null || !$navbar.length) return null;
+  if ($bookmarkButton == null || !$bookmarkButton.length) return null;
 
-  const $anchor = $(navbarChildren).last().children().first();
-
-  if (!$anchor.length) return null;
-
-  const $existingPortalContainer = $(navbarChildren).find(
-    `> [data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.EXPORT_THREAD_BUTTON}"]`,
+  const $existingPortalContainer = $navbar?.find(
+    `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.EXPORT_THREAD_BUTTON}"]`,
   );
 
   if ($existingPortalContainer.length) return $existingPortalContainer[0];
@@ -49,7 +53,7 @@ function createPortalContainer(navbarChildren: HTMLElement[] | null) {
     INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.EXPORT_THREAD_BUTTON,
   );
 
-  $anchor.before($portalContainer);
+  $bookmarkButton.parent().prepend($portalContainer);
 
   return $portalContainer[0];
 }

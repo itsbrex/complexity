@@ -48,6 +48,9 @@ export const DEFAULT_STORAGE: ExtensionLocalStorage = {
     "thread:toc": {
       enabled: false,
     },
+    "thread:rawHeadings": {
+      enabled: false,
+    },
     "thread:betterMessageToolbars": {
       enabled: false,
       sticky: true,

@@ -124,7 +124,12 @@ async function copyMessageWithCitations({
       `${content.answer}\n\nCitations:\n${ThreadExport.formatWebResults(content.webResults)}`,
     );
   } else {
-    navigator.clipboard.writeText(content.answer);
+    const cleanAnswer = content.answer.replace(
+      /\[(.*?)\]\(pplx:\/\/action\/followup\)/g,
+      "$1",
+    );
+
+    navigator.clipboard.writeText(cleanAnswer);
   }
 }
 

@@ -8,6 +8,7 @@ import CanvasSimpleModeRenderButton from "@/plugins/thread-better-code-blocks/va
 import { ExpandCollapseButton } from "@/plugins/thread-better-code-blocks/variants/base/header-buttons/ExpandCollapseButton";
 import { WrapToggleButton } from "@/plugins/thread-better-code-blocks/variants/base/header-buttons/WrapToggleButton";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
+import { PluginsStatesService } from "@/services/plugins-states";
 
 const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
   const {
@@ -28,18 +29,18 @@ const BaseCodeBlockWrapperHeader = memo(function BaseCodeBlockWrapperHeader() {
 
   const settings = ExtensionLocalStorageService.getCachedSync();
   const fineGrainedSettings = getBetterCodeBlockOptions(language);
-  const globalSettings =
-    ExtensionLocalStorageService.getCachedSync().plugins[
-      "thread:betterCodeBlocks"
-    ];
+  const globalSettings = settings.plugins["thread:betterCodeBlocks"];
 
   const placeholderText:
     | BetterCodeBlockFineGrainedOptions["placeholderText"]
     | undefined = fineGrainedSettings?.placeholderText;
 
-  const isSticky = fineGrainedSettings?.stickyHeader;
+  const isSticky =
+    fineGrainedSettings?.stickyHeader ?? globalSettings.stickyHeader;
   const isBottomBarSticky =
-    settings.plugins["thread:betterMessageToolbars"].sticky;
+    PluginsStatesService.getEnableStatesCachedSync()[
+      "thread:betterMessageToolbars"
+    ] && settings.plugins["thread:betterMessageToolbars"].sticky;
 
   if (!codeBlock) return null;
 

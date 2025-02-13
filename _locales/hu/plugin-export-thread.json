@@ -2,10 +2,20 @@
   "exportButton": {
     "action": "Exportálás",
     "copied": "Másolva",
-    "options": {
-      "default": "Alapértelmezett",
-      "withoutCitations": "Hivatkozások nélkül",
-      "download": "Letöltés szövegfájlként"
+    "format": {
+      "label": "Formátum választása",
+      "placeholder": "Válasszon formátumot"
+    },
+    "includeCitations": "Idézetek beillesztése",
+    "actions": {
+      "download": "Letöltés",
+      "copy": "Másolás"
+    },
+    "errors": {
+      "downloadFailed": {
+        "title": "❌ Sikertelen letöltés",
+        "unknownError": "Ismeretlen hiba történt"
+      }
     }
   }
 }

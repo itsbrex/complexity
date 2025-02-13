@@ -175,42 +175,36 @@ export default function SidebarPinnedSpaces() {
     }
   }
 
+  if (isSpacesLoading) return null;
+
   return (
     <div className="custom-scrollbar x-max-h-[200px] x-overflow-y-auto">
       <div
         className={cn(
-          "x-mt-1 x-flex x-flex-col x-gap-1 x-px-2 x-text-xs x-font-medium x-text-muted-foreground",
+          "x-mt-1 x-flex x-flex-col x-gap-1 x-pl-3.5 x-pr-2 x-text-xs x-font-medium x-text-muted-foreground",
           {
-            "x-ml-[29px] x-border-l x-border-border/50 dark:x-border-border":
+            "x-ml-[26px] x-border-l x-border-border/50 dark:x-border-border":
               localPinnedSpaces.length > 0,
           },
         )}
       >
-        {isSpacesLoading ? (
-          <>
-            <div className="x-my-2 x-h-[6px] x-w-4/5 x-animate-pulse x-rounded-full x-bg-black/5 dark:x-bg-white/5" />
-            <div className="x-my-2 x-h-[6px] x-w-1/3 x-animate-pulse x-rounded-full x-bg-black/5 dark:x-bg-white/5" />
-            <div className="x-my-2 x-h-[6px] x-w-1/2 x-animate-pulse x-rounded-full x-bg-black/5 dark:x-bg-white/5" />
-          </>
-        ) : (
-          <SwappableDndProvider
-            items={localPinnedSpaces.map((item) => item.uuid)}
-            onDragEnd={handleDragEnd}
-          >
-            {localPinnedSpaces.map((space, index) => (
-              <SwappableSortableItem key={index} id={space.uuid}>
-                {({ isDragging, isAnyDragging }) => (
-                  <PinnedSpaceContent
-                    spaces={spaces ?? []}
-                    uuid={space.uuid}
-                    isDragging={isDragging}
-                    isAnyDragging={isAnyDragging}
-                  />
-                )}
-              </SwappableSortableItem>
-            ))}
-          </SwappableDndProvider>
-        )}
+        <SwappableDndProvider
+          items={localPinnedSpaces.map((item) => item.uuid)}
+          onDragEnd={handleDragEnd}
+        >
+          {localPinnedSpaces.map((space, index) => (
+            <SwappableSortableItem key={index} id={space.uuid}>
+              {({ isDragging, isAnyDragging }) => (
+                <PinnedSpaceContent
+                  spaces={spaces ?? []}
+                  uuid={space.uuid}
+                  isDragging={isDragging}
+                  isAnyDragging={isAnyDragging}
+                />
+              )}
+            </SwappableSortableItem>
+          ))}
+        </SwappableDndProvider>
       </div>
     </div>
   );

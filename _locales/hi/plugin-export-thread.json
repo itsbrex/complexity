@@ -1,11 +1,21 @@
 {
   "exportButton": {
-    "action": "निर्यात",
+    "action": "निर्यात करें",
     "copied": "कॉपी किया गया",
-    "options": {
-      "default": "डिफ़ॉल्ट",
-      "withoutCitations": "उद्धरण के बिना",
-      "download": "डेक्स्ट फ़ाइल के रूप में डाउनलोड करें"
+    "format": {
+      "label": "प्रारूप चुनें",
+      "placeholder": "एक प्रारूप चुनें"
+    },
+    "includeCitations": "उद्धरण शामिल करें",
+    "actions": {
+      "download": "डाउनलोड करें",
+      "copy": "कॉपी करें"
+    },
+    "errors": {
+      "downloadFailed": {
+        "title": "❌ डाउनलोड विफल रहा",
+        "unknownError": "अज्ञात त्रुटि हुई"
+      }
     }
   }
 }

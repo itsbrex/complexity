@@ -64,7 +64,7 @@ export default function SpaceNavigatorContent({
         </CommandEmpty>
       )}
       <div className="x-flex x-items-start x-divide-x x-divide-border/50">
-        <CommandList className="x-flex-1">
+        <CommandList className="x-flex-1 x-p-1">
           {isLoading ? (
             <div className="x-my-10 x-w-full x-space-x-2 x-text-center">
               <LuLoaderCircle className="x-inline-block x-size-4 x-animate-spin" />

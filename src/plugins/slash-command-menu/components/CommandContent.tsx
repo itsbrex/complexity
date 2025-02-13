@@ -71,7 +71,7 @@ export const CommandContent = memo((props: CommandContentProps) => {
         onValueChange={handleValueChange}
       >
         <CommandInputHandler {...props} />
-        <CommandList className="x-max-h-[200px]">
+        <CommandList className="x-max-h-[200px] x-p-1">
           <CommandEmpty>No results found</CommandEmpty>
           {!filter && <DefaultCommandGroup />}
           {filter === "promptHistory" && <PromptHistorySlashMenuItemsWrapper />}

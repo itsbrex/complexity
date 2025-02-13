@@ -2,10 +2,20 @@
   "exportButton": {
     "action": "エクスポート",
     "copied": "コピー済み",
-    "options": {
-      "default": "デフォルト",
-      "withoutCitations": "引用なし",
-      "download": "ダキストファイルとしてダウンロード"
+    "format": {
+      "label": "フォーマットを選択",
+      "placeholder": "フォーマットを選択してください"
+    },
+    "includeCitations": "引用を含める",
+    "actions": {
+      "download": "ダウンロード",
+      "copy": "コピー"
+    },
+    "errors": {
+      "downloadFailed": {
+        "title": "❌ ダウンロードに失敗",
+        "unknownError": "不明なエラーが発生しました"
+      }
     }
   }
 }

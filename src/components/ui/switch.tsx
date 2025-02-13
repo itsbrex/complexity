@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { ReactNode } from "react";
 
 const switchVariants = cva(
-  "x-inline-flex x-shrink-0 x-cursor-pointer x-items-center x-space-x-2 x-rounded-full x-border x-border-border x-bg-transparent x-transition-all focus-visible:x-outline-none focus-visible:x-ring-1 focus-visible:x-ring-ring focus-visible:x-ring-offset-2 focus-visible:x-ring-offset-background data-[disabled]:x-cursor-not-allowed data-[disabled]:x-opacity-50 [&>span]:x-transition-all [&>span]:x-duration-150 [&>span]:hover:x-scale-95",
+  "x-inline-flex x-shrink-0 x-cursor-pointer x-items-center x-space-x-2 x-rounded-full x-border x-border-border x-bg-muted-foreground/35 x-transition-all focus-visible:x-outline-none focus-visible:x-ring-1 focus-visible:x-ring-ring focus-visible:x-ring-offset-2 focus-visible:x-ring-offset-background data-[disabled]:x-cursor-not-allowed data-[state=checked]:x-bg-primary/85 data-[disabled]:x-opacity-50 [&>span]:x-transition-all [&>span]:x-duration-150 [&>span]:hover:x-scale-95",
   {
     variants: {
       size: {
@@ -19,7 +19,7 @@ const switchVariants = cva(
 );
 
 const thumbVariants = cva(
-  "x-pointer-events-none x-block x-rounded-full x-bg-muted-foreground x-shadow-lg x-ring-0 data-[state=checked]:x-bg-primary data-[state=checked]:x-text-primary",
+  "x-pointer-events-none x-block x-rounded-full x-bg-background x-shadow-lg x-ring-0 dark:x-bg-foreground",
   {
     variants: {
       size: {

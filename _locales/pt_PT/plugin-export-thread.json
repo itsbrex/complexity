@@ -2,10 +2,20 @@
   "exportButton": {
     "action": "Exportar",
     "copied": "Copiado",
-    "options": {
-      "default": "Predefinido",
-      "withoutCitations": "Sem citações",
-      "download": "Descarregar como ficheiro de texto"
+    "format": {
+      "label": "Escolher formato",
+      "placeholder": "Selecione um formato"
+    },
+    "includeCitations": "Incluir citações",
+    "actions": {
+      "download": "Transferir",
+      "copy": "Copiar"
+    },
+    "errors": {
+      "downloadFailed": {
+        "title": "❌ Falha ao transferir",
+        "unknownError": "Ocorreu um erro desconhecido"
+      }
     }
   }
 }

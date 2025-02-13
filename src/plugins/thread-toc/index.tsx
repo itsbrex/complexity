@@ -117,19 +117,19 @@ const TocItem = memo(function TocItem({
 
   return (
     <div
-      className="x-flex x-cursor-pointer x-items-center x-gap-3"
+      className="x-flex x-cursor-pointer x-items-center x-gap-4"
       title={title}
       onClick={onClick}
     >
       <div
-        className={cn("x-h-5", {
-          "x-min-w-[3px] x-bg-primary": item.isActive,
-          "x-min-w-[2px] x-bg-muted-foreground": !item.isActive,
+        className={cn("x-min-w-[2px] x-h-5 x-rounded-full", {
+          "x-bg-foreground": item.isActive,
+          "x-bg-muted-foreground": !item.isActive,
         })}
       />
       <div
-        className={cn("x-block x-truncate x-transition-colors", {
-          "x-font-medium x-text-primary": item.isActive,
+        className={cn("x-text-sm x-block x-truncate x-transition-colors", {
+          "x-font-medium x-text-foreground": item.isActive,
           "x-text-muted-foreground hover:x-text-foreground": !item.isActive,
         })}
       >

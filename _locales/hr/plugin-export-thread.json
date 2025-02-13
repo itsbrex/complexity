@@ -2,10 +2,20 @@
   "exportButton": {
     "action": "Izvoz",
     "copied": "Kopirano",
-    "options": {
-      "default": "Zadano",
-      "withoutCitations": "Bez citata",
-      "download": "Preuzmi kao tekstualnu datoteku"
+    "format": {
+      "label": "Odaberi format",
+      "placeholder": "Odaberite format"
+    },
+    "includeCitations": "Uključi citate",
+    "actions": {
+      "download": "Preuzmi",
+      "copy": "Kopiraj"
+    },
+    "errors": {
+      "downloadFailed": {
+        "title": "❌ Preuzimanje nije uspjelo",
+        "unknownError": "Došlo je do nepoznate pogreške"
+      }
     }
   }
 }

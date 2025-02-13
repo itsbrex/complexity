@@ -28,7 +28,7 @@ const DropdownMenuContent = ({
       <Menu.Positioner>
         <Menu.Content
           className={cn(
-            "x-z-50 x-min-w-[8rem] x-overflow-hidden x-rounded-md x-border x-border-border/50 x-bg-popover x-p-1 x-text-popover-foreground x-shadow-md focus-visible:x-outline-none",
+            "x-z-50 x-min-w-[8rem] x-overflow-hidden x-rounded-md x-border x-border-border/50 x-bg-popover x-p-2 x-text-popover-foreground x-shadow-md focus-visible:x-outline-none",
             "data-[state=open]:x-animate-in data-[state=open]:x-fade-in data-[state=open]:x-zoom-in-95",
             "data-[state=closed]:x-animate-out data-[state=closed]:x-fade-out data-[state=closed]:x-zoom-out-95",
             "data-[placement^=top]:x-slide-in-from-bottom-2",
@@ -72,7 +72,7 @@ const DropdownMenuLabel = ({
 }: Menu.ItemGroupLabelProps & { inset?: boolean }) => (
   <Menu.ItemGroupLabel
     className={cn(
-      "x-px-2 x-py-1.5 x-text-sm x-text-muted-foreground",
+      "x-px-2 x-py-1.5 x-text-xs x-text-muted-foreground",
       inset && "x-pl-8",
       className,
     )}
@@ -101,7 +101,7 @@ const DropdownMenuSub = ({ ...props }: Menu.RootProps) => (
     positioning={{
       placement: "right-start",
       offset: {
-        mainAxis: 8,
+        mainAxis: 15,
       },
     }}
     {...props}
@@ -115,13 +115,13 @@ const DropdownMenuSubTrigger = ({
 }: Menu.TriggerItemProps) => (
   <Menu.TriggerItem
     className={cn(
-      "x-relative x-flex x-cursor-default x-select-none x-items-center x-justify-between x-rounded-sm x-text-sm x-outline-none x-transition-colors focus:x-bg-primary-foreground focus:x-text-primary data-[disabled]:x-pointer-events-none data-[highlighted]:x-bg-primary-foreground data-[highlighted]:x-text-primary data-[disabled]:x-opacity-50",
+      "x-relative x-flex x-cursor-default x-select-none x-items-center x-justify-between x-rounded-sm x-px-2 x-py-1.5 x-text-sm x-outline-none x-transition-colors focus:x-bg-primary-foreground focus:x-text-primary data-[disabled]:x-pointer-events-none data-[highlighted]:x-bg-primary-foreground data-[highlighted]:x-text-primary data-[disabled]:x-opacity-50",
       className,
     )}
     {...props}
   >
-    {children}
-    <ChevronRight className="x-ml-2 x-size-4" />
+    <div className="x-mr-2 x-flex x-items-center">{children}</div>
+    <ChevronRight className="x-size-4" />
   </Menu.TriggerItem>
 );
 DropdownMenuSubTrigger.displayName = "DropdownMenuSubTrigger";

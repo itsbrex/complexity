@@ -2,10 +2,20 @@
   "exportButton": {
     "action": "导出",
     "copied": "已复制",
-    "options": {
-      "default": "默认",
-      "withoutCitations": "无引用",
-      "download": "下载为文本文件"
+    "format": {
+      "label": "选择格式",
+      "placeholder": "请选择格式"
+    },
+    "includeCitations": "包含引用",
+    "actions": {
+      "download": "下载",
+      "copy": "复制"
+    },
+    "errors": {
+      "downloadFailed": {
+        "title": "❌ 下载失败",
+        "unknownError": "发生未知错误"
+      }
     }
   }
 }

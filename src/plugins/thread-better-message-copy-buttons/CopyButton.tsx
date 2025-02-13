@@ -1,6 +1,6 @@
-import { BiLogoMarkdown } from "react-icons/bi";
 import { LuCheck, LuCopy, LuLink2Off, LuLoaderCircle } from "react-icons/lu";
 
+import FaMarkdown from "@/components/icons/FaMarkdown";
 import Tooltip from "@/components/Tooltip";
 import {
   DropdownMenu,
@@ -65,7 +65,7 @@ const CopyButton = memo(function CopyButton({
             value={"default" satisfies CopyOptions}
             className="x-flex x-items-center x-gap-2"
           >
-            <BiLogoMarkdown className="x-size-4" />
+            <FaMarkdown className="x-size-4" />
             <span>
               {t("plugin-better-copy-buttons:copyButton.options.default")}
             </span>

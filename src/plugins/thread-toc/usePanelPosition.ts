@@ -58,7 +58,7 @@ export function usePanelPosition(): UsePanelPosition | null {
     return {
       position: {
         top: stickyHeaderHeight + 40,
-        left: threadWrapperWidth + left + 60,
+        left: threadWrapperWidth + left + 55,
       },
       isFloating: panelRightEdge > window.innerWidth,
     };

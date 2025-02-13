@@ -2,10 +2,20 @@
   "exportButton": {
     "action": "Exportovať",
     "copied": "Skopírované",
-    "options": {
-      "default": "Predvolené",
-      "withoutCitations": "Bez citácií",
-      "download": "Stiahnuť ako textový súbor"
+    "format": {
+      "label": "Vybrať formát",
+      "placeholder": "Vyberte formát"
+    },
+    "includeCitations": "Zahrnúť citácie",
+    "actions": {
+      "download": "Stiahnuť",
+      "copy": "Kopírovať"
+    },
+    "errors": {
+      "downloadFailed": {
+        "title": "❌ Sťahovanie zlyhalo",
+        "unknownError": "Vyskytla sa neznáma chyba"
+      }
     }
   }
 }

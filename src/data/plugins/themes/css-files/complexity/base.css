@@ -11,7 +11,9 @@ body#__next {
     }
 
     /* Message Block Dividers */
-    [data-cplx-component="message-block"]:not(:last-of-type) {
+    [data-cplx-component="message-block"]
+      [data-cplx-component="message-block-text-col"]
+      > .border-b {
       @apply x-border-b-ring/50;
     }
   }

@@ -28,7 +28,7 @@
     --input: 88.3% 0.012 106.646;
     --ring: 55.14% 0.0857 208.54;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
     --button-background: 92.97% 0.0068 106.52;
   }
@@ -50,7 +50,7 @@
     --secondary-foreground: 93.34% 0.0025 106.45;
 
     --muted: 37.08% 0.0027 228.85;
-    --muted-foreground: 65.31% 0.0053 197.03;
+    --muted-foreground: 65.3% 0.005 197.042;
 
     --success: 87.12% 0.137 154.59;
     --success-foreground: 93.34% 0.0025 106.45;

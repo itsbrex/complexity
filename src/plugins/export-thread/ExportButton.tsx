@@ -1,30 +1,28 @@
-import { BiLogoMarkdown } from "react-icons/bi";
-import {
-  LuCheck,
-  LuDownload,
-  LuFile,
-  LuLink2Off,
-  LuLoaderCircle,
-} from "react-icons/lu";
+import { LuCheck, LuLoaderCircle } from "react-icons/lu";
 
+import FaFileExport from "@/components/icons/FaFileExport";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSub,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { toast } from "@/components/ui/use-toast";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
 import { useCopyPplxThread } from "@/hooks/useCopyPplxThread";
 import useToggleButtonText from "@/hooks/useToggleButtonText";
+import { ExportOption } from "@/plugins/export-thread/export-options";
+import { ExportActions } from "@/plugins/export-thread/ExportActions";
+import { ExportFormatSelect } from "@/plugins/export-thread/ExportFormatSelect";
 import { parseUrl } from "@/utils/utils";
 
 const ExportButton = memo(function ExportButton() {
   const { isMobile } = useIsMobileStore();
   const { copyThread, isFetching, getContent } = useCopyPplxThread();
+  const [open, setOpen] = useState(false);
+  const [includeCitations, setIncludeCitations] = useState(true);
+  const [format, setFormat] = useState<ExportOption["value"]>("markdown");
 
   const defaultIdleText = useMemo(
     () =>
@@ -37,7 +35,7 @@ const ExportButton = memo(function ExportButton() {
         </div>
       ) : (
         <div className="x-flex x-items-center x-gap-2">
-          <LuDownload className="x-size-4" />
+          <FaFileExport className="x-size-4" />
           {!isMobile && (
             <span>{t("plugin-export-thread:exportButton.action")}</span>
           )}
@@ -70,9 +68,15 @@ const ExportButton = memo(function ExportButton() {
       } catch (error) {
         console.error("Failed to download:", error);
         toast({
-          title: "❌ Failed to download",
+          title: t(
+            "plugin-export-thread:exportButton.errors.downloadFailed.title",
+          ),
           description:
-            error instanceof Error ? error.message : "Unknown error occurred",
+            error instanceof Error
+              ? error.message
+              : t(
+                  "plugin-export-thread:exportButton.errors.downloadFailed.unknownError",
+                ),
         });
       }
     },
@@ -80,73 +84,57 @@ const ExportButton = memo(function ExportButton() {
   );
 
   return (
-    <DropdownMenu
-      positioning={{ placement: "bottom-end" }}
-      onSelect={({ value }) => {
-        copyThread({
-          withCitations: value !== "without-citations",
-          onComplete: () =>
-            setCopyConfirmText(
-              <div className="x-flex x-items-center x-gap-2">
-                <LuCheck className="x-size-4" />
-                {!isMobile && (
-                  <span>{t("plugin-export-thread:exportButton.copied")}</span>
-                )}
-              </div>,
-            ),
-        });
-      }}
+    <Popover
+      open={open}
+      positioning={{ placement: isMobile ? "bottom" : "bottom-end" }}
+      onOpenChange={({ open }) => setOpen(open)}
     >
-      <DropdownMenuTrigger asChild disabled={isFetching}>
+      <PopoverTrigger asChild>
         <Button
-          variant={isMobile ? "default" : "outline"}
+          variant={isMobile ? "default" : "primary"}
           size="sm"
           className="x-box-content x-h-8 x-px-2"
         >
           {isFetching ? defaultIdleText : (copyConfirmText ?? defaultIdleText)}
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="x-font-medium">
-        <DropdownMenuItem value="default">
-          <BiLogoMarkdown className="x-mr-2 x-size-4" />
-          <span>{t("plugin-export-thread:exportButton.options.default")}</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem value="without-citations">
-          <LuLink2Off className="x-mr-2 x-size-4" />
-          <span>
-            {t("plugin-export-thread:exportButton.options.withoutCitations")}
-          </span>
-        </DropdownMenuItem>
-        <DropdownMenuSub
-          onSelect={({ value }) => {
-            handleDownload(value === "default");
+      </PopoverTrigger>
+      <PopoverContent className="x-flex x-flex-col x-gap-4">
+        <ExportFormatSelect onValueChange={setFormat} />
+
+        <Checkbox
+          label={t("plugin-export-thread:exportButton.includeCitations")}
+          defaultChecked={includeCitations}
+          onCheckedChange={({ checked }) => {
+            setIncludeCitations(checked as boolean);
           }}
-        >
-          <DropdownMenuSubTrigger className="x-p-2">
-            <LuFile className="x-mr-2 x-size-4" />
-            <span>
-              {t("plugin-export-thread:exportButton.options.download")}
-            </span>
-          </DropdownMenuSubTrigger>
-          <DropdownMenuContent className="x-font-medium">
-            <DropdownMenuItem value="default">
-              <BiLogoMarkdown className="x-mr-2 x-size-4" />
-              <span>
-                {t("plugin-export-thread:exportButton.options.default")}
-              </span>
-            </DropdownMenuItem>
-            <DropdownMenuItem value="without-citations">
-              <LuLink2Off className="x-mr-2 x-size-4" />
-              <span>
-                {t(
-                  "plugin-export-thread:exportButton.options.withoutCitations",
-                )}
-              </span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenuSub>
-      </DropdownMenuContent>
-    </DropdownMenu>
+        />
+
+        <ExportActions
+          onDownload={() => {
+            setOpen(false);
+            handleDownload(includeCitations);
+          }}
+          onCopy={() => {
+            setOpen(false);
+            copyThread({
+              withCitations: includeCitations,
+              onComplete: () => {
+                setCopyConfirmText(
+                  <div className="x-flex x-items-center x-gap-2">
+                    <LuCheck className="x-size-4" />
+                    {!isMobile && (
+                      <span>
+                        {t("plugin-export-thread:exportButton.copied")}
+                      </span>
+                    )}
+                  </div>,
+                );
+              },
+            });
+          }}
+        />
+      </PopoverContent>
+    </Popover>
   );
 });
 

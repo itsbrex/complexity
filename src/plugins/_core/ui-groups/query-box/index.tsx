@@ -1,5 +1,5 @@
 import CsUiPluginsGuard from "@/components/plugins-guard/CsUiPluginsGuard";
-import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
+import { usePluginGuardsStore } from "@/components/plugins-guard/store";
 import { useInsertCss } from "@/hooks/useInsertCss";
 import { useSpaRouter } from "@/plugins/_api/spa-router/listeners";
 import followUpQueryBoxCss from "@/plugins/_core/ui-groups/query-box/follow-up-query-box.css?inline";
@@ -33,7 +33,8 @@ export default function QueryBoxWrapper() {
 
 function useInsertToolbarCss() {
   const location = whereAmI(useSpaRouter().url);
-  const { isMobile } = useIsMobileStore();
+
+  const { hasActiveSub, isMobile } = usePluginGuardsStore();
 
   const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();
 
@@ -67,6 +68,7 @@ function useInsertToolbarCss() {
   useInsertCss({
     id: "hide-native-model-selector",
     css: hideNativeModelSelector,
-    inject: pluginsEnableStates["queryBox:languageModelSelector"],
+    inject:
+      hasActiveSub && pluginsEnableStates["queryBox:languageModelSelector"],
   });
 }

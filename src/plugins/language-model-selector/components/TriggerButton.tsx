@@ -56,7 +56,7 @@ export default function BetterLanguageModelSelectorTriggerButton() {
       cn(
         "x-flex x-h-8 x-items-center x-gap-2 x-rounded-md x-border x-border-transparent x-px-2 x-text-sm x-font-medium x-text-muted-foreground x-transition-all active:x-scale-95",
         {
-          "x-border-primary/30 x-bg-primary/10 x-text-primary hover:x-bg-primary/10":
+          "x-border-primary/35 x-bg-primary/15 x-text-primary":
             isProSearchEnabled,
           "x-border-border/50 hover:x-bg-primary-foreground hover:x-text-foreground":
             !isProSearchEnabled,

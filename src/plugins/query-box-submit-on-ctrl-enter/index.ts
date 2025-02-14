@@ -12,10 +12,10 @@ function submitOnCtrlEnter(queryBoxes: QueryBoxesDomObserverStoreType["main"]) {
 
   if (!pluginsEnableStates["queryBox:submitOnCtrlEnter"]) return;
 
-  Object.values(queryBoxes).forEach((component) => {
-    if (component == null || !(component instanceof HTMLElement)) return;
+  Object.values(queryBoxes).forEach(($queryBox) => {
+    if (!$queryBox || !$queryBox.length) return;
 
-    const $textarea = $(component).find("textarea");
+    const $textarea = $queryBox.find("textarea");
 
     if (!$textarea.length) return;
 

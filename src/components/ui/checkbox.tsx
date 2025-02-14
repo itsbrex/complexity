@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { LuCheck } from "react-icons/lu";
 
 const checkboxVariants = cva(
-  "x-h-4 x-w-4 x-shrink-0 x-rounded-sm x-border x-border-border x-ring-offset-background x-transition-all focus-visible:x-outline-none focus-visible:x-ring-2 focus-visible:x-ring-ring focus-visible:x-ring-offset-2 data-[state=checked]:x-bg-primary data-[state=checked]:x-text-primary-foreground group-data-[disabled]:x-cursor-not-allowed group-data-[disabled]:x-opacity-50",
+  "x-h-4 x-w-4 x-shrink-0 x-rounded-md x-border x-border-border x-ring-offset-background x-transition-all focus-visible:x-outline-none focus-visible:x-ring-2 focus-visible:x-ring-ring focus-visible:x-ring-offset-2 data-[state=checked]:x-bg-primary data-[state=checked]:x-text-primary-foreground group-data-[disabled]:x-cursor-not-allowed group-data-[disabled]:x-opacity-50",
   {
     variants: {
       size: {

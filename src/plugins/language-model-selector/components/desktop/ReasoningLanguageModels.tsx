@@ -33,7 +33,7 @@ export default function ReasoningLanguageModels() {
           placement: "right",
         }}
       >
-        <SelectLabel>Reasoning Models</SelectLabel>
+        <SelectLabel>Reasoning</SelectLabel>
       </Tooltip>
       {reasoningLanguageModels.map((model, index) => {
         const Icon = languageModelProviderIcons[model.provider] ?? LuCpu;

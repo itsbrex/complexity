@@ -119,16 +119,16 @@ async function copyMessageWithCitations({
     return;
   }
 
+  const cleanAnswer = content.answer.replace(
+    /\[(.*?)\]\(pplx:\/\/action\/followup\)/g,
+    "$1",
+  );
+
   if (content.webResults && content.webResults.length) {
     navigator.clipboard.writeText(
-      `${content.answer}\n\nCitations:\n${ThreadExport.formatWebResults(content.webResults)}`,
+      `${cleanAnswer}\n\nCitations:\n${ThreadExport.formatWebResults(content.webResults)}`,
     );
   } else {
-    const cleanAnswer = content.answer.replace(
-      /\[(.*?)\]\(pplx:\/\/action\/followup\)/g,
-      "$1",
-    );
-
     navigator.clipboard.writeText(cleanAnswer);
   }
 }

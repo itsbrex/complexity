@@ -35,10 +35,17 @@ export function findBookmarkButton() {
     DOM_SELECTORS.SICKY_NAVBAR_CHILD.BOOKMARK_BUTTON,
   );
 
+  if (!$bookmarkButton.length) {
+    threadDomObserverStore.setState({
+      $bookmarkButton: null,
+    });
+
+    return;
+  }
+
   if (
-    !$bookmarkButton.length ||
     $bookmarkButton.internalComponentAttr() ===
-      INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.BOOKMARK_BUTTON
+    INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.BOOKMARK_BUTTON
   )
     return;
 

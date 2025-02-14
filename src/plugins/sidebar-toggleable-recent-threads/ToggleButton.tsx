@@ -3,11 +3,17 @@ import { LuChevronDown, LuChevronUp } from "react-icons/lu";
 
 import Tooltip from "@/components/Tooltip";
 import { useIsMobileStore } from "@/hooks/use-is-mobile-store";
+import { useSidebarDomObserverStore } from "@/plugins/_core/dom-observers/sidebar/store";
 
 export default function SidebarToggleableRecentThreadsToggleButton() {
   const isMobile = useDebounce(
     useIsMobileStore((state) => state.isMobile),
     1000,
+  );
+
+  const $libraryButtonWrapper = useSidebarDomObserverStore(
+    (store) => store.$libraryButtonWrapper,
+    deepEqual,
   );
 
   const [isCollapsed, setIsCollapsed] = useLocalStorage(
@@ -16,8 +22,12 @@ export default function SidebarToggleableRecentThreadsToggleButton() {
   );
 
   useEffect(() => {
-    $(".group\\/history").toggleClass("x-hidden", isCollapsed);
-  }, [isCollapsed, isMobile]);
+    if (!$libraryButtonWrapper) return;
+
+    $libraryButtonWrapper
+      .find(".group\\/history")
+      .toggleClass("x-hidden", isCollapsed);
+  }, [$libraryButtonWrapper, isCollapsed, isMobile]);
 
   return (
     <Tooltip content={isCollapsed ? t("misc.expand") : t("misc.collapse")}>

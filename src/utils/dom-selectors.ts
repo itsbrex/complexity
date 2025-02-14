@@ -1,12 +1,14 @@
 export const DOM_SELECTORS = {
   SIDEBAR: {
     WRAPPER: ".group\\/bar",
-    SPACE_BUTTON_WRAPPER: `.relative.justify-center.w-full:has(>div>a[role="button"][aria-label="Spaces"])`,
+    SPACE_BUTTON: "a[role='button'][aria-label][href='/spaces']",
+    SPACE_BUTTON_WRAPPER: `.relative.justify-center.w-full:has(>div>a[role='button'][aria-label][href='/spaces'])`,
     SPACE_BUTTON_WRAPPER_CHILD: {
       TRIGGER_BUTTONS_PORTAL_CONTAINER:
         ".flex.items-center.min-w-0.justify-left.w-full",
     },
-    LIBRARY_BUTTON_WRAPPER: `.relative.justify-center.w-full:has(>div>a[role="button"][aria-label="Library"])`,
+    LIBRARY_BUTTON: "a[role='button'][aria-label][href='/library']",
+    LIBRARY_BUTTON_WRAPPER: `.relative.justify-center.w-full:has(>div>a[role='button'][aria-label][href='/library'])`,
     LIBRARY_BUTTON_WRAPPER_CHILD: {
       TRIGGER_BUTTONS_PORTAL_CONTAINER:
         ".flex.items-center.min-w-0.justify-left.w-full .-mr-sm.flex.w-full.flex-1.justify-end",
@@ -114,7 +116,8 @@ export const DOM_SELECTORS = {
     THREAD_TITLE:
       ".min-w-0 .cursor-pointer.transition.duration-300.hover\\:opacity-70",
     THREAD_TITLE_INPUT: 'input[placeholder="Untitled"]',
-    BOOKMARK_BUTTON: 'button[aria-label="Save to Bookmarks"]',
+    BOOKMARK_BUTTON:
+      "button[aria-label]:has(svg[class*='tabler-icon-bookmark'])",
   },
 } as const;
 

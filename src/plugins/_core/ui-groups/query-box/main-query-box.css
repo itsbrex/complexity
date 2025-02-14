@@ -40,6 +40,15 @@
       }
     }
   }
+
+  .-ml-2 {
+    @apply x-ml-0;
+  }
+
+  > :nth-child(2) > button {
+    aspect-ratio: unset;
+    @apply x-min-w-8;
+  }
 }
 
 [cplx-space-query-box]
@@ -47,12 +56,5 @@
   [data-cplx-component="query-box-pplx-components-wrapper"] {
   > :has(button:disabled) {
     display: none;
-  }
-
-  > :nth-child(2)
-    .flex.items-center.min-w-0
-    > div
-    > .flex.items-center:not(.px-1) {
-    @apply x-mx-2 x-gap-1;
   }
 }

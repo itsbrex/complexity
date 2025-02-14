@@ -6,7 +6,6 @@ import { LanguageModel } from "@/data/plugins/query-box/language-model-selector/
 import {
   handleSearchModeChange,
   populateDefaults,
-  syncNativeModelSelector,
 } from "@/plugins/_core/ui-groups/query-box/utils";
 import { csLoaderRegistry } from "@/utils/cs-loader-registry";
 
@@ -48,7 +47,6 @@ csLoaderRegistry.register({
   loader: async () => {
     populateDefaults();
     handleSearchModeChange();
-    syncNativeModelSelector();
   },
 });
 

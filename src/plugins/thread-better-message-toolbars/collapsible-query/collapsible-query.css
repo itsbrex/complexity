@@ -24,7 +24,7 @@
     }
 
     &[data-cplx-query-collapsed="false"] .group\/query {
-      max-height: 9999px;
+      max-height: 999999px;
     }
   }
 }

@@ -64,6 +64,14 @@ export const localLanguageModels = [
     isReasoningModel: false,
   },
   {
+    label: "Deep Research",
+    shortLabel: "Deep Research",
+    code: "pplx_alpha",
+    provider: "PerplexityDeepResearch",
+    limitKey: "pro_reasoning_limit",
+    isReasoningModel: true,
+  },
+  {
     label: "Sonar",
     shortLabel: "Sonar",
     code: "experimental",

@@ -41,7 +41,9 @@ export function findSpaceButtonWrapper() {
     return;
   }
 
-  $spaceButtonWrapper.addClass("x-group");
+  $spaceButtonWrapper
+    .find(DOM_SELECTORS.SIDEBAR.SPACE_BUTTON)
+    .addClass("x-group");
 
   if (
     !$spaceButtonWrapper.length ||
@@ -106,7 +108,9 @@ export function findLibraryButtonWrapper() {
     return;
   }
 
-  $libraryButtonWrapper.addClass("x-group");
+  $libraryButtonWrapper
+    .find(DOM_SELECTORS.SIDEBAR.LIBRARY_BUTTON)
+    .addClass("x-group");
 
   if (
     !$libraryButtonWrapper.length ||

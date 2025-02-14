@@ -56,8 +56,6 @@ csLoaderRegistry.register({
 
           const isRetry = payload[2].query_source == "retry";
 
-          if (isRetry) return skip();
-
           const settings = ExtensionLocalStorageService.getCachedSync();
 
           const newPayload = produce(payload, (draft) => {
@@ -67,16 +65,18 @@ csLoaderRegistry.register({
                 ? "America/Los_Angeles"
                 : payload[2].timezone;
 
-            const { isProSearchEnabled, selectedLanguageModel } =
-              sharedQueryBoxStore.getState();
+            if (!isRetry) {
+              const { isProSearchEnabled, selectedLanguageModel } =
+                sharedQueryBoxStore.getState();
 
-            const isReasoningMode = isReasoningLanguageModelCode(
-              selectedLanguageModel,
-            );
+              const isReasoningMode = isReasoningLanguageModelCode(
+                selectedLanguageModel,
+              );
 
-            draft[2].model_preference = selectedLanguageModel;
-            draft[2].mode =
-              isProSearchEnabled || isReasoningMode ? "copilot" : "concise";
+              draft[2].model_preference = selectedLanguageModel;
+              draft[2].mode =
+                isProSearchEnabled || isReasoningMode ? "copilot" : "concise";
+            }
           });
 
           return encodeWebSocketData({

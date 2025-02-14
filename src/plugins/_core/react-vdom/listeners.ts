@@ -4,7 +4,7 @@ import { LanguageModelCode } from "@/data/plugins/query-box/language-model-selec
 import { INTERNAL_ATTRIBUTES, DOM_SELECTORS } from "@/utils/dom-selectors";
 import { errorWrapper } from "@/utils/error-wrapper";
 import { PplxWebResult } from "@/utils/thread-export";
-import { getCookie, getReactFiberKey } from "@/utils/utils";
+import { getReactFiberKey } from "@/utils/utils";
 
 export type ReactVdomEvents = {
   "reactVdom:getMessageModelPreferences": (params: { index: number }) => {
@@ -28,7 +28,7 @@ export type ReactVdomEvents = {
     messageBlockIndex: number;
     optionIndex?: number;
   }) => boolean;
-  "reactVdom:syncNativeModelSelector": () => void;
+  "reactVdom:syncNativeModelSelector": (params: { searchMode: string }) => void;
 };
 
 export function setupReactVdomListeners() {
@@ -189,7 +189,7 @@ export function setupReactVdomListeners() {
           },
           select: (node) => {
             const items = node.memoizedProps.children.props.items;
-            const index = optionIndex ?? items.length - 1;
+            const index = optionIndex ?? items.length - 3;
             return items[index].onClick as () => void;
           },
         }),
@@ -203,7 +203,7 @@ export function setupReactVdomListeners() {
     },
   );
 
-  onMessage("reactVdom:syncNativeModelSelector", () => {
+  onMessage("reactVdom:syncNativeModelSelector", ({ data: { searchMode } }) => {
     const selector = `[data-cplx-component="${INTERNAL_ATTRIBUTES.QUERY_BOX_CHILD.PPLX_COMPONENTS_WRAPPER}"]:last > :first-child`;
 
     const $modelSelector = $(selector);
@@ -229,8 +229,6 @@ export function setupReactVdomListeners() {
     )();
 
     if (error || items == null) return;
-
-    const searchMode = getCookie("pplx.search-mode");
 
     const item = items.find((item) => item.value === searchMode);
 

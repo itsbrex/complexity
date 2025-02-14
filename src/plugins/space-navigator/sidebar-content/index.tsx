@@ -1,11 +1,18 @@
 import { Portal } from "@/components/ui/portal";
+import { useInsertCss } from "@/hooks/useInsertCss";
 import { useSidebarDomObserverStore } from "@/plugins/_core/dom-observers/sidebar/store";
+import hideNativeHistoryCss from "@/plugins/space-navigator/sidebar-content/hide-native-history.css?inline";
 import SidebarPinnedSpacesVisToggle from "@/plugins/space-navigator/sidebar-content/PinnedItemsVisToggle";
 import SidebarPinnedSpaces from "@/plugins/space-navigator/sidebar-content/PinnedSpaces";
 import SpaceNavigator from "@/plugins/space-navigator/sidebar-content/SpaceNavigator";
 import { INTERNAL_ATTRIBUTES } from "@/utils/dom-selectors";
 
 export default function SpaceNavigatorWrapper() {
+  useInsertCss({
+    css: hideNativeHistoryCss,
+    id: "space-navigator-hide-native-history",
+  });
+
   const spaceButtonWrapper = useSidebarDomObserverStore(
     (state) => state.$spaceButtonWrapper?.[0],
     deepEqual,
@@ -35,7 +42,7 @@ export default function SpaceNavigatorWrapper() {
       .internalComponentAttr(
         INTERNAL_ATTRIBUTES.SIDEBAR.PINNED_SPACES_PORTAL_CONTAINER,
       )
-      .insertAfter($spaceButtonWrapper);
+      .appendTo($spaceButtonWrapper);
 
     return $portalContainer;
   }, [spaceButtonWrapper]);

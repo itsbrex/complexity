@@ -8,14 +8,7 @@ const unimportConfig: Partial<UnimportPluginOptions> = {
     "react",
     {
       from: "react",
-      imports: [
-        "lazy",
-        "forwardRef",
-        "use",
-        "createContext",
-        "useDeferredValue",
-        "memo",
-      ],
+      imports: ["lazy", "use", "createContext", "useDeferredValue", "memo"],
     },
     {
       from: normalizePath("src/utils/js-context.ts"),

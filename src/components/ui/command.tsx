@@ -138,7 +138,7 @@ const CommandItem = ({
 }: React.ComponentProps<typeof CommandPrimitive.Item>) => (
   <CommandPrimitive.Item
     className={cn(
-      "x-relative x-flex x-cursor-pointer x-select-none x-items-center x-rounded-sm x-px-2 x-py-1.5 x-text-xs x-text-muted-foreground x-outline-none aria-selected:x-bg-primary-foreground aria-selected:x-text-primary data-[disabled=true]:x-pointer-events-none data-[disabled=true]:x-opacity-50",
+      "x-relative x-flex x-cursor-pointer x-select-none x-items-center x-rounded-md x-px-2 x-py-1.5 x-text-xs x-text-muted-foreground x-outline-none aria-selected:x-bg-primary-foreground aria-selected:x-text-primary data-[disabled=true]:x-pointer-events-none data-[disabled=true]:x-opacity-50",
       className,
     )}
     {...props}

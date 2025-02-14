@@ -39,7 +39,7 @@ function PinnedSpaceContent({
     <a
       href={`/collections/${space.slug}`}
       className={cn(
-        "x-group x-flex x-cursor-pointer x-select-none x-items-center x-justify-between x-rounded-md x-px-1 x-py-1 x-transition-colors x-duration-300",
+        "x-group x-flex x-cursor-pointer x-select-none x-items-center x-justify-between x-rounded-sm x-px-1 x-py-1 x-transition-colors x-duration-300",
         isDragging && "x-opacity-75",
         !isDragging &&
           !isAnyDragging &&

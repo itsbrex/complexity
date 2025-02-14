@@ -10,6 +10,9 @@ export default function SpaceNavigatorPluginDetails() {
 
   return (
     <div className="x-flex x-max-w-lg x-flex-col x-gap-4">
+      <div className="x-text-sm x-text-muted-foreground">
+        Save time finding & navigating to your Spaces.
+      </div>
       <Switch
         textLabel="Enable"
         checked={pluginSettings?.enabled ?? false}

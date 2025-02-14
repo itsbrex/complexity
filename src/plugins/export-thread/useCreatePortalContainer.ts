@@ -8,7 +8,13 @@ export default function useObserver() {
   );
 
   return useMemo(() => {
-    if ($bookmarkButton == null || !$bookmarkButton.length) return null;
+    if ($bookmarkButton == null || !$bookmarkButton.length) {
+      $(
+        `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.EXPORT_THREAD_BUTTON}"]`,
+      ).remove();
+
+      return null;
+    }
 
     const $wrapper = $bookmarkButton.parent();
 
@@ -22,7 +28,7 @@ export default function useObserver() {
       INTERNAL_ATTRIBUTES.THREAD.NAVBAR_CHILD.EXPORT_THREAD_BUTTON,
     );
 
-    $wrapper.prepend($portalContainer);
+    $wrapper.append($portalContainer);
 
     return $portalContainer[0];
   }, [$bookmarkButton]);

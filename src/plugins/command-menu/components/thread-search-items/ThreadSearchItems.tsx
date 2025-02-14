@@ -10,7 +10,7 @@ import { pplxApiQueries } from "@/services/pplx-api/query-keys";
 
 export default function ThreadSearchItems() {
   const { searchValue, filter } = useCommandMenuStore();
-  const debouncedValue = useDebounce(searchValue, 1000);
+  const debouncedValue = useDebounce(searchValue, 300);
 
   const {
     data: threads,

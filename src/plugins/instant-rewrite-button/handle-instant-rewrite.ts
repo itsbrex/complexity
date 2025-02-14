@@ -28,8 +28,11 @@ export async function handleInstantRewrite({
   const $proSearchPanel = $(
     `[data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.BLOCK}"][data-index="${messageBlockIndex}"] [data-cplx-component="${INTERNAL_ATTRIBUTES.THREAD.MESSAGE.TEXT_COL_CHILD.QUERY}"]`,
   )
+    .parent()
     .next()
-    .find("> div > div[data-test-id]:first-child");
+    .find(
+      "> div:first-child > div:first-child > div[data-test-id]:first-child",
+    );
 
   const isProSearchEnabled = $proSearchPanel.length > 0;
 

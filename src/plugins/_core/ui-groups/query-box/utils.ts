@@ -6,7 +6,6 @@ import {
   isReasoningLanguageModelCode,
   isLanguageModelCode,
 } from "@/data/plugins/query-box/language-model-selector/language-models.types";
-import { pplxCookiesStore } from "@/data/pplx-cookies-store";
 import { sharedQueryBoxStore } from "@/plugins/_core/ui-groups/query-box/shared-store";
 import { ExtensionLocalStorageService } from "@/services/extension-local-storage";
 import { PluginsStatesService } from "@/services/plugins-states";
@@ -147,32 +146,24 @@ export function handleSearchModeChange() {
         }
 
         if (isProSearchEnabled) {
-          setCookie("pplx.search-mode", selectedLanguageModel, 30);
+          syncNativeModelSelector(selectedLanguageModel);
           return;
         }
       }
 
       if (isProSearchEnabled) {
-        setCookie("pplx.search-mode", "pro", 30);
+        syncNativeModelSelector("pro");
         return;
       }
 
-      setCookie("pplx.search-mode", "default", 30);
+      syncNativeModelSelector("default");
     },
   );
 }
 
-export function syncNativeModelSelector() {
-  const pluginsEnableStates = PluginsStatesService.getEnableStatesCachedSync();
-
-  if (!pluginsEnableStates["queryBox:languageModelSelector"]) return;
-
-  pplxCookiesStore.subscribe(
-    (state) => state.cookies,
-    () => {
-      sendMessage("reactVdom:syncNativeModelSelector", undefined, "window");
-    },
-  );
+function syncNativeModelSelector(searchMode: string) {
+  setCookie("pplx.search-mode", searchMode, 30);
+  sendMessage("reactVdom:syncNativeModelSelector", { searchMode }, "window");
 }
 
 export function populateDefaults() {
@@ -221,7 +212,15 @@ function populateProSearchDefaults(searchMode: string | null) {
   sharedQueryBoxStore.setState((draft) => {
     if (searchMode == null) return;
 
+    const isInvalidMode =
+      !isReasoningLanguageModelCode(searchMode) &&
+      !isLanguageModelCode(searchMode) &&
+      searchMode !== "pro" &&
+      searchMode !== "default";
+
     draft.isProSearchEnabled =
-      searchMode === "pro" || isReasoningLanguageModelCode(searchMode);
+      isInvalidMode ||
+      searchMode === "pro" ||
+      isReasoningLanguageModelCode(searchMode);
   });
 }

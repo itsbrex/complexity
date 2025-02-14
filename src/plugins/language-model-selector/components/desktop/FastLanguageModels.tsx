@@ -11,7 +11,7 @@ export default function FastLanguageModels() {
 
   return (
     <SelectGroup className="x-m-0 x-p-0">
-      <SelectLabel>Fast Models</SelectLabel>
+      <SelectLabel>Standard</SelectLabel>
       {fastLanguageModels.map((model, index) => {
         const Icon = languageModelProviderIcons[model.provider] ?? LuCpu;
 

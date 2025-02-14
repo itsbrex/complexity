@@ -1,6 +1,7 @@
 import { LuCheck, LuLoaderCircle } from "react-icons/lu";
 
 import FaFileExport from "@/components/icons/FaFileExport";
+import Tooltip from "@/components/Tooltip";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -36,21 +37,11 @@ const ExportButton = memo(function ExportButton() {
   const defaultIdleText = useMemo(
     () =>
       isFetching ? (
-        <div className="x-flex x-items-center x-gap-2">
-          <LuLoaderCircle className="x-size-4 x-animate-spin" />
-          {!isMobile && (
-            <span>{t("plugin-export-thread:exportButton.action")}</span>
-          )}
-        </div>
+        <LuLoaderCircle className="x-size-4 x-animate-spin" />
       ) : (
-        <div className="x-flex x-items-center x-gap-2">
-          <FaFileExport className="x-size-4" />
-          {!isMobile && (
-            <span>{t("plugin-export-thread:exportButton.action")}</span>
-          )}
-        </div>
+        <FaFileExport className="x-size-4" />
       ),
-    [isFetching, isMobile],
+    [isFetching],
   );
 
   const [copyConfirmText, setCopyConfirmText] = useToggleButtonText({
@@ -98,16 +89,20 @@ const ExportButton = memo(function ExportButton() {
       positioning={{ placement: isMobile ? "bottom" : "bottom-end" }}
       onOpenChange={({ open }) => setOpen(open)}
     >
-      <PopoverTrigger asChild>
-        <Button
-          disabled={isAnyMessageBlockInFlight}
-          variant={isMobile ? "default" : "primary"}
-          size="sm"
-          className="x-box-content x-h-8 x-px-2"
-        >
-          {isFetching ? defaultIdleText : (copyConfirmText ?? defaultIdleText)}
-        </Button>
-      </PopoverTrigger>
+      <Tooltip content={t("plugin-export-thread:exportButton.action")}>
+        <PopoverTrigger asChild>
+          <Button
+            disabled={isAnyMessageBlockInFlight}
+            variant="ghost"
+            size="sm"
+            className="x-box-content x-h-8 x-px-2.5"
+          >
+            {isFetching
+              ? defaultIdleText
+              : (copyConfirmText ?? defaultIdleText)}
+          </Button>
+        </PopoverTrigger>
+      </Tooltip>
       <PopoverContent className="x-flex x-flex-col x-gap-4">
         <ExportFormatSelect onValueChange={setFormat} />
 
@@ -129,16 +124,7 @@ const ExportButton = memo(function ExportButton() {
             copyThread({
               withCitations: includeCitations,
               onComplete: () => {
-                setCopyConfirmText(
-                  <div className="x-flex x-items-center x-gap-2">
-                    <LuCheck className="x-size-4" />
-                    {!isMobile && (
-                      <span>
-                        {t("plugin-export-thread:exportButton.copied")}
-                      </span>
-                    )}
-                  </div>,
-                );
+                setCopyConfirmText(<LuCheck className="x-size-4" />);
               },
             });
           }}

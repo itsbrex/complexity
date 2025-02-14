@@ -58,7 +58,7 @@ const TooltipContent = ({
       <ArkTooltip.Positioner>
         <ArkTooltip.Content
           className={cn(
-            "x-z-50 x-max-w-[400px] x-overflow-hidden x-whitespace-pre-line x-rounded-md x-bg-foreground x-px-2 x-py-1 x-font-sans x-text-xs x-text-popover x-shadow-md x-duration-150 dark:x-bg-primary-foreground dark:x-text-popover-foreground",
+            "x-z-50 x-max-w-[400px] x-overflow-hidden x-whitespace-pre-line x-rounded-sm x-bg-foreground x-px-2 x-py-1 x-font-sans x-text-xs x-text-popover x-shadow-md x-duration-150 dark:x-bg-primary-foreground dark:x-text-popover-foreground",
             "data-[state=open]:x-animate-in data-[state=closed]:x-animate-out",
             "data-[state=closed]:x-fade-out-0 data-[state=open]:x-fade-in-0",
             "data-[state=closed]:x-zoom-out-95 data-[state=open]:x-zoom-in-95",
